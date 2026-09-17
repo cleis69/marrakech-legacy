@@ -1,0 +1,96 @@
+/* ---------- Localisation : les distances et la carte dessinée ---------- */
+.loc { background: var(--paper); }
+.loc-grid { display: grid; grid-template-columns: .78fr 1.22fr; grid-template-rows: auto auto; gap: 1.8rem 4vw; }
+.loc-head { grid-column: 1; grid-row: 1; align-self: end; }
+.loc-head .section-label { margin-bottom: 1.6rem; }
+.loc-head h2 { font: 400 clamp(2.8rem, 4.4vw, 4.8rem)/.98 "Italiana", serif; }
+.loc-aside { grid-column: 1; grid-row: 2; align-self: start; display: grid; gap: 1.6rem; }
+.loc-dist { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+.loc-dist button { position: relative; width: 100%; display: grid; grid-template-columns: 8.5rem 1fr; align-items: baseline; gap: 1.4rem; padding: 1.1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: inherit; text-align: left; cursor: pointer; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
+.loc-dist button::before { content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 2px; background: var(--bronze); transform: scaleY(0); transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.loc-dist button:hover { background: color-mix(in oklab, var(--ink) 4%, transparent); }
+.loc-dist button[aria-pressed="true"] { padding-left: 1rem; background: color-mix(in oklab, var(--ink) 7%, transparent); }
+.loc-dist button[aria-pressed="true"]::before { transform: none; }
+.loc-n { font: 400 3.4rem/1 "Italiana", serif; white-space: nowrap; }
+.loc-n small { margin-left: .5em; font: 400 .6rem "DM Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--bronze); }
+.loc-n.is-word { font-size: 2.4rem; }
+.loc-l { display: grid; gap: .3rem; }
+.loc-l b { font-size: .72rem; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
+.loc-l span { font-size: .82rem; color: var(--muted-foreground); }
+.loc-aside address { padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: .64rem; font-style: normal; line-height: 1.9; letter-spacing: .14em; text-transform: uppercase; }
+.loc-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
+.loc-foot > span { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+
+/* Carte */
+.mp { grid-column: 2; grid-row: 1 / span 2; position: relative; height: 80vh; min-height: 520px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--ink) 16%, transparent); background: var(--cream); color: var(--ink); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.mp.is-dragging { cursor: grabbing; }
+.mp-svg { display: block; width: 100%; height: 100%; }
+.mp-ct, .mp-ring, .mp-road, .mp-medina, .mp-live, .mp-halo, .mp-detail path { vector-effect: non-scaling-stroke; }
+.mp-ct { fill: none; stroke: color-mix(in oklab, var(--ink) 9%, transparent); stroke-width: 1.2; }
+.mp-ring { fill: none; stroke: color-mix(in oklab, var(--ink) 16%, transparent); stroke-width: 2; stroke-dasharray: 2 7; }
+.mp-road { fill: none; stroke: color-mix(in oklab, var(--ink) 14%, transparent); stroke-width: 2.5; }
+.mp-palm { fill: color-mix(in oklab, var(--ink) 30%, transparent); }
+.mp-detail { opacity: clamp(0, calc((var(--z, 1) - 1.35) * 2.2), 1); transition: opacity .3s; }
+.mp-detail path { fill: none; stroke: color-mix(in oklab, var(--ink) 24%, transparent); stroke-width: 1; }
+.mp-medina { fill: color-mix(in oklab, var(--ink) 6%, transparent); stroke: color-mix(in oklab, var(--ink) 55%, transparent); stroke-width: 1.6; }
+.mp-runway { fill: color-mix(in oklab, var(--ink) 45%, transparent); }
+.mp-geo { fill: none; stroke: none; }
+.mp-live { fill: none; stroke: var(--bronze); stroke-width: 3; stroke-linecap: round; }
+.mp-svg text { fill: color-mix(in oklab, var(--ink) 70%, var(--cream)); font-family: "DM Sans", sans-serif; font-size: 17px; letter-spacing: .14em; text-transform: uppercase; }
+.mp-svg text.mp-big { fill: var(--ink); font-family: "Italiana", serif; font-size: 30px; letter-spacing: .04em; text-transform: none; }
+.mp-short { display: none; }
+.mp-lm { cursor: pointer; }
+.mp-dot { fill: var(--ink); transition: r .3s; }
+.mp-lm:hover .mp-dot, .mp-lm.is-hot .mp-dot { r: 9; fill: var(--bronze); }
+.mp-star { cursor: pointer; }
+.mp-star text { transition: opacity .3s; }
+.mp.has-pop .mp-star text { opacity: 0; }
+.mp-star-shape { fill: var(--bronze); }
+.mp-halo { fill: none; stroke: var(--bronze); stroke-width: 1.5; opacity: .5; }
+.mp-head circle { fill: var(--bronze); }
+.mp-svg text.mp-hl { fill: var(--ink); font-family: "Italiana", serif; font-size: 28px; letter-spacing: 0; text-transform: none; paint-order: stroke; stroke: var(--cream); stroke-width: 7px; stroke-linejoin: round; }
+
+.mp-ctrl { position: absolute; z-index: 3; top: 1rem; right: 1rem; display: grid; gap: 1px; border: 1px solid color-mix(in oklab, var(--ink) 16%, transparent); background: color-mix(in oklab, var(--ink) 16%, transparent); }
+.mp-ctrl button { display: grid; place-items: center; width: 2.4rem; height: 2.4rem; padding: 0; border: 0; background: var(--cream); color: var(--ink); cursor: pointer; transition: background .25s, color .25s; }
+.mp-ctrl button:hover { background: var(--bronze); color: var(--cream); }
+.mp-ctrl svg { width: 1rem; height: 1rem; }
+.mp-hint { position: absolute; z-index: 3; left: 1rem; bottom: 1rem; padding: .35em .7em; background: color-mix(in oklab, var(--cream) 88%, transparent); color: var(--muted-foreground); font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; transition: color .3s, background .3s; }
+.mp-hint.is-flash { background: var(--ink); color: var(--cream); }
+.mp-short-hint { display: none; }
+
+.mp-pop { position: absolute; z-index: 4; left: 0; top: 0; width: 13rem; background: var(--ink); color: var(--cream); box-shadow: 0 1rem 2.4rem -1rem oklch(0 0 0 / 50%); opacity: 0; pointer-events: none; transform: translate(-50%, calc(-100% - 26px)); transition: opacity .35s; cursor: default; }
+.mp-pop.is-shown { opacity: 1; pointer-events: auto; }
+.mp-pop-ph { height: 6.2rem; overflow: hidden; }
+.mp-pop-ph img { width: 100%; height: 100%; object-fit: cover; }
+.mp-pop-bd { display: grid; gap: .35rem; padding: .8rem .9rem .9rem; }
+.mp-pop-bd b { font: 400 1.35rem/1 "Italiana", serif; }
+.mp-pop-bd small { font-size: .56rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sand); }
+.mp-pop-bd small.mp-pop-where { color: inherit; opacity: .7; }
+.mp-pop-bd a { display: inline-flex; align-items: center; gap: .6em; width: fit-content; margin-top: .3rem; color: inherit; font-size: .58rem; letter-spacing: .14em; text-decoration: none; text-transform: uppercase; }
+.mp-pop-bd a:hover { color: var(--sand); }
+.mp-pop-bd a svg { width: .9rem; height: .9rem; }
+.mp-pop-x { position: absolute; z-index: 2; top: .3rem; right: .3rem; display: grid; place-items: center; width: 1.6rem; height: 1.6rem; padding: 0; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--ink) 55%, transparent); color: var(--cream); cursor: pointer; }
+.mp-pop-x svg { width: .8rem; height: .8rem; }
+.mp-pop::after { content: ""; position: absolute; left: 50%; bottom: -7px; margin-left: -7px; border: 7px solid transparent; border-bottom: 0; border-top-color: var(--ink); }
+.mp-pop.is-below { transform: translate(-50%, 26px); }
+.mp-pop.is-below::after { top: -7px; bottom: auto; border-top: 0; border-bottom: 7px solid var(--ink); }
+
+@media (max-width: 900px) {
+  .loc-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .loc-head, .mp, .loc-aside { grid-column: 1; grid-row: auto; }
+  .loc-head h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .mp { height: 46svh; min-height: 320px; margin: 0 -1.3rem; border-inline: 0; }
+  .mp-long { display: none; }
+  .mp-short { display: inline; }
+  .mp-long-hint { display: none; }
+  .mp-short-hint { display: inline; }
+  .mp-pop { width: 10.5rem; }
+  .mp-pop-ph { height: 4.4rem; }
+  .loc-dist button { grid-template-columns: 6rem 1fr; gap: .8rem; padding: .8rem 0; }
+  .loc-n { font-size: 2.4rem; }
+  .loc-n.is-word { font-size: 1.7rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loc-dist button, .loc-dist button::before, .mp-pop, .mp-detail { transition: none; }
+}
