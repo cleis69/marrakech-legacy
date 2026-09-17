@@ -6,6 +6,7 @@ import { programme } from "@/config/citystar";
 import heroVideo from "@/assets/citystar/hero-video.mp4";
 import villaBImage from "@/assets/citystar/villa-b.jpeg";
 
+import { useDevise } from "./currency";
 import { scrollTo } from "./data";
 import { PillButton } from "./ui/PillButton";
 
@@ -17,6 +18,7 @@ const TITLE = "CITYSTAR";
  * s'efface et la vidéo passe en plein écran.
  */
 export function HeroSection() {
+  const { t } = useDevise();
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
@@ -40,10 +42,10 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={heroRef} id="accueil" className="pp-hero" aria-label="CITYSTAR, résidence privée à Marrakech">
+    <section ref={heroRef} id="accueil" className="pp-hero" aria-label={`CITYSTAR — ${t.hero.kicker}`}>
       <div className="pp-sticky">
-        <span className="pp-caption pp-caption-left" aria-hidden="true">Oulad Hassoune · Marrakech</span>
-        <span className="pp-caption pp-caption-right" aria-hidden="true">Résidence privée · {programme.nombreVillas} villas</span>
+        <span className="pp-caption pp-caption-left" aria-hidden="true">{t.hero.lieu}</span>
+        <span className="pp-caption pp-caption-right" aria-hidden="true">{t.hero.residence(programme.nombreVillas)}</span>
 
         <motion.div className="pp-frame" style={reduce ? {} : ({ "--open": open } as unknown as MotionStyle)}>
           <div className="pp-reveal">
@@ -53,18 +55,18 @@ export function HeroSection() {
             <div className="pp-shade" aria-hidden="true" />
 
             <div className="pp-title">
-              <p className="pp-kicker">Résidence privée · Marrakech</p>
+              <p className="pp-kicker">{t.hero.kicker}</p>
               <h1 aria-label={TITLE}>
                 {TITLE.split("").map((letter, i) => <span key={i} aria-hidden="true" style={{ "--i": i } as React.CSSProperties}>{letter}</span>)}
               </h1>
             </div>
 
             <div className="pp-side">
-              <p>Quatorze villas contemporaines pensées comme un art de vivre.</p>
-              <PillButton label="Découvrir les villas" icon={ArrowRight} variant="secondary" onClick={() => scrollTo("villas")} />
+              <p>{t.hero.texte}</p>
+              <PillButton label={t.hero.decouvrir} icon={ArrowRight} variant="secondary" onClick={() => scrollTo("villas")} />
             </div>
 
-            <button className="pp-pause" onClick={toggleVideo} aria-label={playing ? "Mettre la vidéo en pause" : "Lire la vidéo"}>
+            <button className="pp-pause" onClick={toggleVideo} aria-label={playing ? t.hero.pause : t.hero.lecture}>
               {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}<span>{playing ? "Pause" : "Lecture"}</span>
             </button>
           </div>

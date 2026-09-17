@@ -1,4 +1,7 @@
-import { formatSurface, villasChiffres } from "@/config/citystar";
+import { type Langue, type TypeVilla, formatSurface, villasChiffres } from "@/config/citystar";
+
+import type { Textes } from "./i18n";
+
 import villaAImage from "@/assets/citystar/site/ext-type-a.jpg";
 import villaBImage from "@/assets/citystar/site/ext-palms.jpg";
 import villaCImage from "@/assets/citystar/site/ext-aerial.jpg";
@@ -10,17 +13,24 @@ import planCRdc from "@/assets/citystar/plan-c-rdc.png";
 import planCFloor from "@/assets/citystar/plan-c-floor.png";
 
 export const villas = [
-  { type: "A", tag: "Accessible", image: villaAImage, area: formatSurface(villasChiffres.A.surfaceConstruiteM2), land: formatSurface(villasChiffres.A.terrainM2), bedrooms: `${villasChiffres.A.suites} suites`, description: "Pensée pour les résidents à mobilité réduite : ascenseur, salles de bains accessibles et circulations généreuses.", plans: [planARdc, planAFloor] },
-  { type: "B", tag: "Terrasses", image: villaBImage, area: formatSurface(villasChiffres.B.surfaceConstruiteM2), land: formatSurface(villasChiffres.B.terrainM2), bedrooms: `${villasChiffres.B.suites} suites`, description: "Une architecture exigeante et des matériaux de haute qualité, prolongés par de vastes terrasses.", plans: [planBRdc, planBFloor] },
-  { type: "C", tag: "Contemporaine", image: villaCImage, area: formatSurface(villasChiffres.C.surfaceConstruiteM2), land: formatSurface(villasChiffres.C.terrainM2), bedrooms: `${villasChiffres.C.suites} suites`, description: "Des volumes contemporains et une piscine privée, selon les standards architecturaux les plus exigeants.", plans: [planCRdc, planCFloor] },
+  { type: "A", image: villaAImage, plans: [planARdc, planAFloor] },
+  { type: "B", image: villaBImage, plans: [planBRdc, planBFloor] },
+  { type: "C", image: villaCImage, plans: [planCRdc, planCFloor] },
 ] as const;
 
 export type Villa = (typeof villas)[number];
 
-export const navItems = [
-  ["Le projet", "project"], ["Architecture", "architecture"], ["Les villas", "villas"],
-  ["Plans", "plans"], ["Visite 360°", "visite"], ["Localisation", "localisation"],
-] as const;
+/** Chiffres et mots d'une villa : les nombres viennent de la config, les mots de la langue. */
+export function faitsVilla(type: TypeVilla, t: Textes, langue: Langue) {
+  const chiffres = villasChiffres[type];
+  return {
+    surface: formatSurface(chiffres.surfaceConstruiteM2, langue),
+    terrain: formatSurface(chiffres.terrainM2, langue),
+    suites: t.villas.suites(chiffres.suites),
+    tag: t.villas.tags[type],
+    description: t.villas.descriptions[type],
+  };
+}
 
 export const TOUR_URL = "https://momento360.com/e/u/d4658634f15c4a3fa6fdb5ef818d3e5a?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true";
 

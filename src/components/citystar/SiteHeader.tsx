@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 
 import { contact } from "@/config/citystar";
 
-import { navItems, scrollTo } from "./data";
+import { Link } from "@tanstack/react-router";
+
+import { useDevise } from "./currency";
+import { scrollTo } from "./data";
 import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
@@ -35,17 +38,29 @@ function useActiveSection(ids: readonly string[]) {
 
 const MOBILE_TABS = ["villas", "plans", "visite"] as const;
 
+function LangSwitch({ className = "" }: { className?: string }) {
+  const { t } = useDevise();
+  return (
+    <div className={`lang-switch ${className}`.trim()} role="group" aria-label={t.header.langue}>
+      <Link to="/" hrefLang="fr">FR</Link>
+      <span aria-hidden="true">|</span>
+      <Link to="/en" hrefLang="en">EN</Link>
+    </div>
+  );
+}
+
 function MenuSheet({ onClose, onContact, active }: { onClose: () => void; onContact: () => void; active: string | null }) {
+  const { t } = useDevise();
   const ref = useModal<HTMLDivElement>(onClose);
   return (
     <>
       <motion.div className="sheet-scrim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} aria-hidden="true" />
       <motion.div ref={ref} role="dialog" aria-modal="true" aria-labelledby="menu-sheet-title" tabIndex={-1} className="menu-sheet" initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }}>
         <div className="menu-sheet-handle" aria-hidden="true" />
-        <div className="menu-sheet-head"><p id="menu-sheet-title">Sommaire</p><button onClick={onClose} aria-label="Fermer le sommaire"><X /></button></div>
-        <nav aria-label="Sommaire">
+        <div className="menu-sheet-head"><p id="menu-sheet-title">{t.header.sommaire}</p><LangSwitch /><button onClick={onClose} aria-label={t.header.fermer}><X /></button></div>
+        <nav aria-label={t.header.sommaire}>
           <ol>
-            {navItems.map(([label, id], index) => (
+            {t.nav.map(([label, id], index) => (
               <li key={id}>
                 <button className={active === id ? "is-active" : ""} aria-current={active === id ? "true" : undefined} onClick={() => { onClose(); setTimeout(() => scrollTo(id), 300); }}>
                   <small>{String(index + 1).padStart(2, "0")}</small>{label}
@@ -55,16 +70,17 @@ function MenuSheet({ onClose, onContact, active }: { onClose: () => void; onCont
           </ol>
         </nav>
         <div className="menu-sheet-links">
-          <a href={whatsappHref} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" />Conciergerie</a>
-          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer"><Download aria-hidden="true" />Brochure</a>
+          <a href={whatsappHref} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" />{t.header.conciergerie}</a>
+          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer"><Download aria-hidden="true" />{t.header.brochure}</a>
         </div>
-        <button className="menu-sheet-cta" onClick={() => { onClose(); onContact(); }}><Lock aria-hidden="true" />Demander un accès privé</button>
+        <button className="menu-sheet-cta" onClick={() => { onClose(); onContact(); }}><Lock aria-hidden="true" />{t.header.demander}</button>
       </motion.div>
     </>
   );
 }
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
+  const { t } = useDevise();
   const active = useActiveSection(MOBILE_TABS);
   const tab = (id: (typeof MOBILE_TABS)[number], label: string, Icon: typeof Building2) => (
     <button className={`tabbar-item ${active === id ? "is-active" : ""}`} aria-current={active === id ? "true" : undefined} onClick={() => scrollTo(id)}>
@@ -75,22 +91,23 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
   return (
     <>
       <header className={`float-header ${scrolled ? "is-scrolled" : ""}`}>
-        <button className="float-wordmark" onClick={() => scrollTo("accueil")} aria-label="Retour à l’accueil">CITYSTAR</button>
-        <nav className="float-nav" aria-label="Navigation principale">
-          {navItems.map(([label, id]) => <button key={id} onClick={() => scrollTo(id)}>{label}</button>)}
+        <button className="float-wordmark" onClick={() => scrollTo("accueil")} aria-label={t.header.accueil}>CITYSTAR</button>
+        <nav className="float-nav" aria-label="Navigation">
+          {t.nav.map(([label, id]) => <button key={id} onClick={() => scrollTo(id)}>{label}</button>)}
         </nav>
         <div className="float-actions">
-          <PillButton label="Accès privé" icon={Lock} onClick={onContact} className="float-cta" />
-          <a className="float-concierge" href={whatsappHref} target="_blank" rel="noreferrer">Conciergerie <MessageCircle aria-hidden="true" /></a>
+          <LangSwitch className="float-lang" />
+          <PillButton label={t.header.acces} icon={Lock} onClick={onContact} className="float-cta" />
+          <a className="float-concierge" href={whatsappHref} target="_blank" rel="noreferrer">{t.header.conciergerie} <MessageCircle aria-hidden="true" /></a>
         </div>
       </header>
 
-      <nav className="tabbar" aria-label="Navigation mobile">
-        {tab("villas", "Villas", Building2)}
-        {tab("plans", "Plans", LayoutPanelLeft)}
-        <button className="tabbar-fab" onClick={onContact}><i aria-hidden="true"><Lock /></i><span>Accès privé</span></button>
-        {tab("visite", "360°", Rotate3d)}
-        <button className="tabbar-item" onClick={onOpenMenu} aria-expanded={menuOpen} aria-haspopup="dialog"><Menu aria-hidden="true" /><span>Menu</span></button>
+      <nav className="tabbar" aria-label="Navigation">
+        {tab("villas", t.header.villas, Building2)}
+        {tab("plans", t.header.plans, LayoutPanelLeft)}
+        <button className="tabbar-fab" onClick={onContact}><i aria-hidden="true"><Lock /></i><span>{t.header.acces}</span></button>
+        {tab("visite", t.header.tour, Rotate3d)}
+        <button className="tabbar-item" onClick={onOpenMenu} aria-expanded={menuOpen} aria-haspopup="dialog"><Menu aria-hidden="true" /><span>{t.header.menu}</span></button>
       </nav>
 
       <AnimatePresence>{menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} active={active} />}</AnimatePresence>

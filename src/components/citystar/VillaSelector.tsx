@@ -2,10 +2,11 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { type TypeVilla, convertirEUR, formatMontantCourt, formatPrix, prixVilla, prixVillas, selecteur, villasChiffres } from "@/config/citystar";
+import { type Langue, type TypeVilla, convertirEUR, formatMontantCourt, formatPrix, prixVilla, prixVillas, selecteur, villasChiffres } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type Selection, openVilla, villas } from "./data";
+import { type Selection, faitsVilla, openVilla, villas } from "./data";
+import type { Textes } from "./i18n";
 import { PillButton } from "./ui/PillButton";
 
 type Key = "usage" | "suites" | "budget" | "horizon" | "pmr";
@@ -22,10 +23,10 @@ const fitsBudget = (t: TypeVilla, a: Answers) => { const max = budgetMax(a); ret
 const fitsSuites = (t: TypeVilla, a: Answers) => !a.suites || a.suites === "any" || villasChiffres[t].suites === Number(a.suites);
 
 /** Raison pour laquelle une villa ne correspond pas (vide si elle convient). */
-function mismatch(t: TypeVilla, a: Answers) {
-  if (a.pmr === "yes" && !villasChiffres[t].accessiblePmr) return "Non adaptée PMR";
-  if (!fitsSuites(t, a)) return `${villasChiffres[t].suites} suites`;
-  if (!fitsBudget(t, a)) return "Au-delà du budget";
+function mismatch(t: TypeVilla, a: Answers, textes: Textes) {
+  if (a.pmr === "yes" && !villasChiffres[t].accessiblePmr) return textes.selecteur.raisons.pmr;
+  if (!fitsSuites(t, a)) return textes.selecteur.raisons.suites(villasChiffres[t].suites);
+  if (!fitsBudget(t, a)) return textes.selecteur.raisons.budget;
   return "";
 }
 
@@ -47,28 +48,29 @@ function recommend(a: Answers): TypeVilla {
   return sorted[0] ?? "B";
 }
 
-function justify(t: TypeVilla, a: Answers) {
-  const villa = villas.find((v) => v.type === t) ?? villas[0];
-  const size = `${villa.bedrooms} sur ${villa.area}`;
-  const wanted = a.suites && a.suites !== "any" ? Number(a.suites) : null;
-  let sentence: string;
-  if (villasChiffres[t].accessiblePmr && a.pmr === "yes") {
-    sentence = `Seule villa conçue pour la mobilité réduite : ascenseur et salles de bains accessibles, ${size}.`;
-    if (wanted !== null && wanted !== villasChiffres[t].suites) sentence += ` Elle compte ${villasChiffres[t].suites > wanted ? "plus" : "moins"} de suites que souhaité.`;
-  } else if (t === "C") {
-    sentence = `${size[0]?.toUpperCase()}${size.slice(1)}, des volumes contemporains et une piscine privée${wanted === villasChiffres.C.suites ? " : la taille que vous recherchez." : "."}`;
-    if (a.suites === "any" && !fitsBudget("B", a)) sentence += " C’est la villa qui s’inscrit dans votre budget.";
-  } else if (t === "B") {
-    sentence = a.suites === "any" || !a.suites ? `La plus polyvalente : ${size}, prolongées par de vastes terrasses.` : `${size[0]?.toUpperCase()}${size.slice(1)}, prolongées par de vastes terrasses : l’espace que vous recherchez.`;
+function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue) {
+  const faits = faitsVilla(type, textes, langue);
+  const taille = `${faits.suites} · ${faits.surface}`;
+  const souhaite = a.suites && a.suites !== "any" ? Number(a.suites) : null;
+  const j = textes.selecteur.justifications;
+  let phrase: string;
+  if (villasChiffres[type].accessiblePmr && a.pmr === "yes") {
+    phrase = j.pmr(taille);
+    if (souhaite !== null && souhaite !== villasChiffres[type].suites) phrase += j.pmrSuites(villasChiffres[type].suites > souhaite);
+  } else if (type === "C") {
+    phrase = j.contemporaine(taille, souhaite === villasChiffres.C.suites);
+    if (a.suites === "any" && !fitsBudget("B", a)) phrase += j.budgetSeule;
+  } else if (type === "B") {
+    phrase = a.suites === "any" || !a.suites ? j.polyvalente(taille) : j.espace(taille);
   } else {
-    sentence = villa.description;
+    phrase = faits.description;
   }
-  if (!fitsBudget(t, a)) sentence += " Son prix dépasse le budget indiqué : parlons-en.";
-  return sentence;
+  if (!fitsBudget(type, a)) phrase += j.horsBudget;
+  return phrase;
 }
 
 export function VillaSelector({ onContact }: { onContact: (selection: Selection) => void }) {
-  const { devise, langue } = useDevise();
+  const { devise, langue, t } = useDevise();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [dir, setDir] = useState(1);
@@ -76,16 +78,16 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
 
   const suites = [...new Set(TYPES.map((t) => villasChiffres[t].suites))].sort((x, y) => x - y);
   const questions: Question[] = [
-    { key: "usage", title: "Vous pensez à CITYSTAR pour…", options: [{ value: "vivre", label: "Y vivre", hint: "Résidence principale ou secondaire" }, { value: "investir", label: "Investir", hint: "Placement ou location" }] },
-    { key: "suites", title: "Combien de chambres souhaitez-vous ?", options: [...suites.map((n) => ({ value: String(n), label: `${n} suites` })), { value: "any", label: "Peu importe" }] },
+    { key: "usage", title: t.selecteur.questions.usage.titre, options: [{ value: "vivre", label: t.selecteur.questions.usage.vivre, hint: t.selecteur.questions.usage.vivreNote }, { value: "investir", label: t.selecteur.questions.usage.investir, hint: t.selecteur.questions.usage.investirNote }] },
+    { key: "suites", title: t.selecteur.questions.suites.titre, options: [...suites.map((n) => ({ value: String(n), label: t.selecteur.questions.suites.suites(n) })), { value: "any", label: t.selecteur.questions.suites.peuImporte }] },
     {
       key: "budget",
-      title: "Quel budget envisagez-vous ?",
-      options: [...selecteur.plafondsBudgetEUR.map((max) => ({ value: String(max), label: `Jusqu’à ${devise === "EUR" ? "" : "≈ "}${formatMontantCourt(convertirEUR(max, devise), devise, langue)}` })), { value: "talk", label: "En parler", hint: "De vive voix" }],
-      ...(devise === "EUR" ? {} : { note: "Montants convertis à titre indicatif" }),
+      title: t.selecteur.questions.budget.titre,
+      options: [...selecteur.plafondsBudgetEUR.map((max) => ({ value: String(max), label: t.selecteur.questions.budget.jusqua(`${devise === "EUR" ? "" : "≈ "}${formatMontantCourt(convertirEUR(max, devise), devise, langue)}`) })), { value: "talk", label: t.selecteur.questions.budget.parler, hint: t.selecteur.questions.budget.parlerNote }],
+      ...(devise === "EUR" ? {} : { note: t.selecteur.conversion }),
     },
-    { key: "horizon", title: "Quand souhaitez-vous acquérir ?", options: [{ value: "soon", label: "Sous 6 mois" }, { value: "year", label: "D’ici un an" }, { value: "later", label: "Plus tard", hint: "Je m’informe" }] },
-    { key: "pmr", title: "Faut-il un accès adapté à la mobilité réduite ?", options: [{ value: "yes", label: "Oui", hint: "Ascenseur, salles de bains accessibles" }, { value: "no", label: "Non" }] },
+    { key: "horizon", title: t.selecteur.questions.horizon.titre, options: [{ value: "soon", label: t.selecteur.questions.horizon.soon }, { value: "year", label: t.selecteur.questions.horizon.year }, { value: "later", label: t.selecteur.questions.horizon.later, hint: t.selecteur.questions.horizon.laterNote }] },
+    { key: "pmr", title: t.selecteur.questions.pmr.titre, options: [{ value: "yes", label: t.selecteur.questions.pmr.oui, hint: t.selecteur.questions.pmr.ouiNote }, { value: "no", label: t.selecteur.questions.pmr.non }] },
   ];
 
   const done = step >= STEPS;
@@ -125,8 +127,8 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
   };
 
   const selection = (): Selection => ({
-    outil: "Sélecteur de villa",
-    lignes: [...questions.map((q) => labelOf(q.key)).filter(Boolean), `Recommandation : villa ${winner}`],
+    outil: t.selecteur.outil,
+    lignes: [...questions.map((q) => labelOf(q.key)).filter(Boolean), t.selecteur.ligneRecommandation(winner ?? "B")],
   });
 
   const question = questions[step];
@@ -137,12 +139,12 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
         <div className="sl-pane">
           <div className="sl-head">
             <div className="sl-head-row">
-              <h2 id="selecteur-title" className="sl-kicker">Trouver ma villa</h2>
-              <button type="button" className="sl-back" onClick={back} disabled={step === 0}><ArrowLeft aria-hidden="true" /> Retour</button>
+              <h2 id="selecteur-title" className="sl-kicker">{t.selecteur.kicker}</h2>
+              <button type="button" className="sl-back" onClick={back} disabled={step === 0}><ArrowLeft aria-hidden="true" /> {t.selecteur.retour}</button>
             </div>
             <div className="sl-progress">
-              <span>{done ? "Recommandation" : `Question ${step + 1} / ${STEPS}`}</span>
-              <span className="sl-line" role="progressbar" aria-label="Progression" aria-valuemin={0} aria-valuemax={STEPS} aria-valuenow={Math.min(step, STEPS)}><i style={{ width: `${(Math.min(step, STEPS) / STEPS) * 100}%` }} /></span>
+              <span>{done ? t.selecteur.recommandation : t.selecteur.question(step + 1, STEPS)}</span>
+              <span className="sl-line" role="progressbar" aria-label={t.selecteur.progression} aria-valuemin={0} aria-valuemax={STEPS} aria-valuenow={Math.min(step, STEPS)}><i style={{ width: `${(Math.min(step, STEPS) / STEPS) * 100}%` }} /></span>
             </div>
           </div>
 
@@ -170,43 +172,44 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                     ))}
                   </div>
                   {question.note && <p className="sl-note">{question.note}</p>}
-                  <p className="sl-keys" aria-hidden="true">Clavier : chiffres pour répondre, flèche gauche pour revenir</p>
+                  <p className="sl-keys" aria-hidden="true">{t.selecteur.clavier}</p>
                 </Stage>
               ) : winner ? (
                 <Stage focusPending={focusPending} focusHeading>
-                  <span className="sl-kicker">Notre recommandation</span>
-                  <h3 className="sl-result" tabIndex={-1}>Villa <em>{winner}</em></h3>
-                  <p className="sl-why">{justify(winner, answers)}</p>
-                  <ul className="sl-recap" aria-label="Vos réponses">{questions.map((q) => labelOf(q.key) && <li key={q.key}>{labelOf(q.key)}</li>)}</ul>
+                  <span className="sl-kicker">{t.selecteur.notre}</span>
+                  <h3 className="sl-result" tabIndex={-1}>{t.villas.villa} <em>{winner}</em></h3>
+                  <p className="sl-why">{justify(winner, answers, t, langue)}</p>
+                  <ul className="sl-recap" aria-label={t.selecteur.recap}>{questions.map((q) => labelOf(q.key) && <li key={q.key}>{labelOf(q.key)}</li>)}</ul>
                   <div className="sl-actions">
-                    <PillButton label="Voir la villa" icon={ArrowRight} variant="secondary" onClick={() => openVilla({ index: TYPES.indexOf(winner), target: "top" })} />
-                    <PillButton label="Recevoir le dossier" icon={Lock} onClick={() => onContact(selection())} />
+                    <PillButton label={t.selecteur.voirVilla} icon={ArrowRight} variant="secondary" onClick={() => openVilla({ index: TYPES.indexOf(winner), target: "top" })} />
+                    <PillButton label={t.selecteur.dossier} icon={Lock} onClick={() => onContact(selection())} />
                   </div>
-                  <p className="sl-private">Vos réponses restent sur cet appareil : elles ne sont jointes à votre demande que si vous l’envoyez.</p>
-                  <button type="button" className="sl-again" onClick={restart}>Recommencer</button>
+                  <p className="sl-private">{t.selecteur.prive}</p>
+                  <button type="button" className="sl-again" onClick={restart}>{t.selecteur.recommencer}</button>
                 </Stage>
               ) : null}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <ul className="sl-trio" aria-label="Aperçu des trois villas">
+        <ul className="sl-trio" aria-label={t.selecteur.apercu}>
           {villas.map((villa) => {
-            const t = villa.type;
-            const reason = winner ? (t === winner ? "" : mismatch(t, answers) || "Moins adaptée") : mismatch(t, answers);
-            const price = prixVilla(t, devise);
+            const type = villa.type;
+            const faits = faitsVilla(type, t, langue);
+            const reason = winner ? (type === winner ? "" : mismatch(type, answers, t) || t.selecteur.raisons.autre) : mismatch(type, answers, t);
+            const price = prixVilla(type, devise);
             return (
-              <li key={t} className={`sl-card${reason ? " is-dim" : ""}${t === winner ? " is-win" : ""}`}>
+              <li key={type} className={`sl-card${reason ? " is-dim" : ""}${type === winner ? " is-win" : ""}`}>
                 <div className="sl-card-ph">
                   <img src={villa.image} alt="" loading="lazy" />
-                  <span className="sl-card-letter">{t}</span>
+                  <span className="sl-card-letter">{type}</span>
                 </div>
                 <div className="sl-card-info">
-                  <b>Villa {t}</b>
-                  <span>{villa.bedrooms} · {villa.area}</span>
+                  <b>{t.villas.villa} {type}</b>
+                  <span>{faits.suites} · {faits.surface}</span>
                   <span>{price.approximatif ? "≈ " : ""}{formatPrix(price.montant, devise, langue)}</span>
                 </div>
-                <span className="sl-card-why" aria-live="polite">{reason && <><span className="sr-only">Villa {t} : </span>{reason}</>}</span>
+                <span className="sl-card-why" aria-live="polite">{reason && <><span className="sr-only">{t.villas.villa} {type} : </span>{reason}</>}</span>
               </li>
             );
           })}

@@ -63,3 +63,12 @@
   .tabbar-fab:active i { transform: scale(.94); }
   .tabbar-fab i svg { width: 1.35rem; height: 1.35rem; }
 }
+
+/* Bascule de langue */
+.lang-switch { display: inline-flex; align-items: center; gap: .45em; font-size: .6rem; letter-spacing: .16em; }
+.lang-switch a { color: inherit; opacity: .55; text-decoration: none; transition: opacity .3s, color .3s; }
+.lang-switch a:hover { opacity: 1; }
+.lang-switch a[aria-current] { opacity: 1; color: var(--sand); }
+.lang-switch span { opacity: .3; }
+.float-lang { margin-right: .4rem; }
+.menu-sheet .lang-switch { margin-left: auto; margin-right: 1rem; }

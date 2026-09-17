@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 
 import visitImage from "@/assets/citystar/visit.jpeg";
 
+import { useDevise } from "./currency";
 import { TOUR_URL } from "./data";
 import { Reveal } from "./motion";
 import { PillButton } from "./ui/PillButton";
@@ -14,6 +15,7 @@ import { PillButton } from "./ui/PillButton";
  * la page ni capter le défilement.
  */
 export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
+  const { t } = useDevise();
   const [active, setActive] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
 
@@ -21,19 +23,19 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
     <section id="visite" className="tv section-pad" aria-labelledby="visite-title">
       <div className="tv-grid">
         <div className="tv-head">
-          <div className="section-label"><span>05</span><p>Visite 360°</p></div>
-          <Reveal><h2 id="visite-title">Le domaine,<br /><em>vu du ciel.</em></h2></Reveal>
-          <p>Une vue aérienne à 360° du domaine et de ses environs. Regardez autour de vous, à votre rythme.</p>
+          <div className="section-label"><span>05</span><p>{t.visite.label}</p></div>
+          <Reveal><h2 id="visite-title">{t.visite.titre[0]}<br /><em>{t.visite.titre[1]}</em></h2></Reveal>
+          <p>{t.visite.texte}</p>
         </div>
 
         <div className="tv-viewer">
-          {active && <iframe ref={frameRef} src={TOUR_URL} title="Visite virtuelle à 360° du domaine CITYSTAR" allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking" allowFullScreen onLoad={() => frameRef.current?.focus()} />}
+          {active && <iframe ref={frameRef} src={TOUR_URL} title={t.visite.titreIframe} allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking" allowFullScreen onLoad={() => frameRef.current?.focus()} />}
           <AnimatePresence>
             {!active && (
               <motion.button type="button" className="tv-poster" onClick={() => setActive(true)} exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
                 <img src={visitImage} alt="" loading="lazy" />
-                <span className="tv-poster-cta"><Rotate3d aria-hidden="true" /> Activer la visite</span>
-                <small>Vue aérienne · 360°</small>
+                <span className="tv-poster-cta"><Rotate3d aria-hidden="true" /> {t.visite.activer}</span>
+                <small>{t.visite.apercu}</small>
               </motion.button>
             )}
           </AnimatePresence>
@@ -41,11 +43,9 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
 
         <div className="tv-aside">
           <ol className="tv-steps">
-            <li><small>01</small>Activer la visite</li>
-            <li><small>02</small>Glisser pour regarder autour</li>
-            <li><small>03</small>Passer en plein écran</li>
+            {t.visite.etapes.map((etape, i) => <li key={etape}><small>{String(i + 1).padStart(2, "0")}</small>{etape}</li>)}
           </ol>
-          <PillButton label="Plein écran" icon={Maximize2} variant="secondary" onClick={onOpenTour} />
+          <PillButton label={t.visite.pleinEcran} icon={Maximize2} variant="secondary" onClick={onOpenTour} />
         </div>
       </div>
     </section>

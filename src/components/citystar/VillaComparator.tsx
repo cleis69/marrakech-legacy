@@ -22,7 +22,7 @@ function Delta({ value, unit, noun }: { value: number; unit?: string; noun?: str
 
 /** Comparateur « Les écarts » : une villa de référence, les autres affichent leur écart. */
 export function VillaComparator({ onOpenPlan }: Props) {
-  const { devise, langue } = useDevise();
+  const { devise, langue, t: textes } = useDevise();
   const [pin, setPin] = useState<TypeVilla>("B");
   const [onlyDiff, setOnlyDiff] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -77,7 +77,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
 
   const rows: { label: React.ReactNode; same?: boolean; cells: (type: TypeVilla) => React.ReactNode }[] = [
     {
-      label: <>Surface<br />construite</>,
+      label: <>{textes.comparateur.surfaceCourt[0]}<br />{textes.comparateur.surfaceCourt[1]}</>,
       cells: (t) => (
         <>
           <span className="cp-value">{formatSurface(villasChiffres[t].surfaceConstruiteM2, langue)}</span>
@@ -86,49 +86,49 @@ export function VillaComparator({ onOpenPlan }: Props) {
         </>
       ),
     },
-    { label: "Terrain", same: true, cells: (t) => <span className="cp-value">{formatSurface(villasChiffres[t].terrainM2, langue)}</span> },
+    { label: textes.comparateur.terrain, same: true, cells: (t) => <span className="cp-value">{formatSurface(villasChiffres[t].terrainM2, langue)}</span> },
     {
-      label: "Suites",
+      label: textes.comparateur.suites,
       cells: (t) => (
         <>
           <span className="cp-value">{villasChiffres[t].suites}</span>
           <span className="cp-dots" aria-hidden="true">{Array.from({ length: maxSuites }, (_, i) => <i key={i} className={i < villasChiffres[t].suites ? "" : "is-off"} />)}</span>
-          {t !== pin && <Delta value={villasChiffres[t].suites - villasChiffres[pin].suites} noun="suite" />}
+          {t !== pin && <Delta value={villasChiffres[t].suites - villasChiffres[pin].suites} noun={textes.comparateur.suite} />}
         </>
       ),
     },
     {
-      label: <>Accès<br />PMR</>,
+      label: <>{textes.comparateur.pmr[0]}<br />{textes.comparateur.pmr[1]}</>,
       cells: (t) => villasChiffres[t].accessiblePmr
-        ? <><span className="cp-value">Oui</span><small>Ascenseur, salles de bains accessibles</small></>
-        : <span className="cp-value cp-none">Non prévu</span>,
+        ? <><span className="cp-value">{textes.comparateur.pmrOui}</span><small>{textes.comparateur.pmrDetail}</small></>
+        : <span className="cp-value cp-none">{textes.comparateur.pmrNon}</span>,
     },
-    { label: "Atout", cells: (t) => <span className="cp-text">{villas.find((v) => v.type === t)?.tag}</span> },
+    { label: textes.comparateur.atout, cells: (type) => <span className="cp-text">{textes.villas.tags[type]}</span> },
     {
-      label: "Plans",
+      label: textes.comparateur.plans,
       cells: (t) => {
         const villa = villas.find((v) => v.type === t);
         return (
           <>
             <span className="cp-plans">
               {villa?.plans.map((plan, i) => (
-                <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={`Agrandir le plan ${i ? "de l’étage" : "du rez-de-chaussée"} de la villa ${t}`}>
+                <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={textes.villas.agrandirPlan(i === 1, t)}>
                   <img src={plan} alt="" loading="lazy" />
-                  <small>{i ? "Étage" : "RDC"} <Expand aria-hidden="true" /></small>
+                  <small>{i ? textes.villas.etage : textes.villas.rdc} <Expand aria-hidden="true" /></small>
                 </button>
               ))}
             </span>
             <button type="button" className="cp-plans-mobile" onClick={() => openVilla({ index: TYPES.indexOf(t), target: "plans" })}>
               <img src={villa?.plans[0]} alt="" loading="lazy" />
-              <em>2 plans</em>
+              <em>{textes.comparateur.deuxPlans}</em>
             </button>
           </>
         );
       },
     },
-    { label: "Brochure", same: true, cells: (t) => <a className="cp-pdf" href={`/brochures/villa-${t.toLowerCase()}.pdf`} target="_blank" rel="noreferrer" aria-label={`Brochure de la villa type ${t} (PDF)`}>PDF <Download aria-hidden="true" /></a> },
+    { label: textes.comparateur.brochure, same: true, cells: (type) => <a className="cp-pdf" href={`/brochures/villa-${type.toLowerCase()}.pdf`} target="_blank" rel="noreferrer" aria-label={textes.villas.brochureAria(type)}>PDF <Download aria-hidden="true" /></a> },
     {
-      label: "Prix",
+      label: textes.comparateur.prix,
       cells: (t) => (
         <>
           <span className="cp-value">{price(t).approximatif ? "≈ " : ""}{formatPrix(price(t).montant, devise, langue)}</span>
@@ -144,28 +144,28 @@ export function VillaComparator({ onOpenPlan }: Props) {
     <section id="comparateur" className="cp section-pad" aria-labelledby="comparateur-title">
       <div className="cp-head">
         <div>
-          <p className="cp-kicker">Comparer</p>
-          <h2 id="comparateur-title">Ce qui les <em>distingue.</em></h2>
+          <p className="cp-kicker">{textes.comparateur.kicker}</p>
+          <h2 id="comparateur-title">{textes.comparateur.titre[0]}<em>{textes.comparateur.titre[1]}</em></h2>
         </div>
-        <p className="cp-note">{highlight ? `Dans le budget saisi : ${highlight.map((t) => `villa ${t}`).join(", ") || "aucune villa"}` : "Écarts calculés par rapport à la villa de référence"}</p>
+        <p className="cp-note">{highlight ? textes.comparateur.budget(highlight.map((type) => `${textes.villas.villa} ${type}`).join(", ") || textes.comparateur.aucune) : textes.comparateur.note}</p>
       </div>
 
       <div className="cp-controls">
-        <div className="cp-pins" role="group" aria-label="Villa de référence">
-          <span>Référence</span>
+        <div className="cp-pins" role="group" aria-label={textes.comparateur.referenceAria}>
+          <span>{textes.comparateur.reference}</span>
           {TYPES.map((t) => (
-            <button key={t} type="button" aria-pressed={t === pin} onClick={() => { setPin(t); scrollToColumn(t); }} aria-label={`Prendre la villa ${t} comme référence`}>{t}</button>
+            <button key={t} type="button" aria-pressed={t === pin} onClick={() => { setPin(t); scrollToColumn(t); }} aria-label={textes.comparateur.prendreReference(t)}>{t}</button>
           ))}
         </div>
         <label className="cp-switch">
           <input type="checkbox" checked={onlyDiff} onChange={(event) => setOnlyDiff(event.target.checked)} />
           <i aria-hidden="true" />
-          Seulement les différences
+          {textes.comparateur.differences}
         </label>
         <CurrencyPills className="cp-cur" />
       </div>
 
-      <div ref={scrollRef} className="cp-scroll" tabIndex={0} role="region" aria-label="Tableau comparatif des trois villas">
+      <div ref={scrollRef} className="cp-scroll" tabIndex={0} role="region" aria-label={textes.comparateur.tableauAria}>
         <table className="cp-table">
           <thead>
             <tr>
@@ -175,7 +175,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
                 return (
                   <th key={t} scope="col" data-col={t} className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}>
                     <span className="cp-photo"><img src={villa?.image} alt="" loading="lazy" /><b>{t}</b></span>
-                    <span className="cp-name">Villa {t}{t === pin && <em> · référence</em>}</span>
+                    <span className="cp-name">{textes.villas.villa} {t}{t === pin && <em>{textes.comparateur.estReference}</em>}</span>
                   </th>
                 );
               })}
@@ -196,7 +196,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
         <div className="cp-visible" aria-hidden="true">
           {TYPES.map((t) => <span key={t} className={`${visible.includes(t) ? "is-in" : ""}${t === pin ? " is-ref" : ""}`}>{t}</span>)}
         </div>
-        <p>Faites défiler pour comparer</p>
+        <p>{textes.comparateur.defiler}</p>
       </div>
     </section>
   );

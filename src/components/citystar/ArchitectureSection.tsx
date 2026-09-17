@@ -5,22 +5,18 @@ import { useEffect, useRef, useState } from "react";
 import renderImage from "@/assets/citystar/site/ext-terraces.jpg";
 import drawingImage from "@/assets/citystar/site/ext-terraces-trait.jpg";
 
+import { useDevise } from "./currency";
 import { Reveal } from "./motion";
 
 /* Positions en % de l'image : liées à ce rendu précis, à reprendre si l'image change. */
-const SPOTS = [
-  { x: 31, y: 13, title: "Brise-soleil", text: "Des lames horizontales qui filtrent la lumière au-dessus de la terrasse." },
-  { x: 30, y: 40, title: "Terrasse à l’étage", text: "Les pièces de l’étage s’ouvrent sur de vastes terrasses." },
-  { x: 67, y: 42, title: "Volumes vitrés", text: "De grands volumes ouverts sur l’extérieur." },
-  { x: 58.5, y: 62, title: "Matériaux", text: "Des matériaux de haute qualité, aux standards européens." },
-  { x: 62, y: 92, title: "Piscine privée", text: "Chaque villa dispose de sa propre piscine." },
-];
+const SPOTS = [{ x: 31, y: 13 }, { x: 30, y: 40 }, { x: 67, y: 42 }, { x: 58.5, y: 62 }, { x: 62, y: 92 }];
 
 const START = 92;
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 const revealedAt = (v: number) => SPOTS.map((spot) => spot.x <= v);
 
 export function ArchitectureSection() {
+  const { t } = useDevise();
   const boxRef = useRef<HTMLDivElement>(null);
   const handleRef = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
@@ -93,8 +89,8 @@ export function ArchitectureSection() {
     <section id="architecture" className="arch" aria-labelledby="architecture-title">
       <div className="arch-grid">
         <div className="arch-head">
-          <div className="section-label"><span>02</span><p>Architecture</p></div>
-          <Reveal><h2 id="architecture-title">Vivre Marrakech,<br /><em>autrement.</em></h2></Reveal>
+          <div className="section-label"><span>02</span><p>{t.architecture.label}</p></div>
+          <Reveal><h2 id="architecture-title">{t.architecture.titre[0]}<br /><em>{t.architecture.titre[1]}</em></h2></Reveal>
         </div>
 
         <div
@@ -106,20 +102,20 @@ export function ArchitectureSection() {
           onPointerCancel={() => { dragging.current = false; }}
           onKeyDown={(event) => { if (event.key === "Escape") setOpen(null); }}
         >
-          <img src={drawingImage} alt="Dessin au trait de la façade d’une villa CITYSTAR" draggable={false} />
+          <img src={drawingImage} alt={t.architecture.altDessin} draggable={false} />
           <motion.div className="arch-render" style={{ clipPath: clip }}>
-            <img src={renderImage} alt="Rendu de la même façade, avec terrasses et piscine" draggable={false} />
+            <img src={renderImage} alt={t.architecture.altRendu} draggable={false} />
           </motion.div>
-          <span className="arch-tag is-left" aria-hidden="true">Rendu</span>
-          <span className="arch-tag is-right" aria-hidden="true">Dessin</span>
+          <span className="arch-tag is-left" aria-hidden="true">{t.architecture.rendu}</span>
+          <span className="arch-tag is-right" aria-hidden="true">{t.architecture.dessin}</span>
 
           {SPOTS.map((item, index) => (
             <button
-              key={item.title}
+              key={index}
               type="button"
               className={`arch-spot${revealed[index] ? "" : " is-off"}${open === index ? " is-on" : ""}`}
               style={{ left: `${item.x}%`, top: `${item.y}%` }}
-              aria-label={item.title}
+              aria-label={t.architecture.points[index]?.titre}
               aria-expanded={open === index}
               aria-controls="arch-tip"
               onClick={() => reveal(index)}
@@ -135,7 +131,7 @@ export function ArchitectureSection() {
             style={{ left }}
             role="slider"
             tabIndex={0}
-            aria-label="Comparer le dessin et le rendu"
+            aria-label={t.architecture.curseur}
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={START}
@@ -145,22 +141,22 @@ export function ArchitectureSection() {
           </motion.div>
 
           <div id="arch-tip" className={`arch-tip${spot ? " is-shown" : ""}${spot && spot.y < 45 ? " is-below" : ""}`} role="note" aria-live="polite" style={spot ? { left: `${clamp(spot.x, 20, 80)}%`, top: `${spot.y}%` } : {}}>
-            {spot && <><b>{spot.title}</b><span>{spot.text}</span></>}
+            {spot && open !== null && <><b>{t.architecture.points[open]?.titre}</b><span>{t.architecture.points[open]?.texte}</span></>}
           </div>
         </div>
 
         <div className="arch-aside">
           <ol className="arch-list">
             {SPOTS.map((item, index) => (
-              <li key={item.title}>
+              <li key={index}>
                 <button type="button" className={open === index ? "is-on" : ""} aria-expanded={open === index} aria-controls="arch-tip" onClick={() => reveal(index)} onMouseEnter={() => reveal(index)}>
-                  <small>{String(index + 1).padStart(2, "0")}</small>{item.title}
+                  <small>{String(index + 1).padStart(2, "0")}</small>{t.architecture.points[index]?.titre}
                 </button>
               </li>
             ))}
           </ol>
-          <p className="arch-hint">Glissez la poignée, puis ouvrez chaque point.</p>
-          <p className="arch-note">Illustration non contractuelle</p>
+          <p className="arch-hint">{t.architecture.hint}</p>
+          <p className="arch-note">{t.architecture.note}</p>
         </div>
       </div>
     </section>

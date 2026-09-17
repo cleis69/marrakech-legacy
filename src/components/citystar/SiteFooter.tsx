@@ -4,26 +4,28 @@ import { useRef } from "react";
 
 import { contact } from "@/config/citystar";
 
-import { navItems, scrollTo } from "./data";
+import { useDevise } from "./currency";
+import { scrollTo } from "./data";
 import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
+  const { t } = useDevise();
   const wordRef = useRef<HTMLDivElement>(null);
   const wordInView = useInView(wordRef, { once: true, amount: 0.4 });
   const tiles = [
-    { href: `tel:${contact.telephone}`, icon: Phone, kicker: "Appeler", value: contact.telephoneAffiche, external: false },
-    { href: `https://wa.me/${contact.whatsapp}`, icon: MessageCircle, kicker: "WhatsApp", value: "Conciergerie", external: true },
-    { href: `mailto:${contact.email}`, icon: Mail, kicker: "Écrire", value: contact.email, external: false },
+    { href: `tel:${contact.telephone}`, icon: Phone, kicker: t.pied.appeler, value: contact.telephoneAffiche, external: false },
+    { href: `https://wa.me/${contact.whatsapp}`, icon: MessageCircle, kicker: t.pied.whatsapp, value: t.pied.conciergerie, external: true },
+    { href: `mailto:${contact.email}`, icon: Mail, kicker: t.pied.ecrire, value: contact.email, external: false },
   ];
 
   return (
     <footer className="ft">
       <div className="ft-head">
-        <Seal className="ft-seal" text="RÉSIDENCE PRIVÉE · CITYSTAR · MARRAKECH · " icon={Star} />
-        <h2>Un contact <em>direct.</em></h2>
+        <Seal className="ft-seal" text={t.pied.sceau} icon={Star} />
+        <h2>{t.pied.titre[0]}<em>{t.pied.titre[1]}</em></h2>
         <div className="ft-social">
-          <a href={contact.reseaux.instagram} target="_blank" rel="noreferrer" aria-label="CITYSTAR sur Instagram"><Instagram aria-hidden="true" /></a>
-          <a href={contact.reseaux.youtube} target="_blank" rel="noreferrer" aria-label="CITYSTAR sur YouTube"><Youtube aria-hidden="true" /></a>
+          <a href={contact.reseaux.instagram} target="_blank" rel="noreferrer" aria-label={t.pied.instagram}><Instagram aria-hidden="true" /></a>
+          <a href={contact.reseaux.youtube} target="_blank" rel="noreferrer" aria-label={t.pied.youtube}><Youtube aria-hidden="true" /></a>
         </div>
       </div>
 
@@ -38,11 +40,11 @@ export function SiteFooter() {
       </div>
 
       <div className="ft-bar">
-        <nav className="ft-links" aria-label="Pied de page">
-          {navItems.map(([label, id]) => <button key={id} type="button" onClick={() => scrollTo(id)}>{label}</button>)}
-          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">Brochure <Download aria-hidden="true" /></a>
+        <nav className="ft-links" aria-label={t.pied.nav}>
+          {t.nav.map(([label, id]) => <button key={id} type="button" onClick={() => scrollTo(id)}>{label}</button>)}
+          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">{t.pied.brochure} <Download aria-hidden="true" /></a>
         </nav>
-        <p className="ft-legal">© {new Date().getFullYear()} CITYSTAR · Résidence privée · Oulad Hassoune, Marrakech</p>
+        <p className="ft-legal">{t.pied.legal(new Date().getFullYear())}</p>
       </div>
 
       <div ref={wordRef} className={`ft-giant${wordInView ? " is-in" : ""}`} aria-hidden="true">

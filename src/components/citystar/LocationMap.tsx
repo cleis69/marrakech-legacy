@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import { programme } from "@/config/citystar";
 import photo from "@/assets/citystar/location.jpeg";
 
+import { useDevise } from "./currency";
+
 export type Place = "med" | "air" | "palm";
 
 type View = { x: number; y: number; z: number };
@@ -20,9 +22,9 @@ const ROUTES: Record<Place, string> = {
   palm: "M690,150 C675,215 640,265 612,305",
 };
 const LANDMARKS = [
-  { id: "med", x: 430, y: 440, label: "Médina · Jemaa el-Fna", short: "Médina", dot: true },
-  { id: "air", x: 290, y: 586, label: "Aéroport Marrakech-Menara", short: "Aéroport", dot: true },
-  { id: "palm", x: 585, y: 335, label: "La Palmeraie", short: "Palmeraie", dot: false },
+  { id: "med", x: 430, y: 440, dot: true },
+  { id: "air", x: 290, y: 586, dot: true },
+  { id: "palm", x: 585, y: 335, dot: false },
 ] as const;
 
 // Itinéraire vers la commune seulement : l'emplacement exact reste à confirmer (voir config).
@@ -65,6 +67,7 @@ type Props = { selected: Place | null; onSelect: (place: Place | null) => void }
  * la carte et trace le trajet depuis CITYSTAR avec un compteur de minutes.
  */
 export function LocationMap({ selected, onSelect }: Props) {
+  const { t } = useDevise();
   const boxRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const liveRef = useRef<SVGPathElement>(null);
@@ -159,7 +162,7 @@ export function LocationMap({ selected, onSelect }: Props) {
       head.dataset["y"] = hp.y.toFixed(1);
       head.setAttribute("transform", `translate(${head.dataset["x"]} ${head.dataset["y"]}) scale(${(k / st.current.cur.z).toFixed(3)})`);
       if (headLabelRef.current) {
-        headLabelRef.current.textContent = place === "palm" ? (q === 1 ? "À proximité" : "") : q === 1 ? `< ${minutes} min` : `${Math.round(e * minutes)} min`;
+        headLabelRef.current.textContent = place === "palm" ? (q === 1 ? t.localisation.proximite : "") : q === 1 ? t.localisation.moinsDe(minutes) : t.localisation.minutes(Math.round(e * minutes));
       }
       if (q < 1) st.current.route = requestAnimationFrame(step);
     };
@@ -251,7 +254,7 @@ export function LocationMap({ selected, onSelect }: Props) {
 
   return (
     <div ref={boxRef} className={`mp${popOpen ? " has-pop" : ""}`} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerEnd}>
-      <svg ref={svgRef} className="mp-svg" viewBox="0 0 1000 700" role="img" aria-label="Carte schématique, non à l’échelle : CITYSTAR à Oulad Hassoune, près de la Palmeraie, avec la médina et l’aéroport de Marrakech">
+      <svg ref={svgRef} className="mp-svg" viewBox="0 0 1000 700" role="img" aria-label={t.localisation.carteAria}>
         {GEOMETRY.contours.map((d) => <path key={d} className="mp-ct" d={d} />)}
         <circle className="mp-ring" cx="430" cy="440" r="165" />
         <path className="mp-road" d="M430,440 L100,900 M430,440 L1300,560 M430,440 L700,-300 M430,440 L-300,280 M690,150 L900,-200" />
@@ -264,8 +267,8 @@ export function LocationMap({ selected, onSelect }: Props) {
         {LANDMARKS.map((mark) => (
           <g key={mark.id} className={`mp-lm${selected === mark.id ? " is-hot" : ""}`} data-place={mark.id} data-x={mark.x} data-y={mark.y}>
             {mark.dot && <circle className="mp-dot" r="6" />}
-            <text className="mp-long" y={mark.dot ? 36 : 0} textAnchor="middle">{mark.label}</text>
-            <text className="mp-short" y={mark.dot ? 36 : 0} textAnchor="middle">{mark.short}</text>
+            <text className="mp-long" y={mark.dot ? 36 : 0} textAnchor="middle">{t.localisation.reperes[mark.id]}</text>
+            <text className="mp-short" y={mark.dot ? 36 : 0} textAnchor="middle">{t.localisation.reperes[`${mark.id}Court` as const]}</text>
           </g>
         ))}
         <g className="mp-star" data-x={STAR.x} data-y={STAR.y}>
@@ -281,20 +284,20 @@ export function LocationMap({ selected, onSelect }: Props) {
       </svg>
 
       <div className="mp-ctrl">
-        <button type="button" onClick={() => zoom(1.6)} aria-label="Zoomer"><Plus aria-hidden="true" /></button>
-        <button type="button" onClick={() => zoom(1 / 1.6)} aria-label="Dézoomer"><Minus aria-hidden="true" /></button>
-        <button type="button" onClick={() => { onSelect(null); home(); }} aria-label="Recentrer la carte"><LocateFixed aria-hidden="true" /></button>
+        <button type="button" onClick={() => zoom(1.6)} aria-label={t.localisation.zoomPlus}><Plus aria-hidden="true" /></button>
+        <button type="button" onClick={() => zoom(1 / 1.6)} aria-label={t.localisation.zoomMoins}><Minus aria-hidden="true" /></button>
+        <button type="button" onClick={() => { onSelect(null); home(); }} aria-label={t.localisation.recentrer}><LocateFixed aria-hidden="true" /></button>
       </div>
-      <span ref={hintRef} className="mp-hint" aria-hidden="true"><span className="mp-long-hint">Glissez pour déplacer · Ctrl + molette pour zoomer</span><span className="mp-short-hint">Glissez · touchez une distance</span></span>
+      <span ref={hintRef} className="mp-hint" aria-hidden="true"><span className="mp-long-hint">{t.localisation.aideLongue}</span><span className="mp-short-hint">{t.localisation.aideCourte}</span></span>
 
       <div ref={popRef} className={`mp-pop${popOpen ? " is-shown" : ""}`} aria-hidden={!popOpen}>
-        <button type="button" className="mp-pop-x" onClick={() => setPopOpen(false)} aria-label="Fermer la fiche" tabIndex={popOpen ? 0 : -1}><X aria-hidden="true" /></button>
+        <button type="button" className="mp-pop-x" onClick={() => setPopOpen(false)} aria-label={t.localisation.fermerFiche} tabIndex={popOpen ? 0 : -1}><X aria-hidden="true" /></button>
         <div className="mp-pop-ph"><img src={photo} alt="" loading="lazy" /></div>
         <div className="mp-pop-bd">
-          <small>Résidence privée</small>
+          <small>{t.localisation.residencePrivee}</small>
           <b>CITYSTAR</b>
-          <small className="mp-pop-where">Oulad Hassoune · Marrakech</small>
-          <a href={ITINERARY_URL} target="_blank" rel="noreferrer" tabIndex={popOpen ? 0 : -1}>Itinéraire <ArrowRight aria-hidden="true" /></a>
+          <small className="mp-pop-where">{t.localisation.ou}</small>
+          <a href={ITINERARY_URL} target="_blank" rel="noreferrer" tabIndex={popOpen ? 0 : -1}>{t.localisation.itineraire} <ArrowRight aria-hidden="true" /></a>
         </div>
       </div>
     </div>

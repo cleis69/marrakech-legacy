@@ -1,8 +1,8 @@
 import { ArrowLeft, Download, Expand, Lock } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { prefersReducedMotion, villas } from "./data";
-import { VillaPrice } from "./currency";
+import { faitsVilla, prefersReducedMotion, villas } from "./data";
+import { VillaPrice, useDevise } from "./currency";
 import { PillButton } from "./ui/PillButton";
 
 type Props = {
@@ -16,9 +16,11 @@ type Props = {
 
 /** Fiche d'une villa : onglets ronds A · B · C, caractéristiques, prix, plans et brochure. */
 export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onContact }: Props) {
+  const { langue, t } = useDevise();
   const headingRef = useRef<HTMLHeadingElement>(null);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const villa = villas[index] ?? villas[0];
+  const faits = faitsVilla(villa.type, t, langue);
 
   useEffect(() => {
     if (target === "plans") {
@@ -46,20 +48,20 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
   return (
     <div className="vf section-pad">
       <div className="vf-pic">
-        {villas.map((item, i) => <img key={item.type} src={item.image} alt={i === index ? `Villa CITYSTAR type ${item.type}` : ""} aria-hidden={i !== index} className={i === index ? "is-on" : ""} loading="lazy" />)}
+        {villas.map((item, i) => <img key={item.type} src={item.image} alt={i === index ? t.villas.typeVilla(item.type) : ""} aria-hidden={i !== index} className={i === index ? "is-on" : ""} loading="lazy" />)}
         <span className="vf-shade" aria-hidden="true" />
         <div className="vf-pic-over">
-          <div className="section-label light"><span>03</span><p>Les villas</p></div>
-          <p className="vf-pic-title" aria-hidden="true">Trois expressions.<br />Une même <em>exigence.</em></p>
-          <span className="vf-cap">Villa type {villa.type} · Illustration non contractuelle</span>
+          <div className="section-label light"><span>03</span><p>{t.villas.label}</p></div>
+          <p className="vf-pic-title" aria-hidden="true">{t.villas.titre[0]}<br />{t.villas.titre[1]}<em>{t.villas.titre[2]}</em></p>
+          <span className="vf-cap">{t.villas.illustration(villa.type)}</span>
         </div>
       </div>
 
       <div className="vf-info">
-        <button type="button" className="vf-back" onClick={onBack}><ArrowLeft aria-hidden="true" /> Les trois villas</button>
+        <button type="button" className="vf-back" onClick={onBack}><ArrowLeft aria-hidden="true" /> {t.villas.retour}</button>
 
         <div className="vf-tabs">
-          <div role="tablist" aria-label="Types de villa" onKeyDown={onTabKey}>
+          <div role="tablist" aria-label={t.villas.onglets} onKeyDown={onTabKey}>
             {villas.map((item, i) => (
               <button
                 key={item.type}
@@ -77,29 +79,29 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
               </button>
             ))}
           </div>
-          <span className="vf-tabs-label">Villa type {villa.type} · {villa.tag}</span>
+          <span className="vf-tabs-label">{t.villas.typeVilla(villa.type)} · {faits.tag}</span>
         </div>
 
         <div id="villa-panel" role="tabpanel" aria-labelledby={`villa-tab-${villa.type}`} key={villa.type} className="vf-panel">
-          <h2 id="villas-title" ref={headingRef} tabIndex={-1}>Villa type <em>{villa.type}</em></h2>
-          <p className="vf-desc">{villa.description}</p>
+          <h2 id="villas-title" ref={headingRef} tabIndex={-1}>{t.villas.typeVilla(villa.type).replace(villa.type, "")}<em>{villa.type}</em></h2>
+          <p className="vf-desc">{faits.description}</p>
           <dl className="vf-specs">
-            <div><dt>Surface construite</dt><dd>{villa.area}</dd></div>
-            <div><dt>Terrain</dt><dd>{villa.land}</dd></div>
-            <div><dt>Configuration</dt><dd>{villa.bedrooms}</dd></div>
+            <div><dt>{t.villas.surface}</dt><dd>{faits.surface}</dd></div>
+            <div><dt>{t.villas.terrain}</dt><dd>{faits.terrain}</dd></div>
+            <div><dt>{t.villas.configuration}</dt><dd>{faits.suites}</dd></div>
           </dl>
           <VillaPrice type={villa.type} />
-          <div id="plans" className="vf-plans" tabIndex={-1} aria-label={`Plans de la villa type ${villa.type}`} role="group">
+          <div id="plans" className="vf-plans" tabIndex={-1} aria-label={t.villas.plansAria(villa.type)} role="group">
             {villa.plans.map((plan, i) => (
-              <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={`Agrandir le plan ${i ? "de l’étage" : "du rez-de-chaussée"} de la villa type ${villa.type}`}>
+              <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={t.villas.agrandirPlan(i === 1, villa.type)}>
                 <img src={plan} alt="" loading="lazy" />
-                <span>{i ? "Étage" : "Rez-de-chaussée"} <Expand aria-hidden="true" /></span>
+                <span>{i ? t.villas.etage : t.villas.rdc} <Expand aria-hidden="true" /></span>
               </button>
             ))}
           </div>
           <div className="vf-actions">
-            <PillButton label="Demander un accès" icon={Lock} onClick={onContact} />
-            <PillButton label="Brochure" icon={Download} variant="secondary" href={`/brochures/villa-${villa.type.toLowerCase()}.pdf`} ariaLabel={`Brochure de la villa type ${villa.type} (PDF)`} />
+            <PillButton label={t.villas.demander} icon={Lock} onClick={onContact} />
+            <PillButton label={t.villas.brochure} icon={Download} variant="secondary" href={`/brochures/villa-${villa.type.toLowerCase()}.pdf`} ariaLabel={t.villas.brochureAria(villa.type)} />
           </div>
         </div>
       </div>

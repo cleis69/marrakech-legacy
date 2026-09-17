@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 
 import { ArchitectureSection } from "./citystar/ArchitectureSection";
 import { ContactPanel } from "./citystar/ContactPanel";
+import type { Langue } from "@/config/citystar";
+
 import type { Selection } from "./citystar/data";
 import { DeviseProvider } from "./citystar/currency";
 import { FeeCalculator } from "./citystar/FeeCalculator";
@@ -22,7 +24,7 @@ import { VillaSelector } from "./citystar/VillaSelector";
 import { YieldSimulator } from "./citystar/YieldSimulator";
 import { VillasSection } from "./citystar/VillasSection";
 
-export default function CitystarExperience() {
+export default function CitystarExperience({ langue = "fr" }: { langue?: Langue }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [planOpen, setPlanOpen] = useState<string | null>(null);
@@ -34,6 +36,9 @@ export default function CitystarExperience() {
   const cursorY = useMotionValue(-100);
   const [cursorLabel, setCursorLabel] = useState("");
   const { scrollYProgress } = useScroll();
+
+  /* La langue de la page suit la route, pour les lecteurs d'écran et les moteurs. */
+  useEffect(() => { document.documentElement.lang = langue; }, [langue]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -54,7 +59,7 @@ export default function CitystarExperience() {
 
   return (
     <MotionConfig reducedMotion="user">
-    <DeviseProvider langue="fr">
+    <DeviseProvider langue={langue}>
     <main onMouseMove={(e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); }}>
       <motion.div className="page-progress" style={{ scaleX: scrollYProgress }} />
       <motion.div className={`custom-cursor ${cursorLabel ? "is-visible" : ""}`} style={{ x: cursorX, y: cursorY }} aria-hidden="true">{cursorLabel}</motion.div>
