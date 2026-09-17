@@ -1,0 +1,77 @@
+/* ---------- Sceau ---------- */
+.seal { position: relative; display: grid; place-items: center; width: 14em; aspect-ratio: 1; flex: none; padding: 0; border: 0; border-radius: 50%; background: none; color: inherit; font-size: 1rem; cursor: pointer; }
+.seal.is-static { cursor: default; }
+.seal-ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: seal-spin 30s linear infinite; }
+.seal-ring text { fill: currentColor; font: 400 12.5px "DM Sans", sans-serif; letter-spacing: 3.4px; }
+.seal-core { display: grid; place-items: center; align-content: center; gap: .4em; width: 62%; aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 1px color-mix(in oklab, currentColor 42%, transparent); font-size: .78em; font-style: normal; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; transition: background .5s, color .5s, box-shadow .5s, transform .6s cubic-bezier(.34, 1.56, .64, 1); }
+.seal-core svg { width: 2em; height: 2em; stroke-width: 1.3; }
+button.seal:hover .seal-core, button.seal:focus-visible .seal-core { background: var(--bronze); color: var(--cream); box-shadow: none; transform: scale(1.05); }
+button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6px; }
+@keyframes seal-spin { to { transform: rotate(360deg); } }
+
+/* ---------- Entrer dans le cercle ---------- */
+.circle { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 4vw; min-height: 86vh; padding: 9rem 8vw; background: var(--sand); color: var(--ink); }
+.circle-text { display: grid; justify-items: start; gap: 1.8rem; }
+.circle-kicker { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--bronze); }
+.circle-text h2 { font: 400 clamp(3.4rem, 7vw, 7.4rem)/.95 "Italiana", serif; text-wrap: balance; }
+.circle-text > p:not(.circle-kicker) { max-width: 30rem; font-size: 1.02rem; line-height: 1.75; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
+.circle-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; margin-top: .6rem; }
+.circle-seal { justify-self: center; font-size: 1.45rem; }
+
+/* ---------- Pied de page ---------- */
+.ft { position: relative; overflow: hidden; padding: 6rem 5vw 0; background: var(--ink); color: var(--cream); }
+.ft a, .ft button { color: inherit; text-decoration: none; }
+.ft-head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; }
+.ft-seal { font-size: .62rem; color: var(--cream); }
+.ft-seal .seal-core { width: 30%; box-shadow: none; color: var(--sand); }
+.ft-seal .seal-core svg { width: 2.4em; height: 2.4em; fill: currentColor; stroke: none; }
+.ft-head h2 { font: 400 clamp(2.4rem, 4vw, 4rem)/1 "Italiana", serif; }
+.ft-head h2 em { color: var(--sand); }
+.ft-social { display: flex; gap: .8rem; }
+.ft-social a { display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border-radius: 50%; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cream) 30%, transparent); transition: background .35s, color .35s, box-shadow .35s; }
+.ft-social a:hover { background: var(--sand); color: var(--ink); box-shadow: none; }
+.ft-social svg { width: 1.1rem; height: 1.1rem; }
+
+.ft-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+.ft-tile { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1.3rem; padding: 1.6rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cream) 20%, transparent); transition: background .4s, color .4s, box-shadow .4s; }
+.ft-tile i { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--bronze); color: var(--cream); transition: transform .5s cubic-bezier(.34, 1.56, .64, 1); }
+.ft-tile i svg { width: 1.2rem; height: 1.2rem; }
+.ft-tile small { display: block; font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sand); transition: color .4s; }
+.ft-tile b { display: block; margin-top: .35rem; font: 400 1.3rem/1.15 "Italiana", serif; overflow-wrap: break-word; }
+.ft-tile > svg { width: 1rem; height: 1rem; transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
+.ft-tile:hover { background: var(--cream); color: var(--ink); box-shadow: none; }
+.ft-tile:hover small { color: var(--bronze); }
+.ft-tile:hover i { transform: rotate(-10deg) scale(1.08); }
+.ft-tile:hover > svg { transform: translateX(.3rem); }
+
+.ft-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem 2rem; margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid color-mix(in oklab, var(--cream) 14%, transparent); }
+.ft-links { display: flex; flex-wrap: wrap; gap: .4rem 1.8rem; }
+.ft-links button, .ft-links a { display: inline-flex; align-items: center; gap: .4rem; padding: 0; border: 0; background: none; font-size: .78rem; color: color-mix(in oklab, var(--cream) 80%, transparent); cursor: pointer; transition: color .3s; }
+.ft-links button:hover, .ft-links a:hover { color: var(--sand); }
+.ft-links svg { width: .85rem; height: .85rem; }
+.ft-legal { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
+
+.ft-giant { display: flex; justify-content: space-between; margin: 2rem -.8vw -4.6vw; font: 400 21.5vw/1 "Italiana", serif; color: var(--cream); user-select: none; }
+.ft-giant span { display: inline-block; transition: color .5s, transform .7s cubic-bezier(.22, 1, .36, 1); }
+.ft-giant span:hover { color: var(--sand); transform: translateY(-1.2vw); }
+.ft-giant.is-in span { animation: ft-rise 1.2s cubic-bezier(.22, 1, .36, 1) backwards; animation-delay: calc(var(--i) * 70ms); }
+@keyframes ft-rise { from { opacity: 0; transform: translateY(60%); } }
+
+@media (max-width: 900px) {
+  .circle { grid-template-columns: 1fr; justify-items: start; min-height: 0; padding: 6rem 1.3rem; }
+  .circle-text h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
+  .circle-seal { font-size: 1.05rem; }
+  .ft { padding: 4.5rem 1.3rem 0; }
+  .ft-head { grid-template-columns: auto 1fr; gap: 1.2rem; }
+  .ft-social { grid-column: 1 / -1; }
+  .ft-tiles { grid-template-columns: 1fr; gap: .6rem; margin-top: 2rem; }
+  .ft-tile { padding: 1.1rem; }
+  .ft-tile b { font-size: 1.1rem; }
+  .ft-bar { display: grid; gap: 1.2rem; }
+  .ft-giant { margin-bottom: 6.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal-ring { animation: none; }
+  .ft-giant.is-in span { animation: none; }
+}

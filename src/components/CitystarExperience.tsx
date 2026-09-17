@@ -60,7 +60,7 @@ export default function CitystarExperience() {
       <TourSection onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
       <FinalCta onContact={openContact} />
-      <SiteFooter onOpenTour={openTour} />
+      <SiteFooter />
       <FloatingActions />
 
       <AnimatePresence>{planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}</AnimatePresence>

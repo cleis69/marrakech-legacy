@@ -140,6 +140,10 @@ export const contact = {
   telephoneAffiche: "+212 661-825359",
   whatsapp: "212661825359",
   email: "Promoimmomarrakech@gmail.com",
+  reseaux: {
+    instagram: "https://www.instagram.com/city_star_marrakech",
+    youtube: "https://www.youtube.com/@citystarmarrakech",
+  },
 } as const;
 
 /* ------------------------------------------------------------------ */
@@ -189,4 +193,11 @@ export function formatDate(iso: string, langue: Langue = "fr") {
   const date = new Date(`${iso}T12:00:00Z`);
   const options: Intl.DateTimeFormatOptions = langue === "fr" ? { day: "2-digit", month: "2-digit", year: "numeric" } : { day: "numeric", month: "short", year: "numeric" };
   return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
+}
+
+const UNITES = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf", "vingt"];
+
+/** 14 → « quatorze » (jusqu'à vingt, en chiffres au-delà). */
+export function nombreEnLettres(valeur: number) {
+  return UNITES[valeur] ?? String(valeur);
 }
