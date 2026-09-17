@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useScroll } from "motion/react";
+import { AnimatePresence, MotionConfig, motion, useMotionValue, useScroll } from "motion/react";
 import { useEffect, useState } from "react";
 
 import { ArchitectureSection } from "./citystar/ArchitectureSection";
@@ -10,6 +10,7 @@ import { HeroSection } from "./citystar/HeroSection";
 import { LifestyleSection } from "./citystar/LifestyleSection";
 import { LocationSection } from "./citystar/LocationSection";
 import { PlanModal } from "./citystar/PlanModal";
+import { PlansSection } from "./citystar/PlansSection";
 import { ProjectSection } from "./citystar/ProjectSection";
 import { SiteFooter } from "./citystar/SiteFooter";
 import { SiteHeader } from "./citystar/SiteHeader";
@@ -26,7 +27,10 @@ export default function CitystarExperience() {
   const [planOpen, setPlanOpen] = useState<string | null>(null);
   const [tourOpen, setTourOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
-  const [cursor, setCursor] = useState({ x: -100, y: -100, label: "" });
+  /* Position du curseur en valeurs de mouvement : aucun re-rendu à chaque mousemove. */
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+  const [cursorLabel, setCursorLabel] = useState("");
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -35,21 +39,27 @@ export default function CitystarExperience() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const onCursorEnter = (label: string) => (event: React.MouseEvent) => setCursor({ x: event.clientX, y: event.clientY, label });
-  const onCursorLeave = () => setCursor({ ...cursor, label: "" });
+  const onCursorEnter = (label: string) => (event: React.MouseEvent) => {
+    cursorX.set(event.clientX);
+    cursorY.set(event.clientY);
+    setCursorLabel(label);
+  };
+  const onCursorLeave = () => setCursorLabel("");
   const openContact = () => setContactOpen(true);
   const openTour = () => setTourOpen(true);
 
   return (
-    <main onMouseMove={(e) => cursor.label && setCursor({ ...cursor, x: e.clientX, y: e.clientY })}>
+    <MotionConfig reducedMotion="user">
+    <main onMouseMove={(e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); }}>
       <motion.div className="page-progress" style={{ scaleX: scrollYProgress }} />
-      <div className={`custom-cursor ${cursor.label ? "is-visible" : ""}`} style={{ transform: `translate3d(${cursor.x}px,${cursor.y}px,0)` }}>{cursor.label}</div>
+      <motion.div className={`custom-cursor ${cursorLabel ? "is-visible" : ""}`} style={{ x: cursorX, y: cursorY }} aria-hidden="true">{cursorLabel}</motion.div>
 
       <SiteHeader scrolled={scrolled} menuOpen={menuOpen} onOpenMenu={() => setMenuOpen(true)} onCloseMenu={() => setMenuOpen(false)} onContact={openContact} />
       <HeroSection />
       <ProjectSection />
       <ArchitectureSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenVilla={(index) => { setActiveVilla(index); setVillaOpen(true); }} />
+      <PlansSection onOpenPlan={setPlanOpen} />
       <LifestyleSection />
       <TourSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
@@ -62,5 +72,6 @@ export default function CitystarExperience() {
       <AnimatePresence>{tourOpen && <TourModal onClose={() => setTourOpen(false)} />}</AnimatePresence>
       <AnimatePresence>{contactOpen && <ContactPanel onClose={() => setContactOpen(false)} />}</AnimatePresence>
     </main>
+    </MotionConfig>
   );
 }

@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 export function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -11,5 +11,6 @@ export function Fact({ value, suffix, label }: { value: string; suffix?: string;
 
 export function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null); const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] }); const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-  return <div className="parallax-wrap" ref={ref}><motion.img style={{ y }} src={src} alt={alt} loading="lazy" /></div>;
+  const reduce = useReducedMotion();
+  return <div className="parallax-wrap" ref={ref}><motion.img style={reduce ? {} : { y }} src={src} alt={alt} loading="lazy" /></div>;
 }
