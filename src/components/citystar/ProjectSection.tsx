@@ -1,23 +1,63 @@
+import { animate, motion, useInView, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 import { formatNombre, programme } from "@/config/citystar";
+import exteriorImage from "@/assets/citystar/site/ext-terraces.jpg";
+import poolImage from "@/assets/citystar/site/ext-pool.jpg";
+import livingImage from "@/assets/citystar/site/int-living.jpg";
 
 import { scrollTo } from "./data";
-import { Fact, Reveal } from "./motion";
+import { Reveal } from "./motion";
+import { PillButton } from "./ui/PillButton";
+
+/** Compteur 0 → 14 déclenché à l'apparition, figé sur la valeur finale en mouvement réduit. */
+function VillaCounter() {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
+  const reduce = useReducedMotion();
+  const count = useMotionValue(reduce ? programme.nombreVillas : 0);
+  const rounded = useTransform(count, (v) => String(Math.round(v)).padStart(2, "0"));
+
+  useEffect(() => {
+    if (!inView) return;
+    if (reduce) { count.set(programme.nombreVillas); return; }
+    const controls = animate(count, programme.nombreVillas, { duration: 1.6, ease: [0.22, 1, 0.36, 1] });
+    return () => controls.stop();
+  }, [inView, reduce, count]);
+
+  return <span ref={ref} className="pj-count-num" aria-hidden="true"><motion.span>{rounded}</motion.span></span>;
+}
 
 export function ProjectSection() {
   return (
-    <section id="project" className="intro-section section-pad">
-      <div className="section-label"><span>01</span><p>Le projet</p></div>
-      <div className="intro-grid">
-        <Reveal><p className="eyebrow">Une résidence à part</p><h2>L’espace rare<br />d’une vie <em>privée.</em></h2></Reveal>
-        <Reveal delay={.15}><div className="intro-copy"><p>CITYSTAR réunit {programme.nombreVillas} villas de luxe dans un domaine privé et entièrement sécurisé, proche de la Palmeraie. Trois architectures distinctes répondent aux usages et aux préférences de chaque résident.</p><button className="text-link" onClick={() => scrollTo("villas")}>Découvrir les villas <ArrowRight /></button></div></Reveal>
-      </div>
-      <div className="facts">
-        <Fact value={String(programme.nombreVillas)} label="Villas privées" />
-        <Fact value={formatNombre(programme.terrainMaxM2)} suffix="m²" label="Terrains jusqu’à" />
-        <Fact value={String(programme.nombreTypes)} label="Types de villas" />
-        <Fact value={String(programme.trajetMaxMinutes)} suffix="min" label="Jemaa el-Fna & aéroport" />
+    <section id="project" className="pj" aria-labelledby="project-title">
+      <div className="pj-grid">
+        <figure className="pj-big">
+          <img src={exteriorImage} alt="Façade d’une villa CITYSTAR et ses terrasses" loading="lazy" />
+          <figcaption className="pj-count">
+            <VillaCounter />
+            <span className="pj-count-copy"><small>{programme.nombreVillas} villas privées</small><em>Pas une de plus.</em></span>
+          </figcaption>
+        </figure>
+
+        <div className="pj-right">
+          <div className="pj-pair">
+            <img src={poolImage} alt="Piscine privée d’une villa CITYSTAR" loading="lazy" />
+            <img src={livingImage} alt="Salon d’une villa CITYSTAR" loading="lazy" />
+          </div>
+          <div className="pj-text">
+            <div className="section-label"><span>01</span><p>Le projet</p></div>
+            <Reveal><h2 id="project-title">L’espace rare<br />d’une vie <em>privée.</em></h2></Reveal>
+            <p>Un domaine privé et entièrement sécurisé, proche de la Palmeraie. Trois architectures pour les usages et les préférences de chaque résident.</p>
+            <dl className="pj-rows">
+              <div><dt>Terrains jusqu’à</dt><dd>{formatNombre(programme.terrainMaxM2)}<sup>m²</sup></dd></div>
+              <div><dt>Types de villas</dt><dd>{programme.nombreTypes}</dd></div>
+              <div><dt>Jemaa el-Fna &amp; aéroport</dt><dd>{programme.trajetMaxMinutes}<sup>min</sup></dd></div>
+            </dl>
+            <PillButton label="Découvrir les villas" icon={ArrowRight} variant="secondary" onClick={() => scrollTo("villas")} />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,38 @@
+/* ---------- Le projet : mosaïque et « 14 » ---------- */
+.pj { background: var(--paper); padding: 9rem 5vw; }
+.pj-grid { display: grid; grid-template-columns: 1.12fr .88fr; gap: 3vw; align-items: stretch; }
+.pj-big { position: relative; margin: 0; min-height: 84vh; overflow: hidden; color: var(--cream); }
+.pj-big img, .pj-pair img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
+.pj-big img { position: absolute; inset: 0; }
+.pj-big:hover img, .pj-pair img:hover { transform: scale(1.04); }
+.pj-big::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, color-mix(in oklab, var(--ink) 72%, transparent)); pointer-events: none; }
+.pj-count { position: absolute; z-index: 1; left: 2.4rem; right: 2.4rem; bottom: 2rem; display: flex; align-items: flex-end; gap: 1.6rem; }
+.pj-count-num { font: 400 clamp(7rem, 15vw, 15rem)/.74 "Italiana", serif; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.pj-count-copy { display: grid; gap: .6rem; padding-bottom: .6rem; }
+.pj-count-copy small { font-size: .62rem; letter-spacing: .3em; text-transform: uppercase; color: var(--sand); }
+.pj-count-copy em { font: 400 clamp(1.6rem, 2.3vw, 2.3rem)/1 "Italiana", serif; font-style: normal; color: var(--cream); }
+.pj-right { display: grid; grid-template-rows: minmax(0, 32vh) auto; gap: 2.4rem; }
+.pj-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-height: 0; overflow: hidden; }
+.pj-pair img { min-height: 0; }
+.pj-text { display: flex; flex-direction: column; justify-content: center; gap: 1.4rem; align-items: flex-start; }
+.pj-text .section-label { margin-bottom: .4rem; }
+.pj-text h2 { font: 400 clamp(2.8rem, 4.4vw, 4.6rem)/.98 "Italiana", serif; }
+.pj-text > p { max-width: 36rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
+.pj-rows { width: 100%; margin: .6rem 0 .8rem; border-top: 1px solid var(--border); }
+.pj-rows div { display: grid; grid-template-columns: 9rem 1fr; align-items: baseline; gap: 1.4rem; padding: .9rem 0; border-bottom: 1px solid var(--border); }
+.pj-rows dt { order: 2; font-size: .62rem; letter-spacing: .15em; text-transform: uppercase; }
+.pj-rows dd { margin: 0; font: 400 2.2rem/1 "Italiana", serif; white-space: nowrap; }
+.pj-rows sup { margin-left: .3rem; font: 300 .6rem "DM Sans", sans-serif; letter-spacing: .1em; text-transform: uppercase; vertical-align: super; }
+
+@media (max-width: 900px) {
+  .pj { padding: 6rem 1.3rem; }
+  .pj-grid { grid-template-columns: 1fr; gap: .8rem; }
+  .pj-big { min-height: 64svh; }
+  .pj-count { left: 1.3rem; right: 1.3rem; bottom: 1.3rem; gap: 1rem; }
+  .pj-count-num { font-size: clamp(6rem, 30vw, 9rem); }
+  .pj-right { grid-template-rows: auto auto; gap: 2.8rem; }
+  .pj-pair { height: 26svh; gap: .8rem; }
+  .pj-text h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .pj-rows div { grid-template-columns: 7.5rem 1fr; }
+  .pj-rows dd { font-size: 1.9rem; }
+}
