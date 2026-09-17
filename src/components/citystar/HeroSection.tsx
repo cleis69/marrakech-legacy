@@ -1,5 +1,5 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { ArrowDown, Pause, Play } from "lucide-react";
+import { type MotionStyle, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { ArrowRight, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
@@ -7,39 +7,69 @@ import heroVideo from "@/assets/citystar/hero-video.mp4";
 import villaBImage from "@/assets/citystar/villa-b.jpeg";
 
 import { scrollTo } from "./data";
+import { PillButton } from "./ui/PillButton";
 
+const TITLE = "CITYSTAR";
+
+/**
+ * Hero « passe-partout » : la vidéo est encadrée par une marge couleur papier.
+ * À l'arrivée, la fenêtre s'ouvre depuis le centre ; au défilement, la marge
+ * s'efface et la vidéo passe en plein écran.
+ */
 export function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress: heroProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroScale = useTransform(heroProgress, [0, 1], [1, 1.09]);
-  const heroOpacity = useTransform(heroProgress, [0, 0.85], [1, 0.35]);
-  const reduce = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(true);
+  const reduce = useReducedMotion();
+  const [playing, setPlaying] = useState(false);
 
-  /* Mouvement réduit : la vidéo reste sur son image fixe, sans zoom ni fondu au défilement. */
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end end"] });
+  const open = useTransform(scrollYProgress, [0, 0.7], [0, 1]);
+  const videoScale = useTransform(scrollYProgress, [0, 0.7], [1.06, 1]);
+
+  /* Mouvement réduit : la vidéo reste sur son image fixe. */
   useEffect(() => {
-    if (reduce) { videoRef.current?.pause(); setPlaying(false); }
+    if (reduce) videoRef.current?.pause();
+    else setPlaying(!!videoRef.current && !videoRef.current.paused);
   }, [reduce]);
 
   const toggleVideo = () => {
     const video = videoRef.current;
     if (!video) return;
-    if (video.paused) { void video.play(); setPlaying(true); } else { video.pause(); setPlaying(false); }
+    if (video.paused) void video.play().catch(() => setPlaying(false));
+    else video.pause();
   };
 
   return (
-    <section ref={heroRef} id="accueil" className="hero-section">
-      <motion.video ref={videoRef} style={reduce ? {} : { scale: heroScale, opacity: heroOpacity }} className="hero-media" autoPlay muted loop playsInline poster={villaBImage} aria-hidden="true"><source src={heroVideo} type="video/mp4" /></motion.video>
-      <div className="hero-shade" />
-      <div className="hero-content">
-        <p className="hero-kicker">Résidence privée · Marrakech</p>
-        <h1><span>CITYSTAR</span><em>Marrakech</em></h1>
-        <p className="hero-copy">Quatorze villas contemporaines pensées comme un art de vivre.</p>
+    <section ref={heroRef} id="accueil" className="pp-hero" aria-label="CITYSTAR, résidence privée à Marrakech">
+      <div className="pp-sticky">
+        <span className="pp-caption pp-caption-left" aria-hidden="true">Oulad Hassoune · Marrakech</span>
+        <span className="pp-caption pp-caption-right" aria-hidden="true">Résidence privée · {programme.nombreVillas} villas</span>
+
+        <motion.div className="pp-frame" style={reduce ? {} : ({ "--open": open } as unknown as MotionStyle)}>
+          <div className="pp-reveal">
+            <motion.video ref={videoRef} className="pp-video" style={reduce ? {} : { scale: videoScale }} autoPlay muted loop playsInline poster={villaBImage} aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+              <source src={heroVideo} type="video/mp4" />
+            </motion.video>
+            <div className="pp-shade" aria-hidden="true" />
+
+            <div className="pp-title">
+              <p className="pp-kicker">Résidence privée · Marrakech</p>
+              <h1 aria-label={TITLE}>
+                {TITLE.split("").map((letter, i) => <span key={i} aria-hidden="true" style={{ "--i": i } as React.CSSProperties}>{letter}</span>)}
+              </h1>
+            </div>
+
+            <div className="pp-side">
+              <p>Quatorze villas contemporaines pensées comme un art de vivre.</p>
+              <PillButton label="Découvrir les villas" icon={ArrowRight} variant="secondary" onClick={() => scrollTo("villas")} />
+            </div>
+
+            <button className="pp-pause" onClick={toggleVideo} aria-label={playing ? "Mettre la vidéo en pause" : "Lire la vidéo"}>
+              {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}<span>{playing ? "Pause" : "Lecture"}</span>
+            </button>
+          </div>
+        </motion.div>
       </div>
-      <button className="explore-link" onClick={() => scrollTo("project")}><span>Explorer Citystar</span><ArrowDown size={17} /></button>
-      <button className="hero-pause" onClick={toggleVideo} aria-label={playing ? "Mettre la vidéo en pause" : "Lire la vidéo"}>{playing ? <Pause size={13} aria-hidden="true" /> : <Play size={13} aria-hidden="true" />}<span>{playing ? "Pause" : "Lecture"}</span></button>
-      <span className="hero-index">{programme.coordonnees.latitude.toFixed(4)}° N<br />{Math.abs(programme.coordonnees.longitude).toFixed(4)}° W</span>
     </section>
   );
 }
