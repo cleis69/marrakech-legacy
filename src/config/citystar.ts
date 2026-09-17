@@ -69,6 +69,15 @@ export const devises = {
 } as const;
 
 /* ------------------------------------------------------------------ */
+/* Sélecteur de villa                                                  */
+/* ------------------------------------------------------------------ */
+
+export const selecteur = {
+  // Plafonds proposés à la question « budget », en euros (repères d'interface, pas des prix).
+  plafondsBudgetEUR: [1_000_000, 1_200_000, 1_500_000],
+};
+
+/* ------------------------------------------------------------------ */
 /* Réservation et échéancier                                           */
 /* ------------------------------------------------------------------ */
 
@@ -184,6 +193,18 @@ export function prixVilla(type: TypeVilla, devise: Devise, taux: Taux = devises.
 /** 1480000 → « 1 480 000 € » (fr) ou « €1,480,000 » (en). */
 export function formatPrix(montant: number, devise: Devise, langue: Langue = "fr") {
   const nombre = formatNombre(montant, langue);
+  if (langue === "en" && (devise === "EUR" || devise === "GBP")) return `${symbolesDevise[devise]}${nombre}`;
+  return `${nombre} ${symbolesDevise[devise]}`;
+}
+
+/** Montant en euros converti dans la devise demandée, pour un repère (pas un prix de villa). */
+export function convertirEUR(montantEUR: number, devise: Devise, taux: Taux = devises.tauxDeSecours) {
+  return devise === "EUR" ? montantEUR : montantEUR * taux[devise];
+}
+
+/** 1200000 → « 1,2 M € » ; 857400 → « 857 k £ ». */
+export function formatMontantCourt(montant: number, devise: Devise, langue: Langue = "fr") {
+  const nombre = new Intl.NumberFormat(LOCALE[langue], { notation: "compact", maximumSignificantDigits: 3 }).format(montant).replace(/\u202f/g, " ");
   if (langue === "en" && (devise === "EUR" || devise === "GBP")) return `${symbolesDevise[devise]}${nombre}`;
   return `${nombre} ${symbolesDevise[devise]}`;
 }

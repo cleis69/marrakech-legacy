@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
-import { type CursorHandlers, OPEN_PLANS_EVENT, prefersReducedMotion } from "./data";
+import { type CursorHandlers, OPEN_VILLA_EVENT, type OpenVillaDetail, prefersReducedMotion } from "./data";
 import { VillaDoors } from "./VillaDoors";
 import { VillaFiche } from "./VillaFiche";
 
@@ -16,9 +16,14 @@ export function VillasSection({ onCursorEnter, onCursorLeave, onOpenPlan, onCont
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const openPlans = () => setView((current) => ({ mode: "fiche", index: current.mode === "fiche" ? current.index : index, target: "plans" }));
-    window.addEventListener(OPEN_PLANS_EVENT, openPlans);
-    return () => window.removeEventListener(OPEN_PLANS_EVENT, openPlans);
+    const onOpen = (event: Event) => {
+      const { index: wanted, target } = (event as CustomEvent<OpenVillaDetail>).detail;
+      if (wanted !== undefined) setIndex(wanted);
+      setView((current) => ({ mode: "fiche", index: wanted ?? (current.mode === "fiche" ? current.index : index), target }));
+      if (target === "top") sectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
+    };
+    window.addEventListener(OPEN_VILLA_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_VILLA_EVENT, onOpen);
   }, [index]);
 
   const scrollToSection = () => {

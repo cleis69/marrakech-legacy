@@ -28,12 +28,18 @@ export function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-/** Les plans vivent dans la fiche villa : « Plans » demande à la section de l'ouvrir. */
-export const OPEN_PLANS_EVENT = "citystar:open-plans";
+/** Ouvre la fiche d'une villa depuis n'importe où (menu « Plans », outils). */
+export const OPEN_VILLA_EVENT = "citystar:open-villa";
+export type OpenVillaDetail = { index?: number; target: "top" | "plans" };
+
+export function openVilla(detail: OpenVillaDetail) {
+  window.dispatchEvent(new CustomEvent<OpenVillaDetail>(OPEN_VILLA_EVENT, { detail }));
+}
 
 export function scrollTo(id: string) {
+  // Les plans vivent dans la fiche villa : « Plans » demande à la section de l'ouvrir.
   if (id === "plans" && !document.getElementById("plans")) {
-    window.dispatchEvent(new Event(OPEN_PLANS_EVENT));
+    openVilla({ target: "plans" });
     return;
   }
   document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
