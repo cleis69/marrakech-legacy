@@ -1,7 +1,11 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { Building2, Download, LayoutPanelLeft, Lock, Menu, MessageCircle, Rotate3d, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { contact } from "@/config/citystar";
 
 import { navItems, scrollTo } from "./data";
+import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -12,28 +16,84 @@ type Props = {
   onContact: () => void;
 };
 
-function MobileMenu({ onClose, onContact }: { onClose: () => void; onContact: () => void }) {
+const whatsappHref = `https://wa.me/${contact.whatsapp}`;
+
+/** Section visible au centre de l'écran, pour marquer l'onglet actif de la barre mobile. */
+function useActiveSection(ids: readonly string[]) {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    const elements = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el);
+    if (!elements.length || typeof IntersectionObserver === "undefined") return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) setActive(entry.target.id); });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [ids]);
+  return active;
+}
+
+const MOBILE_TABS = ["villas", "plans", "visite"] as const;
+
+function MenuSheet({ onClose, onContact, active }: { onClose: () => void; onContact: () => void; active: string | null }) {
   const ref = useModal<HTMLDivElement>(onClose);
-  return <motion.div ref={ref} role="dialog" aria-modal="true" aria-label="Menu" tabIndex={-1} className="mobile-menu" initial={{ y: "-100%" }} animate={{ y: 0 }} exit={{ y: "-100%" }} transition={{ duration: .7, ease: [0.76, 0, 0.24, 1] }}>
-    <div className="mobile-menu-head"><span>CITYSTAR</span><button onClick={onClose} aria-label="Fermer le menu"><X /></button></div>
-    <nav aria-label="Navigation mobile">{navItems.map(([label, id], index) => <motion.button key={id} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .15 + index * .06 }} onClick={() => { onClose(); setTimeout(() => scrollTo(id), 250); }}><small>0{index + 1}</small>{label}</motion.button>)}</nav>
-    <button className="mobile-appointment" onClick={() => { onClose(); onContact(); }}>Prendre rendez-vous</button>
-  </motion.div>;
+  return (
+    <>
+      <motion.div className="sheet-scrim" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} aria-hidden="true" />
+      <motion.div ref={ref} role="dialog" aria-modal="true" aria-labelledby="menu-sheet-title" tabIndex={-1} className="menu-sheet" initial={{ y: "100%" }} animate={{ y: 0 }} exit={{ y: "100%" }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }}>
+        <div className="menu-sheet-handle" aria-hidden="true" />
+        <div className="menu-sheet-head"><p id="menu-sheet-title">Sommaire</p><button onClick={onClose} aria-label="Fermer le sommaire"><X /></button></div>
+        <nav aria-label="Sommaire">
+          <ol>
+            {navItems.map(([label, id], index) => (
+              <li key={id}>
+                <button className={active === id ? "is-active" : ""} aria-current={active === id ? "true" : undefined} onClick={() => { onClose(); setTimeout(() => scrollTo(id), 300); }}>
+                  <small>{String(index + 1).padStart(2, "0")}</small>{label}
+                </button>
+              </li>
+            ))}
+          </ol>
+        </nav>
+        <div className="menu-sheet-links">
+          <a href={whatsappHref} target="_blank" rel="noreferrer"><MessageCircle aria-hidden="true" />Conciergerie</a>
+          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer"><Download aria-hidden="true" />Brochure</a>
+        </div>
+        <button className="menu-sheet-cta" onClick={() => { onClose(); onContact(); }}><Lock aria-hidden="true" />Demander un accès privé</button>
+      </motion.div>
+    </>
+  );
 }
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
+  const active = useActiveSection(MOBILE_TABS);
+  const tab = (id: (typeof MOBILE_TABS)[number], label: string, Icon: typeof Building2) => (
+    <button className={`tabbar-item ${active === id ? "is-active" : ""}`} aria-current={active === id ? "true" : undefined} onClick={() => scrollTo(id)}>
+      <Icon aria-hidden="true" /><span>{label}</span>
+    </button>
+  );
+
   return (
     <>
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
-        <button className="wordmark" onClick={() => scrollTo("accueil")} aria-label="Retour à l’accueil">CITYSTAR</button>
-        <nav className="desktop-nav" aria-label="Navigation principale">
+      <header className={`float-header ${scrolled ? "is-scrolled" : ""}`}>
+        <button className="float-wordmark" onClick={() => scrollTo("accueil")} aria-label="Retour à l’accueil">CITYSTAR</button>
+        <nav className="float-nav" aria-label="Navigation principale">
           {navItems.map(([label, id]) => <button key={id} onClick={() => scrollTo(id)}>{label}</button>)}
         </nav>
-        <button className="appointment-link" onClick={onContact}>Prendre rendez-vous <ArrowRight size={14} /></button>
-        <button className="menu-trigger" onClick={onOpenMenu} aria-label="Ouvrir le menu" aria-expanded={menuOpen}><Menu /></button>
+        <div className="float-actions">
+          <PillButton label="Accès privé" icon={Lock} onClick={onContact} className="float-cta" />
+          <a className="float-concierge" href={whatsappHref} target="_blank" rel="noreferrer">Conciergerie <MessageCircle aria-hidden="true" /></a>
+        </div>
       </header>
 
-      <AnimatePresence>{menuOpen && <MobileMenu onClose={onCloseMenu} onContact={onContact} />}</AnimatePresence>
+      <nav className="tabbar" aria-label="Navigation mobile">
+        {tab("villas", "Villas", Building2)}
+        {tab("plans", "Plans", LayoutPanelLeft)}
+        <button className="tabbar-fab" onClick={onContact}><i aria-hidden="true"><Lock /></i><span>Accès privé</span></button>
+        {tab("visite", "360°", Rotate3d)}
+        <button className="tabbar-item" onClick={onOpenMenu} aria-expanded={menuOpen} aria-haspopup="dialog"><Menu aria-hidden="true" /><span>Menu</span></button>
+      </nav>
+
+      <AnimatePresence>{menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} active={active} />}</AnimatePresence>
     </>
   );
 }

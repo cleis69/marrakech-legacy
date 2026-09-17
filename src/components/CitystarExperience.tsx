@@ -65,7 +65,7 @@ export default function CitystarExperience() {
       <LocationSection onOpenPlan={setPlanOpen} />
       <FinalCta onContact={openContact} />
       <SiteFooter onOpenTour={openTour} />
-      <FloatingActions onContact={openContact} />
+      <FloatingActions />
 
       <AnimatePresence>{villaOpen && <VillaModal villa={villas[activeVilla] ?? villas[0]} onClose={() => setVillaOpen(false)} onPlan={setPlanOpen} onPrev={() => setActiveVilla((activeVilla + 2) % 3)} onNext={() => setActiveVilla((activeVilla + 1) % 3)} />}</AnimatePresence>
       <AnimatePresence>{planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}</AnimatePresence>
