@@ -43,3 +43,6 @@ export type CursorHandlers = {
   onCursorEnter: (label: string) => (event: React.MouseEvent) => void;
   onCursorLeave: () => void;
 };
+
+/** Réponses d'un outil transmises au formulaire de contact existant. */
+export type Selection = { outil: string; lignes: string[] };

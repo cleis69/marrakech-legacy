@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { ArchitectureSection } from "./citystar/ArchitectureSection";
 import { ContactPanel } from "./citystar/ContactPanel";
+import type { Selection } from "./citystar/data";
 import { DeviseProvider } from "./citystar/currency";
 import { FinalCta } from "./citystar/FinalCta";
 import { FloatingActions } from "./citystar/FloatingActions";
@@ -23,6 +24,7 @@ export default function CitystarExperience() {
   const [planOpen, setPlanOpen] = useState<string | null>(null);
   const [tourOpen, setTourOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [selection, setSelection] = useState<Selection | null>(null);
   /* Position du curseur en valeurs de mouvement : aucun re-rendu à chaque mousemove. */
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -41,7 +43,9 @@ export default function CitystarExperience() {
     setCursorLabel(label);
   };
   const onCursorLeave = () => setCursorLabel("");
-  const openContact = () => setContactOpen(true);
+  const openContact = () => { setSelection(null); setContactOpen(true); };
+  /* Les outils ouvrent le formulaire avec leurs réponses ; rien n'est envoyé sans validation du visiteur. */
+  const openContactWith = (answers: Selection) => { setSelection(answers); setContactOpen(true); };
   const openTour = () => setTourOpen(true);
 
   return (
@@ -65,7 +69,7 @@ export default function CitystarExperience() {
 
       <AnimatePresence>{planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}</AnimatePresence>
       <AnimatePresence>{tourOpen && <TourModal onClose={() => setTourOpen(false)} />}</AnimatePresence>
-      <AnimatePresence>{contactOpen && <ContactPanel onClose={() => setContactOpen(false)} />}</AnimatePresence>
+      <AnimatePresence>{contactOpen && <ContactPanel selection={selection} onClose={() => setContactOpen(false)} />}</AnimatePresence>
     </main>
     </DeviseProvider>
     </MotionConfig>
