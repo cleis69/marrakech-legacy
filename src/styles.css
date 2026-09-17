@@ -195,8 +195,6 @@
 .contact-panel h2 { font: 400 clamp(3.4rem, 7vw, 7.7rem)/.97 "Italiana", serif; letter-spacing: 0; }
 em { font-weight: 400; color: var(--bronze); }
 .contact-panel > div > p { font-size: 1rem; line-height: 1.9; color: var(--muted-foreground); max-width: 430px; }
-.parallax-wrap { position: absolute; inset: 0; overflow: hidden; }
-.parallax-wrap img { width: 100%; height: 116%; object-fit: cover; position: absolute; top: -8%; }
 .whatsapp { position: fixed; z-index: 45; right: 2rem; bottom: 2rem; width: 48px; height: 48px; background: var(--paper); color: var(--ink); display: grid; place-items: center; border-radius: 50%; box-shadow: 0 8px 30px color-mix(in oklab, var(--ink) 20%, transparent); }
 .custom-cursor { position: fixed; z-index: 110; top: 0; left: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--cream); color: var(--ink); display: grid; place-items: center; pointer-events: none; font-size: .55rem; letter-spacing: .15em; opacity: 0; transition: opacity .2s; mix-blend-mode: screen; }
 :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
