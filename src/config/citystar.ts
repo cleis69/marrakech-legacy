@@ -99,11 +99,19 @@ export const reservation = {
 /* Frais d'acquisition                                                 */
 /* ------------------------------------------------------------------ */
 
-export const calculateurFrais = {
-  // Bornes du curseur de prix, en euros (repères d'interface).
-  prixMinEUR: 500_000,
-  prixMaxEUR: 3_000_000,
-  pasEUR: 10_000,
+/** Bornes des curseurs : repères d'interface, pas des données du promoteur. */
+export const bornesPrixEUR = { min: 500_000, max: 3_000_000, pas: 10_000 };
+
+export const bornesSimulateur = {
+  prixMoyenNuitEUR: { min: 100, max: 2_000, pas: 10 },
+  tauxOccupation: { min: 0.1, max: 0.9, pas: 0.01 },
+  semainesUsagePersonnel: { min: 0, max: 26, pas: 1 },
+  loyerMensuelEUR: { min: 500, max: 15_000, pas: 100 },
+  horizonAnnees: { min: 1, max: 25, pas: 1 },
+  appreciationAnnuelle: { min: 0, max: 0.08, pas: 0.005 },
+  charges: { min: 0, max: 0.4, pas: 0.01 },
+  coutsAnnuelsEUR: { min: 0, max: 20_000, pas: 500 },
+  imposition: { min: 0, max: 0.45, pas: 0.01 },
 };
 
 export const fraisAcquisition = {

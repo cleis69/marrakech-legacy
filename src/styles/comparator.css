@@ -27,6 +27,7 @@
 .cp-table tbody tr:hover th[scope="row"], .cp-table tbody tr:focus-within th[scope="row"] { color: var(--bronze); }
 .cp-table td.is-pin, .cp-table thead th.is-pin { background: color-mix(in oklab, var(--bronze) 9%, transparent); }
 .cp-table thead th.is-pin { box-shadow: inset 0 3px 0 var(--bronze); }
+.cp-table .is-out { opacity: .45; }
 .cp-photo { position: relative; display: block; height: 7rem; overflow: hidden; }
 .cp-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cp-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, oklch(0.1 0.01 60 / 70%)); }

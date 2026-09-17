@@ -19,6 +19,7 @@ import { TourModal } from "./citystar/TourModal";
 import { TourSection } from "./citystar/TourSection";
 import { VillaComparator } from "./citystar/VillaComparator";
 import { VillaSelector } from "./citystar/VillaSelector";
+import { YieldSimulator } from "./citystar/YieldSimulator";
 import { VillasSection } from "./citystar/VillasSection";
 
 export default function CitystarExperience() {
@@ -69,6 +70,7 @@ export default function CitystarExperience() {
       <TourSection onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
       <FeeCalculator onContact={openContactWith} />
+      <YieldSimulator onContact={openContactWith} />
       <FinalCta onContact={openContact} />
       <SiteFooter />
       <FloatingActions />

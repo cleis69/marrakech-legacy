@@ -52,3 +52,7 @@ export type CursorHandlers = {
 
 /** Réponses d'un outil transmises au formulaire de contact existant. */
 export type Selection = { outil: string; lignes: string[] };
+
+/** Le simulateur demande au comparateur de mettre en avant les villas dans un budget. */
+export const SHOW_BUDGET_EVENT = "citystar:budget";
+export type BudgetDetail = { montant: number; devise: string; langue: string };

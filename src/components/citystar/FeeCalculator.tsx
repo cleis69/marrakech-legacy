@@ -1,7 +1,7 @@
 import { ArrowRight, Printer } from "lucide-react";
 import { useState } from "react";
 
-import { type TypeVilla, calculateurFrais, convertirEUR, formatPrix, fraisAcquisition, prixVilla } from "@/config/citystar";
+import { type TypeVilla, bornesPrixEUR, convertirEUR, formatPrix, fraisAcquisition, prixVilla } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
 import type { Selection } from "./data";
@@ -23,9 +23,9 @@ export function FeeCalculator({ onContact }: { onContact: (selection: Selection)
   const [prix, setPrix] = useState(defaut);
   const [saisi, setSaisi] = useState(false);
 
-  const min = Math.round(convertirEUR(calculateurFrais.prixMinEUR, devise));
-  const max = Math.round(convertirEUR(calculateurFrais.prixMaxEUR, devise));
-  const pas = Math.round(convertirEUR(calculateurFrais.pasEUR, devise));
+  const min = Math.round(convertirEUR(bornesPrixEUR.min, devise));
+  const max = Math.round(convertirEUR(bornesPrixEUR.max, devise));
+  const pas = Math.round(convertirEUR(bornesPrixEUR.pas, devise));
   const montant = saisi ? prix : defaut;
 
   const taux = LIGNES.map(({ key, label }) => ({ key, label, valeur: fraisAcquisition[key].valeur }));

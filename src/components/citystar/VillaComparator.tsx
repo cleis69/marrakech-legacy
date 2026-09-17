@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { type TypeVilla, formatNombre, formatPrix, formatSurface, prixVilla, villasChiffres } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
-import { openVilla, villas } from "./data";
+import { SHOW_BUDGET_EVENT, openVilla, prefersReducedMotion, villas } from "./data";
 
 type Props = { onOpenPlan: (src: string) => void };
 type Cell = { key: TypeVilla; content: React.ReactNode };
@@ -27,6 +27,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
   const [onlyDiff, setOnlyDiff] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<TypeVilla[]>(TYPES);
+  const [highlight, setHighlight] = useState<TypeVilla[] | null>(null);
 
   /* Sur mobile, les colonnes défilent : on indique lesquelles sont à l'écran. */
   useEffect(() => {
@@ -49,6 +50,19 @@ export function VillaComparator({ onOpenPlan }: Props) {
     window.addEventListener("resize", update);
     return () => { box.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
   }, []);
+
+  /* Le simulateur envoie un budget : on met en avant la villa la plus grande qui y entre. */
+  useEffect(() => {
+    const onBudget = (event: Event) => {
+      const { montant } = (event as CustomEvent<{ montant: number }>).detail;
+      const dansLeBudget = TYPES.filter((t) => prixVilla(t, devise).montant <= montant);
+      const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
+      if (cible) { setPin(cible); setHighlight(dansLeBudget); }
+      document.getElementById("comparateur")?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
+    };
+    window.addEventListener(SHOW_BUDGET_EVENT, onBudget);
+    return () => window.removeEventListener(SHOW_BUDGET_EVENT, onBudget);
+  }, [devise]);
 
   const scrollToColumn = (type: TypeVilla) => {
     const box = scrollRef.current;
@@ -133,7 +147,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
           <p className="cp-kicker">Comparer</p>
           <h2 id="comparateur-title">Ce qui les <em>distingue.</em></h2>
         </div>
-        <p className="cp-note">Écarts calculés par rapport à la villa de référence</p>
+        <p className="cp-note">{highlight ? `Dans le budget saisi : ${highlight.map((t) => `villa ${t}`).join(", ") || "aucune villa"}` : "Écarts calculés par rapport à la villa de référence"}</p>
       </div>
 
       <div className="cp-controls">
@@ -159,7 +173,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
               {TYPES.map((t) => {
                 const villa = villas.find((v) => v.type === t);
                 return (
-                  <th key={t} scope="col" data-col={t} className={t === pin ? "is-pin" : ""}>
+                  <th key={t} scope="col" data-col={t} className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}>
                     <span className="cp-photo"><img src={villa?.image} alt="" loading="lazy" /><b>{t}</b></span>
                     <span className="cp-name">Villa {t}{t === pin && <em> · référence</em>}</span>
                   </th>
@@ -171,7 +185,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
             {shown.map((row, index) => (
               <tr key={index}>
                 <th scope="row">{row.label}</th>
-                {TYPES.map((t) => <td key={t} data-col={t} className={t === pin ? "is-pin" : ""}>{row.cells(t)}</td>)}
+                {TYPES.map((t) => <td key={t} data-col={t} className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}>{row.cells(t)}</td>)}
               </tr>
             ))}
           </tbody>
