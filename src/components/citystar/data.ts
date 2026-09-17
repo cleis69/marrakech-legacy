@@ -1,7 +1,7 @@
 import { formatSurface, villasChiffres } from "@/config/citystar";
-import villaAImage from "@/assets/citystar/villa-a.jpeg";
-import villaBImage from "@/assets/citystar/villa-b.jpeg";
-import villaCImage from "@/assets/citystar/villa-c.jpeg";
+import villaAImage from "@/assets/citystar/site/ext-type-a.jpg";
+import villaBImage from "@/assets/citystar/site/ext-palms.jpg";
+import villaCImage from "@/assets/citystar/site/ext-aerial.jpg";
 import planARdc from "@/assets/citystar/plan-a-rdc.png";
 import planAFloor from "@/assets/citystar/plan-a-floor.png";
 import planBRdc from "@/assets/citystar/plan-b-rdc.png";
@@ -10,9 +10,9 @@ import planCRdc from "@/assets/citystar/plan-c-rdc.png";
 import planCFloor from "@/assets/citystar/plan-c-floor.png";
 
 export const villas = [
-  { type: "A", image: villaAImage, area: formatSurface(villasChiffres.A.surfaceConstruiteM2), land: formatSurface(villasChiffres.A.terrainM2), bedrooms: `${villasChiffres.A.suites} suites`, description: "Pensée pour les résidents à mobilité réduite, avec ascenseur, salles de bains accessibles et espaces généreux pour une circulation fluide.", plans: [planARdc, planAFloor] },
-  { type: "B", image: villaBImage, area: formatSurface(villasChiffres.B.surfaceConstruiteM2), land: formatSurface(villasChiffres.B.terrainM2), bedrooms: `${villasChiffres.B.suites} suites`, description: "Une architecture exigeante, des matériaux de haute qualité et une conception intelligente, prolongée par de vastes terrasses.", plans: [planBRdc, planBFloor] },
-  { type: "C", image: villaCImage, area: formatSurface(villasChiffres.C.surfaceConstruiteM2), land: formatSurface(villasChiffres.C.terrainM2), bedrooms: `${villasChiffres.C.suites} suites`, description: "Des volumes contemporains, une piscine privée et des espaces conçus selon les standards architecturaux les plus exigeants.", plans: [planCRdc, planCFloor] },
+  { type: "A", tag: "Accessible", image: villaAImage, area: formatSurface(villasChiffres.A.surfaceConstruiteM2), land: formatSurface(villasChiffres.A.terrainM2), bedrooms: `${villasChiffres.A.suites} suites`, description: "Pensée pour les résidents à mobilité réduite : ascenseur, salles de bains accessibles et circulations généreuses.", plans: [planARdc, planAFloor] },
+  { type: "B", tag: "Terrasses", image: villaBImage, area: formatSurface(villasChiffres.B.surfaceConstruiteM2), land: formatSurface(villasChiffres.B.terrainM2), bedrooms: `${villasChiffres.B.suites} suites`, description: "Une architecture exigeante et des matériaux de haute qualité, prolongés par de vastes terrasses.", plans: [planBRdc, planBFloor] },
+  { type: "C", tag: "Contemporaine", image: villaCImage, area: formatSurface(villasChiffres.C.surfaceConstruiteM2), land: formatSurface(villasChiffres.C.terrainM2), bedrooms: `${villasChiffres.C.suites} suites`, description: "Des volumes contemporains et une piscine privée, selon les standards architecturaux les plus exigeants.", plans: [planCRdc, planCFloor] },
 ] as const;
 
 export type Villa = (typeof villas)[number];
@@ -28,7 +28,14 @@ export function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+/** Les plans vivent dans la fiche villa : « Plans » demande à la section de l'ouvrir. */
+export const OPEN_PLANS_EVENT = "citystar:open-plans";
+
 export function scrollTo(id: string) {
+  if (id === "plans" && !document.getElementById("plans")) {
+    window.dispatchEvent(new Event(OPEN_PLANS_EVENT));
+    return;
+  }
   document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
 }
 

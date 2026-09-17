@@ -1,23 +1,57 @@
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
-import { type CursorHandlers, villas } from "./data";
-import { Reveal } from "./motion";
+import { type CursorHandlers, OPEN_PLANS_EVENT, prefersReducedMotion } from "./data";
+import { VillaDoors } from "./VillaDoors";
+import { VillaFiche } from "./VillaFiche";
 
-type Props = CursorHandlers & { onOpenVilla: (index: number) => void };
+type Props = CursorHandlers & { onOpenPlan: (src: string) => void; onContact: () => void };
+type View = { mode: "doors"; focus: number | null } | { mode: "fiche"; index: number; target: "top" | "plans" };
 
-export function VillasSection({ onCursorEnter, onCursorLeave, onOpenVilla }: Props) {
+const fade = { initial: { opacity: 0, y: 16 }, animate: { opacity: 1, y: 0 }, exit: { opacity: 0, y: -10 }, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const } };
+
+export function VillasSection({ onCursorEnter, onCursorLeave, onOpenPlan, onContact }: Props) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [view, setView] = useState<View>({ mode: "doors", focus: null });
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const openPlans = () => setView((current) => ({ mode: "fiche", index: current.mode === "fiche" ? current.index : index, target: "plans" }));
+    window.addEventListener(OPEN_PLANS_EVENT, openPlans);
+    return () => window.removeEventListener(OPEN_PLANS_EVENT, openPlans);
+  }, [index]);
+
+  const scrollToSection = () => {
+    const top = sectionRef.current?.getBoundingClientRect().top ?? 0;
+    if (top < -40 || top > window.innerHeight * 0.4) sectionRef.current?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
+  };
+
   return (
-    <section id="villas" className="villas-section section-pad">
-      <div className="section-label"><span>03</span><p>Les villas</p></div>
-      <div className="villas-heading"><Reveal><h2>Trois expressions.<br />Une même <em>exigence.</em></h2></Reveal><p>Choisissez une résidence dessinée autour de votre façon de vivre.</p></div>
-      <div className="villa-gallery">
-        {villas.map((villa, index) => <article key={villa.type} className="villa-card" onMouseEnter={onCursorEnter("EXPLORE")} onMouseLeave={onCursorLeave} onClick={() => onOpenVilla(index)}>
-          <img src={villa.image} alt={`Villa CITYSTAR Type ${villa.type} à Marrakech`} loading="lazy" />
-          <div className="villa-card-shade" />
-          <div className="villa-card-top"><span>Type</span><strong>{villa.type}</strong></div>
-          <div className="villa-card-bottom"><p>{villa.area} construits</p><p>{villa.land} de terrain</p><ArrowRight /></div>
-        </article>)}
-      </div>
+    <section ref={sectionRef} id="villas" className="vs" aria-labelledby="villas-title">
+      <AnimatePresence mode="wait" initial={false}>
+        {view.mode === "doors" ? (
+          <motion.div key="doors" {...fade}>
+            <VillaDoors
+              active={index}
+              focusIndex={view.focus}
+              onCursorEnter={onCursorEnter}
+              onCursorLeave={onCursorLeave}
+              onOpen={(i) => { onCursorLeave(); setIndex(i); setView({ mode: "fiche", index: i, target: "top" }); scrollToSection(); }}
+            />
+          </motion.div>
+        ) : (
+          <motion.div key="fiche" {...fade}>
+            <VillaFiche
+              index={view.index}
+              target={view.target}
+              onSelect={(i) => { setIndex(i); setView({ mode: "fiche", index: i, target: "top" }); }}
+              onBack={() => { setView({ mode: "doors", focus: view.index }); scrollToSection(); }}
+              onOpenPlan={onOpenPlan}
+              onContact={onContact}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

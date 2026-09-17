@@ -3,27 +3,23 @@ import { useEffect, useState } from "react";
 
 import { ArchitectureSection } from "./citystar/ArchitectureSection";
 import { ContactPanel } from "./citystar/ContactPanel";
-import { villas } from "./citystar/data";
+import { DeviseProvider } from "./citystar/currency";
 import { FinalCta } from "./citystar/FinalCta";
 import { FloatingActions } from "./citystar/FloatingActions";
 import { HeroSection } from "./citystar/HeroSection";
 import { LifestyleSection } from "./citystar/LifestyleSection";
 import { LocationSection } from "./citystar/LocationSection";
 import { PlanModal } from "./citystar/PlanModal";
-import { PlansSection } from "./citystar/PlansSection";
 import { ProjectSection } from "./citystar/ProjectSection";
 import { SiteFooter } from "./citystar/SiteFooter";
 import { SiteHeader } from "./citystar/SiteHeader";
 import { TourModal } from "./citystar/TourModal";
 import { TourSection } from "./citystar/TourSection";
-import { VillaModal } from "./citystar/VillaModal";
 import { VillasSection } from "./citystar/VillasSection";
 
 export default function CitystarExperience() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeVilla, setActiveVilla] = useState(0);
-  const [villaOpen, setVillaOpen] = useState(false);
   const [planOpen, setPlanOpen] = useState<string | null>(null);
   const [tourOpen, setTourOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
@@ -50,6 +46,7 @@ export default function CitystarExperience() {
 
   return (
     <MotionConfig reducedMotion="user">
+    <DeviseProvider langue="fr">
     <main onMouseMove={(e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); }}>
       <motion.div className="page-progress" style={{ scaleX: scrollYProgress }} />
       <motion.div className={`custom-cursor ${cursorLabel ? "is-visible" : ""}`} style={{ x: cursorX, y: cursorY }} aria-hidden="true">{cursorLabel}</motion.div>
@@ -58,8 +55,7 @@ export default function CitystarExperience() {
       <HeroSection />
       <ProjectSection />
       <ArchitectureSection />
-      <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenVilla={(index) => { setActiveVilla(index); setVillaOpen(true); }} />
-      <PlansSection onOpenPlan={setPlanOpen} />
+      <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenPlan={setPlanOpen} onContact={openContact} />
       <LifestyleSection />
       <TourSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
@@ -67,11 +63,11 @@ export default function CitystarExperience() {
       <SiteFooter onOpenTour={openTour} />
       <FloatingActions />
 
-      <AnimatePresence>{villaOpen && <VillaModal villa={villas[activeVilla] ?? villas[0]} onClose={() => setVillaOpen(false)} onPlan={setPlanOpen} onPrev={() => setActiveVilla((activeVilla + 2) % 3)} onNext={() => setActiveVilla((activeVilla + 1) % 3)} />}</AnimatePresence>
       <AnimatePresence>{planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}</AnimatePresence>
       <AnimatePresence>{tourOpen && <TourModal onClose={() => setTourOpen(false)} />}</AnimatePresence>
       <AnimatePresence>{contactOpen && <ContactPanel onClose={() => setContactOpen(false)} />}</AnimatePresence>
     </main>
+    </DeviseProvider>
     </MotionConfig>
   );
 }

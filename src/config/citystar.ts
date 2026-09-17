@@ -156,3 +156,37 @@ export function formatNombre(valeur: number, langue: Langue = "fr") {
 export function formatSurface(m2: number, langue: Langue = "fr") {
   return `${formatNombre(m2, langue)} m²`;
 }
+
+/* ------------------------------------------------------------------ */
+/* Prix affichés                                                       */
+/* ------------------------------------------------------------------ */
+
+export type Taux = { GBP: number; NOK: number; MAD: number; date: string };
+
+export const symbolesDevise: Record<Devise, string> = { EUR: "€", GBP: "£", MAD: "MAD", NOK: "NOK" };
+
+/**
+ * Prix d'une villa dans la devise demandée. Euros et livres : prix fixés à la
+ * main. Dirhams et couronnes : contre-valeur du prix en euros, arrondie à la
+ * dizaine de milliers inférieure, donc approximative.
+ */
+export function prixVilla(type: TypeVilla, devise: Devise, taux: Taux = devises.tauxDeSecours) {
+  const prix = prixVillas[type];
+  if (devise === "EUR" || devise === "GBP") return { montant: prix[devise], approximatif: false };
+  const pas = devises.arrondiContreValeur;
+  return { montant: Math.floor((prix.EUR * taux[devise]) / pas) * pas, approximatif: true };
+}
+
+/** 1480000 → « 1 480 000 € » (fr) ou « €1,480,000 » (en). */
+export function formatPrix(montant: number, devise: Devise, langue: Langue = "fr") {
+  const nombre = formatNombre(montant, langue);
+  if (langue === "en" && (devise === "EUR" || devise === "GBP")) return `${symbolesDevise[devise]}${nombre}`;
+  return `${nombre} ${symbolesDevise[devise]}`;
+}
+
+/** « 2026-09-16 » → « 16/09/2026 » (fr) ou « 16 Sep 2026 » (en). */
+export function formatDate(iso: string, langue: Langue = "fr") {
+  const date = new Date(`${iso}T12:00:00Z`);
+  const options: Intl.DateTimeFormatOptions = langue === "fr" ? { day: "2-digit", month: "2-digit", year: "numeric" } : { day: "numeric", month: "short", year: "numeric" };
+  return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
+}
