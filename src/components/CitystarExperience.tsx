@@ -5,6 +5,7 @@ import { ArchitectureSection } from "./citystar/ArchitectureSection";
 import { ContactPanel } from "./citystar/ContactPanel";
 import type { Selection } from "./citystar/data";
 import { DeviseProvider } from "./citystar/currency";
+import { FeeCalculator } from "./citystar/FeeCalculator";
 import { FinalCta } from "./citystar/FinalCta";
 import { FloatingActions } from "./citystar/FloatingActions";
 import { HeroSection } from "./citystar/HeroSection";
@@ -67,6 +68,7 @@ export default function CitystarExperience() {
       <LifestyleSection />
       <TourSection onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
+      <FeeCalculator onContact={openContactWith} />
       <FinalCta onContact={openContact} />
       <SiteFooter />
       <FloatingActions />

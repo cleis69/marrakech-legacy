@@ -1,0 +1,56 @@
+/* ---------- Outil 3 : calculateur de frais (la fiche à conserver) ---------- */
+.cl { background: var(--sand); color: var(--ink); }
+.cl-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4vw; align-items: center; }
+.cl-form { display: grid; gap: 1.6rem; justify-items: start; }
+.cl-kicker { font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bronze); }
+.cl-form h2 { font: 400 clamp(2.4rem, 3.6vw, 3.8rem)/1 "Italiana", serif; }
+.cl-field { width: 100%; display: grid; gap: .6rem; }
+.cl-field label { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 62%, var(--sand)); }
+.cl-price { display: flex; align-items: baseline; gap: .6rem; border-bottom: 1px solid color-mix(in oklab, var(--ink) 40%, transparent); }
+.cl-price input { flex: 1; min-width: 0; padding: .4rem 0; border: 0; background: none; color: inherit; font: 400 clamp(1.6rem, 2.4vw, 2.4rem)/1.2 "Italiana", serif; font-variant-numeric: tabular-nums; }
+.cl-price input:focus-visible { outline: none; }
+.cl-price span { font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 60%, var(--sand)); }
+.cl-range { width: 100%; height: 2px; margin-top: .4rem; appearance: none; background: color-mix(in oklab, var(--ink) 22%, transparent); cursor: pointer; }
+.cl-range::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--bronze); }
+.cl-range::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: var(--bronze); }
+.cl-field select { width: 100%; padding: .4rem 0; appearance: none; border: 0; border-bottom: 1px solid color-mix(in oklab, var(--ink) 40%, transparent); border-radius: 0; background: transparent; color: inherit; font: 400 1.4rem/1.4 "Italiana", serif; cursor: pointer; }
+
+.cl-side { display: grid; gap: 2rem; }
+.cl-doc { position: relative; display: grid; gap: 1.1rem; padding: 2.6rem 2.8rem 2.4rem; background: var(--cream); color: var(--ink); box-shadow: 0 1.2rem 3rem -1.4rem oklch(0 0 0 / 45%); transform: rotate(-.6deg); }
+.cl-doc header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding-bottom: 1rem; border-bottom: 2px solid var(--ink); }
+.cl-doc header b { display: block; font: 400 1.5rem/1 "Italiana", serif; letter-spacing: .3em; }
+.cl-doc header small { display: block; margin-top: .4rem; font-size: .56rem; letter-spacing: .2em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 60%, var(--cream)); }
+.cl-doc header p { text-align: right; font-size: .58rem; letter-spacing: .12em; line-height: 1.7; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 70%, var(--cream)); }
+.cl-doc h3 { font: 400 1.6rem/1.1 "Italiana", serif; }
+.cl-doc table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.cl-doc td { padding: .6rem 0; border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.cl-doc td:last-child { text-align: right; font: 400 1.2rem/1 "Italiana", serif; font-variant-numeric: tabular-nums; }
+.cl-doc td small { margin-left: .4em; color: color-mix(in oklab, var(--ink) 55%, var(--cream)); }
+.cl-wait { font-size: .6rem; font-family: "DM Sans", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 55%, var(--cream)); }
+.cl-total td { padding-top: 1rem; border-bottom: 0; border-top: 2px solid var(--ink); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; }
+.cl-total td:last-child { font-size: 2rem; letter-spacing: 0; text-transform: none; }
+.cl-mention { max-width: 32rem; padding-left: 6.4rem; font-size: .8rem; font-style: italic; line-height: 1.5; color: color-mix(in oklab, var(--ink) 75%, var(--cream)); }
+.cl-mention b { font-style: normal; font-weight: 500; }
+.cl-stamp { position: absolute; left: 2.6rem; bottom: 1.4rem; display: grid; place-items: center; width: 5.4rem; aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--bronze); color: var(--bronze); font-size: .5rem; letter-spacing: .14em; line-height: 1.4; text-align: center; text-transform: uppercase; transform: rotate(-12deg); opacity: .75; }
+.cl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; }
+.cl-neutral { flex: 1 1 18rem; font-size: .82rem; line-height: 1.6; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
+
+@media (max-width: 900px) {
+  .cl-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cl-form h2 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .cl-doc { padding: 1.6rem 1.4rem; transform: none; }
+  .cl-doc header b { font-size: 1.2rem; }
+  .cl-doc h3 { font-size: 1.3rem; }
+  .cl-doc table { font-size: .78rem; }
+  .cl-doc td:last-child { font-size: 1rem; }
+  .cl-total td:last-child { font-size: 1.5rem; }
+  .cl-stamp { left: 1.2rem; bottom: 1.2rem; width: 4rem; font-size: .42rem; }
+  .cl-mention { padding-left: 4.8rem; }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  .cl-doc, .cl-doc * { visibility: visible; }
+  .cl-doc { position: absolute; top: 0; left: 0; width: 100%; box-shadow: none; transform: none; }
+  .cl-stamp { opacity: 1; }
+}

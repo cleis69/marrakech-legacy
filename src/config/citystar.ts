@@ -99,6 +99,13 @@ export const reservation = {
 /* Frais d'acquisition                                                 */
 /* ------------------------------------------------------------------ */
 
+export const calculateurFrais = {
+  // Bornes du curseur de prix, en euros (repères d'interface).
+  prixMinEUR: 500_000,
+  prixMaxEUR: 3_000_000,
+  pasEUR: 10_000,
+};
+
 export const fraisAcquisition = {
   // Taux appliqués au prix du bien, en fraction (0,04 = 4 %).
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
