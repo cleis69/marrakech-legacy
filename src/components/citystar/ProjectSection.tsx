@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 import { formatNombre, programme } from "@/config/citystar";
-import exteriorImage from "@/assets/citystar/site/ext-terraces.jpg";
+import exteriorImage from "@/assets/citystar/site/ext-facade.jpg";
 import poolImage from "@/assets/citystar/site/ext-pool.jpg";
 import livingImage from "@/assets/citystar/site/int-living.jpg";
 
@@ -34,7 +34,7 @@ export function ProjectSection() {
     <section id="project" className="pj" aria-labelledby="project-title">
       <div className="pj-grid">
         <figure className="pj-big">
-          <img src={exteriorImage} alt="Façade d’une villa CITYSTAR et ses terrasses" loading="lazy" />
+          <img src={exteriorImage} alt="Façade d’une villa CITYSTAR, lames bronze et volumes blancs" loading="lazy" />
           <figcaption className="pj-count">
             <VillaCounter />
             <span className="pj-count-copy"><small>{programme.nombreVillas} villas privées</small><em>Pas une de plus.</em></span>
