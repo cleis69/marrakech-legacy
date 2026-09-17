@@ -7,6 +7,7 @@
 @import "./styles/architecture.css";
 @import "./styles/villas.css";
 @import "./styles/lifestyle.css";
+@import "./styles/tour.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -190,15 +191,6 @@ em { font-weight: 400; color: var(--bronze); }
 .location-copy > p, .contact-panel > div > p { font-size: 1rem; line-height: 1.9; color: var(--muted-foreground); max-width: 430px; }
 .parallax-wrap { position: absolute; inset: 0; overflow: hidden; }
 .parallax-wrap img { width: 100%; height: 116%; object-fit: cover; position: absolute; top: -8%; }
-.tour-section { height: 100vh; min-height: 700px; position: relative; overflow: hidden; color: var(--cream); }
-.tour-section > img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s; }
-.tour-section:hover > img { transform: scale(1.025); }
-.tour-shade { position: absolute; inset: 0; background: color-mix(in oklab, var(--ink) 52%, transparent); }
-.tour-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-.tour-content > span { text-transform: uppercase; letter-spacing: .2em; font-size: .66rem; }
-.tour-content h2 { font: 400 clamp(4.5rem, 10vw, 11rem)/.85 "Italiana", serif; margin: 2rem 0 3rem; letter-spacing: 0; }
-.tour-content button { border: 1px solid color-mix(in oklab, var(--cream) 55%, transparent); background: transparent; color: inherit; width: 170px; height: 170px; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1rem; text-transform: uppercase; letter-spacing: .14em; font-size: .58rem; transition: background .4s, color .4s; }
-.tour-content button:hover { background: var(--cream); color: var(--ink); }
 .location-section { background: var(--paper); }
 .location-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 10vw; align-items: center; }
 .location-image { position: relative; }
@@ -249,6 +241,6 @@ footer svg { width: 13px; }
 .direct-contact a { color: var(--cream); text-decoration: none; font-size: .72rem; }
 
 @media (max-width: 760px) {
-  .section-pad { padding:6.5rem 1.3rem; }.section-label { margin-bottom:4rem; }.location-copy h2 { font-size:clamp(3.3rem,16vw,5.5rem); }.tour-section { height:88svh;min-height:600px; }.tour-content h2 { font-size:clamp(4rem,19vw,7rem); }.tour-content button { width:130px;height:130px; }.location-grid { grid-template-columns:1fr;gap:4rem; }.location-image img { height:60vh; }.location-image > span { font-size:1.5rem;padding-right:2rem; }.masterplan { margin-top:5rem; }.masterplan img { height:60vw; }.masterplan span { right:.8rem;bottom:.8rem; }.final-cta { min-height:78svh;padding:6rem 1.3rem; }.final-cta h2 { font-size:clamp(3.7rem,18vw,6rem); }.final-cta button { width:155px;height:155px;margin-top:3rem; }footer { grid-template-columns:1fr 1fr;padding:5rem 1.3rem 6rem;gap:3rem 1.5rem; }.footer-brand { grid-column:1/-1; }.footer-bottom { grid-column:1/-1;display:block; }.footer-bottom span { display:block;margin-top:.6rem; }.whatsapp { display:none; }.custom-cursor { display:none; }.plan-modal { padding:3rem .5rem; }.contact-panel { padding:7rem 1.3rem 4rem; }.contact-panel h2 { font-size:4.4rem; }.contact-panel form { grid-template-columns:1fr; }.contact-panel form > button { grid-column:1; }
+  .section-pad { padding:6.5rem 1.3rem; }.section-label { margin-bottom:4rem; }.location-copy h2 { font-size:clamp(3.3rem,16vw,5.5rem); }.location-grid { grid-template-columns:1fr;gap:4rem; }.location-image img { height:60vh; }.location-image > span { font-size:1.5rem;padding-right:2rem; }.masterplan { margin-top:5rem; }.masterplan img { height:60vw; }.masterplan span { right:.8rem;bottom:.8rem; }.final-cta { min-height:78svh;padding:6rem 1.3rem; }.final-cta h2 { font-size:clamp(3.7rem,18vw,6rem); }.final-cta button { width:155px;height:155px;margin-top:3rem; }footer { grid-template-columns:1fr 1fr;padding:5rem 1.3rem 6rem;gap:3rem 1.5rem; }.footer-brand { grid-column:1/-1; }.footer-bottom { grid-column:1/-1;display:block; }.footer-bottom span { display:block;margin-top:.6rem; }.whatsapp { display:none; }.custom-cursor { display:none; }.plan-modal { padding:3rem .5rem; }.contact-panel { padding:7rem 1.3rem 4rem; }.contact-panel h2 { font-size:4.4rem; }.contact-panel form { grid-template-columns:1fr; }.contact-panel form > button { grid-column:1; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important; } }

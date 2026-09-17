@@ -57,7 +57,7 @@ export default function CitystarExperience() {
       <ArchitectureSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenPlan={setPlanOpen} onContact={openContact} />
       <LifestyleSection />
-      <TourSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenTour={openTour} />
+      <TourSection onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />
       <FinalCta onContact={openContact} />
       <SiteFooter onOpenTour={openTour} />
