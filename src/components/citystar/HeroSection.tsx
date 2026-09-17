@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { ArrowDown, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { programme } from "@/config/citystar";
 import heroVideo from "@/assets/citystar/hero-video.mp4";
 import villaBImage from "@/assets/citystar/villa-b.jpeg";
 
@@ -38,7 +39,7 @@ export function HeroSection() {
       </div>
       <button className="explore-link" onClick={() => scrollTo("project")}><span>Explorer Citystar</span><ArrowDown size={17} /></button>
       <button className="hero-pause" onClick={toggleVideo} aria-label={playing ? "Mettre la vidéo en pause" : "Lire la vidéo"}>{playing ? <Pause size={13} aria-hidden="true" /> : <Play size={13} aria-hidden="true" />}<span>{playing ? "Pause" : "Lecture"}</span></button>
-      <span className="hero-index">31.6295° N<br />7.9811° W</span>
+      <span className="hero-index">{programme.coordonnees.latitude.toFixed(4)}° N<br />{Math.abs(programme.coordonnees.longitude).toFixed(4)}° W</span>
     </section>
   );
 }
