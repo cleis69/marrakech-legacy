@@ -16,6 +16,7 @@ import { SiteFooter } from "./citystar/SiteFooter";
 import { SiteHeader } from "./citystar/SiteHeader";
 import { TourModal } from "./citystar/TourModal";
 import { TourSection } from "./citystar/TourSection";
+import { VillaComparator } from "./citystar/VillaComparator";
 import { VillaSelector } from "./citystar/VillaSelector";
 import { VillasSection } from "./citystar/VillasSection";
 
@@ -62,6 +63,7 @@ export default function CitystarExperience() {
       <ArchitectureSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenPlan={setPlanOpen} onContact={openContact} />
       <VillaSelector onContact={openContactWith} />
+      <VillaComparator onOpenPlan={setPlanOpen} />
       <LifestyleSection />
       <TourSection onOpenTour={openTour} />
       <LocationSection onOpenPlan={setPlanOpen} />

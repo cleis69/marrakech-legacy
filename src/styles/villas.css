@@ -5,7 +5,8 @@
 .vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 4vw; margin-bottom: 3.5rem; }
 .vd-top .section-label { margin-bottom: 2rem; }
 .vd-top h2, .vf-panel h2 { font: 400 clamp(3rem, 6vw, 6.4rem)/.97 "Italiana", serif; }
-.vd-top > p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
+.vd-top > div { display: grid; gap: 1.6rem; justify-items: start; }
+.vd-top p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vd-tri { display: flex; gap: .6rem; height: 74vh; min-height: 520px; }
 .vd-door { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--cream); text-align: left; cursor: pointer; transition: flex-grow 1s cubic-bezier(.22, 1, .36, 1); }
 .vd-door img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
@@ -78,7 +79,7 @@
 @media (max-width: 900px) {
   .vd-top { display: block; margin-bottom: 2.4rem; }
   .vd-top h2 { font-size: clamp(3rem, 14vw, 4.6rem); }
-  .vd-top > p { margin-top: 1.4rem; }
+  .vd-top > div { margin-top: 1.4rem; }
   .vd-tri { height: auto; min-height: 0; gap: 10px; margin-right: -1.3rem; padding-right: 1.3rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .vd-tri::-webkit-scrollbar { display: none; }
   .vd-tri .vd-door, .vd-tri .vd-door.is-on { flex: 0 0 80vw; height: 62svh; min-height: 440px; scroll-snap-align: start; }

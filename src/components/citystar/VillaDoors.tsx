@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { formatSurface, programme } from "@/config/citystar";
 
-import { type CursorHandlers, villas } from "./data";
+import { type CursorHandlers, scrollTo, villas } from "./data";
 import { Reveal } from "./motion";
+import { PillButton } from "./ui/PillButton";
 
 type Props = CursorHandlers & { active: number; focusIndex: number | null; onOpen: (index: number) => void };
 
@@ -32,7 +33,10 @@ export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, o
           <div className="section-label"><span>03</span><p>Les villas</p></div>
           <Reveal><h2 id="villas-title">Trois expressions.<br />Une même <em>exigence.</em></h2></Reveal>
         </div>
-        <p>Trois architectures pour {programme.nombreVillas} villas, chacune sur un terrain de {formatSurface(programme.terrainMaxM2)}.</p>
+        <div>
+          <p>Trois architectures pour {programme.nombreVillas} villas, chacune sur un terrain de {formatSurface(programme.terrainMaxM2)}.</p>
+          <PillButton label="Comparer les villas" icon={ArrowRight} variant="secondary" onClick={() => scrollTo("comparateur")} />
+        </div>
       </div>
 
       <div className="vd-tri" ref={railRef} onScroll={onRailScroll}>
