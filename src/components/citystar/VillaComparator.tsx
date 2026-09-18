@@ -22,7 +22,7 @@ function Delta({ value, unit, noun }: { value: number; unit?: string; noun?: str
 
 /** Comparateur « Les écarts » : une villa de référence, les autres affichent leur écart. */
 export function VillaComparator({ onOpenPlan }: Props) {
-  const { devise, langue, t: textes } = useDevise();
+  const { devise, langue, t: textes, taux } = useDevise();
   const [pin, setPin] = useState<TypeVilla>("B");
   const [onlyDiff, setOnlyDiff] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -55,14 +55,14 @@ export function VillaComparator({ onOpenPlan }: Props) {
   useEffect(() => {
     const onBudget = (event: Event) => {
       const { montant } = (event as CustomEvent<{ montant: number }>).detail;
-      const dansLeBudget = TYPES.filter((t) => prixVilla(t, devise).montant <= montant);
+      const dansLeBudget = TYPES.filter((t) => prixVilla(t, devise, taux).montant <= montant);
       const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
       if (cible) { setPin(cible); setHighlight(dansLeBudget); }
       document.getElementById("comparateur")?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
     };
     window.addEventListener(SHOW_BUDGET_EVENT, onBudget);
     return () => window.removeEventListener(SHOW_BUDGET_EVENT, onBudget);
-  }, [devise]);
+  }, [devise, taux]);
 
   const scrollToColumn = (type: TypeVilla) => {
     const box = scrollRef.current;
@@ -73,7 +73,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
     box.scrollBy({ left: offset, behavior: "smooth" });
   };
 
-  const price = (type: TypeVilla) => prixVilla(type, devise);
+  const price = (type: TypeVilla) => prixVilla(type, devise, taux);
 
   const rows: { label: React.ReactNode; same?: boolean; cells: (type: TypeVilla) => React.ReactNode }[] = [
     {

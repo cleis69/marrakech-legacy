@@ -70,7 +70,7 @@ function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue) {
 }
 
 export function VillaSelector({ onContact }: { onContact: (selection: Selection) => void }) {
-  const { devise, langue, t } = useDevise();
+  const { devise, langue, t, taux } = useDevise();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [dir, setDir] = useState(1);
@@ -83,7 +83,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
     {
       key: "budget",
       title: t.selecteur.questions.budget.titre,
-      options: [...selecteur.plafondsBudgetEUR.map((max) => ({ value: String(max), label: t.selecteur.questions.budget.jusqua(`${devise === "EUR" ? "" : "≈ "}${formatMontantCourt(convertirEUR(max, devise), devise, langue)}`) })), { value: "talk", label: t.selecteur.questions.budget.parler, hint: t.selecteur.questions.budget.parlerNote }],
+      options: [...selecteur.plafondsBudgetEUR.map((max) => ({ value: String(max), label: t.selecteur.questions.budget.jusqua(`${devise === "EUR" ? "" : "≈ "}${formatMontantCourt(convertirEUR(max, devise, taux), devise, langue)}`) })), { value: "talk", label: t.selecteur.questions.budget.parler, hint: t.selecteur.questions.budget.parlerNote }],
       ...(devise === "EUR" ? {} : { note: t.selecteur.conversion }),
     },
     { key: "horizon", title: t.selecteur.questions.horizon.titre, options: [{ value: "soon", label: t.selecteur.questions.horizon.soon }, { value: "year", label: t.selecteur.questions.horizon.year }, { value: "later", label: t.selecteur.questions.horizon.later, hint: t.selecteur.questions.horizon.laterNote }] },
@@ -197,7 +197,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
             const type = villa.type;
             const faits = faitsVilla(type, t, langue);
             const reason = winner ? (type === winner ? "" : mismatch(type, answers, t) || t.selecteur.raisons.autre) : mismatch(type, answers, t);
-            const price = prixVilla(type, devise);
+            const price = prixVilla(type, devise, taux);
             return (
               <li key={type} className={`sl-card${reason ? " is-dim" : ""}${type === winner ? " is-win" : ""}`}>
                 <div className="sl-card-ph">

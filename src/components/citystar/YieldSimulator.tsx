@@ -37,7 +37,7 @@ const milieu = (cle: Cle) => {
 };
 
 export function YieldSimulator({ onContact }: { onContact: (selection: Selection) => void }) {
-  const { devise, langue, t } = useDevise();
+  const { devise, langue, t, taux } = useDevise();
   const [mode, setMode] = useState<Mode>("court");
   const [prix, setPrix] = useState<number | null>(null);
   const [valeurs, setValeurs] = useState<Record<Cle, number>>(() => {
@@ -47,11 +47,11 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   });
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  const prixReference = prix ?? prixVilla("B", devise).montant;
+  const prixReference = prix ?? prixVilla("B", devise, taux).montant;
   const pret = REQUIS[mode].every((cle) => SOURCE[cle] !== null);
 
   /* Montants saisis en euros dans la config : on affiche et on calcule dans la devise choisie. */
-  const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise));
+  const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
   const money = (valeur: number) => formatPrix(Math.round(valeur), devise, langue);
   const pourcent = (valeur: number, decimales = 1) => `${valeur.toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
 

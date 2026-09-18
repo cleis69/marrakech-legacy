@@ -13,15 +13,15 @@ const TYPES: TypeVilla[] = ["A", "B", "C"];
 
 /** Calculateur de frais : tant que les taux ne sont pas confirmés, aucun chiffre n'est inventé. */
 export function FeeCalculator({ onContact }: { onContact: (selection: Selection) => void }) {
-  const { devise, langue, t } = useDevise();
+  const { devise, langue, t, taux: change } = useDevise();
   const [villa, setVilla] = useState<TypeVilla | "">("");
-  const defaut = prixVilla("B", devise).montant;
+  const defaut = prixVilla("B", devise, change).montant;
   const [prix, setPrix] = useState(defaut);
   const [saisi, setSaisi] = useState(false);
 
-  const min = Math.round(convertirEUR(bornesPrixEUR.min, devise));
-  const max = Math.round(convertirEUR(bornesPrixEUR.max, devise));
-  const pas = Math.round(convertirEUR(bornesPrixEUR.pas, devise));
+  const min = Math.round(convertirEUR(bornesPrixEUR.min, devise, change));
+  const max = Math.round(convertirEUR(bornesPrixEUR.max, devise, change));
+  const pas = Math.round(convertirEUR(bornesPrixEUR.pas, devise, change));
   const montant = saisi ? prix : defaut;
 
   const taux = LIGNES.map((key) => ({ key, label: t.frais.lignes[key], valeur: fraisAcquisition[key].valeur }));
@@ -31,7 +31,7 @@ export function FeeCalculator({ onContact }: { onContact: (selection: Selection)
   const changePrix = (valeur: number) => { setSaisi(true); setPrix(Math.min(max, Math.max(min, valeur))); };
   const changeVilla = (type: TypeVilla | "") => {
     setVilla(type);
-    if (type) { setSaisi(true); setPrix(prixVilla(type, devise).montant); }
+    if (type) { setSaisi(true); setPrix(prixVilla(type, devise, change).montant); }
   };
 
   const selection = (): Selection => ({

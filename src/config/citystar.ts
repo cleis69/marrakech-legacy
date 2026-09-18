@@ -64,6 +64,8 @@ export const devises = {
   /**
    * Taux indicatifs pour 1 €, utilisés si la mise à jour quotidienne échoue.
    * GBP et NOK : Banque centrale européenne, 16/09/2026. MAD : marché, 17/09/2026.
+   * La mise à jour du jour est faite côté navigateur (voir components/citystar/taux.ts) :
+   * BCE pour la livre et la couronne, marché pour le dirham, avec cache journalier.
    */
   tauxDeSecours: { GBP: 0.8574, NOK: 10.7885, MAD: 10.9111, date: "2026-09-16" },
 } as const;
