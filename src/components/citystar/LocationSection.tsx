@@ -2,7 +2,7 @@ import { Expand } from "lucide-react";
 import { useState } from "react";
 
 import { programme } from "@/config/citystar";
-import masterplanImage from "@/assets/citystar/masterplan.jpeg";
+import masterplanImage from "@/assets/citystar/masterplan.webp";
 
 import { useDevise } from "./currency";
 import { LocationMap, type Place } from "./LocationMap";

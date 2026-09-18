@@ -3,7 +3,7 @@ import { ArrowRight, LocateFixed, Minus, Plus, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
-import photo from "@/assets/citystar/location.jpeg";
+import photo from "@/assets/citystar/location.webp";
 
 import { useDevise } from "./currency";
 

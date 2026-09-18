@@ -1,10 +1,10 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useState } from "react";
 
-import afternoonImage from "@/assets/citystar/hero.jpeg";
-import nightImage from "@/assets/citystar/location.jpeg";
-import morningImage from "@/assets/citystar/site/ext-pool.jpg";
-import eveningImage from "@/assets/citystar/site/int-cinema.jpg";
+import afternoonImage from "@/assets/citystar/hero.webp";
+import nightImage from "@/assets/citystar/location.webp";
+import morningImage from "@/assets/citystar/site/ext-pool.webp";
+import eveningImage from "@/assets/citystar/site/int-cinema.webp";
 
 import { useDevise } from "./currency";
 

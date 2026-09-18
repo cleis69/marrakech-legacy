@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Maximize2, Rotate3d } from "lucide-react";
 import { useRef, useState } from "react";
 
-import visitImage from "@/assets/citystar/visit.jpeg";
+import visitImage from "@/assets/citystar/visit.webp";
 
 import { useDevise } from "./currency";
 import { TOUR_URL } from "./data";

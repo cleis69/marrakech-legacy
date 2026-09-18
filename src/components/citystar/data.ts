@@ -2,9 +2,9 @@ import { type Langue, type TypeVilla, formatSurface, villasChiffres } from "@/co
 
 import type { Textes } from "./i18n";
 
-import villaAImage from "@/assets/citystar/site/ext-type-a.jpg";
-import villaBImage from "@/assets/citystar/site/ext-palms.jpg";
-import villaCImage from "@/assets/citystar/site/ext-aerial.jpg";
+import villaAImage from "@/assets/citystar/site/ext-type-a.webp";
+import villaBImage from "@/assets/citystar/site/ext-palms.webp";
+import villaCImage from "@/assets/citystar/site/ext-aerial.webp";
 import planARdc from "@/assets/citystar/plan-a-rdc.png";
 import planAFloor from "@/assets/citystar/plan-a-floor.png";
 import planBRdc from "@/assets/citystar/plan-b-rdc.png";

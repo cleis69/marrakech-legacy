@@ -10,8 +10,8 @@ import {
 import { ChevronsLeftRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import renderImage from "@/assets/citystar/site/ext-terraces.jpg";
-import drawingImage from "@/assets/citystar/site/ext-terraces-trait.jpg";
+import renderImage from "@/assets/citystar/site/ext-terraces.webp";
+import drawingImage from "@/assets/citystar/site/ext-terraces-trait.webp";
 
 import { useDevise } from "./currency";
 import { Reveal } from "./motion";

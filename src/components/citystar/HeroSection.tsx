@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
 import heroVideo from "@/assets/citystar/hero-video.mp4";
-import villaBImage from "@/assets/citystar/villa-b.jpeg";
+import heroPoster from "@/assets/citystar/hero-poster.webp";
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";
@@ -69,7 +69,7 @@ export function HeroSection() {
               muted
               loop
               playsInline
-              poster={villaBImage}
+              poster={heroPoster}
               aria-hidden="true"
               onPlay={() => setPlaying(true)}
               onPause={() => setPlaying(false)}

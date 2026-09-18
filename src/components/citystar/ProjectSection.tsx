@@ -10,9 +10,9 @@ import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 import { formatNombre, programme } from "@/config/citystar";
-import exteriorImage from "@/assets/citystar/site/ext-facade.jpg";
-import poolImage from "@/assets/citystar/site/ext-pool.jpg";
-import livingImage from "@/assets/citystar/site/int-living.jpg";
+import exteriorImage from "@/assets/citystar/site/ext-facade.webp";
+import poolImage from "@/assets/citystar/site/ext-pool.webp";
+import livingImage from "@/assets/citystar/site/int-living.webp";
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";
