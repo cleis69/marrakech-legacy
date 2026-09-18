@@ -1,7 +1,14 @@
 import { Download, Expand } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { type TypeVilla, formatNombre, formatPrix, formatSurface, prixVilla, villasChiffres } from "@/config/citystar";
+import {
+  type TypeVilla,
+  formatNombre,
+  formatPrix,
+  formatSurface,
+  prixVilla,
+  villasChiffres,
+} from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
 import { SHOW_BUDGET_EVENT, openVilla, prefersReducedMotion, villas } from "./data";
@@ -43,12 +50,19 @@ export function VillaComparator({ onOpenPlan }: Props) {
         const rect = cell.getBoundingClientRect();
         return rect.right > left + 40 && rect.left < bounds.right - 60;
       });
-      setVisible((current) => (current.length === shown.length && current.every((t, i) => t === shown[i]) ? current : shown));
+      setVisible((current) =>
+        current.length === shown.length && current.every((t, i) => t === shown[i])
+          ? current
+          : shown,
+      );
     };
     update();
     box.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
-    return () => { box.removeEventListener("scroll", update); window.removeEventListener("resize", update); };
+    return () => {
+      box.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   /* Le simulateur envoie un budget : on met en avant la villa la plus grande qui y entre. */
@@ -57,8 +71,13 @@ export function VillaComparator({ onOpenPlan }: Props) {
       const { montant } = (event as CustomEvent<{ montant: number }>).detail;
       const dansLeBudget = TYPES.filter((t) => prixVilla(t, devise, taux).montant <= montant);
       const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
-      if (cible) { setPin(cible); setHighlight(dansLeBudget); }
-      document.getElementById("comparateur")?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
+      if (cible) {
+        setPin(cible);
+        setHighlight(dansLeBudget);
+      }
+      document
+        .getElementById("comparateur")
+        ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
     };
     window.addEventListener(SHOW_BUDGET_EVENT, onBudget);
     return () => window.removeEventListener(SHOW_BUDGET_EVENT, onBudget);
@@ -69,41 +88,97 @@ export function VillaComparator({ onOpenPlan }: Props) {
     const cell = box?.querySelector<HTMLElement>(`[data-col="${type}"]`);
     if (!box || !cell) return;
     const label = box.querySelector<HTMLElement>("thead td");
-    const offset = cell.getBoundingClientRect().left - box.getBoundingClientRect().left - (label?.offsetWidth ?? 0);
+    const offset =
+      cell.getBoundingClientRect().left -
+      box.getBoundingClientRect().left -
+      (label?.offsetWidth ?? 0);
     box.scrollBy({ left: offset, behavior: "smooth" });
   };
 
   const price = (type: TypeVilla) => prixVilla(type, devise, taux);
 
-  const rows: { label: React.ReactNode; same?: boolean; cells: (type: TypeVilla) => React.ReactNode }[] = [
+  const rows: {
+    label: React.ReactNode;
+    same?: boolean;
+    cells: (type: TypeVilla) => React.ReactNode;
+  }[] = [
     {
-      label: <>{textes.comparateur.surfaceCourt[0]}<br />{textes.comparateur.surfaceCourt[1]}</>,
+      label: (
+        <>
+          {textes.comparateur.surfaceCourt[0]}
+          <br />
+          {textes.comparateur.surfaceCourt[1]}
+        </>
+      ),
       cells: (t) => (
         <>
-          <span className="cp-value">{formatSurface(villasChiffres[t].surfaceConstruiteM2, langue)}</span>
-          <span className="cp-bar"><i style={{ width: `${(villasChiffres[t].surfaceConstruiteM2 / maxSurface) * 100}%` }} /></span>
-          {t !== pin && <Delta value={villasChiffres[t].surfaceConstruiteM2 - villasChiffres[pin].surfaceConstruiteM2} unit="m²" />}
+          <span className="cp-value">
+            {formatSurface(villasChiffres[t].surfaceConstruiteM2, langue)}
+          </span>
+          <span className="cp-bar">
+            <i
+              style={{ width: `${(villasChiffres[t].surfaceConstruiteM2 / maxSurface) * 100}%` }}
+            />
+          </span>
+          {t !== pin && (
+            <Delta
+              value={
+                villasChiffres[t].surfaceConstruiteM2 - villasChiffres[pin].surfaceConstruiteM2
+              }
+              unit="m²"
+            />
+          )}
         </>
       ),
     },
-    { label: textes.comparateur.terrain, same: true, cells: (t) => <span className="cp-value">{formatSurface(villasChiffres[t].terrainM2, langue)}</span> },
+    {
+      label: textes.comparateur.terrain,
+      same: true,
+      cells: (t) => (
+        <span className="cp-value">{formatSurface(villasChiffres[t].terrainM2, langue)}</span>
+      ),
+    },
     {
       label: textes.comparateur.suites,
       cells: (t) => (
         <>
           <span className="cp-value">{villasChiffres[t].suites}</span>
-          <span className="cp-dots" aria-hidden="true">{Array.from({ length: maxSuites }, (_, i) => <i key={i} className={i < villasChiffres[t].suites ? "" : "is-off"} />)}</span>
-          {t !== pin && <Delta value={villasChiffres[t].suites - villasChiffres[pin].suites} noun={textes.comparateur.suite} />}
+          <span className="cp-dots" aria-hidden="true">
+            {Array.from({ length: maxSuites }, (_, i) => (
+              <i key={i} className={i < villasChiffres[t].suites ? "" : "is-off"} />
+            ))}
+          </span>
+          {t !== pin && (
+            <Delta
+              value={villasChiffres[t].suites - villasChiffres[pin].suites}
+              noun={textes.comparateur.suite}
+            />
+          )}
         </>
       ),
     },
     {
-      label: <>{textes.comparateur.pmr[0]}<br />{textes.comparateur.pmr[1]}</>,
-      cells: (t) => villasChiffres[t].accessiblePmr
-        ? <><span className="cp-value">{textes.comparateur.pmrOui}</span><small>{textes.comparateur.pmrDetail}</small></>
-        : <span className="cp-value cp-none">{textes.comparateur.pmrNon}</span>,
+      label: (
+        <>
+          {textes.comparateur.pmr[0]}
+          <br />
+          {textes.comparateur.pmr[1]}
+        </>
+      ),
+      cells: (t) =>
+        villasChiffres[t].accessiblePmr ? (
+          <>
+            <span className="cp-value">{textes.comparateur.pmrOui}</span>
+            <small>{textes.comparateur.pmrDetail}</small>
+          </>
+        ) : (
+          <span className="cp-value cp-none">{textes.comparateur.pmrNon}</span>
+        ),
     },
-    { label: textes.comparateur.atout, cells: (type) => <span className="cp-text">{textes.villas.tags[type]}</span> },
+    {
+      label: textes.comparateur.atout,
+      cells: (type) => <span className="cp-text">{textes.villas.tags[type]}</span>,
+    },
     {
       label: textes.comparateur.plans,
       cells: (t) => {
@@ -112,13 +187,24 @@ export function VillaComparator({ onOpenPlan }: Props) {
           <>
             <span className="cp-plans">
               {villa?.plans.map((plan, i) => (
-                <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={textes.villas.agrandirPlan(i === 1, t)}>
+                <button
+                  key={plan}
+                  type="button"
+                  onClick={() => onOpenPlan(plan)}
+                  aria-label={textes.villas.agrandirPlan(i === 1, t)}
+                >
                   <img src={plan} alt="" loading="lazy" />
-                  <small>{i ? textes.villas.etage : textes.villas.rdc} <Expand aria-hidden="true" /></small>
+                  <small>
+                    {i ? textes.villas.etage : textes.villas.rdc} <Expand aria-hidden="true" />
+                  </small>
                 </button>
               ))}
             </span>
-            <button type="button" className="cp-plans-mobile" onClick={() => openVilla({ index: TYPES.indexOf(t), target: "plans" })}>
+            <button
+              type="button"
+              className="cp-plans-mobile"
+              onClick={() => openVilla({ index: TYPES.indexOf(t), target: "plans" })}
+            >
               <img src={villa?.plans[0]} alt="" loading="lazy" />
               <em>{textes.comparateur.deuxPlans}</em>
             </button>
@@ -126,13 +212,35 @@ export function VillaComparator({ onOpenPlan }: Props) {
         );
       },
     },
-    { label: textes.comparateur.brochure, same: true, cells: (type) => <a className="cp-pdf" href={`/brochures/villa-${type.toLowerCase()}.pdf`} target="_blank" rel="noreferrer" aria-label={textes.villas.brochureAria(type)}>PDF <Download aria-hidden="true" /></a> },
+    {
+      label: textes.comparateur.brochure,
+      same: true,
+      cells: (type) => (
+        <a
+          className="cp-pdf"
+          href={`/brochures/villa-${type.toLowerCase()}.pdf`}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={textes.villas.brochureAria(type)}
+        >
+          PDF <Download aria-hidden="true" />
+        </a>
+      ),
+    },
     {
       label: textes.comparateur.prix,
       cells: (t) => (
         <>
-          <span className="cp-value">{price(t).approximatif ? "≈ " : ""}{formatPrix(price(t).montant, devise, langue)}</span>
-          {t !== pin && <Delta value={price(t).montant - price(pin).montant} unit={devise === "EUR" || devise === "GBP" ? (devise === "EUR" ? "€" : "£") : devise} />}
+          <span className="cp-value">
+            {price(t).approximatif ? "≈ " : ""}
+            {formatPrix(price(t).montant, devise, langue)}
+          </span>
+          {t !== pin && (
+            <Delta
+              value={price(t).montant - price(pin).montant}
+              unit={devise === "EUR" || devise === "GBP" ? (devise === "EUR" ? "€" : "£") : devise}
+            />
+          )}
         </>
       ),
     },
@@ -145,27 +253,58 @@ export function VillaComparator({ onOpenPlan }: Props) {
       <div className="cp-head">
         <div>
           <p className="cp-kicker">{textes.comparateur.kicker}</p>
-          <h2 id="comparateur-title">{textes.comparateur.titre[0]}<em>{textes.comparateur.titre[1]}</em></h2>
+          <h2 id="comparateur-title">
+            {textes.comparateur.titre[0]}
+            <em>{textes.comparateur.titre[1]}</em>
+          </h2>
         </div>
-        <p className="cp-note">{highlight ? textes.comparateur.budget(highlight.map((type) => `${textes.villas.villa} ${type}`).join(", ") || textes.comparateur.aucune) : textes.comparateur.note}</p>
+        <p className="cp-note">
+          {highlight
+            ? textes.comparateur.budget(
+                highlight.map((type) => `${textes.villas.villa} ${type}`).join(", ") ||
+                  textes.comparateur.aucune,
+              )
+            : textes.comparateur.note}
+        </p>
       </div>
 
       <div className="cp-controls">
         <div className="cp-pins" role="group" aria-label={textes.comparateur.referenceAria}>
           <span>{textes.comparateur.reference}</span>
           {TYPES.map((t) => (
-            <button key={t} type="button" aria-pressed={t === pin} onClick={() => { setPin(t); scrollToColumn(t); }} aria-label={textes.comparateur.prendreReference(t)}>{t}</button>
+            <button
+              key={t}
+              type="button"
+              aria-pressed={t === pin}
+              onClick={() => {
+                setPin(t);
+                scrollToColumn(t);
+              }}
+              aria-label={textes.comparateur.prendreReference(t)}
+            >
+              {t}
+            </button>
           ))}
         </div>
         <label className="cp-switch">
-          <input type="checkbox" checked={onlyDiff} onChange={(event) => setOnlyDiff(event.target.checked)} />
+          <input
+            type="checkbox"
+            checked={onlyDiff}
+            onChange={(event) => setOnlyDiff(event.target.checked)}
+          />
           <i aria-hidden="true" />
           {textes.comparateur.differences}
         </label>
         <CurrencyPills className="cp-cur" />
       </div>
 
-      <div ref={scrollRef} className="cp-scroll" tabIndex={0} role="region" aria-label={textes.comparateur.tableauAria}>
+      <div
+        ref={scrollRef}
+        className="cp-scroll"
+        tabIndex={0}
+        role="region"
+        aria-label={textes.comparateur.tableauAria}
+      >
         <table className="cp-table">
           <thead>
             <tr>
@@ -173,9 +312,20 @@ export function VillaComparator({ onOpenPlan }: Props) {
               {TYPES.map((t) => {
                 const villa = villas.find((v) => v.type === t);
                 return (
-                  <th key={t} scope="col" data-col={t} className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}>
-                    <span className="cp-photo"><img src={villa?.image} alt="" loading="lazy" /><b>{t}</b></span>
-                    <span className="cp-name">{textes.villas.villa} {t}{t === pin && <em>{textes.comparateur.estReference}</em>}</span>
+                  <th
+                    key={t}
+                    scope="col"
+                    data-col={t}
+                    className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}
+                  >
+                    <span className="cp-photo">
+                      <img src={villa?.image} alt="" loading="lazy" />
+                      <b>{t}</b>
+                    </span>
+                    <span className="cp-name">
+                      {textes.villas.villa} {t}
+                      {t === pin && <em>{textes.comparateur.estReference}</em>}
+                    </span>
                   </th>
                 );
               })}
@@ -185,7 +335,15 @@ export function VillaComparator({ onOpenPlan }: Props) {
             {shown.map((row, index) => (
               <tr key={index}>
                 <th scope="row">{row.label}</th>
-                {TYPES.map((t) => <td key={t} data-col={t} className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}>{row.cells(t)}</td>)}
+                {TYPES.map((t) => (
+                  <td
+                    key={t}
+                    data-col={t}
+                    className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}
+                  >
+                    {row.cells(t)}
+                  </td>
+                ))}
               </tr>
             ))}
           </tbody>
@@ -194,7 +352,14 @@ export function VillaComparator({ onOpenPlan }: Props) {
 
       <div className="cp-foot">
         <div className="cp-visible" aria-hidden="true">
-          {TYPES.map((t) => <span key={t} className={`${visible.includes(t) ? "is-in" : ""}${t === pin ? " is-ref" : ""}`}>{t}</span>)}
+          {TYPES.map((t) => (
+            <span
+              key={t}
+              className={`${visible.includes(t) ? "is-in" : ""}${t === pin ? " is-ref" : ""}`}
+            >
+              {t}
+            </span>
+          ))}
         </div>
         <p>{textes.comparateur.defiler}</p>
       </div>

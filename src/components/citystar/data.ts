@@ -32,10 +32,13 @@ export function faitsVilla(type: TypeVilla, t: Textes, langue: Langue) {
   };
 }
 
-export const TOUR_URL = "https://momento360.com/e/u/d4658634f15c4a3fa6fdb5ef818d3e5a?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true";
+export const TOUR_URL =
+  "https://momento360.com/e/u/d4658634f15c4a3fa6fdb5ef818d3e5a?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true";
 
 export function prefersReducedMotion() {
-  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  return (
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
 }
 
 /** Ouvre la fiche d'une villa depuis n'importe où (menu « Plans », outils). */
@@ -52,7 +55,9 @@ export function scrollTo(id: string) {
     openVilla({ target: "plans" });
     return;
   }
-  document.getElementById(id)?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
+  document
+    .getElementById(id)
+    ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
 }
 
 export type CursorHandlers = {

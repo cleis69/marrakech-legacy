@@ -33,7 +33,10 @@ export const programme = {
   coordonnees: { latitude: 31.6295, longitude: -7.9811, confirme: false },
 } as const;
 
-export const villasChiffres: Record<TypeVilla, { surfaceConstruiteM2: number; terrainM2: number; suites: number; accessiblePmr: boolean }> = {
+export const villasChiffres: Record<
+  TypeVilla,
+  { surfaceConstruiteM2: number; terrainM2: number; suites: number; accessiblePmr: boolean }
+> = {
   A: { surfaceConstruiteM2: 585, terrainM2: 2000, suites: 5, accessiblePmr: true },
   B: { surfaceConstruiteM2: 536, terrainM2: 2000, suites: 5, accessiblePmr: false },
   C: { surfaceConstruiteM2: 525, terrainM2: 2000, suites: 4, accessiblePmr: false },
@@ -85,7 +88,11 @@ export const selecteur = {
 
 export const reservation = {
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  acompte: { montantEUR: null as number | null, pourcentage: null as number | null, confirme: false },
+  acompte: {
+    montantEUR: null as number | null,
+    pourcentage: null as number | null,
+    confirme: false,
+  },
   /**
    * Paliers d'échéancier (pourcentage du prix par étape).
    * Ne pas reprendre les paliers 35/70/95/5 : c'est du droit français, pas
@@ -180,7 +187,9 @@ const LOCALE: Record<Langue, string> = { fr: "fr-FR", en: "en-GB" };
 
 /** 2000 → « 2 000 » (fr) ou « 2,000 » (en), sans espace fine insécable. */
 export function formatNombre(valeur: number, langue: Langue = "fr") {
-  return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 0 }).format(valeur).replace(/ /g, " ");
+  return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 0 })
+    .format(valeur)
+    .replace(/\u202f/g, "\u00a0");
 }
 
 export function formatSurface(m2: number, langue: Langue = "fr") {
@@ -193,7 +202,12 @@ export function formatSurface(m2: number, langue: Langue = "fr") {
 
 export type Taux = { GBP: number; NOK: number; MAD: number; date: string };
 
-export const symbolesDevise: Record<Devise, string> = { EUR: "€", GBP: "£", MAD: "MAD", NOK: "NOK" };
+export const symbolesDevise: Record<Devise, string> = {
+  EUR: "€",
+  GBP: "£",
+  MAD: "MAD",
+  NOK: "NOK",
+};
 
 /**
  * Prix d'une villa dans la devise demandée. Euros et livres : prix fixés à la
@@ -210,30 +224,66 @@ export function prixVilla(type: TypeVilla, devise: Devise, taux: Taux = devises.
 /** 1480000 → « 1 480 000 € » (fr) ou « €1,480,000 » (en). */
 export function formatPrix(montant: number, devise: Devise, langue: Langue = "fr") {
   const nombre = formatNombre(montant, langue);
-  if (langue === "en" && (devise === "EUR" || devise === "GBP")) return `${symbolesDevise[devise]}${nombre}`;
+  if (langue === "en" && (devise === "EUR" || devise === "GBP"))
+    return `${symbolesDevise[devise]}${nombre}`;
   return `${nombre} ${symbolesDevise[devise]}`;
 }
 
 /** Montant en euros converti dans la devise demandée, pour un repère (pas un prix de villa). */
-export function convertirEUR(montantEUR: number, devise: Devise, taux: Taux = devises.tauxDeSecours) {
+export function convertirEUR(
+  montantEUR: number,
+  devise: Devise,
+  taux: Taux = devises.tauxDeSecours,
+) {
   return devise === "EUR" ? montantEUR : montantEUR * taux[devise];
 }
 
 /** 1200000 → « 1,2 M € » ; 857400 → « 857 k £ ». */
 export function formatMontantCourt(montant: number, devise: Devise, langue: Langue = "fr") {
-  const nombre = new Intl.NumberFormat(LOCALE[langue], { notation: "compact", maximumSignificantDigits: 3 }).format(montant).replace(/\u202f/g, " ");
-  if (langue === "en" && (devise === "EUR" || devise === "GBP")) return `${symbolesDevise[devise]}${nombre}`;
+  const nombre = new Intl.NumberFormat(LOCALE[langue], {
+    notation: "compact",
+    maximumSignificantDigits: 3,
+  })
+    .format(montant)
+    .replace(/\u202f/g, "\u00a0");
+  if (langue === "en" && (devise === "EUR" || devise === "GBP"))
+    return `${symbolesDevise[devise]}${nombre}`;
   return `${nombre} ${symbolesDevise[devise]}`;
 }
 
 /** « 2026-09-16 » → « 16/09/2026 » (fr) ou « 16 Sep 2026 » (en). */
 export function formatDate(iso: string, langue: Langue = "fr") {
   const date = new Date(`${iso}T12:00:00Z`);
-  const options: Intl.DateTimeFormatOptions = langue === "fr" ? { day: "2-digit", month: "2-digit", year: "numeric" } : { day: "numeric", month: "short", year: "numeric" };
+  const options: Intl.DateTimeFormatOptions =
+    langue === "fr"
+      ? { day: "2-digit", month: "2-digit", year: "numeric" }
+      : { day: "numeric", month: "short", year: "numeric" };
   return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
 }
 
-const UNITES = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf", "vingt"];
+const UNITES = [
+  "zéro",
+  "un",
+  "deux",
+  "trois",
+  "quatre",
+  "cinq",
+  "six",
+  "sept",
+  "huit",
+  "neuf",
+  "dix",
+  "onze",
+  "douze",
+  "treize",
+  "quatorze",
+  "quinze",
+  "seize",
+  "dix-sept",
+  "dix-huit",
+  "dix-neuf",
+  "vingt",
+];
 
 /** 14 → « quatorze » (jusqu'à vingt, en chiffres au-delà). */
 export function nombreEnLettres(valeur: number) {

@@ -38,7 +38,9 @@ export default function CitystarExperience({ langue = "fr" }: { langue?: Langue 
   const { scrollYProgress } = useScroll();
 
   /* La langue de la page suit la route, pour les lecteurs d'écran et les moteurs. */
-  useEffect(() => { document.documentElement.lang = langue; }, [langue]);
+  useEffect(() => {
+    document.documentElement.lang = langue;
+  }, [langue]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -52,39 +54,75 @@ export default function CitystarExperience({ langue = "fr" }: { langue?: Langue 
     setCursorLabel(label);
   };
   const onCursorLeave = () => setCursorLabel("");
-  const openContact = () => { setSelection(null); setContactOpen(true); };
+  const openContact = () => {
+    setSelection(null);
+    setContactOpen(true);
+  };
   /* Les outils ouvrent le formulaire avec leurs réponses ; rien n'est envoyé sans validation du visiteur. */
-  const openContactWith = (answers: Selection) => { setSelection(answers); setContactOpen(true); };
+  const openContactWith = (answers: Selection) => {
+    setSelection(answers);
+    setContactOpen(true);
+  };
   const openTour = () => setTourOpen(true);
 
   return (
     <MotionConfig reducedMotion="user">
-    <DeviseProvider langue={langue}>
-    <main onMouseMove={(e) => { cursorX.set(e.clientX); cursorY.set(e.clientY); }}>
-      <motion.div className="page-progress" style={{ scaleX: scrollYProgress }} />
-      <motion.div className={`custom-cursor ${cursorLabel ? "is-visible" : ""}`} style={{ x: cursorX, y: cursorY }} aria-hidden="true">{cursorLabel}</motion.div>
+      <DeviseProvider langue={langue}>
+        <main
+          onMouseMove={(e) => {
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
+          }}
+        >
+          <motion.div className="page-progress" style={{ scaleX: scrollYProgress }} />
+          <motion.div
+            className={`custom-cursor ${cursorLabel ? "is-visible" : ""}`}
+            style={{ x: cursorX, y: cursorY }}
+            aria-hidden="true"
+          >
+            {cursorLabel}
+          </motion.div>
 
-      <SiteHeader scrolled={scrolled} menuOpen={menuOpen} onOpenMenu={() => setMenuOpen(true)} onCloseMenu={() => setMenuOpen(false)} onContact={openContact} />
-      <HeroSection />
-      <ProjectSection />
-      <ArchitectureSection />
-      <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} onOpenPlan={setPlanOpen} onContact={openContact} />
-      <VillaSelector onContact={openContactWith} />
-      <VillaComparator onOpenPlan={setPlanOpen} />
-      <LifestyleSection />
-      <TourSection onOpenTour={openTour} />
-      <LocationSection onOpenPlan={setPlanOpen} />
-      <FeeCalculator onContact={openContactWith} />
-      <YieldSimulator onContact={openContactWith} />
-      <FinalCta onContact={openContact} />
-      <SiteFooter />
-      <FloatingActions />
+          <SiteHeader
+            scrolled={scrolled}
+            menuOpen={menuOpen}
+            onOpenMenu={() => setMenuOpen(true)}
+            onCloseMenu={() => setMenuOpen(false)}
+            onContact={openContact}
+          />
+          <HeroSection />
+          <ProjectSection />
+          <ArchitectureSection />
+          <VillasSection
+            onCursorEnter={onCursorEnter}
+            onCursorLeave={onCursorLeave}
+            onOpenPlan={setPlanOpen}
+            onContact={openContact}
+          />
+          <VillaSelector onContact={openContactWith} />
+          <VillaComparator onOpenPlan={setPlanOpen} />
+          <LifestyleSection />
+          <TourSection onOpenTour={openTour} />
+          <LocationSection onOpenPlan={setPlanOpen} />
+          <FeeCalculator onContact={openContactWith} />
+          <YieldSimulator onContact={openContactWith} />
+          <FinalCta onContact={openContact} />
+          <SiteFooter />
+          <FloatingActions />
 
-      <AnimatePresence>{planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}</AnimatePresence>
-      <AnimatePresence>{tourOpen && <TourModal onClose={() => setTourOpen(false)} />}</AnimatePresence>
-      <AnimatePresence>{contactOpen && <ContactPanel selection={selection} onClose={() => setContactOpen(false)} />}</AnimatePresence>
-    </main>
-    </DeviseProvider>
+          <AnimatePresence>
+            {planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}
+          </AnimatePresence>
+          <AnimatePresence>
+            {tourOpen && <TourModal onClose={() => setTourOpen(false)} />}
+          </AnimatePresence>
+          <AnimatePresence>
+            {contactOpen && (
+              <ContactPanel selection={selection} onClose={() => setContactOpen(false)} />
+            )}
+          </AnimatePresence>
+        </main>
+      </DeviseProvider>
     </MotionConfig>
   );
 }

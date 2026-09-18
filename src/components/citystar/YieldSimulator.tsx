@@ -1,7 +1,18 @@
 import { ArrowRight, Building2, Info } from "lucide-react";
 import { useRef, useState } from "react";
 
-import { type Devise, type Langue, bornesPrixEUR, bornesSimulateur, convertirEUR, coutsDetention, formatNombre, formatPrix, hypothesesRendement, prixVilla } from "@/config/citystar";
+import {
+  type Devise,
+  type Langue,
+  bornesPrixEUR,
+  bornesSimulateur,
+  convertirEUR,
+  coutsDetention,
+  formatNombre,
+  formatPrix,
+  hypothesesRendement,
+  prixVilla,
+} from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
 import { type Selection, SHOW_BUDGET_EVENT } from "./data";
@@ -42,7 +53,9 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   const [prix, setPrix] = useState<number | null>(null);
   const [valeurs, setValeurs] = useState<Record<Cle, number>>(() => {
     const base = {} as Record<Cle, number>;
-    (Object.keys(bornesSimulateur) as Cle[]).forEach((cle) => { base[cle] = SOURCE[cle] ?? milieu(cle); });
+    (Object.keys(bornesSimulateur) as Cle[]).forEach((cle) => {
+      base[cle] = SOURCE[cle] ?? milieu(cle);
+    });
     return base;
   });
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -53,35 +66,95 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   /* Montants saisis en euros dans la config : on affiche et on calcule dans la devise choisie. */
   const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
   const money = (valeur: number) => formatPrix(Math.round(valeur), devise, langue);
-  const pourcent = (valeur: number, decimales = 1) => `${valeur.toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
+  const pourcent = (valeur: number, decimales = 1) =>
+    `${valeur.toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
 
-  const champs: Record<Cle, { label: string; format: (valeur: number) => string; devise?: boolean }> = {
-    prixMoyenNuitEUR: { label: t.rentabilite.champs.prixMoyenNuitEUR, format: (v) => money(enDevise(v)), devise: true },
-    tauxOccupation: { label: t.rentabilite.champs.tauxOccupation, format: (v) => pourcent(v * 100, 0) },
-    semainesUsagePersonnel: { label: t.rentabilite.champs.semainesUsagePersonnel, format: (v) => t.rentabilite.semaine(v) },
-    loyerMensuelEUR: { label: t.rentabilite.champs.loyerMensuelEUR, format: (v) => money(enDevise(v)), devise: true },
-    horizonAnnees: { label: t.rentabilite.champs.horizonAnnees, format: (v) => t.rentabilite.an(v) },
-    appreciationAnnuelle: { label: t.rentabilite.champs.appreciationAnnuelle, format: (v) => pourcent(v * 100) },
-    charges: { label: t.rentabilite.champs.charges, format: (v) => `${pourcent(v * 100, 0)} ${t.rentabilite.desRevenus}` },
-    coutsAnnuelsEUR: { label: t.rentabilite.champs.coutsAnnuelsEUR, format: (v) => `${money(enDevise(v))} ${t.rentabilite.parAn}`, devise: true },
+  const champs: Record<
+    Cle,
+    { label: string; format: (valeur: number) => string; devise?: boolean }
+  > = {
+    prixMoyenNuitEUR: {
+      label: t.rentabilite.champs.prixMoyenNuitEUR,
+      format: (v) => money(enDevise(v)),
+      devise: true,
+    },
+    tauxOccupation: {
+      label: t.rentabilite.champs.tauxOccupation,
+      format: (v) => pourcent(v * 100, 0),
+    },
+    semainesUsagePersonnel: {
+      label: t.rentabilite.champs.semainesUsagePersonnel,
+      format: (v) => t.rentabilite.semaine(v),
+    },
+    loyerMensuelEUR: {
+      label: t.rentabilite.champs.loyerMensuelEUR,
+      format: (v) => money(enDevise(v)),
+      devise: true,
+    },
+    horizonAnnees: {
+      label: t.rentabilite.champs.horizonAnnees,
+      format: (v) => t.rentabilite.an(v),
+    },
+    appreciationAnnuelle: {
+      label: t.rentabilite.champs.appreciationAnnuelle,
+      format: (v) => pourcent(v * 100),
+    },
+    charges: {
+      label: t.rentabilite.champs.charges,
+      format: (v) => `${pourcent(v * 100, 0)} ${t.rentabilite.desRevenus}`,
+    },
+    coutsAnnuelsEUR: {
+      label: t.rentabilite.champs.coutsAnnuelsEUR,
+      format: (v) => `${money(enDevise(v))} ${t.rentabilite.parAn}`,
+      devise: true,
+    },
     imposition: { label: t.rentabilite.champs.imposition, format: (v) => pourcent(v * 100, 0) },
   };
 
-  const curseurs: Record<Mode, Cle[]> = { court: ["prixMoyenNuitEUR", "tauxOccupation", "semainesUsagePersonnel"], long: ["loyerMensuelEUR"], revente: ["horizonAnnees", "appreciationAnnuelle"] };
+  const curseurs: Record<Mode, Cle[]> = {
+    court: ["prixMoyenNuitEUR", "tauxOccupation", "semainesUsagePersonnel"],
+    long: ["loyerMensuelEUR"],
+    revente: ["horizonAnnees", "appreciationAnnuelle"],
+  };
 
   const resultat = (() => {
     if (!pret) return null;
     if (mode === "court") {
       const nuits = Math.max(0, 365 - valeurs.semainesUsagePersonnel * 7) * valeurs.tauxOccupation;
       const revenu = nuits * enDevise(valeurs.prixMoyenNuitEUR);
-      return { titre: t.rentabilite.rendementBrut, valeur: pourcent((revenu / prixReference) * 100), detail: [[t.rentabilite.nuits, formatNombre(Math.round(nuits), langue)], [t.rentabilite.revenuBrut, money(revenu)]] as [string, string][] };
+      return {
+        titre: t.rentabilite.rendementBrut,
+        valeur: pourcent((revenu / prixReference) * 100),
+        detail: [
+          [t.rentabilite.nuits, formatNombre(Math.round(nuits), langue)],
+          [t.rentabilite.revenuBrut, money(revenu)],
+        ] as [string, string][],
+      };
     }
     if (mode === "long") {
       const revenu = enDevise(valeurs.loyerMensuelEUR) * 12;
-      return { titre: t.rentabilite.rendementBrut, valeur: pourcent((revenu / prixReference) * 100), detail: [[t.rentabilite.loyerDouze, `${money(enDevise(valeurs.loyerMensuelEUR))} × 12`], [t.rentabilite.revenuBrut, money(revenu)]] as [string, string][] };
+      return {
+        titre: t.rentabilite.rendementBrut,
+        valeur: pourcent((revenu / prixReference) * 100),
+        detail: [
+          [t.rentabilite.loyerDouze, `${money(enDevise(valeurs.loyerMensuelEUR))} × 12`],
+          [t.rentabilite.revenuBrut, money(revenu)],
+        ] as [string, string][],
+      };
     }
-    const projetee = prixReference * Math.pow(1 + valeurs.appreciationAnnuelle, valeurs.horizonAnnees);
-    return { titre: t.rentabilite.plusValueBrute, valeur: money(projetee - prixReference), detail: [[t.rentabilite.valeurProjetee(valeurs.horizonAnnees), money(projetee)], [t.rentabilite.appreciation, `${pourcent(valeurs.appreciationAnnuelle * 100)} ${t.rentabilite.parAn}`]] as [string, string][] };
+    const projetee =
+      prixReference * Math.pow(1 + valeurs.appreciationAnnuelle, valeurs.horizonAnnees);
+    return {
+      titre: t.rentabilite.plusValueBrute,
+      valeur: money(projetee - prixReference),
+      detail: [
+        [t.rentabilite.valeurProjetee(valeurs.horizonAnnees), money(projetee)],
+        [
+          t.rentabilite.appreciation,
+          `${pourcent(valeurs.appreciationAnnuelle * 100)} ${t.rentabilite.parAn}`,
+        ],
+      ] as [string, string][],
+    };
   })();
 
   const selection = (): Selection => ({
@@ -89,7 +162,9 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     lignes: [
       t.rentabilite.ligneMode(t.rentabilite.modes[mode]),
       t.frais.prixEtudie(formatPrix(prixReference, devise, langue)),
-      resultat ? t.rentabilite.ligneResultat(resultat.titre, resultat.valeur) : t.rentabilite.ligneNeutre,
+      resultat
+        ? t.rentabilite.ligneResultat(resultat.titre, resultat.valeur)
+        : t.rentabilite.ligneNeutre,
     ],
   });
 
@@ -122,7 +197,9 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
           step={bornes.pas}
           value={valeurs[cle]}
           disabled={!actif}
-          onChange={(event) => setValeurs((current) => ({ ...current, [cle]: Number(event.target.value) }))}
+          onChange={(event) =>
+            setValeurs((current) => ({ ...current, [cle]: Number(event.target.value) }))
+          }
         />
       </div>
     );
@@ -136,25 +213,62 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
       <div className="sm-grid">
         <div className="sm-left">
           <p className="sm-kicker">{t.rentabilite.kicker}</p>
-          <h2 id="rentabilite-title">{t.rentabilite.titre[0]}<em>{t.rentabilite.titre[1]}</em></h2>
+          <h2 id="rentabilite-title">
+            {t.rentabilite.titre[0]}
+            <em>{t.rentabilite.titre[1]}</em>
+          </h2>
 
-          <div className="sm-tabs" role="tablist" aria-label={t.rentabilite.modeAria} onKeyDown={onTabKey}>
+          <div
+            className="sm-tabs"
+            role="tablist"
+            aria-label={t.rentabilite.modeAria}
+            onKeyDown={onTabKey}
+          >
             {MODES.map((item, i) => (
-              <button key={item} ref={(el) => { tabRefs.current[i] = el; }} type="button" role="tab" id={`sm-tab-${item}`} aria-selected={mode === item} aria-controls="sm-panel" tabIndex={mode === item ? 0 : -1} onClick={() => setMode(item)}>{t.rentabilite.modes[item]}</button>
+              <button
+                key={item}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`sm-tab-${item}`}
+                aria-selected={mode === item}
+                aria-controls="sm-panel"
+                tabIndex={mode === item ? 0 : -1}
+                onClick={() => setMode(item)}
+              >
+                {t.rentabilite.modes[item]}
+              </button>
             ))}
           </div>
 
           <div className="sm-sliders">
             <div className="sm-slider">
-              <label htmlFor="sm-prix"><span>{t.rentabilite.prix}</span><output htmlFor="sm-prix">{formatPrix(prixReference, devise, langue)}</output></label>
-              <input id="sm-prix" type="range" min={prixMin} max={prixMax} step={enDevise(bornesPrixEUR.pas)} value={prixReference} onChange={(event) => setPrix(Number(event.target.value))} />
+              <label htmlFor="sm-prix">
+                <span>{t.rentabilite.prix}</span>
+                <output htmlFor="sm-prix">{formatPrix(prixReference, devise, langue)}</output>
+              </label>
+              <input
+                id="sm-prix"
+                type="range"
+                min={prixMin}
+                max={prixMax}
+                step={enDevise(bornesPrixEUR.pas)}
+                value={prixReference}
+                onChange={(event) => setPrix(Number(event.target.value))}
+              />
             </div>
             {curseurs[mode].map((cle) => slider(cle, SOURCE[cle] !== null))}
           </div>
 
           <details className="sm-advanced">
             <summary>{t.rentabilite.avancees}</summary>
-            <div>{(["charges", "coutsAnnuelsEUR", "imposition"] as Cle[]).map((cle) => slider(cle, SOURCE[cle] !== null))}</div>
+            <div>
+              {(["charges", "coutsAnnuelsEUR", "imposition"] as Cle[]).map((cle) =>
+                slider(cle, SOURCE[cle] !== null),
+              )}
+            </div>
           </details>
         </div>
 
@@ -166,7 +280,12 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
                 <strong>{resultat.valeur}</strong>
               </div>
               <dl className="sm-detail">
-                {resultat.detail.map(([label, valeur]) => <div key={label}><dt>{label}</dt><dd>{valeur}</dd></div>)}
+                {resultat.detail.map(([label, valeur]) => (
+                  <div key={label}>
+                    <dt>{label}</dt>
+                    <dd>{valeur}</dd>
+                  </div>
+                ))}
               </dl>
             </>
           ) : (
@@ -179,12 +298,34 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
           <p className="sm-fine">{t.rentabilite.mention}</p>
 
           {mode === "court" && (
-            <p className="sm-warn"><Info aria-hidden="true" /><span>{t.rentabilite.courtTerme}<small>{t.rentabilite.courtTermeNote}</small></span></p>
+            <p className="sm-warn">
+              <Info aria-hidden="true" />
+              <span>
+                {t.rentabilite.courtTerme}
+                <small>{t.rentabilite.courtTermeNote}</small>
+              </span>
+            </p>
           )}
 
           <div className="sm-actions">
-            <PillButton label={t.rentabilite.analyse} icon={ArrowRight} onClick={() => onContact(selection())} />
-            <PillButton label={t.rentabilite.compatibles} icon={Building2} variant="secondary" onClick={() => window.dispatchEvent(new CustomEvent<{ montant: number; devise: Devise; langue: Langue }>(SHOW_BUDGET_EVENT, { detail: { montant: prixReference, devise, langue } }))} />
+            <PillButton
+              label={t.rentabilite.analyse}
+              icon={ArrowRight}
+              onClick={() => onContact(selection())}
+            />
+            <PillButton
+              label={t.rentabilite.compatibles}
+              icon={Building2}
+              variant="secondary"
+              onClick={() =>
+                window.dispatchEvent(
+                  new CustomEvent<{ montant: number; devise: Devise; langue: Langue }>(
+                    SHOW_BUDGET_EVENT,
+                    { detail: { montant: prixReference, devise, langue } },
+                  ),
+                )
+              }
+            />
           </div>
 
           <CurrencyPills />

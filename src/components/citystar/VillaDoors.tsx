@@ -8,7 +8,11 @@ import { type CursorHandlers, faitsVilla, scrollTo, villas } from "./data";
 import { Reveal } from "./motion";
 import { PillButton } from "./ui/PillButton";
 
-type Props = CursorHandlers & { active: number; focusIndex: number | null; onOpen: (index: number) => void };
+type Props = CursorHandlers & {
+  active: number;
+  focusIndex: number | null;
+  onOpen: (index: number) => void;
+};
 
 /** Trois portes : survoler en élargit une, cliquer ouvre sa fiche. Sur mobile, un rail de cartes. */
 export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, onOpen }: Props) {
@@ -32,12 +36,29 @@ export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, o
     <div className="vd section-pad">
       <div className="vd-top">
         <div>
-          <div className="section-label"><span>03</span><p>{t.villas.label}</p></div>
-          <Reveal><h2 id="villas-title">{t.villas.titre[0]}<br />{t.villas.titre[1]}<em>{t.villas.titre[2]}</em></h2></Reveal>
+          <div className="section-label">
+            <span>03</span>
+            <p>{t.villas.label}</p>
+          </div>
+          <Reveal>
+            <h2 id="villas-title">
+              {t.villas.titre[0]}
+              <br />
+              {t.villas.titre[1]}
+              <em>{t.villas.titre[2]}</em>
+            </h2>
+          </Reveal>
         </div>
         <div>
-          <p>{t.villas.intro(programme.nombreVillas, formatSurface(programme.terrainMaxM2, langue))}</p>
-          <PillButton label={t.villas.comparer} icon={ArrowRight} variant="secondary" onClick={() => scrollTo("comparateur")} />
+          <p>
+            {t.villas.intro(programme.nombreVillas, formatSurface(programme.terrainMaxM2, langue))}
+          </p>
+          <PillButton
+            label={t.villas.comparer}
+            icon={ArrowRight}
+            variant="secondary"
+            onClick={() => scrollTo("comparateur")}
+          />
         </div>
       </div>
 
@@ -47,29 +68,52 @@ export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, o
           return (
             <button
               key={villa.type}
-              ref={(el) => { doorRefs.current[i] = el; }}
+              ref={(el) => {
+                doorRefs.current[i] = el;
+              }}
               type="button"
               className={`vd-door${i === active ? " is-on" : ""}`}
-              aria-label={t.villas.decouvrirAria(villa.type, faits.surface, faits.suites, faits.tag)}
+              aria-label={t.villas.decouvrirAria(
+                villa.type,
+                faits.surface,
+                faits.suites,
+                faits.tag,
+              )}
               onClick={() => onOpen(i)}
               onMouseEnter={onCursorEnter("EXPLORE")}
               onMouseLeave={onCursorLeave}
             >
               <img src={villa.image} alt="" loading="lazy" />
               <span className="vd-shade" aria-hidden="true" />
-              <span className="vd-name" aria-hidden="true"><small>{t.villas.villa}</small><strong>{villa.type}</strong></span>
+              <span className="vd-name" aria-hidden="true">
+                <small>{t.villas.villa}</small>
+                <strong>{villa.type}</strong>
+              </span>
               <span className="vd-bottom" aria-hidden="true">
                 <span className="vd-more">
                   <span className="vd-desc">{faits.description}</span>
-                  <span className="pill pill-primary"><span className="pill-label">{t.villas.decouvrir}</span><i className="pill-dot"><ArrowRight /></i></span>
+                  <span className="pill pill-primary">
+                    <span className="pill-label">{t.villas.decouvrir}</span>
+                    <i className="pill-dot">
+                      <ArrowRight />
+                    </i>
+                  </span>
                 </span>
-                <span className="vd-specs"><span>{faits.surface}</span><span>{faits.suites}</span><span>{faits.tag}</span></span>
+                <span className="vd-specs">
+                  <span>{faits.surface}</span>
+                  <span>{faits.suites}</span>
+                  <span>{faits.tag}</span>
+                </span>
               </span>
             </button>
           );
         })}
       </div>
-      <div className="vd-dots" aria-hidden="true">{villas.map((villa, i) => <i key={villa.type} className={i === visible ? "is-on" : ""} />)}</div>
+      <div className="vd-dots" aria-hidden="true">
+        {villas.map((villa, i) => (
+          <i key={villa.type} className={i === visible ? "is-on" : ""} />
+        ))}
+      </div>
     </div>
   );
 }

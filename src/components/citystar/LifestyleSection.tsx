@@ -21,7 +21,8 @@ export function LifestyleSection() {
   const onKey = (event: React.KeyboardEvent) => {
     const moves: Record<string, number> = { ArrowRight: 1, ArrowLeft: -1 };
     let next: number | null = null;
-    if (event.key in moves) next = (current + (moves[event.key] ?? 0) + MOMENTS.length) % MOMENTS.length;
+    if (event.key in moves)
+      next = (current + (moves[event.key] ?? 0) + MOMENTS.length) % MOMENTS.length;
     if (event.key === "Home") next = 0;
     if (event.key === "End") next = MOMENTS.length - 1;
     if (next === null) return;
@@ -33,17 +34,39 @@ export function LifestyleSection() {
   return (
     <section id="lifestyle" className="day" data-moment={current} aria-labelledby="lifestyle-title">
       <div className="day-bg">
-        {MOMENTS.map((item, i) => <img key={item.quand} src={IMAGES[i]} alt={i === current ? item.alt : ""} aria-hidden={i !== current} className={i === current ? "is-on" : ""} loading="lazy" />)}
+        {MOMENTS.map((item, i) => (
+          <img
+            key={item.quand}
+            src={IMAGES[i]}
+            alt={i === current ? item.alt : ""}
+            aria-hidden={i !== current}
+            className={i === current ? "is-on" : ""}
+            loading="lazy"
+          />
+        ))}
       </div>
       <div className="day-tint" aria-hidden="true" />
 
       <div className="day-body">
         <div className="day-head">
-          <div className="section-label light"><span>04</span><p>{t.vivre.label}</p></div>
+          <div className="section-label light">
+            <span>04</span>
+            <p>{t.vivre.label}</p>
+          </div>
           <h2 id="lifestyle-title">{t.vivre.titre}</h2>
         </div>
         <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={current} id="day-panel" role="tabpanel" aria-labelledby={`day-tab-${current}`} className="day-moment" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}>
+          <motion.div
+            key={current}
+            id="day-panel"
+            role="tabpanel"
+            aria-labelledby={`day-tab-${current}`}
+            className="day-moment"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          >
             <span className="day-when">{moment.quand}</span>
             <h3>{moment.titre}</h3>
             <p>{moment.texte}</p>
@@ -51,11 +74,18 @@ export function LifestyleSection() {
         </AnimatePresence>
       </div>
 
-      <div className="day-timeline" role="tablist" aria-label={t.vivre.momentsAria} onKeyDown={onKey}>
+      <div
+        className="day-timeline"
+        role="tablist"
+        aria-label={t.vivre.momentsAria}
+        onKeyDown={onKey}
+      >
         {MOMENTS.map((item, i) => (
           <button
             key={item.quand}
-            ref={(el) => { tabRefs.current[i] = el; }}
+            ref={(el) => {
+              tabRefs.current[i] = el;
+            }}
             type="button"
             role="tab"
             id={`day-tab-${i}`}

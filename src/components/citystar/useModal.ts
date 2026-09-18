@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
+const FOCUSABLE =
+  'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), iframe, [tabindex]:not([tabindex="-1"])';
 
 /* Pile des fenêtres ouvertes : seule la dernière réagit au clavier. */
 const stack: HTMLElement[] = [];
@@ -36,7 +37,9 @@ export function useModal<T extends HTMLElement>(onClose: () => void) {
         return;
       }
       if (event.key !== "Tab") return;
-      const items = Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((el) => el.getClientRects().length > 0);
+      const items = Array.from(node.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
+        (el) => el.getClientRects().length > 0,
+      );
       if (items.length === 0) {
         event.preventDefault();
         node.focus();

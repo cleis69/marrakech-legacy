@@ -42,14 +42,38 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={heroRef} id="accueil" className="pp-hero" aria-label={`CITYSTAR — ${t.hero.kicker}`}>
+    <section
+      ref={heroRef}
+      id="accueil"
+      className="pp-hero"
+      aria-label={`CITYSTAR — ${t.hero.kicker}`}
+    >
       <div className="pp-sticky">
-        <span className="pp-caption pp-caption-left" aria-hidden="true">{t.hero.lieu}</span>
-        <span className="pp-caption pp-caption-right" aria-hidden="true">{t.hero.residence(programme.nombreVillas)}</span>
+        <span className="pp-caption pp-caption-left" aria-hidden="true">
+          {t.hero.lieu}
+        </span>
+        <span className="pp-caption pp-caption-right" aria-hidden="true">
+          {t.hero.residence(programme.nombreVillas)}
+        </span>
 
-        <motion.div className="pp-frame" style={reduce ? {} : ({ "--open": open } as unknown as MotionStyle)}>
+        <motion.div
+          className="pp-frame"
+          style={reduce ? {} : ({ "--open": open } as unknown as MotionStyle)}
+        >
           <div className="pp-reveal">
-            <motion.video ref={videoRef} className="pp-video" style={reduce ? {} : { scale: videoScale }} autoPlay muted loop playsInline poster={villaBImage} aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)}>
+            <motion.video
+              ref={videoRef}
+              className="pp-video"
+              style={reduce ? {} : { scale: videoScale }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={villaBImage}
+              aria-hidden="true"
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+            >
               <source src={heroVideo} type="video/mp4" />
             </motion.video>
             <div className="pp-shade" aria-hidden="true" />
@@ -57,17 +81,31 @@ export function HeroSection() {
             <div className="pp-title">
               <p className="pp-kicker">{t.hero.kicker}</p>
               <h1 aria-label={TITLE}>
-                {TITLE.split("").map((letter, i) => <span key={i} aria-hidden="true" style={{ "--i": i } as React.CSSProperties}>{letter}</span>)}
+                {TITLE.split("").map((letter, i) => (
+                  <span key={i} aria-hidden="true" style={{ "--i": i } as React.CSSProperties}>
+                    {letter}
+                  </span>
+                ))}
               </h1>
             </div>
 
             <div className="pp-side">
               <p>{t.hero.texte}</p>
-              <PillButton label={t.hero.decouvrir} icon={ArrowRight} variant="secondary" onClick={() => scrollTo("villas")} />
+              <PillButton
+                label={t.hero.decouvrir}
+                icon={ArrowRight}
+                variant="secondary"
+                onClick={() => scrollTo("villas")}
+              />
             </div>
 
-            <button className="pp-pause" onClick={toggleVideo} aria-label={playing ? t.hero.pause : t.hero.lecture}>
-              {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}<span>{playing ? "Pause" : "Lecture"}</span>
+            <button
+              className="pp-pause"
+              onClick={toggleVideo}
+              aria-label={playing ? t.hero.pause : t.hero.lecture}
+            >
+              {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+              <span>{playing ? "Pause" : "Lecture"}</span>
             </button>
           </div>
         </motion.div>

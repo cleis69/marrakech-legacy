@@ -1,4 +1,12 @@
-import { animate, motion, useInView, useMotionTemplate, useMotionValue, useMotionValueEvent, useReducedMotion } from "motion/react";
+import {
+  animate,
+  motion,
+  useInView,
+  useMotionTemplate,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+} from "motion/react";
 import { ChevronsLeftRight } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -9,7 +17,13 @@ import { useDevise } from "./currency";
 import { Reveal } from "./motion";
 
 /* Positions en % de l'image : liées à ce rendu précis, à reprendre si l'image change. */
-const SPOTS = [{ x: 31, y: 13 }, { x: 30, y: 40 }, { x: 67, y: 42 }, { x: 58.5, y: 62 }, { x: 62, y: 92 }];
+const SPOTS = [
+  { x: 31, y: 13 },
+  { x: 30, y: 40 },
+  { x: 67, y: 42 },
+  { x: 58.5, y: 62 },
+  { x: 62, y: 92 },
+];
 
 const START = 92;
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
@@ -40,9 +54,17 @@ export function ArchitectureSection() {
 
   const glide = (to: number, done?: () => void) => {
     glideRef.current?.stop();
-    if (reduce) { x.set(to); done?.(); return; }
+    if (reduce) {
+      x.set(to);
+      done?.();
+      return;
+    }
     const duration = Math.max(0.35, Math.abs(to - x.get()) * 0.014);
-    glideRef.current = animate(x, to, { duration, ease: [0.65, 0, 0.35, 1], onComplete: () => done?.() });
+    glideRef.current = animate(x, to, {
+      duration,
+      ease: [0.65, 0, 0.35, 1],
+      onComplete: () => done?.(),
+    });
   };
 
   const reveal = (index: number) => {
@@ -72,7 +94,12 @@ export function ArchitectureSection() {
   };
 
   const onHandleKey = (event: React.KeyboardEvent) => {
-    const steps: Record<string, number> = { ArrowLeft: -5, ArrowDown: -5, ArrowRight: 5, ArrowUp: 5 };
+    const steps: Record<string, number> = {
+      ArrowLeft: -5,
+      ArrowDown: -5,
+      ArrowRight: 5,
+      ArrowUp: 5,
+    };
     let to: number | null = null;
     if (event.key in steps) to = x.get() + (steps[event.key] ?? 0) * (event.shiftKey ? 2 : 1);
     if (event.key === "Home") to = 2;
@@ -89,25 +116,46 @@ export function ArchitectureSection() {
     <section id="architecture" className="arch" aria-labelledby="architecture-title">
       <div className="arch-grid">
         <div className="arch-head">
-          <div className="section-label"><span>02</span><p>{t.architecture.label}</p></div>
-          <Reveal><h2 id="architecture-title">{t.architecture.titre[0]}<br /><em>{t.architecture.titre[1]}</em></h2></Reveal>
+          <div className="section-label">
+            <span>02</span>
+            <p>{t.architecture.label}</p>
+          </div>
+          <Reveal>
+            <h2 id="architecture-title">
+              {t.architecture.titre[0]}
+              <br />
+              <em>{t.architecture.titre[1]}</em>
+            </h2>
+          </Reveal>
         </div>
 
         <div
           ref={boxRef}
           className="arch-ba"
           onPointerDown={onPointerDown}
-          onPointerMove={(event) => { if (dragging.current) setFromPointer(event.clientX); }}
-          onPointerUp={() => { dragging.current = false; }}
-          onPointerCancel={() => { dragging.current = false; }}
-          onKeyDown={(event) => { if (event.key === "Escape") setOpen(null); }}
+          onPointerMove={(event) => {
+            if (dragging.current) setFromPointer(event.clientX);
+          }}
+          onPointerUp={() => {
+            dragging.current = false;
+          }}
+          onPointerCancel={() => {
+            dragging.current = false;
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") setOpen(null);
+          }}
         >
           <img src={drawingImage} alt={t.architecture.altDessin} draggable={false} />
           <motion.div className="arch-render" style={{ clipPath: clip }}>
             <img src={renderImage} alt={t.architecture.altRendu} draggable={false} />
           </motion.div>
-          <span className="arch-tag is-left" aria-hidden="true">{t.architecture.rendu}</span>
-          <span className="arch-tag is-right" aria-hidden="true">{t.architecture.dessin}</span>
+          <span className="arch-tag is-left" aria-hidden="true">
+            {t.architecture.rendu}
+          </span>
+          <span className="arch-tag is-right" aria-hidden="true">
+            {t.architecture.dessin}
+          </span>
 
           {SPOTS.map((item, index) => (
             <button
@@ -119,7 +167,9 @@ export function ArchitectureSection() {
               aria-expanded={open === index}
               aria-controls="arch-tip"
               onClick={() => reveal(index)}
-              onMouseEnter={() => { if (revealed[index]) setOpen(index); }}
+              onMouseEnter={() => {
+                if (revealed[index]) setOpen(index);
+              }}
             >
               {index + 1}
             </button>
@@ -137,11 +187,24 @@ export function ArchitectureSection() {
             aria-valuenow={START}
             onKeyDown={onHandleKey}
           >
-            <i><ChevronsLeftRight aria-hidden="true" /></i>
+            <i>
+              <ChevronsLeftRight aria-hidden="true" />
+            </i>
           </motion.div>
 
-          <div id="arch-tip" className={`arch-tip${spot ? " is-shown" : ""}${spot && spot.y < 45 ? " is-below" : ""}`} role="note" aria-live="polite" style={spot ? { left: `${clamp(spot.x, 20, 80)}%`, top: `${spot.y}%` } : {}}>
-            {spot && open !== null && <><b>{t.architecture.points[open]?.titre}</b><span>{t.architecture.points[open]?.texte}</span></>}
+          <div
+            id="arch-tip"
+            className={`arch-tip${spot ? " is-shown" : ""}${spot && spot.y < 45 ? " is-below" : ""}`}
+            role="note"
+            aria-live="polite"
+            style={spot ? { left: `${clamp(spot.x, 20, 80)}%`, top: `${spot.y}%` } : {}}
+          >
+            {spot && open !== null && (
+              <>
+                <b>{t.architecture.points[open]?.titre}</b>
+                <span>{t.architecture.points[open]?.texte}</span>
+              </>
+            )}
           </div>
         </div>
 
@@ -149,8 +212,16 @@ export function ArchitectureSection() {
           <ol className="arch-list">
             {SPOTS.map((item, index) => (
               <li key={index}>
-                <button type="button" className={open === index ? "is-on" : ""} aria-expanded={open === index} aria-controls="arch-tip" onClick={() => reveal(index)} onMouseEnter={() => reveal(index)}>
-                  <small>{String(index + 1).padStart(2, "0")}</small>{t.architecture.points[index]?.titre}
+                <button
+                  type="button"
+                  className={open === index ? "is-on" : ""}
+                  aria-expanded={open === index}
+                  aria-controls="arch-tip"
+                  onClick={() => reveal(index)}
+                  onMouseEnter={() => reveal(index)}
+                >
+                  <small>{String(index + 1).padStart(2, "0")}</small>
+                  {t.architecture.points[index]?.titre}
                 </button>
               </li>
             ))}

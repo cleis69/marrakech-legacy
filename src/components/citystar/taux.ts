@@ -17,7 +17,8 @@ type Cache = Taux & { jour: string };
 
 const aujourdhui = () => new Date().toISOString().slice(0, 10);
 
-const valide = (valeur: unknown): valeur is number => typeof valeur === "number" && Number.isFinite(valeur) && valeur > 0;
+const valide = (valeur: unknown): valeur is number =>
+  typeof valeur === "number" && Number.isFinite(valeur) && valeur > 0;
 
 async function json(url: string) {
   const controleur = new AbortController();
@@ -54,8 +55,16 @@ export async function recupererTaux(): Promise<Taux | null> {
   const tauxMarche = (marche?.["rates"] ?? {}) as Record<string, unknown>;
   const secours = devises.tauxDeSecours;
 
-  const GBP = valide(tauxBce["GBP"]) ? tauxBce["GBP"] : valide(tauxMarche["GBP"]) ? tauxMarche["GBP"] : null;
-  const NOK = valide(tauxBce["NOK"]) ? tauxBce["NOK"] : valide(tauxMarche["NOK"]) ? tauxMarche["NOK"] : null;
+  const GBP = valide(tauxBce["GBP"])
+    ? tauxBce["GBP"]
+    : valide(tauxMarche["GBP"])
+      ? tauxMarche["GBP"]
+      : null;
+  const NOK = valide(tauxBce["NOK"])
+    ? tauxBce["NOK"]
+    : valide(tauxMarche["NOK"])
+      ? tauxMarche["NOK"]
+      : null;
   const MAD = valide(tauxMarche["MAD"]) ? tauxMarche["MAD"] : null;
   if (GBP === null && NOK === null && MAD === null) return null;
 
@@ -68,7 +77,10 @@ export async function recupererTaux(): Promise<Taux | null> {
   };
 
   try {
-    localStorage.setItem(CLE_CACHE, JSON.stringify({ ...taux, jour: aujourdhui() } satisfies Cache));
+    localStorage.setItem(
+      CLE_CACHE,
+      JSON.stringify({ ...taux, jour: aujourdhui() } satisfies Cache),
+    );
   } catch {
     /* Stockage indisponible : on garde simplement les taux en mémoire. */
   }

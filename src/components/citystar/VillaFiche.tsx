@@ -24,7 +24,9 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
 
   useEffect(() => {
     if (target === "plans") {
-      document.getElementById("plans")?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
+      document
+        .getElementById("plans")
+        ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
       document.getElementById("plans")?.focus({ preventScroll: true });
     } else {
       headingRef.current?.focus({ preventScroll: true });
@@ -34,9 +36,15 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
   }, []);
 
   const onTabKey = (event: React.KeyboardEvent) => {
-    const moves: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    const moves: Record<string, number> = {
+      ArrowRight: 1,
+      ArrowDown: 1,
+      ArrowLeft: -1,
+      ArrowUp: -1,
+    };
     let next: number | null = null;
-    if (event.key in moves) next = (index + (moves[event.key] ?? 0) + villas.length) % villas.length;
+    if (event.key in moves)
+      next = (index + (moves[event.key] ?? 0) + villas.length) % villas.length;
     if (event.key === "Home") next = 0;
     if (event.key === "End") next = villas.length - 1;
     if (next === null) return;
@@ -48,24 +56,45 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
   return (
     <div className="vf section-pad">
       <div className="vf-pic">
-        {villas.map((item, i) => <img key={item.type} src={item.image} alt={i === index ? t.villas.typeVilla(item.type) : ""} aria-hidden={i !== index} className={i === index ? "is-on" : ""} loading="lazy" />)}
+        {villas.map((item, i) => (
+          <img
+            key={item.type}
+            src={item.image}
+            alt={i === index ? t.villas.typeVilla(item.type) : ""}
+            aria-hidden={i !== index}
+            className={i === index ? "is-on" : ""}
+            loading="lazy"
+          />
+        ))}
         <span className="vf-shade" aria-hidden="true" />
         <div className="vf-pic-over">
-          <div className="section-label light"><span>03</span><p>{t.villas.label}</p></div>
-          <p className="vf-pic-title" aria-hidden="true">{t.villas.titre[0]}<br />{t.villas.titre[1]}<em>{t.villas.titre[2]}</em></p>
+          <div className="section-label light">
+            <span>03</span>
+            <p>{t.villas.label}</p>
+          </div>
+          <p className="vf-pic-title" aria-hidden="true">
+            {t.villas.titre[0]}
+            <br />
+            {t.villas.titre[1]}
+            <em>{t.villas.titre[2]}</em>
+          </p>
           <span className="vf-cap">{t.villas.illustration(villa.type)}</span>
         </div>
       </div>
 
       <div className="vf-info">
-        <button type="button" className="vf-back" onClick={onBack}><ArrowLeft aria-hidden="true" /> {t.villas.retour}</button>
+        <button type="button" className="vf-back" onClick={onBack}>
+          <ArrowLeft aria-hidden="true" /> {t.villas.retour}
+        </button>
 
         <div className="vf-tabs">
           <div role="tablist" aria-label={t.villas.onglets} onKeyDown={onTabKey}>
             {villas.map((item, i) => (
               <button
                 key={item.type}
-                ref={(el) => { tabRefs.current[i] = el; }}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
                 type="button"
                 role="tab"
                 id={`villa-tab-${item.type}`}
@@ -79,29 +108,68 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
               </button>
             ))}
           </div>
-          <span className="vf-tabs-label">{t.villas.typeVilla(villa.type)} · {faits.tag}</span>
+          <span className="vf-tabs-label">
+            {t.villas.typeVilla(villa.type)} · {faits.tag}
+          </span>
         </div>
 
-        <div id="villa-panel" role="tabpanel" aria-labelledby={`villa-tab-${villa.type}`} key={villa.type} className="vf-panel">
-          <h2 id="villas-title" ref={headingRef} tabIndex={-1}>{t.villas.typeVilla(villa.type).replace(villa.type, "")}<em>{villa.type}</em></h2>
+        <div
+          id="villa-panel"
+          role="tabpanel"
+          aria-labelledby={`villa-tab-${villa.type}`}
+          key={villa.type}
+          className="vf-panel"
+        >
+          <h2 id="villas-title" ref={headingRef} tabIndex={-1}>
+            {t.villas.typeVilla(villa.type).replace(villa.type, "")}
+            <em>{villa.type}</em>
+          </h2>
           <p className="vf-desc">{faits.description}</p>
           <dl className="vf-specs">
-            <div><dt>{t.villas.surface}</dt><dd>{faits.surface}</dd></div>
-            <div><dt>{t.villas.terrain}</dt><dd>{faits.terrain}</dd></div>
-            <div><dt>{t.villas.configuration}</dt><dd>{faits.suites}</dd></div>
+            <div>
+              <dt>{t.villas.surface}</dt>
+              <dd>{faits.surface}</dd>
+            </div>
+            <div>
+              <dt>{t.villas.terrain}</dt>
+              <dd>{faits.terrain}</dd>
+            </div>
+            <div>
+              <dt>{t.villas.configuration}</dt>
+              <dd>{faits.suites}</dd>
+            </div>
           </dl>
           <VillaPrice type={villa.type} />
-          <div id="plans" className="vf-plans" tabIndex={-1} aria-label={t.villas.plansAria(villa.type)} role="group">
+          <div
+            id="plans"
+            className="vf-plans"
+            tabIndex={-1}
+            aria-label={t.villas.plansAria(villa.type)}
+            role="group"
+          >
             {villa.plans.map((plan, i) => (
-              <button key={plan} type="button" onClick={() => onOpenPlan(plan)} aria-label={t.villas.agrandirPlan(i === 1, villa.type)}>
+              <button
+                key={plan}
+                type="button"
+                onClick={() => onOpenPlan(plan)}
+                aria-label={t.villas.agrandirPlan(i === 1, villa.type)}
+              >
                 <img src={plan} alt="" loading="lazy" />
-                <span>{i ? t.villas.etage : t.villas.rdc} <Expand aria-hidden="true" /></span>
+                <span>
+                  {i ? t.villas.etage : t.villas.rdc} <Expand aria-hidden="true" />
+                </span>
               </button>
             ))}
           </div>
           <div className="vf-actions">
             <PillButton label={t.villas.demander} icon={Lock} onClick={onContact} />
-            <PillButton label={t.villas.brochure} icon={Download} variant="secondary" href={`/brochures/villa-${villa.type.toLowerCase()}.pdf`} ariaLabel={t.villas.brochureAria(villa.type)} />
+            <PillButton
+              label={t.villas.brochure}
+              icon={Download}
+              variant="secondary"
+              href={`/brochures/villa-${villa.type.toLowerCase()}.pdf`}
+              ariaLabel={t.villas.brochureAria(villa.type)}
+            />
           </div>
         </div>
       </div>
