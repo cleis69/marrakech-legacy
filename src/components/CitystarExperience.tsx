@@ -37,11 +37,6 @@ export default function CitystarExperience({ langue = "fr" }: { langue?: Langue 
   const [cursorLabel, setCursorLabel] = useState("");
   const { scrollYProgress } = useScroll();
 
-  /* La langue de la page suit la route, pour les lecteurs d'écran et les moteurs. */
-  useEffect(() => {
-    document.documentElement.lang = langue;
-  }, [langue]);
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
