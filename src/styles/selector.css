@@ -1,0 +1,71 @@
+/* ---------- Outil 1 : trouver ma villa (aperçu vivant) ---------- */
+.sl { background: var(--paper); }
+.sl-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 4vw; min-height: 78vh; }
+.sl-pane { display: grid; grid-template-rows: auto 1fr; gap: 2.4rem; min-width: 0; }
+.sl-head { display: grid; gap: 1.2rem; }
+.sl-head-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.sl-kicker { font-size: .66rem; font-weight: 400; letter-spacing: .22em; text-transform: uppercase; color: var(--bronze); }
+.sl-back { display: inline-flex; align-items: center; gap: .6rem; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; cursor: pointer; transition: color .3s, opacity .3s; }
+.sl-back svg { width: 14px; height: 14px; }
+.sl-back:hover { color: var(--foreground); }
+.sl-back:disabled { opacity: .25; cursor: default; }
+.sl-progress { display: flex; align-items: center; gap: 1.2rem; font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
+.sl-line { position: relative; flex: 1; height: 1px; background: var(--border); }
+.sl-line i { position: absolute; left: 0; top: -1px; height: 3px; background: var(--bronze); transition: width .6s cubic-bezier(.22, 1, .36, 1); }
+
+.sl-body { align-self: center; }
+.sl-stage { display: grid; gap: 1.6rem; justify-items: start; }
+.sl-question { font: 400 clamp(2.2rem, 3.2vw, 3.4rem)/1.08 "Italiana", serif; text-wrap: balance; }
+.sl-options { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; }
+.sl-option { display: grid; align-content: start; gap: .4rem; padding: 1.3rem 1.4rem; border: 0; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 24%, transparent); color: var(--foreground); text-align: left; cursor: pointer; transition: background .35s, color .35s, box-shadow .35s, transform .3s; }
+.sl-option em { font-size: .6rem; letter-spacing: .14em; color: var(--bronze); }
+.sl-option b { font: 400 1.6rem/1.1 "Italiana", serif; }
+.sl-option span { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
+.sl-option:hover, .sl-option:focus-visible { box-shadow: inset 0 0 0 1px var(--bronze); transform: translateY(-2px); }
+.sl-option:active { background: var(--bronze); color: var(--cream); }
+.sl-note, .sl-keys { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
+.sl-keys { opacity: .7; }
+
+.sl-result { font: 400 clamp(3.4rem, 5vw, 5.4rem)/1 "Italiana", serif; }
+.sl-result:focus { outline: none; }
+.sl-why { max-width: 34rem; font-size: 1.02rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 80%, var(--paper)); }
+.sl-recap { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.sl-recap li { padding: .35em .8em; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 22%, transparent); }
+.sl-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.2rem; }
+.sl-private { max-width: 30rem; font-size: .72rem; line-height: 1.5; color: var(--muted-foreground); }
+.sl-again { padding: 0; border: 0; background: none; color: var(--muted-foreground); font-size: .6rem; letter-spacing: .16em; text-decoration: underline; text-transform: uppercase; text-underline-offset: .3em; cursor: pointer; }
+
+.sl-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; min-height: 0; margin: 0; padding: 0; list-style: none; }
+.sl-card { position: relative; display: grid; grid-template-rows: 1fr auto; overflow: hidden; background: var(--ink); color: var(--cream); transition: opacity .6s, filter .6s, transform .6s cubic-bezier(.22, 1, .36, 1), box-shadow .6s; }
+.sl-card-ph { position: relative; min-height: 0; }
+.sl-card-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sl-card-ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, oklch(0.1 0.01 60 / 70%)); }
+.sl-card-letter { position: absolute; z-index: 1; left: 1rem; bottom: .6rem; font: 400 4.4rem/1 "Italiana", serif; transition: color .6s; }
+.sl-card-info { display: grid; gap: .3rem; padding: .9rem 1rem 1rem; }
+.sl-card-info b { font: 400 1.2rem/1.1 "Italiana", serif; }
+.sl-card-info span { font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sand); }
+.sl-card-why { position: absolute; z-index: 2; top: .8rem; left: .8rem; right: .8rem; padding: .4em .7em; background: oklch(0.1 0.01 60 / 80%); color: var(--cream); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; opacity: 0; transition: opacity .4s; }
+.sl-card-why:empty { padding: 0; }
+.sl-card.is-dim { opacity: .4; filter: grayscale(.85); }
+.sl-card.is-dim .sl-card-why { opacity: 1; }
+.sl-card.is-win { box-shadow: 0 0 0 2px var(--bronze); transform: translateY(-.8rem); }
+.sl-card.is-win .sl-card-letter { color: var(--sand); }
+
+@media (max-width: 900px) {
+  .sl-grid { grid-template-columns: 1fr; gap: 1.6rem; min-height: 0; }
+  .sl-trio { order: -1; height: 9.5rem; gap: .4rem; }
+  .sl-card-info { display: none; }
+  .sl-card-letter { left: .6rem; bottom: .2rem; font-size: 2.6rem; }
+  .sl-card-why { top: .4rem; left: .4rem; right: .4rem; font-size: .48rem; }
+  .sl-card.is-win { transform: none; }
+  .sl-pane { gap: 1.6rem; }
+  .sl-question { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+  .sl-options { grid-template-columns: 1fr; gap: .5rem; }
+  .sl-option { padding: 1rem 1.1rem; }
+  .sl-option b { font-size: 1.3rem; }
+  .sl-keys { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-line i, .sl-option, .sl-card, .sl-card-why { transition: none; }
+}

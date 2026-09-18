@@ -1,0 +1,116 @@
+/* ---------- Les villas : trois portes, puis la fiche ---------- */
+.vs { background: var(--cream); overflow: hidden; }
+
+/* Portes */
+.vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 4vw; margin-bottom: 3.5rem; }
+.vd-top .section-label { margin-bottom: 2rem; }
+.vd-top h2, .vf-panel h2 { font: 400 clamp(3rem, 6vw, 6.4rem)/.97 "Italiana", serif; }
+.vd-top > div { display: grid; gap: 1.6rem; justify-items: start; }
+.vd-top p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
+.vd-tri { display: flex; gap: .6rem; height: 74vh; min-height: 520px; }
+.vd-door { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--cream); text-align: left; cursor: pointer; transition: flex-grow 1s cubic-bezier(.22, 1, .36, 1); }
+.vd-door img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
+.vd-door:hover img { transform: scale(1.05); }
+.vd-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent), transparent 35%, transparent 45%, color-mix(in oklab, var(--ink) 82%, transparent)); }
+.vd-name { position: absolute; top: 1.8rem; left: 1.8rem; display: grid; }
+.vd-name small { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+.vd-name strong { font: 400 5.6rem/1 "Italiana", serif; }
+.vd-bottom { position: absolute; left: 1.8rem; right: 1.8rem; bottom: 1.8rem; display: grid; gap: 1.2rem; }
+.vd-more { display: grid; gap: 1.2rem; justify-items: start; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .9s cubic-bezier(.22, 1, .36, 1), opacity .5s; }
+.vd-desc { max-width: 38ch; font-size: .92rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 82%, transparent); }
+.vd-specs { display: flex; gap: 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.vd-tri .vd-door.is-on, .vd-tri:hover .vd-door:hover, .vd-tri .vd-door:focus-visible { flex-grow: 2.4; }
+.vd-tri:hover .vd-door.is-on:not(:hover), .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) { flex-grow: 1; }
+.vd-door.is-on .vd-more, .vd-tri:hover .vd-door:hover .vd-more, .vd-door:focus-visible .vd-more { max-height: 14rem; opacity: 1; transition-delay: .15s; }
+.vd-tri:hover .vd-door.is-on:not(:hover) .vd-more, .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) .vd-more { max-height: 0; opacity: 0; transition-delay: 0s; }
+.vd-dots { display: none; }
+
+/* Fiche */
+.vf { display: grid; grid-template-columns: 1.05fr .95fr; gap: 4.5vw; align-items: start; }
+.vf-pic { position: sticky; top: 6rem; height: calc(100vh - 8rem); min-height: 520px; overflow: hidden; background: var(--ink); color: var(--cream); }
+.vf-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity .9s ease, transform 1.6s cubic-bezier(.22, 1, .36, 1); }
+.vf-pic img.is-on { opacity: 1; transform: none; }
+.vf-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 60%, transparent), transparent 45%, transparent 70%, color-mix(in oklab, var(--ink) 55%, transparent)); }
+.vf-pic-over { position: absolute; inset: 2.2rem; display: grid; grid-template-rows: auto auto 1fr; }
+.vf-pic-over .section-label { margin-bottom: 1.4rem; }
+.vf-pic-title { font: 400 clamp(2.4rem, 3.6vw, 3.8rem)/.98 "Italiana", serif; }
+.vf-pic-title em { color: var(--sand); }
+.vf-cap { align-self: end; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+
+.vf-info { display: flex; flex-direction: column; gap: 1.6rem; padding-top: .5rem; }
+.vf-back { display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: color .3s, gap .3s; }
+.vf-back svg { width: 14px; height: 14px; }
+.vf-back:hover { color: var(--foreground); gap: .9rem; }
+.vf-tabs { display: flex; align-items: center; gap: 1.2rem; }
+.vf-tabs [role="tablist"] { display: flex; gap: .7rem; }
+.vf-tabs [role="tab"] { display: grid; place-items: center; width: 3.6rem; height: 3.6rem; padding: 0; border: 0; border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 35%, transparent); color: var(--foreground); font: 400 1.6rem/1 "Italiana", serif; cursor: pointer; transition: background .4s, color .4s, box-shadow .4s; }
+.vf-tabs [role="tab"]:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.vf-tabs [role="tab"].is-on { background: var(--bronze); color: var(--cream); box-shadow: none; }
+.vf-tabs-label { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vf-panel { display: grid; gap: 1.5rem; animation: vf-in .6s cubic-bezier(.22, 1, .36, 1); }
+.vf-panel h2 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
+.vf-panel h2:focus { outline: none; }
+.vf-desc { max-width: 34rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
+.vf-specs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--border); }
+.vf-specs div { display: grid; gap: .45rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
+.vf-specs dt { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vf-specs dd { margin: 0; font: 400 1.7rem/1 "Italiana", serif; }
+@keyframes vf-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.vprice { display: grid; justify-items: start; gap: .7rem; }
+.vprice-label { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vprice-main { font: 400 clamp(2.2rem, 3.2vw, 3rem)/1 "Italiana", serif; font-variant-numeric: tabular-nums; }
+.vprice-ref { font-size: .78rem; color: var(--muted-foreground); }
+.vprice-note { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
+.cur-pills { display: flex; width: fit-content; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 28%, transparent); }
+.cur-pills button { min-width: 3.2rem; padding: .6rem .85rem; border: 0; background: none; color: var(--foreground); font-size: .62rem; letter-spacing: .12em; cursor: pointer; transition: background .3s, color .3s; }
+.cur-pills button:hover { background: color-mix(in oklab, var(--ink) 8%, transparent); }
+.cur-pills button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+
+.vf-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; scroll-margin-top: 8rem; }
+.vf-plans:focus { outline: none; }
+.vf-plans button { display: grid; gap: .6rem; padding: .8rem; border: 0; background: var(--paper); color: var(--foreground); cursor: zoom-in; }
+.vf-plans img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; mix-blend-mode: multiply; transition: transform .8s cubic-bezier(.22, 1, .36, 1); }
+.vf-plans button:hover img { transform: scale(1.04); }
+.vf-plans span { display: flex; justify-content: space-between; align-items: center; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+.vf-plans svg { width: 14px; height: 14px; }
+.vf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; padding-top: .4rem; }
+
+@media (max-width: 900px) {
+  .vd-top { display: block; margin-bottom: 2.4rem; }
+  .vd-top h2 { font-size: clamp(3rem, 14vw, 4.6rem); }
+  .vd-top > div { margin-top: 1.4rem; }
+  .vd-tri { height: auto; min-height: 0; gap: 10px; margin-right: -1.3rem; padding-right: 1.3rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .vd-tri::-webkit-scrollbar { display: none; }
+  .vd-tri .vd-door, .vd-tri .vd-door.is-on { flex: 0 0 80vw; height: 62svh; min-height: 440px; scroll-snap-align: start; }
+  .vd-name { top: 1.2rem; left: 1.2rem; }
+  .vd-name strong { font-size: 4.2rem; }
+  .vd-bottom { left: 1.2rem; right: 1.2rem; bottom: 1.2rem; }
+  .vd-door .vd-more { max-height: none; opacity: 1; }
+  .vd-more .pill { display: none; }
+  .vd-desc { font-size: .85rem; }
+  .vd-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1rem; }
+  .vd-dots i { width: 22px; height: 2px; background: var(--border); transition: background .3s; }
+  .vd-dots i.is-on { background: var(--bronze); }
+
+  .vf { grid-template-columns: 1fr; gap: 1.4rem; }
+  .vf-info { display: contents; }
+  .vf-back { order: 1; }
+  .vf-tabs { order: 2; }
+  .vf-pic { order: 3; position: relative; top: auto; height: 44svh; min-height: 280px; margin: 0 -1.3rem; }
+  .vf-panel { order: 4; }
+  .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
+  .vf-pic-title { display: none; }
+  .vf-tabs [role="tab"] { width: 3rem; height: 3rem; font-size: 1.35rem; }
+  .vf-specs dd { font-size: 1.3rem; }
+  .vf-plans { gap: .6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vd-door, .vd-door img, .vd-more, .vf-pic img, .vf-plans img { transition: none; }
+  .vf-panel { animation: none; }
+}
+
+/* Cadrage des photos (paysage) dans les portes verticales */
+.vd-door:nth-child(1) img { object-position: 64% center; }
+.vd-door:nth-child(3) img { object-position: 38% center; }

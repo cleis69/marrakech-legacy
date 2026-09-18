@@ -1,0 +1,51 @@
+/* ---------- Outil 4 : simulateur de rentabilité (tableau de bord) ---------- */
+.sm { background: var(--cream); }
+.sm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: start; }
+.sm-left { display: grid; gap: 1.4rem; justify-items: start; }
+.sm-kicker { font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bronze); }
+.sm-left h2 { font: 400 clamp(2.2rem, 3.4vw, 3.4rem)/1 "Italiana", serif; }
+.sm-tabs { display: flex; width: fit-content; max-width: 100%; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 25%, transparent); }
+.sm-tabs button { padding: .7rem 1.2rem; border: 0; background: none; color: inherit; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; cursor: pointer; transition: background .3s, color .3s; }
+.sm-tabs button[aria-selected="true"] { background: var(--bronze); color: var(--cream); }
+.sm-sliders { width: 100%; display: grid; gap: 1.3rem; }
+.sm-slider label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.sm-slider output { font: 400 1.3rem/1 "Italiana", serif; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; color: var(--foreground); white-space: nowrap; }
+.sm-slider input { width: 100%; height: 2px; margin: .8rem 0 .2rem; appearance: none; background: color-mix(in oklab, var(--ink) 20%, transparent); cursor: pointer; }
+.sm-slider input::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 4px color-mix(in oklab, var(--bronze) 20%, transparent); }
+.sm-slider input::-moz-range-thumb { width: 18px; height: 18px; border: 0; border-radius: 50%; background: var(--bronze); }
+.sm-slider input:disabled { opacity: .35; cursor: not-allowed; }
+.sm-advanced { width: 100%; border-top: 1px solid var(--border); }
+.sm-advanced summary { display: flex; justify-content: space-between; align-items: center; padding: .9rem 0; list-style: none; font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bronze); cursor: pointer; }
+.sm-advanced summary::-webkit-details-marker { display: none; }
+.sm-advanced summary::after { content: "+"; font: 300 1.4rem/1 "DM Sans", sans-serif; color: var(--foreground); transition: transform .3s; }
+.sm-advanced[open] summary::after { transform: rotate(45deg); }
+.sm-advanced > div { display: grid; gap: 1.1rem; padding-bottom: 1rem; }
+
+.sm-right { display: grid; gap: 1.3rem; align-content: start; padding: 2.2rem; background: color-mix(in oklab, var(--ink) 5%, transparent); }
+.sm-gross { display: grid; gap: .3rem; }
+.sm-label { font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted-foreground); }
+.sm-gross strong { font: 400 clamp(3rem, 5vw, 5rem)/1 "Italiana", serif; font-variant-numeric: tabular-nums; }
+.sm-detail { display: grid; gap: .5rem 1.4rem; grid-template-columns: 1fr auto; margin: 0; padding: 1rem 0; border-block: 1px solid var(--border); font-size: .82rem; }
+.sm-detail div { display: contents; }
+.sm-detail dt { color: var(--muted-foreground); }
+.sm-detail dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.sm-neutral { display: grid; gap: .8rem; padding: 1.6rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 22%, transparent); }
+.sm-neutral b { font: 400 1.7rem/1.15 "Italiana", serif; }
+.sm-neutral p { font-size: .88rem; line-height: 1.6; color: var(--muted-foreground); }
+.sm-fine { font-size: .8rem; font-style: italic; line-height: 1.5; color: color-mix(in oklab, var(--ink) 72%, var(--cream)); }
+.sm-warn { display: flex; align-items: flex-start; gap: .7rem; padding: .9rem 1rem; background: color-mix(in oklab, var(--bronze) 14%, transparent); font-size: .8rem; line-height: 1.45; }
+.sm-warn svg { flex: none; width: 1.1rem; height: 1.1rem; margin-top: .1rem; color: var(--bronze); }
+.sm-warn small { display: block; margin-top: .3rem; font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-foreground); }
+.sm-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.2rem; }
+
+@media (max-width: 900px) {
+  .sm-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .sm-left h2 { font-size: clamp(2rem, 9vw, 2.6rem); }
+  .sm-tabs button { padding: .7rem .8rem; font-size: .56rem; }
+  .sm-right { padding: 1.3rem; }
+  .sm-gross strong { font-size: clamp(2.6rem, 14vw, 3.6rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sm-tabs button, .sm-advanced summary::after { transition: none; }
+}

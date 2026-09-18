@@ -1,0 +1,44 @@
+/* ---------- Hero « passe-partout » ---------- */
+.pp-hero { --mat-top: 96px; --mat-side: 32px; --mat-bottom: 32px; position: relative; height: 170svh; background: var(--paper); color: var(--cream); }
+.pp-sticky { position: sticky; top: 0; height: 100svh; min-height: 620px; overflow: hidden; }
+.pp-frame { --open: 0; position: absolute; z-index: 1; inset: 0; clip-path: inset(calc(var(--mat-top) * (1 - var(--open))) calc(var(--mat-side) * (1 - var(--open))) calc(var(--mat-bottom) * (1 - var(--open))) calc(var(--mat-side) * (1 - var(--open)))); }
+.pp-reveal { position: absolute; inset: 0; animation: pp-open 1.7s cubic-bezier(.76, 0, .24, 1) .2s both; }
+.pp-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: pp-settle 2.4s cubic-bezier(.22, 1, .36, 1) .2s both; }
+.pp-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 25%, transparent), transparent 38%, color-mix(in oklab, var(--ink) 78%, transparent)); }
+
+.pp-title { position: absolute; left: calc(var(--mat-side) + 3.4vw); bottom: calc(var(--mat-bottom) + 4vh); display: grid; gap: 1.4rem; }
+.pp-kicker { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--sand); animation: pp-up 1s cubic-bezier(.22, 1, .36, 1) 1.2s both; }
+.pp-title h1 { margin: 0; font: 400 clamp(4.5rem, 12.5vw, 12rem)/.8 "Italiana", serif; white-space: nowrap; }
+.pp-title h1 span { display: inline-block; animation: pp-rise 1.1s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(var(--i) * 70ms + 1.4s); }
+
+.pp-side { position: absolute; right: calc(var(--mat-side) + 3.4vw); bottom: calc(var(--mat-bottom) + 4.4vh); max-width: 22rem; display: grid; gap: 1.4rem; justify-items: start; animation: pp-up 1.1s cubic-bezier(.22, 1, .36, 1) 2s both; }
+.pp-side p { font-size: .95rem; line-height: 1.65; color: color-mix(in oklab, var(--cream) 85%, transparent); }
+
+.pp-pause { position: absolute; right: calc(var(--mat-side) + 1.2rem); top: calc(var(--mat-top) + 1rem); display: flex; align-items: center; gap: .5rem; border: 0; background: none; color: var(--cream); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; opacity: .72; transition: opacity .3s; }
+.pp-pause:hover, .pp-pause:focus-visible { opacity: 1; }
+.pp-pause svg { width: .8rem; height: .8rem; }
+
+.pp-caption { position: absolute; top: var(--mat-top); bottom: var(--mat-bottom); width: var(--mat-side); display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 55%, var(--paper)); }
+.pp-caption-left { left: 0; transform: rotate(180deg); }
+.pp-caption-right { right: 0; }
+
+@keyframes pp-open { from { clip-path: inset(40% 45% 40% 45%); } to { clip-path: inset(0); } }
+@keyframes pp-settle { from { transform: scale(1.35); } }
+@keyframes pp-rise { from { opacity: 0; transform: translateY(45%); } }
+@keyframes pp-up { from { opacity: 0; transform: translateY(18px); } }
+
+@media (max-width: 760px) {
+  .pp-hero { --mat-top: 72px; --mat-side: 10px; --mat-bottom: 10px; height: 140svh; }
+  .pp-caption { display: none; }
+  .pp-title { left: 1.5rem; right: 1.5rem; bottom: calc(10.5rem + env(safe-area-inset-bottom, 0px)); gap: 1rem; }
+  .pp-title h1 { font-size: clamp(3.6rem, 19vw, 6rem); }
+  .pp-side { left: 1.5rem; right: 1.5rem; bottom: calc(6.2rem + env(safe-area-inset-bottom, 0px)); max-width: none; gap: 1rem; }
+  .pp-side p { font-size: .85rem; }
+  .pp-side .pill { display: none; }
+  .pp-pause { top: calc(var(--mat-top) + .8rem); right: 1.2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-hero { height: 100svh; }
+  .pp-reveal, .pp-video, .pp-kicker, .pp-title h1 span, .pp-side { animation: none; }
+}

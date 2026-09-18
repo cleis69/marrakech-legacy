@@ -1,0 +1,42 @@
+/* ---------- L'art de vivre : une journée à CITYSTAR ---------- */
+.day { position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: var(--ink); color: var(--cream); }
+.day-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity 1.2s ease, transform 6s linear; }
+.day-bg img.is-on { opacity: 1; transform: scale(1.1); }
+.day-tint { position: absolute; inset: 0; transition: background 1.2s ease; }
+.day[data-moment="0"] .day-tint { background: linear-gradient(90deg, oklch(0.1 0.01 60 / 72%), oklch(0.1 0.01 60 / 10%) 60%), oklch(0.9 0.08 75 / 10%); }
+.day[data-moment="1"] .day-tint { background: linear-gradient(90deg, oklch(0.1 0.01 60 / 72%), oklch(0.1 0.01 60 / 10%) 60%); }
+.day[data-moment="2"] .day-tint { background: linear-gradient(90deg, oklch(0.1 0.01 60 / 78%), oklch(0.1 0.01 60 / 15%) 60%), oklch(0.5 0.1 60 / 22%); }
+.day[data-moment="3"] .day-tint { background: linear-gradient(90deg, oklch(0.08 0.02 265 / 85%), oklch(0.08 0.02 265 / 35%) 60%), oklch(0.18 0.05 265 / 50%); }
+
+.day-body { position: absolute; z-index: 1; left: 5vw; top: 9rem; bottom: 9rem; width: min(40rem, 44vw); display: flex; flex-direction: column; justify-content: space-between; }
+.day-head { display: grid; gap: 1rem; }
+.day-head .section-label { margin: 0; }
+.day-head h2 { font-size: .66rem; font-weight: 400; letter-spacing: .2em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 72%, transparent); }
+.day-moment { display: grid; gap: 1.4rem; }
+.day-when { font: 400 1.35rem/1 "Italiana", serif; color: var(--sand); }
+.day-moment h3 { font: 400 clamp(2.8rem, 4.6vw, 5rem)/1 "Italiana", serif; }
+.day-moment p { max-width: 30rem; font-size: 1rem; line-height: 1.75; color: color-mix(in oklab, var(--cream) 78%, transparent); }
+
+.day-timeline { position: absolute; z-index: 1; left: 5vw; right: 5vw; bottom: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid color-mix(in oklab, var(--cream) 30%, transparent); }
+.day-timeline button { position: relative; padding: 1.1rem 0 .4rem; border: 0; background: none; color: color-mix(in oklab, var(--cream) 60%, transparent); font-size: .66rem; letter-spacing: .2em; text-align: left; text-transform: uppercase; cursor: pointer; transition: color .3s; }
+.day-timeline button::before { content: ""; position: absolute; top: -1px; left: 0; width: 100%; height: 2px; background: var(--sand); transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.22, 1, .36, 1); }
+.day-timeline button:hover, .day-timeline button.is-on { color: var(--cream); }
+.day-timeline button.is-on::before { transform: scaleX(1); }
+.day-timeline button:focus-visible { outline-offset: -2px; }
+
+@media (max-width: 760px) {
+  .day { min-height: 600px; }
+  .day[data-moment] .day-tint { background-image: linear-gradient(180deg, oklch(0.1 0.01 60 / 40%), oklch(0.1 0.01 60 / 15%) 35%, oklch(0.1 0.01 60 / 90%)); }
+  .day[data-moment="3"] .day-tint { background-image: linear-gradient(180deg, oklch(0.08 0.02 265 / 50%), oklch(0.08 0.02 265 / 30%) 35%, oklch(0.08 0.02 265 / 92%)); }
+  .day-body { left: 1.3rem; right: 1.3rem; top: 6.5rem; bottom: 11rem; width: auto; }
+  .day-moment { gap: .9rem; }
+  .day-moment h3 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .day-moment p { font-size: .9rem; }
+  .day-timeline { left: 1.3rem; right: 1.3rem; bottom: 7.2rem; }
+  .day-timeline button { padding-top: .8rem; font-size: .52rem; letter-spacing: .1em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day-bg img, .day-bg img.is-on { transform: none; transition: opacity .01s; }
+  .day-tint, .day-timeline button::before { transition: none; }
+}
