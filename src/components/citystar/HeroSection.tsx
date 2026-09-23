@@ -1,5 +1,5 @@
 import { type MotionStyle, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowRight, Lock, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
@@ -17,7 +17,7 @@ const TITLE = "CITYSTAR";
  * À l'arrivée, la fenêtre s'ouvre depuis le centre ; au défilement, la marge
  * s'efface et la vidéo passe en plein écran.
  */
-export function HeroSection() {
+export function HeroSection({ onContact }: { onContact: () => void }) {
   const { t } = useDevise();
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -91,12 +91,15 @@ export function HeroSection() {
 
             <div className="pp-side">
               <p>{t.hero.texte}</p>
-              <PillButton
-                label={t.hero.decouvrir}
-                icon={ArrowRight}
-                variant="secondary"
-                onClick={() => scrollTo("villas")}
-              />
+              <div className="pp-actions">
+                <PillButton label={t.hero.acces} icon={Lock} onClick={onContact} />
+                <PillButton
+                  label={t.hero.decouvrir}
+                  icon={ArrowRight}
+                  variant="secondary"
+                  onClick={() => scrollTo("villas")}
+                />
+              </div>
             </div>
 
             <button

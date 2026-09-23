@@ -34,8 +34,15 @@ const fr = {
     residence: (n: number) => `Résidence privée · ${n} villas`,
     texte: "Quatorze villas contemporaines, dans un domaine privé et entièrement sécurisé.",
     decouvrir: "Découvrir les villas",
+    acces: "Demander un accès privé",
     pause: "Mettre la vidéo en pause",
     lecture: "Reprendre la vidéo",
+  },
+  reperes: {
+    aria: "Les repères du domaine",
+    trajet: (n: number) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & aéroport" }),
+    villas: (n: number) => ({ valeur: String(n), libelle: "villas privées, pas une de plus" }),
+    terrain: (surface: string) => ({ valeur: surface, libelle: "de terrain par villa" }),
   },
   projet: {
     label: "Le projet",
@@ -104,6 +111,8 @@ const fr = {
     brochure: "Brochure",
     brochureAria: (type: TypeVilla) => `Brochure de la villa type ${type} (PDF)`,
     illustration: (type: TypeVilla) => `Villa type ${type} · Illustration non contractuelle`,
+    prixM2: (montant: string) => `Soit environ ${montant} le m² construit`,
+    disponibilite: "Disponibilité sur demande",
     tags: { A: "Accessible", B: "Terrasses", C: "Contemporaine" } as Record<TypeVilla, string>,
     descriptions: {
       A: "Pensée pour les résidents à mobilité réduite : ascenseur, salles de bains accessibles et circulations généreuses.",
@@ -266,6 +275,37 @@ const fr = {
       titreH1: ["Les questions", "qu'on nous pose."] as [string, string],
       intro: "Une réponse manque ? La conciergerie répond directement.",
     },
+    luxe: {
+      titre: "Villa de luxe \u00e0 Marrakech \u2014 CITYSTAR",
+      description:
+        "Quatorze villas de luxe \u00e0 Oulad Hassoune, Marrakech : surfaces, architectures, emplacement et conditions de visite.",
+      kicker: "Villa de luxe \u00e0 Marrakech",
+      titreH1: ["Acheter une villa", "\u00e0 Marrakech."] as [string, string],
+      intro:
+        "CITYSTAR r\u00e9unit quatorze villas contemporaines dans un domaine priv\u00e9 et enti\u00e8rement s\u00e9curis\u00e9 d'Oulad Hassoune, \u00e0 proximit\u00e9 imm\u00e9diate de la Palmeraie.",
+      sections: [
+        {
+          titre: "Un domaine ferm\u00e9, pas un lotissement",
+          texte:
+            "Quatorze villas seulement, chacune sur son terrain et avec sa piscine priv\u00e9e. Le domaine est clos et gard\u00e9 : la raret\u00e9 de l'offre est ce qui distingue le projet des programmes voisins.",
+        },
+        {
+          titre: "Trois architectures, trois usages",
+          texte:
+            "Le type A, de plain-pied, est con\u00e7u pour la mobilit\u00e9 r\u00e9duite : ascenseur et salles de bains accessibles. Le type B ouvre ses pi\u00e8ces sur de vastes terrasses. Le type C joue des volumes contemporains autour de la piscine.",
+        },
+        {
+          titre: "\u00c0 l'\u00e9cart, jamais loin",
+          texte:
+            "La place Jemaa el-Fna et l'a\u00e9roport Marrakech-Menara sont \u00e0 moins de trente-cinq minutes, la Palmeraie \u00e0 quelques pas. Une visite a\u00e9rienne \u00e0 360\u00b0 permet de situer le domaine avant de se d\u00e9placer.",
+        },
+        {
+          titre: "Visiter, puis acqu\u00e9rir",
+          texte:
+            "Les plans de chaque type et les brochures sont t\u00e9l\u00e9chargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie : chaque demande d'acc\u00e8s est \u00e9tudi\u00e9e une \u00e0 une.",
+        },
+      ],
+    },
     contact: {
       titre: "Contact — CITYSTAR Marrakech",
       description:
@@ -341,6 +381,7 @@ const fr = {
     conciergerie: "Conciergerie",
     ecrire: "Écrire",
     brochure: "Brochure",
+    theme: ["Villa de luxe \u00e0 Marrakech", "villa-de-luxe-marrakech"] as [string, string],
     nav: "Pied de page",
     legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Oulad Hassoune, Marrakech`,
     instagram: "CITYSTAR sur Instagram",
@@ -551,8 +592,15 @@ const en: Textes = {
     residence: (n) => `Private residence · ${n} villas`,
     texte: "Fourteen contemporary villas in a private, fully secured estate.",
     decouvrir: "Discover the villas",
+    acces: "Request private access",
     pause: "Pause the video",
     lecture: "Play the video",
+  },
+  reperes: {
+    aria: "Key facts about the estate",
+    trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & airport" }),
+    villas: (n) => ({ valeur: String(n), libelle: "private villas, not one more" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "of land per villa" }),
   },
   projet: {
     label: "The project",
@@ -614,6 +662,8 @@ const en: Textes = {
     brochure: "Brochure",
     brochureAria: (type) => `Brochure for villa type ${type} (PDF)`,
     illustration: (type) => `Villa type ${type} · Illustration, not contractual`,
+    prixM2: (montant) => `That is about ${montant} per built m²`,
+    disponibilite: "Availability on request",
     tags: { A: "Accessible", B: "Terraces", C: "Contemporary" },
     descriptions: {
       A: "Designed for residents with reduced mobility: lift, accessible bathrooms and generous circulation.",
@@ -773,6 +823,37 @@ const en: Textes = {
       titreH1: ["The questions", "we are asked."],
       intro: "An answer missing? The concierge replies directly.",
     },
+    luxe: {
+      titre: "Luxury villa in Marrakech \u2014 CITYSTAR",
+      description:
+        "Fourteen luxury villas in Oulad Hassoune, Marrakech: areas, architectures, location and how to visit.",
+      kicker: "Luxury villa in Marrakech",
+      titreH1: ["Buying a villa", "in Marrakech."],
+      intro:
+        "CITYSTAR gathers fourteen contemporary villas in a private, fully secured estate in Oulad Hassoune, right next to the Palmeraie.",
+      sections: [
+        {
+          titre: "A gated estate, not a subdivision",
+          texte:
+            "Fourteen villas only, each on its own plot and with its own pool. The estate is closed and guarded: scarcity is what sets the project apart from its neighbours.",
+        },
+        {
+          titre: "Three architectures, three ways to live",
+          texte:
+            "Type A, on one level, is designed for reduced mobility: lift and accessible bathrooms. Type B opens its rooms onto wide terraces. Type C plays contemporary volumes around the pool.",
+        },
+        {
+          titre: "Set apart, never far",
+          texte:
+            "Jemaa el-Fna square and Marrakech-Menara airport are both under thirty-five minutes away, the Palmeraie a few steps. A 360\u00b0 aerial tour places the estate before you travel.",
+        },
+        {
+          titre: "Visit, then buy",
+          texte:
+            "Floor plans for each type and the brochures are downloadable. On-site viewings and purchase terms go through the concierge: every access request is reviewed one by one.",
+        },
+      ],
+    },
     contact: {
       titre: "Contact — CITYSTAR Marrakech",
       description:
@@ -841,6 +922,7 @@ const en: Textes = {
     conciergerie: "Concierge",
     ecrire: "Write",
     brochure: "Brochure",
+    theme: ["Luxury villa in Marrakech", "luxury-villa-marrakech"],
     nav: "Footer",
     legal: (annee) => `© ${annee} CITYSTAR · Private residence · Oulad Hassoune, Marrakech`,
     instagram: "CITYSTAR on Instagram",

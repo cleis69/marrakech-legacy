@@ -1,6 +1,6 @@
 import { ArrowLeft, Download, Expand, Lock } from "lucide-react";
 
-import type { TypeVilla } from "@/config/citystar";
+import { type TypeVilla, formatPrix, prixVilla, villasChiffres } from "@/config/citystar";
 
 import { faitsVilla, villas } from "./data";
 import { chemin, Lien } from "./liens";
@@ -15,7 +15,7 @@ type Props = {
 
 /** Page d'une villa : navigation ronde A · B · C, caractéristiques, prix, plans et brochure. */
 export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
-  const { langue, t } = useDevise();
+  const { devise, langue, t, taux } = useDevise();
   const index = villas.findIndex((item) => item.type === type);
   const villa = villas[index] ?? villas[0];
   const faits = faitsVilla(villa.type, t, langue);
@@ -46,6 +46,7 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             <em>{t.villas.titre[2]}</em>
           </p>
           <span className="vf-cap">{t.villas.illustration(villa.type)}</span>
+          <span className="vf-badge">{t.villas.disponibilite}</span>
         </div>
       </div>
 
@@ -93,6 +94,18 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             </div>
           </dl>
           <VillaPrice type={villa.type} />
+          <p className="vf-m2">
+            {t.villas.prixM2(
+              formatPrix(
+                Math.round(
+                  prixVilla(villa.type, devise, taux).montant /
+                    villasChiffres[villa.type].surfaceConstruiteM2,
+                ),
+                devise,
+                langue,
+              ),
+            )}
+          </p>
           <div
             id="plans"
             className="vf-plans"

@@ -42,3 +42,8 @@
   .pp-hero { height: 100svh; }
   .pp-reveal, .pp-video, .pp-kicker, .pp-title h1 span, .pp-side { animation: none; }
 }
+
+.pp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2rem; }
+@media (max-width: 760px) {
+  .pp-actions { gap: .8rem 1.4rem; }
+}

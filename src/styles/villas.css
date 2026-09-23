@@ -51,6 +51,8 @@
 .vf-panel { display: grid; gap: 1.5rem; animation: vf-in .6s cubic-bezier(.22, 1, .36, 1); }
 .vf-panel h2 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
 .vf-panel h2:focus { outline: none; }
+.vf-m2 { margin-top: -.4rem; font-size: .78rem; color: var(--muted-foreground); }
+.vf-badge { position: absolute; top: 2.2rem; right: 2.2rem; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
 .vf-desc { max-width: 34rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vf-specs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--border); }
 .vf-specs div { display: grid; gap: .45rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
@@ -102,6 +104,7 @@
   .vf-panel { order: 4; }
   .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
   .vf-pic-title { display: none; }
+  .vf-badge { top: 1rem; right: 1.3rem; font-size: .5rem; }
   .vf-tabs nav a { width: 3rem; height: 3rem; font-size: 1.35rem; }
   .vf-specs dd { font-size: 1.3rem; }
   .vf-plans { gap: .6rem; }

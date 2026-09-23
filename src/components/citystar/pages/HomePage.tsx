@@ -1,5 +1,6 @@
 import { FinalCta } from "../FinalCta";
 import { HeroSection } from "../HeroSection";
+import { KeyFacts } from "../KeyFacts";
 import { LifestyleSection } from "../LifestyleSection";
 import { LocationSection } from "../LocationSection";
 import { Marquee } from "../Marquee";
@@ -11,7 +12,8 @@ export function HomePage() {
   const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirContact } = useSite();
   return (
     <>
-      <HeroSection />
+      <HeroSection onContact={ouvrirContact} />
+      <KeyFacts />
       <ProjectSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <LifestyleSection />
