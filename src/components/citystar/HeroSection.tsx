@@ -3,8 +3,8 @@ import { ArrowRight, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
-import heroVideo from "@/assets/citystar/hero-video.mp4";
-import heroPoster from "@/assets/citystar/hero-poster.webp";
+import heroVideo from "@/assets/citystar/hero-rendus.mp4";
+import heroPoster from "@/assets/citystar/hero-rendus-poster.webp";
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";
