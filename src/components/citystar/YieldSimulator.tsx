@@ -3,8 +3,7 @@ import { useRef, useState } from "react";
 
 import {
   type Devise,
-  type Langue,
-  bornesPrixEUR,
+  type TypeVilla,
   bornesSimulateur,
   convertirEUR,
   coutsDetention,
@@ -12,6 +11,7 @@ import {
   formatPrix,
   hypothesesRendement,
   prixVilla,
+  villasChiffres,
 } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
@@ -24,6 +24,9 @@ type Mode = "court" | "long" | "revente";
 type Cle = keyof typeof bornesSimulateur;
 
 const MODES: Mode[] = ["court", "long", "revente"];
+const TYPES = Object.keys(villasChiffres) as TypeVilla[];
+/* Villa de référence tant que le visiteur n’a pas choisi. */
+const TYPE_PAR_DEFAUT: TypeVilla = "B";
 
 /** Hypothèses nécessaires à chaque mode : si l'une n'est pas confirmée, aucun rendement n'est publié. */
 const REQUIS: Record<Mode, Cle[]> = {
@@ -52,7 +55,10 @@ const milieu = (cle: Cle) => {
 export function YieldSimulator({ onContact }: { onContact: (selection: Selection) => void }) {
   const { devise, langue, t, taux } = useDevise();
   const [mode, setMode] = useState<Mode>("court");
-  const [prix, setPrix] = useState<number | null>(null);
+  const [type, setType] = useState<TypeVilla | "">("");
+  /* Sans saisie, le budget suit le prix de la villa choisie ; une saisie garde sa devise. */
+  const [saisi, setSaisi] = useState<{ montant: number; devise: Devise } | null>(null);
+  const [estimation, setEstimation] = useState(false);
   const [valeurs, setValeurs] = useState<Record<Cle, number>>(() => {
     const base = {} as Record<Cle, number>;
     (Object.keys(bornesSimulateur) as Cle[]).forEach((cle) => {
@@ -60,11 +66,8 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     });
     return base;
   });
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const sortie = useRef<HTMLDivElement>(null);
 
-  const prixReference = prix ?? prixVilla("B", devise, taux).montant;
-  /* Le budget transmis au comparateur reste en euros, quelle que soit la devise affichée. */
-  const prixEUR = devise === "EUR" ? prixReference : prixReference / (taux[devise] ?? 1);
   const pret = REQUIS[mode].every((cle) => SOURCE[cle] !== null);
 
   /* Montants saisis en euros dans la config : on affiche et on calcule dans la devise choisie. */
@@ -73,14 +76,19 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   const pourcent = (valeur: number, decimales = 1) =>
     `${valeur.toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
 
-  const champs: Record<
-    Cle,
-    { label: string; format: (valeur: number) => string; devise?: boolean }
-  > = {
+  const enEUR = (montant: number, source: Devise) =>
+    source === "EUR" ? montant : montant / taux[source];
+  const prixReference = saisi
+    ? saisi.devise === devise
+      ? saisi.montant
+      : enDevise(enEUR(saisi.montant, saisi.devise))
+    : prixVilla(type || TYPE_PAR_DEFAUT, devise, taux).montant;
+  const budgetEUR = enEUR(prixReference, devise);
+
+  const champs: Record<Cle, { label: string; format: (valeur: number) => string }> = {
     prixMoyenNuitEUR: {
       label: t.rentabilite.champs.prixMoyenNuitEUR,
       format: (v) => money(enDevise(v)),
-      devise: true,
     },
     tauxOccupation: {
       label: t.rentabilite.champs.tauxOccupation,
@@ -93,7 +101,6 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     loyerMensuelEUR: {
       label: t.rentabilite.champs.loyerMensuelEUR,
       format: (v) => money(enDevise(v)),
-      devise: true,
     },
     horizonAnnees: {
       label: t.rentabilite.champs.horizonAnnees,
@@ -110,15 +117,8 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     coutsAnnuelsEUR: {
       label: t.rentabilite.champs.coutsAnnuelsEUR,
       format: (v) => `${money(enDevise(v))} ${t.rentabilite.parAn}`,
-      devise: true,
     },
     imposition: { label: t.rentabilite.champs.imposition, format: (v) => pourcent(v * 100, 0) },
-  };
-
-  const curseurs: Record<Mode, Cle[]> = {
-    court: ["prixMoyenNuitEUR", "tauxOccupation", "semainesUsagePersonnel"],
-    long: ["loyerMensuelEUR"],
-    revente: ["horizonAnnees", "appreciationAnnuelle"],
   };
 
   const resultat = (() => {
@@ -166,32 +166,22 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     lignes: [
       t.rentabilite.ligneMode(t.rentabilite.modes[mode]),
       t.rentabilite.prixEtudie(formatPrix(prixReference, devise, langue)),
+      ...(type ? [t.rentabilite.ligneType(t.rentabilite.typeVilla(type))] : []),
       resultat
         ? t.rentabilite.ligneResultat(resultat.titre, resultat.valeur)
         : t.rentabilite.ligneNeutre,
     ],
   });
 
-  const onTabKey = (event: React.KeyboardEvent) => {
-    const index = MODES.indexOf(mode);
-    const pas = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
-    if (!pas) return;
-    event.preventDefault();
-    const suivant = MODES[(index + pas + MODES.length) % MODES.length];
-    if (!suivant) return;
-    setMode(suivant);
-    tabRefs.current[(index + pas + MODES.length) % MODES.length]?.focus();
-  };
-
   const slider = (cle: Cle, actif: boolean) => {
-    // Les hypothèses restent en euros en interne ; seul l'affichage suit la devise choisie.
     const bornes = bornesSimulateur[cle];
-    const valeurAffichee = champs[cle].format(valeurs[cle]);
     return (
       <div key={cle} className="sm-slider">
         <label htmlFor={`sm-${cle}`}>
           <span>{champs[cle].label}</span>
-          <output htmlFor={`sm-${cle}`}>{actif ? valeurAffichee : t.rentabilite.attente}</output>
+          <output htmlFor={`sm-${cle}`}>
+            {actif ? champs[cle].format(valeurs[cle]) : t.rentabilite.attente}
+          </output>
         </label>
         <input
           id={`sm-${cle}`}
@@ -209,8 +199,23 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     );
   };
 
-  const prixMin = enDevise(bornesPrixEUR.min);
-  const prixMax = enDevise(bornesPrixEUR.max);
+  /* La saisie garde la devise dans laquelle elle a été faite ; le choix d'un type la remplace. */
+  const surBudget = (montant: number) => {
+    setType("");
+    setSaisi({ montant, devise });
+  };
+
+  const surType = (choisi: TypeVilla | "") => {
+    setType(choisi);
+    setSaisi(null);
+  };
+
+  const estimer = (event: React.FormEvent) => {
+    event.preventDefault();
+    setEstimation(true);
+    /* Le résultat s'ouvre plus bas : on y emmène le clavier et les lecteurs d'écran. */
+    requestAnimationFrame(() => sortie.current?.focus());
+  };
 
   return (
     <section id="rentabilite" className="sm section-pad" aria-labelledby="rentabilite-title">
@@ -221,85 +226,102 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
             {t.rentabilite.titre[0]}
             <em>{t.rentabilite.titre[1]}</em>
           </h2>
-
-          <div
-            className="sm-tabs"
-            role="tablist"
-            aria-label={t.rentabilite.modeAria}
-            onKeyDown={onTabKey}
-          >
-            {MODES.map((item, i) => (
-              <button
-                key={item}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`sm-tab-${item}`}
-                aria-selected={mode === item}
-                aria-controls="sm-panel"
-                tabIndex={mode === item ? 0 : -1}
-                onClick={() => setMode(item)}
-              >
-                {t.rentabilite.modes[item]}
-              </button>
-            ))}
-          </div>
-
-          <div className="sm-sliders">
-            <div className="sm-slider">
-              <label htmlFor="sm-prix">
-                <span>{t.rentabilite.prix}</span>
-                <output htmlFor="sm-prix">{formatPrix(prixReference, devise, langue)}</output>
-              </label>
-              <input
-                id="sm-prix"
-                type="range"
-                min={prixMin}
-                max={prixMax}
-                step={enDevise(bornesPrixEUR.pas)}
-                value={prixReference}
-                onChange={(event) => setPrix(Number(event.target.value))}
-              />
-            </div>
-            {curseurs[mode].map((cle) => slider(cle, SOURCE[cle] !== null))}
-          </div>
-
-          <details className="sm-advanced">
-            <summary>{t.rentabilite.avancees}</summary>
-            <div>
-              {(["charges", "coutsAnnuelsEUR", "imposition"] as Cle[]).map((cle) =>
-                slider(cle, SOURCE[cle] !== null),
-              )}
-            </div>
-          </details>
+          <p className="sm-lede">{t.rentabilite.intro[0]}</p>
+          <p className="sm-sub">{t.rentabilite.intro[1]}</p>
         </div>
 
-        <div id="sm-panel" role="tabpanel" aria-labelledby={`sm-tab-${mode}`} className="sm-right">
-          {resultat ? (
-            <>
-              <div className="sm-gross">
-                <span className="sm-label">{resultat.titre}</span>
-                <strong>{resultat.valeur}</strong>
+        <form className="sm-card" onSubmit={estimer}>
+          <div className="sm-field">
+            <div className="sm-field-head">
+              <label htmlFor="sm-budget">{t.rentabilite.budget}</label>
+              <CurrencyPills />
+            </div>
+            {/* Champ texte plutôt que nombre : le montant reste lisible, séparateurs compris. */}
+            <input
+              id="sm-budget"
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              value={formatNombre(prixReference, langue)}
+              onChange={(event) => surBudget(Number(event.target.value.replace(/\D/g, "")))}
+            />
+          </div>
+
+          <div className="sm-field">
+            <label htmlFor="sm-type">
+              {t.rentabilite.typeLabel} <small>({t.rentabilite.optionnel})</small>
+            </label>
+            <select
+              id="sm-type"
+              value={type}
+              onChange={(event) => surType(event.target.value as TypeVilla | "")}
+            >
+              <option value="">{t.rentabilite.typeLibre}</option>
+              {TYPES.map((item) => (
+                <option key={item} value={item}>
+                  {t.rentabilite.typeVilla(item)}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="sm-field">
+            <label htmlFor="sm-mode">{t.rentabilite.projet}</label>
+            <select
+              id="sm-mode"
+              value={mode}
+              onChange={(event) => setMode(event.target.value as Mode)}
+            >
+              {MODES.map((item) => (
+                <option key={item} value={item}>
+                  {t.rentabilite.modes[item]}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <button type="submit" className="sm-submit">
+            {t.rentabilite.estimer}
+          </button>
+          <p className="sm-fine">{t.rentabilite.mention}</p>
+        </form>
+      </div>
+
+      {estimation && (
+        <div className="sm-out" ref={sortie} tabIndex={-1} aria-live="polite">
+          <h3>{t.rentabilite.resultatTitre}</h3>
+          <dl className="sm-figures">
+            <div>
+              <dt>{t.rentabilite.budgetSaisi}</dt>
+              <dd>{formatPrix(prixReference, devise, langue)}</dd>
+            </div>
+            <div>
+              <dt>{t.rentabilite.usage}</dt>
+              <dd>{t.rentabilite.modes[mode]}</dd>
+            </div>
+            {resultat && (
+              <div className="is-key">
+                <dt>{resultat.titre}</dt>
+                <dd>{resultat.valeur}</dd>
               </div>
-              <dl className="sm-detail">
-                {resultat.detail.map(([label, valeur]) => (
-                  <div key={label}>
-                    <dt>{label}</dt>
-                    <dd>{valeur}</dd>
-                  </div>
-                ))}
-              </dl>
-            </>
+            )}
+          </dl>
+
+          {resultat ? (
+            <dl className="sm-detail">
+              {resultat.detail.map(([label, valeur]) => (
+                <div key={label}>
+                  <dt>{label}</dt>
+                  <dd>{valeur}</dd>
+                </div>
+              ))}
+            </dl>
           ) : (
             <div className="sm-neutral">
               <b>{t.rentabilite.neutreTitre}</b>
               <p>{t.rentabilite.neutreTexte}</p>
             </div>
           )}
-
-          <p className="sm-fine">{t.rentabilite.mention}</p>
 
           {mode === "court" && (
             <p className="sm-warn">
@@ -311,6 +333,15 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
             </p>
           )}
 
+          <details className="sm-advanced">
+            <summary>{t.rentabilite.avancees}</summary>
+            <div>
+              {[...REQUIS[mode], "charges", "coutsAnnuelsEUR", "imposition"].map((cle) =>
+                slider(cle as Cle, SOURCE[cle as Cle] !== null),
+              )}
+            </div>
+          </details>
+
           <div className="sm-actions">
             <PillButton
               label={t.rentabilite.analyse}
@@ -319,7 +350,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
             />
             <Lien
               className="pill pill-secondary"
-              vers={`${chemin(langue, "villas")}?${PARAM_BUDGET}=${Math.round(prixEUR)}`}
+              vers={`${chemin(langue, "villas")}?${PARAM_BUDGET}=${Math.round(budgetEUR)}`}
             >
               <span className="pill-label">{t.rentabilite.compatibles}</span>
               <i className="pill-dot" aria-hidden="true">
@@ -327,10 +358,8 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
               </i>
             </Lien>
           </div>
-
-          <CurrencyPills />
         </div>
-      </div>
+      )}
     </section>
   );
 }
