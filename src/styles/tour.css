@@ -17,14 +17,18 @@
 .tv-poster:focus-visible { outline-offset: -4px; }
 .tv-aside { grid-column: 1; grid-row: 2; align-self: start; display: grid; gap: 1.6rem; justify-items: start; }
 .tv-steps { width: 100%; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
-.tv-steps li { display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding: .9rem 0; border-bottom: 1px solid var(--border); font-size: .95rem; }
-.tv-steps small { font-size: .62rem; letter-spacing: .1em; color: var(--bronze); }
+.tv-steps li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1.4rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); font: 400 1.35rem/1.2 "Italiana", serif; transition: color .35s; }
+.tv-steps li:hover { color: var(--bronze); }
+.tv-steps small { order: 2; font: 400 2.2rem/1 "Italiana", serif; letter-spacing: 0; color: color-mix(in oklab, var(--ink) 22%, var(--cream)); transition: color .35s; }
+.tv-steps li:hover small { color: var(--bronze); }
 
 @media (max-width: 900px) {
   .tv-grid { grid-template-columns: 1fr; gap: 1.6rem; }
   .tv-head, .tv-viewer, .tv-aside { grid-column: 1; grid-row: auto; }
   .tv-head h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
   .tv-viewer { height: 52svh; min-height: 320px; margin: 0 -1.3rem; }
+  .tv-steps li { padding: .8rem 0; font-size: 1.1rem; }
+  .tv-steps small { font-size: 1.6rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

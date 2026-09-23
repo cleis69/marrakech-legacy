@@ -1,0 +1,12 @@
+/* ---------- Bandeau signature : le nom traversé par la photo ---------- */
+.wm { position: relative; overflow: hidden; padding: 4rem 5vw 3rem; background: var(--ink); text-align: center; }
+.wm-word { margin: 0 auto; font: 400 clamp(4rem, 19vw, 20rem)/0.88 "Italiana", serif; letter-spacing: 0.02em; color: var(--cream); }
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .wm-word { background-repeat: no-repeat; background-size: cover; -webkit-background-clip: text; background-clip: text; color: transparent; }
+}
+.wm-caption { margin-top: 1.4rem; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 60%, transparent); }
+
+@media (max-width: 760px) {
+  .wm { padding: 2.6rem 1.3rem 2rem; }
+  .wm-caption { margin-top: 1rem; font-size: 0.52rem; letter-spacing: 0.22em; }
+}

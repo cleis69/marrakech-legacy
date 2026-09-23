@@ -81,7 +81,9 @@ export function ProjectSection() {
                 <em>{t.projet.titre[2]}</em>
               </h2>
             </Reveal>
-            <p>{t.projet.texte}</p>
+            <p className="pj-statement">
+              <strong>{t.projet.texte[0]}</strong> {t.projet.texte[1]}
+            </p>
             <dl className="pj-rows">
               <div>
                 <dt>{t.projet.terrains}</dt>

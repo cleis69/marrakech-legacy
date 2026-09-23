@@ -20,6 +20,7 @@ import { TourModal } from "./citystar/TourModal";
 import { TourSection } from "./citystar/TourSection";
 import { VillaComparator } from "./citystar/VillaComparator";
 import { VillaSelector } from "./citystar/VillaSelector";
+import { WordmarkBand } from "./citystar/WordmarkBand";
 import { YieldSimulator } from "./citystar/YieldSimulator";
 import { VillasSection } from "./citystar/VillasSection";
 
@@ -99,6 +100,7 @@ export default function CitystarExperience({ langue = "fr" }: { langue?: Langue 
           <TourSection onOpenTour={openTour} />
           <LocationSection onOpenPlan={setPlanOpen} />
           <YieldSimulator onContact={openContactWith} />
+          <WordmarkBand />
           <FinalCta onContact={openContact} />
           <SiteFooter />
           <FloatingActions />

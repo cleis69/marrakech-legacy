@@ -40,8 +40,10 @@ const fr = {
   projet: {
     label: "Le projet",
     titre: ["L’espace rare", "d’une vie ", "privée."] as [string, string, string],
-    texte:
-      "Un domaine privé et entièrement sécurisé, proche de la Palmeraie. Trois architectures pour les usages et les préférences de chaque résident.",
+    texte: [
+      "Un domaine privé et entièrement sécurisé, proche de la Palmeraie.",
+      "Trois architectures pour les usages et les préférences de chaque résident.",
+    ] as [string, string],
     villas: (n: number) => `${n} villas privées`,
     pasUne: "Pas une de plus.",
     terrains: "Terrains jusqu’à",
@@ -199,6 +201,10 @@ const fr = {
     proximite: "À proximité",
     minutes: (n: number) => `${n} min`,
     moinsDe: (n: number) => `< ${n} min`,
+  },
+  marque: {
+    legende: "Oulad Hassoune · Marrakech",
+    aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
   cercle: {
     kicker: "Sur demande uniquement",
@@ -435,8 +441,10 @@ const en: Textes = {
   projet: {
     label: "The project",
     titre: ["The rare space", "of a private ", "life."],
-    texte:
-      "A private, fully secured estate close to the Palmeraie. Three architectures for the way each resident lives.",
+    texte: [
+      "A private, fully secured estate close to the Palmeraie.",
+      "Three architectures for the way each resident lives.",
+    ],
     villas: (n) => `${n} private villas`,
     pasUne: "Not one more.",
     terrains: "Plots up to",
@@ -586,6 +594,10 @@ const en: Textes = {
     proximite: "Nearby",
     minutes: (n) => `${n} min`,
     moinsDe: (n) => `< ${n} min`,
+  },
+  marque: {
+    legende: "Oulad Hassoune · Marrakech",
+    aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },
   cercle: {
     kicker: "By request only",
