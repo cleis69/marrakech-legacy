@@ -16,7 +16,7 @@ import { contact } from "@/config/citystar";
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, Lien } from "./liens";
+import { chemin, Lien, traduireSous } from "./liens";
 import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
@@ -36,13 +36,16 @@ function LangSwitch({ className = "" }: { className?: string }) {
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
   const sous =
     chemin === "/en" ? "" : chemin.startsWith("/en/") ? chemin.slice(4) : chemin.replace(/^\//, "");
+  /* Les adresses traduites (villa-de-luxe-marrakech ↔ luxury-villa-marrakech) suivent la bascule. */
+  const anglais = chemin.startsWith("/en") ? sous : traduireSous(sous);
+  const francais = chemin.startsWith("/en") ? traduireSous(sous) : sous;
   return (
     <div className={`lang-switch ${className}`.trim()} role="group" aria-label={t.header.langue}>
-      <Lien vers={sous ? `/${sous}` : "/"} hrefLang="fr">
+      <Lien vers={francais ? `/${francais}` : "/"} hrefLang="fr">
         FR
       </Lien>
       <span aria-hidden="true">|</span>
-      <Lien vers={sous ? `/en/${sous}` : "/en"} hrefLang="en">
+      <Lien vers={anglais ? `/en/${anglais}` : "/en"} hrefLang="en">
         EN
       </Lien>
     </div>

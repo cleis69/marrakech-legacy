@@ -14,11 +14,13 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as InvestirRouteImport } from './routes/investir'
+import { Route as VillaDeLuxeMarrakechRouteImport } from './routes/villa-de-luxe-marrakech'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnContactRouteImport } from './routes/en.contact'
 import { Route as EnFaqRouteImport } from './routes/en.faq'
 import { Route as EnGalerieRouteImport } from './routes/en.galerie'
 import { Route as EnInvestirRouteImport } from './routes/en.investir'
+import { Route as EnLuxuryVillaMarrakechRouteImport } from './routes/en.luxury-villa-marrakech'
 import { Route as VillasIndexRouteImport } from './routes/villas.index'
 import { Route as VillasTypeRouteImport } from './routes/villas.$type'
 import { Route as EnVillasIndexRouteImport } from './routes/en.villas.index'
@@ -49,6 +51,11 @@ const InvestirRoute = InvestirRouteImport.update({
   path: '/investir',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VillaDeLuxeMarrakechRoute = VillaDeLuxeMarrakechRouteImport.update({
+  id: '/villa-de-luxe-marrakech',
+  path: '/villa-de-luxe-marrakech',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EnIndexRoute = EnIndexRouteImport.update({
   id: '/en/',
   path: '/en/',
@@ -72,6 +79,11 @@ const EnGalerieRoute = EnGalerieRouteImport.update({
 const EnInvestirRoute = EnInvestirRouteImport.update({
   id: '/en/investir',
   path: '/en/investir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnLuxuryVillaMarrakechRoute = EnLuxuryVillaMarrakechRouteImport.update({
+  id: '/en/luxury-villa-marrakech',
+  path: '/en/luxury-villa-marrakech',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VillasIndexRoute = VillasIndexRouteImport.update({
@@ -101,10 +113,12 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
   '/en/galerie': typeof EnGalerieRoute
   '/en/investir': typeof EnInvestirRoute
+  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en/': typeof EnIndexRoute
   '/villas/': typeof VillasIndexRoute
@@ -117,10 +131,12 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
   '/en/galerie': typeof EnGalerieRoute
   '/en/investir': typeof EnInvestirRoute
+  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en': typeof EnIndexRoute
   '/villas': typeof VillasIndexRoute
@@ -134,10 +150,12 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
   '/en/galerie': typeof EnGalerieRoute
   '/en/investir': typeof EnInvestirRoute
+  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en/': typeof EnIndexRoute
   '/villas/': typeof VillasIndexRoute
@@ -152,10 +170,12 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
     | '/en/galerie'
     | '/en/investir'
+    | '/en/luxury-villa-marrakech'
     | '/villas/$type'
     | '/en/'
     | '/villas/'
@@ -168,10 +188,12 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
     | '/en/galerie'
     | '/en/investir'
+    | '/en/luxury-villa-marrakech'
     | '/villas/$type'
     | '/en'
     | '/villas'
@@ -184,10 +206,12 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
     | '/en/galerie'
     | '/en/investir'
+    | '/en/luxury-villa-marrakech'
     | '/villas/$type'
     | '/en/'
     | '/villas/'
@@ -201,10 +225,12 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalerieRoute: typeof GalerieRoute
   InvestirRoute: typeof InvestirRoute
+  VillaDeLuxeMarrakechRoute: typeof VillaDeLuxeMarrakechRoute
   EnContactRoute: typeof EnContactRoute
   EnFaqRoute: typeof EnFaqRoute
   EnGalerieRoute: typeof EnGalerieRoute
   EnInvestirRoute: typeof EnInvestirRoute
+  EnLuxuryVillaMarrakechRoute: typeof EnLuxuryVillaMarrakechRoute
   VillasTypeRoute: typeof VillasTypeRoute
   EnIndexRoute: typeof EnIndexRoute
   VillasIndexRoute: typeof VillasIndexRoute
@@ -249,6 +275,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvestirRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/villa-de-luxe-marrakech': {
+      id: '/villa-de-luxe-marrakech'
+      path: '/villa-de-luxe-marrakech'
+      fullPath: '/villa-de-luxe-marrakech'
+      preLoaderRoute: typeof VillaDeLuxeMarrakechRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/en/': {
       id: '/en/'
       path: '/en'
@@ -282,6 +315,13 @@ declare module '@tanstack/react-router' {
       path: '/en/investir'
       fullPath: '/en/investir'
       preLoaderRoute: typeof EnInvestirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/luxury-villa-marrakech': {
+      id: '/en/luxury-villa-marrakech'
+      path: '/en/luxury-villa-marrakech'
+      fullPath: '/en/luxury-villa-marrakech'
+      preLoaderRoute: typeof EnLuxuryVillaMarrakechRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/villas/': {
@@ -321,10 +361,12 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalerieRoute: GalerieRoute,
   InvestirRoute: InvestirRoute,
+  VillaDeLuxeMarrakechRoute: VillaDeLuxeMarrakechRoute,
   EnContactRoute: EnContactRoute,
   EnFaqRoute: EnFaqRoute,
   EnGalerieRoute: EnGalerieRoute,
   EnInvestirRoute: EnInvestirRoute,
+  EnLuxuryVillaMarrakechRoute: EnLuxuryVillaMarrakechRoute,
   VillasTypeRoute: VillasTypeRoute,
   EnIndexRoute: EnIndexRoute,
   VillasIndexRoute: VillasIndexRoute,

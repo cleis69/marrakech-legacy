@@ -109,6 +109,7 @@ export function SiteFooter() {
               {label}
             </Lien>
           ))}
+          <Lien vers={chemin(langue, t.pied.theme[1])}>{t.pied.theme[0]}</Lien>
           <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">
             {t.pied.brochure} <Download aria-hidden="true" />
           </a>

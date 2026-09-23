@@ -9,6 +9,17 @@ export function chemin(langue: Langue, sous = "") {
   return `${base}/${sous}`;
 }
 
+/** Les pages dont l'adresse change de langue, pour que la bascule FR/EN ne tombe pas à côté. */
+const slugs: Record<string, string> = {
+  "villa-de-luxe-marrakech": "luxury-villa-marrakech",
+  "luxury-villa-marrakech": "villa-de-luxe-marrakech",
+};
+
+/** Traduit la fin d'une adresse : « villa-de-luxe-marrakech » ↔ « luxury-villa-marrakech ». */
+export function traduireSous(sous: string) {
+  return slugs[sous] ?? sous;
+}
+
 type Props = {
   vers: string;
   className?: string;
