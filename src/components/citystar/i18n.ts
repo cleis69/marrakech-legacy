@@ -6,12 +6,12 @@ import type { Langue, TypeVilla } from "@/config/citystar";
  */
 const fr = {
   nav: [
-    ["Le projet", "project"],
-    ["Architecture", "architecture"],
+    ["Accueil", ""],
     ["Les villas", "villas"],
-    ["Plans", "plans"],
-    ["Visite 360°", "visite"],
-    ["Localisation", "localisation"],
+    ["Galerie", "galerie"],
+    ["Investir", "investir"],
+    ["Questions", "faq"],
+    ["Contact", "contact"],
   ] as [string, string][],
   header: {
     acces: "Accès privé",
@@ -23,8 +23,8 @@ const fr = {
     fermer: "Fermer le menu",
     menu: "Menu",
     villas: "Villas",
-    plans: "Plans",
-    tour: "360°",
+    galerie: "Galerie",
+    questions: "Questions",
     langue: "Langue du site",
   },
   hero: {
@@ -202,7 +202,123 @@ const fr = {
     minutes: (n: number) => `${n} min`,
     moinsDe: (n: number) => `< ${n} min`,
   },
+  pages: {
+    accueil: {
+      titre: "CITYSTAR Marrakech — Villas de luxe privées",
+      description: (n: number) =>
+        `CITYSTAR, résidence privée de ${n} villas contemporaines à Oulad Hassoune, Marrakech, proche de la Palmeraie.`,
+    },
+    villas: {
+      titre: "Les villas — CITYSTAR Marrakech",
+      description:
+        "Trois types de villas, surfaces, suites, plans et prix : trouvez celle qui vous ressemble.",
+      kicker: "Les villas",
+      intro:
+        "Trois architectures, quatorze villas. Comparez-les, ou laissez-vous guider en cinq questions.",
+    },
+    villa: {
+      titre: (type: string) => `Villa type ${type} — CITYSTAR Marrakech`,
+      description: (type: string, surface: string, suites: string) =>
+        `Villa type ${type} : ${surface} construits, ${suites}, plans et brochure.`,
+    },
+    galerie: {
+      titre: "Galerie et visite — CITYSTAR Marrakech",
+      description:
+        "Les rendus du domaine, le détail de l'architecture et la visite aérienne à 360°.",
+      kicker: "Galerie",
+      titreH1: ["Le domaine,", "en images."] as [string, string],
+      intro: "Rendus d'architecte du domaine et des intérieurs. Illustrations non contractuelles.",
+      legende: "Rendu CITYSTAR",
+    },
+    investir: {
+      titre: "Investir à Marrakech — CITYSTAR",
+      description:
+        "Ce qu'il faut savoir avant d'investir dans une villa à Marrakech, et un simulateur de rendement brut.",
+      kicker: "Investir",
+      titreH1: ["Investir", "à Marrakech."] as [string, string],
+      intro: [
+        "Quatorze villas, trois architectures, un domaine privé à quelques minutes de la Palmeraie : la rareté de l'offre est le premier argument d'un placement.",
+        "Les hypothèses de rendement dépendent du mode d'exploitation choisi et des conditions réelles du marché. Nous ne publions aucun chiffre tant que le promoteur ne les a pas confirmés.",
+      ] as [string, string],
+      points: [
+        {
+          titre: "Location courte durée",
+          texte:
+            "Marrakech attire une clientèle internationale toute l'année. La location courte durée y est soumise à des obligations déclaratives locales.",
+        },
+        {
+          titre: "Location longue durée",
+          texte:
+            "Un bail classique offre un revenu plus régulier, avec moins de gestion et une rotation faible.",
+        },
+        {
+          titre: "Revente à horizon",
+          texte:
+            "La valeur dépend du marché et de l'état du bien ; aucune plus-value ne peut être garantie.",
+        },
+      ],
+    },
+    faq: {
+      titre: "Questions fréquentes — CITYSTAR Marrakech",
+      description:
+        "Emplacement, surfaces, accessibilité, prix, plans, visites : les réponses aux questions les plus posées.",
+      kicker: "Questions",
+      titreH1: ["Les questions", "qu'on nous pose."] as [string, string],
+      intro: "Une réponse manque ? La conciergerie répond directement.",
+    },
+    contact: {
+      titre: "Contact — CITYSTAR Marrakech",
+      description:
+        "Demander un accès privé, la brochure ou une visite du domaine CITYSTAR à Marrakech.",
+      kicker: "Contact",
+      titreH1: ["Parlons de", "votre projet."] as [string, string],
+      intro: "Chaque demande est étudiée une à une. Téléphone, WhatsApp ou formulaire, au choix.",
+      formulaire: "Écrire à la conciergerie",
+    },
+  },
+  faq: (v: {
+    villas: number;
+    terrain: string;
+    minutes: number;
+    a: string;
+    b: string;
+    c: string;
+  }) => [
+    {
+      q: "Combien de villas compte CITYSTAR ?",
+      r: `${v.villas} villas, réparties en trois types. Chacune dispose de son terrain, jusqu'à ${v.terrain}, et de sa piscine privée.`,
+    },
+    {
+      q: "Où se situe le domaine ?",
+      r: `À Oulad Hassoune, préfecture de Marrakech, à proximité immédiate de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
+    },
+    {
+      q: "Quelles sont les surfaces ?",
+      r: `Type A : ${v.a}. Type B : ${v.b}. Type C : ${v.c}. Les surfaces s'entendent construites ; les terrains sont indiqués sur chaque fiche.`,
+    },
+    {
+      q: "Une villa est-elle adaptée à la mobilité réduite ?",
+      r: "Oui, la villa type A : ascenseur, salles de bains accessibles et circulations généreuses.",
+    },
+    {
+      q: "Les prix affichés sont-ils définitifs ?",
+      r: "Ils sont indicatifs et à confirmer contractuellement. Les montants en dirhams et en couronnes sont des contre-valeurs, calculées au taux du jour et signalées comme telles.",
+    },
+    {
+      q: "Peut-on visiter ?",
+      r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande par la conciergerie, après étude de la demande d'accès.",
+    },
+    {
+      q: "Les plans sont-ils disponibles ?",
+      r: "Oui : rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa.",
+    },
+    {
+      q: "Comment se déroule l'acquisition ?",
+      r: "Le promoteur communique les conditions — acompte, échéancier, frais d'acquisition — lors de l'étude de votre demande. Nous ne simulons pas ces montants tant qu'ils ne sont pas confirmés.",
+    },
+  ],
   marque: {
+    defilant: "CITYSTAR · QUATORZE VILLAS PRIVÉES · OULAD HASSOUNE · MARRAKECH · ",
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
@@ -407,12 +523,12 @@ export type Textes = typeof fr;
 
 const en: Textes = {
   nav: [
-    ["The project", "project"],
-    ["Architecture", "architecture"],
+    ["Home", ""],
     ["The villas", "villas"],
-    ["Floor plans", "plans"],
-    ["360° tour", "visite"],
-    ["Location", "localisation"],
+    ["Gallery", "galerie"],
+    ["Investing", "investir"],
+    ["Questions", "faq"],
+    ["Contact", "contact"],
   ],
   header: {
     acces: "Private access",
@@ -424,8 +540,8 @@ const en: Textes = {
     fermer: "Close menu",
     menu: "Menu",
     villas: "Villas",
-    plans: "Plans",
-    tour: "360°",
+    galerie: "Gallery",
+    questions: "Questions",
     langue: "Site language",
   },
   hero: {
@@ -595,7 +711,114 @@ const en: Textes = {
     minutes: (n) => `${n} min`,
     moinsDe: (n) => `< ${n} min`,
   },
+  pages: {
+    accueil: {
+      titre: "CITYSTAR Marrakech — Private luxury villas",
+      description: (n) =>
+        `CITYSTAR, a private residence of ${n} contemporary villas in Oulad Hassoune, Marrakech, close to the Palmeraie.`,
+    },
+    villas: {
+      titre: "The villas — CITYSTAR Marrakech",
+      description:
+        "Three villa types, built areas, suites, floor plans and prices: find the one that suits you.",
+      kicker: "The villas",
+      intro: "Three architectures, fourteen villas. Compare them, or let five questions guide you.",
+    },
+    villa: {
+      titre: (type) => `Villa type ${type} — CITYSTAR Marrakech`,
+      description: (type, surface, suites) =>
+        `Villa type ${type}: ${surface} built, ${suites}, floor plans and brochure.`,
+    },
+    galerie: {
+      titre: "Gallery and tour — CITYSTAR Marrakech",
+      description:
+        "Renders of the estate, the detail of the architecture and the 360° aerial tour.",
+      kicker: "Gallery",
+      titreH1: ["The estate,", "in pictures."],
+      intro: "Architect's renders of the estate and its interiors. Illustrations, not contractual.",
+      legende: "CITYSTAR render",
+    },
+    investir: {
+      titre: "Investing in Marrakech — CITYSTAR",
+      description:
+        "What to know before investing in a villa in Marrakech, plus a gross yield simulator.",
+      kicker: "Investing",
+      titreH1: ["Investing", "in Marrakech."],
+      intro: [
+        "Fourteen villas, three architectures, a private estate minutes from the Palmeraie: scarcity is the first argument of the investment.",
+        "Yield assumptions depend on how the villa is run and on real market conditions. We publish no figure until the developer has confirmed them.",
+      ],
+      points: [
+        {
+          titre: "Short-term letting",
+          texte:
+            "Marrakech draws international visitors all year round. Short-term letting there is subject to local registration requirements.",
+        },
+        {
+          titre: "Long-term letting",
+          texte: "A standard lease brings steadier income, with less management and low turnover.",
+        },
+        {
+          titre: "Resale at a horizon",
+          texte:
+            "Value depends on the market and on the condition of the property; no capital gain can be guaranteed.",
+        },
+      ],
+    },
+    faq: {
+      titre: "Frequently asked questions — CITYSTAR Marrakech",
+      description:
+        "Location, areas, accessibility, prices, plans, viewings: answers to the most common questions.",
+      kicker: "Questions",
+      titreH1: ["The questions", "we are asked."],
+      intro: "An answer missing? The concierge replies directly.",
+    },
+    contact: {
+      titre: "Contact — CITYSTAR Marrakech",
+      description:
+        "Request private access, the brochure or a viewing of the CITYSTAR estate in Marrakech.",
+      kicker: "Contact",
+      titreH1: ["Let's talk about", "your project."],
+      intro: "Every request is reviewed one by one. Phone, WhatsApp or the form — your choice.",
+      formulaire: "Write to the concierge",
+    },
+  },
+  faq: (v) => [
+    {
+      q: "How many villas does CITYSTAR have?",
+      r: `${v.villas} villas in three types. Each has its own plot, up to ${v.terrain}, and its own pool.`,
+    },
+    {
+      q: "Where is the estate?",
+      r: `In Oulad Hassoune, Marrakech prefecture, right next to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
+    },
+    {
+      q: "What are the areas?",
+      r: `Type A: ${v.a}. Type B: ${v.b}. Type C: ${v.c}. Areas are built areas; plots are given on each villa page.`,
+    },
+    {
+      q: "Is one villa suited to reduced mobility?",
+      r: "Yes, villa type A: lift, accessible bathrooms and generous circulation.",
+    },
+    {
+      q: "Are the prices shown final?",
+      r: "They are indicative and to be confirmed contractually. Amounts in dirhams and kroner are conversions at the day's rate, and are marked as such.",
+    },
+    {
+      q: "Can we visit?",
+      r: "The 360° aerial tour is open online. An on-site viewing is arranged by the concierge once your access request has been reviewed.",
+    },
+    {
+      q: "Are the floor plans available?",
+      r: "Yes: ground floor and upper floor for each type, enlargeable on the site, plus a PDF brochure per villa.",
+    },
+    {
+      q: "How does buying work?",
+      r: "The developer sets out the terms — deposit, payment schedule, acquisition costs — when your request is reviewed. We do not simulate those amounts until they are confirmed.",
+    },
+  ],
   marque: {
+    defilant: "CITYSTAR · FOURTEEN PRIVATE VILLAS · OULAD HASSOUNE · MARRAKECH · ",
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },

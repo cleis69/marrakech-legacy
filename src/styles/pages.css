@@ -1,0 +1,53 @@
+/* ---------- Pages intérieures ---------- */
+.ph { padding-bottom: 0; }
+.ph-kicker { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bronze); }
+.ph h1 { margin-top: 1.4rem; font: 400 clamp(2.8rem, 6vw, 6rem)/0.97 "Italiana", serif; }
+.ph-intro { max-width: 34rem; margin-top: 1.6rem; font-size: 1.05rem; line-height: 1.75; color: var(--muted-foreground); }
+
+/* Galerie */
+.gl { background: var(--paper); }
+.gl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.gl-grid li { overflow: hidden; background: var(--ink); }
+.gl-grid li.is-large { grid-column: span 2; grid-row: span 2; }
+.gl-grid img { width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+.gl-grid li.is-large img { aspect-ratio: 16 / 12.5; }
+.gl-grid li:hover img { transform: scale(1.04); }
+.gl-note { margin-top: 1.2rem; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
+
+/* Pages de texte */
+.prose { background: var(--cream); }
+.prose-lede { max-width: 46rem; font: 400 clamp(1.4rem, 2.4vw, 2rem)/1.5 "Italiana", serif; }
+.prose > p { max-width: 42rem; margin-top: 1.2rem; font-size: 1rem; line-height: 1.85; color: var(--muted-foreground); }
+.prose-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem 3vw; margin: 3rem 0 0; padding: 2.4rem 0 0; border-top: 1px solid var(--border); list-style: none; }
+.prose-points h2 { font: 400 1.6rem/1.2 "Italiana", serif; }
+.prose-points p { margin-top: 0.7rem; font-size: 0.92rem; line-height: 1.7; color: var(--muted-foreground); }
+
+/* Questions */
+.faq { background: var(--paper); }
+.faq-list { max-width: 54rem; margin: 0; border-top: 1px solid var(--border); }
+.faq-list > div { padding: 1.8rem 0; border-bottom: 1px solid var(--border); }
+.faq-list dt { font: 400 clamp(1.3rem, 2.2vw, 1.8rem)/1.25 "Italiana", serif; }
+.faq-list dd { max-width: 44rem; margin: 0.8rem 0 0; font-size: 0.98rem; line-height: 1.8; color: var(--muted-foreground); }
+
+/* Contact */
+.ct { background: var(--cream); }
+.ct-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.ct-tile { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.2rem; padding: 1.6rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 18%, transparent); color: inherit; text-decoration: none; transition: background 0.4s, box-shadow 0.4s; }
+.ct-tile i { display: grid; place-items: center; width: 3rem; height: 3rem; border-radius: 50%; background: var(--bronze); color: var(--cream); }
+.ct-tile i svg { width: 1.2rem; height: 1.2rem; }
+.ct-tile small { display: block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); }
+.ct-tile b { display: block; margin-top: 0.35rem; font: 400 1.25rem/1.15 "Italiana", serif; overflow-wrap: break-word; }
+.ct-tile:hover { background: var(--ink); color: var(--cream); box-shadow: none; }
+.ct-actions { margin-top: 2.4rem; }
+
+@media (max-width: 900px) {
+  .gl-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .gl-grid li.is-large { grid-column: span 2; grid-row: auto; }
+  .prose-points { grid-template-columns: 1fr; gap: 1.6rem; }
+  .ct-tiles { grid-template-columns: 1fr; }
+  .ph h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-grid img, .ct-tile { transition: none; }
+}

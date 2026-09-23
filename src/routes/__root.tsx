@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   // La version anglaise vit sous /en : la langue du document suit la route, dès le rendu serveur.
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
-  const langue = chemin.replace(/\/$/, "").endsWith("/en") || chemin === "/en" ? "en" : "fr";
+  const langue = chemin === "/en" || chemin.startsWith("/en/") ? "en" : "fr";
 
   return (
     <html lang={langue}>

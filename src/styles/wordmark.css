@@ -10,3 +10,19 @@
   .wm { padding: 2.6rem 1.3rem 2rem; }
   .wm-caption { margin-top: 1rem; font-size: 0.52rem; letter-spacing: 0.22em; }
 }
+
+/* ---------- Nom défilant ---------- */
+.mq { overflow: hidden; padding: 2.2rem 0; background: var(--ink); color: var(--cream); border-block: 1px solid color-mix(in oklab, var(--cream) 12%, transparent); }
+.mq-track { display: flex; width: max-content; animation: mq-slide 42s linear infinite; }
+.mq-copy { padding-right: 2.5rem; font: 400 clamp(2.2rem, 5vw, 4.4rem)/1 "Italiana", serif; letter-spacing: 0.06em; white-space: nowrap; }
+.mq-copy:nth-child(even) { color: color-mix(in oklab, var(--cream) 45%, transparent); }
+@keyframes mq-slide { to { transform: translateX(-50%); } }
+
+@media (max-width: 760px) {
+  .mq { padding: 1.4rem 0; }
+  .mq-copy { padding-right: 1.6rem; font-size: 1.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mq-track { animation: none; }
+}

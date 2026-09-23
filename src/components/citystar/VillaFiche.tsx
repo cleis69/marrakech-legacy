@@ -1,57 +1,24 @@
 import { ArrowLeft, Download, Expand, Lock } from "lucide-react";
-import { useEffect, useRef } from "react";
 
-import { faitsVilla, prefersReducedMotion, villas } from "./data";
+import type { TypeVilla } from "@/config/citystar";
+
+import { faitsVilla, villas } from "./data";
+import { chemin, Lien } from "./liens";
 import { VillaPrice, useDevise } from "./currency";
 import { PillButton } from "./ui/PillButton";
 
 type Props = {
-  index: number;
-  target: "top" | "plans";
-  onSelect: (index: number) => void;
-  onBack: () => void;
+  type: TypeVilla;
   onOpenPlan: (src: string) => void;
   onContact: () => void;
 };
 
-/** Fiche d'une villa : onglets ronds A · B · C, caractéristiques, prix, plans et brochure. */
-export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onContact }: Props) {
+/** Page d'une villa : navigation ronde A · B · C, caractéristiques, prix, plans et brochure. */
+export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
   const { langue, t } = useDevise();
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const index = villas.findIndex((item) => item.type === type);
   const villa = villas[index] ?? villas[0];
   const faits = faitsVilla(villa.type, t, langue);
-
-  useEffect(() => {
-    if (target === "plans") {
-      document
-        .getElementById("plans")
-        ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth", block: "center" });
-      document.getElementById("plans")?.focus({ preventScroll: true });
-    } else {
-      headingRef.current?.focus({ preventScroll: true });
-    }
-    // Uniquement à l'ouverture de la fiche.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const onTabKey = (event: React.KeyboardEvent) => {
-    const moves: Record<string, number> = {
-      ArrowRight: 1,
-      ArrowDown: 1,
-      ArrowLeft: -1,
-      ArrowUp: -1,
-    };
-    let next: number | null = null;
-    if (event.key in moves)
-      next = (index + (moves[event.key] ?? 0) + villas.length) % villas.length;
-    if (event.key === "Home") next = 0;
-    if (event.key === "End") next = villas.length - 1;
-    if (next === null) return;
-    event.preventDefault();
-    onSelect(next);
-    tabRefs.current[next]?.focus();
-  };
 
   return (
     <div className="vf section-pad">
@@ -83,47 +50,33 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
       </div>
 
       <div className="vf-info">
-        <button type="button" className="vf-back" onClick={onBack}>
+        <Lien className="vf-back" vers={chemin(langue, "villas")}>
           <ArrowLeft aria-hidden="true" /> {t.villas.retour}
-        </button>
+        </Lien>
 
         <div className="vf-tabs">
-          <div role="tablist" aria-label={t.villas.onglets} onKeyDown={onTabKey}>
-            {villas.map((item, i) => (
-              <button
+          <nav aria-label={t.villas.onglets}>
+            {villas.map((item) => (
+              <Lien
                 key={item.type}
-                ref={(el) => {
-                  tabRefs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`villa-tab-${item.type}`}
-                aria-selected={i === index}
-                aria-controls="villa-panel"
-                tabIndex={i === index ? 0 : -1}
-                className={i === index ? "is-on" : ""}
-                onClick={() => onSelect(i)}
+                vers={chemin(langue, `villas/${item.type.toLowerCase()}`)}
+                className={item.type === villa.type ? "is-on" : ""}
+                ariaLabel={t.villas.typeVilla(item.type)}
               >
                 {item.type}
-              </button>
+              </Lien>
             ))}
-          </div>
+          </nav>
           <span className="vf-tabs-label">
             {t.villas.typeVilla(villa.type)} · {faits.tag}
           </span>
         </div>
 
-        <div
-          id="villa-panel"
-          role="tabpanel"
-          aria-labelledby={`villa-tab-${villa.type}`}
-          key={villa.type}
-          className="vf-panel"
-        >
-          <h2 id="villas-title" ref={headingRef} tabIndex={-1}>
+        <div key={villa.type} className="vf-panel">
+          <h1 id="villas-title">
             {t.villas.typeVilla(villa.type).replace(villa.type, "")}
             <em>{villa.type}</em>
-          </h2>
+          </h1>
           <p className="vf-desc">{faits.description}</p>
           <dl className="vf-specs">
             <div>
@@ -143,7 +96,6 @@ export function VillaFiche({ index, target, onSelect, onBack, onOpenPlan, onCont
           <div
             id="plans"
             className="vf-plans"
-            tabIndex={-1}
             aria-label={t.villas.plansAria(villa.type)}
             role="group"
           >

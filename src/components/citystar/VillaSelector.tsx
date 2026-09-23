@@ -15,7 +15,8 @@ import {
 } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type Selection, faitsVilla, openVilla, villas } from "./data";
+import { type Selection, faitsVilla, villas } from "./data";
+import { chemin, Lien } from "./liens";
 import type { Textes } from "./i18n";
 import { PillButton } from "./ui/PillButton";
 
@@ -307,12 +308,15 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                     {questions.map((q) => labelOf(q.key) && <li key={q.key}>{labelOf(q.key)}</li>)}
                   </ul>
                   <div className="sl-actions">
-                    <PillButton
-                      label={t.selecteur.voirVilla}
-                      icon={ArrowRight}
-                      variant="secondary"
-                      onClick={() => openVilla({ index: TYPES.indexOf(winner), target: "top" })}
-                    />
+                    <Lien
+                      className="pill pill-secondary"
+                      vers={chemin(langue, `villas/${winner.toLowerCase()}`)}
+                    >
+                      <span className="pill-label">{t.selecteur.voirVilla}</span>
+                      <i className="pill-dot" aria-hidden="true">
+                        <ArrowRight />
+                      </i>
+                    </Lien>
                     <PillButton
                       label={t.selecteur.dossier}
                       icon={Lock}

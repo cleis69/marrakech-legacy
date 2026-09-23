@@ -1,85 +1,72 @@
 import { ArrowRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import { formatSurface, programme } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type CursorHandlers, faitsVilla, scrollTo, villas } from "./data";
+import { type CursorHandlers, faitsVilla, villas } from "./data";
+import { chemin, Lien } from "./liens";
 import { Reveal } from "./motion";
-import { PillButton } from "./ui/PillButton";
 
-type Props = CursorHandlers & {
-  active: number;
-  focusIndex: number | null;
-  onOpen: (index: number) => void;
-};
+type Props = CursorHandlers & { sansEntete?: boolean };
 
-/** Trois portes : survoler en élargit une, cliquer ouvre sa fiche. Sur mobile, un rail de cartes. */
-export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, onOpen }: Props) {
+/** Trois portes : survoler en élargit une, cliquer ouvre la page de la villa. */
+export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }: Props) {
   const { langue, t } = useDevise();
-  const doorRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const railRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(0);
 
-  useEffect(() => {
-    if (focusIndex !== null) doorRefs.current[focusIndex]?.focus({ preventScroll: true });
-  }, [focusIndex]);
-
   const onRailScroll = () => {
     const rail = railRef.current;
-    const first = doorRefs.current[0];
+    const first = rail?.firstElementChild as HTMLElement | null;
     if (!rail || !first) return;
     setVisible(Math.round(rail.scrollLeft / (first.offsetWidth + 10)));
   };
 
   return (
     <div className="vd section-pad">
-      <div className="vd-top">
-        <div>
-          <div className="section-label">
-            <span>03</span>
-            <p>{t.villas.label}</p>
+      {!sansEntete && (
+        <div className="vd-top">
+          <div>
+            <div className="section-label">
+              <span>03</span>
+              <p>{t.villas.label}</p>
+            </div>
+            <Reveal>
+              <h2 id="villas-title">
+                {t.villas.titre[0]}
+                <br />
+                {t.villas.titre[1]}
+                <em>{t.villas.titre[2]}</em>
+              </h2>
+            </Reveal>
           </div>
-          <Reveal>
-            <h2 id="villas-title">
-              {t.villas.titre[0]}
-              <br />
-              {t.villas.titre[1]}
-              <em>{t.villas.titre[2]}</em>
-            </h2>
-          </Reveal>
+          <div>
+            <p>
+              {t.villas.intro(
+                programme.nombreVillas,
+                formatSurface(programme.terrainMaxM2, langue),
+              )}
+            </p>
+            <Lien className="pill pill-secondary" vers={chemin(langue, "villas")}>
+              <span className="pill-label">{t.villas.comparer}</span>
+              <i className="pill-dot" aria-hidden="true">
+                <ArrowRight />
+              </i>
+            </Lien>
+          </div>
         </div>
-        <div>
-          <p>
-            {t.villas.intro(programme.nombreVillas, formatSurface(programme.terrainMaxM2, langue))}
-          </p>
-          <PillButton
-            label={t.villas.comparer}
-            icon={ArrowRight}
-            variant="secondary"
-            onClick={() => scrollTo("comparateur")}
-          />
-        </div>
-      </div>
+      )}
 
       <div className="vd-tri" ref={railRef} onScroll={onRailScroll}>
         {villas.map((villa, i) => {
           const faits = faitsVilla(villa.type, t, langue);
           return (
-            <button
+            <Lien
               key={villa.type}
-              ref={(el) => {
-                doorRefs.current[i] = el;
-              }}
-              type="button"
-              className={`vd-door${i === active ? " is-on" : ""}`}
-              aria-label={t.villas.decouvrirAria(
-                villa.type,
-                faits.surface,
-                faits.suites,
-                faits.tag,
-              )}
-              onClick={() => onOpen(i)}
+              className={`vd-door${i === 0 ? " is-on" : ""}`}
+              vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
+              ariaLabel={t.villas.decouvrirAria(villa.type, faits.surface, faits.suites, faits.tag)}
               onMouseEnter={onCursorEnter("EXPLORE")}
               onMouseLeave={onCursorLeave}
             >
@@ -105,7 +92,7 @@ export function VillaDoors({ active, focusIndex, onCursorEnter, onCursorLeave, o
                   <span>{faits.tag}</span>
                 </span>
               </span>
-            </button>
+            </Lien>
           );
         })}
       </div>

@@ -13,10 +13,10 @@ import { useEffect, useState } from "react";
 
 import { contact } from "@/config/citystar";
 
-import { Link } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { scrollTo } from "./data";
+import { chemin, Lien } from "./liens";
 import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
@@ -30,55 +30,27 @@ type Props = {
 
 const whatsappHref = `https://wa.me/${contact.whatsapp}`;
 
-/** Section visible au centre de l'écran, pour marquer l'onglet actif de la barre mobile. */
-function useActiveSection(ids: readonly string[]) {
-  const [active, setActive] = useState<string | null>(null);
-  useEffect(() => {
-    const elements = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => !!el);
-    if (!elements.length || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, [ids]);
-  return active;
-}
-
-const MOBILE_TABS = ["villas", "plans", "visite"] as const;
-
 function LangSwitch({ className = "" }: { className?: string }) {
   const { t } = useDevise();
+  /* La bascule garde la page courante : /villas ↔ /en/villas. */
+  const chemin = useRouterState({ select: (etat) => etat.location.pathname });
+  const sous =
+    chemin === "/en" ? "" : chemin.startsWith("/en/") ? chemin.slice(4) : chemin.replace(/^\//, "");
   return (
     <div className={`lang-switch ${className}`.trim()} role="group" aria-label={t.header.langue}>
-      <Link to="/" hrefLang="fr">
+      <Lien vers={sous ? `/${sous}` : "/"} hrefLang="fr">
         FR
-      </Link>
+      </Lien>
       <span aria-hidden="true">|</span>
-      <Link to="/en" hrefLang="en">
+      <Lien vers={sous ? `/en/${sous}` : "/en"} hrefLang="en">
         EN
-      </Link>
+      </Lien>
     </div>
   );
 }
 
-function MenuSheet({
-  onClose,
-  onContact,
-  active,
-}: {
-  onClose: () => void;
-  onContact: () => void;
-  active: string | null;
-}) {
-  const { t } = useDevise();
+function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () => void }) {
+  const { langue, t } = useDevise();
   const ref = useModal<HTMLDivElement>(onClose);
   return (
     <>
@@ -112,19 +84,12 @@ function MenuSheet({
         </div>
         <nav aria-label={t.header.sommaire}>
           <ol>
-            {t.nav.map(([label, id], index) => (
-              <li key={id}>
-                <button
-                  className={active === id ? "is-active" : ""}
-                  aria-current={active === id ? "true" : undefined}
-                  onClick={() => {
-                    onClose();
-                    setTimeout(() => scrollTo(id), 300);
-                  }}
-                >
+            {t.nav.map(([label, sous], index) => (
+              <li key={sous || "accueil"}>
+                <Lien vers={chemin(langue, sous)} onMouseLeave={onClose}>
                   <small>{String(index + 1).padStart(2, "0")}</small>
                   {label}
-                </button>
+                </Lien>
               </li>
             ))}
           </ol>
@@ -155,34 +120,25 @@ function MenuSheet({
 }
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
-  const { t } = useDevise();
-  const active = useActiveSection(MOBILE_TABS);
-  const tab = (id: (typeof MOBILE_TABS)[number], label: string, Icon: typeof Building2) => (
-    <button
-      className={`tabbar-item ${active === id ? "is-active" : ""}`}
-      aria-current={active === id ? "true" : undefined}
-      onClick={() => scrollTo(id)}
-    >
+  const { langue, t } = useDevise();
+  const tab = (sous: string, label: string, Icon: typeof Building2) => (
+    <Lien className="tabbar-item" vers={chemin(langue, sous)}>
       <Icon aria-hidden="true" />
       <span>{label}</span>
-    </button>
+    </Lien>
   );
 
   return (
     <>
       <header className={`float-header ${scrolled ? "is-scrolled" : ""}`}>
-        <button
-          className="float-wordmark"
-          onClick={() => scrollTo("accueil")}
-          aria-label={t.header.accueil}
-        >
+        <Lien className="float-wordmark" vers={chemin(langue, "")} ariaLabel={t.header.accueil}>
           CITYSTAR
-        </button>
+        </Lien>
         <nav className="float-nav" aria-label="Navigation">
-          {t.nav.map(([label, id]) => (
-            <button key={id} onClick={() => scrollTo(id)}>
+          {t.nav.map(([label, sous]) => (
+            <Lien key={sous || "accueil"} vers={chemin(langue, sous)}>
               {label}
-            </button>
+            </Lien>
           ))}
         </nav>
         <div className="float-actions">
@@ -201,14 +157,14 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
 
       <nav className="tabbar" aria-label="Navigation">
         {tab("villas", t.header.villas, Building2)}
-        {tab("plans", t.header.plans, LayoutPanelLeft)}
+        {tab("galerie", t.header.galerie, LayoutPanelLeft)}
         <button className="tabbar-fab" onClick={onContact}>
           <i aria-hidden="true">
             <Lock />
           </i>
           <span>{t.header.acces}</span>
         </button>
-        {tab("visite", t.header.tour, Rotate3d)}
+        {tab("faq", t.header.questions, Rotate3d)}
         <button
           className="tabbar-item"
           onClick={onOpenMenu}
@@ -221,7 +177,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
       </nav>
 
       <AnimatePresence>
-        {menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} active={active} />}
+        {menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} />}
       </AnimatePresence>
     </>
   );

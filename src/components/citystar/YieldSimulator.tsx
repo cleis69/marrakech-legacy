@@ -15,7 +15,9 @@ import {
 } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
-import { type Selection, SHOW_BUDGET_EVENT } from "./data";
+import type { Selection } from "./data";
+import { PARAM_BUDGET } from "./data";
+import { chemin, Lien } from "./liens";
 import { PillButton } from "./ui/PillButton";
 
 type Mode = "court" | "long" | "revente";
@@ -61,6 +63,8 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const prixReference = prix ?? prixVilla("B", devise, taux).montant;
+  /* Le budget transmis au comparateur reste en euros, quelle que soit la devise affichée. */
+  const prixEUR = devise === "EUR" ? prixReference : prixReference / (taux[devise] ?? 1);
   const pret = REQUIS[mode].every((cle) => SOURCE[cle] !== null);
 
   /* Montants saisis en euros dans la config : on affiche et on calcule dans la devise choisie. */
@@ -313,19 +317,15 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
               icon={ArrowRight}
               onClick={() => onContact(selection())}
             />
-            <PillButton
-              label={t.rentabilite.compatibles}
-              icon={Building2}
-              variant="secondary"
-              onClick={() =>
-                window.dispatchEvent(
-                  new CustomEvent<{ montant: number; devise: Devise; langue: Langue }>(
-                    SHOW_BUDGET_EVENT,
-                    { detail: { montant: prixReference, devise, langue } },
-                  ),
-                )
-              }
-            />
+            <Lien
+              className="pill pill-secondary"
+              vers={`${chemin(langue, "villas")}?${PARAM_BUDGET}=${Math.round(prixEUR)}`}
+            >
+              <span className="pill-label">{t.rentabilite.compatibles}</span>
+              <i className="pill-dot" aria-hidden="true">
+                <Building2 />
+              </i>
+            </Lien>
           </div>
 
           <CurrencyPills />

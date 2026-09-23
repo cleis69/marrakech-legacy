@@ -41,20 +41,8 @@ export function prefersReducedMotion() {
   );
 }
 
-/** Ouvre la fiche d'une villa depuis n'importe où (menu « Plans », outils). */
-export const OPEN_VILLA_EVENT = "citystar:open-villa";
-export type OpenVillaDetail = { index?: number; target: "top" | "plans" };
-
-export function openVilla(detail: OpenVillaDetail) {
-  window.dispatchEvent(new CustomEvent<OpenVillaDetail>(OPEN_VILLA_EVENT, { detail }));
-}
-
+/** Défilement vers une ancre de la page courante. */
 export function scrollTo(id: string) {
-  // Les plans vivent dans la fiche villa : « Plans » demande à la section de l'ouvrir.
-  if (id === "plans" && !document.getElementById("plans")) {
-    openVilla({ target: "plans" });
-    return;
-  }
   document
     .getElementById(id)
     ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
@@ -68,6 +56,24 @@ export type CursorHandlers = {
 /** Réponses d'un outil transmises au formulaire de contact existant. */
 export type Selection = { outil: string; lignes: string[] };
 
-/** Le simulateur demande au comparateur de mettre en avant les villas dans un budget. */
-export const SHOW_BUDGET_EVENT = "citystar:budget";
-export type BudgetDetail = { montant: number; devise: string; langue: string };
+/** Le simulateur envoie son budget au comparateur par l'URL : /villas?budget=1200000 (en euros). */
+export const PARAM_BUDGET = "budget";
+
+/* ------------------------------------------------------------------ */
+/* Galerie : tous les rendus fournis par le promoteur                   */
+/* ------------------------------------------------------------------ */
+
+const modules = import.meta.glob("@/assets/citystar/rendus/*.webp", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+
+/** Rendus triés par nom de fichier, hors dessin au trait de l'architecture. */
+export const rendus = Object.entries(modules)
+  .filter(([chemin]) => !chemin.includes("-trait"))
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([chemin, src]) => ({
+    src,
+    alt: (chemin.split("/").pop() ?? "").replace(".webp", "").replace(/-/g, " "),
+  }));

@@ -1,19 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { HomePage } from "@/components/citystar/pages/HomePage";
+import { GaleriePage } from "@/components/citystar/pages/GaleriePage";
 import { SiteChrome } from "@/components/citystar/site";
 import { textes } from "@/components/citystar/i18n";
 import { programme } from "@/config/citystar";
 
-const t = textes.fr.pages.accueil;
-const chemin = "/";
-const autre = "/en";
+const t = textes.fr.pages.galerie;
+const chemin = "/galerie";
+const autre = "/en/galerie";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/galerie")({
   head: () => ({
     meta: [
       { title: t.titre },
-      { name: "description", content: t.description(programme.nombreVillas) },
+      { name: "description", content: t.description },
       { property: "og:title", content: t.titre },
       { property: "og:type", content: "website" },
       { property: "og:url", content: chemin },
@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function Page() {
   return (
     <SiteChrome langue="fr">
-      <HomePage />
+      <GaleriePage />
     </SiteChrome>
   );
 }

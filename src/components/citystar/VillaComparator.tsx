@@ -7,11 +7,13 @@ import {
   formatPrix,
   formatSurface,
   prixVilla,
+  prixVillas,
   villasChiffres,
 } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
-import { SHOW_BUDGET_EVENT, openVilla, prefersReducedMotion, villas } from "./data";
+import { PARAM_BUDGET, faitsVilla, villas } from "./data";
+import { chemin, Lien } from "./liens";
 
 type Props = { onOpenPlan: (src: string) => void };
 type Cell = { key: TypeVilla; content: React.ReactNode };
@@ -65,23 +67,18 @@ export function VillaComparator({ onOpenPlan }: Props) {
     };
   }, []);
 
-  /* Le simulateur envoie un budget : on met en avant la villa la plus grande qui y entre. */
+  /* Le simulateur passe son budget par l'URL : on met en avant les villas qui y entrent. */
   useEffect(() => {
-    const onBudget = (event: Event) => {
-      const { montant } = (event as CustomEvent<{ montant: number }>).detail;
-      const dansLeBudget = TYPES.filter((t) => prixVilla(t, devise, taux).montant <= montant);
-      const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
-      if (cible) {
-        setPin(cible);
-        setHighlight(dansLeBudget);
-      }
-      document
-        .getElementById("comparateur")
-        ?.scrollIntoView({ behavior: prefersReducedMotion() ? "auto" : "smooth" });
-    };
-    window.addEventListener(SHOW_BUDGET_EVENT, onBudget);
-    return () => window.removeEventListener(SHOW_BUDGET_EVENT, onBudget);
-  }, [devise, taux]);
+    const brut = new URLSearchParams(window.location.search).get(PARAM_BUDGET);
+    const montantEUR = brut ? Number(brut) : NaN;
+    if (!Number.isFinite(montantEUR)) return;
+    const dansLeBudget = TYPES.filter((type) => prixVillas[type].EUR <= montantEUR);
+    const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
+    if (cible) {
+      setPin(cible);
+      setHighlight(dansLeBudget);
+    }
+  }, []);
 
   const scrollToColumn = (type: TypeVilla) => {
     const box = scrollRef.current;
@@ -200,14 +197,14 @@ export function VillaComparator({ onOpenPlan }: Props) {
                 </button>
               ))}
             </span>
-            <button
-              type="button"
+            <Lien
               className="cp-plans-mobile"
-              onClick={() => openVilla({ index: TYPES.indexOf(t), target: "plans" })}
+              vers={`${chemin(langue, `villas/${t.toLowerCase()}`)}#plans`}
+              ariaLabel={textes.villas.plansAria(t)}
             >
               <img src={villa?.plans[0]} alt="" loading="lazy" />
               <em>{textes.comparateur.deuxPlans}</em>
-            </button>
+            </Lien>
           </>
         );
       },

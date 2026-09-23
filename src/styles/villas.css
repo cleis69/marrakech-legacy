@@ -8,7 +8,7 @@
 .vd-top > div { display: grid; gap: 1.6rem; justify-items: start; }
 .vd-top p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vd-tri { display: flex; gap: .6rem; height: 74vh; min-height: 520px; }
-.vd-door { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--cream); text-align: left; cursor: pointer; transition: flex-grow 1s cubic-bezier(.22, 1, .36, 1); }
+.vd-door { display: block; text-decoration: none; position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--cream); text-align: left; cursor: pointer; transition: flex-grow 1s cubic-bezier(.22, 1, .36, 1); }
 .vd-door img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
 .vd-door:hover img { transform: scale(1.05); }
 .vd-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent), transparent 35%, transparent 45%, color-mix(in oklab, var(--ink) 82%, transparent)); }
@@ -38,14 +38,15 @@
 .vf-cap { align-self: end; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
 
 .vf-info { display: flex; flex-direction: column; gap: 1.6rem; padding-top: .5rem; }
-.vf-back { display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: color .3s, gap .3s; }
+.vf-back { text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: color .3s, gap .3s; }
 .vf-back svg { width: 14px; height: 14px; }
 .vf-back:hover { color: var(--foreground); gap: .9rem; }
 .vf-tabs { display: flex; align-items: center; gap: 1.2rem; }
-.vf-tabs [role="tablist"] { display: flex; gap: .7rem; }
-.vf-tabs [role="tab"] { display: grid; place-items: center; width: 3.6rem; height: 3.6rem; padding: 0; border: 0; border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 35%, transparent); color: var(--foreground); font: 400 1.6rem/1 "Italiana", serif; cursor: pointer; transition: background .4s, color .4s, box-shadow .4s; }
-.vf-tabs [role="tab"]:hover { box-shadow: inset 0 0 0 1px var(--ink); }
-.vf-tabs [role="tab"].is-on { background: var(--bronze); color: var(--cream); box-shadow: none; }
+.vf-tabs nav { display: flex; gap: .7rem; }
+.vf-tabs nav a { display: grid; place-items: center; width: 3.6rem; height: 3.6rem; padding: 0; border: 0; border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 35%, transparent); color: var(--foreground); font: 400 1.6rem/1 "Italiana", serif; cursor: pointer; transition: background .4s, color .4s, box-shadow .4s; }
+.vf-tabs nav a { text-decoration: none; }
+.vf-tabs nav a:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.vf-tabs nav a.is-on { background: var(--bronze); color: var(--cream); box-shadow: none; }
 .vf-tabs-label { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
 .vf-panel { display: grid; gap: 1.5rem; animation: vf-in .6s cubic-bezier(.22, 1, .36, 1); }
 .vf-panel h2 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
@@ -101,7 +102,7 @@
   .vf-panel { order: 4; }
   .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
   .vf-pic-title { display: none; }
-  .vf-tabs [role="tab"] { width: 3rem; height: 3rem; font-size: 1.35rem; }
+  .vf-tabs nav a { width: 3rem; height: 3rem; font-size: 1.35rem; }
   .vf-specs dd { font-size: 1.3rem; }
   .vf-plans { gap: .6rem; }
 }

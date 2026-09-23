@@ -14,11 +14,11 @@ import { useRef } from "react";
 import { contact } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { scrollTo } from "./data";
+import { chemin, Lien } from "./liens";
 import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const wordRef = useRef<HTMLDivElement>(null);
   const wordInView = useInView(wordRef, { once: true, amount: 0.4 });
   const tiles = [
@@ -104,10 +104,10 @@ export function SiteFooter() {
 
       <div className="ft-bar">
         <nav className="ft-links" aria-label={t.pied.nav}>
-          {t.nav.map(([label, id]) => (
-            <button key={id} type="button" onClick={() => scrollTo(id)}>
+          {t.nav.map(([label, sous]) => (
+            <Lien key={sous || "accueil"} vers={chemin(langue, sous)}>
               {label}
-            </button>
+            </Lien>
           ))}
           <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">
             {t.pied.brochure} <Download aria-hidden="true" />
