@@ -1,0 +1,23 @@
+/* ---------- Bandeau d'images défilantes ---------- */
+.rb { padding: 3.4rem 0 2.2rem; background: var(--ink); color: var(--cream); }
+.rb-rail { display: flex; width: max-content; animation: rb-slide 120s linear infinite; }
+.rb:hover .rb-rail { animation-play-state: paused; }
+.rb-bande { display: flex; gap: 1rem; margin: 0 1rem 0 0; padding: 0; list-style: none; }
+.rb-bande li { flex: none; width: min(34vw, 30rem); overflow: hidden; background: color-mix(in oklab, var(--cream) 8%, transparent); }
+.rb-bande img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+.rb-note { margin-top: 2rem; padding: 0 5vw; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
+@keyframes rb-slide { to { transform: translateX(-50%); } }
+
+@media (max-width: 760px) {
+  .rb { padding: 2.2rem 0 1.6rem; }
+  .rb-bande { gap: 0.5rem; margin-right: 0.5rem; }
+  .rb-bande li { width: 78vw; }
+  .rb-note { margin-top: 1.2rem; padding: 0 1.3rem; letter-spacing: 0.16em; }
+}
+
+/* Sans animation, la bande se parcourt à la main. */
+@media (prefers-reduced-motion: reduce) {
+  .rb-rail { width: auto; overflow-x: auto; animation: none; scroll-snap-type: x mandatory; }
+  .rb-bande li { scroll-snap-align: start; }
+  .rb-bande[aria-hidden="true"] { display: none; }
+}
