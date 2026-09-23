@@ -123,6 +123,10 @@ export const bornesSimulateur = {
   imposition: { min: 0, max: 0.45, pas: 0.01 },
 };
 
+/**
+ * Frais d'acquisition : données conservées pour le promoteur, plus affichées sur le site
+ * depuis le retrait du calculateur de frais (23/09/2026).
+ */
 export const fraisAcquisition = {
   // Taux appliqués au prix du bien, en fraction (0,04 = 4 %).
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur

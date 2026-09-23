@@ -161,7 +161,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     outil: t.rentabilite.outil,
     lignes: [
       t.rentabilite.ligneMode(t.rentabilite.modes[mode]),
-      t.frais.prixEtudie(formatPrix(prixReference, devise, langue)),
+      t.rentabilite.prixEtudie(formatPrix(prixReference, devise, langue)),
       resultat
         ? t.rentabilite.ligneResultat(resultat.titre, resultat.valeur)
         : t.rentabilite.ligneNeutre,

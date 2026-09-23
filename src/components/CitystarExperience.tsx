@@ -7,7 +7,6 @@ import type { Langue } from "@/config/citystar";
 
 import type { Selection } from "./citystar/data";
 import { DeviseProvider } from "./citystar/currency";
-import { FeeCalculator } from "./citystar/FeeCalculator";
 import { FinalCta } from "./citystar/FinalCta";
 import { FloatingActions } from "./citystar/FloatingActions";
 import { HeroSection } from "./citystar/HeroSection";
@@ -99,7 +98,6 @@ export default function CitystarExperience({ langue = "fr" }: { langue?: Langue 
           <LifestyleSection />
           <TourSection onOpenTour={openTour} />
           <LocationSection onOpenPlan={setPlanOpen} />
-          <FeeCalculator onContact={openContactWith} />
           <YieldSimulator onContact={openContactWith} />
           <FinalCta onContact={openContact} />
           <SiteFooter />
