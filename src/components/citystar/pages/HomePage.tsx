@@ -8,9 +8,10 @@ import { ProjectSection } from "../ProjectSection";
 import { Ruban } from "../Ruban";
 import { useSite } from "../site";
 import { VillasSection } from "../VillasSection";
+import { YieldSimulator } from "../YieldSimulator";
 
 export function HomePage() {
-  const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirContact } = useSite();
+  const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirContact, ouvrirContactAvec } = useSite();
   return (
     <>
       <HeroSection onContact={ouvrirContact} />
@@ -21,6 +22,7 @@ export function HomePage() {
       <LifestyleSection />
       <Marquee />
       <LocationSection onOpenPlan={ouvrirPlan} />
+      <YieldSimulator onContact={ouvrirContactAvec} />
       <FinalCta onContact={ouvrirContact} />
     </>
   );

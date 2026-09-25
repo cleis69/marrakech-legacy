@@ -50,10 +50,13 @@
 .sm-advanced > div { display: grid; gap: 1.1rem; padding-bottom: 1rem; }
 .sm-slider label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
 .sm-slider output { font: 400 1.3rem/1 "Italiana", serif; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; color: var(--foreground); white-space: nowrap; }
-.sm-slider input { width: 100%; height: 2px; margin: .8rem 0 .2rem; appearance: none; background: color-mix(in oklab, var(--ink) 20%, transparent); cursor: pointer; }
-.sm-slider input::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 4px color-mix(in oklab, var(--bronze) 20%, transparent); }
-.sm-slider input::-moz-range-thumb { width: 18px; height: 18px; border: 0; border-radius: 50%; background: var(--bronze); }
-.sm-slider input:disabled { opacity: .35; cursor: not-allowed; }
+.sm-sliders { display: grid; gap: 1.1rem; }
+.sm-slider input, .sm-range { width: 100%; height: 2px; margin: .8rem 0 .2rem; appearance: none; background: color-mix(in oklab, var(--ink) 20%, transparent); cursor: pointer; }
+.sm-slider input::-webkit-slider-thumb, .sm-range::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 4px color-mix(in oklab, var(--bronze) 20%, transparent); }
+.sm-slider input::-moz-range-thumb, .sm-range::-moz-range-thumb { width: 18px; height: 18px; border: 0; border-radius: 50%; background: var(--bronze); }
+.sm-slider input:disabled, .sm-range:disabled { opacity: .35; cursor: not-allowed; }
+/* Le curseur de budget vit dans un .sm-field : on annule le cadre des champs. */
+.sm-field input.sm-range { height: 2px; padding: 0; background: color-mix(in oklab, var(--ink) 20%, transparent); box-shadow: none; }
 
 @media (max-width: 900px) {
   .sm-grid { grid-template-columns: 1fr; gap: 2rem; }

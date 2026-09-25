@@ -247,7 +247,7 @@ const fr = {
       titreH1: ["Investir", "à Marrakech."] as [string, string],
       intro: [
         "Quatorze villas, trois architectures, un domaine privé à quelques minutes de la Palmeraie : la rareté de l'offre est le premier argument d'un placement.",
-        "Les hypothèses de rendement dépendent du mode d'exploitation choisi et des conditions réelles du marché. Nous ne publions aucun chiffre tant que le promoteur ne les a pas confirmés.",
+        "Les hypothèses de rendement dépendent du mode d'exploitation choisi et des conditions réelles du marché. Le simulateur ci-dessous part de valeurs d'illustration, à ajuster puis à confirmer avec le promoteur.",
       ] as [string, string],
       points: [
         {
@@ -499,7 +499,7 @@ const fr = {
     prix: "Prix du bien",
     intro: [
       "Indiquez le budget étudié et l’usage envisagé : l’estimation s’affiche aussitôt, dans la devise de votre choix.",
-      "Les hypothèses de rendement viennent du promoteur. Tant qu’elles ne sont pas confirmées, aucun chiffre n’est publié.",
+      "Les curseurs partent de valeurs d’illustration : ajustez-les à votre projet. Les chiffres définitifs sont confirmés par le promoteur.",
     ] as [string, string],
     budget: "Budget étudié",
     typeLabel: "Type de villa",
@@ -539,7 +539,8 @@ const fr = {
     neutreTitre: "Hypothèses en cours de validation",
     neutreTexte:
       "Aucun rendement n’est publié tant que les hypothèses ne sont pas confirmées par le promoteur. Recevez une analyse établie à partir de votre projet.",
-    mention: "Estimation indicative avant charges, fiscalité et coûts réels d’exploitation.",
+    mention:
+      "Hypothèses d’illustration, non contractuelles : déplacez les curseurs pour tester les vôtres. Estimation avant charges, fiscalité et coûts réels d’exploitation.",
     courtTerme:
       "La location courte durée à Marrakech est soumise à des obligations déclaratives locales.",
     courtTermeNote: "Mention à faire valider par le promoteur",
@@ -815,7 +816,7 @@ const en: Textes = {
       titreH1: ["Investing", "in Marrakech."],
       intro: [
         "Fourteen villas, three architectures, a private estate minutes from the Palmeraie: scarcity is the first argument of the investment.",
-        "Yield assumptions depend on how the villa is run and on real market conditions. We publish no figure until the developer has confirmed them.",
+        "Yield assumptions depend on how the villa is run and on real market conditions. The simulator below starts from illustrative values, to adjust and then confirm with the developer.",
       ],
       points: [
         {
@@ -1056,7 +1057,7 @@ const en: Textes = {
     prix: "Property price",
     intro: [
       "Enter the budget you have in mind and how you would use the villa: the estimate appears at once, in the currency you choose.",
-      "The yield assumptions come from the developer. Until they are confirmed, no figure is published.",
+      "The sliders start from illustrative values: adjust them to your own plan. Final figures are confirmed by the developer.",
     ],
     budget: "Budget considered",
     typeLabel: "Villa type",
@@ -1096,7 +1097,8 @@ const en: Textes = {
     neutreTitre: "Assumptions being validated",
     neutreTexte:
       "No yield is published until the assumptions are confirmed by the developer. Receive an analysis based on your own project.",
-    mention: "Indicative estimate before running costs, taxation and actual operating expenses.",
+    mention:
+      "Illustrative, non-contractual assumptions: move the sliders to try your own. Estimate before running costs, taxation and actual operating expenses.",
     courtTerme: "Short-term letting in Marrakech is subject to local registration requirements.",
     courtTermeNote: "Wording to be validated by the developer",
     analyse: "Receive a tailored analysis",

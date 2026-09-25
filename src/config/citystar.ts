@@ -109,10 +109,11 @@ export const reservation = {
 /* ------------------------------------------------------------------ */
 
 /** Bornes des curseurs : repères d'interface, pas des données du promoteur. */
-export const bornesPrixEUR = { min: 500_000, max: 3_000_000, pas: 10_000 };
+/* Fourchette des budgets étudiés par le simulateur : les trois villas y tiennent. */
+export const bornesPrixEUR = { min: 800_000, max: 2_000_000, pas: 10_000 };
 
 export const bornesSimulateur = {
-  prixMoyenNuitEUR: { min: 100, max: 2_000, pas: 10 },
+  prixMoyenNuitEUR: { min: 200, max: 2_000, pas: 50 },
   tauxOccupation: { min: 0.1, max: 0.9, pas: 0.01 },
   semainesUsagePersonnel: { min: 0, max: 26, pas: 1 },
   loyerMensuelEUR: { min: 500, max: 15_000, pas: 100 },
@@ -141,31 +142,36 @@ export const fraisAcquisition = {
 /* Rendement et détention                                              */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Points de départ des curseurs du simulateur. Ce sont des valeurs
+ * d'illustration, choisies pour que l'outil produise un ordre de grandeur :
+ * aucune n'est confirmée (confirme: false), et le site le dit au visiteur.
+ */
 export const hypothesesRendement = {
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  prixMoyenNuitEUR: { valeur: null, confirme: false } as Hypothese<number>,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  tauxOccupation: { valeur: null, confirme: false } as Hypothese<number>,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  semainesUsagePersonnel: { valeur: null, confirme: false } as Hypothese<number>,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  loyerMensuelEUR: { valeur: null, confirme: false } as Hypothese<number>,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  horizonAnnees: { valeur: null, confirme: false } as Hypothese<number>,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  appreciationAnnuelle: { valeur: null, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  prixMoyenNuitEUR: { valeur: 600, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  tauxOccupation: { valeur: 0.35, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  semainesUsagePersonnel: { valeur: 6, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  loyerMensuelEUR: { valeur: 4_000, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  horizonAnnees: { valeur: 10, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  appreciationAnnuelle: { valeur: 0.03, confirme: false } as Hypothese<number>,
 };
 
 export const coutsDetention = {
   // Part des revenus locatifs, en fraction.
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  charges: { valeur: null, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  charges: { valeur: 0.25, confirme: false } as Hypothese<number>,
   // Montant annuel en euros (taxes locales, entretien, gardiennage…).
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  coutsAnnuelsEUR: { valeur: null, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  coutsAnnuelsEUR: { valeur: 12_000, confirme: false } as Hypothese<number>,
   // Taux d'imposition des revenus, en fraction.
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  imposition: { valeur: null, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par la donnée contractuelle du promoteur
+  imposition: { valeur: 0.2, confirme: false } as Hypothese<number>,
 };
 
 /* ------------------------------------------------------------------ */

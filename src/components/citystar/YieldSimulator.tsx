@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import {
   type Devise,
   type TypeVilla,
+  bornesPrixEUR,
   bornesSimulateur,
   convertirEUR,
   coutsDetention,
@@ -245,6 +246,19 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
               value={formatNombre(prixReference, langue)}
               onChange={(event) => surBudget(Number(event.target.value.replace(/\D/g, "")))}
             />
+            <input
+              className="sm-range"
+              type="range"
+              aria-label={t.rentabilite.budget}
+              min={enDevise(bornesPrixEUR.min)}
+              max={enDevise(bornesPrixEUR.max)}
+              step={enDevise(bornesPrixEUR.pas)}
+              value={Math.min(
+                Math.max(prixReference, enDevise(bornesPrixEUR.min)),
+                enDevise(bornesPrixEUR.max),
+              )}
+              onChange={(event) => surBudget(Number(event.target.value))}
+            />
           </div>
 
           <div className="sm-field">
@@ -278,6 +292,10 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="sm-sliders">
+            {REQUIS[mode].map((cle) => slider(cle, SOURCE[cle] !== null))}
           </div>
 
           <button type="submit" className="sm-submit">
@@ -336,8 +354,8 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
           <details className="sm-advanced">
             <summary>{t.rentabilite.avancees}</summary>
             <div>
-              {[...REQUIS[mode], "charges", "coutsAnnuelsEUR", "imposition"].map((cle) =>
-                slider(cle as Cle, SOURCE[cle as Cle] !== null),
+              {(["charges", "coutsAnnuelsEUR", "imposition"] as Cle[]).map((cle) =>
+                slider(cle, SOURCE[cle] !== null),
               )}
             </div>
           </details>
