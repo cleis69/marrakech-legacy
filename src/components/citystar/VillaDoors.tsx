@@ -29,7 +29,6 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
         <div className="vd-top">
           <div>
             <div className="section-label">
-              <span>03</span>
               <p>{t.villas.label}</p>
             </div>
             <Reveal>

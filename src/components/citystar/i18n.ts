@@ -116,6 +116,11 @@ const fr = {
     illustration: (type: TypeVilla) => `Villa type ${type} · Illustration non contractuelle`,
     prixM2: (montant: string) => `Soit environ ${montant} le m² construit`,
     disponibilite: "Disponibilité sur demande",
+    accroches: {
+      A: ["Pensée pour", "chacun."],
+      B: ["La vie", "en terrasses."],
+      C: ["Des volumes", "autour de l’eau."],
+    } as Record<TypeVilla, [string, string]>,
     tags: { A: "Accessible", B: "Terrasses", C: "Contemporaine" } as Record<TypeVilla, string>,
     descriptions: {
       A: "Pensée pour les résidents à mobilité réduite : ascenseur, salles de bains accessibles et circulations généreuses.",
@@ -226,8 +231,9 @@ const fr = {
       description:
         "Trois types de villas, surfaces, suites, plans et prix : trouvez celle qui vous ressemble.",
       kicker: "Les villas",
+      titreH1: ["Choisir", "sa villa."] as [string, string],
       intro:
-        "Trois architectures, quatorze villas. Comparez-les, ou laissez-vous guider en cinq questions.",
+        "Trois architectures, quatorze villas. Laissez-vous guider en quatre questions, puis comparez-les.",
     },
     villa: {
       titre: (type: string) => `Villa type ${type} — CITYSTAR Marrakech`,
@@ -410,6 +416,8 @@ const fr = {
     prive:
       "Vos réponses restent sur cet appareil : elles ne sont jointes à votre demande que si vous l’envoyez.",
     recommencer: "Recommencer",
+    comparer: "Comparer avec les deux autres",
+    rendement: "Estimer le rendement",
     outil: "Sélecteur de villa",
     ligneRecommandation: (type: TypeVilla) => `Recommandation : villa ${type}`,
     conversion: "Montants convertis à titre indicatif",
@@ -433,13 +441,6 @@ const fr = {
         valider: "Valider ce budget",
         parler: "En parler",
         parlerNote: "De vive voix",
-      },
-      horizon: {
-        titre: "Quand souhaitez-vous acquérir ?",
-        soon: "Sous 6 mois",
-        year: "D’ici un an",
-        later: "Plus tard",
-        laterNote: "Je m’informe",
       },
       pmr: {
         titre: "Faut-il un accès adapté à la mobilité réduite ?",
@@ -496,6 +497,10 @@ const fr = {
     prix: "Prix",
     prixIndicatif: "Prix indicatif",
     defiler: "Faites défiler pour comparer",
+    rappel: (type: TypeVilla) => `Être rappelé pour la villa ${type}`,
+    outil: "Comparateur des villas",
+    ligneReference: (type: TypeVilla) => `Villa de référence : ${type}`,
+    ligneBudget: (montant: string) => `Budget : ${montant}`,
     estReference: " · référence",
     suite: "suite",
   },
@@ -695,6 +700,11 @@ const en: Textes = {
     illustration: (type) => `Villa type ${type} · Illustration, not contractual`,
     prixM2: (montant) => `That is about ${montant} per built m²`,
     disponibilite: "Availability on request",
+    accroches: {
+      A: ["Designed for", "everyone."],
+      B: ["Life on", "the terraces."],
+      C: ["Volumes", "around the water."],
+    },
     tags: { A: "Accessible", B: "Terraces", C: "Contemporary" },
     descriptions: {
       A: "Designed for residents with reduced mobility: lift, accessible bathrooms and generous circulation.",
@@ -804,7 +814,9 @@ const en: Textes = {
       description:
         "Three villa types, built areas, suites, floor plans and prices: find the one that suits you.",
       kicker: "The villas",
-      intro: "Three architectures, fourteen villas. Compare them, or let five questions guide you.",
+      titreH1: ["Choosing", "your villa."],
+      intro:
+        "Three architectures, fourteen villas. Let four questions guide you, then compare them.",
     },
     villa: {
       titre: (type) => `Villa type ${type} — CITYSTAR Marrakech`,
@@ -979,6 +991,8 @@ const en: Textes = {
     prive:
       "Your answers stay on this device: they are only attached to your request if you send it.",
     recommencer: "Start again",
+    comparer: "Compare with the other two",
+    rendement: "Estimate the yield",
     outil: "Villa selector",
     ligneRecommandation: (type) => `Recommendation: villa ${type}`,
     conversion: "Amounts converted, indicative only",
@@ -1002,13 +1016,6 @@ const en: Textes = {
         valider: "Confirm this budget",
         parler: "Let’s talk",
         parlerNote: "In person",
-      },
-      horizon: {
-        titre: "When would you like to buy?",
-        soon: "Within 6 months",
-        year: "Within a year",
-        later: "Later",
-        laterNote: "Just looking",
       },
       pmr: {
         titre: "Do you need step-free, accessible access?",
@@ -1062,6 +1069,10 @@ const en: Textes = {
     prix: "Price",
     prixIndicatif: "Indicative price",
     defiler: "Scroll to compare",
+    rappel: (type) => `Call back about villa ${type}`,
+    outil: "Villa comparator",
+    ligneReference: (type) => `Reference villa: ${type}`,
+    ligneBudget: (montant) => `Budget: ${montant}`,
     estReference: " · reference",
     suite: "suite",
   },

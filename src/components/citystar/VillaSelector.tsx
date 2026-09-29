@@ -16,20 +16,17 @@ import {
 } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type Selection, faitsVilla, villas } from "./data";
+import { type Budget, type Selection, faitsVilla, villas } from "./data";
 import { chemin, Lien } from "./liens";
 import type { Textes } from "./i18n";
 import { PillButton } from "./ui/PillButton";
 
-type Key = "usage" | "suites" | "budget" | "horizon" | "pmr";
+type Key = "usage" | "suites" | "budget" | "pmr";
 type Answers = Partial<Record<Key, string>>;
 type Option = { value: string; label: string; hint?: string };
 type Question = { key: Key; title: string; options: Option[]; note?: string; curseur?: boolean };
-/** Budget tel que le visiteur l'a choisi : le montant garde la devise dans laquelle il l'a vu. */
-type Budget = { montant: number; devise: Devise };
 
 const TYPES: TypeVilla[] = ["A", "B", "C"];
-const STEPS = 5;
 const ease = [0.22, 1, 0.36, 1] as const;
 
 /* Réponse « budget » : « talk », ou « montant:devise ». */
@@ -97,7 +94,14 @@ function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue, ta
   return phrase;
 }
 
-export function VillaSelector({ onContact }: { onContact: (selection: Selection) => void }) {
+export function VillaSelector({
+  onContact,
+  onComparer,
+}: {
+  onContact: (selection: Selection) => void;
+  /** Passe la villa recommandée et le budget au comparateur placé dessous. */
+  onComparer?: (type: TypeVilla, budget: Budget | null) => void;
+}) {
   const { devise, langue, t, taux } = useDevise();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
@@ -176,19 +180,6 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
       ...(devise === "EUR" ? {} : { note: t.selecteur.conversion }),
     },
     {
-      key: "horizon",
-      title: t.selecteur.questions.horizon.titre,
-      options: [
-        { value: "soon", label: t.selecteur.questions.horizon.soon },
-        { value: "year", label: t.selecteur.questions.horizon.year },
-        {
-          value: "later",
-          label: t.selecteur.questions.horizon.later,
-          hint: t.selecteur.questions.horizon.laterNote,
-        },
-      ],
-    },
-    {
       key: "pmr",
       title: t.selecteur.questions.pmr.titre,
       options: [
@@ -202,6 +193,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
     },
   ];
 
+  const STEPS = questions.length;
   const done = step >= STEPS;
   const winner = done ? recommend(answers, taux) : null;
   const labelOf = (key: Key) => {
@@ -306,7 +298,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                 aria-valuemax={STEPS}
                 aria-valuenow={Math.min(step, STEPS)}
               >
-                <i style={{ width: `${(Math.min(step, STEPS) / STEPS) * 100}%` }} />
+                <i style={{ transform: `scaleX(${Math.min(step, STEPS) / STEPS})` }} />
               </span>
             </div>
           </div>
@@ -397,9 +389,25 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                     />
                   </div>
                   <p className="sl-private">{t.selecteur.prive}</p>
-                  <button type="button" className="sl-again" onClick={restart}>
-                    {t.selecteur.recommencer}
-                  </button>
+                  <div className="sl-next">
+                    {onComparer && (
+                      <button
+                        type="button"
+                        className="sl-link"
+                        onClick={() => onComparer(winner, lireBudget(answers.budget))}
+                      >
+                        {t.selecteur.comparer} <ArrowRight aria-hidden="true" />
+                      </button>
+                    )}
+                    {answers.usage === "investir" && (
+                      <Lien className="sl-link" vers={`${chemin(langue, "investir")}#rentabilite`}>
+                        {t.selecteur.rendement} <ArrowRight aria-hidden="true" />
+                      </Lien>
+                    )}
+                    <button type="button" className="sl-again" onClick={restart}>
+                      {t.selecteur.recommencer}
+                    </button>
+                  </div>
                 </Stage>
               ) : null}
             </motion.div>

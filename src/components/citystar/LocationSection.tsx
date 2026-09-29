@@ -47,7 +47,6 @@ export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => v
       <div className="loc-grid">
         <div className="loc-head">
           <div className="section-label">
-            <span>06</span>
             <p>{t.localisation.label}</p>
           </div>
           <Reveal>

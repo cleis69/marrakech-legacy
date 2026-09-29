@@ -24,7 +24,6 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
       <div className="tv-grid">
         <div className="tv-head">
           <div className="section-label">
-            <span>05</span>
             <p>{t.visite.label}</p>
           </div>
           <Reveal>

@@ -50,7 +50,6 @@ export function LifestyleSection() {
       <div className="day-body">
         <div className="day-head">
           <div className="section-label light">
-            <span>04</span>
             <p>{t.vivre.label}</p>
           </div>
           <h2 id="lifestyle-title">{t.vivre.titre}</h2>

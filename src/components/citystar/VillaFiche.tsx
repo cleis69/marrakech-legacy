@@ -36,13 +36,11 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
         <span className="vf-shade" aria-hidden="true" />
         <div className="vf-pic-over">
           <div className="section-label light">
-            <span>03</span>
             <p>{t.villas.label}</p>
           </div>
           <p className="vf-pic-title" aria-hidden="true">
-            {t.villas.titre[0]} <br />
-            {t.villas.titre[1]}
-            <em>{t.villas.titre[2]}</em>
+            {t.villas.accroches[villa.type][0]} <br />
+            <em>{t.villas.accroches[villa.type][1]}</em>
           </p>
           <span className="vf-cap">{t.villas.illustration(villa.type)}</span>
           <span className="vf-badge">{t.villas.disponibilite}</span>

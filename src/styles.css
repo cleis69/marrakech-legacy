@@ -105,6 +105,10 @@
   --bronze: oklch(0.55 0.065 65);
   --cream: oklch(0.98 0.012 82);
   --ink-2: oklch(0.18 0.012 65);
+  /* Bronze pour le petit texte : 4,9:1 sur papier (le bronze de marque plafonne à 4,3:1). */
+  --bronze-text: oklch(0.52 0.065 65);
+  /* Sur le sable du cercle final. */
+  --bronze-deep: oklch(0.44 0.065 65);
   --bronze-hi: oklch(0.63 0.065 65);
   --bronze-line: oklch(0.68 0.06 68);
   --muted-dark: oklch(0.72 0.02 75);
@@ -191,9 +195,7 @@
 .page-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 100; transform-origin: left; background: var(--bronze); }
 .section-pad { padding: 10rem 5vw; }
 .section-label { display: flex; gap: 1.2rem; align-items: center; text-transform: uppercase; font-size: .63rem; letter-spacing: .2em; margin-bottom: 7rem; }
-.section-label span { color: var(--bronze); }
 .section-label.light { color: var(--cream); }
-.section-label.light span { color: var(--sand); }
 .eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .67rem; margin-bottom: 1.5rem; }
 .contact-panel h2 { font: 400 clamp(3.4rem, 7vw, 7.7rem)/.97 "Italiana", serif; letter-spacing: 0; }
 em { font-weight: 400; color: var(--bronze); }

@@ -70,7 +70,6 @@ export function ProjectSection() {
           </div>
           <div className="pj-text">
             <div className="section-label">
-              <span>01</span>
               <p>{t.projet.label}</p>
             </div>
             <Reveal>

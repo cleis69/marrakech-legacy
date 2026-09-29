@@ -1,4 +1,4 @@
-import { Download, Expand } from "lucide-react";
+import { Download, Expand, PhoneCall } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -15,10 +15,16 @@ import {
 } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
-import { PARAM_BUDGET, faitsVilla, villas } from "./data";
+import { type Budget, type Selection, PARAM_BUDGET, faitsVilla, villas } from "./data";
 import { chemin, Lien } from "./liens";
+import { PillButton } from "./ui/PillButton";
 
-type Props = { onOpenPlan: (src: string) => void };
+type Props = {
+  onOpenPlan: (src: string) => void;
+  onContact?: (selection: Selection) => void;
+  /** Villa et budget transmis par le quiz ; n change à chaque envoi pour rejouer l'effet. */
+  reference?: { type: TypeVilla; budget: Budget | null; n: number } | null;
+};
 type Cell = { key: TypeVilla; content: React.ReactNode };
 
 const TYPES: TypeVilla[] = ["A", "B", "C"];
@@ -33,14 +39,24 @@ function Delta({ value, unit, noun }: { value: number; unit?: string; noun?: str
 }
 
 /** Comparateur « Les écarts » : une villa de référence, les autres affichent leur écart. */
-export function VillaComparator({ onOpenPlan }: Props) {
+export function VillaComparator({ onOpenPlan, onContact, reference = null }: Props) {
   const { devise, langue, t: textes, taux } = useDevise();
   const [pin, setPin] = useState<TypeVilla>("B");
   const [onlyDiff, setOnlyDiff] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<TypeVilla[]>(TYPES);
   /* Budget du curseur : il garde la devise dans laquelle le visiteur l'a réglé. */
-  const [budget, setBudget] = useState<{ montant: number; devise: Devise } | null>(null);
+  const [budget, setBudget] = useState<Budget | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  /* Le quiz passe sa recommandation : elle devient la référence, et le tableau vient à l'écran. */
+  useEffect(() => {
+    if (!reference) return;
+    setPin(reference.type);
+    if (reference.budget) setBudget(reference.budget);
+    const calme = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    sectionRef.current?.scrollIntoView({ behavior: calme ? "auto" : "smooth", block: "start" });
+  }, [reference]);
 
   /* Sur mobile, les colonnes défilent : on indique lesquelles sont à l'écran. */
   useEffect(() => {
@@ -269,7 +285,12 @@ export function VillaComparator({ onOpenPlan }: Props) {
   const shown = onlyDiff ? rows.filter((row) => !row.same) : rows;
 
   return (
-    <section id="comparateur" className="cp section-pad" aria-labelledby="comparateur-title">
+    <section
+      ref={sectionRef}
+      id="comparateur"
+      className="cp section-pad"
+      aria-labelledby="comparateur-title"
+    >
       <div className="cp-head">
         <div>
           <p className="cp-kicker">{textes.comparateur.kicker}</p>
@@ -354,14 +375,19 @@ export function VillaComparator({ onOpenPlan }: Props) {
                     data-col={t}
                     className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}
                   >
-                    <span className="cp-photo">
-                      <img src={villa?.image} alt="" loading="lazy" />
-                      <b>{t}</b>
-                    </span>
-                    <span className="cp-name">
-                      {textes.villas.villa} {t}
-                      {t === pin && <em>{textes.comparateur.estReference}</em>}
-                    </span>
+                    <Lien
+                      className="cp-head-link"
+                      vers={chemin(langue, `villas/${t.toLowerCase()}`)}
+                    >
+                      <span className="cp-photo">
+                        <img src={villa?.image} alt="" loading="lazy" />
+                        <b>{t}</b>
+                      </span>
+                      <span className="cp-name">
+                        {textes.villas.villa} {t}
+                        {t === pin && <em>{textes.comparateur.estReference}</em>}
+                      </span>
+                    </Lien>
                   </th>
                 );
               })}
@@ -399,6 +425,26 @@ export function VillaComparator({ onOpenPlan }: Props) {
         </div>
         <p>{textes.comparateur.defiler}</p>
       </div>
+
+      {onContact && (
+        <div className="cp-cta">
+          <PillButton
+            label={textes.comparateur.rappel(pin)}
+            icon={PhoneCall}
+            onClick={() =>
+              onContact({
+                outil: textes.comparateur.outil,
+                lignes: [
+                  textes.comparateur.ligneReference(pin),
+                  ...(budget
+                    ? [textes.comparateur.ligneBudget(formatPrix(budgetAffiche, devise, langue))]
+                    : []),
+                ],
+              })
+            }
+          />
+        </div>
+      )}
     </section>
   );
 }

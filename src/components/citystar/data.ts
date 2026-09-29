@@ -1,4 +1,10 @@
-import { type Langue, type TypeVilla, formatSurface, villasChiffres } from "@/config/citystar";
+import {
+  type Devise,
+  type Langue,
+  type TypeVilla,
+  formatSurface,
+  villasChiffres,
+} from "@/config/citystar";
 
 import type { Textes } from "./i18n";
 
@@ -55,6 +61,9 @@ export type CursorHandlers = {
 
 /** Réponses d'un outil transmises au formulaire de contact existant. */
 export type Selection = { outil: string; lignes: string[] };
+
+/** Budget tel que le visiteur l'a choisi : le montant garde la devise dans laquelle il l'a vu. */
+export type Budget = { montant: number; devise: Devise };
 
 /** Le simulateur envoie son budget au comparateur par l'URL : /villas?budget=1200000 (en euros). */
 export const PARAM_BUDGET = "budget";

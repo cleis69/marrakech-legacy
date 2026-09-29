@@ -117,7 +117,6 @@ export function ArchitectureSection() {
       <div className="arch-grid">
         <div className="arch-head">
           <div className="section-label">
-            <span>02</span>
             <p>{t.architecture.label}</p>
           </div>
           <Reveal>
