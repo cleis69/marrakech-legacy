@@ -1,5 +1,5 @@
 /* ---------- Bandeau d'images défilantes ---------- */
-.rb { padding: 3.4rem 0 2.2rem; background: var(--ink); color: var(--cream); }
+.rb { overflow: hidden; padding: 3.4rem 0 2.2rem; background: var(--ink); color: var(--cream); }
 .rb-rail { display: flex; width: max-content; animation: rb-slide 120s linear infinite; }
 .rb:hover .rb-rail { animation-play-state: paused; }
 .rb-bande { display: flex; gap: 1rem; margin: 0 1rem 0 0; padding: 0; list-style: none; }
