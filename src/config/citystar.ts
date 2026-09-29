@@ -74,15 +74,6 @@ export const devises = {
 } as const;
 
 /* ------------------------------------------------------------------ */
-/* Sélecteur de villa                                                  */
-/* ------------------------------------------------------------------ */
-
-export const selecteur = {
-  // Plafonds proposés à la question « budget », en euros (repères d'interface, pas des prix).
-  plafondsBudgetEUR: [1_000_000, 1_200_000, 1_500_000],
-};
-
-/* ------------------------------------------------------------------ */
 /* Réservation et échéancier                                           */
 /* ------------------------------------------------------------------ */
 
@@ -109,7 +100,7 @@ export const reservation = {
 /* ------------------------------------------------------------------ */
 
 /** Bornes des curseurs : repères d'interface, pas des données du promoteur. */
-/* Fourchette des budgets étudiés par le simulateur : les trois villas y tiennent. */
+/* Fourchette des curseurs de budget (simulateur, sélecteur, comparateur) : les trois villas y tiennent. */
 export const bornesPrixEUR = { min: 800_000, max: 2_000_000, pas: 10_000 };
 
 export const bornesSimulateur = {

@@ -2,12 +2,14 @@ import { Download, Expand } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
+  type Devise,
   type TypeVilla,
+  bornesPrixEUR,
+  convertirEUR,
   formatNombre,
   formatPrix,
   formatSurface,
   prixVilla,
-  prixVillas,
   villasChiffres,
 } from "@/config/citystar";
 
@@ -36,7 +38,8 @@ export function VillaComparator({ onOpenPlan }: Props) {
   const [onlyDiff, setOnlyDiff] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState<TypeVilla[]>(TYPES);
-  const [highlight, setHighlight] = useState<TypeVilla[] | null>(null);
+  /* Budget du curseur : il garde la devise dans laquelle le visiteur l'a réglé. */
+  const [budget, setBudget] = useState<{ montant: number; devise: Devise } | null>(null);
 
   /* Sur mobile, les colonnes défilent : on indique lesquelles sont à l'écran. */
   useEffect(() => {
@@ -67,17 +70,15 @@ export function VillaComparator({ onOpenPlan }: Props) {
     };
   }, []);
 
-  /* Le simulateur passe son budget par l'URL : on met en avant les villas qui y entrent. */
+  /* Le simulateur passe son budget par l'URL : il devient la position de départ du curseur. */
   useEffect(() => {
     const brut = new URLSearchParams(window.location.search).get(PARAM_BUDGET);
     const montantEUR = brut ? Number(brut) : NaN;
     if (!Number.isFinite(montantEUR)) return;
-    const dansLeBudget = TYPES.filter((type) => prixVillas[type].EUR <= montantEUR);
+    const dansLeBudget = TYPES.filter((type) => prixVilla(type, "EUR").montant <= montantEUR);
     const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
-    if (cible) {
-      setPin(cible);
-      setHighlight(dansLeBudget);
-    }
+    setBudget({ montant: montantEUR, devise: "EUR" });
+    if (cible) setPin(cible);
   }, []);
 
   const scrollToColumn = (type: TypeVilla) => {
@@ -93,6 +94,27 @@ export function VillaComparator({ onOpenPlan }: Props) {
   };
 
   const price = (type: TypeVilla) => prixVilla(type, devise, taux);
+
+  const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
+  const bornes = {
+    min: enDevise(bornesPrixEUR.min),
+    max: enDevise(bornesPrixEUR.max),
+    pas: enDevise(bornesPrixEUR.pas),
+  };
+  const budgetAffiche = !budget
+    ? bornes.max
+    : budget.devise === devise
+      ? budget.montant
+      : /* Converti depuis une autre devise : arrondi au millier, comme un montant qu'on annonce. */
+        Math.round(
+          enDevise(
+            budget.devise === "EUR" ? budget.montant : budget.montant / taux[budget.devise],
+          ) / 1000,
+        ) * 1000;
+  /* Tant que le curseur n'a pas bougé, aucune villa n'est écartée. */
+  const highlight = budget
+    ? TYPES.filter((type) => prixVilla(type, budget.devise, taux).montant <= budget.montant)
+    : null;
 
   const rows: {
     label: React.ReactNode;
@@ -293,6 +315,22 @@ export function VillaComparator({ onOpenPlan }: Props) {
           {textes.comparateur.differences}
         </label>
         <CurrencyPills className="cp-cur" />
+      </div>
+
+      <div className="cp-budget">
+        <label htmlFor="cp-budget">
+          <span>{textes.comparateur.votreBudget}</span>
+          <output htmlFor="cp-budget">{formatPrix(budgetAffiche, devise, langue)}</output>
+        </label>
+        <input
+          id="cp-budget"
+          type="range"
+          min={bornes.min}
+          max={bornes.max}
+          step={bornes.pas}
+          value={Math.min(Math.max(budgetAffiche, bornes.min), bornes.max)}
+          onChange={(event) => setBudget({ montant: Number(event.target.value), devise })}
+        />
       </div>
 
       <div

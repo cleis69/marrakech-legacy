@@ -3,14 +3,15 @@ import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
+  type Devise,
   type Langue,
+  type Taux,
   type TypeVilla,
+  bornesPrixEUR,
   convertirEUR,
-  formatMontantCourt,
   formatPrix,
   prixVilla,
   prixVillas,
-  selecteur,
   villasChiffres,
 } from "@/config/citystar";
 
@@ -23,25 +24,34 @@ import { PillButton } from "./ui/PillButton";
 type Key = "usage" | "suites" | "budget" | "horizon" | "pmr";
 type Answers = Partial<Record<Key, string>>;
 type Option = { value: string; label: string; hint?: string };
-type Question = { key: Key; title: string; options: Option[]; note?: string };
+type Question = { key: Key; title: string; options: Option[]; note?: string; curseur?: boolean };
+/** Budget tel que le visiteur l'a choisi : le montant garde la devise dans laquelle il l'a vu. */
+type Budget = { montant: number; devise: Devise };
 
 const TYPES: TypeVilla[] = ["A", "B", "C"];
 const STEPS = 5;
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const budgetMax = (a: Answers) => (a.budget && a.budget !== "talk" ? Number(a.budget) : null);
-const fitsBudget = (t: TypeVilla, a: Answers) => {
-  const max = budgetMax(a);
-  return max === null || prixVillas[t].EUR <= max;
+/* Réponse « budget » : « talk », ou « montant:devise ». */
+const lireBudget = (valeur?: string): Budget | null => {
+  if (!valeur || valeur === "talk") return null;
+  const [montant, devise] = valeur.split(":");
+  return montant && devise ? { montant: Number(montant), devise: devise as Devise } : null;
+};
+const ecrireBudget = (budget: Budget) => `${Math.round(budget.montant)}:${budget.devise}`;
+/* La comparaison se fait dans la devise du visiteur, avec les prix qu'il avait sous les yeux. */
+const fitsBudget = (t: TypeVilla, a: Answers, taux: Taux) => {
+  const budget = lireBudget(a.budget);
+  return budget === null || prixVilla(t, budget.devise, taux).montant <= budget.montant;
 };
 const fitsSuites = (t: TypeVilla, a: Answers) =>
   !a.suites || a.suites === "any" || villasChiffres[t].suites === Number(a.suites);
 
 /** Raison pour laquelle une villa ne correspond pas (vide si elle convient). */
-function mismatch(t: TypeVilla, a: Answers, textes: Textes) {
+function mismatch(t: TypeVilla, a: Answers, textes: Textes, taux: Taux) {
   if (a.pmr === "yes" && !villasChiffres[t].accessiblePmr) return textes.selecteur.raisons.pmr;
   if (!fitsSuites(t, a)) return textes.selecteur.raisons.suites(villasChiffres[t].suites);
-  if (!fitsBudget(t, a)) return textes.selecteur.raisons.budget;
+  if (!fitsBudget(t, a, taux)) return textes.selecteur.raisons.budget;
   return "";
 }
 
@@ -50,10 +60,10 @@ function mismatch(t: TypeVilla, a: Answers, textes: Textes) {
  * suites et budget (à défaut les suites seules) ; on préfère une villa non spécialisée PMR, puis la plus
  * grande, puis la moins chère.
  */
-function recommend(a: Answers): TypeVilla {
+function recommend(a: Answers, taux: Taux): TypeVilla {
   const accessible = TYPES.find((t) => villasChiffres[t].accessiblePmr);
   if (a.pmr === "yes" && accessible) return accessible;
-  const ideal = TYPES.filter((t) => fitsSuites(t, a) && fitsBudget(t, a));
+  const ideal = TYPES.filter((t) => fitsSuites(t, a) && fitsBudget(t, a, taux));
   const bySuites = TYPES.filter((t) => fitsSuites(t, a));
   const pool = ideal.length ? ideal : bySuites.length ? bySuites : TYPES;
   const sorted = [...pool].sort(
@@ -65,7 +75,7 @@ function recommend(a: Answers): TypeVilla {
   return sorted[0] ?? "B";
 }
 
-function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue) {
+function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue, taux: Taux) {
   const faits = faitsVilla(type, textes, langue);
   const taille = `${faits.suites} · ${faits.surface}`;
   const souhaite = a.suites && a.suites !== "any" ? Number(a.suites) : null;
@@ -77,13 +87,13 @@ function justify(type: TypeVilla, a: Answers, textes: Textes, langue: Langue) {
       phrase += j.pmrSuites(villasChiffres[type].suites > souhaite);
   } else if (type === "C") {
     phrase = j.contemporaine(taille, souhaite === villasChiffres.C.suites);
-    if (a.suites === "any" && !fitsBudget("B", a)) phrase += j.budgetSeule;
+    if (a.suites === "any" && !fitsBudget("B", a, taux)) phrase += j.budgetSeule;
   } else if (type === "B") {
     phrase = a.suites === "any" || !a.suites ? j.polyvalente(taille) : j.espace(taille);
   } else {
     phrase = faits.description;
   }
-  if (!fitsBudget(type, a)) phrase += j.horsBudget;
+  if (!fitsBudget(type, a, taux)) phrase += j.horsBudget;
   return phrase;
 }
 
@@ -93,6 +103,31 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
   const [answers, setAnswers] = useState<Answers>({});
   const [dir, setDir] = useState(1);
   const focusPending = useRef(false);
+  const [brouillon, setBrouillon] = useState<Budget | null>(null);
+
+  /* Curseur de budget : bornes et valeur dans la devise affichée. */
+  const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
+  const bornes = {
+    min: enDevise(bornesPrixEUR.min),
+    max: enDevise(bornesPrixEUR.max),
+    pas: enDevise(bornesPrixEUR.pas),
+  };
+  const brut = !brouillon
+    ? prixVilla("B", devise, taux).montant
+    : brouillon.devise === devise
+      ? brouillon.montant
+      : /* Converti depuis une autre devise : arrondi au millier, comme un montant qu'on annonce. */
+        Math.round(
+          enDevise(
+            brouillon.devise === "EUR"
+              ? brouillon.montant
+              : brouillon.montant / taux[brouillon.devise],
+          ) / 1000,
+        ) * 1000;
+  const budgetCourant: Budget = {
+    montant: Math.min(Math.max(brut, bornes.min), bornes.max),
+    devise,
+  };
 
   const suites = [...new Set(TYPES.map((t) => villasChiffres[t].suites))].sort((x, y) => x - y);
   const questions: Question[] = [
@@ -123,13 +158,15 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
     {
       key: "budget",
       title: t.selecteur.questions.budget.titre,
+      curseur: true,
       options: [
-        ...selecteur.plafondsBudgetEUR.map((max) => ({
-          value: String(max),
+        {
+          value: ecrireBudget(budgetCourant),
           label: t.selecteur.questions.budget.jusqua(
-            `${devise === "EUR" ? "" : "≈ "}${formatMontantCourt(convertirEUR(max, devise, taux), devise, langue)}`,
+            formatPrix(budgetCourant.montant, devise, langue),
           ),
-        })),
+          hint: t.selecteur.questions.budget.valider,
+        },
         {
           value: "talk",
           label: t.selecteur.questions.budget.parler,
@@ -166,10 +203,16 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
   ];
 
   const done = step >= STEPS;
-  const winner = done ? recommend(answers) : null;
-  const labelOf = (key: Key) =>
-    questions.find((q) => q.key === key)?.options.find((o) => o.value === answers[key])?.label ??
-    "";
+  const winner = done ? recommend(answers, taux) : null;
+  const labelOf = (key: Key) => {
+    const budget = key === "budget" ? lireBudget(answers.budget) : null;
+    if (budget)
+      return t.selecteur.questions.budget.jusqua(formatPrix(budget.montant, budget.devise, langue));
+    return (
+      questions.find((q) => q.key === key)?.options.find((o) => o.value === answers[key])?.label ??
+      ""
+    );
+  };
 
   const answer = (value: string) => {
     const question = questions[step];
@@ -203,6 +246,14 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey || event.ctrlKey || event.metaKey) return;
     const question = questions[step];
+    if (event.target instanceof HTMLInputElement && event.target.type === "range") {
+      const valider = question?.options[0];
+      if (event.key === "Enter" && valider) {
+        event.preventDefault();
+        answer(valider.value);
+      }
+      if (event.key !== "Enter" && !/^[1-9]$/.test(event.key)) return;
+    }
     if (!done && question && /^[1-9]$/.test(event.key)) {
       const option = question.options[Number(event.key) - 1];
       if (option) {
@@ -278,6 +329,28 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
               {!done && question ? (
                 <Stage focusPending={focusPending}>
                   <h3 className="sl-question">{question.title}</h3>
+                  {question.curseur && (
+                    <div className="sl-curseur">
+                      <label htmlFor="sl-budget">
+                        <span>{t.selecteur.questions.budget.curseur}</span>
+                        <output htmlFor="sl-budget">
+                          {formatPrix(budgetCourant.montant, devise, langue)}
+                        </output>
+                      </label>
+                      <input
+                        id="sl-budget"
+                        className="sl-range"
+                        type="range"
+                        min={bornes.min}
+                        max={bornes.max}
+                        step={bornes.pas}
+                        value={budgetCourant.montant}
+                        onChange={(event) =>
+                          setBrouillon({ montant: Number(event.target.value), devise })
+                        }
+                      />
+                    </div>
+                  )}
                   <div className="sl-options">
                     {question.options.map((option, i) => (
                       <button
@@ -303,7 +376,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                   <h3 className="sl-result" tabIndex={-1}>
                     {t.villas.villa} <em>{winner}</em>
                   </h3>
-                  <p className="sl-why">{justify(winner, answers, t, langue)}</p>
+                  <p className="sl-why">{justify(winner, answers, t, langue, taux)}</p>
                   <ul className="sl-recap" aria-label={t.selecteur.recap}>
                     {questions.map((q) => labelOf(q.key) && <li key={q.key}>{labelOf(q.key)}</li>)}
                   </ul>
@@ -335,13 +408,18 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
 
         <ul className="sl-trio" aria-label={t.selecteur.apercu}>
           {villas.map((villa) => {
+            /* Pendant la question budget, le trio suit le curseur en direct. */
+            const apercu =
+              !done && question?.curseur
+                ? { ...answers, budget: ecrireBudget(budgetCourant) }
+                : answers;
             const type = villa.type;
             const faits = faitsVilla(type, t, langue);
             const reason = winner
               ? type === winner
                 ? ""
-                : mismatch(type, answers, t) || t.selecteur.raisons.autre
-              : mismatch(type, answers, t);
+                : mismatch(type, answers, t, taux) || t.selecteur.raisons.autre
+              : mismatch(type, apercu, t, taux);
             const price = prixVilla(type, devise, taux);
             return (
               <li
@@ -398,7 +476,7 @@ function Stage({
     if (!focusPending.current) return;
     focusPending.current = false;
     const target = ref.current?.querySelector<HTMLElement>(
-      focusHeading ? ".sl-result" : ".sl-option",
+      focusHeading ? ".sl-result" : ".sl-range, .sl-option",
     );
     target?.focus({ preventScroll: true });
   }, [focusPending, focusHeading]);

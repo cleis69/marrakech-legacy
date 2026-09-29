@@ -425,6 +425,8 @@ const fr = {
       budget: {
         titre: "Quel budget envisagez-vous ?",
         jusqua: (montant: string) => `Jusqu’à ${montant}`,
+        curseur: "Votre budget",
+        valider: "Valider ce budget",
         parler: "En parler",
         parlerNote: "De vive voix",
       },
@@ -469,6 +471,7 @@ const fr = {
     note: "Écarts calculés par rapport à la villa de référence",
     budget: (villas: string) => `Dans le budget saisi : ${villas}`,
     aucune: "aucune villa",
+    votreBudget: "Votre budget",
     reference: "Référence",
     referenceAria: "Villa de référence",
     prendreReference: (type: TypeVilla) => `Prendre la villa ${type} comme référence`,
@@ -986,6 +989,8 @@ const en: Textes = {
       budget: {
         titre: "What budget do you have in mind?",
         jusqua: (montant) => `Up to ${montant}`,
+        curseur: "Your budget",
+        valider: "Confirm this budget",
         parler: "Let’s talk",
         parlerNote: "In person",
       },
@@ -1027,6 +1032,7 @@ const en: Textes = {
     note: "Differences measured against the reference villa",
     budget: (villas) => `Within the budget entered: ${villas}`,
     aucune: "no villa",
+    votreBudget: "Your budget",
     reference: "Reference",
     referenceAria: "Reference villa",
     prendreReference: (type) => `Use villa ${type} as the reference`,

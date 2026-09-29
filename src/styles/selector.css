@@ -51,6 +51,15 @@
 .sl-card.is-win { box-shadow: 0 0 0 2px var(--bronze); transform: translateY(-.8rem); }
 .sl-card.is-win .sl-card-letter { color: var(--sand); }
 
+
+/* Curseur de budget (même dessin que le simulateur) */
+.sl-curseur { display: grid; gap: .2rem; width: 100%; max-width: 34rem; }
+.sl-curseur label { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.sl-curseur output { font: 400 1.5rem/1 "Italiana", serif; font-variant-numeric: tabular-nums; letter-spacing: 0; text-transform: none; color: var(--foreground); white-space: nowrap; }
+.sl-curseur input { width: 100%; height: 2px; margin: .9rem 0 .3rem; appearance: none; background: color-mix(in oklab, var(--ink) 20%, transparent); cursor: pointer; }
+.sl-curseur input::-webkit-slider-thumb { appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 4px color-mix(in oklab, var(--bronze) 20%, transparent); }
+.sl-curseur input::-moz-range-thumb { width: 18px; height: 18px; border: 0; border-radius: 50%; background: var(--bronze); }
+.sl-curseur input:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6px; }
 @media (max-width: 900px) {
   .sl-grid { grid-template-columns: 1fr; gap: 1.6rem; min-height: 0; }
   .sl-trio { order: -1; height: 9.5rem; gap: .4rem; }
