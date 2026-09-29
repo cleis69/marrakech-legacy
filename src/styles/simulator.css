@@ -12,7 +12,7 @@
 .sm-field { display: grid; gap: .6rem; }
 .sm-field-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
 .sm-field label { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted-foreground); }
-.sm-field label small { font-size: .95em; letter-spacing: .12em; text-transform: none; }
+.sm-field label small { font-size: 1em; letter-spacing: .12em; text-transform: none; }
 .sm-field input, .sm-field select { width: 100%; padding: .95rem 1rem; border: 0; background: var(--cream); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 18%, transparent); color: var(--foreground); font: 400 1.3rem/1.2 "Italiana", serif; font-variant-numeric: tabular-nums; transition: box-shadow .3s; }
 .sm-field select { font-size: 1.05rem; }
 .sm-field input:focus-visible, .sm-field select:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--bronze); }
