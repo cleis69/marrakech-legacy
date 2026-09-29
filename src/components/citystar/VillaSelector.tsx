@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowRight, Lock } from "lucide-react";
+import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -392,7 +392,7 @@ export function VillaSelector({ onContact }: { onContact: (selection: Selection)
                     </Lien>
                     <PillButton
                       label={t.selecteur.dossier}
-                      icon={Lock}
+                      icon={PhoneCall}
                       onClick={() => onContact(selection())}
                     />
                   </div>

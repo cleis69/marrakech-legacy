@@ -1,4 +1,4 @@
-import { ArrowLeft, Download, Expand, Lock } from "lucide-react";
+import { ArrowLeft, Download, Expand, PhoneCall } from "lucide-react";
 
 import { type TypeVilla, formatPrix, prixVilla, villasChiffres } from "@/config/citystar";
 
@@ -126,7 +126,7 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             ))}
           </div>
           <div className="vf-actions">
-            <PillButton label={t.villas.demander} icon={Lock} onClick={onContact} />
+            <PillButton label={t.villas.demander} icon={PhoneCall} onClick={onContact} />
             <PillButton
               label={t.villas.brochure}
               icon={Download}

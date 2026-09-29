@@ -10,6 +10,7 @@ import {
   formatPrix,
   formatSurface,
   prixVilla,
+  prixVillas,
   villasChiffres,
 } from "@/config/citystar";
 
@@ -245,7 +246,9 @@ export function VillaComparator({ onOpenPlan }: Props) {
       ),
     },
     {
-      label: textes.comparateur.prix,
+      label: TYPES.some((type) => !prixVillas[type].confirme)
+        ? textes.comparateur.prixIndicatif
+        : textes.comparateur.prix,
       cells: (t) => (
         <>
           <span className="cp-value">

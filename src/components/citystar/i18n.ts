@@ -14,12 +14,12 @@ const fr = {
     ["Contact", "contact"],
   ] as [string, string][],
   header: {
-    acces: "Accès privé",
+    acces: "Être rappelé",
     conciergerie: "Conciergerie",
     accueil: "Retour à l’accueil",
     sommaire: "Sommaire",
     brochure: "Brochure CITYSTAR",
-    demander: "Demander un accès privé",
+    demander: "Être rappelé par un conseiller",
     fermer: "Fermer le menu",
     menu: "Menu",
     villas: "Villas",
@@ -35,7 +35,7 @@ const fr = {
     residence: (n: number) => `Résidence privée · ${n} villas`,
     texte: "Quatorze villas contemporaines, dans un domaine privé et entièrement sécurisé.",
     decouvrir: "Découvrir les villas",
-    acces: "Demander un accès privé",
+    acces: "Être rappelé par un conseiller",
     pause: "Mettre la vidéo en pause",
     lecture: "Reprendre la vidéo",
     pauseCourt: "Pause",
@@ -45,7 +45,7 @@ const fr = {
     aria: "Les repères du domaine",
     trajet: (n: number) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & aéroport" }),
     villas: (n: number) => ({ valeur: String(n), libelle: "villas privées, pas une de plus" }),
-    terrain: (surface: string) => ({ valeur: surface, libelle: "de terrain par villa" }),
+    terrain: (surface: string) => ({ valeur: surface, libelle: "de terrain, au plus grand" }),
   },
   projet: {
     label: "Le projet",
@@ -110,7 +110,7 @@ const fr = {
     etage: "Étage",
     agrandirPlan: (etage: boolean, type: TypeVilla) =>
       `Agrandir le plan ${etage ? "de l’étage" : "du rez-de-chaussée"} de la villa type ${type}`,
-    demander: "Demander un accès",
+    demander: "Être rappelé pour cette villa",
     brochure: "Brochure",
     brochureAria: (type: TypeVilla) => `Brochure de la villa type ${type} (PDF)`,
     illustration: (type: TypeVilla) => `Villa type ${type} · Illustration non contractuelle`,
@@ -128,6 +128,7 @@ const fr = {
     devise: "Devise d’affichage",
     reference: (prix: string) => `Prix de référence : ${prix}`,
     contreValeur: (date: string) => `Contre-valeur indicative · taux du ${date}`,
+    indicatif: "Prix indicatif, sous réserve de confirmation",
     devises: {
       EUR: "Euros",
       GBP: "Livres sterling",
@@ -295,7 +296,7 @@ const fr = {
         {
           titre: "Trois architectures, trois usages",
           texte:
-            "Le type A, de plain-pied, est con\u00e7u pour la mobilit\u00e9 r\u00e9duite : ascenseur et salles de bains accessibles. Le type B ouvre ses pi\u00e8ces sur de vastes terrasses. Le type C joue des volumes contemporains autour de la piscine.",
+            "Le type A est con\u00e7u pour la mobilit\u00e9 r\u00e9duite : ascenseur et salles de bains accessibles. Le type B ouvre ses pi\u00e8ces sur de vastes terrasses. Le type C joue des volumes contemporains autour de la piscine.",
         },
         {
           titre: "\u00c0 l'\u00e9cart, jamais loin",
@@ -316,7 +317,7 @@ const fr = {
       kicker: "Contact",
       titreH1: ["Parlons de", "votre projet."] as [string, string],
       intro: "Chaque demande est étudiée une à une. Téléphone, WhatsApp ou formulaire, au choix.",
-      formulaire: "Écrire à la conciergerie",
+      formulaire: "Être rappelé par un conseiller",
     },
   },
   faq: (v: {
@@ -373,10 +374,10 @@ const fr = {
     kicker: "Sur demande uniquement",
     titre: ["Entrer dans", "le cercle."] as [string, string],
     texte: (n: string) =>
-      `${n} villas, réservées à quelques personnalités. Chaque demande d’accès est étudiée une à une.`,
+      `${n} villas, réservées à quelques personnalités. Chaque demande est étudiée une à une, et un conseiller vous rappelle.`,
     sceau: (n: string) => `ACCÈS PRIVÉ · CITYSTAR · ${n} VILLAS · `,
-    entrer: "Entrer",
-    demander: "Demander un accès privé",
+    entrer: "Rappel",
+    demander: "Être rappelé par un conseiller",
     conciergerie: "Conciergerie",
     conciergerieAria: "Écrire à la conciergerie sur WhatsApp",
   },
@@ -405,7 +406,7 @@ const fr = {
     recap: "Vos réponses",
     apercu: "Aperçu des trois villas",
     voirVilla: "Voir la villa",
-    dossier: "Recevoir le dossier",
+    dossier: "Être rappelé pour cette villa",
     prive:
       "Vos réponses restent sur cet appareil : elles ne sont jointes à votre demande que si vous l’envoyez.",
     recommencer: "Recommencer",
@@ -493,6 +494,7 @@ const fr = {
     deuxPlans: "2 plans",
     brochure: "Brochure",
     prix: "Prix",
+    prixIndicatif: "Prix indicatif",
     defiler: "Faites défiler pour comparer",
     estReference: " · référence",
     suite: "suite",
@@ -549,8 +551,7 @@ const fr = {
       "Hypothèses d’illustration, non contractuelles : déplacez les curseurs pour tester les vôtres. Estimation avant charges, fiscalité et coûts réels d’exploitation.",
     courtTerme:
       "La location courte durée à Marrakech est soumise à des obligations déclaratives locales.",
-    courtTermeNote: "Mention à faire valider par le promoteur",
-    analyse: "Recevoir une analyse personnalisée",
+    analyse: "Être rappelé pour en parler",
     compatibles: "Voir les villas compatibles",
     outil: "Simulateur de rentabilité",
     ligneMode: (mode: string) => `Mode : ${mode}`,
@@ -559,10 +560,11 @@ const fr = {
     ligneNeutre: "Hypothèses en cours de validation",
   },
   contact: {
-    kicker: "Rencontrons-nous",
-    titre: ["Planifier", "une visite."] as [string, string],
+    kicker: "Conciergerie CITYSTAR",
+    // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
+    titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Notre équipe vous accompagne dans la découverte de CITYSTAR et de ses trois types de villas.",
+      "Laissez vos coordonnées : un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
@@ -598,12 +600,12 @@ const en: Textes = {
     ["Contact", "contact"],
   ],
   header: {
-    acces: "Private access",
+    acces: "Call back",
     conciergerie: "Concierge",
     accueil: "Back to top",
     sommaire: "Contents",
     brochure: "CITYSTAR brochure",
-    demander: "Request private access",
+    demander: "Request a call back",
     fermer: "Close menu",
     menu: "Menu",
     villas: "Villas",
@@ -619,7 +621,7 @@ const en: Textes = {
     residence: (n) => `Private residence · ${n} villas`,
     texte: "Fourteen contemporary villas in a private, fully secured estate.",
     decouvrir: "Discover the villas",
-    acces: "Request private access",
+    acces: "Request a call back",
     pause: "Pause the video",
     lecture: "Play the video",
     pauseCourt: "Pause",
@@ -629,7 +631,7 @@ const en: Textes = {
     aria: "Key facts about the estate",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & airport" }),
     villas: (n) => ({ valeur: String(n), libelle: "private villas, not one more" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "of land per villa" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "largest plot" }),
   },
   projet: {
     label: "The project",
@@ -687,7 +689,7 @@ const en: Textes = {
     etage: "Upper floor",
     agrandirPlan: (etage, type) =>
       `Enlarge the ${etage ? "upper floor" : "ground floor"} plan of villa type ${type}`,
-    demander: "Request access",
+    demander: "Call back about this villa",
     brochure: "Brochure",
     brochureAria: (type) => `Brochure for villa type ${type} (PDF)`,
     illustration: (type) => `Villa type ${type} · Illustration, not contractual`,
@@ -705,6 +707,7 @@ const en: Textes = {
     devise: "Display currency",
     reference: (prix) => `Reference price: ${prix}`,
     contreValeur: (date) => `Indicative conversion · rate of ${date}`,
+    indicatif: "Indicative price, subject to confirmation",
     devises: {
       EUR: "Euros",
       GBP: "Pounds sterling",
@@ -869,7 +872,7 @@ const en: Textes = {
         {
           titre: "Three architectures, three ways to live",
           texte:
-            "Type A, on one level, is designed for reduced mobility: lift and accessible bathrooms. Type B opens its rooms onto wide terraces. Type C plays contemporary volumes around the pool.",
+            "Type A is designed for reduced mobility: lift and accessible bathrooms. Type B opens its rooms onto wide terraces. Type C plays contemporary volumes around the pool.",
         },
         {
           titre: "Set apart, never far",
@@ -890,7 +893,7 @@ const en: Textes = {
       kicker: "Contact",
       titreH1: ["Let's talk about", "your project."],
       intro: "Every request is reviewed one by one. Phone, WhatsApp or the form — your choice.",
-      formulaire: "Write to the concierge",
+      formulaire: "Request a call back",
     },
   },
   faq: (v) => [
@@ -940,10 +943,10 @@ const en: Textes = {
     kicker: "By request only",
     titre: ["Enter", "the circle."],
     texte: (n) =>
-      `${n} villas, reserved for a few public figures. Every request for access is reviewed one by one.`,
+      `${n} villas, reserved for a few public figures. Every request is reviewed one by one, and an adviser calls you back.`,
     sceau: (n) => `PRIVATE ACCESS · CITYSTAR · ${n} VILLAS · `,
-    entrer: "Enter",
-    demander: "Request private access",
+    entrer: "Call",
+    demander: "Request a call back",
     conciergerie: "Concierge",
     conciergerieAria: "Message the concierge on WhatsApp",
   },
@@ -972,7 +975,7 @@ const en: Textes = {
     recap: "Your answers",
     apercu: "Preview of the three villas",
     voirVilla: "See the villa",
-    dossier: "Receive the file",
+    dossier: "Call back about this villa",
     prive:
       "Your answers stay on this device: they are only attached to your request if you send it.",
     recommencer: "Start again",
@@ -1057,6 +1060,7 @@ const en: Textes = {
     deuxPlans: "2 plans",
     brochure: "Brochure",
     prix: "Price",
+    prixIndicatif: "Indicative price",
     defiler: "Scroll to compare",
     estReference: " · reference",
     suite: "suite",
@@ -1112,8 +1116,7 @@ const en: Textes = {
     mention:
       "Illustrative, non-contractual assumptions: move the sliders to try your own. Estimate before running costs, taxation and actual operating expenses.",
     courtTerme: "Short-term letting in Marrakech is subject to local registration requirements.",
-    courtTermeNote: "Wording to be validated by the developer",
-    analyse: "Receive a tailored analysis",
+    analyse: "Call back to discuss it",
     compatibles: "See the villas within budget",
     outil: "Yield simulator",
     ligneMode: (mode) => `Mode: ${mode}`,
@@ -1122,9 +1125,10 @@ const en: Textes = {
     ligneNeutre: "Assumptions being validated",
   },
   contact: {
-    kicker: "Let’s meet",
-    titre: ["Plan", "a viewing."],
-    texte: "Our team guides you through CITYSTAR and its three villa types.",
+    kicker: "CITYSTAR concierge",
+    titre: ["Request ", "a call back."],
+    texte:
+      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate.",
     jointe: (outil) => `Attached to your request · ${outil}`,
     retirer: "Do not attach",
     nom: "Full name",

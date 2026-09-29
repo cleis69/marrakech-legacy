@@ -9,6 +9,7 @@ import {
   formatDate,
   formatPrix,
   prixVilla,
+  prixVillas,
   symbolesDevise,
 } from "@/config/citystar";
 
@@ -108,6 +109,7 @@ export function VillaPrice({ type }: { type: TypeVilla }) {
       {approximatif && (
         <span className="vprice-note">{t.prix.contreValeur(formatDate(taux.date, langue))}</span>
       )}
+      {!prixVillas[type].confirme && <span className="vprice-note">{t.prix.indicatif}</span>}
     </div>
   );
 }

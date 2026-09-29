@@ -3,7 +3,7 @@ import {
   Building2,
   Download,
   LayoutPanelLeft,
-  Lock,
+  PhoneCall,
   Menu,
   MessageCircle,
   Rotate3d,
@@ -114,7 +114,7 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
             onContact();
           }}
         >
-          <Lock aria-hidden="true" />
+          <PhoneCall aria-hidden="true" />
           {t.header.demander}
         </button>
       </motion.div>
@@ -148,7 +148,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
           <LangSwitch className="float-lang" />
           <PillButton
             label={t.header.acces}
-            icon={Lock}
+            icon={PhoneCall}
             onClick={onContact}
             className="float-cta"
           />
@@ -170,7 +170,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
         {tab("galerie", t.header.galerie, LayoutPanelLeft)}
         <button className="tabbar-fab" onClick={onContact}>
           <i aria-hidden="true">
-            <Lock />
+            <PhoneCall />
           </i>
           <span>{t.header.acces}</span>
         </button>

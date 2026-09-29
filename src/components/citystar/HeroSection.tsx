@@ -1,5 +1,5 @@
 import { type MotionStyle, motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, Lock, Pause, Play } from "lucide-react";
+import { ArrowRight, PhoneCall, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { programme } from "@/config/citystar";
@@ -92,7 +92,7 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
             <div className="pp-side">
               <p>{t.hero.texte}</p>
               <div className="pp-actions">
-                <PillButton label={t.hero.acces} icon={Lock} onClick={onContact} />
+                <PillButton label={t.hero.acces} icon={PhoneCall} onClick={onContact} />
                 <PillButton
                   label={t.hero.decouvrir}
                   icon={ArrowRight}

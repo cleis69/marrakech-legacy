@@ -344,10 +344,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
           {mode === "court" && (
             <p className="sm-warn">
               <Info aria-hidden="true" />
-              <span>
-                {t.rentabilite.courtTerme}
-                <small>{t.rentabilite.courtTermeNote}</small>
-              </span>
+              <span>{t.rentabilite.courtTerme}</span>
             </p>
           )}
 

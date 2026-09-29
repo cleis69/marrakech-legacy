@@ -1,4 +1,4 @@
-import { ArrowRight, Lock } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 
 import { contact, nombreEnLettres, programme } from "@/config/citystar";
 
@@ -21,7 +21,7 @@ export function FinalCta({ onContact }: { onContact: () => void }) {
         </Reveal>
         <p>{t.cercle.texte(String(programme.nombreVillas))}</p>
         <div className="circle-actions">
-          <PillButton label={t.cercle.demander} icon={Lock} onClick={onContact} />
+          <PillButton label={t.cercle.demander} icon={PhoneCall} onClick={onContact} />
           <PillButton
             label={t.cercle.conciergerie}
             icon={ArrowRight}
@@ -38,7 +38,7 @@ export function FinalCta({ onContact }: { onContact: () => void }) {
             ? nombreEnLettres(programme.nombreVillas).toUpperCase()
             : String(programme.nombreVillas),
         )}
-        icon={Lock}
+        icon={PhoneCall}
         label={t.cercle.entrer}
         onClick={onContact}
         ariaLabel={t.cercle.demander}
