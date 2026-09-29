@@ -1,5 +1,5 @@
 import { useDevise } from "./currency";
-import { rendus } from "./data";
+import { altRendu, rendus } from "./data";
 
 /**
  * Les rendus sont classés par nom de fichier, ce qui met les vues d'une même
@@ -23,7 +23,12 @@ export function Ruban() {
     <ul className="rb-bande" {...(copie ? { "aria-hidden": true } : {})}>
       {suite.map((rendu) => (
         <li key={rendu.src}>
-          <img src={rendu.src} alt={copie ? "" : rendu.alt} loading="lazy" decoding="async" />
+          <img
+            src={rendu.src}
+            alt={copie ? "" : altRendu(t, rendu.nom)}
+            loading="lazy"
+            decoding="async"
+          />
         </li>
       ))}
     </ul>

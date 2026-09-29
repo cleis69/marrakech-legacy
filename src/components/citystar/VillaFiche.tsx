@@ -1,9 +1,15 @@
 import { ArrowLeft, Download, Expand, PhoneCall } from "lucide-react";
 
-import { type TypeVilla, formatPrix, prixVilla, villasChiffres } from "@/config/citystar";
+import {
+  type TypeVilla,
+  brochures,
+  formatPrix,
+  prixVilla,
+  villasChiffres,
+} from "@/config/citystar";
 
 import { faitsVilla, villas } from "./data";
-import { chemin, Lien } from "./liens";
+import { chemin, fichierPublic, Lien } from "./liens";
 import { VillaPrice, useDevise } from "./currency";
 import { PillButton } from "./ui/PillButton";
 
@@ -129,7 +135,7 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
               label={t.villas.brochure}
               icon={Download}
               variant="secondary"
-              href={`/brochures/villa-${villa.type.toLowerCase()}.pdf`}
+              href={fichierPublic(brochures[villa.type].fichier)}
               ariaLabel={t.villas.brochureAria(villa.type)}
             />
           </div>

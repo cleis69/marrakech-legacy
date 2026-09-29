@@ -5,6 +5,7 @@ import {
   type Devise,
   type TypeVilla,
   bornesPrixEUR,
+  brochures,
   convertirEUR,
   formatNombre,
   formatPrix,
@@ -16,7 +17,7 @@ import {
 
 import { CurrencyPills, useDevise } from "./currency";
 import { type Budget, type Selection, PARAM_BUDGET, faitsVilla, villas } from "./data";
-import { chemin, Lien } from "./liens";
+import { chemin, fichierPublic, Lien } from "./liens";
 import { PillButton } from "./ui/PillButton";
 
 type Props = {
@@ -252,7 +253,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
       cells: (type) => (
         <a
           className="cp-pdf"
-          href={`/brochures/villa-${type.toLowerCase()}.pdf`}
+          href={fichierPublic(brochures[type].fichier)}
           target="_blank"
           rel="noreferrer"
           aria-label={textes.villas.brochureAria(type)}

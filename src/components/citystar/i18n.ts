@@ -19,6 +19,7 @@ const fr = {
     accueil: "Retour à l’accueil",
     sommaire: "Sommaire",
     brochure: "Brochure CITYSTAR",
+    poids: (mo: string) => `PDF · ${mo} Mo`,
     demander: "Être rappelé par un conseiller",
     fermer: "Fermer le menu",
     menu: "Menu",
@@ -97,7 +98,7 @@ const fr = {
     villa: "Villa",
     decouvrir: "Découvrir la villa",
     decouvrirAria: (type: TypeVilla, surface: string, suites: string, tag: string) =>
-      `Découvrir la villa type ${type} : ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Découvrir la villa type ${type}\u00a0: ${surface}, ${suites}, ${tag.toLowerCase()}`,
     retour: "Les trois villas",
     onglets: "Types de villa",
     typeVilla: (type: TypeVilla) => `Villa type ${type}`,
@@ -123,7 +124,7 @@ const fr = {
     } as Record<TypeVilla, [string, string]>,
     tags: { A: "Accessible", B: "Terrasses", C: "Contemporaine" } as Record<TypeVilla, string>,
     descriptions: {
-      A: "Pensée pour les résidents à mobilité réduite : ascenseur, salles de bains accessibles et circulations généreuses.",
+      A: "Pensée pour les résidents à mobilité réduite\u00a0: ascenseur, salles de bains accessibles et circulations généreuses.",
       B: "Une architecture exigeante et des matériaux de haute qualité, prolongés par de vastes terrasses.",
       C: "Des volumes contemporains et une piscine privée, selon les standards architecturaux les plus exigeants.",
     } as Record<TypeVilla, string>,
@@ -131,7 +132,7 @@ const fr = {
   prix: {
     label: "Prix",
     devise: "Devise d’affichage",
-    reference: (prix: string) => `Prix de référence : ${prix}`,
+    reference: (prix: string) => `Prix de référence\u00a0: ${prix}`,
     contreValeur: (date: string) => `Contre-valeur indicative · taux du ${date}`,
     indicatif: "Prix indicatif, sous réserve de confirmation",
     devises: {
@@ -192,13 +193,13 @@ const fr = {
     lieux: {
       med: { titre: "Place Jemaa el-Fna", note: (n: number) => `Moins de ${n} minutes` },
       air: { titre: "Aéroport de Marrakech", note: (n: number) => `Moins de ${n} minutes` },
-      palm: { titre: "La Palmeraie", note: "À proximité immédiate", mot: "Proche" },
+      palm: { titre: "La Palmeraie", note: "Toute proche", mot: "Proche" },
     },
     adresse: ["Wilaya Marrakech-Safi", "Préfecture de Marrakech", "Oulad Hassoune"],
     planMasse: "Plan de masse",
     schema: "Carte schématique, non à l’échelle",
     carteAria:
-      "Carte schématique, non à l’échelle : CITYSTAR à Oulad Hassoune, près de la Palmeraie, avec la médina et l’aéroport de Marrakech",
+      "Carte schématique, non à l’échelle\u00a0: CITYSTAR à Oulad Hassoune, près de la Palmeraie, avec la médina et l’aéroport de Marrakech",
     reperes: {
       med: "Médina · Jemaa el-Fna",
       medCourt: "Médina",
@@ -229,7 +230,7 @@ const fr = {
     villas: {
       titre: "Les villas — CITYSTAR Marrakech",
       description:
-        "Trois types de villas, surfaces, suites, plans et prix : trouvez celle qui vous ressemble.",
+        "Trois types de villas, surfaces, suites, plans et prix\u00a0: trouvez celle qui vous ressemble.",
       kicker: "Les villas",
       titreH1: ["Choisir", "sa villa."] as [string, string],
       intro:
@@ -238,7 +239,7 @@ const fr = {
     villa: {
       titre: (type: string) => `Villa type ${type} — CITYSTAR Marrakech`,
       description: (type: string, surface: string, suites: string) =>
-        `Villa type ${type} : ${surface} construits, ${suites}, plans et brochure.`,
+        `Villa type ${type}\u00a0: ${surface} construits, ${suites}, plans et brochure.`,
     },
     galerie: {
       titre: "Galerie et visite — CITYSTAR Marrakech",
@@ -254,9 +255,11 @@ const fr = {
       description:
         "Ce qu'il faut savoir avant d'investir dans une villa à Marrakech, et un simulateur de rendement brut.",
       kicker: "Investir",
+      chapeau:
+        "Ce qu'il faut savoir avant d'investir dans une villa à Marrakech, et un simulateur pour tester vos propres hypothèses.",
       titreH1: ["Investir", "à Marrakech."] as [string, string],
       intro: [
-        "Quatorze villas, trois architectures, un domaine privé à quelques minutes de la Palmeraie : la rareté de l'offre est le premier argument d'un placement.",
+        "Quatorze villas, trois architectures, un domaine privé à quelques minutes de la Palmeraie\u00a0: la rareté de l'offre est le premier argument d'un placement.",
         "Les hypothèses de rendement dépendent du mode d'exploitation choisi et des conditions réelles du marché. Le simulateur ci-dessous part de valeurs d'illustration, à ajuster puis à confirmer avec le promoteur.",
       ] as [string, string],
       points: [
@@ -273,46 +276,52 @@ const fr = {
         {
           titre: "Revente à horizon",
           texte:
-            "La valeur dépend du marché et de l'état du bien ; aucune plus-value ne peut être garantie.",
+            "La valeur dépend du marché et de l'état du bien\u00a0; aucune plus-value ne peut être garantie.",
         },
       ],
     },
     faq: {
+      suites: {
+        titre: "Aller plus loin",
+        plans: "Voir les villas et leurs plans",
+        simulateur: "Estimer un rendement",
+        rappel: "Être rappelé par un conseiller",
+      },
       titre: "Questions fréquentes — CITYSTAR Marrakech",
       description:
-        "Emplacement, surfaces, accessibilité, prix, plans, visites : les réponses aux questions les plus posées.",
+        "Emplacement, surfaces, accessibilité, prix, plans, visites\u00a0: les réponses aux questions les plus posées.",
       kicker: "Questions",
       titreH1: ["Les questions", "qu'on nous pose."] as [string, string],
-      intro: "Une réponse manque ? La conciergerie répond directement.",
+      intro: "Une réponse manque\u00a0? La conciergerie répond directement.",
     },
     luxe: {
-      titre: "Villa de luxe \u00e0 Marrakech \u2014 CITYSTAR",
+      titre: "Villa de luxe à Marrakech — CITYSTAR",
       description:
-        "Quatorze villas de luxe \u00e0 Oulad Hassoune, Marrakech : surfaces, architectures, emplacement et conditions de visite.",
-      kicker: "Villa de luxe \u00e0 Marrakech",
-      titreH1: ["Acheter une villa", "\u00e0 Marrakech."] as [string, string],
+        "Quatorze villas de luxe à Oulad Hassoune, Marrakech\u00a0: surfaces, architectures, emplacement et conditions de visite.",
+      kicker: "Villa de luxe à Marrakech",
+      titreH1: ["Acheter une villa", "à Marrakech."] as [string, string],
       intro:
-        "CITYSTAR r\u00e9unit quatorze villas contemporaines dans un domaine priv\u00e9 et enti\u00e8rement s\u00e9curis\u00e9 d'Oulad Hassoune, \u00e0 proximit\u00e9 imm\u00e9diate de la Palmeraie.",
+        "CITYSTAR réunit quatorze villas contemporaines dans un domaine privé et entièrement sécurisé d'Oulad Hassoune, près de la Palmeraie.",
       sections: [
         {
-          titre: "Un domaine ferm\u00e9, pas un lotissement",
+          titre: "Un domaine fermé, pas un lotissement",
           texte:
-            "Quatorze villas seulement, chacune sur son terrain et avec sa piscine priv\u00e9e. Le domaine est clos et gard\u00e9 : la raret\u00e9 de l'offre est ce qui distingue le projet des programmes voisins.",
+            "Quatorze villas seulement, chacune sur son terrain et avec sa piscine privée. Le domaine est clos et gardé\u00a0: la rareté de l'offre est ce qui distingue le projet des programmes voisins.",
         },
         {
           titre: "Trois architectures, trois usages",
           texte:
-            "Le type A est con\u00e7u pour la mobilit\u00e9 r\u00e9duite : ascenseur et salles de bains accessibles. Le type B ouvre ses pi\u00e8ces sur de vastes terrasses. Le type C joue des volumes contemporains autour de la piscine.",
+            "Le type A est conçu pour la mobilité réduite\u00a0: ascenseur et salles de bains accessibles. Le type B ouvre ses pièces sur de vastes terrasses. Le type C joue des volumes contemporains autour de la piscine.",
         },
         {
-          titre: "\u00c0 l'\u00e9cart, jamais loin",
+          titre: "À l'écart, jamais loin",
           texte:
-            "La place Jemaa el-Fna et l'a\u00e9roport Marrakech-Menara sont \u00e0 moins de trente-cinq minutes, la Palmeraie \u00e0 quelques pas. Une visite a\u00e9rienne \u00e0 360\u00b0 permet de situer le domaine avant de se d\u00e9placer.",
+            "La place Jemaa el-Fna et l'aéroport Marrakech-Menara sont à moins de trente-cinq minutes, la Palmeraie toute proche. Une visite aérienne à 360° permet de situer le domaine avant de se déplacer.",
         },
         {
-          titre: "Visiter, puis acqu\u00e9rir",
+          titre: "Visiter, puis acquérir",
           texte:
-            "Les plans de chaque type et les brochures sont t\u00e9l\u00e9chargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie : chaque demande d'acc\u00e8s est \u00e9tudi\u00e9e une \u00e0 une.",
+            "Les plans de chaque type et les brochures sont téléchargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: chaque demande d'accès est étudiée une à une.",
         },
       ],
     },
@@ -335,38 +344,74 @@ const fr = {
     c: string;
   }) => [
     {
-      q: "Combien de villas compte CITYSTAR ?",
+      q: "Combien de villas compte CITYSTAR\u00a0?",
       r: `${v.villas} villas, réparties en trois types. Chacune dispose de son terrain, jusqu'à ${v.terrain}, et de sa piscine privée.`,
     },
     {
-      q: "Où se situe le domaine ?",
-      r: `À Oulad Hassoune, préfecture de Marrakech, à proximité immédiate de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
+      q: "Où se situe le domaine\u00a0?",
+      r: `À Oulad Hassoune, préfecture de Marrakech, près de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
     },
     {
-      q: "Quelles sont les surfaces ?",
-      r: `Type A : ${v.a}. Type B : ${v.b}. Type C : ${v.c}. Les surfaces s'entendent construites ; les terrains sont indiqués sur chaque fiche.`,
+      q: "Quelles sont les surfaces\u00a0?",
+      r: `Type A\u00a0: ${v.a}. Type B\u00a0: ${v.b}. Type C\u00a0: ${v.c}. Les surfaces s'entendent construites\u00a0; les terrains sont indiqués sur chaque fiche.`,
     },
     {
-      q: "Une villa est-elle adaptée à la mobilité réduite ?",
-      r: "Oui, la villa type A : ascenseur, salles de bains accessibles et circulations généreuses.",
+      q: "Une villa est-elle adaptée à la mobilité réduite\u00a0?",
+      r: "Oui, la villa type A\u00a0: ascenseur, salles de bains accessibles et circulations généreuses.",
     },
     {
-      q: "Les prix affichés sont-ils définitifs ?",
+      q: "Les prix affichés sont-ils définitifs\u00a0?",
       r: "Ils sont indicatifs et à confirmer contractuellement. Les montants en dirhams et en couronnes sont des contre-valeurs, calculées au taux du jour et signalées comme telles.",
     },
     {
-      q: "Peut-on visiter ?",
+      q: "Peut-on visiter\u00a0?",
       r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande par la conciergerie, après étude de la demande d'accès.",
     },
     {
-      q: "Les plans sont-ils disponibles ?",
-      r: "Oui : rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa.",
+      q: "Les plans sont-ils disponibles\u00a0?",
+      r: "Oui\u00a0: rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa.",
     },
     {
-      q: "Comment se déroule l'acquisition ?",
+      q: "Comment se déroule l'acquisition\u00a0?",
       r: "Le promoteur communique les conditions — acompte, échéancier, frais d'acquisition — lors de l'étude de votre demande. Nous ne simulons pas ces montants tant qu'ils ne sont pas confirmés.",
     },
   ],
+  rendus: {
+    // Textes alternatifs écrits d'après les images (le nom de fichier ne décrit rien).
+    alts: {
+      "entree-crepuscule":
+        "Allée d’entrée d’une villa, volumes blancs et pergola en lames sombres, jardin de palmiers",
+      "entree-palmiers": "Porte d’entrée en bois encadrée de lames sombres, entre deux palmiers",
+      "entree-portail": "Porte d’entrée en bois sous une pergola à lames, vue de face",
+      "ext-aerien-piscine": "Vue en hauteur d’une villa à étage, de sa piscine et de sa pelouse",
+      "ext-facade-crepuscule":
+        "Façade basse d’une villa, enduit blanc et bandeaux sombres, derrière un jardin sec",
+      "ext-facade-entree": "Façade d’une villa et son allée, voiture garée devant l’entrée",
+      "ext-facade-jardin": "Villa à étage vue depuis le jardin, terrasse couverte et voiture garée",
+      "ext-pergola-allee":
+        "Villa aux volumes bas, pergola à lames sur la terrasse, pelouse et palmiers",
+      "ext-pergola-jour": "Terrasse sous une pergola à lames verticales, au bord de la pelouse",
+      "ext-pergola-portrait": "Pergola à lames sombres au-dessus d’une terrasse meublée",
+      "ext-piscine-crepuscule": "Angle d’une villa à étage, grandes baies voilées et piscine",
+      "ext-piscine-jour": "Piscine au pied d’une villa à étage, balcons et bains de soleil",
+      "ext-piscine-soir": "Villa éclairée en soirée, piscine et terrasse de l’étage",
+      "ext-terrasse-jour":
+        "Salon d’extérieur sous une avancée, entre volumes blancs et bardage bois",
+      "ext-terrasses-cactus": "Villa à étage et ses terrasses, pelouse, cactus et bains de soleil",
+      "ext-volume-lames": "Volume sombre strié de lames lumineuses, cour plantée d’un palmier",
+      "int-chambre-bois": "Chambre aux boiseries sombres, grand lit et sol en marbre clair",
+      "int-chambre-jour": "Chambre lumineuse, lit bas et baie vitrée ouverte sur le jardin",
+      "int-chambre-soir": "Chambre aux tons gris, lit, fauteuils et dressing",
+      "int-salon":
+        "Salon au canapé courbe sous des suspensions circulaires, bonsaï sur la table basse",
+    } as Record<string, string>,
+    visionneuse: "Galerie en grand format",
+    agrandir: (alt: string) => `Agrandir\u00a0: ${alt}`,
+    precedente: "Image précédente",
+    suivante: "Image suivante",
+    fermer: "Fermer la galerie",
+    position: (i: number, n: number) => `${i} / ${n}`,
+  },
   ruban: {
     aria: "Les rendus du domaine, en défilement",
     note: "Rendus d’architecte · illustrations non contractuelles",
@@ -395,7 +440,7 @@ const fr = {
     conciergerie: "Conciergerie",
     ecrire: "Écrire",
     brochure: "Brochure",
-    theme: ["Villa de luxe \u00e0 Marrakech", "villa-de-luxe-marrakech"] as [string, string],
+    theme: ["Villa de luxe à Marrakech", "villa-de-luxe-marrakech"] as [string, string],
     nav: "Pied de page",
     legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Oulad Hassoune, Marrakech`,
     instagram: "CITYSTAR sur Instagram",
@@ -408,18 +453,18 @@ const fr = {
     recommandation: "Recommandation",
     notre: "Notre recommandation",
     retour: "Retour",
-    clavier: "Clavier : chiffres pour répondre, flèche gauche pour revenir",
+    clavier: "Clavier\u00a0: chiffres pour répondre, flèche gauche pour revenir",
     recap: "Vos réponses",
     apercu: "Aperçu des trois villas",
     voirVilla: "Voir la villa",
     dossier: "Être rappelé pour cette villa",
     prive:
-      "Vos réponses restent sur cet appareil : elles ne sont jointes à votre demande que si vous l’envoyez.",
+      "Vos réponses restent sur cet appareil\u00a0: elles ne sont jointes à votre demande que si vous l’envoyez.",
     recommencer: "Recommencer",
     comparer: "Comparer avec les deux autres",
     rendement: "Estimer le rendement",
     outil: "Sélecteur de villa",
-    ligneRecommandation: (type: TypeVilla) => `Recommandation : villa ${type}`,
+    ligneRecommandation: (type: TypeVilla) => `Recommandation\u00a0: villa ${type}`,
     conversion: "Montants convertis à titre indicatif",
     questions: {
       usage: {
@@ -430,12 +475,12 @@ const fr = {
         investirNote: "Placement ou location",
       },
       suites: {
-        titre: "Combien de chambres souhaitez-vous ?",
+        titre: "Combien de chambres souhaitez-vous\u00a0?",
         suites: (n: number) => `${n} suites`,
         peuImporte: "Peu importe",
       },
       budget: {
-        titre: "Quel budget envisagez-vous ?",
+        titre: "Quel budget envisagez-vous\u00a0?",
         jusqua: (montant: string) => `Jusqu’à ${montant}`,
         curseur: "Votre budget",
         valider: "Valider ce budget",
@@ -443,7 +488,7 @@ const fr = {
         parlerNote: "De vive voix",
       },
       pmr: {
-        titre: "Faut-il un accès adapté à la mobilité réduite ?",
+        titre: "Faut-il un accès adapté à la mobilité réduite\u00a0?",
         oui: "Oui",
         ouiNote: "Ascenseur, salles de bains accessibles",
         non: "Non",
@@ -457,24 +502,24 @@ const fr = {
     },
     justifications: {
       pmr: (taille: string) =>
-        `Seule villa conçue pour la mobilité réduite : ascenseur et salles de bains accessibles, ${taille}.`,
+        `Seule villa conçue pour la mobilité réduite\u00a0: ascenseur et salles de bains accessibles, ${taille}.`,
       pmrSuites: (plus: boolean) =>
         ` Elle compte ${plus ? "plus" : "moins"} de suites que souhaité.`,
       contemporaine: (taille: string, exacte: boolean) =>
         `${taille}, des volumes contemporains et une piscine privée${exacte ? " : la taille que vous recherchez." : "."}`,
       budgetSeule: " C’est la villa qui s’inscrit dans votre budget.",
       polyvalente: (taille: string) =>
-        `La plus polyvalente : ${taille}, prolongées par de vastes terrasses.`,
+        `La plus polyvalente\u00a0: ${taille}, prolongées par de vastes terrasses.`,
       espace: (taille: string) =>
-        `${taille}, prolongées par de vastes terrasses : l’espace que vous recherchez.`,
-      horsBudget: " Son prix dépasse le budget indiqué : parlons-en.",
+        `${taille}, prolongées par de vastes terrasses\u00a0: l’espace que vous recherchez.`,
+      horsBudget: " Son prix dépasse le budget indiqué\u00a0: parlons-en.",
     },
   },
   comparateur: {
     kicker: "Comparer",
     titre: ["Ce qui les ", "distingue."] as [string, string],
     note: "Écarts calculés par rapport à la villa de référence",
-    budget: (villas: string) => `Dans le budget saisi : ${villas}`,
+    budget: (villas: string) => `Dans le budget saisi\u00a0: ${villas}`,
     aucune: "aucune villa",
     votreBudget: "Votre budget",
     reference: "Référence",
@@ -499,20 +544,20 @@ const fr = {
     defiler: "Faites défiler pour comparer",
     rappel: (type: TypeVilla) => `Être rappelé pour la villa ${type}`,
     outil: "Comparateur des villas",
-    ligneReference: (type: TypeVilla) => `Villa de référence : ${type}`,
-    ligneBudget: (montant: string) => `Budget : ${montant}`,
+    ligneReference: (type: TypeVilla) => `Villa de référence\u00a0: ${type}`,
+    ligneBudget: (montant: string) => `Budget\u00a0: ${montant}`,
     estReference: " · référence",
     suite: "suite",
   },
   rentabilite: {
     kicker: "Simulateur",
-    titre: ["Et si la villa ", "travaillait ?"] as [string, string],
+    titre: ["Et si la villa ", "travaillait\u00a0?"] as [string, string],
     modes: { court: "Courte durée", long: "Longue durée", revente: "Revente" },
     modeAria: "Mode de simulation",
     prix: "Prix du bien",
     intro: [
-      "Indiquez le budget étudié et l’usage envisagé : l’estimation s’affiche aussitôt, dans la devise de votre choix.",
-      "Les curseurs partent de valeurs d’illustration : ajustez-les à votre projet. Les chiffres définitifs sont confirmés par le promoteur.",
+      "Indiquez le budget étudié et l’usage envisagé\u00a0: l’estimation s’affiche aussitôt, dans la devise de votre choix.",
+      "Les curseurs partent de valeurs d’illustration\u00a0: ajustez-les à votre projet. Les chiffres définitifs sont confirmés par le promoteur.",
     ] as [string, string],
     budget: "Budget étudié",
     typeLabel: "Type de villa",
@@ -524,7 +569,7 @@ const fr = {
     resultatTitre: "Votre estimation",
     budgetSaisi: "Budget étudié",
     usage: "Usage envisagé",
-    prixEtudie: (montant: string) => `Prix étudié : ${montant}`,
+    prixEtudie: (montant: string) => `Prix étudié\u00a0: ${montant}`,
     champs: {
       prixMoyenNuitEUR: "Prix moyen par nuit",
       tauxOccupation: "Taux d’occupation",
@@ -553,15 +598,15 @@ const fr = {
     neutreTexte:
       "Aucun rendement n’est publié tant que les hypothèses ne sont pas confirmées par le promoteur. Recevez une analyse établie à partir de votre projet.",
     mention:
-      "Hypothèses d’illustration, non contractuelles : déplacez les curseurs pour tester les vôtres. Estimation avant charges, fiscalité et coûts réels d’exploitation.",
+      "Hypothèses d’illustration, non contractuelles\u00a0: déplacez les curseurs pour tester les vôtres. Estimation avant charges, fiscalité et coûts réels d’exploitation.",
     courtTerme:
       "La location courte durée à Marrakech est soumise à des obligations déclaratives locales.",
     analyse: "Être rappelé pour en parler",
     compatibles: "Voir les villas compatibles",
     outil: "Simulateur de rentabilité",
-    ligneMode: (mode: string) => `Mode : ${mode}`,
-    ligneType: (type: string) => `Type étudié : ${type}`,
-    ligneResultat: (titre: string, valeur: string) => `${titre} : ${valeur}`,
+    ligneMode: (mode: string) => `Mode\u00a0: ${mode}`,
+    ligneType: (type: string) => `Type étudié\u00a0: ${type}`,
+    ligneResultat: (titre: string, valeur: string) => `${titre}\u00a0: ${valeur}`,
     ligneNeutre: "Hypothèses en cours de validation",
   },
   contact: {
@@ -569,7 +614,7 @@ const fr = {
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Laissez vos coordonnées : un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
+      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
@@ -610,6 +655,7 @@ const en: Textes = {
     accueil: "Back to top",
     sommaire: "Contents",
     brochure: "CITYSTAR brochure",
+    poids: (mo) => `PDF · ${mo} MB`,
     demander: "Request a call back",
     fermer: "Close menu",
     menu: "Menu",
@@ -775,7 +821,7 @@ const en: Textes = {
     lieux: {
       med: { titre: "Jemaa el-Fna square", note: (n) => `Under ${n} minutes` },
       air: { titre: "Marrakech airport", note: (n) => `Under ${n} minutes` },
-      palm: { titre: "The Palmeraie", note: "Right nearby", mot: "Close" },
+      palm: { titre: "The Palmeraie", note: "Close by", mot: "Close" },
     },
     adresse: ["Marrakech-Safi region", "Marrakech prefecture", "Oulad Hassoune"],
     planMasse: "Site plan",
@@ -837,6 +883,8 @@ const en: Textes = {
       description:
         "What to know before investing in a villa in Marrakech, plus a gross yield simulator.",
       kicker: "Investing",
+      chapeau:
+        "What to know before investing in a villa in Marrakech, and a simulator to test your own assumptions.",
       titreH1: ["Investing", "in Marrakech."],
       intro: [
         "Fourteen villas, three architectures, a private estate minutes from the Palmeraie: scarcity is the first argument of the investment.",
@@ -860,6 +908,12 @@ const en: Textes = {
       ],
     },
     faq: {
+      suites: {
+        titre: "Go further",
+        plans: "See the villas and their plans",
+        simulateur: "Estimate a yield",
+        rappel: "Request a call back",
+      },
       titre: "Frequently asked questions — CITYSTAR Marrakech",
       description:
         "Location, areas, accessibility, prices, plans, viewings: answers to the most common questions.",
@@ -868,13 +922,13 @@ const en: Textes = {
       intro: "An answer missing? The concierge replies directly.",
     },
     luxe: {
-      titre: "Luxury villa in Marrakech \u2014 CITYSTAR",
+      titre: "Luxury villa in Marrakech — CITYSTAR",
       description:
         "Fourteen luxury villas in Oulad Hassoune, Marrakech: areas, architectures, location and how to visit.",
       kicker: "Luxury villa in Marrakech",
       titreH1: ["Buying a villa", "in Marrakech."],
       intro:
-        "CITYSTAR gathers fourteen contemporary villas in a private, fully secured estate in Oulad Hassoune, right next to the Palmeraie.",
+        "CITYSTAR gathers fourteen contemporary villas in a private, fully secured estate in Oulad Hassoune, close to the Palmeraie.",
       sections: [
         {
           titre: "A gated estate, not a subdivision",
@@ -889,7 +943,7 @@ const en: Textes = {
         {
           titre: "Set apart, never far",
           texte:
-            "Jemaa el-Fna square and Marrakech-Menara airport are both under thirty-five minutes away, the Palmeraie a few steps. A 360\u00b0 aerial tour places the estate before you travel.",
+            "Jemaa el-Fna square and Marrakech-Menara airport are both under thirty-five minutes away, the Palmeraie close by. A 360° aerial tour places the estate before you travel.",
         },
         {
           titre: "Visit, then buy",
@@ -915,7 +969,7 @@ const en: Textes = {
     },
     {
       q: "Where is the estate?",
-      r: `In Oulad Hassoune, Marrakech prefecture, right next to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
+      r: `In Oulad Hassoune, Marrakech prefecture, close to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
     },
     {
       q: "What are the areas?",
@@ -942,6 +996,40 @@ const en: Textes = {
       r: "The developer sets out the terms — deposit, payment schedule, acquisition costs — when your request is reviewed. We do not simulate those amounts until they are confirmed.",
     },
   ],
+  rendus: {
+    alts: {
+      "entree-crepuscule":
+        "Entrance path of a villa, white volumes and a dark slatted pergola, palm garden",
+      "entree-palmiers": "Wooden front door framed by dark slats, between two palm trees",
+      "entree-portail": "Wooden front door under a slatted pergola, seen head-on",
+      "ext-aerien-piscine": "High view of a two-storey villa with its pool and lawn",
+      "ext-facade-crepuscule": "Low villa facade, white render and dark bands, behind a dry garden",
+      "ext-facade-entree": "Villa facade and driveway, a car parked by the entrance",
+      "ext-facade-jardin": "Two-storey villa seen from the garden, covered terrace and parked car",
+      "ext-pergola-allee":
+        "Villa with low volumes, slatted pergola over the terrace, lawn and palms",
+      "ext-pergola-jour": "Terrace under a pergola of vertical slats, at the edge of the lawn",
+      "ext-pergola-portrait": "Dark slatted pergola over a furnished terrace",
+      "ext-piscine-crepuscule": "Corner of a two-storey villa, tall curtained windows and pool",
+      "ext-piscine-jour": "Pool at the foot of a two-storey villa, balconies and sun loungers",
+      "ext-piscine-soir": "Villa lit at dusk, pool and upper-floor terrace",
+      "ext-terrasse-jour":
+        "Outdoor lounge under an overhang, between white volumes and wood cladding",
+      "ext-terrasses-cactus": "Two-storey villa and its terraces, lawn, cacti and sun loungers",
+      "ext-volume-lames": "Dark volume lined with glowing slats, courtyard with a palm tree",
+      "int-chambre-bois": "Bedroom with dark wood panelling, large bed and pale marble floor",
+      "int-chambre-jour": "Bright bedroom, low bed and a glass wall onto the garden",
+      "int-chambre-soir": "Grey-toned bedroom, bed, armchairs and dressing room",
+      "int-salon":
+        "Living room with a curved sofa under circular pendant lights, bonsai on the coffee table",
+    },
+    visionneuse: "Full-size gallery",
+    agrandir: (alt) => `Enlarge: ${alt}`,
+    precedente: "Previous image",
+    suivante: "Next image",
+    fermer: "Close the gallery",
+    position: (i, n) => `${i} / ${n}`,
+  },
   ruban: {
     aria: "The estate’s renders, scrolling",
     note: "Architect’s renders · illustrations not contractually binding",

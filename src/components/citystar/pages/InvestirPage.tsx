@@ -10,7 +10,11 @@ export function InvestirPage() {
   const { ouvrirContact, ouvrirContactAvec } = useSite();
   return (
     <>
-      <PageHeader kicker={t.pages.investir.kicker} titre={t.pages.investir.titreH1} />
+      <PageHeader
+        kicker={t.pages.investir.kicker}
+        titre={t.pages.investir.titreH1}
+        intro={t.pages.investir.chapeau}
+      />
       <section className="prose section-pad" aria-label={t.pages.investir.kicker}>
         <p className="prose-lede">{t.pages.investir.intro[0]}</p>
         <p>{t.pages.investir.intro[1]}</p>

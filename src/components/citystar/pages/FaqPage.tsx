@@ -1,6 +1,9 @@
 import { formatSurface, programme, villasChiffres } from "@/config/citystar";
 
+import { ArrowRight, PhoneCall } from "lucide-react";
+
 import { useDevise } from "../currency";
+import { chemin, Lien } from "../liens";
 import { FinalCta } from "../FinalCta";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
@@ -34,6 +37,18 @@ export function FaqPage() {
             </div>
           ))}
         </dl>
+        <nav className="faq-next" aria-label={t.pages.faq.suites.titre}>
+          <p>{t.pages.faq.suites.titre}</p>
+          <Lien vers={chemin(langue, "villas")}>
+            {t.pages.faq.suites.plans} <ArrowRight aria-hidden="true" />
+          </Lien>
+          <Lien vers={`${chemin(langue, "investir")}#rentabilite`}>
+            {t.pages.faq.suites.simulateur} <ArrowRight aria-hidden="true" />
+          </Lien>
+          <button type="button" onClick={ouvrirContact}>
+            {t.pages.faq.suites.rappel} <PhoneCall aria-hidden="true" />
+          </button>
+        </nav>
       </section>
       <Marquee />
       <FinalCta onContact={ouvrirContact} />

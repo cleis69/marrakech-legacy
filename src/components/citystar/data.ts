@@ -78,11 +78,14 @@ const modules = import.meta.glob("@/assets/citystar/rendus/*.webp", {
   import: "default",
 }) as Record<string, string>;
 
-/** Rendus triés par nom de fichier, hors dessin au trait de l'architecture. */
+/* Hors galerie : le dessin au trait (il sert à l'architecture) et un quasi-doublon d'entree-palmiers. */
+const ECARTES = ["-trait", "entree-portail"];
+
+/** Rendus triés par nom de fichier. Le nom sert de clé aux textes alternatifs (i18n, rendus.alts). */
 export const rendus = Object.entries(modules)
-  .filter(([chemin]) => !chemin.includes("-trait"))
+  .filter(([chemin]) => !ECARTES.some((motif) => chemin.includes(motif)))
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([chemin, src]) => ({
-    src,
-    alt: (chemin.split("/").pop() ?? "").replace(".webp", "").replace(/-/g, " "),
-  }));
+  .map(([chemin, src]) => ({ src, nom: (chemin.split("/").pop() ?? "").replace(".webp", "") }));
+
+/** Texte alternatif d'un rendu dans la langue du visiteur. */
+export const altRendu = (t: Textes, nom: string) => t.rendus.alts[nom] ?? nom.replace(/-/g, " ");

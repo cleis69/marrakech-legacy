@@ -9,6 +9,9 @@ export function chemin(langue: Langue, sous = "") {
   return `${base}/${sous}`;
 }
 
+/** Fichier de public/ (PDF…) : la base de l'hébergement est ajoutée, sinon le lien casse sur GitHub Pages. */
+export const fichierPublic = (chemin: string) => `${import.meta.env.BASE_URL}${chemin}`;
+
 /** Les pages dont l'adresse change de langue, pour que la bascule FR/EN ne tombe pas à côté. */
 const slugs: Record<string, string> = {
   "villa-de-luxe-marrakech": "luxury-villa-marrakech",

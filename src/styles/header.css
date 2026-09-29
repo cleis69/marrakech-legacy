@@ -39,6 +39,7 @@
 .menu-sheet li a[aria-current="page"] { color: var(--sand); }
 .menu-sheet-links { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-top: 1.2rem; }
 .menu-sheet-links a { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .85rem .5rem; border: 1px solid color-mix(in oklab, var(--cream) 18%, transparent); color: inherit; text-decoration: none; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
+.menu-sheet-links small { display: block; margin-left: .3rem; font-size: .7rem; letter-spacing: .06em; text-transform: none; opacity: .7; }
 .menu-sheet-links svg { width: .95rem; height: .95rem; color: var(--sand); }
 .menu-sheet-cta { width: 100%; margin-top: .6rem; display: flex; align-items: center; justify-content: center; gap: .6rem; padding: .95rem; border: 0; background: var(--bronze); color: var(--cream); font-size: .7rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
 .menu-sheet-cta svg { width: 1rem; height: 1rem; }

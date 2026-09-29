@@ -48,6 +48,7 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
 .ft-links { display: flex; flex-wrap: wrap; gap: 1.4rem 1.8rem; }
 .ft-links button, .ft-links a { display: inline-flex; align-items: center; gap: .4rem; padding: .7rem 0; margin: -.7rem 0; border: 0; background: none; font-size: .78rem; color: color-mix(in oklab, var(--cream) 80%, transparent); cursor: pointer; transition: color .3s; }
 .ft-links button:hover, .ft-links a:hover { color: var(--sand); }
+.ft-links small { font-size: .7rem; letter-spacing: .08em; opacity: .7; }
 .ft-links svg { width: .85rem; height: .85rem; }
 .ft-legal { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
 

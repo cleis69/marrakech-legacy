@@ -11,14 +11,20 @@ import {
 import { useInView } from "motion/react";
 import { useRef } from "react";
 
-import { contact } from "@/config/citystar";
+import { brochures, contact, formatDecimal } from "@/config/citystar";
+
+import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, Lien } from "./liens";
+import { chemin, fichierPublic, Lien } from "./liens";
 import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
   const { langue, t } = useDevise();
+  /* Sur /contact, les trois tuiles sont déjà le contenu de la page. */
+  const surContact = useRouterState({
+    select: (etat) => /\/contact\/?$/.test(etat.location.pathname),
+  });
   const wordRef = useRef<HTMLDivElement>(null);
   const wordInView = useInView(wordRef, { once: true, amount: 0.4 });
   const tiles = [
@@ -73,34 +79,36 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="ft-tiles">
-        {tiles.map(({ href, icon: Icon, kicker, value, external }) => (
-          <a
-            key={kicker}
-            className="ft-tile"
-            href={href}
-            {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-          >
-            <i aria-hidden="true">
-              <Icon />
-            </i>
-            <span>
-              <small>{kicker}</small>
-              <b>
-                {value.includes("@") ? (
-                  <>
-                    {value.split("@")[0]}@<wbr />
-                    {value.split("@")[1]}
-                  </>
-                ) : (
-                  value
-                )}
-              </b>
-            </span>
-            <ArrowRight aria-hidden="true" />
-          </a>
-        ))}
-      </div>
+      {!surContact && (
+        <div className="ft-tiles">
+          {tiles.map(({ href, icon: Icon, kicker, value, external }) => (
+            <a
+              key={kicker}
+              className="ft-tile"
+              href={href}
+              {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+            >
+              <i aria-hidden="true">
+                <Icon />
+              </i>
+              <span>
+                <small>{kicker}</small>
+                <b>
+                  {value.includes("@") ? (
+                    <>
+                      {value.split("@")[0]}@<wbr />
+                      {value.split("@")[1]}
+                    </>
+                  ) : (
+                    value
+                  )}
+                </b>
+              </span>
+              <ArrowRight aria-hidden="true" />
+            </a>
+          ))}
+        </div>
+      )}
 
       <div className="ft-bar">
         <nav className="ft-links" aria-label={t.pied.nav}>
@@ -110,8 +118,10 @@ export function SiteFooter() {
             </Lien>
           ))}
           <Lien vers={chemin(langue, t.pied.theme[1])}>{t.pied.theme[0]}</Lien>
-          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">
-            {t.pied.brochure} <Download aria-hidden="true" />
+          <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
+            {t.pied.brochure}
+            <small>{t.header.poids(formatDecimal(brochures.citystar.mo, langue))}</small>
+            <Download aria-hidden="true" />
           </a>
         </nav>
         <p className="ft-legal">{t.pied.legal(new Date().getFullYear())}</p>

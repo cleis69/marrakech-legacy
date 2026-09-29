@@ -166,6 +166,18 @@ export const coutsDetention = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Documents                                                           */
+/* ------------------------------------------------------------------ */
+
+/** Brochures servies depuis public/ ; le poids (en Mo) prévient avant un téléchargement lourd. */
+export const brochures = {
+  citystar: { fichier: "brochures/citystar.pdf", mo: 8.4 },
+  A: { fichier: "brochures/villa-a.pdf", mo: 0.3 },
+  B: { fichier: "brochures/villa-b.pdf", mo: 0.3 },
+  C: { fichier: "brochures/villa-c.pdf", mo: 0.3 },
+} as const;
+
+/* ------------------------------------------------------------------ */
 /* Contact                                                             */
 /* ------------------------------------------------------------------ */
 
@@ -187,6 +199,11 @@ export const contact = {
 const LOCALE: Record<Langue, string> = { fr: "fr-FR", en: "en-GB" };
 
 /** 2000 → « 2 000 » (fr) ou « 2,000 » (en), sans espace fine insécable. */
+/** 8.4 → « 8,4 » (fr) ou « 8.4 » (en) : une décimale au plus. */
+export function formatDecimal(valeur: number, langue: Langue = "fr") {
+  return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 1 }).format(valeur);
+}
+
 export function formatNombre(valeur: number, langue: Langue = "fr") {
   return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 0 })
     .format(valeur)

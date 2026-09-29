@@ -1,22 +1,22 @@
 import { AnimatePresence, motion } from "motion/react";
 import {
-  Building2,
+  CircleHelp,
+  House,
   Download,
   LayoutPanelLeft,
   PhoneCall,
   Menu,
   MessageCircle,
-  Rotate3d,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { contact } from "@/config/citystar";
+import { brochures, contact, formatDecimal } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, Lien, traduireSous } from "./liens";
+import { chemin, fichierPublic, Lien, traduireSous } from "./liens";
 import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
@@ -102,9 +102,10 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
             <MessageCircle aria-hidden="true" />
             {t.header.conciergerie}
           </a>
-          <a href="/brochures/citystar.pdf" target="_blank" rel="noreferrer">
+          <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
             <Download aria-hidden="true" />
             {t.header.brochure}
+            <small>{t.header.poids(formatDecimal(brochures.citystar.mo, langue))}</small>
           </a>
         </div>
         <button
@@ -124,7 +125,7 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
   const { langue, t } = useDevise();
-  const tab = (sous: string, label: string, Icon: typeof Building2) => (
+  const tab = (sous: string, label: string, Icon: typeof House) => (
     <Lien className="tabbar-item" vers={chemin(langue, sous)}>
       <Icon aria-hidden="true" />
       <span>{label}</span>
@@ -166,7 +167,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
       </header>
 
       <nav className="tabbar" aria-label="Navigation">
-        {tab("villas", t.header.villas, Building2)}
+        {tab("villas", t.header.villas, House)}
         {tab("galerie", t.header.galerie, LayoutPanelLeft)}
         <button className="tabbar-fab" onClick={onContact}>
           <i aria-hidden="true">
@@ -174,7 +175,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
           </i>
           <span>{t.header.acces}</span>
         </button>
-        {tab("faq", t.header.questions, Rotate3d)}
+        {tab("faq", t.header.questions, CircleHelp)}
         <button
           className="tabbar-item"
           onClick={onOpenMenu}
