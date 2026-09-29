@@ -3,6 +3,11 @@
 .ph-kicker { font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bronze); }
 .ph h1 { margin-top: 1.4rem; font: 400 clamp(2.8rem, 6vw, 6rem)/0.97 "Italiana", serif; }
 .ph-intro { max-width: 34rem; margin-top: 1.6rem; font-size: 1.05rem; line-height: 1.75; color: var(--muted-foreground); }
+/* Entrée au chargement : le bloc monte d'un seul tenant, le titre ne croise jamais l'intro. */
+.ph > * { animation: ph-in .9s cubic-bezier(.22, 1, .36, 1) both; }
+.ph > :nth-child(2) { animation-delay: .06s; }
+.ph > :nth-child(3) { animation-delay: .12s; }
+@keyframes ph-in { from { opacity: 0; transform: translateY(14px); } }
 
 /* Galerie */
 .gl { background: var(--paper); }
@@ -52,6 +57,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .gl-grid img, .ct-tile { transition: none; }
+  .ph > * { animation: none; }
 }
 
 /* ---------- Bandeau de repères ---------- */
