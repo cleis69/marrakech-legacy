@@ -13,12 +13,12 @@
 .vd-door:hover img { transform: scale(1.05); }
 .vd-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent), transparent 35%, transparent 45%, color-mix(in oklab, var(--ink) 82%, transparent)); }
 .vd-name { position: absolute; top: 1.8rem; left: 1.8rem; display: grid; }
-.vd-name small { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+.vd-name small { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; }
 .vd-name strong { font: 400 5.6rem/1 "Italiana", serif; }
 .vd-bottom { position: absolute; left: 1.8rem; right: 1.8rem; bottom: 1.8rem; display: grid; gap: 1.2rem; }
 .vd-more { display: grid; gap: 1.2rem; justify-items: start; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .9s cubic-bezier(.22, 1, .36, 1), opacity .5s; }
 .vd-desc { max-width: 38ch; font-size: .92rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 82%, transparent); }
-.vd-specs { display: flex; gap: 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.vd-specs { display: flex; gap: 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
 .vd-tri .vd-door.is-on, .vd-tri:hover .vd-door:hover, .vd-tri .vd-door:focus-visible { flex-grow: 2.4; }
 .vd-tri:hover .vd-door.is-on:not(:hover), .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) { flex-grow: 1; }
 .vd-door.is-on .vd-more, .vd-tri:hover .vd-door:hover .vd-more, .vd-door:focus-visible .vd-more { max-height: 14rem; opacity: 1; transition-delay: .15s; }
@@ -35,10 +35,10 @@
 .vf-pic-over .section-label { margin-bottom: 1.4rem; }
 .vf-pic-title { font: 400 clamp(2.4rem, 3.6vw, 3.8rem)/.98 "Italiana", serif; }
 .vf-pic-title em { color: var(--sand); }
-.vf-cap { align-self: end; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; }
+.vf-cap { align-self: end; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; }
 
 .vf-info { display: flex; flex-direction: column; gap: 1.6rem; padding-top: .5rem; }
-.vf-back { text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: color .3s, gap .3s; }
+.vf-back { text-decoration: none; display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: color .3s, gap .3s; }
 .vf-back svg { width: 14px; height: 14px; }
 .vf-back:hover { color: var(--foreground); gap: .9rem; }
 .vf-tabs { display: flex; align-items: center; gap: 1.2rem; }
@@ -47,26 +47,26 @@
 .vf-tabs nav a { text-decoration: none; }
 .vf-tabs nav a:hover { box-shadow: inset 0 0 0 1px var(--ink); }
 .vf-tabs nav a.is-on { background: var(--bronze); color: var(--cream); box-shadow: none; }
-.vf-tabs-label { font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vf-tabs-label { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
 .vf-panel { display: grid; gap: 1.5rem; animation: vf-in .6s cubic-bezier(.22, 1, .36, 1); }
 .vf-panel h1 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
 .vf-panel h1:focus { outline: none; }
 .vf-m2 { margin-top: -.4rem; font-size: .78rem; color: var(--muted-foreground); }
-.vf-badge { position: absolute; bottom: 0; right: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .56rem; letter-spacing: .18em; text-transform: uppercase; }
+.vf-badge { position: absolute; bottom: 0; right: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
 .vf-desc { max-width: 34rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vf-specs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--border); }
 .vf-specs div { display: grid; gap: .45rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
-.vf-specs dt { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vf-specs dt { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
 .vf-specs dd { margin: 0; font: 400 1.7rem/1 "Italiana", serif; }
 @keyframes vf-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 .vprice { display: grid; justify-items: start; gap: .7rem; }
-.vprice-label { font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
+.vprice-label { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted-foreground); }
 .vprice-main { font: 400 clamp(2.2rem, 3.2vw, 3rem)/1 "Italiana", serif; font-variant-numeric: tabular-nums; }
 .vprice-ref { font-size: .78rem; color: var(--muted-foreground); }
-.vprice-note { font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
+.vprice-note { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
 .cur-pills { display: flex; width: fit-content; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 28%, transparent); }
-.cur-pills button { min-width: 3.2rem; padding: .6rem .85rem; border: 0; background: none; color: var(--foreground); font-size: .62rem; letter-spacing: .12em; cursor: pointer; transition: background .3s, color .3s; }
+.cur-pills button { min-width: 3.2rem; padding: .6rem .85rem; border: 0; background: none; color: var(--foreground); font-size: .7rem; letter-spacing: .12em; cursor: pointer; transition: background .3s, color .3s; }
 .cur-pills button:hover { background: color-mix(in oklab, var(--ink) 8%, transparent); }
 .cur-pills button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
 
@@ -75,7 +75,7 @@
 .vf-plans button { display: grid; gap: .6rem; padding: .8rem; border: 0; background: var(--paper); color: var(--foreground); cursor: zoom-in; }
 .vf-plans img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; mix-blend-mode: multiply; transition: transform .8s cubic-bezier(.22, 1, .36, 1); }
 .vf-plans button:hover img { transform: scale(1.04); }
-.vf-plans span { display: flex; justify-content: space-between; align-items: center; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
+.vf-plans span { display: flex; justify-content: space-between; align-items: center; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
 .vf-plans svg { width: 14px; height: 14px; }
 .vf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; padding-top: .4rem; }
 
@@ -104,7 +104,7 @@
   .vf-panel { order: 4; }
   .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
   .vf-pic-title { display: none; }
-  .vf-badge { top: 0; bottom: auto; right: 0; font-size: .5rem; }
+  .vf-badge { top: 0; bottom: auto; right: 0; font-size: .7rem; }
   .vf-tabs nav a { width: 3rem; height: 3rem; font-size: 1.35rem; }
   .vf-specs dd { font-size: 1.3rem; }
   .vf-plans { gap: .6rem; }

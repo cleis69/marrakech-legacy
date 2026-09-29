@@ -10,17 +10,17 @@
 .tv-poster { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; align-content: center; gap: 1.2rem; padding: 0; border: 0; background: var(--ink); color: var(--cream); cursor: pointer; }
 .tv-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .55; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1), opacity .5s; }
 .tv-poster:hover img { transform: scale(1.03); opacity: .65; }
-.tv-poster-cta { position: relative; display: inline-flex; align-items: center; gap: 1em; padding: 1.1em 1.8em; background: var(--bronze); color: var(--cream); font-size: .66rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; transition: background .3s; }
+.tv-poster-cta { position: relative; display: inline-flex; align-items: center; gap: 1em; padding: 1.1em 1.8em; background: var(--bronze); color: var(--cream); font-size: .7rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; transition: background .3s; }
 .tv-poster-cta svg { width: 1.2rem; height: 1.2rem; }
 .tv-poster:hover .tv-poster-cta { background: var(--bronze-hi); }
-.tv-poster small { position: relative; font-size: .6rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
+.tv-poster small { position: relative; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
 .tv-poster:focus-visible { outline-offset: -4px; }
 .tv-aside { grid-column: 1; grid-row: 2; align-self: start; display: grid; gap: 1.6rem; justify-items: start; }
 .tv-steps { width: 100%; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
 .tv-steps li { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1.4rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); font: 400 1.35rem/1.2 "Italiana", serif; transition: color .35s; }
-.tv-steps li:hover { color: var(--bronze); }
-.tv-steps small { order: 2; font: 400 2.2rem/1 "Italiana", serif; letter-spacing: 0; color: color-mix(in oklab, var(--ink) 22%, var(--cream)); transition: color .35s; }
-.tv-steps li:hover small { color: var(--bronze); }
+.tv-steps li:hover { color: var(--bronze-text); }
+.tv-steps small { order: 2; font: 400 2.2rem/1 "Italiana", serif; letter-spacing: 0; color: color-mix(in oklab, var(--ink) 48%, var(--cream)); transition: color .35s; }
+.tv-steps li:hover small { color: var(--bronze-text); }
 
 @media (max-width: 900px) {
   .tv-grid { grid-template-columns: 1fr; gap: 1.6rem; }

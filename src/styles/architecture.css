@@ -7,7 +7,7 @@
 .arch-ba { grid-column: 1; grid-row: 1 / span 2; align-self: center; position: relative; aspect-ratio: 1400 / 788; overflow: hidden; cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; background: var(--paper); }
 .arch-ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .arch-render { position: absolute; inset: 0; }
-.arch-tag { position: absolute; z-index: 2; top: 1rem; padding: .45em .8em; font-size: .6rem; letter-spacing: .18em; text-transform: uppercase; }
+.arch-tag { position: absolute; z-index: 2; top: 1rem; padding: .45em .8em; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
 .arch-tag.is-left { left: 1rem; background: color-mix(in oklab, var(--ink) 72%, transparent); color: var(--cream); }
 .arch-tag.is-right { right: 1rem; background: color-mix(in oklab, var(--cream) 90%, transparent); color: var(--ink); }
 
@@ -18,7 +18,7 @@
 .arch-ba:hover .arch-handle i { transform: translate(-50%, -50%) scale(1.08); }
 .arch-handle:focus-visible i { outline: 2px solid var(--cream); outline-offset: 3px; background: var(--bronze-hi); }
 
-.arch-spot { position: absolute; z-index: 2; display: grid; place-items: center; width: 28px; height: 28px; margin: -14px 0 0 -14px; padding: 0; border: 0; border-radius: 50%; background: var(--cream); color: var(--ink); font: 500 .66rem/1 "DM Sans", sans-serif; cursor: pointer; transition: opacity .4s, background .3s, color .3s, transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.arch-spot { position: absolute; z-index: 2; display: grid; place-items: center; width: 28px; height: 28px; margin: -14px 0 0 -14px; padding: 0; border: 0; border-radius: 50%; background: var(--cream); color: var(--ink); font: 500 .7rem/1 "DM Sans", sans-serif; cursor: pointer; transition: opacity .4s, background .3s, color .3s, transform .4s cubic-bezier(.22, 1, .36, 1); }
 .arch-spot::before { content: ""; position: absolute; inset: -35%; border: 1px solid color-mix(in oklab, var(--cream) 75%, transparent); border-radius: 50%; animation: arch-pulse 2.4s ease-out infinite; }
 .arch-spot.is-off { background: var(--ink); color: var(--cream); opacity: .55; }
 .arch-spot.is-off::before { animation: none; opacity: 0; }
@@ -36,10 +36,10 @@
 .arch-aside { grid-column: 2; grid-row: 2; align-self: start; display: grid; gap: 1.2rem; }
 .arch-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
 .arch-list button { width: 100%; display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding: .95rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: var(--foreground); font: 400 .95rem "DM Sans", sans-serif; text-align: left; cursor: pointer; transition: color .3s, padding .4s; }
-.arch-list small { font-size: .62rem; letter-spacing: .1em; color: var(--bronze); }
-.arch-list button:hover, .arch-list button.is-on { padding-left: .6rem; color: var(--bronze); }
+.arch-list small { font-size: .7rem; letter-spacing: .1em; color: var(--bronze-text); }
+.arch-list button:hover, .arch-list button.is-on { padding-left: .6rem; color: var(--bronze-text); }
 .arch-hint { font-size: .82rem; line-height: 1.5; color: var(--muted-foreground); }
-.arch-note { font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
+.arch-note { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
 
 @media (max-width: 900px) {
   .arch { padding: 1rem 1.3rem 6rem; }
@@ -47,10 +47,10 @@
   .arch-head, .arch-ba, .arch-aside { grid-column: 1; grid-row: auto; }
   .arch-head h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
   .arch-ba { margin: 0 -1.3rem; }
-  .arch-tag { top: .6rem; font-size: .52rem; }
+  .arch-tag { top: .6rem; font-size: .7rem; }
   .arch-tag.is-left { left: .6rem; } .arch-tag.is-right { right: .6rem; }
   .arch-handle i { width: 38px; height: 38px; }
-  .arch-spot { width: 24px; height: 24px; margin: -12px 0 0 -12px; font-size: .58rem; }
+  .arch-spot { width: 24px; height: 24px; margin: -12px 0 0 -12px; font-size: .7rem; }
   .arch-tip { width: 180px; padding: .7rem .8rem; }
   .arch-tip b { font-size: 1.05rem; }
   .arch-tip span { font-size: .7rem; }

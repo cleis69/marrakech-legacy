@@ -4,11 +4,11 @@
 @supports (-webkit-background-clip: text) or (background-clip: text) {
   .wm-word { background-repeat: no-repeat; background-size: cover; -webkit-background-clip: text; background-clip: text; color: transparent; }
 }
-.wm-caption { margin-top: 1.4rem; font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 60%, transparent); }
+.wm-caption { margin-top: 1.4rem; font-size: .7rem; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 60%, transparent); }
 
 @media (max-width: 760px) {
   .wm { padding: 2.6rem 1.3rem 2rem; }
-  .wm-caption { margin-top: 1rem; font-size: 0.52rem; letter-spacing: 0.22em; }
+  .wm-caption { margin-top: 1rem; font-size: .7rem; letter-spacing: 0.22em; }
 }
 
 /* ---------- Nom défilant ---------- */

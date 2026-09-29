@@ -1,0 +1,9 @@
+/* ---------- Curseurs (simulateur, sélecteur, comparateur) ---------- */
+/* Zone de prise de 32 px ; seule la piste de 2 px est dessinée. */
+.sm-slider input, .sm-field input.sm-range, .sl-curseur input, .cp-budget input { width: 100%; height: 32px; margin: .2rem 0 0; padding: 0; appearance: none; background: transparent; box-shadow: none; cursor: pointer; }
+.sm-slider input::-webkit-slider-runnable-track, .sm-field input.sm-range::-webkit-slider-runnable-track, .sl-curseur input::-webkit-slider-runnable-track, .cp-budget input::-webkit-slider-runnable-track { height: 2px; background: color-mix(in oklab, var(--ink) 20%, transparent); }
+.sm-slider input::-moz-range-track, .sm-field input.sm-range::-moz-range-track, .sl-curseur input::-moz-range-track, .cp-budget input::-moz-range-track { height: 2px; background: color-mix(in oklab, var(--ink) 20%, transparent); }
+.sm-slider input::-webkit-slider-thumb, .sm-field input.sm-range::-webkit-slider-thumb, .sl-curseur input::-webkit-slider-thumb, .cp-budget input::-webkit-slider-thumb { appearance: none; width: 20px; height: 20px; margin-top: -9px; border-radius: 50%; background: var(--bronze); box-shadow: 0 0 0 4px color-mix(in oklab, var(--bronze) 20%, transparent); }
+.sm-slider input::-moz-range-thumb, .sm-field input.sm-range::-moz-range-thumb, .sl-curseur input::-moz-range-thumb, .cp-budget input::-moz-range-thumb { width: 20px; height: 20px; border: 0; border-radius: 50%; background: var(--bronze); }
+.sm-slider input:focus-visible, .sm-field input.sm-range:focus-visible, .sl-curseur input:focus-visible, .cp-budget input:focus-visible { outline: 2px solid var(--bronze); outline-offset: 4px; }
+.sm-slider input:disabled, .sm-field input.sm-range:disabled, .sl-curseur input:disabled, .cp-budget input:disabled { opacity: .35; cursor: not-allowed; }

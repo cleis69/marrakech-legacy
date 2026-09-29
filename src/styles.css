@@ -9,6 +9,7 @@
 @import "./styles/selector.css";
 @import "./styles/comparator.css";
 @import "./styles/simulator.css";
+@import "./styles/curseurs.css";
 @import "./styles/lifestyle.css";
 @import "./styles/tour.css";
 @import "./styles/location.css";
@@ -194,17 +195,17 @@
 
 .page-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 100; transform-origin: left; background: var(--bronze); }
 .section-pad { padding: 10rem 5vw; }
-.section-label { display: flex; gap: 1.2rem; align-items: center; text-transform: uppercase; font-size: .63rem; letter-spacing: .2em; margin-bottom: 7rem; }
+.section-label { display: flex; gap: 1.2rem; align-items: center; text-transform: uppercase; font-size: .7rem; letter-spacing: .2em; margin-bottom: 7rem; }
 .section-label.light { color: var(--cream); }
-.eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .67rem; margin-bottom: 1.5rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .2em; font-size: .7rem; margin-bottom: 1.5rem; }
 .contact-panel h2 { font: 400 clamp(3.4rem, 7vw, 7.7rem)/.97 "Italiana", serif; letter-spacing: 0; }
 em { font-weight: 400; color: var(--bronze); }
 .contact-panel > div > p { font-size: 1rem; line-height: 1.9; color: var(--muted-foreground); max-width: 430px; }
 .whatsapp { position: fixed; z-index: 45; right: 2rem; bottom: 2rem; width: 48px; height: 48px; background: var(--paper); color: var(--ink); display: grid; place-items: center; border-radius: 50%; box-shadow: 0 8px 30px color-mix(in oklab, var(--ink) 20%, transparent); }
-.custom-cursor { position: fixed; z-index: 110; top: 0; left: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--cream); color: var(--ink); display: grid; place-items: center; pointer-events: none; font-size: .55rem; letter-spacing: .15em; opacity: 0; transition: opacity .2s; mix-blend-mode: screen; }
+.custom-cursor { position: fixed; z-index: 110; top: 0; left: 0; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; background: var(--cream); color: var(--ink); display: grid; place-items: center; pointer-events: none; font-size: .7rem; letter-spacing: .15em; opacity: 0; transition: opacity .2s; mix-blend-mode: screen; }
 :focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
 .custom-cursor.is-visible { opacity: 1; }
-.modal-close { position: fixed; z-index: 95; top: 1.5rem; right: 2rem; border: 0; background: var(--ink); color: var(--cream); padding: .8rem 1rem; display: flex; gap: .6rem; align-items: center; text-transform: uppercase; font-size: .6rem; letter-spacing: .14em; }
+.modal-close { position: fixed; z-index: 95; top: 1.5rem; right: 2rem; border: 0; background: var(--ink); color: var(--cream); padding: .8rem 1rem; display: flex; gap: .6rem; align-items: center; text-transform: uppercase; font-size: .7rem; letter-spacing: .14em; }
 .modal-close svg { width: 16px; }
 .plan-modal, .tour-modal { position: fixed; inset: 0; z-index: 120; background: color-mix(in oklab, var(--ink) 97%, transparent); display: grid; place-items: center; padding: 4rem; }
 .plan-modal > button, .tour-modal > button { position: absolute; right: 2rem; top: 2rem; border: 0; background: transparent; color: var(--cream); }
@@ -222,10 +223,10 @@ em { font-weight: 400; color: var(--bronze); }
 .contact-panel select option { color: var(--ink); }
 .contact-panel form > button { grid-column: 1/-1; margin-top: 1rem; border: 1px solid var(--cream); background: transparent; color: var(--cream); padding: 1rem 1.2rem; display: flex; justify-content: space-between; text-transform: uppercase; font-size: .62rem; letter-spacing: .15em; }
 .contact-selection { margin-top: 2rem; padding: 1.2rem 1.4rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--sand) 45%, transparent); }
-.contact-selection p { font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
+.contact-selection p { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
 .contact-selection ul { display: flex; flex-wrap: wrap; gap: .4rem; margin: .9rem 0 0; padding: 0; list-style: none; }
 .contact-selection li { padding: .35em .8em; font-size: .72rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cream) 25%, transparent); }
-.contact-selection button { margin-top: .9rem; padding: 0; border: 0; background: none; color: color-mix(in oklab, var(--cream) 70%, transparent); font-size: .6rem; letter-spacing: .14em; text-decoration: underline; text-transform: uppercase; text-underline-offset: .3em; cursor: pointer; }
+.contact-selection button { margin-top: .9rem; padding: 0; border: 0; background: none; color: color-mix(in oklab, var(--cream) 70%, transparent); font-size: .7rem; letter-spacing: .14em; text-decoration: underline; text-transform: uppercase; text-underline-offset: .3em; cursor: pointer; }
 .direct-contact { margin-top: 3rem; display: flex; flex-direction: column; gap: .6rem; }
 .direct-contact a { color: var(--cream); text-decoration: none; font-size: .72rem; }
 

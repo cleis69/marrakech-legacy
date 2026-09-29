@@ -5,7 +5,7 @@
 .rb-bande { display: flex; gap: 1rem; margin: 0 1rem 0 0; padding: 0; list-style: none; }
 .rb-bande li { flex: none; width: min(34vw, 30rem); overflow: hidden; background: color-mix(in oklab, var(--cream) 8%, transparent); }
 .rb-bande img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
-.rb-note { margin-top: 2rem; padding: 0 5vw; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
+.rb-note { margin-top: 2rem; padding: 0 5vw; font-size: .7rem; letter-spacing: 0.2em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
 @keyframes rb-slide { to { transform: translateX(-50%); } }
 
 @media (max-width: 760px) {

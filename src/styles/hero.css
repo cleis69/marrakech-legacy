@@ -7,18 +7,18 @@
 .pp-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 25%, transparent), transparent 38%, color-mix(in oklab, var(--ink) 78%, transparent)); }
 
 .pp-title { position: absolute; left: calc(var(--mat-side) + 3.4vw); bottom: calc(var(--mat-bottom) + 4vh); display: grid; gap: 1.4rem; }
-.pp-kicker { font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--sand); animation: pp-up 1s cubic-bezier(.22, 1, .36, 1) 1.2s both; }
+.pp-kicker { font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--sand); animation: pp-up 1s cubic-bezier(.22, 1, .36, 1) 1.2s both; }
 .pp-title h1 { margin: 0; font: 400 clamp(4.5rem, 12.5vw, 12rem)/.8 "Italiana", serif; white-space: nowrap; }
 .pp-title h1 span { display: inline-block; animation: pp-rise 1.1s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(var(--i) * 70ms + 1.4s); }
 
 .pp-side { position: absolute; right: calc(var(--mat-side) + 3.4vw); bottom: calc(var(--mat-bottom) + 4.4vh); max-width: 22rem; display: grid; gap: 1.4rem; justify-items: start; animation: pp-up 1.1s cubic-bezier(.22, 1, .36, 1) 2s both; }
 .pp-side p { font-size: .95rem; line-height: 1.65; color: color-mix(in oklab, var(--cream) 85%, transparent); }
 
-.pp-pause { position: absolute; right: calc(var(--mat-side) + 1.2rem); top: calc(var(--mat-top) + 1rem); display: flex; align-items: center; gap: .5rem; border: 0; background: none; color: var(--cream); font-size: .58rem; letter-spacing: .16em; text-transform: uppercase; opacity: .72; transition: opacity .3s; }
+.pp-pause { position: absolute; right: calc(var(--mat-side) + 1.2rem); top: calc(var(--mat-top) + 1rem); display: flex; align-items: center; gap: .5rem; padding: .9rem .6rem; margin: -.9rem -.6rem; border: 0; background: none; color: var(--cream); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; opacity: .72; transition: opacity .3s; }
 .pp-pause:hover, .pp-pause:focus-visible { opacity: 1; }
 .pp-pause svg { width: .8rem; height: .8rem; }
 
-.pp-caption { position: absolute; top: var(--mat-top); bottom: var(--mat-bottom); width: var(--mat-side); display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 55%, var(--paper)); }
+.pp-caption { position: absolute; top: var(--mat-top); bottom: var(--mat-bottom); width: var(--mat-side); display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 55%, var(--paper)); }
 .pp-caption-left { left: 0; transform: rotate(180deg); }
 .pp-caption-right { right: 0; }
 
