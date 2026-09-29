@@ -64,6 +64,10 @@
   .tabbar-fab i svg { width: 1.35rem; height: 1.35rem; }
 }
 
+@media (max-width: 380px) {
+  .float-concierge-label { display: none; }
+}
+
 /* Bascule de langue */
 .lang-switch { display: inline-flex; align-items: center; gap: .45em; font-size: .6rem; letter-spacing: .16em; }
 .lang-switch a { color: inherit; opacity: .55; text-decoration: none; transition: opacity .3s, color .3s; }

@@ -152,8 +152,15 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
             onClick={onContact}
             className="float-cta"
           />
-          <a className="float-concierge" href={whatsappHref} target="_blank" rel="noreferrer">
-            {t.header.conciergerie} <MessageCircle aria-hidden="true" />
+          <a
+            className="float-concierge"
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={t.header.conciergerie}
+          >
+            <span className="float-concierge-label">{t.header.conciergerie}</span>
+            <MessageCircle aria-hidden="true" />
           </a>
         </div>
       </header>
