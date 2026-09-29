@@ -34,8 +34,7 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
             </div>
             <Reveal>
               <h2 id="villas-title">
-                {t.villas.titre[0]}
-                <br />
+                {t.villas.titre[0]} <br />
                 {t.villas.titre[1]}
                 <em>{t.villas.titre[2]}</em>
               </h2>

@@ -29,8 +29,7 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
           </div>
           <Reveal>
             <h2 id="visite-title">
-              {t.visite.titre[0]}
-              <br />
+              {t.visite.titre[0]} <br />
               <em>{t.visite.titre[1]}</em>
             </h2>
           </Reveal>

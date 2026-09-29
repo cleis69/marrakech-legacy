@@ -122,8 +122,7 @@ export function ArchitectureSection() {
           </div>
           <Reveal>
             <h2 id="architecture-title">
-              {t.architecture.titre[0]}
-              <br />
+              {t.architecture.titre[0]} <br />
               <em>{t.architecture.titre[1]}</em>
             </h2>
           </Reveal>

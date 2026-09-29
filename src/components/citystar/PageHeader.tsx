@@ -21,7 +21,12 @@ export function PageHeader({
             ) : (
               <span key={part}>
                 {part}
-                {i === 0 && titre.length > 1 ? <br /> : null}
+                {i === 0 && titre.length > 1 ? (
+                  <>
+                    {" "}
+                    <br />
+                  </>
+                ) : null}
               </span>
             ),
           )}

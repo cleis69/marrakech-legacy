@@ -52,8 +52,7 @@ export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => v
           </div>
           <Reveal>
             <h2 id="localisation-title">
-              {t.localisation.titre[0]}
-              <br />
+              {t.localisation.titre[0]} <br />
               <em>{t.localisation.titre[1]}</em>
             </h2>
           </Reveal>
@@ -85,7 +84,12 @@ export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => v
           <address>
             {t.localisation.adresse.map((ligne, i) => (
               <span key={ligne}>
-                {i > 0 && <br />}
+                {i > 0 && (
+                  <>
+                    {" "}
+                    <br />
+                  </>
+                )}
                 {ligne}
               </span>
             ))}

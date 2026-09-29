@@ -124,8 +124,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
     {
       label: (
         <>
-          {textes.comparateur.surfaceCourt[0]}
-          <br />
+          {textes.comparateur.surfaceCourt[0]} <br />
           {textes.comparateur.surfaceCourt[1]}
         </>
       ),
@@ -179,8 +178,7 @@ export function VillaComparator({ onOpenPlan }: Props) {
     {
       label: (
         <>
-          {textes.comparateur.pmr[0]}
-          <br />
+          {textes.comparateur.pmr[0]} <br />
           {textes.comparateur.pmr[1]}
         </>
       ),

@@ -108,7 +108,7 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
               aria-label={playing ? t.hero.pause : t.hero.lecture}
             >
               {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-              <span>{playing ? "Pause" : "Lecture"}</span>
+              <span>{playing ? t.hero.pauseCourt : t.hero.lectureCourt}</span>
             </button>
           </div>
         </motion.div>

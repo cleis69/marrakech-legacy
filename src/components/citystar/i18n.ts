@@ -26,6 +26,7 @@ const fr = {
     galerie: "Galerie",
     questions: "Questions",
     langue: "Langue du site",
+    whatsapp: "Contacter la conciergerie CITYSTAR sur WhatsApp",
   },
   hero: {
     kicker: "Résidence privée · Marrakech",
@@ -37,6 +38,8 @@ const fr = {
     acces: "Demander un accès privé",
     pause: "Mettre la vidéo en pause",
     lecture: "Reprendre la vidéo",
+    pauseCourt: "Pause",
+    lectureCourt: "Lecture",
   },
   reperes: {
     aria: "Les repères du domaine",
@@ -607,6 +610,7 @@ const en: Textes = {
     galerie: "Gallery",
     questions: "Questions",
     langue: "Site language",
+    whatsapp: "Message the CITYSTAR concierge on WhatsApp",
   },
   hero: {
     kicker: "Private residence · Marrakech",
@@ -618,6 +622,8 @@ const en: Textes = {
     acces: "Request private access",
     pause: "Pause the video",
     lecture: "Play the video",
+    pauseCourt: "Pause",
+    lectureCourt: "Play",
   },
   reperes: {
     aria: "Key facts about the estate",

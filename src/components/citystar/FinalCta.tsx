@@ -15,8 +15,7 @@ export function FinalCta({ onContact }: { onContact: () => void }) {
         <p className="circle-kicker">{t.cercle.kicker}</p>
         <Reveal>
           <h2 id="circle-title">
-            {t.cercle.titre[0]}
-            <br />
+            {t.cercle.titre[0]} <br />
             <em>{t.cercle.titre[1]}</em>
           </h2>
         </Reveal>

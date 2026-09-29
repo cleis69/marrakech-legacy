@@ -75,8 +75,7 @@ export function ProjectSection() {
             </div>
             <Reveal>
               <h2 id="project-title">
-                {t.projet.titre[0]}
-                <br />
+                {t.projet.titre[0]} <br />
                 {t.projet.titre[1]}
                 <em>{t.projet.titre[2]}</em>
               </h2>

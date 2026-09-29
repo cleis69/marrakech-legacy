@@ -40,8 +40,7 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             <p>{t.villas.label}</p>
           </div>
           <p className="vf-pic-title" aria-hidden="true">
-            {t.villas.titre[0]}
-            <br />
+            {t.villas.titre[0]} <br />
             {t.villas.titre[1]}
             <em>{t.villas.titre[2]}</em>
           </p>

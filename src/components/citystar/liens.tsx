@@ -37,5 +37,14 @@ type Props = {
 const LienRoute = Link as unknown as React.ComponentType<Record<string, unknown>>;
 
 export function Lien({ vers, ariaLabel, ...reste }: Props) {
-  return <LienRoute to={vers} {...(ariaLabel ? { "aria-label": ariaLabel } : {})} {...reste} />;
+  /* L'accueil n'est « page courante » que sur lui-même, pas sur toutes les pages qu'il contient. */
+  const accueil = vers === "/" || vers === "/en";
+  return (
+    <LienRoute
+      to={vers}
+      activeOptions={{ exact: accueil, includeHash: false }}
+      {...(ariaLabel ? { "aria-label": ariaLabel } : {})}
+      {...reste}
+    />
+  );
 }
