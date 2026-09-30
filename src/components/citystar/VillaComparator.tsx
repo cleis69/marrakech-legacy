@@ -32,10 +32,20 @@ const TYPES: TypeVilla[] = ["A", "B", "C"];
 const maxSurface = Math.max(...TYPES.map((t) => villasChiffres[t].surfaceConstruiteM2));
 const maxSuites = Math.max(...TYPES.map((t) => villasChiffres[t].suites));
 
-function Delta({ value, unit, noun }: { value: number; unit?: string; noun?: string }) {
+function Delta({
+  value,
+  unit,
+  noun,
+  argent = false,
+}: {
+  value: number;
+  unit?: string;
+  noun?: string;
+  argent?: boolean;
+}) {
   if (!value) return null;
   const size = Math.abs(value);
-  const texte = `${value > 0 ? "+" : "−"}${unit === "€" ? formatNombre(size) : size}${unit ? ` ${unit}` : ""}${noun ? ` ${noun}${size > 1 ? "s" : ""}` : ""}`;
+  const texte = `${value > 0 ? "+" : "−"}${argent ? formatNombre(size) : size}${unit ? ` ${unit}` : ""}${noun ? ` ${noun}${size > 1 ? "s" : ""}` : ""}`;
   return <span className={`cp-delta${value > 0 ? " is-up" : ""}`}>{texte}</span>;
 }
 
@@ -276,6 +286,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
             <Delta
               value={price(t).montant - price(pin).montant}
               unit={devise === "EUR" || devise === "GBP" ? (devise === "EUR" ? "€" : "£") : devise}
+              argent
             />
           )}
         </>
@@ -374,7 +385,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
                     key={t}
                     scope="col"
                     data-col={t}
-                    className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}
+                    className={`${t === pin ? "is-pin" : ""}${highlight && t !== pin && !highlight.includes(t) ? " is-out" : ""}`}
                   >
                     <Lien
                       className="cp-head-link"
@@ -388,6 +399,9 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
                         {textes.villas.villa} {t}
                         {t === pin && <em>{textes.comparateur.estReference}</em>}
                       </span>
+                      {highlight && !highlight.includes(t) && (
+                        <small className="cp-over">{textes.comparateur.horsBudget}</small>
+                      )}
                     </Lien>
                   </th>
                 );
@@ -402,7 +416,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
                   <td
                     key={t}
                     data-col={t}
-                    className={`${t === pin ? "is-pin" : ""}${highlight && !highlight.includes(t) ? " is-out" : ""}`}
+                    className={`${t === pin ? "is-pin" : ""}${highlight && t !== pin && !highlight.includes(t) ? " is-out" : ""}`}
                   >
                     {row.cells(t)}
                   </td>

@@ -28,6 +28,7 @@
 .cp-table td.is-pin, .cp-table thead th.is-pin { background: color-mix(in oklab, var(--bronze) 9%, transparent); }
 .cp-table thead th.is-pin { box-shadow: inset 0 3px 0 var(--bronze); }
 .cp-table .is-out { opacity: .45; }
+.cp-over { display: block; margin-top: .35rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bronze-text); }
 .cp-head-link { display: block; color: inherit; text-decoration: none; }
 .cp-photo { position: relative; display: block; height: 7rem; overflow: hidden; }
 .cp-photo img { transition: transform 1s cubic-bezier(.22, 1, .36, 1); }
