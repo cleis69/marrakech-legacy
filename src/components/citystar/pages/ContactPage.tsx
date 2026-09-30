@@ -1,4 +1,4 @@
-import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Mail, MessageCircle, Phone, PhoneCall } from "lucide-react";
 
 import { contact } from "@/config/citystar";
 
@@ -56,7 +56,7 @@ export function ContactPage() {
           </a>
         </div>
         <div className="ct-actions">
-          <PillButton label={t.pages.contact.formulaire} icon={Mail} onClick={ouvrirContact} />
+          <PillButton label={t.pages.contact.formulaire} icon={PhoneCall} onClick={ouvrirContact} />
         </div>
       </section>
       <LocationSection onOpenPlan={ouvrirPlan} />

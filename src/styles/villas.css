@@ -18,7 +18,7 @@
 .vd-bottom { position: absolute; left: 1.8rem; right: 1.8rem; bottom: 1.8rem; display: grid; gap: 1.2rem; }
 .vd-more { display: grid; gap: 1.2rem; justify-items: start; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .9s cubic-bezier(.22, 1, .36, 1), opacity .5s; }
 .vd-desc { max-width: 38ch; font-size: .92rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 82%, transparent); }
-.vd-specs { display: flex; gap: 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.vd-specs { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
 .vd-tri .vd-door.is-on, .vd-tri:hover .vd-door:hover, .vd-tri .vd-door:focus-visible { flex-grow: 2.4; }
 .vd-tri:hover .vd-door.is-on:not(:hover), .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) { flex-grow: 1; }
 .vd-door.is-on .vd-more, .vd-tri:hover .vd-door:hover .vd-more, .vd-door:focus-visible .vd-more { max-height: 14rem; opacity: 1; transition-delay: .15s; }
@@ -52,7 +52,7 @@
 .vf-panel h1 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
 .vf-panel h1:focus { outline: none; }
 .vf-m2 { margin-top: -.4rem; font-size: .78rem; color: var(--muted-foreground); }
-.vf-badge { position: absolute; bottom: 0; right: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
+.vf-badge { position: absolute; top: 0; right: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
 .vf-desc { max-width: 34rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vf-specs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--border); }
 .vf-specs div { display: grid; gap: .45rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
@@ -104,7 +104,7 @@
   .vf-panel { order: 4; }
   .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
   .vf-pic-title { display: none; }
-  .vf-badge { top: 0; bottom: auto; right: 0; font-size: .7rem; }
+  .vf-badge { top: 0; right: 0; }
   .vf-tabs nav a { width: 3rem; height: 3rem; font-size: 1.35rem; }
   .vf-specs dd { font-size: 1.3rem; }
   .vf-plans { gap: .6rem; }

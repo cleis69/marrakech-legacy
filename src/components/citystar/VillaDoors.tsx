@@ -65,7 +65,7 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
               className={`vd-door${i === 0 ? " is-on" : ""}`}
               vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
               ariaLabel={t.villas.decouvrirAria(villa.type, faits.surface, faits.suites, faits.tag)}
-              onMouseEnter={onCursorEnter("EXPLORE")}
+              onMouseEnter={onCursorEnter(t.villas.curseur)}
               onMouseLeave={onCursorLeave}
             >
               <img src={villa.image} alt="" loading="lazy" />

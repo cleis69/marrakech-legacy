@@ -24,7 +24,7 @@
 .sl-option:hover, .sl-option:focus-visible { box-shadow: inset 0 0 0 1px var(--bronze); transform: translateY(-2px); }
 .sl-option:active { background: var(--bronze); color: var(--cream); }
 .sl-note, .sl-keys { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
-.sl-keys { opacity: .7; }
+.sl-keys { }
 
 .sl-result { font: 400 clamp(3.4rem, 5vw, 5.4rem)/1 "Italiana", serif; }
 .sl-result:focus { outline: none; }

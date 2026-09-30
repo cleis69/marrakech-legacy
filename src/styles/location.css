@@ -6,10 +6,12 @@
 .loc-head h2 { font: 400 clamp(2.8rem, 4.4vw, 4.8rem)/.98 "Italiana", serif; }
 .loc-aside { grid-column: 1; grid-row: 2; align-self: start; display: grid; gap: 1.6rem; }
 .loc-dist { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
-.loc-dist button { position: relative; width: 100%; display: grid; grid-template-columns: 8.5rem 1fr; align-items: baseline; gap: 1.4rem; padding: 1.1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: inherit; text-align: left; cursor: pointer; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
+.loc-dist button { position: relative; width: 100%; display: grid; grid-template-columns: 8.5rem 1fr; align-items: baseline; gap: 1.4rem; padding: 1.1rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: inherit; text-align: left; cursor: pointer; transition: background .35s; }
+.loc-dist button > * { transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
 .loc-dist button::before { content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 2px; background: var(--bronze); transform: scaleY(0); transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
 .loc-dist button:hover { background: color-mix(in oklab, var(--ink) 4%, transparent); }
-.loc-dist button[aria-pressed="true"] { padding-left: 1rem; background: color-mix(in oklab, var(--ink) 7%, transparent); }
+.loc-dist button[aria-pressed="true"] > * { transform: translateX(1rem); }
+.loc-dist button[aria-pressed="true"] { background: color-mix(in oklab, var(--ink) 7%, transparent); }
 .loc-dist button[aria-pressed="true"]::before { transform: none; }
 .loc-n { font: 400 3.4rem/1 "Italiana", serif; white-space: nowrap; }
 .loc-n small { margin-left: .5em; font: 400 .7rem "DM Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--bronze-text); }
@@ -79,7 +81,7 @@
   .loc-grid { grid-template-columns: 1fr; gap: 1.6rem; }
   .loc-head, .mp, .loc-aside { grid-column: 1; grid-row: auto; }
   .loc-head h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
-  .mp { height: 46svh; min-height: 320px; margin: 0 -1.3rem; border-inline: 0; }
+  .mp { height: 54svh; min-height: 420px; margin: 0 -1.3rem; border-inline: 0; }
   .mp-long { display: none; }
   .mp-short { display: inline; }
   .mp-long-hint { display: none; }

@@ -15,6 +15,7 @@ const fr = {
   ] as [string, string][],
   header: {
     acces: "Être rappelé",
+    rappelCourt: "Rappel",
     conciergerie: "Conciergerie",
     accueil: "Retour à l’accueil",
     sommaire: "Sommaire",
@@ -57,9 +58,9 @@ const fr = {
     ] as [string, string],
     villas: (n: number) => `${n} villas privées`,
     pasUne: "Pas une de plus.",
-    terrains: "Terrains jusqu’à",
+    surfaces: "Surfaces construites jusqu’à",
     types: "Types de villas",
-    trajet: "Jemaa el-Fna & aéroport",
+    suitesParVilla: "Suites par villa",
     cta: "Découvrir les villas",
     altFacade: "Façade d’une villa CITYSTAR, lames bronze et volumes blancs",
     altPiscine: "Piscine privée d’une villa CITYSTAR",
@@ -97,6 +98,7 @@ const fr = {
     comparer: "Comparer les villas",
     villa: "Villa",
     decouvrir: "Découvrir la villa",
+    curseur: "Explorer",
     decouvrirAria: (type: TypeVilla, surface: string, suites: string, tag: string) =>
       `Découvrir la villa type ${type}\u00a0: ${surface}, ${suites}, ${tag.toLowerCase()}`,
     retour: "Les trois villas",
@@ -331,7 +333,8 @@ const fr = {
         "Demander un accès privé, la brochure ou une visite du domaine CITYSTAR à Marrakech.",
       kicker: "Contact",
       titreH1: ["Parlons de", "votre projet."] as [string, string],
-      intro: "Un conseiller vous répond directement\u00a0: téléphone, WhatsApp ou rappel, au choix.",
+      intro:
+        "Un conseiller vous répond directement\u00a0: téléphone, WhatsApp ou rappel, au choix.",
       formulaire: "Être rappelé par un conseiller",
     },
   },
@@ -475,7 +478,7 @@ const fr = {
         investirNote: "Placement ou location",
       },
       suites: {
-        titre: "Combien de chambres souhaitez-vous\u00a0?",
+        titre: "Combien de suites souhaitez-vous\u00a0?",
         suites: (n: number) => `${n} suites`,
         peuImporte: "Peu importe",
       },
@@ -654,6 +657,7 @@ const en: Textes = {
   ],
   header: {
     acces: "Call back",
+    rappelCourt: "Call back",
     conciergerie: "Concierge",
     accueil: "Back to top",
     sommaire: "Contents",
@@ -696,9 +700,9 @@ const en: Textes = {
     ],
     villas: (n) => `${n} private villas`,
     pasUne: "Not one more.",
-    terrains: "Plots up to",
+    surfaces: "Built areas up to",
     types: "Villa types",
-    trajet: "Jemaa el-Fna & airport",
+    suitesParVilla: "Suites per villa",
     cta: "Discover the villas",
     altFacade: "Façade of a CITYSTAR villa, bronze fins and white volumes",
     altPiscine: "Private pool of a CITYSTAR villa",
@@ -729,6 +733,7 @@ const en: Textes = {
     comparer: "Compare the villas",
     villa: "Villa",
     decouvrir: "Discover the villa",
+    curseur: "Explore",
     decouvrirAria: (type, surface, suites, tag) =>
       `Discover villa type ${type}: ${surface}, ${suites}, ${tag.toLowerCase()}`,
     retour: "The three villas",
@@ -1096,7 +1101,7 @@ const en: Textes = {
         investirNote: "Investment or rental",
       },
       suites: {
-        titre: "How many bedrooms would you like?",
+        titre: "How many suites would you like?",
         suites: (n) => `${n} suites`,
         peuImporte: "No preference",
       },

@@ -9,10 +9,16 @@ import {
 import { ArrowRight } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { formatNombre, programme } from "@/config/citystar";
+import { formatNombre, programme, villasChiffres } from "@/config/citystar";
 import exteriorImage from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 import poolImage from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import livingImage from "@/assets/citystar/rendus/int-salon.webp";
+
+/* Repères du projet tirés des trois types : ils complètent le bandeau (trajet, villas, terrain) sans le répéter. */
+const chiffres = Object.values(villasChiffres);
+const surfaceMax = Math.max(...chiffres.map((v) => v.surfaceConstruiteM2));
+const suitesMin = Math.min(...chiffres.map((v) => v.suites));
+const suitesMax = Math.max(...chiffres.map((v) => v.suites));
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";
@@ -84,9 +90,9 @@ export function ProjectSection() {
             </p>
             <dl className="pj-rows">
               <div>
-                <dt>{t.projet.terrains}</dt>
+                <dt>{t.projet.surfaces}</dt>
                 <dd>
-                  {formatNombre(programme.terrainMaxM2, langue)}
+                  {formatNombre(surfaceMax, langue)}
                   <sup>m²</sup>
                 </dd>
               </div>
@@ -95,11 +101,8 @@ export function ProjectSection() {
                 <dd>{programme.nombreTypes}</dd>
               </div>
               <div>
-                <dt>{t.projet.trajet}</dt>
-                <dd>
-                  {programme.trajetMaxMinutes}
-                  <sup>min</sup>
-                </dd>
+                <dt>{t.projet.suitesParVilla}</dt>
+                <dd>{suitesMin === suitesMax ? suitesMax : `${suitesMin}–${suitesMax}`}</dd>
               </div>
             </dl>
             <PillButton

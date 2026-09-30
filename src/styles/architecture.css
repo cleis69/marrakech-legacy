@@ -35,9 +35,11 @@
 
 .arch-aside { grid-column: 2; grid-row: 2; align-self: start; display: grid; gap: 1.2rem; }
 .arch-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
-.arch-list button { width: 100%; display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding: .95rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: var(--foreground); font: 400 .95rem "DM Sans", sans-serif; text-align: left; cursor: pointer; transition: color .3s, padding .4s; }
+.arch-list button { width: 100%; display: grid; grid-template-columns: 2.4rem 1fr; align-items: baseline; padding: .95rem 0; border: 0; border-bottom: 1px solid var(--border); background: none; color: var(--foreground); font: 400 .95rem "DM Sans", sans-serif; text-align: left; cursor: pointer; transition: color .3s; }
+.arch-list button > * { transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
 .arch-list small { font-size: .7rem; letter-spacing: .1em; color: var(--bronze-text); }
-.arch-list button:hover, .arch-list button.is-on { padding-left: .6rem; color: var(--bronze-text); }
+.arch-list button:hover, .arch-list button.is-on { color: var(--bronze-text); }
+.arch-list button:hover > *, .arch-list button.is-on > * { transform: translateX(.6rem); }
 .arch-hint { font-size: .82rem; line-height: 1.5; color: var(--muted-foreground); }
 .arch-note { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; opacity: .7; }
 

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import {
   CircleHelp,
-  House,
+  DoorOpen,
   Download,
   LayoutPanelLeft,
   PhoneCall,
@@ -125,7 +125,7 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
   const { langue, t } = useDevise();
-  const tab = (sous: string, label: string, Icon: typeof House) => (
+  const tab = (sous: string, label: string, Icon: typeof DoorOpen) => (
     <Lien className="tabbar-item" vers={chemin(langue, sous)}>
       <Icon aria-hidden="true" />
       <span>{label}</span>
@@ -167,13 +167,13 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
       </header>
 
       <nav className="tabbar" aria-label="Navigation">
-        {tab("villas", t.header.villas, House)}
+        {tab("villas", t.header.villas, DoorOpen)}
         {tab("galerie", t.header.galerie, LayoutPanelLeft)}
         <button className="tabbar-fab" onClick={onContact}>
           <i aria-hidden="true">
             <PhoneCall />
           </i>
-          <span>{t.header.acces}</span>
+          <span>{t.header.rappelCourt}</span>
         </button>
         {tab("faq", t.header.questions, CircleHelp)}
         <button
