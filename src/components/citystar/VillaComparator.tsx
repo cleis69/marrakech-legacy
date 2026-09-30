@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   type Devise,
   type TypeVilla,
-  bornesPrixEUR,
+  bornesBudget,
   brochures,
   convertirEUR,
   formatNombre,
@@ -124,11 +124,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
   const price = (type: TypeVilla) => prixVilla(type, devise, taux);
 
   const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
-  const bornes = {
-    min: enDevise(bornesPrixEUR.min),
-    max: enDevise(bornesPrixEUR.max),
-    pas: enDevise(bornesPrixEUR.pas),
-  };
+  const bornes = bornesBudget(devise, taux);
   const budgetAffiche = !budget
     ? bornes.max
     : budget.devise === devise

@@ -557,7 +557,7 @@ const fr = {
     modeAria: "Mode de simulation",
     prix: "Prix du bien",
     intro: [
-      "Indiquez le budget étudié et l’usage envisagé\u00a0: l’estimation s’affiche aussitôt, dans la devise de votre choix.",
+      "Indiquez le budget et l’usage envisagé, ajustez les hypothèses, puis affichez l’estimation, dans la devise de votre choix.",
       "Les curseurs partent de valeurs d’illustration\u00a0: ajustez-les à votre projet. Les chiffres définitifs sont confirmés par le promoteur.",
     ] as [string, string],
     budget: "Budget étudié",
@@ -570,6 +570,8 @@ const fr = {
     resultatTitre: "Votre estimation",
     budgetSaisi: "Budget étudié",
     usage: "Usage envisagé",
+    recap: (budget: string, usage: string) => `Budget étudié\u00a0: ${budget} · ${usage}`,
+    fourchette: (min: string, max: string) => `De ${min} à ${max}`,
     prixEtudie: (montant: string) => `Prix étudié\u00a0: ${montant}`,
     champs: {
       prixMoyenNuitEUR: "Prix moyen par nuit",
@@ -1173,7 +1175,7 @@ const en: Textes = {
     modeAria: "Simulation mode",
     prix: "Property price",
     intro: [
-      "Enter the budget you have in mind and how you would use the villa: the estimate appears at once, in the currency you choose.",
+      "Enter your budget and intended use, adjust the assumptions, then show the estimate, in the currency you choose.",
       "The sliders start from illustrative values: adjust them to your own plan. Final figures are confirmed by the developer.",
     ],
     budget: "Budget considered",
@@ -1186,6 +1188,8 @@ const en: Textes = {
     resultatTitre: "Your estimate",
     budgetSaisi: "Budget considered",
     usage: "Intended use",
+    recap: (budget, usage) => `Budget considered: ${budget} · ${usage}`,
+    fourchette: (min, max) => `From ${min} to ${max}`,
     prixEtudie: (montant) => `Price considered: ${montant}`,
     champs: {
       prixMoyenNuitEUR: "Average nightly rate",

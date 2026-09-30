@@ -7,7 +7,7 @@ import {
   type Langue,
   type Taux,
   type TypeVilla,
-  bornesPrixEUR,
+  bornesBudget,
   convertirEUR,
   formatPrix,
   prixVilla,
@@ -111,11 +111,7 @@ export function VillaSelector({
 
   /* Curseur de budget : bornes et valeur dans la devise affichée. */
   const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
-  const bornes = {
-    min: enDevise(bornesPrixEUR.min),
-    max: enDevise(bornesPrixEUR.max),
-    pas: enDevise(bornesPrixEUR.pas),
-  };
+  const bornes = bornesBudget(devise, taux);
   const brut = !brouillon
     ? prixVilla("B", devise, taux).montant
     : brouillon.devise === devise

@@ -23,11 +23,11 @@
 .sm-out { display: grid; gap: 1.6rem; margin-top: 3rem; padding: 2.4rem; background: color-mix(in oklab, var(--ink) 5%, transparent); }
 .sm-out:focus-visible { outline: 2px solid var(--bronze); outline-offset: 4px; }
 .sm-out h3 { font: 400 clamp(1.6rem, 2.6vw, 2.2rem)/1.1 "Italiana", serif; }
-.sm-figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1.6rem 3vw; margin: 0; padding: 1.6rem 0; border-block: 1px solid var(--border); }
-.sm-figures div { display: grid; gap: .5rem; }
-.sm-figures dt { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted-foreground); }
-.sm-figures dd { margin: 0; font: 400 clamp(1.8rem, 3vw, 2.8rem)/1 "Italiana", serif; font-variant-numeric: tabular-nums; }
-.sm-figures .is-key dd { color: var(--bronze); }
+.sm-key { display: grid; gap: .5rem; margin: 0; padding-top: 1.4rem; border-top: 1px solid var(--border); }
+.sm-key span { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted-foreground); }
+.sm-key strong { font: 400 clamp(3.2rem, 6vw, 5.4rem)/1 "Italiana", serif; font-variant-numeric: tabular-nums; color: var(--bronze); }
+.sm-recap { padding-bottom: 1.2rem; border-bottom: 1px solid var(--border); font-size: .9rem; color: var(--muted-foreground); }
+.sm-aide { font-size: .75rem; color: var(--muted-foreground); }
 .sm-detail { display: grid; gap: .5rem 1.4rem; grid-template-columns: 1fr auto; margin: 0; font-size: .82rem; }
 .sm-detail div { display: contents; }
 .sm-detail dt { color: var(--muted-foreground); }
@@ -57,8 +57,6 @@
   .sm-left h2 { font-size: clamp(2rem, 9vw, 2.6rem); }
   .sm-card { padding: 1.4rem; }
   .sm-out { margin-top: 2rem; padding: 1.4rem; }
-  .sm-figures { grid-template-columns: 1fr; gap: 1.2rem; }
-  .sm-figures dd { font-size: clamp(1.8rem, 9vw, 2.4rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {

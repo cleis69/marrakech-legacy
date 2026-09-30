@@ -239,6 +239,20 @@ export function prixVilla(type: TypeVilla, devise: Devise, taux: Taux = devises.
   return { montant: Math.floor((prix.EUR * taux[devise]) / pas) * pas, approximatif: true };
 }
 
+/**
+ * Bornes des curseurs de budget dans la devise affichée, arrondies à un pas lisible
+ * (10 000 € ou £, 100 000 MAD ou NOK) : pas de « 1 714 360 £ » en bout de course.
+ */
+export function bornesBudget(devise: Devise, taux: Taux = devises.tauxDeSecours) {
+  const conv = (montantEUR: number) => convertirEUR(montantEUR, devise, taux);
+  const pas = 10 ** Math.round(Math.log10(conv(bornesPrixEUR.pas)));
+  return {
+    min: Math.ceil(conv(bornesPrixEUR.min) / pas) * pas,
+    max: Math.floor(conv(bornesPrixEUR.max) / pas) * pas,
+    pas,
+  };
+}
+
 /** 1480000 → « 1 480 000 € » (fr) ou « €1,480,000 » (en). */
 export function formatPrix(montant: number, devise: Devise, langue: Langue = "fr") {
   const nombre = formatNombre(montant, langue);

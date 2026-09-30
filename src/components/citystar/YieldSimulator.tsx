@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import {
   type Devise,
   type TypeVilla,
-  bornesPrixEUR,
+  bornesBudget,
   bornesSimulateur,
   convertirEUR,
   coutsDetention,
@@ -84,7 +84,10 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
       ? saisi.montant
       : enDevise(enEUR(saisi.montant, saisi.devise))
     : prixVilla(type || TYPE_PAR_DEFAUT, devise, taux).montant;
-  const budgetEUR = enEUR(prixReference, devise);
+  const bornes = bornesBudget(devise, taux);
+  /* Le calcul reste dans la fourchette des villas : un budget tapé « 5 » ne donne pas un rendement absurde. */
+  const prixCalcul = Math.min(Math.max(prixReference, bornes.min), bornes.max);
+  const budgetEUR = enEUR(prixCalcul, devise);
 
   const champs: Record<Cle, { label: string; format: (valeur: number) => string }> = {
     prixMoyenNuitEUR: {
@@ -129,7 +132,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
       const revenu = nuits * enDevise(valeurs.prixMoyenNuitEUR);
       return {
         titre: t.rentabilite.rendementBrut,
-        valeur: pourcent((revenu / prixReference) * 100),
+        valeur: pourcent((revenu / prixCalcul) * 100),
         detail: [
           [t.rentabilite.nuits, formatNombre(Math.round(nuits), langue)],
           [t.rentabilite.revenuBrut, money(revenu)],
@@ -140,18 +143,17 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
       const revenu = enDevise(valeurs.loyerMensuelEUR) * 12;
       return {
         titre: t.rentabilite.rendementBrut,
-        valeur: pourcent((revenu / prixReference) * 100),
+        valeur: pourcent((revenu / prixCalcul) * 100),
         detail: [
           [t.rentabilite.loyerDouze, `${money(enDevise(valeurs.loyerMensuelEUR))} × 12`],
           [t.rentabilite.revenuBrut, money(revenu)],
         ] as [string, string][],
       };
     }
-    const projetee =
-      prixReference * Math.pow(1 + valeurs.appreciationAnnuelle, valeurs.horizonAnnees);
+    const projetee = prixCalcul * Math.pow(1 + valeurs.appreciationAnnuelle, valeurs.horizonAnnees);
     return {
       titre: t.rentabilite.plusValueBrute,
-      valeur: money(projetee - prixReference),
+      valeur: money(projetee - prixCalcul),
       detail: [
         [t.rentabilite.valeurProjetee(valeurs.horizonAnnees), money(projetee)],
         [
@@ -166,7 +168,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     outil: t.rentabilite.outil,
     lignes: [
       t.rentabilite.ligneMode(t.rentabilite.modes[mode]),
-      t.rentabilite.prixEtudie(formatPrix(prixReference, devise, langue)),
+      t.rentabilite.prixEtudie(formatPrix(prixCalcul, devise, langue)),
       ...(type ? [t.rentabilite.ligneType(t.rentabilite.typeVilla(type))] : []),
       resultat
         ? t.rentabilite.ligneResultat(resultat.titre, resultat.valeur)
@@ -245,18 +247,25 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
               autoComplete="off"
               value={formatNombre(prixReference, langue)}
               onChange={(event) => surBudget(Number(event.target.value.replace(/\D/g, "")))}
+              onBlur={() => {
+                if (prixReference !== prixCalcul) setSaisi({ montant: prixCalcul, devise });
+              }}
+              aria-describedby="sm-budget-aide"
             />
+            <small id="sm-budget-aide" className="sm-aide">
+              {t.rentabilite.fourchette(
+                formatPrix(bornes.min, devise, langue),
+                formatPrix(bornes.max, devise, langue),
+              )}
+            </small>
             <input
               className="sm-range"
               type="range"
               aria-label={t.rentabilite.budget}
-              min={enDevise(bornesPrixEUR.min)}
-              max={enDevise(bornesPrixEUR.max)}
-              step={enDevise(bornesPrixEUR.pas)}
-              value={Math.min(
-                Math.max(prixReference, enDevise(bornesPrixEUR.min)),
-                enDevise(bornesPrixEUR.max),
-              )}
+              min={bornes.min}
+              max={bornes.max}
+              step={bornes.pas}
+              value={prixCalcul}
               onChange={(event) => surBudget(Number(event.target.value))}
             />
           </div>
@@ -308,22 +317,16 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
       {estimation && (
         <div className="sm-out" ref={sortie} tabIndex={-1} aria-live="polite">
           <h3>{t.rentabilite.resultatTitre}</h3>
-          <dl className="sm-figures">
-            <div>
-              <dt>{t.rentabilite.budgetSaisi}</dt>
-              <dd>{formatPrix(prixReference, devise, langue)}</dd>
-            </div>
-            <div>
-              <dt>{t.rentabilite.usage}</dt>
-              <dd>{t.rentabilite.modes[mode]}</dd>
-            </div>
-            {resultat && (
-              <div className="is-key">
-                <dt>{resultat.titre}</dt>
-                <dd>{resultat.valeur}</dd>
-              </div>
-            )}
-          </dl>
+          {/* Le chiffre qui compte en grand ; budget et usage en simple rappel. */}
+          {resultat && (
+            <p className="sm-key">
+              <span>{resultat.titre}</span>
+              <strong>{resultat.valeur}</strong>
+            </p>
+          )}
+          <p className="sm-recap">
+            {t.rentabilite.recap(formatPrix(prixCalcul, devise, langue), t.rentabilite.modes[mode])}
+          </p>
 
           {resultat ? (
             <dl className="sm-detail">
