@@ -321,7 +321,7 @@ const fr = {
         {
           titre: "Visiter, puis acquérir",
           texte:
-            "Les plans de chaque type et les brochures sont téléchargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: chaque demande d'accès est étudiée une à une.",
+            "Les plans de chaque type et les brochures sont téléchargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: un conseiller vous rappelle et organise la visite.",
         },
       ],
     },
@@ -331,7 +331,7 @@ const fr = {
         "Demander un accès privé, la brochure ou une visite du domaine CITYSTAR à Marrakech.",
       kicker: "Contact",
       titreH1: ["Parlons de", "votre projet."] as [string, string],
-      intro: "Chaque demande est étudiée une à une. Téléphone, WhatsApp ou formulaire, au choix.",
+      intro: "Un conseiller vous répond directement\u00a0: téléphone, WhatsApp ou rappel, au choix.",
       formulaire: "Être rappelé par un conseiller",
     },
   },
@@ -422,10 +422,10 @@ const fr = {
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
   cercle: {
-    kicker: "Sur demande uniquement",
+    kicker: "Un domaine privé",
     titre: ["Entrer dans", "le cercle."] as [string, string],
     texte: (n: string) =>
-      `${n} villas, réservées à quelques personnalités. Chaque demande est étudiée une à une, et un conseiller vous rappelle.`,
+      `${n} villas, pas une de plus. Un conseiller vous rappelle pour vous présenter celle qui vous ressemble.`,
     sceau: (n: string) => `ACCÈS PRIVÉ · CITYSTAR · ${n} VILLAS · `,
     entrer: "Rappel",
     demander: "Être rappelé par un conseiller",
@@ -615,7 +615,7 @@ const fr = {
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
+      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine. À l’envoi, votre messagerie s’ouvre avec la demande prête à partir.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
@@ -949,7 +949,7 @@ const en: Textes = {
         {
           titre: "Visit, then buy",
           texte:
-            "Floor plans for each type and the brochures are downloadable. On-site viewings and purchase terms go through the concierge: every access request is reviewed one by one.",
+            "Floor plans for each type and the brochures are downloadable. On-site viewings and purchase terms go through the concierge: an adviser calls you back and arranges the viewing.",
         },
       ],
     },
@@ -959,7 +959,7 @@ const en: Textes = {
         "Request private access, the brochure or a viewing of the CITYSTAR estate in Marrakech.",
       kicker: "Contact",
       titreH1: ["Let's talk about", "your project."],
-      intro: "Every request is reviewed one by one. Phone, WhatsApp or the form — your choice.",
+      intro: "An adviser answers you directly: phone, WhatsApp or a call back, your choice.",
       formulaire: "Request a call back",
     },
   },
@@ -1041,10 +1041,10 @@ const en: Textes = {
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },
   cercle: {
-    kicker: "By request only",
+    kicker: "A private estate",
     titre: ["Enter", "the circle."],
     texte: (n) =>
-      `${n} villas, reserved for a few public figures. Every request is reviewed one by one, and an adviser calls you back.`,
+      `${n} villas, not one more. An adviser calls you back to introduce the one that suits you.`,
     sceau: (n) => `PRIVATE ACCESS · CITYSTAR · ${n} VILLAS · `,
     entrer: "Call",
     demander: "Request a call back",
@@ -1229,7 +1229,7 @@ const en: Textes = {
     kicker: "CITYSTAR concierge",
     titre: ["Request ", "a call back."],
     texte:
-      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate.",
+      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate. When you send, your email app opens with the request ready to go.",
     jointe: (outil) => `Attached to your request · ${outil}`,
     retirer: "Do not attach",
     nom: "Full name",
