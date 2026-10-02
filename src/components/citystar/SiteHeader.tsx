@@ -17,7 +17,6 @@ import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
 import { chemin, fichierPublic, Lien, traduireSous } from "./liens";
-import { PillButton } from "./ui/PillButton";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -125,6 +124,9 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
 
 export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
   const { langue, t } = useDevise();
+  /* Transparent seulement en haut de l'accueil, posé sur la vidéo ; partout ailleurs, un aplat d'encre. */
+  const page = useRouterState({ select: (etat) => etat.location.pathname });
+  const solide = scrolled || !/^\/(en\/?)?$/.test(page);
   const tab = (sous: string, label: string, Icon: typeof DoorOpen) => (
     <Lien className="tabbar-item" vers={chemin(langue, sous)}>
       <Icon aria-hidden="true" />
@@ -134,25 +136,33 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
 
   return (
     <>
-      <header className={`float-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header className={`float-header ${solide ? "is-solid" : ""}`}>
+        <div className="float-start">
+          <nav className="float-nav" aria-label="Navigation">
+            {/* L'accueil passe par le nom, au centre. */}
+            {t.nav.slice(1).map(([label, sous]) => (
+              <Lien key={sous} vers={chemin(langue, sous)}>
+                {label}
+              </Lien>
+            ))}
+          </nav>
+          <button
+            className="float-menu"
+            onClick={onOpenMenu}
+            aria-expanded={menuOpen}
+            aria-haspopup="dialog"
+          >
+            {t.header.menu}
+          </button>
+        </div>
         <Lien className="float-wordmark" vers={chemin(langue, "")} ariaLabel={t.header.accueil}>
           CITYSTAR
         </Lien>
-        <nav className="float-nav" aria-label="Navigation">
-          {t.nav.map(([label, sous]) => (
-            <Lien key={sous || "accueil"} vers={chemin(langue, sous)}>
-              {label}
-            </Lien>
-          ))}
-        </nav>
         <div className="float-actions">
-          <LangSwitch className="float-lang" />
-          <PillButton
-            label={t.header.acces}
-            icon={PhoneCall}
-            onClick={onContact}
-            className="float-cta"
-          />
+          <LangSwitch />
+          <button className="float-cta" onClick={onContact}>
+            {t.header.acces}
+          </button>
           <a
             className="float-concierge"
             href={whatsappHref}
