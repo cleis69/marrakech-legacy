@@ -1,119 +1,74 @@
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-  useReducedMotion,
-  useTransform,
-} from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { useEffect, useRef } from "react";
-
 import { formatNombre, programme, villasChiffres } from "@/config/citystar";
-import exteriorImage from "@/assets/citystar/rendus/ext-facade-jardin.webp";
-import poolImage from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
-import livingImage from "@/assets/citystar/rendus/int-salon.webp";
-
-/* Repères du projet tirés des trois types : ils complètent le bandeau (trajet, villas, terrain) sans le répéter. */
-const chiffres = Object.values(villasChiffres);
-const surfaceMax = Math.max(...chiffres.map((v) => v.surfaceConstruiteM2));
-const suitesMin = Math.min(...chiffres.map((v) => v.suites));
-const suitesMax = Math.max(...chiffres.map((v) => v.suites));
+import entreeImage from "@/assets/citystar/rendus/entree-crepuscule.webp";
+import pergolaImage from "@/assets/citystar/rendus/ext-pergola-portrait.webp";
+import salonImage from "@/assets/citystar/rendus/int-salon.webp";
 
 import { useDevise } from "./currency";
-import { scrollTo } from "./data";
+import { altRendu } from "./data";
 import { Reveal } from "./motion";
-import { PillButton } from "./ui/PillButton";
 
-/** Compteur 0 → 14 déclenché à l'apparition, figé sur la valeur finale en mouvement réduit. */
-function VillaCounter() {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-  const reduce = useReducedMotion();
-  const count = useMotionValue(reduce ? programme.nombreVillas : 0);
-  const rounded = useTransform(count, (v) => String(Math.round(v)).padStart(2, "0"));
+const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 
-  useEffect(() => {
-    if (!inView) return;
-    if (reduce) {
-      count.set(programme.nombreVillas);
-      return;
-    }
-    const controls = animate(count, programme.nombreVillas, {
-      duration: 1.6,
-      ease: [0.22, 1, 0.36, 1],
-    });
-    return () => controls.stop();
-  }, [inView, reduce, count]);
-
-  return (
-    <span ref={ref} className="pj-count-num" aria-hidden="true">
-      <motion.span>{rounded}</motion.span>
-    </span>
-  );
-}
-
+/** Le domaine en trois vues, puis les quatre chiffres qui le situent. */
 export function ProjectSection() {
   const { langue, t } = useDevise();
+  const [debut, milieu, fin] = t.projet.titre;
+  const vues = [
+    { src: entreeImage, nom: "entree-crepuscule", legende: t.projet.vues.entree },
+    { src: pergolaImage, nom: "ext-pergola-portrait", legende: t.projet.vues.pergola },
+    { src: salonImage, nom: "int-salon", legende: t.projet.vues.salon },
+  ];
+  /* L'unité est composée à part : le « ² » de l'Italiana est presque aussi haut que les chiffres. */
+  const faits = [
+    { libelle: t.projet.faits.villas, valeur: String(programme.nombreVillas), unite: "" },
+    {
+      libelle: t.projet.faits.terrain,
+      valeur: formatNombre(programme.terrainMaxM2, langue),
+      unite: "m²",
+    },
+    { libelle: t.projet.faits.surface, valeur: formatNombre(surfaceMax, langue), unite: "m²" },
+    { libelle: t.projet.faits.trajet, valeur: String(programme.trajetMaxMinutes), unite: "min" },
+  ];
+
   return (
     <section id="project" className="pj" aria-labelledby="project-title">
-      <div className="pj-grid">
-        <figure className="pj-big">
-          <img src={exteriorImage} alt={t.projet.altFacade} loading="lazy" />
-          <figcaption className="pj-count">
-            <VillaCounter />
-            <span className="pj-count-copy">
-              <small>{t.projet.villas(programme.nombreVillas)}</small>
-              <em>{t.projet.pasUne}</em>
-            </span>
-          </figcaption>
-        </figure>
-
-        <div className="pj-right">
-          <div className="pj-pair">
-            <img src={poolImage} alt={t.projet.altPiscine} loading="lazy" />
-            <img src={livingImage} alt={t.projet.altSalon} loading="lazy" />
-          </div>
-          <div className="pj-text">
-            <div className="section-label">
-              <p>{t.projet.label}</p>
-            </div>
-            <Reveal>
-              <h2 id="project-title">
-                {t.projet.titre[0]} <br />
-                {t.projet.titre[1]}
-                <em>{t.projet.titre[2]}</em>
-              </h2>
-            </Reveal>
-            <p className="pj-statement">
-              <strong>{t.projet.texte[0]}</strong> {t.projet.texte[1]}
-            </p>
-            <dl className="pj-rows">
-              <div>
-                <dt>{t.projet.surfaces}</dt>
-                <dd>
-                  {formatNombre(surfaceMax, langue)}
-                  <sup>m²</sup>
-                </dd>
-              </div>
-              <div>
-                <dt>{t.projet.types}</dt>
-                <dd>{programme.nombreTypes}</dd>
-              </div>
-              <div>
-                <dt>{t.projet.suitesParVilla}</dt>
-                <dd>{suitesMin === suitesMax ? suitesMax : `${suitesMin}–${suitesMax}`}</dd>
-              </div>
-            </dl>
-            <PillButton
-              label={t.projet.cta}
-              icon={ArrowRight}
-              variant="secondary"
-              onClick={() => scrollTo("villas")}
-            />
-          </div>
-        </div>
+      <div className="pj-head">
+        <Reveal>
+          <h2 id="project-title">
+            {debut} {milieu}
+            {fin}
+          </h2>
+        </Reveal>
+        <p>
+          {t.projet.texte[0]} {t.projet.texte[1]}
+        </p>
       </div>
+
+      <ul className="pj-vues">
+        {vues.map((vue, i) => (
+          <li key={vue.nom}>
+            <figure>
+              <img src={vue.src} alt={altRendu(t, vue.nom)} loading="lazy" />
+              <figcaption>
+                <span>{vue.legende}</span>
+                <span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+
+      <dl className="pj-faits">
+        {faits.map((fait) => (
+          <div key={fait.libelle}>
+            <dt>{fait.libelle}</dt>
+            <dd>
+              {fait.valeur}
+              {fait.unite && <small>{fait.unite}</small>}
+            </dd>
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }

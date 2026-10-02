@@ -17,7 +17,6 @@
 @import "./styles/ruban.css";
 @import "./styles/wordmark.css";
 @import "./styles/closing.css";
-@import "./styles/matieres.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -82,6 +81,10 @@
 
 :root {
   --radius: 0.125rem;
+  /* Marge latérale commune : en-tête, hero, sections pleine largeur. */
+  --gouttiere: clamp(1.25rem, 4vw, 3.5rem);
+  /* Étalonnage des rendus : le ciel et le gazon perdent leur saturation de catalogue. */
+  --etalonnage: saturate(.7) contrast(1.05) brightness(.92) sepia(.06);
   --background: oklch(0.955 0.018 82);
   --foreground: oklch(0.145 0.012 65);
   --card: oklch(1 0 0);
