@@ -74,6 +74,34 @@ export const devises = {
 } as const;
 
 /* ------------------------------------------------------------------ */
+/* Calendrier du chantier                                              */
+/* ------------------------------------------------------------------ */
+
+/** Étapes du chantier, dans l'ordre : chacune déclenche un appel de fonds (voir reservation.paliers). */
+export type EtapeChantier = "reservation" | "fondations" | "grosOeuvre" | "finitions" | "livraison";
+
+/** Mois d'une étape : mois de 1 à 12. */
+export type Mois = { annee: number; mois: number };
+
+export const calendrier = {
+  // Livraison du domaine annoncée par le client le 04/10/2026.
+  livraison: { annee: 2027, mois: 8, confirme: true },
+  /**
+   * Les étapes suivent le déroulé habituel d'une vente sur plan. La livraison
+   * prend la date ci-dessus ; les autres attendent le planning du promoteur.
+   */
+  // ESPACE RÉSERVÉ — dates à remplacer par le planning du promoteur
+  etapes: [
+    { id: "reservation", date: null },
+    { id: "fondations", date: null },
+    { id: "grosOeuvre", date: null },
+    { id: "finitions", date: null },
+    { id: "livraison", date: null },
+  ] as { id: EtapeChantier; date: Mois | null }[],
+  etapesConfirmees: false,
+};
+
+/* ------------------------------------------------------------------ */
 /* Réservation et échéancier                                           */
 /* ------------------------------------------------------------------ */
 
@@ -85,13 +113,19 @@ export const reservation = {
     confirme: false,
   },
   /**
-   * Paliers d'échéancier (pourcentage du prix par étape).
+   * Part du prix appelée à chaque étape du chantier, en fraction (0,1 = 10 %).
    * Ne pas reprendre les paliers 35/70/95/5 : c'est du droit français, pas
-   * marocain. Le simulateur d'échéancier reste désactivé tant que
-   * l'échéancier contractuel du promoteur n'est pas fourni.
+   * marocain. Le site affiche « à confirmer » tant que l'échéancier
+   * contractuel du promoteur n'est pas fourni.
    */
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  paliers: [] as { etape: string; pourcentage: number }[],
+  paliers: [
+    { etape: "reservation", part: null },
+    { etape: "fondations", part: null },
+    { etape: "grosOeuvre", part: null },
+    { etape: "finitions", part: null },
+    { etape: "livraison", part: null },
+  ] as { etape: EtapeChantier; part: number | null }[],
   paliersConfirmes: false,
 };
 
@@ -291,6 +325,22 @@ export function formatDate(iso: string, langue: Langue = "fr") {
       ? { day: "2-digit", month: "2-digit", year: "numeric" }
       : { day: "numeric", month: "short", year: "numeric" };
   return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
+}
+
+/** Mois et année : « août 2027 » (fr) ou « August 2027 » (en), identiques au pré-rendu et dans le navigateur. */
+export function formatMois({ annee, mois }: Mois, langue: Langue = "fr") {
+  const date = new Date(Date.UTC(annee, mois - 1, 15));
+  return new Intl.DateTimeFormat(LOCALE[langue], {
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+/** Mois entiers d'aujourd'hui jusqu'à une échéance (0 si elle est passée). */
+export function moisRestants({ annee, mois }: Mois, aujourdhui: Date) {
+  const ecart = (annee - aujourdhui.getFullYear()) * 12 + (mois - 1 - aujourdhui.getMonth());
+  return Math.max(0, ecart);
 }
 
 const UNITES = [

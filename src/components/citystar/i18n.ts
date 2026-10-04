@@ -27,6 +27,7 @@ const fr = {
     villas: "Villas",
     galerie: "Galerie",
     questions: "Questions",
+    espace: "Mon espace",
     langue: "Langue du site",
     whatsapp: "Contacter la conciergerie CITYSTAR sur WhatsApp",
   },
@@ -60,6 +61,35 @@ const fr = {
       terrain: "Terrain par villa",
       surface: "Construits, jusqu’à",
       trajet: "Jemaa el-Fna & aéroport",
+    },
+  },
+  livraison: {
+    aria: "Calendrier de livraison et plan de paiement",
+    titre: (mois: string) => `Livraison en ${mois}.`,
+    intro:
+      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et les parts sont en cours de validation avec le promoteur.",
+    compte: (n: number) =>
+      n === 0 ? "Livraison ce mois-ci" : n === 1 ? "Dans 1 mois" : `Dans ${n} mois`,
+    frise: "Les étapes du chantier",
+    etapes: {
+      reservation: "Réservation",
+      fondations: "Fondations",
+      grosOeuvre: "Gros œuvre",
+      finitions: "Finitions",
+      livraison: "Remise des clés",
+    },
+    signature: "À la signature",
+    dateAConfirmer: "Date à confirmer",
+    paiement: "Le plan de paiement",
+    part: "Part du prix",
+    aConfirmer: "À confirmer",
+    notePaiement:
+      "Les parts du prix appelées à chaque étape sont en cours de validation avec le promoteur. Votre conseiller vous remet l’échéancier détaillé de votre villa.",
+    echeancier: "Recevoir l’échéancier",
+    selection: { outil: "Calendrier et paiement", ligne: "Demande de l’échéancier détaillé" },
+    espace: {
+      texte: "Déjà propriétaire\u00a0? Suivez l’avancement des travaux de votre villa.",
+      lien: "Accéder à mon espace",
     },
   },
   architecture: {
@@ -247,6 +277,20 @@ const fr = {
       titreH1: ["Le domaine,", "en images."] as [string, string],
       intro: "Rendus d'architecte du domaine et des intérieurs. Illustrations non contractuelles.",
       legende: "Rendu CITYSTAR",
+    },
+    espace: {
+      titre: "Mon espace propriétaire — CITYSTAR",
+      description:
+        "L’espace des propriétaires CITYSTAR\u00a0: l’avancement des travaux de votre villa, étape par étape.",
+      kicker: "Mon espace",
+      titreH1: ["Suivre ma villa,", "étape par étape."] as [string, string],
+      intro:
+        "Chaque propriétaire disposera d’un accès personnel pour suivre l’avancement des travaux de sa villa.",
+      statut: "Espace en préparation",
+      statutTexte:
+        "L’espace propriétaire ouvre prochainement. Votre conseiller vous communiquera votre accès personnel.",
+      demander: "Demander mon accès",
+      selection: { outil: "Espace propriétaire", ligne: "Demande d’accès à l’espace propriétaire" },
     },
     investir: {
       titre: "Investir à Marrakech — CITYSTAR",
@@ -665,6 +709,7 @@ const en: Textes = {
     villas: "Villas",
     galerie: "Gallery",
     questions: "Questions",
+    espace: "Owner area",
     langue: "Site language",
     whatsapp: "Message the CITYSTAR concierge on WhatsApp",
   },
@@ -698,6 +743,37 @@ const en: Textes = {
       terrain: "Plot per villa",
       surface: "Built, up to",
       trajet: "Jemaa el-Fna & airport",
+    },
+  },
+  livraison: {
+    aria: "Delivery calendar and payment plan",
+    titre: (mois) => `Delivery in ${mois}.`,
+    intro:
+      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and shares are being confirmed with the developer.",
+    compte: (n) => (n === 0 ? "Delivery this month" : n === 1 ? "In 1 month" : `In ${n} months`),
+    frise: "Construction stages",
+    etapes: {
+      reservation: "Reservation",
+      fondations: "Foundations",
+      grosOeuvre: "Structural work",
+      finitions: "Finishing",
+      livraison: "Handover",
+    },
+    signature: "On signing",
+    dateAConfirmer: "Date to be confirmed",
+    paiement: "The payment plan",
+    part: "Share of the price",
+    aConfirmer: "To be confirmed",
+    notePaiement:
+      "The share of the price called at each stage is being confirmed with the developer. Your adviser will send you the detailed schedule for your villa.",
+    echeancier: "Receive the schedule",
+    selection: {
+      outil: "Calendar and payment",
+      ligne: "Request for the detailed payment schedule",
+    },
+    espace: {
+      texte: "Already an owner? Follow the construction progress of your villa.",
+      lien: "Go to my owner area",
     },
   },
   architecture: {
@@ -877,6 +953,19 @@ const en: Textes = {
       titreH1: ["The estate,", "in pictures."],
       intro: "Architect's renders of the estate and its interiors. Illustrations, not contractual.",
       legende: "CITYSTAR render",
+    },
+    espace: {
+      titre: "Owner area — CITYSTAR",
+      description:
+        "The CITYSTAR owner area: the construction progress of your villa, stage by stage.",
+      kicker: "Owner area",
+      titreH1: ["Follow my villa,", "stage by stage."],
+      intro:
+        "Each owner will have personal access to follow the construction progress of their villa.",
+      statut: "Area in preparation",
+      statutTexte: "The owner area opens soon. Your adviser will send you your personal access.",
+      demander: "Request my access",
+      selection: { outil: "Owner area", ligne: "Request for access to the owner area" },
     },
     investir: {
       titre: "Investing in Marrakech — CITYSTAR",

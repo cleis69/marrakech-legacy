@@ -1,3 +1,4 @@
+import { CalendrierSection } from "../CalendrierSection";
 import { useDevise } from "../currency";
 import { FinalCta } from "../FinalCta";
 import { Marquee } from "../Marquee";
@@ -27,6 +28,7 @@ export function InvestirPage() {
           ))}
         </ul>
       </section>
+      <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <Marquee />
       <FinalCta onContact={ouvrirContact} />

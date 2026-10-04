@@ -3,6 +3,7 @@ import {
   CircleHelp,
   DoorOpen,
   Download,
+  KeyRound,
   LayoutPanelLeft,
   PhoneCall,
   Menu,
@@ -16,7 +17,7 @@ import { brochures, contact, formatDecimal } from "@/config/citystar";
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, fichierPublic, Lien, traduireSous } from "./liens";
+import { chemin, cheminEspace, fichierPublic, Lien, traduireSous } from "./liens";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -106,6 +107,10 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
             {t.header.brochure}
             <small>{t.header.poids(formatDecimal(brochures.citystar.mo, langue))}</small>
           </a>
+          <Lien vers={cheminEspace(langue)}>
+            <KeyRound aria-hidden="true" />
+            {t.header.espace}
+          </Lien>
         </div>
         <button
           className="menu-sheet-cta"
@@ -160,6 +165,9 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
         </Lien>
         <div className="float-actions">
           <LangSwitch />
+          <Lien className="float-espace" vers={cheminEspace(langue)}>
+            {t.header.espace}
+          </Lien>
           <button className="float-cta" onClick={onContact}>
             {t.header.acces}
           </button>

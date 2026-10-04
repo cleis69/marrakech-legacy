@@ -1,3 +1,4 @@
+import { CalendrierSection } from "../CalendrierSection";
 import { FinalCta } from "../FinalCta";
 import { HeroSection } from "../HeroSection";
 import { LifestyleSection } from "../LifestyleSection";
@@ -20,6 +21,7 @@ export function HomePage() {
       <LifestyleSection />
       <Marquee />
       <LocationSection onOpenPlan={ouvrirPlan} />
+      <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <FinalCta onContact={ouvrirContact} />
     </>

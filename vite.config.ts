@@ -27,6 +27,8 @@ const pages = [
   { path: "/en" },
   ...sousPages.map((sous) => ({ path: `/en/${sous}` })),
   { path: "/en/luxury-villa-marrakech" },
+  { path: "/mon-espace" },
+  { path: "/en/owner-area" },
 ];
 
 export default defineConfig({

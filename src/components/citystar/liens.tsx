@@ -16,7 +16,13 @@ export const fichierPublic = (chemin: string) => `${import.meta.env.BASE_URL}${c
 const slugs: Record<string, string> = {
   "villa-de-luxe-marrakech": "luxury-villa-marrakech",
   "luxury-villa-marrakech": "villa-de-luxe-marrakech",
+  "mon-espace": "owner-area",
+  "owner-area": "mon-espace",
 };
+
+/** Adresse de l'espace propriétaire : /mon-espace ou /en/owner-area. */
+export const cheminEspace = (langue: Langue) =>
+  chemin(langue, langue === "en" ? "owner-area" : "mon-espace");
 
 /** Traduit la fin d'une adresse : « villa-de-luxe-marrakech » ↔ « luxury-villa-marrakech ». */
 export function traduireSous(sous: string) {
