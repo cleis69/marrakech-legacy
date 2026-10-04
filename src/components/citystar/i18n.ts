@@ -67,7 +67,7 @@ const fr = {
     aria: "Calendrier de livraison et plan de paiement",
     titre: (mois: string) => `Livraison en ${mois}.`,
     intro:
-      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et les parts sont en cours de validation avec le promoteur.",
+      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et la répartition du solde sont en cours de validation avec le promoteur.",
     compte: (n: number) =>
       n === 0 ? "Livraison ce mois-ci" : n === 1 ? "Dans 1 mois" : `Dans ${n} mois`,
     frise: "Les étapes du chantier",
@@ -78,13 +78,13 @@ const fr = {
       finitions: "Finitions",
       livraison: "Remise des clés",
     },
-    signature: "À la signature",
+    signature: "Signature chez le notaire",
     dateAConfirmer: "Date à confirmer",
     paiement: "Le plan de paiement",
     part: "Part du prix",
     aConfirmer: "À confirmer",
-    notePaiement:
-      "Les parts du prix appelées à chaque étape sont en cours de validation avec le promoteur. Votre conseiller vous remet l’échéancier détaillé de votre villa.",
+    notePaiement: (reste: string) =>
+      `La réservation se signe directement chez le notaire. La répartition des ${reste} restants est en cours de validation avec le promoteur\u00a0: votre conseiller vous remet l’échéancier détaillé de votre villa.`,
     echeancier: "Recevoir l’échéancier",
     selection: { outil: "Calendrier et paiement", ligne: "Demande de l’échéancier détaillé" },
     espace: {
@@ -749,7 +749,7 @@ const en: Textes = {
     aria: "Delivery calendar and payment plan",
     titre: (mois) => `Delivery in ${mois}.`,
     intro:
-      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and shares are being confirmed with the developer.",
+      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and the split of the balance are being confirmed with the developer.",
     compte: (n) => (n === 0 ? "Delivery this month" : n === 1 ? "In 1 month" : `In ${n} months`),
     frise: "Construction stages",
     etapes: {
@@ -759,13 +759,13 @@ const en: Textes = {
       finitions: "Finishing",
       livraison: "Handover",
     },
-    signature: "On signing",
+    signature: "Signed at the notary",
     dateAConfirmer: "Date to be confirmed",
     paiement: "The payment plan",
     part: "Share of the price",
     aConfirmer: "To be confirmed",
-    notePaiement:
-      "The share of the price called at each stage is being confirmed with the developer. Your adviser will send you the detailed schedule for your villa.",
+    notePaiement: (reste) =>
+      `The reservation is signed directly at the notary. The split of the remaining ${reste} is being confirmed with the developer: your adviser will send you the detailed schedule for your villa.`,
     echeancier: "Receive the schedule",
     selection: {
       outil: "Calendar and payment",

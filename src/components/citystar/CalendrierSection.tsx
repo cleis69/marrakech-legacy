@@ -15,7 +15,10 @@ import { cheminEspace, Lien } from "./liens";
 import { useSite } from "./site";
 import { PillButton } from "./ui/PillButton";
 
-const parts = new Map(reservation.paliers.map((palier) => [palier.etape, palier.part]));
+const paliers = new Map(reservation.paliers.map((palier) => [palier.etape, palier]));
+/* Ce qui reste à répartir une fois les parts confirmées déduites (0,7 après les 30 % de réservation). */
+const solde =
+  1 - reservation.paliers.reduce((total, p) => total + (p.confirme && p.part ? p.part : 0), 0);
 
 /**
  * Frise de livraison, puis le plan de paiement aligné sous chaque étape.
@@ -39,10 +42,12 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
       : t.livraison.dateAConfirmer;
   };
 
+  const pourcent = (part: number) =>
+    `${(part * 100).toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { maximumFractionDigits: 1 })}${langue === "fr" ? "\u00a0" : ""}%`;
+
   const partEtape = (id: EtapeChantier) => {
-    const part = parts.get(id);
-    if (!reservation.paliersConfirmes || part == null) return null;
-    return `${(part * 100).toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { maximumFractionDigits: 1 })} %`;
+    const palier = paliers.get(id);
+    return palier?.confirme && palier.part != null ? pourcent(palier.part) : null;
   };
 
   return (
@@ -86,7 +91,7 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
           })}
         </ol>
         <div className="lv-pied">
-          <p>{t.livraison.notePaiement}</p>
+          <p>{t.livraison.notePaiement(pourcent(solde))}</p>
           <PillButton
             label={t.livraison.echeancier}
             icon={ArrowRight}

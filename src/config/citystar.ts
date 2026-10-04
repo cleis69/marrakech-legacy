@@ -115,18 +115,18 @@ export const reservation = {
   /**
    * Part du prix appelée à chaque étape du chantier, en fraction (0,1 = 10 %).
    * Ne pas reprendre les paliers 35/70/95/5 : c'est du droit français, pas
-   * marocain. Le site affiche « à confirmer » tant que l'échéancier
-   * contractuel du promoteur n'est pas fourni.
+   * marocain. Une part non confirmée s'affiche « à confirmer ».
    */
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
   paliers: [
-    { etape: "reservation", part: null },
-    { etape: "fondations", part: null },
-    { etape: "grosOeuvre", part: null },
-    { etape: "finitions", part: null },
-    { etape: "livraison", part: null },
-  ] as { etape: EtapeChantier; part: number | null }[],
-  paliersConfirmes: false,
+    // Donné par le client le 04/10/2026 : 30 % à la réservation, signée directement chez le notaire.
+    { etape: "reservation", part: 0.3, confirme: true },
+    // ESPACE RÉSERVÉ — répartition du solde à fournir par le promoteur
+    { etape: "fondations", part: null, confirme: false },
+    { etape: "grosOeuvre", part: null, confirme: false },
+    { etape: "finitions", part: null, confirme: false },
+    { etape: "livraison", part: null, confirme: false },
+  ] as { etape: EtapeChantier; part: number | null; confirme: boolean }[],
 };
 
 /* ------------------------------------------------------------------ */
