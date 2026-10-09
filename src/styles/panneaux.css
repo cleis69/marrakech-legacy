@@ -1,0 +1,15 @@
+/* ---------- Sections en panneaux ---------- */
+/* Une section sur deux se pose sur un fond sable clair, arrondi et détaché du papier : on voit où chacune commence. */
+:root { --panneau: oklch(0.905 0.032 76); }
+.eg, .tv, .mc, .sm { --bronze-text: var(--bronze-deep); margin: 14px 14px 0; border-radius: 28px; background: var(--panneau); }
+.vs { background: var(--paper); }
+.vd-carte { background: var(--cream); }
+/* Deux panneaux qui se suivent : un liseré de papier entre eux. */
+:is(.eg, .tv, .mc, .sm, .lv, .circle) + :is(.eg, .tv, .mc, .sm, .lv, .circle) { margin-top: 14px; }
+
+@media (max-width: 900px) {
+  .eg, .tv, .mc, .sm { margin: 8px 8px 0; border-radius: 22px; }
+  :is(.eg, .tv, .mc, .sm, .lv, .circle) + :is(.eg, .tv, .mc, .sm, .lv, .circle) { margin-top: 8px; }
+}
+/* La carte suit les mêmes angles arrondis que les panneaux. */
+.mp { border-radius: 24px; }
