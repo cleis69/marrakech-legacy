@@ -145,6 +145,24 @@ export const calendrier = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Espace propriétaire                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Projet Supabase « citystar » (organisation REV, offre gratuite), créé le 09/10/2026.
+ * La clé publique est faite pour le navigateur : ce sont les règles RLS
+ * (supabase/migrations) qui décident de ce que chacun peut lire ou modifier.
+ */
+export const espaceClient = {
+  url: "https://vrdtckxffzufknmkqpst.supabase.co",
+  clePublique: "sb_publishable_dLe1JJj-n2TTczlQ1Vc78w_juYP3fFr",
+  // Durée de validité des liens vers les photos et les documents, en secondes.
+  dureeLiens: 3600,
+  // Les photos sont réduites avant l'envoi : 1 Go de stockage dans l'offre gratuite.
+  photoLargeurMax: 2000,
+};
+
+/* ------------------------------------------------------------------ */
 /* Réservation et échéancier                                           */
 /* ------------------------------------------------------------------ */
 
