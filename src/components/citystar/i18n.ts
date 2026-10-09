@@ -36,6 +36,11 @@ const fr = {
     lieu: "Oulad Hassoune · Marrakech",
     texte: "Des villas contemporaines, chacune avec sa propre piscine et de vastes terrasses.",
     rendu: "Rendu 3D, non contractuel",
+    preuves: (livraison: string, fondsPropres: string) => [
+      `Livraison ${livraison}`,
+      "Réservation chez le notaire",
+      `${fondsPropres} fonds propres`,
+    ],
     decouvrir: "Découvrir les villas",
     acces: "Être rappelé par un conseiller",
     pause: "Mettre la vidéo en pause",
@@ -385,38 +390,64 @@ const fr = {
     a: string;
     b: string;
     c: string;
+    acompte: string;
+    livraison: string;
+    fondsPropres: string;
   }) => [
     {
+      id: "securite",
+      q: "Acheter sur plan à CITYSTAR est-il sécurisé\u00a0?",
+      r: `La réservation se signe directement chez le notaire, et chaque versement passe par son étude. Le chantier est financé à ${v.fondsPropres} sur fonds propres\u00a0: il ne dépend ni d’un crédit du promoteur ni des ventes sur plan.`,
+    },
+    {
+      id: "acquisition",
+      q: "Comment se déroule l'acquisition\u00a0?",
+      r: `Vous réservez votre villa chez le notaire, avec ${v.acompte} du prix. La répartition du solde jusqu’à la remise des clés est en cours de validation avec le promoteur\u00a0; votre conseiller vous remet l’échéancier détaillé.`,
+    },
+    {
+      id: "financement",
+      q: "Peut-on acheter avec un crédit immobilier\u00a0?",
+      r: "Oui. Le promoteur accepte les acquisitions financées par un crédit immobilier bancaire. Votre conseiller vous accompagne dans les étapes avec votre banque.",
+    },
+    {
+      id: "livraison",
+      q: "Quand le domaine sera-t-il livré\u00a0?",
+      r: `La livraison est prévue en ${v.livraison}. Les dates des étapes intermédiaires du chantier sont en cours de validation avec le promoteur.`,
+    },
+    {
+      id: "villas",
       q: "Combien de villas compte CITYSTAR\u00a0?",
       r: `${v.villas} villas, réparties en trois types. Chacune dispose de son terrain, jusqu'à ${v.terrain}, et de sa piscine privée.`,
     },
     {
+      id: "lieu",
       q: "Où se situe le domaine\u00a0?",
       r: `À Oulad Hassoune, préfecture de Marrakech, près de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
     },
     {
+      id: "surfaces",
       q: "Quelles sont les surfaces\u00a0?",
       r: `Type A\u00a0: ${v.a}. Type B\u00a0: ${v.b}. Type C\u00a0: ${v.c}. Les surfaces s'entendent construites\u00a0; les terrains sont indiqués sur chaque fiche.`,
     },
     {
+      id: "pmr",
       q: "Une villa est-elle adaptée à la mobilité réduite\u00a0?",
       r: "Oui, la villa type A\u00a0: ascenseur, salles de bains accessibles et circulations généreuses.",
     },
     {
+      id: "prix",
       q: "Les prix affichés sont-ils définitifs\u00a0?",
       r: "Ils sont indicatifs et à confirmer contractuellement. Les montants en dirhams et en couronnes sont des contre-valeurs, calculées au taux du jour et signalées comme telles.",
     },
     {
+      id: "visite",
       q: "Peut-on visiter\u00a0?",
       r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande par la conciergerie, après étude de la demande d'accès.",
     },
     {
+      id: "plans",
       q: "Les plans sont-ils disponibles\u00a0?",
       r: "Oui\u00a0: rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa.",
-    },
-    {
-      q: "Comment se déroule l'acquisition\u00a0?",
-      r: "Le promoteur communique les conditions — acompte, échéancier, frais d'acquisition — lors de l'étude de votre demande. Nous ne simulons pas ces montants tant qu'ils ne sont pas confirmés.",
     },
   ],
   rendus: {
@@ -464,6 +495,11 @@ const fr = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
+  questions: {
+    titre: "Acheter sur plan, en toute sérénité.",
+    intro: "Les questions que l’on nous pose avant chaque réservation.",
+    toutes: "Toutes les questions",
+  },
   engagements: {
     titre: "Trois engagements. Une confiance entière.",
     intro: "Des garanties concrètes, à chaque étape de votre acquisition.",
@@ -475,7 +511,7 @@ const fr = {
       {
         titre: `${fondsPropres} fonds propres`,
         texte:
-          "Le domaine est financé sur fonds propres, sans dépendre d’un crédit ni des ventes sur plan.",
+          "Le chantier est financé sur fonds propres\u00a0: il ne dépend ni d’un crédit du promoteur ni des ventes sur plan.",
       },
       {
         titre: "Le notaire dès la réservation",
@@ -759,6 +795,11 @@ const en: Textes = {
     lieu: "Oulad Hassoune · Marrakech",
     texte: "Contemporary villas, each with its own pool and generous terraces.",
     rendu: "3D render, not contractual",
+    preuves: (livraison, fondsPropres) => [
+      `Delivery ${livraison}`,
+      "Reservation at the notary",
+      `${fondsPropres} equity-funded`,
+    ],
     decouvrir: "Discover the villas",
     acces: "Request a call back",
     pause: "Pause the video",
@@ -1094,36 +1135,59 @@ const en: Textes = {
   },
   faq: (v) => [
     {
+      id: "securite",
+      q: "Is buying off-plan at CITYSTAR secure?",
+      r: `The reservation is signed directly at the notary, and every payment goes through the notary’s office. Construction is ${v.fondsPropres} equity-funded: it relies neither on developer loans nor on off-plan sales.`,
+    },
+    {
+      id: "acquisition",
+      q: "How does buying work?",
+      r: `You reserve your villa at the notary, with ${v.acompte} of the price. The split of the balance up to handover is being confirmed with the developer; your adviser will send you the detailed schedule.`,
+    },
+    {
+      id: "financement",
+      q: "Can I buy with a mortgage?",
+      r: "Yes. The developer accepts purchases financed by a bank mortgage. Your adviser will guide you through the steps with your bank.",
+    },
+    {
+      id: "livraison",
+      q: "When will the estate be delivered?",
+      r: `Delivery is planned for ${v.livraison}. The dates of the intermediate construction stages are being confirmed with the developer.`,
+    },
+    {
+      id: "villas",
       q: "How many villas does CITYSTAR have?",
       r: `${v.villas} villas in three types. Each has its own plot, up to ${v.terrain}, and its own pool.`,
     },
     {
+      id: "lieu",
       q: "Where is the estate?",
       r: `In Oulad Hassoune, Marrakech prefecture, close to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
     },
     {
+      id: "surfaces",
       q: "What are the areas?",
       r: `Type A: ${v.a}. Type B: ${v.b}. Type C: ${v.c}. Areas are built areas; plots are given on each villa page.`,
     },
     {
+      id: "pmr",
       q: "Is one villa suited to reduced mobility?",
       r: "Yes, villa type A: lift, accessible bathrooms and generous circulation.",
     },
     {
+      id: "prix",
       q: "Are the prices shown final?",
       r: "They are indicative and to be confirmed contractually. Amounts in dirhams and kroner are conversions at the day's rate, and are marked as such.",
     },
     {
+      id: "visite",
       q: "Can we visit?",
       r: "The 360° aerial tour is open online. An on-site viewing is arranged by the concierge once your access request has been reviewed.",
     },
     {
+      id: "plans",
       q: "Are the floor plans available?",
       r: "Yes: ground floor and upper floor for each type, enlargeable on the site, plus a PDF brochure per villa.",
-    },
-    {
-      q: "How does buying work?",
-      r: "The developer sets out the terms — deposit, payment schedule, acquisition costs — when your request is reviewed. We do not simulate those amounts until they are confirmed.",
     },
   ],
   rendus: {
@@ -1169,6 +1233,11 @@ const en: Textes = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },
+  questions: {
+    titre: "Buying off-plan, with peace of mind.",
+    intro: "The questions we are asked before every reservation.",
+    toutes: "All questions",
+  },
   engagements: {
     titre: "Three commitments. Complete confidence.",
     intro: "Concrete guarantees at every stage of your purchase.",
@@ -1179,7 +1248,8 @@ const en: Textes = {
       },
       {
         titre: `${fondsPropres} equity-funded`,
-        texte: "The estate is funded from equity, with no reliance on loans or off-plan sales.",
+        texte:
+          "Construction is funded from equity: it relies neither on developer loans nor on off-plan sales.",
       },
       {
         titre: "The notary from reservation",

@@ -77,9 +77,12 @@ export const devises = {
 /* Engagements et marché                                               */
 /* ------------------------------------------------------------------ */
 
+/** Confirmés par le client le 09/10/2026. */
 export const engagements = {
-  // Annoncé par le client (09/10/2026) : domaine financé intégralement sur fonds propres.
+  // Le domaine est financé intégralement sur fonds propres.
   fondsPropres: 1,
+  // L'acheteur peut financer sa villa par un crédit immobilier bancaire.
+  creditImmobilierAccepte: true,
 };
 
 /**

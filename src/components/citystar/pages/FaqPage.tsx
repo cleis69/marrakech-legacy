@@ -1,5 +1,3 @@
-import { formatSurface, programme, villasChiffres } from "@/config/citystar";
-
 import { ArrowRight, PhoneCall } from "lucide-react";
 
 import { useDevise } from "../currency";
@@ -7,19 +5,13 @@ import { chemin, Lien } from "../liens";
 import { FinalCta } from "../FinalCta";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
+import { useQuestions } from "../questions";
 import { useSite } from "../site";
 
 export function FaqPage() {
   const { langue, t } = useDevise();
   const { ouvrirContact } = useSite();
-  const questions = t.faq({
-    villas: programme.nombreVillas,
-    terrain: formatSurface(programme.terrainMaxM2, langue),
-    minutes: programme.trajetMaxMinutes,
-    a: formatSurface(villasChiffres.A.surfaceConstruiteM2, langue),
-    b: formatSurface(villasChiffres.B.surfaceConstruiteM2, langue),
-    c: formatSurface(villasChiffres.C.surfaceConstruiteM2, langue),
-  });
+  const questions = useQuestions();
 
   return (
     <>
@@ -31,7 +23,7 @@ export function FaqPage() {
       <section className="faq section-pad" aria-label={t.pages.faq.kicker}>
         <dl className="faq-list">
           {questions.map((item) => (
-            <div key={item.q}>
+            <div key={item.id}>
               <dt>{item.q}</dt>
               <dd>{item.r}</dd>
             </div>

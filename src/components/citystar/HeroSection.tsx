@@ -2,6 +2,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "motion/react"
 import { ArrowRight, PhoneCall, Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { calendrier, engagements, formatMois, formatPart } from "@/config/citystar";
 import heroVideo from "@/assets/citystar/hero-rendus.mp4";
 import heroPoster from "@/assets/citystar/hero-rendus-poster.webp";
 
@@ -15,7 +16,11 @@ import { PillButton } from "./ui/PillButton";
  * d'encre ; au défilement, la vidéo glisse un peu moins vite que la page.
  */
 export function HeroSection({ onContact }: { onContact: () => void }) {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
+  const preuves = t.hero.preuves(
+    formatMois(calendrier.livraison, langue),
+    formatPart(engagements.fondsPropres, langue),
+  );
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
@@ -82,6 +87,11 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
               onClick={() => scrollTo("villas")}
             />
           </div>
+          <ul className="hero-preuves">
+            {preuves.map((preuve) => (
+              <li key={preuve}>{preuve}</li>
+            ))}
+          </ul>
         </div>
       </div>
 

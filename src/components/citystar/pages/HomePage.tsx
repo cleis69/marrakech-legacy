@@ -7,6 +7,7 @@ import { LocationSection } from "../LocationSection";
 import { MarcheSection } from "../MarcheSection";
 import { Marquee } from "../Marquee";
 import { ProjectSection } from "../ProjectSection";
+import { QuestionsSection } from "../QuestionsSection";
 import { Ruban } from "../Ruban";
 import { useSite } from "../site";
 import { VillasSection } from "../VillasSection";
@@ -27,6 +28,7 @@ export function HomePage() {
       <MarcheSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
+      <QuestionsSection />
       <FinalCta />
     </>
   );
