@@ -70,3 +70,17 @@
   .mc-villes li { grid-template-columns: 6rem minmax(0, 1fr) 4rem; gap: .8rem; }
   .circle { grid-template-columns: 1fr; margin: 0 8px 8px; border-radius: 22px; }
 }
+
+/* ---------- Le processus d'achat : six étapes en cartes ---------- */
+.pa { display: grid; justify-items: start; gap: var(--espace-bloc); padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
+.pa-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; width: 100%; }
+.pa-head h2 { font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1.04 "Italiana", serif; }
+.pa-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
+.pa-etapes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; margin: 0; padding: 0; list-style: none; counter-reset: none; }
+.pa-etapes li { display: grid; align-content: start; gap: .7rem; padding: clamp(1.4rem, 2.4vw, 2rem); border-radius: 22px; background: var(--cream); }
+.pa-num { font: 400 2.6rem/1 "Italiana", serif; color: var(--bronze); }
+.pa-etapes h3 { margin: 0; font: 400 clamp(1.4rem, 1.9vw, 1.7rem)/1.15 "Italiana", serif; }
+.pa-etapes p { font-size: .92rem; line-height: 1.65; color: var(--muted-foreground); }
+@media (max-width: 900px) {
+  .pa-etapes { grid-template-columns: 1fr; gap: 8px; }
+}

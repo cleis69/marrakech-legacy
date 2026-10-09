@@ -516,6 +516,42 @@ const fr = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
+  processus: {
+    titre: ["De la première visite", "à la remise des clés."] as [string, string],
+    intro:
+      "Un seul interlocuteur vous accompagne à chaque étape, du premier échange jusqu’à votre arrivée.",
+    etapes: (acompte: string, livraison: string) => [
+      {
+        titre: "Le premier échange",
+        texte:
+          "En visio ou par téléphone, un conseiller vous présente le domaine, les villas, les plans et la visite 360°.",
+      },
+      {
+        titre: "Le choix de votre villa",
+        texte:
+          "Visite sur place ou à distance. Le prix et l’échéancier de la villa choisie vous sont remis.",
+      },
+      {
+        titre: "La réservation chez le notaire",
+        texte: `Vous réservez directement chez le notaire, avec ${acompte} du prix.`,
+      },
+      {
+        titre: "Le financement",
+        texte:
+          "Comptant ou par crédit immobilier : votre conseiller vous accompagne dans les démarches avec votre banque.",
+      },
+      {
+        titre: "Le suivi du chantier",
+        texte:
+          "Depuis votre espace propriétaire : avancement, photos du chantier, paiements et documents. Chaque versement passe par le notaire.",
+      },
+      {
+        titre: "La remise des clés",
+        texte: `Livraison prévue en ${livraison}. Votre villa vous est remise, clés en main.`,
+      },
+    ],
+    cta: "Commencer par un premier échange",
+  },
   questions: {
     titre: ["Acheter sur plan,", "en toute sérénité."] as [string, string],
     intro: "Les questions que l’on nous pose avant chaque réservation.",
@@ -1267,6 +1303,41 @@ const en: Textes = {
     defilant: "CITYSTAR · FOURTEEN PRIVATE VILLAS · OULAD HASSOUNE · MARRAKECH · ",
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
+  },
+  processus: {
+    titre: ["From the first visit", "to handing over the keys."],
+    intro:
+      "A single contact guides you at every stage, from the first conversation to the day you move in.",
+    etapes: (acompte, livraison) => [
+      {
+        titre: "The first conversation",
+        texte:
+          "By video or phone, an adviser presents the estate, the villas, the floor plans and the 360° tour.",
+      },
+      {
+        titre: "Choosing your villa",
+        texte:
+          "An on-site or remote viewing. You receive the price and payment schedule of the villa you choose.",
+      },
+      {
+        titre: "Reservation at the notary",
+        texte: `You reserve directly at the notary, with ${acompte} of the price.`,
+      },
+      {
+        titre: "Financing",
+        texte: "Cash or with a mortgage: your adviser guides you through the steps with your bank.",
+      },
+      {
+        titre: "Following the construction",
+        texte:
+          "From your owner area: progress, site photos, payments and documents. Every payment goes through the notary.",
+      },
+      {
+        titre: "Handing over the keys",
+        texte: `Delivery planned for ${livraison}. Your villa is handed over to you, turnkey.`,
+      },
+    ],
+    cta: "Start with a first conversation",
   },
   questions: {
     titre: ["Buying off-plan,", "with peace of mind."],

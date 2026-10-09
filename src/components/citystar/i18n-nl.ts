@@ -500,6 +500,40 @@ export const nl: Textes = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, een privéresidentie in Oulad Hassoune, Marrakech",
   },
+  processus: {
+    titre: ["Van het eerste bezoek", "tot de sleuteloverdracht."],
+    intro: "Eén aanspreekpunt begeleidt u bij elke stap, van het eerste gesprek tot uw aankomst.",
+    etapes: (acompte, livraison) => [
+      {
+        titre: "Het eerste gesprek",
+        texte:
+          "Via video of telefoon stelt een adviseur u het domein, de villa’s, de plattegronden en de 360°-rondleiding voor.",
+      },
+      {
+        titre: "De keuze van uw villa",
+        texte:
+          "Bezichtiging ter plaatse of op afstand. U ontvangt de prijs en het betalingsschema van de gekozen villa.",
+      },
+      {
+        titre: "De reservering bij de notaris",
+        texte: `U reserveert rechtstreeks bij de notaris, met ${acompte} van de prijs.`,
+      },
+      {
+        titre: "De financiering",
+        texte: "Contant of met een hypotheek: uw adviseur begeleidt u bij de stappen met uw bank.",
+      },
+      {
+        titre: "De bouw volgen",
+        texte:
+          "Vanuit uw eigenaarsomgeving: voortgang, bouwfoto’s, betalingen en documenten. Elke betaling loopt via de notaris.",
+      },
+      {
+        titre: "De sleuteloverdracht",
+        texte: `Oplevering gepland voor ${livraison}. Uw villa wordt sleutelklaar aan u overgedragen.`,
+      },
+    ],
+    cta: "Beginnen met een eerste gesprek",
+  },
   questions: {
     titre: ["Kopen op plan,", "met een gerust gevoel."],
     intro: "De vragen die ons vóór elke reservering gesteld worden.",

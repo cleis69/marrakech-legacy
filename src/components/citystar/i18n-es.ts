@@ -501,6 +501,41 @@ export const es: Textes = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, residencia privada en Oulad Hassoune, Marrakech",
   },
+  processus: {
+    titre: ["De la primera visita", "a la entrega de llaves."],
+    intro:
+      "Un único interlocutor le acompaña en cada etapa, desde la primera conversación hasta su llegada.",
+    etapes: (acompte, livraison) => [
+      {
+        titre: "La primera conversación",
+        texte:
+          "Por videollamada o por teléfono, un asesor le presenta el dominio, las villas, los planos y la visita 360°.",
+      },
+      {
+        titre: "La elección de su villa",
+        texte:
+          "Visita in situ o a distancia. Recibe el precio y el calendario de pagos de la villa elegida.",
+      },
+      {
+        titre: "La reserva ante notario",
+        texte: `Reserva directamente ante notario, con el ${acompte} del precio.`,
+      },
+      {
+        titre: "La financiación",
+        texte: "Al contado o con hipoteca: su asesor le acompaña en los trámites con su banco.",
+      },
+      {
+        titre: "El seguimiento de la obra",
+        texte:
+          "Desde su espacio de propietario: avance, fotos de la obra, pagos y documentos. Cada pago pasa por el notario.",
+      },
+      {
+        titre: "La entrega de llaves",
+        texte: `Entrega prevista para ${livraison}. Su villa se le entrega llave en mano.`,
+      },
+    ],
+    cta: "Empezar con una primera conversación",
+  },
   questions: {
     titre: ["Comprar sobre plano,", "con total tranquilidad."],
     intro: "Las preguntas que nos hacen antes de cada reserva.",

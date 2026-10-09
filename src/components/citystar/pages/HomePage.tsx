@@ -7,6 +7,7 @@ import { LifestyleSection } from "../LifestyleSection";
 import { LocationSection } from "../LocationSection";
 import { MarcheSection } from "../MarcheSection";
 import { Marquee } from "../Marquee";
+import { ProcessusSection } from "../ProcessusSection";
 import { ProjectSection } from "../ProjectSection";
 import { TourSection } from "../TourSection";
 import { QuestionsSection } from "../QuestionsSection";
@@ -37,6 +38,7 @@ export function HomePage() {
       <Marquee />
       <LocationSection onOpenPlan={ouvrirPlan} />
       <MarcheSection />
+      <ProcessusSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <QuestionsSection />

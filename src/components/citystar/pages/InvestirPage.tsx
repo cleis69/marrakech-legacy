@@ -2,6 +2,7 @@ import { CalendrierSection } from "../CalendrierSection";
 import { useDevise } from "../currency";
 import { FinalCta } from "../FinalCta";
 import { MarcheSection } from "../MarcheSection";
+import { ProcessusSection } from "../ProcessusSection";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
@@ -32,6 +33,7 @@ export function InvestirPage() {
         </ul>
       </section>
       <MarcheSection />
+      <ProcessusSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <Marquee />
