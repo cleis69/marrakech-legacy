@@ -11,6 +11,7 @@ import {
   formatNombre,
   formatPrix,
   hypothesesRendement,
+  LOCALE,
   prixVilla,
   villasChiffres,
 } from "@/config/citystar";
@@ -75,7 +76,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
   const enDevise = (montantEUR: number) => Math.round(convertirEUR(montantEUR, devise, taux));
   const money = (valeur: number) => formatPrix(Math.round(valeur), devise, langue);
   const pourcent = (valeur: number, decimales = 1) =>
-    `${valeur.toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
+    `${valeur.toLocaleString(LOCALE[langue], { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
 
   const enEUR = (montant: number, source: Devise) =>
     source === "EUR" ? montant : montant / taux[source];

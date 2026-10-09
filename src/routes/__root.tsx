@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { langueDe } from "@/components/citystar/liens";
 
 function NotFoundComponent() {
   return (
@@ -102,9 +103,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  // La version anglaise vit sous /en : la langue du document suit la route, dès le rendu serveur.
+  // Chaque langue vit sous son préfixe (/en, /es…) : la langue du document suit la route, dès le rendu serveur.
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
-  const langue = chemin === "/en" || chemin.startsWith("/en/") ? "en" : "fr";
+  const langue = langueDe(chemin);
 
   return (
     <html lang={langue}>

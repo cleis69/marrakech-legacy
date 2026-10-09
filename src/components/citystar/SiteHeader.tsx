@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
 import {
+  ChevronDown,
   CircleHelp,
   DoorOpen,
   Download,
@@ -10,14 +11,14 @@ import {
   MessageCircle,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { brochures, contact, formatDecimal } from "@/config/citystar";
+import { type Langue, LANGUES, brochures, contact, formatDecimal } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, cheminEspace, fichierPublic, Lien, traduireSous } from "./liens";
+import { chemin, cheminEspace, fichierPublic, Lien, memePage } from "./liens";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -30,24 +31,81 @@ type Props = {
 
 const whatsappHref = `https://wa.me/${contact.whatsapp}`;
 
-function LangSwitch({ className = "" }: { className?: string }) {
-  const { t } = useDevise();
-  /* La bascule garde la page courante : /villas ↔ /en/villas. */
-  const chemin = useRouterState({ select: (etat) => etat.location.pathname });
-  const sous =
-    chemin === "/en" ? "" : chemin.startsWith("/en/") ? chemin.slice(4) : chemin.replace(/^\//, "");
-  /* Les adresses traduites (villa-de-luxe-marrakech ↔ luxury-villa-marrakech) suivent la bascule. */
-  const anglais = chemin.startsWith("/en") ? sous : traduireSous(sous);
-  const francais = chemin.startsWith("/en") ? traduireSous(sous) : sous;
+const NOMS_LANGUES: Record<Langue, string> = {
+  fr: "Français",
+  en: "English",
+  es: "Español",
+  it: "Italiano",
+  nl: "Nederlands",
+  no: "Norsk",
+};
+
+/**
+ * Choix de la langue. Dans l'en-tête, un bouton ouvre la liste des six langues
+ * (Échap ou un clic ailleurs la referme) ; dans le menu mobile, les six codes
+ * sont posés à plat. Chaque lien garde la page courante, adresse traduite comprise.
+ */
+function LangSwitch({ aPlat = false }: { aPlat?: boolean }) {
+  const { langue, t } = useDevise();
+  const page = useRouterState({ select: (etat) => etat.location.pathname });
+  const [ouvert, setOuvert] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ouvert) return;
+    const dehors = (event: PointerEvent) => {
+      if (!ref.current?.contains(event.target as Node)) setOuvert(false);
+    };
+    const echap = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOuvert(false);
+    };
+    document.addEventListener("pointerdown", dehors);
+    document.addEventListener("keydown", echap);
+    return () => {
+      document.removeEventListener("pointerdown", dehors);
+      document.removeEventListener("keydown", echap);
+    };
+  }, [ouvert]);
+
+  if (aPlat)
+    return (
+      <div className="lang-switch" role="group" aria-label={t.header.langue}>
+        {LANGUES.map((code) => (
+          <Lien
+            key={code}
+            vers={memePage(page, code)}
+            hrefLang={code}
+            ariaLabel={NOMS_LANGUES[code]}
+          >
+            {code.toUpperCase()}
+          </Lien>
+        ))}
+      </div>
+    );
+
   return (
-    <div className={`lang-switch ${className}`.trim()} role="group" aria-label={t.header.langue}>
-      <Lien vers={francais ? `/${francais}` : "/"} hrefLang="fr">
-        FR
-      </Lien>
-      <span aria-hidden="true">|</span>
-      <Lien vers={anglais ? `/en/${anglais}` : "/en"} hrefLang="en">
-        EN
-      </Lien>
+    <div className="lang-menu" ref={ref}>
+      <button
+        type="button"
+        className="lang-bouton"
+        aria-expanded={ouvert}
+        aria-label={`${t.header.langue} : ${NOMS_LANGUES[langue]}`}
+        onClick={() => setOuvert((valeur) => !valeur)}
+      >
+        {langue.toUpperCase()}
+        <ChevronDown aria-hidden="true" />
+      </button>
+      {ouvert && (
+        <ul className="lang-liste">
+          {LANGUES.map((code) => (
+            <li key={code}>
+              <Lien vers={memePage(page, code)} hrefLang={code}>
+                {NOMS_LANGUES[code]}
+              </Lien>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -80,7 +138,7 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
         <div className="menu-sheet-handle" aria-hidden="true" />
         <div className="menu-sheet-head">
           <p id="menu-sheet-title">{t.header.sommaire}</p>
-          <LangSwitch />
+          <LangSwitch aPlat />
           <button onClick={onClose} aria-label={t.header.fermer}>
             <X />
           </button>

@@ -6,6 +6,7 @@ import {
   type Mois,
   calendrier,
   formatMois,
+  formatPart,
   moisRestants,
   reservation,
 } from "@/config/citystar";
@@ -42,8 +43,7 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
       : t.livraison.dateAConfirmer;
   };
 
-  const pourcent = (part: number) =>
-    `${(part * 100).toLocaleString(langue === "fr" ? "fr-FR" : "en-GB", { maximumFractionDigits: 1 })}${langue === "fr" ? "\u00a0" : ""}%`;
+  const pourcent = (part: number) => formatPart(part, langue);
 
   const partEtape = (id: EtapeChantier) => {
     const palier = paliers.get(id);

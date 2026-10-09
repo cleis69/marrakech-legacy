@@ -21,7 +21,7 @@ export function FinalCta() {
     if (cible) cible.scrollIntoView({ behavior: "smooth" });
     else
       window.location.assign(
-        fichierPublic(`${langue === "en" ? "en/" : ""}investir#${SIMULATEUR}`),
+        fichierPublic(`${langue === "fr" ? "" : `${langue}/`}investir#${SIMULATEUR}`),
       );
   };
 

@@ -10,7 +10,9 @@
  */
 
 export type Devise = "EUR" | "GBP" | "MAD" | "NOK";
-export type Langue = "fr" | "en";
+/** Langues du site : le français à la racine, les autres sous /en, /es, /it, /nl, /no. */
+export const LANGUES = ["fr", "en", "es", "it", "nl", "no"] as const;
+export type Langue = (typeof LANGUES)[number];
 export type TypeVilla = "A" | "B" | "C";
 
 /** Valeur éventuellement en attente de confirmation. */
@@ -65,7 +67,14 @@ export const prixVillas: Record<TypeVilla, { EUR: number; GBP: number; confirme:
 };
 
 export const devises = {
-  principaleParLangue: { fr: "EUR", en: "GBP" } as Record<Langue, Devise>,
+  principaleParLangue: {
+    fr: "EUR",
+    en: "GBP",
+    es: "EUR",
+    it: "EUR",
+    nl: "EUR",
+    no: "NOK",
+  } as Record<Langue, Devise>,
   affichees: ["EUR", "GBP", "MAD", "NOK"] as Devise[],
   // Contre-valeurs calculées : arrondi à la dizaine de milliers inférieure.
   arrondiContreValeur: 10_000,
@@ -264,7 +273,14 @@ export const contact = {
 /* Formatage                                                           */
 /* ------------------------------------------------------------------ */
 
-const LOCALE: Record<Langue, string> = { fr: "fr-FR", en: "en-GB" };
+export const LOCALE: Record<Langue, string> = {
+  fr: "fr-FR",
+  en: "en-GB",
+  es: "es-ES",
+  it: "it-IT",
+  nl: "nl-NL",
+  no: "nb-NO",
+};
 
 /** 2000 → « 2 000 » (fr) ou « 2,000 » (en), sans espace fine insécable. */
 /** 8.4 → « 8,4 » (fr) ou « 8.4 » (en) : une décimale au plus. */
@@ -355,9 +371,9 @@ export function formatMontantCourt(montant: number, devise: Devise, langue: Lang
 export function formatDate(iso: string, langue: Langue = "fr") {
   const date = new Date(`${iso}T12:00:00Z`);
   const options: Intl.DateTimeFormatOptions =
-    langue === "fr"
-      ? { day: "2-digit", month: "2-digit", year: "numeric" }
-      : { day: "numeric", month: "short", year: "numeric" };
+    langue === "en"
+      ? { day: "numeric", month: "short", year: "numeric" }
+      : { day: "2-digit", month: "2-digit", year: "numeric" };
   return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
 }
 
@@ -371,15 +387,21 @@ export function formatMois({ annee, mois }: Mois, langue: Langue = "fr") {
   }).format(date);
 }
 
-/** Évolution signée : 0,241 → « +24,1 % » (fr) ou « +24.1% » (en). */
+/** Évolution signée, à la typographie de chaque langue : 0,241 → « +24,1 % » (fr), « +24.1% » (en). */
 export function formatEvolution(part: number, langue: Langue = "fr") {
-  const nombre = (part * 100).toLocaleString(LOCALE[langue], { maximumFractionDigits: 1 });
-  return `${part >= 0 ? "+" : ""}${nombre}${langue === "fr" ? "\u00a0" : ""}%`;
+  return new Intl.NumberFormat(LOCALE[langue], {
+    style: "percent",
+    maximumFractionDigits: 1,
+    signDisplay: "exceptZero",
+  }).format(part);
 }
 
-/** Part entière : 1 → « 100 % » (fr) ou « 100% » (en). */
+/** Part entière, à la typographie de chaque langue : 1 → « 100 % » (fr), « 100% » (en). */
 export function formatPart(part: number, langue: Langue = "fr") {
-  return `${Math.round(part * 100)}${langue === "fr" ? "\u00a0" : ""}%`;
+  return new Intl.NumberFormat(LOCALE[langue], {
+    style: "percent",
+    maximumFractionDigits: 0,
+  }).format(part);
 }
 
 /** Mois entiers d'aujourd'hui jusqu'à une échéance (0 si elle est passée). */

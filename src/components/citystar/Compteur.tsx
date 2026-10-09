@@ -1,9 +1,7 @@
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import type { Langue } from "@/config/citystar";
-
-const LOCALE: Record<Langue, string> = { fr: "fr-FR", en: "en-GB" };
+import { type Langue, LOCALE } from "@/config/citystar";
 
 /**
  * Chiffre qui défile de zéro à sa valeur quand il arrive à l'écran, une seule fois.
