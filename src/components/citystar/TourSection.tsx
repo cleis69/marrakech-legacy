@@ -5,17 +5,17 @@ import { useRef, useState } from "react";
 import visitImage from "@/assets/citystar/rendus/int-salon.webp";
 
 import { useDevise } from "./currency";
-import { tourUrl } from "./data";
+import { TOUR_URL } from "./data";
 import { Reveal } from "./motion";
 import { PillButton } from "./ui/PillButton";
 
 /**
- * Visite intégrée : la visite REV (pièce par pièce, avec le plan de vente) reste
- * en pause derrière une affiche et ne se charge qu'à l'activation, pour ne pas
- * alourdir la page ni capter le défilement.
+ * Visite intégrée : la visite REV, pièce par pièce, reste en pause derrière une
+ * affiche et ne se charge qu'à l'activation, pour ne pas alourdir la page ni
+ * capter le défilement.
  */
 export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
-  const { langue, t } = useDevise();
+  const { t } = useDevise();
   const [active, setActive] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
 
@@ -39,9 +39,9 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
           {active && (
             <iframe
               ref={frameRef}
-              src={tourUrl(langue)}
+              src={TOUR_URL}
               title={t.visite.titreIframe}
-              allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
+              allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking; web-share"
               allowFullScreen
               onLoad={() => frameRef.current?.focus()}
             />

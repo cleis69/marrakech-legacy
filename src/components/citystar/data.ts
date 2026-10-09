@@ -38,9 +38,8 @@ export function faitsVilla(type: TypeVilla, t: Textes, langue: Langue) {
   };
 }
 
-/** Visite 360° REV (pièce par pièce, avec le plan de vente), ouverte directement sur la visite. */
-export const tourUrl = (langue: Langue) =>
-  `https://realestatevision360.com/${langue === "en" ? "en/" : ""}p/city-star#visite-360`;
+/** Visite 360° REV, version à intégrer fournie par le client (une seule langue : il n'existe pas d'intégration anglaise). */
+export const TOUR_URL = "https://realestatevision360.com/embed/visite/city-star";
 
 export function prefersReducedMotion() {
   return (

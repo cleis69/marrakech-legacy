@@ -209,7 +209,7 @@ const fr = {
     label: "Visite 360°",
     titre: ["Entrez dans", "les villas."] as [string, string],
     texte:
-      "Une visite à 360° des villas, pièce par pièce, avec le plan de vente du domaine. Suivez les flèches d’une pièce à l’autre, à votre rythme.",
+      "Une visite à 360° des villas, pièce par pièce. Suivez les flèches d’une pièce à l’autre, à votre rythme.",
     etapes: [
       "Activer la visite",
       "Suivre les flèches d’une pièce à l’autre",
@@ -966,7 +966,7 @@ const en: Textes = {
     label: "360° tour",
     titre: ["Step inside", "the villas."],
     texte:
-      "A 360° tour of the villas, room by room, with the estate's sales plan. Follow the arrows from one room to the next, at your own pace.",
+      "A 360° tour of the villas, room by room. Follow the arrows from one room to the next, at your own pace.",
     etapes: ["Start the tour", "Follow the arrows from room to room", "Go full screen"],
     activer: "Start the tour",
     apercu: "360° tour · room by room",
