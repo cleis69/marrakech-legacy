@@ -1,6 +1,6 @@
 /* ---------- Outil 1 : trouver ma villa (aperçu vivant) ---------- */
 .sl { background: var(--paper); }
-.sl-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 4vw; min-height: 78vh; }
+.sl-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 4vw; }
 .sl-pane { display: grid; grid-template-rows: auto 1fr; gap: 2.4rem; min-width: 0; }
 .sl-head { display: grid; gap: 1.2rem; }
 .sl-head-row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }

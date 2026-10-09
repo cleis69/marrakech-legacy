@@ -1,7 +1,8 @@
 /* ---------- Pages intérieures ---------- */
-.ph, .ph.section-pad { padding-bottom: 0; }
+/* Sous l’en-tête flottant : la marge haute laisse passer la pilule du menu. */
+.ph, .ph.section-pad { padding-top: calc(var(--espace-section) + 5rem); padding-bottom: 0; }
 /* La section qui suit un en-tête de page n'a pas besoin de toute sa marge haute. */
-.ph + .section-pad { padding-top: 5rem; }
+.ph + .section-pad { padding-top: var(--espace-bloc); }
 .ph-kicker { font-size: .7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--bronze-text); }
 .ph h1 { margin-top: 1.4rem; font: 400 clamp(2.8rem, 6vw, 6rem)/0.97 "Italiana", serif; }
 .ph-intro { max-width: 34rem; margin-top: 1.6rem; font-size: 1.05rem; line-height: 1.75; color: var(--muted-foreground); }

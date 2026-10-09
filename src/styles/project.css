@@ -1,5 +1,5 @@
 /* ---------- Le projet : le domaine en trois vues ---------- */
-.pj { display: flex; flex-direction: column; align-items: center; gap: clamp(3.5rem, 7vw, 6rem); padding: clamp(5rem, 10vw, 9.5rem) var(--gouttiere) clamp(4rem, 7vw, 6rem); background: var(--paper); }
+.pj { display: flex; flex-direction: column; align-items: center; gap: var(--espace-bloc); padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
 .pj-head { display: grid; justify-items: center; gap: 1.75rem; max-width: 47rem; text-align: center; }
 .pj-head h2 { font: 400 clamp(2.4rem, 4.4vw, 4rem)/1.08 "Italiana", serif; text-wrap: balance; }
 .pj-head p { max-width: 35rem; font-size: 1.06rem; line-height: 1.7; color: var(--muted-foreground); text-wrap: pretty; }

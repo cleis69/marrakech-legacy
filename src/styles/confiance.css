@@ -1,5 +1,5 @@
 /* ---------- Trois engagements, en cartes photo ---------- */
-.eg { display: grid; justify-items: start; gap: clamp(2.5rem, 4vw, 3.5rem); padding: clamp(4.5rem, 8vw, 7.5rem) var(--gouttiere); background: var(--paper); }
+.eg { display: grid; justify-items: start; gap: var(--espace-bloc); padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
 .eg-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; width: 100%; }
 .eg-head h2 { font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1.04 "Italiana", serif; }
 .eg-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
@@ -13,11 +13,11 @@
 .eg-liste p { max-width: 24rem; font-size: .9rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 85%, transparent); }
 
 /* ---------- Le marché ---------- */
-.mc { display: grid; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--paper); }
+.mc { display: grid; gap: var(--espace-bloc); padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
 .mc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; }
 .mc-head h2 { font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
 .mc-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
-.mc-corps { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.mc-corps { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
 .mc-chiffres { display: grid; gap: 2rem; margin: 0; }
 .mc-chiffres div { display: grid; gap: .6rem; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
 .mc-chiffres dt { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
@@ -37,7 +37,7 @@
 .mc-source a { color: var(--foreground); text-underline-offset: .25em; }
 
 /* ---------- Fin de page : trois façons d'engager la conversation ---------- */
-.circle { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem); margin: 0 14px 14px; padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--sand); color: var(--ink); }
+.circle { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2rem, 5vw, 4.5rem); margin: 0 14px 14px; padding: var(--espace-section) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--sand); color: var(--ink); }
 .circle-text { display: grid; gap: 1.4rem; }
 .circle-text h2 { font: 400 clamp(2.8rem, 5.4vw, 5.2rem)/1 "Italiana", serif; text-wrap: balance; }
 .circle-text p { max-width: 26rem; font-size: 1.02rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
@@ -52,7 +52,7 @@
 .circle-choix button:hover svg, .circle-choix button:focus-visible svg { transform: translateX(.3rem); }
 
 /* ---------- Acheter sur plan : les questions avant de réserver ---------- */
-.qs { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--paper); }
+.qs { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: start; padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
 .qs-head { display: grid; justify-items: start; gap: 1.4rem; }
 .qs-head h2 { font: 400 clamp(2.4rem, 4.4vw, 4.2rem)/1.04 "Italiana", serif; text-wrap: balance; }
 .qs-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }

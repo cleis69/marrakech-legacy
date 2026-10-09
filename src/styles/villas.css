@@ -2,7 +2,7 @@
 .vs { background: var(--cream); overflow: hidden; }
 
 /* Cartes */
-.vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem 4vw; margin-bottom: 3rem; }
+.vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4vw; margin-bottom: var(--espace-bloc); }
 .vd-top h2, .vf-panel h1 { font: 400 clamp(3rem, 6vw, 6.4rem)/.97 "Italiana", serif; }
 .vd-top > div { display: grid; gap: 1.4rem; justify-items: start; }
 .vd-top p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }

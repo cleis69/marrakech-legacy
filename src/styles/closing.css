@@ -10,7 +10,7 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
 @keyframes seal-spin { to { transform: rotate(360deg); } }
 
 /* ---------- Pied de page ---------- */
-.ft { position: relative; overflow: hidden; padding: 6rem 5vw 0; background: var(--ink); color: var(--cream); }
+.ft { position: relative; overflow: hidden; padding: var(--espace-section) 5vw 0; background: var(--ink); color: var(--cream); }
 .ft a, .ft button { color: inherit; text-decoration: none; }
 .ft-head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 2rem; }
 .ft-seal { font-size: .62rem; color: var(--cream); }

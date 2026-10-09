@@ -1,5 +1,5 @@
 /* ---------- Calendrier : la frise de livraison et le plan de paiement ---------- */
-.lv { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; gap: clamp(3.5rem, 6vw, 5.5rem); margin: 0 14px; padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--ink); color: var(--cream); }
+.lv { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; gap: var(--espace-bloc); margin: 0 14px; padding: var(--espace-section) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--ink); color: var(--cream); }
 .lv .ton { color: var(--sand); }
 .lv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 2rem 4rem; }
 .lv-head h2 { max-width: 14ch; font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
