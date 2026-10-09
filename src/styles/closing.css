@@ -45,7 +45,7 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
 .ft-credits { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
 .ft-credits a { display: inline-flex; padding: .4rem 0; opacity: .85; transition: opacity .3s; }
 .ft-credits a:hover, .ft-credits a:focus-visible { opacity: 1; }
-.ft-credits img { width: auto; height: 1.6rem; }
+.ft-credits img { width: auto; height: 2.6rem; }
 .ft-legal { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
 
 .ft-giant { display: flex; justify-content: space-between; margin: 2rem -.8vw -4.6vw; font: 400 21.5vw/1 "Italiana", serif; color: var(--cream); user-select: none; }
