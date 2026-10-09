@@ -491,6 +491,10 @@ const fr = {
   ruban: {
     aria: "Les rendus du domaine, en défilement",
     note: "Rendus d’architecte · illustrations non contractuelles",
+    titre: ["Le domaine,", "en images."] as [string, string],
+    galerie: "Voir toute la galerie",
+    pause: "Pause",
+    lecture: "Lecture",
   },
   marque: {
     defilant: "CITYSTAR · QUATORZE VILLAS PRIVÉES · OULAD HASSOUNE · MARRAKECH · ",
@@ -1229,6 +1233,10 @@ const en: Textes = {
   ruban: {
     aria: "The estate’s renders, scrolling",
     note: "Architect’s renders · illustrations not contractually binding",
+    titre: ["The estate,", "in pictures."],
+    galerie: "See the full gallery",
+    pause: "Pause",
+    lecture: "Play",
   },
   marque: {
     defilant: "CITYSTAR · FOURTEEN PRIVATE VILLAS · OULAD HASSOUNE · MARRAKECH · ",
