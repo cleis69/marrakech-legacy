@@ -11,6 +11,9 @@ import {
 import { useInView } from "motion/react";
 import { useRef } from "react";
 
+import revLogo from "@/assets/credits/rev.svg";
+import ultravisionLogo from "@/assets/credits/ultravision.svg";
+
 import { brochures, contact, formatDecimal } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
@@ -125,6 +128,16 @@ export function SiteFooter() {
           </a>
         </nav>
         <p className="ft-legal">{t.pied.legal(new Date().getFullYear())}</p>
+        <p className="ft-credits">
+          <span>{t.pied.realise}</span>
+          <a href="https://ultravisionagency.com" target="_blank" rel="noopener">
+            <img src={ultravisionLogo} alt="Ultravision" width="66" height="26" />
+          </a>
+          <span>{t.pied.propulse}</span>
+          <a href="https://realestatevision360.com" target="_blank" rel="noopener">
+            <img src={revLogo} alt="REV — Real Estate Vision" width="64" height="26" />
+          </a>
+        </p>
       </div>
 
       <div ref={wordRef} className={`ft-giant${wordInView ? " is-in" : ""}`} aria-hidden="true">

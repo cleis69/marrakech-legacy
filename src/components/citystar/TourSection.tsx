@@ -2,20 +2,20 @@ import { AnimatePresence, motion } from "motion/react";
 import { Maximize2, Rotate3d } from "lucide-react";
 import { useRef, useState } from "react";
 
-import visitImage from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
+import visitImage from "@/assets/citystar/rendus/int-salon.webp";
 
 import { useDevise } from "./currency";
-import { TOUR_URL } from "./data";
+import { tourUrl } from "./data";
 import { Reveal } from "./motion";
 import { PillButton } from "./ui/PillButton";
 
 /**
- * Visite intégrée : la visite Momento360 (vue aérienne à 360°) reste en pause
- * derrière une affiche et ne se charge qu'à l'activation, pour ne pas alourdir
- * la page ni capter le défilement.
+ * Visite intégrée : la visite REV (pièce par pièce, avec le plan de vente) reste
+ * en pause derrière une affiche et ne se charge qu'à l'activation, pour ne pas
+ * alourdir la page ni capter le défilement.
  */
 export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const [active, setActive] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
 
@@ -39,7 +39,7 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
           {active && (
             <iframe
               ref={frameRef}
-              src={TOUR_URL}
+              src={tourUrl(langue)}
               title={t.visite.titreIframe}
               allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
               allowFullScreen

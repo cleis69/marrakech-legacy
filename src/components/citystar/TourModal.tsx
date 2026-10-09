@@ -2,11 +2,11 @@ import { motion } from "motion/react";
 import { X } from "lucide-react";
 
 import { useDevise } from "./currency";
-import { TOUR_URL } from "./data";
+import { tourUrl } from "./data";
 import { useModal } from "./useModal";
 
 export function TourModal({ onClose }: { onClose: () => void }) {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const ref = useModal<HTMLDivElement>(onClose);
   return (
     <motion.div
@@ -23,7 +23,12 @@ export function TourModal({ onClose }: { onClose: () => void }) {
       <button onClick={onClose} aria-label={t.visite.fermer}>
         <X />
       </button>
-      <iframe src={TOUR_URL} title={t.visite.titreIframe} allowFullScreen />
+      <iframe
+        src={tourUrl(langue)}
+        title={t.visite.titreIframe}
+        allow="fullscreen; gyroscope; accelerometer; xr-spatial-tracking"
+        allowFullScreen
+      />
     </motion.div>
   );
 }

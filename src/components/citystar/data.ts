@@ -38,8 +38,9 @@ export function faitsVilla(type: TypeVilla, t: Textes, langue: Langue) {
   };
 }
 
-export const TOUR_URL =
-  "https://momento360.com/e/u/d4658634f15c4a3fa6fdb5ef818d3e5a?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true";
+/** Visite 360° REV (pièce par pièce, avec le plan de vente), ouverte directement sur la visite. */
+export const tourUrl = (langue: Langue) =>
+  `https://realestatevision360.com/${langue === "en" ? "en/" : ""}p/city-star#visite-360`;
 
 export function prefersReducedMotion() {
   return (

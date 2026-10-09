@@ -209,12 +209,16 @@ const fr = {
   },
   visite: {
     label: "Visite 360°",
-    titre: ["Le domaine,", "vu du ciel."] as [string, string],
+    titre: ["Entrez dans", "les villas."] as [string, string],
     texte:
-      "Une vue aérienne à 360° du domaine et de ses environs. Regardez autour de vous, à votre rythme.",
-    etapes: ["Activer la visite", "Glisser pour regarder autour", "Passer en plein écran"],
+      "Une visite à 360° des villas, pièce par pièce, avec le plan de vente du domaine. Suivez les flèches d’une pièce à l’autre, à votre rythme.",
+    etapes: [
+      "Activer la visite",
+      "Suivre les flèches d’une pièce à l’autre",
+      "Passer en plein écran",
+    ],
     activer: "Activer la visite",
-    apercu: "Vue aérienne · 360°",
+    apercu: "Visite 360° · pièce par pièce",
     pleinEcran: "Plein écran",
     titreIframe: "Visite virtuelle à 360° du domaine CITYSTAR",
     titreModale: "Visite virtuelle 360°",
@@ -564,6 +568,8 @@ const fr = {
     nav: "Pied de page",
     legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Oulad Hassoune, Marrakech`,
     instagram: "CITYSTAR sur Instagram",
+    realise: "Réalisé par",
+    propulse: "Propulsé par",
     youtube: "CITYSTAR sur YouTube",
   },
   selecteur: {
@@ -963,11 +969,12 @@ const en: Textes = {
   },
   visite: {
     label: "360° tour",
-    titre: ["The estate,", "from the sky."],
-    texte: "A 360° aerial view of the estate and its surroundings. Look around at your own pace.",
-    etapes: ["Start the tour", "Drag to look around", "Go full screen"],
+    titre: ["Step inside", "the villas."],
+    texte:
+      "A 360° tour of the villas, room by room, with the estate's sales plan. Follow the arrows from one room to the next, at your own pace.",
+    etapes: ["Start the tour", "Follow the arrows from room to room", "Go full screen"],
     activer: "Start the tour",
-    apercu: "Aerial view · 360°",
+    apercu: "360° tour · room by room",
     pleinEcran: "Full screen",
     titreIframe: "360° virtual tour of the CITYSTAR estate",
     titreModale: "360° virtual tour",
@@ -1299,6 +1306,8 @@ const en: Textes = {
     nav: "Footer",
     legal: (annee) => `© ${annee} CITYSTAR · Private residence · Oulad Hassoune, Marrakech`,
     instagram: "CITYSTAR on Instagram",
+    realise: "Made by",
+    propulse: "Powered by",
     youtube: "CITYSTAR on YouTube",
   },
   selecteur: {
