@@ -21,7 +21,7 @@
 
 /* Galerie */
 .gl { background: var(--paper); }
-.gl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.gl-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-flow: dense; gap: 1rem; margin: 0; padding: 0; list-style: none; }
 .gl-grid li { overflow: hidden; border-radius: 18px; background: var(--ink); }
 .gl-grid img { filter: var(--etalonnage); }
 .gl-grid li.is-large { grid-column: span 2; grid-row: span 2; }
