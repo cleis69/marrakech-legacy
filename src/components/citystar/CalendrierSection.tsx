@@ -54,16 +54,20 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
     <section id="livraison" className="lv" aria-labelledby="livraison-title">
       <div className="lv-head">
         <h2 id="livraison-title">{t.livraison.titre(livraison)}</h2>
-        <div className="lv-intro">
+        <div className="lv-intro" data-vu="">
           <p>{t.livraison.intro}</p>
           {restants !== null && <p className="lv-compte">{t.livraison.compte(restants)}</p>}
         </div>
       </div>
 
       <h3 className="sr-only">{t.livraison.frise}</h3>
-      <ol className="lv-frise">
+      <ol className="lv-frise" data-vu="trace">
         {calendrier.etapes.map((etape, i) => (
-          <li key={etape.id} className={etape.id === "livraison" ? "is-livraison" : undefined}>
+          <li
+            key={etape.id}
+            className={etape.id === "livraison" ? "is-livraison" : undefined}
+            style={{ "--i": i } as React.CSSProperties}
+          >
             <span className="lv-point" aria-hidden="true" />
             <span className="lv-num" aria-hidden="true">
               {String(i + 1).padStart(2, "0")}
@@ -74,7 +78,7 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
         ))}
       </ol>
 
-      <div className="lv-paiement">
+      <div className="lv-paiement" data-vu="">
         <h3>{t.livraison.paiement}</h3>
         <ol className="lv-paliers">
           {calendrier.etapes.map((etape) => {
@@ -106,7 +110,7 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
       </div>
 
       {avecEspace && (
-        <div className="lv-espace">
+        <div className="lv-espace" data-vu="">
           <p>{t.livraison.espace.texte}</p>
           <Lien className="pill pill-secondary" vers={cheminEspace(langue)}>
             <span className="pill-label">{t.livraison.espace.lien}</span>

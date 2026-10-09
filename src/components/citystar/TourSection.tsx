@@ -35,7 +35,7 @@ export function TourSection({ onOpenTour }: { onOpenTour: () => void }) {
           <p>{t.visite.texte}</p>
         </div>
 
-        <div className="tv-viewer">
+        <div className="tv-viewer" data-vu="">
           {active && (
             <iframe
               ref={frameRef}

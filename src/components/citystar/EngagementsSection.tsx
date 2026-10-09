@@ -33,11 +33,11 @@ export function EngagementsSection() {
             <span className="ton">{suite}</span>
           </h2>
         </Reveal>
-        <p>{t.engagements.intro}</p>
+        <p data-vu="">{t.engagements.intro}</p>
       </div>
       <ol className="eg-liste">
         {items.map((item, i) => (
-          <li key={item.titre}>
+          <li key={item.titre} data-vu="" style={{ "--i": i } as React.CSSProperties}>
             <img src={images[i]?.src} alt={altRendu(t, images[i]?.nom ?? "")} loading="lazy" />
             <div className="eg-texte">
               <span className="eg-num" aria-hidden="true">

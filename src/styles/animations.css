@@ -1,0 +1,47 @@
+/* ---------- Mouvement ---------- */
+:root { --ease-out: cubic-bezier(.22, 1, .36, 1); }
+
+/* Apparitions au défilement : une montée courte et un fondu, une seule fois, en cascade dans un groupe. */
+.vu-actif [data-vu] { transition: opacity .8s var(--ease-out), transform .9s var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+.vu-actif [data-vu]:not([data-visible]) { opacity: 0; transform: translateY(28px); }
+/* Les photos se posent : l'image rentre légèrement pendant que sa carte monte. */
+.vu-actif [data-vu] img { transition: transform 1.6s var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
+.vu-actif [data-vu]:not([data-visible]) img { transform: scale(1.08); }
+/* Les tracés (barres, frise) ne montent pas : ils se dessinent. */
+.vu-actif [data-vu="trace"]:not([data-visible]) { opacity: 1; transform: none; }
+
+/* Barres du marché : elles poussent depuis la gauche, l'une après l'autre. */
+.mc-barre { position: relative; height: 10px; }
+.mc-barre::before { content: ""; position: absolute; inset: 0; background: var(--sand); transform-origin: left; transform: scaleX(var(--part)); transition: transform 1.2s var(--ease-out); transition-delay: calc(var(--i, 0) * 120ms + .15s); }
+.mc-villes .is-ici .mc-barre::before { background: var(--bronze); }
+.vu-actif .mc-villes:not([data-visible]) .mc-barre::before { transform: scaleX(0); }
+
+/* Frise de livraison : le filet se trace, puis chaque étape s'allume. */
+.lv-frise::before { transform-origin: left; transition: transform 1.4s var(--ease-out) .1s; }
+.lv-frise li > * { transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); transition-delay: calc(var(--i, 0) * 180ms + .3s); }
+.vu-actif .lv-frise:not([data-visible])::before { transform: scaleX(0); }
+.vu-actif .lv-frise:not([data-visible]) li > * { opacity: 0; transform: translateY(10px); }
+.vu-actif .lv-frise:not([data-visible]) .lv-point { transform: scale(.6); }
+
+/* L'en-tête descend à sa place au chargement. */
+@keyframes pilule-arrive { from { opacity: 0; translate: 0 -14px; } }
+.float-header { animation: pilule-arrive .9s var(--ease-out) .15s both; }
+
+/* Appui sur un bouton : il cède un peu sous le doigt. */
+.pill, .float-cta, .tv-poster-cta { transition: background .35s, color .35s, box-shadow .35s, transform .16s var(--ease-out); }
+.pill:active, .float-cta:active, .tv-poster:active .tv-poster-cta { transform: scale(.97); }
+
+/* Survol (souris seulement) : les photos des engagements s'approchent, la flèche des choix avance. */
+@media (hover: hover) and (pointer: fine) {
+  .eg-liste li img { transition: transform 1.2s var(--ease-out); }
+  .eg-liste li:hover img { transform: scale(1.04); }
+}
+
+@media (max-width: 900px) {
+  .lv-frise::before { transform-origin: top; }
+  .vu-actif .lv-frise:not([data-visible])::before { transform: scaleY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-header { animation: none; }
+}

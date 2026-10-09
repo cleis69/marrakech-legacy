@@ -40,8 +40,8 @@ export function FinalCta() {
         <p>{t.cercle.intro}</p>
       </div>
       <ul className="circle-choix">
-        {choix.map((option) => (
-          <li key={option.titre}>
+        {choix.map((option, i) => (
+          <li key={option.titre} data-vu="" style={{ "--i": i } as React.CSSProperties}>
             <button type="button" onClick={option.action}>
               <span>
                 <b>{option.titre}</b>

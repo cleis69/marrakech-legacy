@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 import type { Langue } from "@/config/citystar";
 
+import { useApparitions } from "./apparitions";
 import { ContactPanel } from "./ContactPanel";
 import { DeviseProvider } from "./currency";
 import type { CursorHandlers, Selection } from "./data";
@@ -37,6 +38,7 @@ export function SiteChrome({
   langue?: Langue;
   children: React.ReactNode;
 }) {
+  useApparitions();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [planOpen, setPlanOpen] = useState<string | null>(null);

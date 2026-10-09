@@ -21,14 +21,14 @@ export function QuestionsSection() {
             <span className="ton">{t.questions.titre[1]}</span>
           </h2>
         </Reveal>
-        <p>{t.questions.intro}</p>
+        <p data-vu="">{t.questions.intro}</p>
         <Lien className="pill pill-secondary" vers={chemin(langue, "faq")}>
           <span className="pill-label">{t.questions.toutes}</span>
         </Lien>
       </div>
       <div className="qs-liste">
-        {questions.map((question) => (
-          <details key={question.id}>
+        {questions.map((question, i) => (
+          <details key={question.id} data-vu="" style={{ "--i": i } as React.CSSProperties}>
             <summary>
               <span>{question.q}</span>
               <Plus aria-hidden="true" />

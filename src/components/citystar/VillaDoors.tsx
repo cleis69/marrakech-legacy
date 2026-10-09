@@ -31,7 +31,7 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
               </span>
             </h2>
           </Reveal>
-          <div>
+          <div data-vu="">
             <p>
               {t.villas.intro(
                 programme.nombreVillas,
@@ -46,11 +46,11 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
       )}
 
       <ul className="vd-cartes">
-        {villas.map((villa) => {
+        {villas.map((villa, i) => {
           const faits = faitsVilla(villa.type, t, langue);
           const { montant, approximatif } = prixVilla(villa.type, devise, taux);
           return (
-            <li key={villa.type}>
+            <li key={villa.type} data-vu="" style={{ "--i": i } as React.CSSProperties}>
               <Lien
                 className="vd-carte"
                 vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
