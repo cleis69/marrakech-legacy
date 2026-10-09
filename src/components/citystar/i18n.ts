@@ -269,7 +269,7 @@ const fr = {
       kicker: "Les villas",
       titreH1: ["Choisir", "sa villa."] as [string, string],
       intro:
-        "Trois architectures, quatorze villas. Laissez-vous guider en quatre questions, puis comparez-les.",
+        "Trois architectures, quatorze villas. Laissez-vous guider en quelques questions, puis comparez-les.",
     },
     villa: {
       titre: (type: string) => `Villa type ${type} — CITYSTAR Marrakech`,
@@ -1022,7 +1022,7 @@ const en: Textes = {
       kicker: "The villas",
       titreH1: ["Choosing", "your villa."],
       intro:
-        "Three architectures, fourteen villas. Let four questions guide you, then compare them.",
+        "Three architectures, fourteen villas. Let a few questions guide you, then compare them.",
     },
     villa: {
       titre: (type) => `Villa type ${type} — CITYSTAR Marrakech`,
