@@ -92,17 +92,3 @@
   .gl-grid img, .ct-tile { transition: none; }
   .ph-texte > *, .ph-photo { animation: none; }
 }
-
-/* ---------- Bandeau de repères ---------- */
-.kf { background: var(--ink); color: var(--cream); }
-.kf dl { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; }
-.kf div { display: grid; gap: 0.6rem; padding: 2.4rem 5vw; border-left: 1px solid color-mix(in oklab, var(--cream) 14%, transparent); }
-.kf div:first-child { border-left: 0; }
-.kf dt { font: 400 clamp(2rem, 3.4vw, 3.2rem)/1 "Italiana", serif; }
-.kf dd { margin: 0; font-size: .7rem; letter-spacing: 0.18em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 62%, transparent); }
-
-@media (max-width: 760px) {
-  .kf dl { grid-template-columns: 1fr; }
-  .kf div { padding: 1.4rem 1.3rem; border-left: 0; border-top: 1px solid color-mix(in oklab, var(--cream) 14%, transparent); }
-  .kf div:first-child { border-top: 0; }
-}

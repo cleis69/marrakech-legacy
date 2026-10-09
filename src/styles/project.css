@@ -10,16 +10,22 @@
 .pj-vues li:first-child img { object-position: 55% center; }
 .pj-vues figcaption { display: flex; justify-content: space-between; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
 
-.pj-faits { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem 1.5rem; width: 100%; max-width: 83rem; margin: 0; padding-top: 2rem; border-top: 1px solid var(--bronze-line); }
-/* Sous-grille : libellés et chiffres restent alignés même quand un libellé passe sur deux lignes. */
-.pj-faits div { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: .65rem; align-items: end; }
-.pj-faits dt { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
-.pj-faits dd { align-self: start; margin: 0; font: 400 clamp(2.4rem, 3.9vw, 3.5rem)/1 "Italiana", serif; white-space: nowrap; }
-.pj-faits dd small { margin-left: .35em; font: 400 .85rem "DM Sans", sans-serif; letter-spacing: .08em; }
 
 @media (max-width: 900px) {
   .pj-vues { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .pj-vues li:first-child { grid-column: 1 / -1; }
   .pj-vues li:first-child img { aspect-ratio: 4 / 3; }
-  .pj-faits { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Chiffres clés, juste sous le hero ---------- */
+.cc { padding: 14px 14px 0; background: var(--paper); }
+.cc dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 0; }
+/* Le chiffre d'abord, en grand ; ce qu'il mesure ensuite. */
+.cc div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .6rem; padding: clamp(1.4rem, 2.4vw, 2rem) clamp(1.3rem, 2.4vw, 2rem); border-radius: 22px; background: var(--cream); }
+.cc dd { margin: 0; font: 400 clamp(2.6rem, 4.2vw, 3.8rem)/1 "Italiana", serif; white-space: nowrap; }
+.cc dd small { margin-left: .3em; font: 400 .9rem "DM Sans", sans-serif; letter-spacing: .04em; }
+.cc dt { max-width: 15rem; font-size: .86rem; line-height: 1.45; color: var(--muted-foreground); }
+@media (max-width: 900px) {
+  .cc { padding: 8px 8px 0; }
+  .cc dl { grid-template-columns: 1fr 1fr; gap: 8px; }
 }

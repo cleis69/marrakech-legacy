@@ -1,4 +1,5 @@
 import { CalendrierSection } from "../CalendrierSection";
+import { ChiffresCles } from "../ChiffresCles";
 import { EngagementsSection } from "../EngagementsSection";
 import { FinalCta } from "../FinalCta";
 import { HeroSection } from "../HeroSection";
@@ -26,6 +27,7 @@ export function HomePage() {
   return (
     <>
       <HeroSection onContact={ouvrirContact} />
+      <ChiffresCles />
       <ProjectSection />
       <EngagementsSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />

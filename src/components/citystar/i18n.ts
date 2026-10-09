@@ -58,10 +58,10 @@ const fr = {
     ] as [string, string],
     vues: { entree: "L’entrée", pergola: "La pergola", salon: "Le salon" },
     faits: {
-      villas: "Villas privées",
-      terrain: "Terrain par villa",
-      surface: "Construits, jusqu’à",
-      trajet: "Jemaa el-Fna & aéroport",
+      villas: "villas privées, dans un domaine sécurisé",
+      terrain: "de terrain par villa",
+      surface: "construits, pour la plus grande",
+      trajet: "de Jemaa el-Fna et de l’aéroport",
     },
   },
   livraison: {
@@ -820,10 +820,10 @@ const en: Textes = {
     ],
     vues: { entree: "The entrance", pergola: "The pergola", salon: "The living room" },
     faits: {
-      villas: "Private villas",
-      terrain: "Plot per villa",
-      surface: "Built, up to",
-      trajet: "Jemaa el-Fna & airport",
+      villas: "private villas in a secured estate",
+      terrain: "of land per villa",
+      surface: "built, for the largest",
+      trajet: "from Jemaa el-Fna and the airport",
     },
   },
   livraison: {

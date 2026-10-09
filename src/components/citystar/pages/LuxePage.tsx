@@ -1,6 +1,6 @@
 import { useDevise } from "../currency";
 import { FinalCta } from "../FinalCta";
-import { KeyFacts } from "../KeyFacts";
+import { ChiffresCles } from "../ChiffresCles";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
@@ -19,7 +19,7 @@ export function LuxePage() {
         titre={t.pages.luxe.titreH1}
         intro={t.pages.luxe.intro}
       />
-      <KeyFacts />
+      <ChiffresCles />
       <section className="prose section-pad" aria-label={t.pages.luxe.kicker}>
         <ul className="prose-points is-duo">
           {t.pages.luxe.sections.map((section, i) => (
