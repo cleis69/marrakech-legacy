@@ -1,16 +1,19 @@
-/* ---------- Trois engagements ---------- */
-.eg { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; justify-items: start; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--ink); color: var(--cream); }
+/* ---------- Trois engagements, en cartes photo ---------- */
+.eg { display: grid; justify-items: start; gap: clamp(2.5rem, 4vw, 3.5rem); padding: clamp(4.5rem, 8vw, 7.5rem) var(--gouttiere); background: var(--paper); }
 .eg-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; width: 100%; }
-.eg-head h2 { max-width: 16ch; font: 400 clamp(2.4rem, 4.4vw, 4.2rem)/1.04 "Italiana", serif; text-wrap: balance; }
-.eg-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 78%, transparent); }
-.eg-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; width: 100%; margin: 0; padding: 0; list-style: none; }
-.eg-liste li { display: grid; gap: .9rem; align-content: start; padding-top: 1.6rem; border-top: 1px solid color-mix(in oklab, var(--sand) 30%, transparent); }
-.eg-num { font: 400 2.6rem/1 "Italiana", serif; color: var(--bronze-line); }
-.eg-liste h3 { margin: 0; font: 400 clamp(1.5rem, 2.1vw, 1.9rem)/1.15 "Italiana", serif; }
-.eg-liste p { max-width: 24rem; font-size: .95rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 72%, transparent); }
+.eg-head h2 { font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1.04 "Italiana", serif; }
+.eg-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
+.eg-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; width: 100%; margin: 0; padding: 0; list-style: none; }
+.eg-liste li { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 30rem; overflow: hidden; border-radius: 24px; background: var(--ink); color: var(--cream); }
+.eg-liste img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); }
+.eg-liste li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--ink) 84%, transparent)); }
+.eg-texte { position: relative; z-index: 1; display: grid; gap: .6rem; padding: 1.6rem; }
+.eg-num { font-size: .75rem; letter-spacing: .16em; color: var(--sand); }
+.eg-liste h3 { margin: 0; font: 400 clamp(1.6rem, 2.1vw, 1.9rem)/1.15 "Italiana", serif; }
+.eg-liste p { max-width: 24rem; font-size: .9rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 85%, transparent); }
 
 /* ---------- Le marché ---------- */
-.mc { display: grid; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--cream); }
+.mc { display: grid; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--paper); }
 .mc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; }
 .mc-head h2 { font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
 .mc-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
@@ -34,7 +37,7 @@
 .mc-source a { color: var(--foreground); text-underline-offset: .25em; }
 
 /* ---------- Fin de page : trois façons d'engager la conversation ---------- */
-.circle { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--sand); color: var(--ink); }
+.circle { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem); margin: 0 14px 14px; padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--sand); color: var(--ink); }
 .circle-text { display: grid; gap: 1.4rem; }
 .circle-text h2 { font: 400 clamp(2.8rem, 5.4vw, 5.2rem)/1 "Italiana", serif; text-wrap: balance; }
 .circle-text p { max-width: 26rem; font-size: 1.02rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
@@ -63,8 +66,9 @@
 
 @media (max-width: 900px) {
   .qs { grid-template-columns: 1fr; }
-  .eg-liste { grid-template-columns: 1fr; gap: 2rem; }
+  .eg-liste { grid-template-columns: 1fr; }
+  .eg-liste li { min-height: 24rem; }
   .mc-corps { grid-template-columns: 1fr; }
   .mc-villes li { grid-template-columns: 6rem minmax(0, 1fr) 4rem; gap: .8rem; }
-  .circle { grid-template-columns: 1fr; }
+  .circle { grid-template-columns: 1fr; margin: 0 8px 8px; border-radius: 22px; }
 }

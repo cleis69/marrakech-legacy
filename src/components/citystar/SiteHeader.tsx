@@ -142,9 +142,12 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
   return (
     <>
       <header className={`float-header ${solide ? "is-solid" : ""}`}>
+        <Lien className="float-wordmark" vers={chemin(langue, "")} ariaLabel={t.header.accueil}>
+          CITYSTAR
+        </Lien>
         <div className="float-start">
           <nav className="float-nav" aria-label="Navigation">
-            {/* L'accueil passe par le nom, au centre. */}
+            {/* L'accueil passe par le nom. */}
             {t.nav.slice(1).map(([label, sous]) => (
               <Lien key={sous} vers={chemin(langue, sous)}>
                 {label}
@@ -160,9 +163,6 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
             {t.header.menu}
           </button>
         </div>
-        <Lien className="float-wordmark" vers={chemin(langue, "")} ariaLabel={t.header.accueil}>
-          CITYSTAR
-        </Lien>
         <div className="float-actions">
           <LangSwitch />
           <Lien className="float-espace" vers={cheminEspace(langue)}>

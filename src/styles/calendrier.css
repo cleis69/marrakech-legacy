@@ -1,5 +1,6 @@
 /* ---------- Calendrier : la frise de livraison et le plan de paiement ---------- */
-.lv { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; gap: clamp(3.5rem, 6vw, 5.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--ink); color: var(--cream); }
+.lv { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; gap: clamp(3.5rem, 6vw, 5.5rem); margin: 0 14px; padding: clamp(4.5rem, 8vw, 7.5rem) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--ink); color: var(--cream); }
+.lv .ton { color: var(--sand); }
 .lv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 2rem 4rem; }
 .lv-head h2 { max-width: 14ch; font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
 .lv-intro { display: grid; gap: 1.2rem; max-width: 26rem; }
@@ -30,7 +31,7 @@
 .lv-pied p { max-width: 40rem; font-size: .92rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 72%, transparent); }
 
 /* L'accès propriétaire, en bas de la section. */
-.lv-espace { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem 2rem; padding: 1.6rem 1.8rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--sand) 30%, transparent); }
+.lv-espace { border-radius: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem 2rem; padding: 1.6rem 1.8rem; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--sand) 30%, transparent); }
 .lv-espace p { font: 400 clamp(1.3rem, 1.8vw, 1.6rem)/1.3 "Italiana", serif; }
 
 /* ---------- Page « Mon espace » ---------- */
@@ -46,6 +47,7 @@
   .lv-frise li { gap: .4rem; }
   .lv-paliers { grid-template-columns: 1fr; gap: 0; }
   .lv-paliers li { grid-template-columns: 1fr auto; align-items: baseline; padding: 1rem 0; }
+  .lv { margin: 0 8px; border-radius: 22px; }
   .lv-espace { padding: 1.4rem; }
   .es-statut { padding: 1.6rem 1.4rem; }
 }

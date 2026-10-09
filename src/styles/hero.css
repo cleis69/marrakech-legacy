@@ -1,5 +1,6 @@
-/* ---------- Hero « plein cadre » ---------- */
-.hero { --pill-bg: var(--cream); --pill-fg: var(--ink); position: relative; height: 100svh; min-height: 640px; overflow: hidden; background: var(--ink); color: var(--cream); }
+/* ---------- Hero encadré ---------- */
+.hero { --pill-bg: var(--cream); --pill-fg: var(--ink); height: 100svh; min-height: 640px; padding: 14px; background: var(--paper); color: var(--cream); }
+.hero-cadre { position: relative; height: 100%; overflow: hidden; border-radius: 28px; background: var(--ink); }
 .hero-media { position: absolute; inset: 0; animation: hero-in 2.4s cubic-bezier(.22, 1, .36, 1) both; }
 .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); }
 .hero-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, transparent 22%, transparent 44%, color-mix(in oklab, var(--ink) 80%, transparent) 100%); }
@@ -8,14 +9,12 @@
 .hero-title { display: grid; gap: 1.4rem; max-width: 50rem; }
 .hero-title h1 { font: 400 clamp(2.9rem, 6.6vw, 6.2rem)/1.02 "Italiana", serif; }
 .hero-line { display: block; animation: hero-up 1.2s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(var(--i) * 140ms + .5s); }
-.hero-lieu { font-size: .75rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sand); animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) .9s both; }
+.hero-chip { display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .5rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--ink) 45%, transparent); backdrop-filter: blur(8px); font-size: .78rem; letter-spacing: .04em; animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) .3s both; }
+.hero-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
+.hero-line + .hero-line { color: var(--sand); }
 .hero-side { display: grid; gap: 1.6rem; justify-items: start; max-width: 23rem; animation: hero-up 1.1s cubic-bezier(.22, 1, .36, 1) 1.1s both; }
 .hero-side p { font-size: 1rem; line-height: 1.65; color: color-mix(in oklab, var(--cream) 90%, transparent); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.8rem; }
-/* Trois preuves sous les boutons : ce qui rassure avant même de cliquer. */
-.hero-preuves { display: grid; gap: .55rem; width: 100%; margin: .4rem 0 0; padding: 1rem 0 0; list-style: none; border-top: 1px solid color-mix(in oklab, var(--sand) 35%, transparent); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sand); }
-.hero-preuves li { display: flex; align-items: center; gap: .8rem; }
-.hero-preuves li::before { content: ""; flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--bronze-line); }
 
 .hero-foot { position: absolute; right: var(--gouttiere); bottom: 1.1rem; display: flex; align-items: center; gap: 1.6rem; font-size: .7rem; letter-spacing: .08em; color: var(--sand); }
 .hero-pause { display: flex; align-items: center; gap: .5rem; padding: .8rem .4rem; margin: -.8rem -.4rem; border: 0; background: none; color: inherit; font-size: inherit; letter-spacing: .16em; text-transform: uppercase; opacity: .8; transition: opacity .3s; }
@@ -32,9 +31,11 @@
   .hero-side p { font-size: .92rem; }
   /* Le rappel est déjà au centre de la barre du bas. */
   .hero-actions .pill-primary { display: none; }
-  .hero-foot { top: calc(60px + .9rem); bottom: auto; }
+  .hero { padding: 8px; }
+  .hero-cadre { border-radius: 22px; }
+  .hero-foot { top: calc(70px + .6rem); bottom: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-media, .hero-line, .hero-lieu, .hero-side { animation: none; }
+  .hero-media, .hero-line, .hero-chip, .hero-side { animation: none; }
 }

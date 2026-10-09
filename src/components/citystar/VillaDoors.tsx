@@ -1,7 +1,4 @@
-import { ArrowRight } from "lucide-react";
-import { useRef, useState } from "react";
-
-import { formatSurface, programme } from "@/config/citystar";
+import { formatPrix, formatSurface, prixVilla, prixVillas, programme } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import { type CursorHandlers, faitsVilla, villas } from "./data";
@@ -10,35 +7,23 @@ import { Reveal } from "./motion";
 
 type Props = CursorHandlers & { sansEntete?: boolean };
 
-/** Trois portes : survoler en élargit une, cliquer ouvre la page de la villa. */
+/** Les trois villas en cartes : photo, pastille, nom, prix et repères ; chaque carte ouvre sa page. */
 export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }: Props) {
-  const { langue, t } = useDevise();
-  const railRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(0);
-
-  const onRailScroll = () => {
-    const rail = railRef.current;
-    const first = rail?.firstElementChild as HTMLElement | null;
-    if (!rail || !first) return;
-    setVisible(Math.round(rail.scrollLeft / (first.offsetWidth + 10)));
-  };
+  const { devise, langue, t, taux } = useDevise();
 
   return (
     <div className="vd section-pad">
       {!sansEntete && (
         <div className="vd-top">
-          <div>
-            <div className="section-label">
-              <p>{t.villas.label}</p>
-            </div>
-            <Reveal>
-              <h2 id="villas-title">
-                {t.villas.titre[0]} <br />
+          <Reveal>
+            <h2 id="villas-title">
+              {t.villas.titre[0]} <br />
+              <span className="ton">
                 {t.villas.titre[1]}
-                <em>{t.villas.titre[2]}</em>
-              </h2>
-            </Reveal>
-          </div>
+                {t.villas.titre[2]}
+              </span>
+            </h2>
+          </Reveal>
           <div>
             <p>
               {t.villas.intro(
@@ -48,57 +33,52 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
             </p>
             <Lien className="pill pill-secondary" vers={chemin(langue, "villas")}>
               <span className="pill-label">{t.villas.comparer}</span>
-              <i className="pill-dot" aria-hidden="true">
-                <ArrowRight />
-              </i>
             </Lien>
           </div>
         </div>
       )}
 
-      <div className="vd-tri" ref={railRef} onScroll={onRailScroll}>
-        {villas.map((villa, i) => {
+      <ul className="vd-cartes">
+        {villas.map((villa) => {
           const faits = faitsVilla(villa.type, t, langue);
+          const { montant, approximatif } = prixVilla(villa.type, devise, taux);
           return (
-            <Lien
-              key={villa.type}
-              className={`vd-door${i === 0 ? " is-on" : ""}`}
-              vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
-              ariaLabel={t.villas.decouvrirAria(villa.type, faits.surface, faits.suites, faits.tag)}
-              onMouseEnter={onCursorEnter(t.villas.curseur)}
-              onMouseLeave={onCursorLeave}
-            >
-              <img src={villa.image} alt="" loading="lazy" />
-              <span className="vd-shade" aria-hidden="true" />
-              <span className="vd-name" aria-hidden="true">
-                <small>{t.villas.villa}</small>
-                <strong>{villa.type}</strong>
-              </span>
-              <span className="vd-bottom" aria-hidden="true">
-                <span className="vd-more">
-                  <span className="vd-desc">{faits.description}</span>
-                  <span className="pill pill-primary">
-                    <span className="pill-label">{t.villas.decouvrir}</span>
-                    <i className="pill-dot">
-                      <ArrowRight />
-                    </i>
+            <li key={villa.type}>
+              <Lien
+                className="vd-carte"
+                vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
+                ariaLabel={t.villas.decouvrirAria(
+                  villa.type,
+                  faits.surface,
+                  faits.suites,
+                  faits.tag,
+                )}
+                onMouseEnter={onCursorEnter(t.villas.curseur)}
+                onMouseLeave={onCursorLeave}
+              >
+                <span className="vd-photo">
+                  <img src={villa.image} alt="" loading="lazy" />
+                  <span className="vd-tag">{faits.tag}</span>
+                </span>
+                <span className="vd-ligne">
+                  <strong>
+                    {t.villas.villa} {villa.type}
+                  </strong>
+                  <span className="vd-prix">
+                    {approximatif ? "≈ " : ""}
+                    {formatPrix(montant, devise, langue)}
                   </span>
                 </span>
                 <span className="vd-specs">
-                  <span>{faits.surface}</span>
-                  <span>{faits.suites}</span>
-                  <span>{faits.tag}</span>
+                  {faits.surface} · {faits.suites} · {t.villas.terrain.toLowerCase()}{" "}
+                  {faits.terrain}
+                  {!prixVillas[villa.type].confirme && ` · ${t.prix.indicatifCourt}`}
                 </span>
-              </span>
-            </Lien>
+              </Lien>
+            </li>
           );
         })}
-      </div>
-      <div className="vd-dots" aria-hidden="true">
-        {villas.map((villa, i) => (
-          <i key={villa.type} className={i === visible ? "is-on" : ""} />
-        ))}
-      </div>
+      </ul>
     </div>
   );
 }

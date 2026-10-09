@@ -35,8 +35,11 @@ export function ProjectSection() {
       <div className="pj-head">
         <Reveal>
           <h2 id="project-title">
-            {debut} {milieu}
-            {fin}
+            {debut} <br />
+            <span className="ton">
+              {milieu}
+              {fin}
+            </span>
           </h2>
         </Reveal>
         <p>

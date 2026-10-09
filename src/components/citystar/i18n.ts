@@ -33,14 +33,10 @@ const fr = {
   },
   hero: {
     accroche: ["Quatorze villas.", "Pas une de plus."] as [string, string],
-    lieu: "Oulad Hassoune · Marrakech",
-    texte: "Des villas contemporaines, chacune avec sa propre piscine et de vastes terrasses.",
+    texte:
+      "Des villas contemporaines, chacune avec sa propre piscine et de vastes terrasses, à Oulad Hassoune.",
     rendu: "Rendu 3D, non contractuel",
-    preuves: (livraison: string, fondsPropres: string) => [
-      `Livraison ${livraison}`,
-      "Réservation chez le notaire",
-      `${fondsPropres} fonds propres`,
-    ],
+    livraison: (mois: string) => `Livraison ${mois}`,
     decouvrir: "Découvrir les villas",
     acces: "Être rappelé par un conseiller",
     pause: "Mettre la vidéo en pause",
@@ -168,6 +164,7 @@ const fr = {
     reference: (prix: string) => `Prix de référence\u00a0: ${prix}`,
     contreValeur: (date: string) => `Contre-valeur indicative · taux du ${date}`,
     indicatif: "Prix indicatif, sous réserve de confirmation",
+    indicatifCourt: "prix indicatif",
     devises: {
       EUR: "Euros",
       GBP: "Livres sterling",
@@ -500,12 +497,12 @@ const fr = {
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
   questions: {
-    titre: "Acheter sur plan, en toute sérénité.",
+    titre: ["Acheter sur plan,", "en toute sérénité."] as [string, string],
     intro: "Les questions que l’on nous pose avant chaque réservation.",
     toutes: "Toutes les questions",
   },
   engagements: {
-    titre: "Trois engagements. Une confiance entière.",
+    titre: ["Trois engagements.", "Une confiance entière."] as [string, string],
     intro: "Des garanties concrètes, à chaque étape de votre acquisition.",
     items: (fondsPropres: string) => [
       {
@@ -798,14 +795,9 @@ const en: Textes = {
   },
   hero: {
     accroche: ["Fourteen villas.", "Not one more."],
-    lieu: "Oulad Hassoune · Marrakech",
-    texte: "Contemporary villas, each with its own pool and generous terraces.",
+    texte: "Contemporary villas, each with its own pool and generous terraces, in Oulad Hassoune.",
     rendu: "3D render, not contractual",
-    preuves: (livraison, fondsPropres) => [
-      `Delivery ${livraison}`,
-      "Reservation at the notary",
-      `${fondsPropres} equity-funded`,
-    ],
+    livraison: (mois) => `Delivery ${mois}`,
     decouvrir: "Discover the villas",
     acces: "Request a call back",
     pause: "Pause the video",
@@ -928,6 +920,7 @@ const en: Textes = {
     reference: (prix) => `Reference price: ${prix}`,
     contreValeur: (date) => `Indicative conversion · rate of ${date}`,
     indicatif: "Indicative price, subject to confirmation",
+    indicatifCourt: "indicative price",
     devises: {
       EUR: "Euros",
       GBP: "Pounds sterling",
@@ -1241,12 +1234,12 @@ const en: Textes = {
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },
   questions: {
-    titre: "Buying off-plan, with peace of mind.",
+    titre: ["Buying off-plan,", "with peace of mind."],
     intro: "The questions we are asked before every reservation.",
     toutes: "All questions",
   },
   engagements: {
-    titre: "Three commitments. Complete confidence.",
+    titre: ["Three commitments.", "Complete confidence."],
     intro: "Concrete guarantees at every stage of your purchase.",
     items: (fondsPropres) => [
       {

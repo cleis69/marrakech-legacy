@@ -1,29 +1,22 @@
 /* ---------- Les villas : trois portes, puis la fiche ---------- */
 .vs { background: var(--cream); overflow: hidden; }
 
-/* Portes */
-.vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 4vw; margin-bottom: 3.5rem; }
-.vd-top .section-label { margin-bottom: 2rem; }
+/* Cartes */
+.vd-top { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem 4vw; margin-bottom: 3rem; }
 .vd-top h2, .vf-panel h1 { font: 400 clamp(3rem, 6vw, 6.4rem)/.97 "Italiana", serif; }
-.vd-top > div { display: grid; gap: 1.6rem; justify-items: start; }
+.vd-top > div { display: grid; gap: 1.4rem; justify-items: start; }
 .vd-top p { max-width: 24rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
-.vd-tri { display: flex; gap: .6rem; height: 74vh; min-height: 520px; }
-.vd-door { display: block; text-decoration: none; position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--cream); text-align: left; cursor: pointer; transition: flex-grow 1s cubic-bezier(.22, 1, .36, 1); }
-.vd-door img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
-.vd-door:hover img { transform: scale(1.05); }
-.vd-shade { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 35%, transparent), transparent 35%, transparent 45%, color-mix(in oklab, var(--ink) 82%, transparent)); }
-.vd-name { position: absolute; top: 1.8rem; left: 1.8rem; display: grid; }
-.vd-name small { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; }
-.vd-name strong { font: 400 5.6rem/1 "Italiana", serif; }
-.vd-bottom { position: absolute; left: 1.8rem; right: 1.8rem; bottom: 1.8rem; display: grid; gap: 1.2rem; }
-.vd-more { display: grid; gap: 1.2rem; justify-items: start; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .9s cubic-bezier(.22, 1, .36, 1), opacity .5s; }
-.vd-desc { max-width: 38ch; font-size: .92rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 82%, transparent); }
-.vd-specs { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; overflow: hidden; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 40%, transparent); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.vd-tri .vd-door.is-on, .vd-tri:hover .vd-door:hover, .vd-tri .vd-door:focus-visible { flex-grow: 2.4; }
-.vd-tri:hover .vd-door.is-on:not(:hover), .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) { flex-grow: 1; }
-.vd-door.is-on .vd-more, .vd-tri:hover .vd-door:hover .vd-more, .vd-door:focus-visible .vd-more { max-height: 14rem; opacity: 1; transition-delay: .15s; }
-.vd-tri:hover .vd-door.is-on:not(:hover) .vd-more, .vd-tri:has(.vd-door:focus-visible) .vd-door.is-on:not(:focus-visible) .vd-more { max-height: 0; opacity: 0; transition-delay: 0s; }
-.vd-dots { display: none; }
+.vd-cartes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.vd-carte { display: grid; gap: .9rem; padding: 10px 10px 1.3rem; border-radius: 24px; background: var(--paper); color: inherit; text-decoration: none; transition: background .4s, box-shadow .4s; }
+.vd-carte:hover, .vd-carte:focus-visible { box-shadow: 0 18px 40px color-mix(in oklab, var(--ink) 10%, transparent); }
+.vd-photo { position: relative; display: block; overflow: hidden; border-radius: 18px; }
+.vd-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: var(--etalonnage); transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
+.vd-carte:hover .vd-photo img { transform: scale(1.04); }
+.vd-tag { position: absolute; left: 12px; top: 12px; padding: .4rem .8rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .75rem; }
+.vd-ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0 .6rem; }
+.vd-ligne strong { font: 400 1.9rem/1 "Italiana", serif; }
+.vd-prix { font-size: .95rem; font-variant-numeric: tabular-nums; }
+.vd-specs { padding: 0 .6rem; font-size: .8rem; color: var(--muted-foreground); }
 
 /* Fiche */
 .vf { display: grid; grid-template-columns: 1.05fr .95fr; gap: 4.5vw; align-items: start; }
@@ -81,20 +74,9 @@
 
 @media (max-width: 900px) {
   .vd-top { display: block; margin-bottom: 2.4rem; }
+  .vd-cartes { grid-template-columns: 1fr; }
   .vd-top h2 { font-size: clamp(3rem, 14vw, 4.6rem); }
   .vd-top > div { margin-top: 1.4rem; }
-  .vd-tri { height: auto; min-height: 0; gap: 10px; margin-right: -1.3rem; padding-right: 1.3rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .vd-tri::-webkit-scrollbar { display: none; }
-  .vd-tri .vd-door, .vd-tri .vd-door.is-on { flex: 0 0 80vw; height: 62svh; min-height: 440px; scroll-snap-align: start; }
-  .vd-name { top: 1.2rem; left: 1.2rem; }
-  .vd-name strong { font-size: 4.2rem; }
-  .vd-bottom { left: 1.2rem; right: 1.2rem; bottom: 1.2rem; }
-  .vd-door .vd-more { max-height: none; opacity: 1; }
-  .vd-more .pill { display: none; }
-  .vd-desc { font-size: .85rem; }
-  .vd-dots { display: flex; justify-content: center; gap: 8px; margin-top: 1rem; }
-  .vd-dots i { width: 22px; height: 2px; background: var(--border); transition: background .3s; }
-  .vd-dots i.is-on { background: var(--bronze); }
 
   .vf { grid-template-columns: 1fr; gap: 1.4rem; }
   .vf-info { display: contents; }
@@ -111,10 +93,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vd-door, .vd-door img, .vd-more, .vf-pic img, .vf-plans img { transition: none; }
+  .vd-photo img, .vf-pic img, .vf-plans img { transition: none; }
   .vf-panel { animation: none; }
 }
 
 /* Cadrage des photos (paysage) dans les portes verticales */
-.vd-door:nth-child(1) img { object-position: 64% center; }
-.vd-door:nth-child(3) img { object-position: 38% center; }

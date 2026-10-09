@@ -16,7 +16,10 @@ export function QuestionsSection() {
     <section className="qs" aria-labelledby="questions-title">
       <div className="qs-head">
         <Reveal>
-          <h2 id="questions-title">{t.questions.titre}</h2>
+          <h2 id="questions-title">
+            {t.questions.titre[0]} <br />
+            <span className="ton">{t.questions.titre[1]}</span>
+          </h2>
         </Reveal>
         <p>{t.questions.intro}</p>
         <Lien className="pill pill-secondary" vers={chemin(langue, "faq")}>

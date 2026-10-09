@@ -6,7 +6,7 @@
 
 .pj-vues { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; width: 100%; max-width: 83rem; margin: 0; padding: 0; list-style: none; }
 .pj-vues figure { display: grid; gap: .9rem; margin: 0; }
-.pj-vues img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: var(--etalonnage); }
+.pj-vues img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 18px; filter: var(--etalonnage); }
 .pj-vues li:first-child img { object-position: 55% center; }
 .pj-vues figcaption { display: flex; justify-content: space-between; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
 
