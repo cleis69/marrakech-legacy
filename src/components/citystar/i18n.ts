@@ -32,11 +32,20 @@ const fr = {
     whatsapp: "Contacter la conciergerie CITYSTAR sur WhatsApp",
   },
   hero: {
-    accroche: ["Quatorze villas.", "Pas une de plus."] as [string, string],
-    texte:
-      "Des villas contemporaines, chacune avec sa propre piscine et de vastes terrasses, à Oulad Hassoune.",
+    lieu: "Résidence privée · Oulad Hassoune, Marrakech",
+    accroche: ["Villas de luxe à Marrakech,", "quatorze, pas une de plus."] as [string, string],
+    texte: (surface: string, terrain: string, minutes: number) =>
+      `Jusqu’à ${surface} construits sur ${terrain} de terrain, piscine privée, à ${minutes} minutes de Jemaa el-Fna.`,
+    garanties: (fondsPropres: string) => [
+      "Réservation chez le notaire",
+      `${fondsPropres} fonds propres`,
+      "Crédit immobilier accepté",
+    ],
     rendu: "Rendu 3D, non contractuel",
     livraison: (mois: string) => `Livraison ${mois}`,
+    livraisonLabel: "Livraison",
+    reservation: (part: string) => `${part} à la réservation`,
+    visite: "Visite 360°",
     decouvrir: "Découvrir les villas",
     acces: "Être rappelé par un conseiller",
     pause: "Mettre la vidéo en pause",
@@ -799,10 +808,20 @@ const en: Textes = {
     whatsapp: "Message the CITYSTAR concierge on WhatsApp",
   },
   hero: {
-    accroche: ["Fourteen villas.", "Not one more."],
-    texte: "Contemporary villas, each with its own pool and generous terraces, in Oulad Hassoune.",
+    lieu: "Private residence · Oulad Hassoune, Marrakech",
+    accroche: ["Luxury villas in Marrakech,", "fourteen, not one more."],
+    texte: (surface, terrain, minutes) =>
+      `Up to ${surface} built on ${terrain} of land, with a private pool, ${minutes} minutes from Jemaa el-Fna.`,
+    garanties: (fondsPropres) => [
+      "Reservation at the notary",
+      `${fondsPropres} equity-funded`,
+      "Mortgages accepted",
+    ],
     rendu: "3D render, not contractual",
     livraison: (mois) => `Delivery ${mois}`,
+    livraisonLabel: "Delivery",
+    reservation: (part) => `${part} on reservation`,
+    visite: "360° tour",
     decouvrir: "Discover the villas",
     acces: "Request a call back",
     pause: "Pause the video",

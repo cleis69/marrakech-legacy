@@ -1,8 +1,17 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { ArrowRight, PhoneCall, Pause, Play } from "lucide-react";
+import { Check, PhoneCall, Pause, Play, Rotate3d } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { calendrier, formatMois } from "@/config/citystar";
+import {
+  calendrier,
+  engagements,
+  formatMois,
+  formatPart,
+  formatSurface,
+  programme,
+  reservation,
+  villasChiffres,
+} from "@/config/citystar";
 import heroVideo from "@/assets/citystar/hero-rendus.mp4";
 import heroPoster from "@/assets/citystar/hero-rendus-poster.webp";
 
@@ -11,13 +20,21 @@ import { scrollTo } from "./data";
 import { PillButton } from "./ui/PillButton";
 
 /**
- * Hero encadré : la vidéo des rendus, étalonnée pour adoucir le ciel et le gazon,
- * occupe un grand cadre arrondi posé sur le papier. L'accroche se pose en bas,
- * sur un voile d'encre ; au défilement, la vidéo glisse un peu moins vite.
+ * Hero encadré : la vidéo des rendus, étalonnée, dans un grand cadre arrondi.
+ * À gauche, ce qui se vend (où, quoi, combien de mètres, à quelle distance),
+ * deux actions et trois garanties ; à droite, la carte de livraison.
+ * Au défilement, la vidéo glisse un peu moins vite que la page.
  */
+const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
+const acompte = reservation.paliers.find((palier) => palier.etape === "reservation");
 export function HeroSection({ onContact }: { onContact: () => void }) {
   const { langue, t } = useDevise();
-  const livraison = t.hero.livraison(formatMois(calendrier.livraison, langue));
+  const texte = t.hero.texte(
+    formatSurface(surfaceMax, langue),
+    formatSurface(programme.terrainMaxM2, langue),
+    programme.trajetMaxMinutes,
+  );
+  const garanties = t.hero.garanties(formatPart(engagements.fondsPropres, langue));
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
@@ -62,8 +79,8 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
         <div className="hero-shade" aria-hidden="true" />
 
         <div className="hero-bottom">
-          <div className="hero-title">
-            <p className="hero-chip">{livraison}</p>
+          <div className="hero-main">
+            <p className="hero-chip">{t.hero.lieu}</p>
             <h1 id="hero-title">
               <span className="sr-only">CITYSTAR — </span>
               {t.hero.accroche.map((ligne, i) => (
@@ -72,20 +89,33 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
                 </span>
               ))}
             </h1>
-          </div>
-
-          <div className="hero-side">
-            <p>{t.hero.texte}</p>
+            <p className="hero-texte">{texte}</p>
             <div className="hero-actions">
               <PillButton label={t.hero.acces} icon={PhoneCall} onClick={onContact} />
               <PillButton
-                label={t.hero.decouvrir}
-                icon={ArrowRight}
+                label={t.hero.visite}
+                icon={Rotate3d}
                 variant="secondary"
-                onClick={() => scrollTo("villas")}
+                onClick={() => scrollTo("visite")}
               />
             </div>
+            <ul className="hero-garanties">
+              {garanties.map((garantie) => (
+                <li key={garantie}>
+                  <Check aria-hidden="true" />
+                  {garantie}
+                </li>
+              ))}
+            </ul>
           </div>
+
+          <aside className="hero-carte" aria-label={t.hero.livraisonLabel}>
+            <span>{t.hero.livraisonLabel}</span>
+            <strong>{formatMois(calendrier.livraison, langue)}</strong>
+            {acompte?.confirme && acompte.part != null && (
+              <span>{t.hero.reservation(formatPart(acompte.part, langue))}</span>
+            )}
+          </aside>
         </div>
 
         <div className="hero-foot">
