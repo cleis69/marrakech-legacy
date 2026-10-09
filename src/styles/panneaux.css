@@ -13,3 +13,18 @@
 }
 /* La carte suit les mêmes angles arrondis que les panneaux. */
 .mp { border-radius: 24px; }
+
+/* Pages intérieures : mêmes angles que l'accueil pour les photos, les fiches et les outils. */
+.vf-pic { border-radius: 24px; }
+.vf-plans button, .vf-plans img { border-radius: 18px; }
+.sl-card { border-radius: 22px; overflow: hidden; }
+.cp-photo { border-radius: 16px; overflow: hidden; }
+.cp-plans img { border-radius: 14px; }
+.es-statut { border-radius: 24px; }
+/* Le comparateur suit le sélecteur : un panneau clair pour qu’on voie où il commence. */
+.cp { margin: 14px 14px 0; border-radius: 28px; background: var(--cream); }
+@media (max-width: 900px) { .cp { margin: 8px 8px 0; border-radius: 22px; } }
+.sl-option { border-radius: 18px; }
+.vf-badge { border-radius: 999px; }
+.mp-ctrl { border-radius: 14px; overflow: hidden; }
+.mp-pop { border-radius: 16px; overflow: hidden; }

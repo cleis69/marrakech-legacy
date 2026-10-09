@@ -5,6 +5,7 @@ import { useDevise } from "../currency";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
+import espaceBanniere from "@/assets/citystar/rendus/ext-volume-lames.webp";
 
 /**
  * Espace propriétaire : en attendant l'ouverture des accès personnels, la page
@@ -16,7 +17,7 @@ export function EspacePage() {
   const p = t.pages.espace;
   return (
     <>
-      <PageHeader kicker={p.kicker} titre={p.titreH1} intro={p.intro} />
+      <PageHeader image={espaceBanniere} kicker={p.kicker} titre={p.titreH1} intro={p.intro} />
       <section className="section-pad" aria-labelledby="espace-statut">
         <div className="es-statut">
           <h2 id="espace-statut">{p.statut}</h2>

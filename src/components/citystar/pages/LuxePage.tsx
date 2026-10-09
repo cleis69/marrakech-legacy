@@ -5,6 +5,7 @@ import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { VillasSection } from "../VillasSection";
+import luxeBanniere from "@/assets/citystar/rendus/ext-pergola-jour.webp";
 
 /** Page thématique : elle raconte le domaine à qui cherche « une villa de luxe à Marrakech ». */
 export function LuxePage() {
@@ -13,6 +14,7 @@ export function LuxePage() {
   return (
     <>
       <PageHeader
+        image={luxeBanniere}
         kicker={t.pages.luxe.kicker}
         titre={t.pages.luxe.titreH1}
         intro={t.pages.luxe.intro}
@@ -20,8 +22,8 @@ export function LuxePage() {
       <KeyFacts />
       <section className="prose section-pad" aria-label={t.pages.luxe.kicker}>
         <ul className="prose-points is-duo">
-          {t.pages.luxe.sections.map((section) => (
-            <li key={section.titre}>
+          {t.pages.luxe.sections.map((section, i) => (
+            <li key={section.titre} data-vu="" style={{ "--i": i } as React.CSSProperties}>
               <h2>{section.titre}</h2>
               <p>{section.texte}</p>
             </li>

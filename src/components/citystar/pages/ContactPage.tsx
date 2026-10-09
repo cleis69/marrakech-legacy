@@ -8,6 +8,7 @@ import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
+import contactBanniere from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
 
 export function ContactPage() {
   const { t } = useDevise();
@@ -16,6 +17,7 @@ export function ContactPage() {
   return (
     <>
       <PageHeader
+        image={contactBanniere}
         kicker={t.pages.contact.kicker}
         titre={t.pages.contact.titreH1}
         intro={t.pages.contact.intro}

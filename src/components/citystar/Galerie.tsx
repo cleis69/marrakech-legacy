@@ -14,7 +14,12 @@ export function Galerie() {
     <section className="gl section-pad" aria-label={t.pages.galerie.kicker}>
       <ul className="gl-grid">
         {rendus.map((rendu, i) => (
-          <li key={rendu.src} className={i % 5 === 0 ? "is-large" : ""}>
+          <li
+            key={rendu.src}
+            className={i % 5 === 0 ? "is-large" : ""}
+            data-vu=""
+            style={{ "--i": i % 3 } as React.CSSProperties}
+          >
             <button
               type="button"
               onClick={() => setOuverte(i)}

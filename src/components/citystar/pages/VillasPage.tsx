@@ -10,6 +10,7 @@ import { useDevise } from "../currency";
 import type { Budget } from "../data";
 import { VillaComparator } from "../VillaComparator";
 import { VillaSelector } from "../VillaSelector";
+import villasBanniere from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 
 /**
  * Page de décision : le quiz recommande, le comparateur confirme. Les portes A/B/C
@@ -26,6 +27,7 @@ export function VillasPage() {
   return (
     <>
       <PageHeader
+        image={villasBanniere}
         kicker={t.pages.villas.kicker}
         titre={t.pages.villas.titreH1}
         intro={t.pages.villas.intro}

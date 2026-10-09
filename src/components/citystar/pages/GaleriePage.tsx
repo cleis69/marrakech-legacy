@@ -6,6 +6,7 @@ import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { TourSection } from "../TourSection";
+import galerieBanniere from "@/assets/citystar/rendus/int-salon.webp";
 
 export function GaleriePage() {
   const { t } = useDevise();
@@ -13,6 +14,7 @@ export function GaleriePage() {
   return (
     <>
       <PageHeader
+        image={galerieBanniere}
         kicker={t.pages.galerie.kicker}
         titre={t.pages.galerie.titreH1}
         intro={t.pages.galerie.intro}
