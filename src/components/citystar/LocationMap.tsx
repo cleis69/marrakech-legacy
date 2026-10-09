@@ -27,9 +27,8 @@ const LANDMARKS = [
   { id: "palm", x: 585, y: 335, dot: false },
 ] as const;
 
-// Itinéraire vers la commune seulement : l'emplacement exact reste à confirmer (voir config).
-const ITINERARY_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=Oulad+Hassoune,+Marrakech";
+// Itinéraire jusqu'au domaine, aux coordonnées de la config.
+const ITINERARY_URL = `https://www.google.com/maps/dir/?api=1&destination=${programme.coordonnees.latitude},${programme.coordonnees.longitude}`;
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v));
 

@@ -10,6 +10,7 @@ import {
   formatNombre,
   formatPrix,
   formatSurface,
+  prixPublics,
   prixVilla,
   prixVillas,
   villasChiffres,
@@ -102,7 +103,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
   useEffect(() => {
     const brut = new URLSearchParams(window.location.search).get(PARAM_BUDGET);
     const montantEUR = brut ? Number(brut) : NaN;
-    if (!Number.isFinite(montantEUR)) return;
+    if (!prixPublics || !Number.isFinite(montantEUR)) return;
     const dansLeBudget = TYPES.filter((type) => prixVilla(type, "EUR").montant <= montantEUR);
     const cible = dansLeBudget[0] ?? TYPES[TYPES.length - 1];
     setBudget({ montant: montantEUR, devise: "EUR" });
@@ -136,9 +137,10 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
           ) / 1000,
         ) * 1000;
   /* Tant que le curseur n'a pas bougé, aucune villa n'est écartée. */
-  const highlight = budget
-    ? TYPES.filter((type) => prixVilla(type, budget.devise, taux).montant <= budget.montant)
-    : null;
+  const highlight =
+    prixPublics && budget
+      ? TYPES.filter((type) => prixVilla(type, budget.devise, taux).montant <= budget.montant)
+      : null;
 
   const rows: {
     label: React.ReactNode;
@@ -269,24 +271,30 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
       ),
     },
     {
-      label: TYPES.some((type) => !prixVillas[type].confirme)
-        ? textes.comparateur.prixIndicatif
-        : textes.comparateur.prix,
-      cells: (t) => (
-        <>
-          <span className="cp-value">
-            {price(t).approximatif ? "≈ " : ""}
-            {formatPrix(price(t).montant, devise, langue)}
-          </span>
-          {t !== pin && (
-            <Delta
-              value={price(t).montant - price(pin).montant}
-              unit={devise === "EUR" || devise === "GBP" ? (devise === "EUR" ? "€" : "£") : devise}
-              argent
-            />
-          )}
-        </>
-      ),
+      label:
+        prixPublics && TYPES.some((type) => !prixVillas[type].confirme)
+          ? textes.comparateur.prixIndicatif
+          : textes.comparateur.prix,
+      cells: (t) =>
+        !prixPublics ? (
+          <span className="cp-value">{textes.prix.surDemande}</span>
+        ) : (
+          <>
+            <span className="cp-value">
+              {price(t).approximatif ? "≈ " : ""}
+              {formatPrix(price(t).montant, devise, langue)}
+            </span>
+            {t !== pin && (
+              <Delta
+                value={price(t).montant - price(pin).montant}
+                unit={
+                  devise === "EUR" || devise === "GBP" ? (devise === "EUR" ? "€" : "£") : devise
+                }
+                argent
+              />
+            )}
+          </>
+        ),
     },
   ];
 
@@ -344,24 +352,26 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
           <i aria-hidden="true" />
           {textes.comparateur.differences}
         </label>
-        <CurrencyPills className="cp-cur" />
+        {prixPublics && <CurrencyPills className="cp-cur" />}
       </div>
 
-      <div className="cp-budget">
-        <label htmlFor="cp-budget">
-          <span>{textes.comparateur.votreBudget}</span>
-          <output htmlFor="cp-budget">{formatPrix(budgetAffiche, devise, langue)}</output>
-        </label>
-        <input
-          id="cp-budget"
-          type="range"
-          min={bornes.min}
-          max={bornes.max}
-          step={bornes.pas}
-          value={Math.min(Math.max(budgetAffiche, bornes.min), bornes.max)}
-          onChange={(event) => setBudget({ montant: Number(event.target.value), devise })}
-        />
-      </div>
+      {prixPublics && (
+        <div className="cp-budget">
+          <label htmlFor="cp-budget">
+            <span>{textes.comparateur.votreBudget}</span>
+            <output htmlFor="cp-budget">{formatPrix(budgetAffiche, devise, langue)}</output>
+          </label>
+          <input
+            id="cp-budget"
+            type="range"
+            min={bornes.min}
+            max={bornes.max}
+            step={bornes.pas}
+            value={Math.min(Math.max(budgetAffiche, bornes.min), bornes.max)}
+            onChange={(event) => setBudget({ montant: Number(event.target.value), devise })}
+          />
+        </div>
+      )}
 
       <div
         ref={scrollRef}

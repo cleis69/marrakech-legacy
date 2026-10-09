@@ -1,4 +1,11 @@
-import { formatPrix, formatSurface, prixVilla, prixVillas, programme } from "@/config/citystar";
+import {
+  formatPrix,
+  formatSurface,
+  prixPublics,
+  prixVilla,
+  prixVillas,
+  programme,
+} from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import { type CursorHandlers, faitsVilla, villas } from "./data";
@@ -65,14 +72,15 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
                     {t.villas.villa} {villa.type}
                   </strong>
                   <span className="vd-prix">
-                    {approximatif ? "≈ " : ""}
-                    {formatPrix(montant, devise, langue)}
+                    {prixPublics
+                      ? `${approximatif ? "≈ " : ""}${formatPrix(montant, devise, langue)}`
+                      : t.prix.surDemande}
                   </span>
                 </span>
                 <span className="vd-specs">
                   {faits.surface} · {faits.suites} · {t.villas.terrain.toLowerCase()}{" "}
                   {faits.terrain}
-                  {!prixVillas[villa.type].confirme && ` · ${t.prix.indicatifCourt}`}
+                  {prixPublics && !prixVillas[villa.type].confirme && ` · ${t.prix.indicatifCourt}`}
                 </span>
               </Lien>
             </li>

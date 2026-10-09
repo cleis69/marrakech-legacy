@@ -9,6 +9,7 @@ import {
   formatDate,
   formatPrix,
   prixVilla,
+  prixPublics,
   prixVillas,
   symbolesDevise,
 } from "@/config/citystar";
@@ -95,6 +96,13 @@ export function VillaPrice({ type }: { type: TypeVilla }) {
   const { devise, langue, t, taux } = useDevise();
   const { montant, approximatif } = prixVilla(type, devise, taux);
   const reference = prixVilla(type, "EUR", taux).montant;
+  if (!prixPublics)
+    return (
+      <div className="vprice">
+        <span className="vprice-label">{t.prix.label}</span>
+        <strong className="vprice-main">{t.prix.surDemande}</strong>
+      </div>
+    );
   return (
     <div className="vprice">
       <span className="vprice-label">{t.prix.label}</span>

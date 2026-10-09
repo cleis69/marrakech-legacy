@@ -165,6 +165,7 @@ const fr = {
     contreValeur: (date: string) => `Contre-valeur indicative · taux du ${date}`,
     indicatif: "Prix indicatif, sous réserve de confirmation",
     indicatifCourt: "prix indicatif",
+    surDemande: "Prix sur demande",
     devises: {
       EUR: "Euros",
       GBP: "Livres sterling",
@@ -437,8 +438,8 @@ const fr = {
     },
     {
       id: "prix",
-      q: "Les prix affichés sont-ils définitifs\u00a0?",
-      r: "Ils sont indicatifs et à confirmer contractuellement. Les montants en dirhams et en couronnes sont des contre-valeurs, calculées au taux du jour et signalées comme telles.",
+      q: "Quel est le prix des villas\u00a0?",
+      r: "Les prix sont communiqués sur demande, avec l’échéancier détaillé de la villa qui vous intéresse. Demandez à être rappelé par un conseiller.",
     },
     {
       id: "visite",
@@ -921,6 +922,7 @@ const en: Textes = {
     contreValeur: (date) => `Indicative conversion · rate of ${date}`,
     indicatif: "Indicative price, subject to confirmation",
     indicatifCourt: "indicative price",
+    surDemande: "Price on request",
     devises: {
       EUR: "Euros",
       GBP: "Pounds sterling",
@@ -1176,8 +1178,8 @@ const en: Textes = {
     },
     {
       id: "prix",
-      q: "Are the prices shown final?",
-      r: "They are indicative and to be confirmed contractually. Amounts in dirhams and kroner are conversions at the day's rate, and are marked as such.",
+      q: "What do the villas cost?",
+      r: "Prices are given on request, together with the detailed payment schedule for the villa you are interested in. Ask an adviser to call you back.",
     },
     {
       id: "visite",

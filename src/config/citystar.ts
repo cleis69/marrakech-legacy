@@ -27,10 +27,8 @@ export const programme = {
   terrainMaxM2: 2000,
   // Temps de trajet vers la place Jemaa el-Fna et l'aéroport de Marrakech.
   trajetMaxMinutes: 35,
-  // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
-  // Ces coordonnées semblent désigner le centre de Marrakech, pas le domaine
-  // d'Oulad Hassoune : à corriger avant mise en ligne.
-  coordonnees: { latitude: 31.6295, longitude: -7.9811, confirme: false },
+  // Coordonnées du domaine reprises de la page REV du programme (09/10/2026), validées par le client.
+  coordonnees: { latitude: 31.6436578, longitude: -7.8716987, confirme: true },
 } as const;
 
 export const villasChiffres: Record<
@@ -53,6 +51,13 @@ export const villasChiffres: Record<
  * 1 M €.
  */
 // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
+/**
+ * Affichage des prix : coupé à la demande du client (09/10/2026). Tant qu'il vaut
+ * false, aucun montant de villa n'apparaît ; les outils affichent « Prix sur demande »
+ * et le sélecteur comme le comparateur n'ont plus de curseur de budget.
+ */
+export const prixPublics = false;
+
 export const prixVillas: Record<TypeVilla, { EUR: number; GBP: number; confirme: boolean }> = {
   A: { EUR: 1_480_000, GBP: 1_269_000, confirme: false },
   B: { EUR: 1_180_000, GBP: 999_000, confirme: false },

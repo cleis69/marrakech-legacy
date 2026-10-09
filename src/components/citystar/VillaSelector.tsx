@@ -10,6 +10,7 @@ import {
   bornesBudget,
   convertirEUR,
   formatPrix,
+  prixPublics,
   prixVilla,
   prixVillas,
   villasChiffres,
@@ -130,7 +131,7 @@ export function VillaSelector({
   };
 
   const suites = [...new Set(TYPES.map((t) => villasChiffres[t].suites))].sort((x, y) => x - y);
-  const questions: Question[] = [
+  const toutes: Question[] = [
     {
       key: "usage",
       title: t.selecteur.questions.usage.titre,
@@ -189,6 +190,8 @@ export function VillaSelector({
     },
   ];
 
+  /* Sans prix publics, la question du budget n'a pas de sens : elle disparaît. */
+  const questions = toutes.filter((question) => prixPublics || question.key !== "budget");
   const STEPS = questions.length;
   const done = step >= STEPS;
   const winner = done ? recommend(answers, taux) : null;
@@ -442,8 +445,9 @@ export function VillaSelector({
                     {faits.suites} · {faits.surface}
                   </span>
                   <span>
-                    {price.approximatif ? "≈ " : ""}
-                    {formatPrix(price.montant, devise, langue)}
+                    {prixPublics
+                      ? `${price.approximatif ? "≈ " : ""}${formatPrix(price.montant, devise, langue)}`
+                      : t.prix.surDemande}
                   </span>
                 </div>
                 <span className="sl-card-why" aria-live="polite">

@@ -4,6 +4,7 @@ import {
   type TypeVilla,
   brochures,
   formatPrix,
+  prixPublics,
   prixVilla,
   villasChiffres,
 } from "@/config/citystar";
@@ -97,18 +98,20 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             </div>
           </dl>
           <VillaPrice type={villa.type} />
-          <p className="vf-m2">
-            {t.villas.prixM2(
-              formatPrix(
-                Math.round(
-                  prixVilla(villa.type, devise, taux).montant /
-                    villasChiffres[villa.type].surfaceConstruiteM2,
+          {prixPublics && (
+            <p className="vf-m2">
+              {t.villas.prixM2(
+                formatPrix(
+                  Math.round(
+                    prixVilla(villa.type, devise, taux).montant /
+                      villasChiffres[villa.type].surfaceConstruiteM2,
+                  ),
+                  devise,
+                  langue,
                 ),
-                devise,
-                langue,
-              ),
-            )}
-          </p>
+              )}
+            </p>
+          )}
           <div
             id="plans"
             className="vf-plans"
