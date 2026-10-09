@@ -1,6 +1,9 @@
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { ArrowDown, ArrowRight, ChevronLeft, ChevronRight, Download, Expand, MapPin, Menu, MessageCircle, Play, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { citystar } from "@/config/citystar";
+import { getMessages } from "@/lib/i18n";
+import { Seal } from "@/components/ui/Seal";
 
 import heroVideo from "@/assets/citystar/hero-video.mp4";
 import architectureImage from "@/assets/citystar/architecture.jpeg";
@@ -20,10 +23,12 @@ import planCRdc from "@/assets/citystar/plan-c-rdc.png";
 import planCFloor from "@/assets/citystar/plan-c-floor.png";
 
 const villas = [
-  { type: "A", image: villaAImage, area: "585 m²", land: "2 000 m²", bedrooms: "5 suites", description: "Pensée pour les résidents à mobilité réduite, avec ascenseur, salles de bains accessibles et espaces généreux pour une circulation fluide.", plans: [planARdc, planAFloor] },
-  { type: "B", image: villaBImage, area: "536 m²", land: "2 000 m²", bedrooms: "5 suites", description: "Une architecture exigeante, des matériaux de haute qualité et une conception intelligente, prolongée par de vastes terrasses.", plans: [planBRdc, planBFloor] },
-  { type: "C", image: villaCImage, area: "525 m²", land: "2 000 m²", bedrooms: "4 suites", description: "Des volumes contemporains, une piscine privée et des espaces conçus selon les standards architecturaux les plus exigeants.", plans: [planCRdc, planCFloor] },
+  { type: "A", image: villaAImage, area: `${citystar.villas.A.surface} m²`, land: `${citystar.villas.A.terrain.toLocaleString("fr-FR")} m²`, bedrooms: `${citystar.villas.A.suites} suites`, description: "Pensée pour les résidents à mobilité réduite, avec ascenseur, salles de bains accessibles et espaces généreux pour une circulation fluide.", plans: [planARdc, planAFloor] },
+  { type: "B", image: villaBImage, area: `${citystar.villas.B.surface} m²`, land: `${citystar.villas.B.terrain.toLocaleString("fr-FR")} m²`, bedrooms: `${citystar.villas.B.suites} suites`, description: "Une architecture exigeante, des matériaux de haute qualité et une conception intelligente, prolongée par de vastes terrasses.", plans: [planBRdc, planBFloor] },
+  { type: "C", image: villaCImage, area: `${citystar.villas.C.surface} m²`, land: `${citystar.villas.C.terrain.toLocaleString("fr-FR")} m²`, bedrooms: `${citystar.villas.C.suites} suites`, description: "Des volumes contemporains, une piscine privée et des espaces conçus selon les standards architecturaux les plus exigeants.", plans: [planCRdc, planCFloor] },
 ] as const;
+
+const t = getMessages("fr");
 
 const navItems = [
   ["Le projet", "project"], ["Architecture", "architecture"], ["Les villas", "villas"],
@@ -42,6 +47,7 @@ export default function CitystarExperience() {
   const [planOpen, setPlanOpen] = useState<string | null>(null);
   const [tourOpen, setTourOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [contactRequest, setContactRequest] = useState("");
   const [cursor, setCursor] = useState({ x: -100, y: -100, label: "" });
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll();
@@ -67,7 +73,7 @@ export default function CitystarExperience() {
         <nav className="desktop-nav" aria-label="Navigation principale">
           {navItems.map(([label, id]) => <button key={id} onClick={() => scrollTo(id)}>{label}</button>)}
         </nav>
-        <button className="appointment-link" onClick={() => setContactOpen(true)}>Prendre rendez-vous <ArrowRight size={14} /></button>
+        <button className="appointment-link" onClick={() => { setContactRequest(""); setContactOpen(true); }}>Prendre rendez-vous <ArrowRight size={14} /></button>
         <button className="menu-trigger" onClick={() => setMenuOpen(true)} aria-label="Ouvrir le menu"><Menu /></button>
       </header>
 
@@ -88,6 +94,8 @@ export default function CitystarExperience() {
         <button className="explore-link" onClick={() => scrollTo("project")}><span>Explorer Citystar</span><ArrowDown size={17} /></button>
         <span className="hero-index">31.6295° N<br />7.9811° W</span>
       </section>
+
+      <CommitmentsSection onContact={() => { setContactRequest(t.contact.requests.dossier); setContactOpen(true); }} />
 
       <section id="project" className="intro-section section-pad">
         <div className="section-label"><span>01</span><p>Le projet</p></div>
@@ -116,6 +124,7 @@ export default function CitystarExperience() {
 
       <section id="villas" className="villas-section section-pad">
         <div className="section-label"><span>03</span><p>Les villas</p></div>
+        {citystar.villasDisponibles !== null && <div className="rarity-kicker"><i />{t.rarity(citystar.villasDisponibles, citystar.villasTotal)}</div>}
         <div className="villas-heading"><Reveal><h2>Trois expressions.<br />Une même <em>exigence.</em></h2></Reveal><p>Choisissez une résidence dessinée autour de votre façon de vivre.</p></div>
         <div className="villa-gallery">
           {villas.map((villa, index) => <article key={villa.type} className="villa-card" onMouseEnter={setCursorLabel("EXPLORE")} onMouseLeave={() => setCursor({ ...cursor, label: "" })} onClick={() => { setActiveVilla(index); setVillaOpen(true); }}>
@@ -127,12 +136,18 @@ export default function CitystarExperience() {
         </div>
       </section>
 
+      <MarketSection />
+
+      <YieldSimulator />
+
       <section id="lifestyle" className="lifestyle-section section-pad">
         <div className="section-label"><span>04</span><p>L’art de vivre</p></div>
         <div className="lifestyle-intro"><Reveal><h2>Le confort,<br />dans ses moindres <em>détails.</em></h2></Reveal></div>
         <div className="editorial-scene scene-one"><img src={lifestyleOne} alt="Piscine privée et jardin d’une villa CITYSTAR" loading="lazy" /><div><span>01 — Sérénité</span><h3>Un domaine privé,<br />gardé jour et nuit.</h3><p>Chaque villa isolée préserve son intimité, avec des espaces extérieurs et une piscine privée.</p></div></div>
         <div className="editorial-scene scene-two"><div><span>02 — Conscience</span><h3>Conçu pour une vie<br />plus responsable.</h3><p>Les toitures sont équipées de panneaux solaires. Climatisation, parking, aire de jeux et équipements accessibles prolongent le confort quotidien.</p></div><img src={lifestyleTwo} alt="Intérieur lumineux d’une villa de luxe CITYSTAR" loading="lazy" /></div>
       </section>
+
+      <DayHereSection />
 
       <section id="visite" className="tour-section" onMouseEnter={setCursorLabel("OPEN")} onMouseLeave={() => setCursor({ ...cursor, label: "" })} onClick={() => setTourOpen(true)}>
         <img src={visitImage} alt="Aperçu de la visite virtuelle d’une villa CITYSTAR" loading="lazy" />
@@ -148,8 +163,11 @@ export default function CitystarExperience() {
         <button className="masterplan" onClick={() => setPlanOpen(masterplanImage)}><img src={masterplanImage} alt="Plan de situation de la résidence CITYSTAR" loading="lazy" /><span><Expand /> Agrandir le plan de situation</span></button>
       </section>
 
+      <PromoterMessage />
+
       <section id="contact" className="final-cta">
-        <span>Votre résidence à Marrakech vous attend.</span><h2>Découvrir CITYSTAR<br /><em>en personne.</em></h2><button onClick={() => setContactOpen(true)}>Prendre rendez-vous <ArrowRight /></button>
+        <span>{t.finalCta.eyebrow}</span><h2>{t.finalCta.title}</h2><p>{t.finalCta.intro}</p>
+        <div className="final-options"><button onClick={() => { setContactRequest(t.contact.requests.video); setContactOpen(true); }}>{t.finalCta.video}<ArrowRight /></button><button onClick={() => { setContactRequest(t.contact.requests.callback); setContactOpen(true); }}>{t.finalCta.callback}<ArrowRight /></button><button onClick={() => scrollTo("simulateur")}>{t.finalCta.yield}<ArrowDown /></button></div>
       </section>
 
       <footer>
@@ -161,12 +179,12 @@ export default function CitystarExperience() {
       </footer>
 
       <a className="whatsapp" href="https://wa.me/212661825359" target="_blank" rel="noreferrer" aria-label="Contacter CITYSTAR sur WhatsApp"><MessageCircle /></a>
-      <button className="mobile-sticky-cta" onClick={() => setContactOpen(true)}>Prendre rendez-vous</button>
+      <button className="mobile-sticky-cta" onClick={() => { setContactRequest(""); setContactOpen(true); }}>Prendre rendez-vous</button>
 
       <AnimatePresence>{villaOpen && <VillaModal villa={villas[activeVilla] ?? villas[0]} onClose={() => setVillaOpen(false)} onPlan={setPlanOpen} onPrev={() => setActiveVilla((activeVilla + 2) % 3)} onNext={() => setActiveVilla((activeVilla + 1) % 3)} />}</AnimatePresence>
       <AnimatePresence>{planOpen && <motion.div className="plan-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><button onClick={() => setPlanOpen(null)} aria-label="Fermer le plan"><X /></button><img src={planOpen} alt="Plan architectural CITYSTAR en grand format" /></motion.div>}</AnimatePresence>
       <AnimatePresence>{tourOpen && <motion.div className="tour-modal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><button onClick={() => setTourOpen(false)} aria-label="Fermer la visite"><X /></button><iframe src="https://momento360.com/e/u/d4658634f15c4a3fa6fdb5ef818d3e5a?utm_campaign=embed&utm_source=other&heading=0&pitch=0&field-of-view=75&size=medium&display-plan=true" title="Visite virtuelle 360° CITYSTAR" allowFullScreen /></motion.div>}</AnimatePresence>
-      <AnimatePresence>{contactOpen && <ContactPanel onClose={() => setContactOpen(false)} />}</AnimatePresence>
+      <AnimatePresence>{contactOpen && <ContactPanel initialRequest={contactRequest} onClose={() => setContactOpen(false)} />}</AnimatePresence>
     </main>
   );
 }
@@ -184,6 +202,34 @@ function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   return <div className="parallax-wrap" ref={ref}><motion.img style={{ y }} src={src} alt={alt} loading="lazy" /></div>;
 }
 
+function CommitmentsSection({ onContact }: { onContact: () => void }) {
+  return <section className="commitments-section section-pad" aria-labelledby="commitments-title"><div className="section-label"><span>02</span><p>{t.commitments.eyebrow}</p></div><div className="commitments-head"><Reveal><h2 id="commitments-title">{t.commitments.title}</h2></Reveal><p>{t.commitments.intro}</p></div><div className="commitments-grid">{t.commitments.items.map((item, index) => <article key={item.title}><Seal number={`0${index + 1}`}><span>CITYSTAR</span></Seal><h3>{item.title}</h3><p>{item.text}</p></article>)}</div><button className="text-link" onClick={onContact}>{t.commitments.cta}<ArrowRight /></button></section>;
+}
+
+function MarketSection() {
+  const market = citystar.marche;
+  return <section className="market-section section-pad" aria-labelledby="market-title"><div className="section-label light"><span>04</span><p>{t.market.eyebrow}</p></div><div className="market-head"><Reveal><h2 id="market-title">{t.market.title}</h2></Reveal><p>{t.market.conclusion}</p></div><div className="market-stats"><MarketNumber value={market.evolutionTransactionsMarrakech} label={t.market.transactionsLabel} /><MarketNumber value={market.evolutionPrixMarrakech} label={t.market.pricesLabel} /></div><div className="market-chart"><h3>{t.market.comparison}</h3>{market.transactions.map(({ ville, valeur }) => <div className={ville === "Marrakech" ? "is-highlighted" : ""} key={ville}><span>{ville}</span><i><motion.b initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.2 }} style={{ width: `${(valeur / market.evolutionTransactionsMarrakech) * 100}%` }} /></i><strong>+{valeur.toLocaleString("fr-FR")} %</strong></div>)}</div><details className="market-source"><summary>{t.market.sourceSummary}</summary><p>{t.market.sourceText} <a href={market.sourceUrl} target="_blank" rel="noreferrer">{t.market.sourceLink}</a></p></details></section>;
+}
+
+function MarketNumber({ value, label }: { value: number; label: string }) {
+  return <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}><strong>+{value.toLocaleString("fr-FR")}<sup>%</sup></strong><span>{label}<small>{citystar.marche.annee} vs 2024</small></span></motion.div>;
+}
+
+function YieldSimulator() {
+  const [investment, setInvestment] = useState(1200000); const [rent, setRent] = useState(72000); const result = investment > 0 ? (rent / investment) * 100 : 0;
+  return <section id="simulateur" className="yield-section section-pad" aria-labelledby="yield-title"><div><p className="eyebrow">{t.simulator.eyebrow}</p><h2 id="yield-title">{t.simulator.title}</h2><p>{t.simulator.intro}</p></div><div className="yield-tool"><label>{t.simulator.investment}<input type="number" min="1" value={investment} onChange={e => setInvestment(Number(e.target.value))} /><span>€</span></label><label>{t.simulator.annualRent}<input type="number" min="0" value={rent} onChange={e => setRent(Number(e.target.value))} /><span>€</span></label><output><span>{t.simulator.result}</span><strong>{result.toLocaleString("fr-FR", { maximumFractionDigits: 2 })} %</strong></output><small>{t.simulator.disclaimer}</small></div></section>;
+}
+
+function DayHereSection() {
+  return <section className="day-section" aria-labelledby="day-title"><img src={lifestyleOne} alt="Terrasse et piscine CITYSTAR au soleil" loading="lazy" /><div className="day-shade"/><div><p className="eyebrow" id="day-title">{t.day.eyebrow}</p>{t.day.lines.map((line, index) => <motion.p key={line} initial={{ opacity: 0, y: 25 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-10%" }} transition={{ duration: .8, delay: index * .09 }}>{line}</motion.p>)}</div></section>;
+}
+
+function PromoterMessage() {
+  const message = citystar.motPromoteur;
+  if (!message.nom || !message.role || !message.citation || !message.photo) return null;
+  return <section className="promoter-section section-pad" aria-labelledby="promoter-title"><img src={message.photo} alt={message.nom}/><div><p className="eyebrow">{t.promoter.eyebrow}</p><blockquote id="promoter-title">“{message.citation}”</blockquote><p>{message.nom}<span>{message.role}</span></p></div></section>;
+}
+
 function VillaModal({ villa, onClose, onPlan, onPrev, onNext }: { villa: typeof villas[number]; onClose: () => void; onPlan: (src: string) => void; onPrev: () => void; onNext: () => void }) {
   return <motion.div className="villa-modal" initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ duration: .75, ease: [0.76, 0, 0.24, 1] }}>
     <button className="modal-close" onClick={onClose}><X /> Fermer</button><div className="villa-modal-image"><img src={villa.image} alt={`Villa Type ${villa.type}`} /></div>
@@ -195,8 +241,8 @@ function VillaModal({ villa, onClose, onPlan, onPrev, onNext }: { villa: typeof 
   </motion.div>;
 }
 
-function ContactPanel({ onClose }: { onClose: () => void }) {
+function ContactPanel({ onClose, initialRequest }: { onClose: () => void; initialRequest: string }) {
   return <motion.aside className="contact-panel" initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ duration: .65, ease: [0.76, 0, 0.24, 1] }}><button className="modal-close" onClick={onClose}><X /> Fermer</button><div><p className="eyebrow">Rencontrons-nous</p><h2>Planifier<br /><em>une visite.</em></h2><p>Notre équipe vous accompagne dans la découverte de CITYSTAR et de ses trois types de villas.</p>
-    <form action="mailto:Promoimmomarrakech@gmail.com" method="post" encType="text/plain"><label>Nom complet<input name="Nom" required /></label><label>Téléphone<input type="tel" name="Téléphone" required /></label><label>E-mail<input type="email" name="Email" required /></label><label>Votre intérêt<select name="Intérêt"><option>Découvrir le projet</option><option>Villa Type A</option><option>Villa Type B</option><option>Villa Type C</option><option>Planifier une visite</option></select></label><button type="submit">Envoyer ma demande <ArrowRight /></button></form>
+    <form action="mailto:Promoimmomarrakech@gmail.com" method="post" encType="text/plain"><label>Nom complet<input name="Nom" required /></label><div className="phone-fields"><label>{t.contact.countryCode}<select name="Indicatif">{t.contact.countryOptions.map(option => <option key={option}>{option}</option>)}</select></label><label>Téléphone<input type="tel" name="Téléphone" required /></label></div><label>E-mail<input type="email" name="Email" required /></label><label>Votre intérêt<select name="Intérêt" defaultValue={initialRequest || "Découvrir le projet"}>{initialRequest && <option>{initialRequest}</option>}<option>Découvrir le projet</option><option>Villa Type A</option><option>Villa Type B</option><option>Villa Type C</option><option>Planifier une visite</option></select></label><label>{t.contact.budget}<select name="Budget">{t.contact.budgetOptions.map(option => <option key={option}>{option}</option>)}</select></label><button type="submit">Envoyer ma demande <ArrowRight /></button></form>
     <div className="direct-contact"><a href="tel:+212661825359">+212 661-825359</a><a href="mailto:Promoimmomarrakech@gmail.com">Promoimmomarrakech@gmail.com</a></div></div></motion.aside>;
 }
