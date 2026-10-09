@@ -1,6 +1,7 @@
 import { CalendrierSection } from "../CalendrierSection";
 import { useDevise } from "../currency";
 import { FinalCta } from "../FinalCta";
+import { MarcheSection } from "../MarcheSection";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
@@ -8,7 +9,7 @@ import { YieldSimulator } from "../YieldSimulator";
 
 export function InvestirPage() {
   const { t } = useDevise();
-  const { ouvrirContact, ouvrirContactAvec } = useSite();
+  const { ouvrirContactAvec } = useSite();
   return (
     <>
       <PageHeader
@@ -28,10 +29,11 @@ export function InvestirPage() {
           ))}
         </ul>
       </section>
+      <MarcheSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

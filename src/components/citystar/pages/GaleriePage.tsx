@@ -9,7 +9,7 @@ import { TourSection } from "../TourSection";
 
 export function GaleriePage() {
   const { t } = useDevise();
-  const { ouvrirVisite, ouvrirContact } = useSite();
+  const { ouvrirVisite } = useSite();
   return (
     <>
       <PageHeader
@@ -21,7 +21,7 @@ export function GaleriePage() {
       <ArchitectureSection />
       <TourSection onOpenTour={ouvrirVisite} />
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

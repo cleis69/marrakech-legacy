@@ -17,7 +17,7 @@ import { VillaSelector } from "../VillaSelector";
  */
 export function VillasPage() {
   const { t } = useDevise();
-  const { ouvrirPlan, ouvrirContact, ouvrirContactAvec } = useSite();
+  const { ouvrirPlan, ouvrirContactAvec } = useSite();
   const [reference, setReference] = useState<{
     type: TypeVilla;
     budget: Budget | null;
@@ -42,7 +42,7 @@ export function VillasPage() {
         reference={reference}
       />
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

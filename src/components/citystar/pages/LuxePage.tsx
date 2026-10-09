@@ -9,7 +9,7 @@ import { VillasSection } from "../VillasSection";
 /** Page thématique : elle raconte le domaine à qui cherche « une villa de luxe à Marrakech ». */
 export function LuxePage() {
   const { t } = useDevise();
-  const { onCursorEnter, onCursorLeave, ouvrirContact } = useSite();
+  const { onCursorEnter, onCursorLeave } = useSite();
   return (
     <>
       <PageHeader
@@ -30,7 +30,7 @@ export function LuxePage() {
       </section>
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} sansEntete />
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

@@ -74,6 +74,32 @@ export const devises = {
 } as const;
 
 /* ------------------------------------------------------------------ */
+/* Engagements et marché                                               */
+/* ------------------------------------------------------------------ */
+
+export const engagements = {
+  // Annoncé par le client (09/10/2026) : domaine financé intégralement sur fonds propres.
+  fondsPropres: 1,
+};
+
+/**
+ * Bank Al-Maghrib et ANCFCC, indice des prix des actifs immobiliers (IPAI) de
+ * l'année 2025, publié le 04/03/2026. Chiffres vérifiés le 09/10/2026 sur le
+ * compte rendu de Boursenews (le PDF de l'ANCFCC cité au départ renvoie une 404).
+ */
+export const marche = {
+  annee: 2025,
+  prixMarrakech: 0.01,
+  transactions: [
+    { ville: "Marrakech", evolution: 0.241 },
+    { ville: "Rabat", evolution: 0.15 },
+    { ville: "Casablanca", evolution: 0.078 },
+    { ville: "Tanger", evolution: 0.033 },
+  ],
+  sourceUrl: "https://boursenews.ma/article/actualite/Immobilier-IPAI-2025",
+};
+
+/* ------------------------------------------------------------------ */
 /* Calendrier du chantier                                              */
 /* ------------------------------------------------------------------ */
 
@@ -335,6 +361,17 @@ export function formatMois({ annee, mois }: Mois, langue: Langue = "fr") {
     year: "numeric",
     timeZone: "UTC",
   }).format(date);
+}
+
+/** Évolution signée : 0,241 → « +24,1 % » (fr) ou « +24.1% » (en). */
+export function formatEvolution(part: number, langue: Langue = "fr") {
+  const nombre = (part * 100).toLocaleString(LOCALE[langue], { maximumFractionDigits: 1 });
+  return `${part >= 0 ? "+" : ""}${nombre}${langue === "fr" ? "\u00a0" : ""}%`;
+}
+
+/** Part entière : 1 → « 100 % » (fr) ou « 100% » (en). */
+export function formatPart(part: number, langue: Langue = "fr") {
+  return `${Math.round(part * 100)}${langue === "fr" ? "\u00a0" : ""}%`;
 }
 
 /** Mois entiers d'aujourd'hui jusqu'à une échéance (0 si elle est passée). */

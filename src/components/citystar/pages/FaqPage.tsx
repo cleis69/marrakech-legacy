@@ -51,7 +51,7 @@ export function FaqPage() {
         </nav>
       </section>
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

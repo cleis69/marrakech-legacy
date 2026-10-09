@@ -9,15 +9,6 @@ button.seal:hover .seal-core, button.seal:focus-visible .seal-core { background:
 button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6px; }
 @keyframes seal-spin { to { transform: rotate(360deg); } }
 
-/* ---------- Entrer dans le cercle ---------- */
-.circle { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 4vw; min-height: 86vh; padding: 9rem 8vw; background: var(--sand); color: var(--ink); }
-.circle-text { display: grid; justify-items: start; gap: 1.8rem; }
-.circle-kicker { font-size: .7rem; letter-spacing: .24em; text-transform: uppercase; color: var(--bronze-deep); }
-.circle-text h2 { font: 400 clamp(3.4rem, 7vw, 7.4rem)/.95 "Italiana", serif; text-wrap: balance; }
-.circle-text > p:not(.circle-kicker) { max-width: 30rem; font-size: 1.02rem; line-height: 1.75; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
-.circle-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; margin-top: .6rem; }
-.circle-seal { justify-self: center; font-size: 1.45rem; }
-
 /* ---------- Pied de page ---------- */
 .ft { position: relative; overflow: hidden; padding: 6rem 5vw 0; background: var(--ink); color: var(--cream); }
 .ft a, .ft button { color: inherit; text-decoration: none; }
@@ -59,9 +50,6 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
 @keyframes ft-rise { from { opacity: 0; transform: translateY(60%); } }
 
 @media (max-width: 900px) {
-  .circle { grid-template-columns: 1fr; justify-items: start; min-height: 0; padding: 6rem 1.3rem; }
-  .circle-text h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
-  .circle-seal { font-size: 1.05rem; }
   .ft { padding: 4.5rem 1.3rem 0; }
   .ft-head { grid-template-columns: auto 1fr; gap: 1.2rem; }
   .ft-social { grid-column: 1 / -1; }

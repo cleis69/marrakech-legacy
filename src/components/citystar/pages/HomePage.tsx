@@ -1,8 +1,10 @@
 import { CalendrierSection } from "../CalendrierSection";
+import { EngagementsSection } from "../EngagementsSection";
 import { FinalCta } from "../FinalCta";
 import { HeroSection } from "../HeroSection";
 import { LifestyleSection } from "../LifestyleSection";
 import { LocationSection } from "../LocationSection";
+import { MarcheSection } from "../MarcheSection";
 import { Marquee } from "../Marquee";
 import { ProjectSection } from "../ProjectSection";
 import { Ruban } from "../Ruban";
@@ -16,14 +18,16 @@ export function HomePage() {
     <>
       <HeroSection onContact={ouvrirContact} />
       <ProjectSection />
+      <EngagementsSection />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <Ruban />
       <LifestyleSection />
       <Marquee />
       <LocationSection onOpenPlan={ouvrirPlan} />
+      <MarcheSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
     </>
   );
 }

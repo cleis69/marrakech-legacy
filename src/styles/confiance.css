@@ -1,0 +1,56 @@
+/* ---------- Trois engagements ---------- */
+.eg { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; justify-items: start; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--ink); color: var(--cream); }
+.eg-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; width: 100%; }
+.eg-head h2 { max-width: 16ch; font: 400 clamp(2.4rem, 4.4vw, 4.2rem)/1.04 "Italiana", serif; text-wrap: balance; }
+.eg-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 78%, transparent); }
+.eg-liste { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; width: 100%; margin: 0; padding: 0; list-style: none; }
+.eg-liste li { display: grid; gap: .9rem; align-content: start; padding-top: 1.6rem; border-top: 1px solid color-mix(in oklab, var(--sand) 30%, transparent); }
+.eg-num { font: 400 2.6rem/1 "Italiana", serif; color: var(--bronze-line); }
+.eg-liste h3 { margin: 0; font: 400 clamp(1.5rem, 2.1vw, 1.9rem)/1.15 "Italiana", serif; }
+.eg-liste p { max-width: 24rem; font-size: .95rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 72%, transparent); }
+
+/* ---------- Le marché ---------- */
+.mc { display: grid; gap: clamp(3rem, 5vw, 4.5rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--cream); }
+.mc-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem 4rem; }
+.mc-head h2 { font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
+.mc-head p { max-width: 24rem; font-size: 1rem; line-height: 1.7; color: var(--muted-foreground); }
+.mc-corps { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
+.mc-chiffres { display: grid; gap: 2rem; margin: 0; }
+.mc-chiffres div { display: grid; gap: .6rem; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
+.mc-chiffres dt { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.mc-chiffres dd { margin: 0; font: 400 clamp(3.6rem, 7vw, 6.2rem)/1 "Italiana", serif; }
+.mc-chiffres dd small { margin-left: .2em; font: 400 1.4rem "DM Sans", sans-serif; }
+.mc-villes { display: grid; gap: 1.6rem; margin: 0; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
+.mc-villes figcaption { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.mc-villes ul { display: grid; gap: 1.1rem; margin: 0; padding: 0; list-style: none; }
+.mc-villes li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 4.5rem; align-items: center; gap: 1.2rem; font-size: .95rem; }
+.mc-barre { height: 10px; background: linear-gradient(90deg, var(--sand) calc(var(--part) * 100%), transparent 0); }
+.mc-villes b { font-weight: 400; text-align: right; font-variant-numeric: tabular-nums; }
+.mc-villes .is-ici { font-weight: 500; }
+.mc-villes .is-ici .mc-barre { background: linear-gradient(90deg, var(--bronze) calc(var(--part) * 100%), transparent 0); }
+.mc-villes .is-ici b { font-weight: 500; }
+.mc-source summary { width: fit-content; padding: .6rem 0; font-size: .78rem; letter-spacing: .08em; color: var(--bronze-text); cursor: pointer; }
+.mc-source p { max-width: 46rem; margin-top: .4rem; font-size: .86rem; line-height: 1.7; color: var(--muted-foreground); }
+.mc-source a { color: var(--foreground); text-underline-offset: .25em; }
+
+/* ---------- Fin de page : trois façons d'engager la conversation ---------- */
+.circle { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(2.5rem, 6vw, 6rem); padding: clamp(5rem, 9vw, 8.5rem) var(--gouttiere); background: var(--sand); color: var(--ink); }
+.circle-text { display: grid; gap: 1.4rem; }
+.circle-text h2 { font: 400 clamp(2.8rem, 5.4vw, 5.2rem)/1 "Italiana", serif; text-wrap: balance; }
+.circle-text p { max-width: 26rem; font-size: 1.02rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
+.circle-choix { margin: 0; padding: 0; list-style: none; border-top: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); }
+.circle-choix li { border-bottom: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); }
+.circle-choix button { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; padding: 1.6rem .4rem; border: 0; background: none; color: inherit; text-align: left; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
+.circle-choix button span { display: grid; gap: .35rem; }
+.circle-choix b { font: 400 clamp(1.6rem, 2.4vw, 2.2rem)/1.1 "Italiana", serif; }
+.circle-choix small { font-size: .9rem; color: color-mix(in oklab, var(--ink) 70%, var(--sand)); }
+.circle-choix svg { flex: none; width: 1.2rem; height: 1.2rem; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.circle-choix button:hover, .circle-choix button:focus-visible { padding-inline: 1rem; background: color-mix(in oklab, var(--cream) 45%, transparent); }
+.circle-choix button:hover svg, .circle-choix button:focus-visible svg { transform: translateX(.3rem); }
+
+@media (max-width: 900px) {
+  .eg-liste { grid-template-columns: 1fr; gap: 2rem; }
+  .mc-corps { grid-template-columns: 1fr; }
+  .mc-villes li { grid-template-columns: 6rem minmax(0, 1fr) 4rem; gap: .8rem; }
+  .circle { grid-template-columns: 1fr; }
+}

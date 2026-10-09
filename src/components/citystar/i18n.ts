@@ -464,16 +464,57 @@ const fr = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
   },
+  engagements: {
+    titre: "Trois engagements. Une confiance entière.",
+    intro: "Des garanties concrètes, à chaque étape de votre acquisition.",
+    items: (fondsPropres: string) => [
+      {
+        titre: "Un promoteur qui a déjà livré",
+        texte: "Une expérience de la promotion immobilière déjà éprouvée à l’étranger.",
+      },
+      {
+        titre: `${fondsPropres} fonds propres`,
+        texte:
+          "Le domaine est financé sur fonds propres, sans dépendre d’un crédit ni des ventes sur plan.",
+      },
+      {
+        titre: "Le notaire dès la réservation",
+        texte:
+          "La réservation se signe directement chez le notaire, et chaque versement passe par son étude.",
+      },
+    ],
+    cta: "Recevoir le dossier",
+    selection: { outil: "Dossier CITYSTAR", ligne: "Demande du dossier complet" },
+  },
+  marche: {
+    titre: "Marrakech accélère.",
+    transactions: (annee: number) => `Transactions à Marrakech en ${annee}`,
+    prix: (annee: number) => `Prix à Marrakech en ${annee}`,
+    comparaison: (annee: number) => `Évolution des transactions en ${annee}, par ville`,
+    conclusion: (n: string) => `La demande accélère. À CITYSTAR, l’offre s’arrête à ${n} villas.`,
+    source: "Source et méthodologie",
+    sourceTexte: (annee: number) =>
+      `Bank Al-Maghrib et ANCFCC, indice des prix des actifs immobiliers (IPAI)\u00a0: évolution sur l’année ${annee} du nombre de transactions et de l’indice des prix, par ville.`,
+    sourceLien: "Lire le compte rendu de la publication",
+  },
   cercle: {
-    kicker: "Un domaine privé",
-    titre: ["Entrer dans", "le cercle."] as [string, string],
-    texte: (n: string) =>
-      `${n} villas, pas une de plus. Un conseiller vous rappelle pour vous présenter celle qui vous ressemble.`,
-    sceau: (n: string) => `ACCÈS PRIVÉ · CITYSTAR · ${n} VILLAS · `,
-    entrer: "Rappel",
-    demander: "Être rappelé par un conseiller",
-    conciergerie: "Conciergerie",
-    conciergerieAria: "Écrire à la conciergerie sur WhatsApp",
+    titre: "Un premier échange, sans engagement.",
+    intro: "Choisissez la conversation qui vous convient.",
+    options: {
+      visio: {
+        titre: "Rendez-vous en visio",
+        texte: "Une présentation du domaine et des villas, à distance.",
+      },
+      rappel: {
+        titre: "Être rappelé",
+        texte: "Un conseiller vous rappelle pour répondre à vos questions.",
+      },
+      rendement: {
+        titre: "Simuler mon rendement",
+        texte: "Une première projection, à affiner ensemble.",
+      },
+    },
+    selection: "Premier échange",
   },
   pied: {
     sceau: "RÉSIDENCE PRIVÉE · CITYSTAR · MARRAKECH · ",
@@ -1128,16 +1169,53 @@ const en: Textes = {
     legende: "Oulad Hassoune · Marrakech",
     aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
   },
+  engagements: {
+    titre: "Three commitments. Complete confidence.",
+    intro: "Concrete guarantees at every stage of your purchase.",
+    items: (fondsPropres) => [
+      {
+        titre: "A developer with a proven record",
+        texte: "Property development experience already proven abroad.",
+      },
+      {
+        titre: `${fondsPropres} equity-funded`,
+        texte: "The estate is funded from equity, with no reliance on loans or off-plan sales.",
+      },
+      {
+        titre: "The notary from reservation",
+        texte:
+          "The reservation is signed directly at the notary, and every payment goes through the notary’s office.",
+      },
+    ],
+    cta: "Receive the dossier",
+    selection: { outil: "CITYSTAR dossier", ligne: "Request for the full dossier" },
+  },
+  marche: {
+    titre: "Marrakech is accelerating.",
+    transactions: (annee) => `Transactions in Marrakech in ${annee}`,
+    prix: (annee) => `Prices in Marrakech in ${annee}`,
+    comparaison: (annee) => `Change in transactions in ${annee}, by city`,
+    conclusion: (n) => `Demand is accelerating. At CITYSTAR, supply stops at ${n} villas.`,
+    source: "Source and methodology",
+    sourceTexte: (annee) =>
+      `Bank Al-Maghrib and ANCFCC, real estate asset price index (IPAI): change over ${annee} in the number of transactions and in the price index, by city.`,
+    sourceLien: "Read the report on the publication",
+  },
   cercle: {
-    kicker: "A private estate",
-    titre: ["Enter", "the circle."],
-    texte: (n) =>
-      `${n} villas, not one more. An adviser calls you back to introduce the one that suits you.`,
-    sceau: (n) => `PRIVATE ACCESS · CITYSTAR · ${n} VILLAS · `,
-    entrer: "Call",
-    demander: "Request a call back",
-    conciergerie: "Concierge",
-    conciergerieAria: "Message the concierge on WhatsApp",
+    titre: "A first conversation, no commitment.",
+    intro: "Choose the conversation that suits you.",
+    options: {
+      visio: {
+        titre: "Video appointment",
+        texte: "A presentation of the estate and the villas, remotely.",
+      },
+      rappel: {
+        titre: "Request a call back",
+        texte: "An adviser calls you back to answer your questions.",
+      },
+      rendement: { titre: "Simulate my return", texte: "A first projection, to refine together." },
+    },
+    selection: "First conversation",
   },
   pied: {
     sceau: "PRIVATE RESIDENCE · CITYSTAR · MARRAKECH · ",

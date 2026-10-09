@@ -13,7 +13,7 @@ export function VillaPage({ type }: { type: TypeVilla }) {
     <>
       <VillaFiche type={type} onOpenPlan={ouvrirPlan} onContact={ouvrirContact} />
       <Marquee />
-      <FinalCta onContact={ouvrirContact} />
+      <FinalCta />
       <span className="sr-only">{t.villas.typeVilla(type)}</span>
     </>
   );
