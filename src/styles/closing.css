@@ -41,8 +41,8 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
 .ft-links button:hover, .ft-links a:hover { color: var(--sand); }
 .ft-links small { font-size: .7rem; letter-spacing: .08em; opacity: .7; }
 .ft-links svg { width: .85rem; height: .85rem; }
-/* Crédits : l'agence et la plateforme de la visite, avec leurs liens. */
-.ft-credits { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
+/* Crédits, tout en bas et au centre, sur une bande d'encre qui coupe le nom géant. */
+.ft-credits { position: relative; z-index: 1; justify-content: center; margin: 0 -5vw; padding: 1.2rem 1.3rem 1.4rem; background: var(--ink); border-top: 1px solid color-mix(in oklab, var(--cream) 12%, transparent); display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 55%, transparent); }
 .ft-credits a { display: inline-flex; padding: .4rem 0; opacity: .85; transition: opacity .3s; }
 .ft-credits a:hover, .ft-credits a:focus-visible { opacity: 1; }
 .ft-credits img { width: auto; height: 2.6rem; }
@@ -62,7 +62,7 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
   .ft-tile { padding: 1.1rem; }
   .ft-tile b { font-size: 1.1rem; }
   .ft-bar { display: grid; gap: 1.2rem; }
-  .ft-giant { margin-bottom: 6.6rem; }
+  .ft-credits { margin: 0 -1.3rem; padding-bottom: calc(1.4rem + 88px + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (prefers-reduced-motion: reduce) {
