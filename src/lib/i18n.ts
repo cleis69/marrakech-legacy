@@ -1,0 +1,128 @@
+export type Locale = "fr" | "en";
+
+export const messages = {
+  fr: {
+    commitments: {
+      eyebrow: "La méthode CITYSTAR",
+      title: "Trois engagements. Une confiance entière.",
+      intro: "Des garanties concrètes qui sécurisent chaque étape de votre acquisition.",
+      items: [
+        { title: "Un promoteur qui a déjà livré", text: "Une expérience déjà éprouvée à l’étranger." },
+        { title: "100 % fonds propres", text: "Le projet est intégralement financé sur fonds propres, sans dépendance à un crédit ou aux ventes sur plan." },
+        { title: "Le notaire dès le premier acompte", text: "Chaque versement passe par l’étude notariale." },
+      ],
+      cta: "Recevoir le dossier",
+    },
+    market: {
+      eyebrow: "Le marché",
+      title: "Marrakech accélère.",
+      transactionsLabel: "Transactions à Marrakech",
+      pricesLabel: "Prix à Marrakech",
+      comparison: "Évolution des transactions en 2025",
+      conclusion: "La demande accélère, tandis que l’offre de villas de standing reste rare.",
+      sourceSummary: "Source et méthodologie",
+      sourceText: "Bank Al-Maghrib & ANCFCC — Indice des prix des actifs immobiliers, publication T4 2025.",
+      sourceLink: "Consulter la publication officielle",
+    },
+    rarity: (available: number, total: number) => `${available} villas sur ${total} encore disponibles`,
+    day: {
+      eyebrow: "Une journée ici",
+      lines: [
+        "La lumière du matin glisse sur les murs.",
+        "La terrasse s’éveille dans la douceur de Marrakech.",
+        "Quelques pas mènent à la piscine.",
+        "Le temps ralentit, le silence reprend sa place.",
+        "Au loin, l’Atlas dessine l’horizon.",
+        "Ici, chaque journée retrouve son rythme naturel.",
+      ],
+    },
+    promoter: { eyebrow: "Mot du promoteur" },
+    finalCta: {
+      eyebrow: "Sans engagement",
+      title: "Trente minutes pour décider sereinement.",
+      intro: "Choisissez la conversation qui vous convient.",
+      video: "Rendez-vous en visio",
+      callback: "Être rappelé",
+      yield: "Simuler mon rendement",
+    },
+    contact: {
+      requests: { video: "Rendez-vous en visio", callback: "Être rappelé", dossier: "Recevoir le dossier" },
+      budget: "Budget",
+      countryCode: "Indicatif pays",
+      budgetOptions: ["Moins de 1 M€", "1 – 1,25 M€", "1,25 – 1,5 M€", "Plus de 1,5 M€"],
+      countryOptions: ["Maroc +212", "France +33", "Belgique +32", "Suisse +41", "Royaume-Uni +44", "Émirats arabes unis +971"],
+    },
+    simulator: {
+      eyebrow: "Projection",
+      title: "Simuler mon rendement",
+      intro: "Une première projection indicative, à affiner avec notre équipe selon votre sélection.",
+      investment: "Investissement envisagé",
+      annualRent: "Revenus locatifs annuels estimés",
+      result: "Rendement brut indicatif",
+      disclaimer: "Simulation non contractuelle, hors frais, fiscalité et périodes de vacance.",
+    },
+  },
+  en: {
+    commitments: {
+      eyebrow: "The CITYSTAR method",
+      title: "Three commitments. Complete confidence.",
+      intro: "Concrete guarantees securing every stage of your acquisition.",
+      items: [
+        { title: "A developer with a proven record", text: "Experience already demonstrated internationally." },
+        { title: "100% equity-funded", text: "The project is fully equity-funded, with no reliance on loans or off-plan sales." },
+        { title: "The notary from the first deposit", text: "Every payment is handled through the notary’s office." },
+      ],
+      cta: "Receive the dossier",
+    },
+    market: {
+      eyebrow: "The market",
+      title: "Marrakech is accelerating.",
+      transactionsLabel: "Transactions in Marrakech",
+      pricesLabel: "Prices in Marrakech",
+      comparison: "Transaction growth in 2025",
+      conclusion: "Demand is accelerating while the supply of high-end villas remains scarce.",
+      sourceSummary: "Source and methodology",
+      sourceText: "Bank Al-Maghrib & ANCFCC — Real Estate Asset Price Index, Q4 2025 publication.",
+      sourceLink: "View the official publication",
+    },
+    rarity: (available: number, total: number) => `${available} of ${total} villas still available`,
+    day: {
+      eyebrow: "A day here",
+      lines: [
+        "Morning light glides across the walls.",
+        "The terrace awakens in Marrakech’s gentle warmth.",
+        "A few steps lead to the pool.",
+        "Time slows down and silence finds its place.",
+        "In the distance, the Atlas shapes the horizon.",
+        "Here, every day returns to its natural rhythm.",
+      ],
+    },
+    promoter: { eyebrow: "A word from the developer" },
+    finalCta: {
+      eyebrow: "No commitment",
+      title: "Thirty minutes to decide with confidence.",
+      intro: "Choose the conversation that suits you.",
+      video: "Video appointment",
+      callback: "Request a callback",
+      yield: "Simulate my return",
+    },
+    contact: {
+      requests: { video: "Video appointment", callback: "Request a callback", dossier: "Receive the dossier" },
+      budget: "Budget",
+      countryCode: "Country code",
+      budgetOptions: ["Under €1M", "€1–1.25M", "€1.25–1.5M", "Over €1.5M"],
+      countryOptions: ["Morocco +212", "France +33", "Belgium +32", "Switzerland +41", "United Kingdom +44", "United Arab Emirates +971"],
+    },
+    simulator: {
+      eyebrow: "Projection",
+      title: "Simulate my return",
+      intro: "An initial indicative projection, to be refined with our team based on your selection.",
+      investment: "Planned investment",
+      annualRent: "Estimated annual rental income",
+      result: "Indicative gross return",
+      disclaimer: "Non-contractual simulation, excluding costs, taxes and vacancy periods.",
+    },
+  },
+} as const;
+
+export function getMessages(locale: Locale = "fr") { return messages[locale]; }
