@@ -19,6 +19,7 @@ const pages = [
   { path: "/contact" },
   { path: "/villa-de-luxe-marrakech" },
   { path: "/mon-espace" },
+  { path: "/espace-promoteur" },
   { path: "/villas/a" },
   { path: "/villas/b" },
   { path: "/villas/c" },

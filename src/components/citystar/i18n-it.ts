@@ -292,11 +292,7 @@ export const it: Textes = {
       kicker: "La mia area",
       titreH1: ["Seguire la mia villa,", "fase dopo fase."],
       intro:
-        "Ogni proprietario avrà un accesso personale per seguire l’avanzamento dei lavori della sua villa.",
-      statut: "Area in preparazione",
-      statutTexte:
-        "L’area proprietario apre a breve. Il suo consulente le invierà l’accesso personale.",
-      demander: "Richiedere il mio accesso",
+        "Il suo accesso personale per seguire la costruzione della villa: fasi, foto del cantiere, pagamenti e documenti.",
       selection: {
         outil: "Area proprietario",
         ligne: "Richiesta di accesso all’area proprietario",

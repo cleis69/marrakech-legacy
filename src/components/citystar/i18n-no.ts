@@ -284,10 +284,8 @@ export const no: Textes = {
       description: "Eiersiden til CITYSTAR: byggefremdriften for villaen din, etappe for etappe.",
       kicker: "Min side",
       titreH1: ["Følg villaen min,", "etappe for etappe."],
-      intro: "Hver eier får personlig tilgang for å følge byggefremdriften for villaen sin.",
-      statut: "Siden er under arbeid",
-      statutTexte: "Eiersiden åpner snart. Rådgiveren din sender deg din personlige tilgang.",
-      demander: "Be om tilgang",
+      intro:
+        "Din personlige tilgang for å følge byggingen av villaen: etappene, bilder fra byggeplassen, betalinger og dokumenter.",
       selection: { outil: "Eierside", ligne: "Forespørsel om tilgang til eiersiden" },
     },
     investir: {

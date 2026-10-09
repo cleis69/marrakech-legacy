@@ -299,11 +299,7 @@ export const es: Textes = {
       kicker: "Mi espacio",
       titreH1: ["Seguir mi villa,", "etapa por etapa."],
       intro:
-        "Cada propietario dispondrá de un acceso personal para seguir el avance de las obras de su villa.",
-      statut: "Espacio en preparación",
-      statutTexte:
-        "El espacio de propietario abre próximamente. Su asesor le enviará su acceso personal.",
-      demander: "Solicitar mi acceso",
+        "Su acceso personal para seguir la construcción de su villa: etapas, fotos de la obra, pagos y documentos.",
       selection: {
         outil: "Espacio de propietario",
         ligne: "Solicitud de acceso al espacio de propietario",

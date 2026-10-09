@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as EspacePromoteurRouteImport } from './routes/espace-promoteur'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as InvestirRouteImport } from './routes/investir'
@@ -72,6 +73,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EspacePromoteurRoute = EspacePromoteurRouteImport.update({
+  id: '/espace-promoteur',
+  path: '/espace-promoteur',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FaqRoute = FaqRouteImport.update({
@@ -338,6 +344,7 @@ const NoVillasTypeRoute = NoVillasTypeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
@@ -394,6 +401,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
@@ -451,6 +459,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
@@ -509,6 +518,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/espace-promoteur'
     | '/faq'
     | '/galerie'
     | '/investir'
@@ -565,6 +575,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/espace-promoteur'
     | '/faq'
     | '/galerie'
     | '/investir'
@@ -621,6 +632,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
+    | '/espace-promoteur'
     | '/faq'
     | '/galerie'
     | '/investir'
@@ -678,6 +690,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  EspacePromoteurRoute: typeof EspacePromoteurRoute
   FaqRoute: typeof FaqRoute
   GalerieRoute: typeof GalerieRoute
   InvestirRoute: typeof InvestirRoute
@@ -746,6 +759,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/espace-promoteur': {
+      id: '/espace-promoteur'
+      path: '/espace-promoteur'
+      fullPath: '/espace-promoteur'
+      preLoaderRoute: typeof EspacePromoteurRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faq': {
@@ -1118,6 +1138,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  EspacePromoteurRoute: EspacePromoteurRoute,
   FaqRoute: FaqRoute,
   GalerieRoute: GalerieRoute,
   InvestirRoute: InvestirRoute,

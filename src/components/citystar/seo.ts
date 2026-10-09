@@ -24,7 +24,12 @@ export function adresse(langue: Langue, cle: string) {
 export function entete(
   langue: Langue,
   cle: string,
-  { titre, description, prive = false }: { titre: string; description: string; prive?: boolean },
+  {
+    titre,
+    description,
+    prive = false,
+    seule = false,
+  }: { titre: string; description: string; prive?: boolean; seule?: boolean },
 ) {
   const ici = adresse(langue, cle);
   return {
@@ -40,8 +45,13 @@ export function entete(
     ],
     links: [
       { rel: "canonical", href: ici },
-      ...LANGUES.map((l) => ({ rel: "alternate", hrefLang: l, href: adresse(l, cle) })),
-      { rel: "alternate", hrefLang: "x-default", href: adresse("fr", cle) },
+      /* Une page qui n'existe qu'en français (l'espace promoteur) n'annonce pas de traductions. */
+      ...(seule
+        ? []
+        : [
+            ...LANGUES.map((l) => ({ rel: "alternate", hrefLang: l, href: adresse(l, cle) })),
+            { rel: "alternate", hrefLang: "x-default", href: adresse("fr", cle) },
+          ]),
     ],
   };
 }

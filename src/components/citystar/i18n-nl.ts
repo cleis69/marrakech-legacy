@@ -293,11 +293,7 @@ export const nl: Textes = {
       kicker: "Mijn omgeving",
       titreH1: ["Mijn villa volgen,", "fase voor fase."],
       intro:
-        "Elke eigenaar krijgt persoonlijke toegang om de voortgang van de bouw van zijn villa te volgen.",
-      statut: "Omgeving in voorbereiding",
-      statutTexte:
-        "De eigenaarsomgeving gaat binnenkort open. Uw adviseur stuurt u uw persoonlijke toegang.",
-      demander: "Mijn toegang aanvragen",
+        "Uw persoonlijke toegang om de bouw van uw villa te volgen: fasen, bouwfoto’s, betalingen en documenten.",
       selection: {
         outil: "Eigenaarsomgeving",
         ligne: "Aanvraag van toegang tot de eigenaarsomgeving",

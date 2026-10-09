@@ -307,11 +307,7 @@ const fr = {
       kicker: "Mon espace",
       titreH1: ["Suivre ma villa,", "étape par étape."] as [string, string],
       intro:
-        "Chaque propriétaire disposera d’un accès personnel pour suivre l’avancement des travaux de sa villa.",
-      statut: "Espace en préparation",
-      statutTexte:
-        "L’espace propriétaire ouvre prochainement. Votre conseiller vous communiquera votre accès personnel.",
-      demander: "Demander mon accès",
+        "Votre accès personnel pour suivre la construction de votre villa\u00a0: les étapes, les photos du chantier, vos paiements et vos documents.",
       selection: { outil: "Espace propriétaire", ligne: "Demande d’accès à l’espace propriétaire" },
     },
     investir: {
@@ -1110,10 +1106,7 @@ const en: Textes = {
       kicker: "Owner area",
       titreH1: ["Follow my villa,", "stage by stage."],
       intro:
-        "Each owner will have personal access to follow the construction progress of their villa.",
-      statut: "Area in preparation",
-      statutTexte: "The owner area opens soon. Your adviser will send you your personal access.",
-      demander: "Request my access",
+        "Your personal access to follow the construction of your villa: stages, site photos, payments and documents.",
       selection: { outil: "Owner area", ligne: "Request for access to the owner area" },
     },
     investir: {

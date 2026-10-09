@@ -1,0 +1,221 @@
+/* Espace propriétaire et espace promoteur : panneaux arrondis sur papier, la villa en tête sur encre. */
+.ec, .ad { background: var(--paper); }
+.ec-barre { display: flex; flex-wrap: wrap; gap: .8rem 1.4rem; align-items: center; justify-content: space-between; max-width: 1240px; margin: 0 auto 1.4rem; font-size: .88rem; color: var(--muted-foreground); }
+.ec-barre-actions { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; }
+.ec-barre .pill { min-height: 2.6rem; padding: 0 1.1rem; }
+.ec-sortir { display: inline-flex; gap: .5rem; align-items: center; min-height: 2.6rem; padding: 0 1rem; border: 0; border-radius: 999px; background: none; color: inherit; font: inherit; cursor: pointer; transition: background .2s, color .2s; }
+.ec-sortir svg { width: 1rem; height: 1rem; }
+.ec-sortir:hover, .ec-sortir:focus-visible { background: color-mix(in oklab, var(--ink) 7%, transparent); color: var(--foreground); }
+.ec-villa, .ec-choix, .ec-attente { max-width: 1240px; margin-inline: auto; }
+.ec-villa { display: grid; gap: 14px; }
+.ec-attente { color: var(--muted-foreground); }
+
+/* Entrée des panneaux une fois les données arrivées, l'un après l'autre. */
+@keyframes ec-entree { from { opacity: 0; transform: translateY(14px); } }
+@keyframes ec-fondu { from { opacity: 0; } }
+.ec-entree { animation: ec-entree .7s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 70ms); }
+
+/* Connexion et messages */
+.ec-connexion, .ec-vide { display: grid; gap: 1.2rem; justify-items: start; max-width: 40rem; margin-inline: auto; padding: clamp(1.6rem, 4vw, 2.8rem); border-radius: 28px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.ec-connexion h2, .ec-vide h2 { font: 400 clamp(1.9rem, 3.4vw, 2.7rem)/1.08 "Italiana", serif; }
+.ec-connexion form { display: grid; gap: 1.1rem; justify-items: start; width: 100%; }
+.ec-connexion form > p, .ec-vide p { color: var(--muted-foreground); line-height: 1.55; }
+.ec-champ { display: grid; gap: .45rem; width: 100%; font-size: .8rem; letter-spacing: .04em; color: var(--muted-foreground); }
+.ec-champ input { width: 100%; min-height: 3.1rem; padding: 0 1.1rem; border: 0; border-radius: 14px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--input); color: var(--foreground); font: inherit; font-size: 1rem; letter-spacing: 0; }
+.ec-champ input:focus-visible { outline: 2px solid var(--bronze); outline-offset: 2px; }
+.ec-erreur { color: oklch(0.48 0.17 27); font-size: .9rem; }
+.ec-envoye { font: 400 clamp(1.3rem, 2vw, 1.6rem)/1.35 "Italiana", serif; }
+.ec-lien { padding: 0; border: 0; background: none; color: var(--bronze-text); font: inherit; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
+.ec-acces { font-size: .9rem; color: var(--muted-foreground); }
+.ec .pill:disabled, .ad .pill:disabled { opacity: .6; cursor: progress; }
+
+/* Choix de la villa quand un propriétaire en a plusieurs */
+.ec-choix { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.ec-choix button { min-height: 2.6rem; padding: 0 1.1rem; border: 0; border-radius: 999px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); color: inherit; font: inherit; font-size: .86rem; cursor: pointer; transition: background .2s, color .2s; }
+.ec-choix button[aria-pressed="true"] { background: var(--ink); color: var(--cream); box-shadow: none; }
+
+/* La villa : avancement en grand, sur encre */
+.ec-avancement { display: grid; grid-template-columns: 1fr auto; gap: 1.6rem 2rem; padding: clamp(1.6rem, 4vw, 3rem); border-radius: 28px; background: var(--ink); color: var(--cream); }
+.ec-chip { display: inline-block; padding: .45rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 10%, transparent); font-size: .78rem; letter-spacing: .06em; }
+.ec-av-tete h2 { margin-top: 1.2rem; font: 400 clamp(2.2rem, 4.4vw, 3.6rem)/1 "Italiana", serif; }
+.ec-maj { margin-top: .7rem; font-size: .84rem; color: var(--muted-dark); }
+.ec-av-chiffre { align-self: end; text-align: right; }
+.ec-pourcent { font: 400 clamp(4.4rem, 11vw, 8.5rem)/.9 "Italiana", serif; color: var(--sand); font-variant-numeric: tabular-nums; }
+.ec-pourcent span:last-child { margin-left: .06em; font-size: .42em; }
+.ec-en-cours { margin-top: .6rem; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-hi); }
+.ec-avancement .ec-jauge { grid-column: 1 / -1; }
+.ec-mot { grid-column: 1 / -1; padding: 1.2rem 1.4rem; border-radius: 18px; background: color-mix(in oklab, var(--cream) 7%, transparent); }
+.ec-mot-titre { margin-bottom: .4rem; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-hi); }
+.ec-mot p:last-child { font-size: 1.02rem; line-height: 1.55; }
+
+/* Jauges : la barre se remplit à l'arrivée */
+@keyframes ec-jauge { from { transform: scaleX(0); } }
+.ec-jauge { height: 6px; overflow: hidden; border-radius: 999px; background: color-mix(in oklab, var(--cream) 14%, transparent); }
+.ec-jauge span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--bronze), var(--sand)); transform: scaleX(var(--part)); transform-origin: left; animation: ec-jauge 1.4s var(--ease-out) .2s both; }
+.ec-jauge-claire { background: var(--muted); }
+.ec-jauge-claire span { background: var(--bronze); }
+
+/* Cartes */
+.ec-grille { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.ec-carte { padding: clamp(1.4rem, 3vw, 2.2rem); border-radius: 24px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.ec-carte h3 { margin-bottom: 1.4rem; font: 400 clamp(1.6rem, 2.4vw, 2.1rem)/1.1 "Italiana", serif; }
+.ec-carte-vide { color: var(--muted-foreground); line-height: 1.55; }
+.ec-statut { display: inline-flex; padding: .2rem .6rem; border-radius: 999px; background: var(--muted); color: var(--muted-foreground); font-size: .72rem; font-weight: 500; white-space: nowrap; }
+[data-statut="termine"] .ec-statut, [data-statut="regle"] .ec-statut { background: color-mix(in oklab, var(--bronze) 16%, transparent); color: var(--bronze-deep); }
+[data-statut="en_cours"] .ec-statut, [data-statut="aRegler"] .ec-statut { background: var(--ink); color: var(--cream); }
+
+/* Étapes : frise verticale */
+.ec-etapes { position: relative; display: grid; gap: 1.3rem; }
+.ec-etapes::before { content: ""; position: absolute; top: 10px; bottom: 10px; left: 6px; width: 1px; background: var(--bronze-line); opacity: .5; }
+.ec-etapes li { position: relative; display: grid; grid-template-columns: 13px 1fr; gap: 1rem; }
+.ec-point { width: 13px; height: 13px; margin-top: .3rem; border-radius: 50%; background: var(--cream); box-shadow: inset 0 0 0 1px var(--bronze-line); }
+[data-statut="termine"] .ec-point { background: var(--bronze); box-shadow: none; }
+[data-statut="en_cours"] .ec-point { box-shadow: inset 0 0 0 4px var(--bronze); }
+.ec-etape-nom { display: flex; flex-wrap: wrap; gap: .4rem .7rem; align-items: center; font-weight: 500; }
+[data-statut="a_venir"] .ec-etape-nom { color: var(--muted-foreground); }
+.ec-etape-date { margin-top: .25rem; font-size: .84rem; color: var(--muted-foreground); }
+.ec-etape-note { margin-top: .4rem; font-size: .9rem; line-height: 1.5; }
+
+/* Paiements */
+.ec-totaux { margin-bottom: 1.2rem; }
+.ec-totaux dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-bottom: .9rem; }
+.ec-totaux dt { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bronze-text); }
+.ec-totaux dd { margin-top: .3rem; font: 400 clamp(1.25rem, 1.9vw, 1.6rem)/1.1 "Italiana", serif; font-variant-numeric: tabular-nums; }
+.ec-paiements li { display: flex; justify-content: space-between; gap: 1rem; padding: .95rem 0; border-top: 1px solid var(--border); }
+.ec-paiement-nom { font-weight: 500; }
+.ec-paiement-date { margin-top: .2rem; font-size: .84rem; color: var(--muted-foreground); }
+.ec-paiement-droite { display: grid; justify-items: end; gap: .35rem; text-align: right; }
+.ec-montant { font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Photos du chantier */
+.ec-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; }
+.ec-photos button { display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; overflow: hidden; border: 0; border-radius: 18px; background: var(--muted); cursor: zoom-in; }
+.ec-photos img { width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); transition: transform .6s var(--ease-out); }
+.ec-photos button:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+.ec-photo-legende { display: flex; flex-wrap: wrap; gap: .3rem .6rem; align-items: center; margin-top: .6rem; font-size: .86rem; }
+.ec-photo-legende time { color: var(--muted-foreground); }
+.ec-chip-mini { padding: .15rem .55rem; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: .68rem; letter-spacing: .06em; }
+
+/* Visionneuse */
+@keyframes ec-vis { from { opacity: 0; transform: scale(.97); } }
+.ec-visionneuse { width: min(1200px, 94vw); max-width: none; max-height: 92vh; padding: 0; overflow: hidden; border: 0; border-radius: 22px; background: var(--ink); color: var(--cream); }
+.ec-visionneuse[open] { animation: ec-vis .28s var(--ease-out); }
+.ec-visionneuse::backdrop { background: oklch(0.12 0.01 65 / 82%); backdrop-filter: blur(6px); }
+.ec-visionneuse img { display: block; width: 100%; max-height: calc(92vh - 3.6rem); object-fit: contain; background: var(--ink); }
+.ec-visionneuse figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.4rem; font-size: .9rem; }
+.ec-visionneuse figcaption time { color: var(--muted-dark); }
+.ec-vis-prec, .ec-vis-suiv, .ec-vis-fermer { position: absolute; display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border: 0; border-radius: 50%; background: oklch(0.12 0.01 65 / 60%); color: var(--cream); cursor: pointer; backdrop-filter: blur(8px); transition: background .2s; }
+.ec-vis-prec:hover, .ec-vis-suiv:hover, .ec-vis-fermer:hover { background: var(--bronze-deep); }
+.ec-vis-prec svg, .ec-vis-suiv svg, .ec-vis-fermer svg { width: 1.2rem; height: 1.2rem; }
+.ec-vis-prec { top: 42%; left: 1rem; }
+.ec-vis-suiv { top: 42%; right: 1rem; }
+.ec-vis-fermer { top: 1rem; right: 1rem; }
+
+/* Documents */
+.ec-docs li { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; padding: 1rem 0; border-top: 1px solid var(--border); }
+.ec-doc-icone { width: 1.5rem; height: 1.5rem; color: var(--bronze); }
+.ec-doc-titre { font-weight: 500; }
+.ec-doc-meta { margin-top: .2rem; font-size: .84rem; color: var(--muted-foreground); }
+.ec-doc-lien { display: inline-flex; gap: .5rem; align-items: center; min-height: 2.6rem; padding: 0 1.1rem; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--border); color: inherit; font-size: .86rem; text-decoration: none; transition: background .2s, color .2s, box-shadow .2s; }
+.ec-doc-lien:hover, .ec-doc-lien:focus-visible { background: var(--ink); color: var(--cream); box-shadow: none; }
+.ec-doc-lien[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+.ec-doc-lien svg { width: 1rem; height: 1rem; }
+
+/* Espace promoteur : la liste des villas à gauche, la fiche à droite */
+.ad .ec-barre { max-width: 1340px; }
+.ad-cadre { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; align-items: start; max-width: 1340px; margin: 0 auto; }
+.ad-liste { position: sticky; top: 6.5rem; display: grid; gap: 4px; max-height: calc(100vh - 8rem); padding: 8px; overflow: auto; border-radius: 24px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.ad-item { display: grid; grid-template-columns: 1fr auto; gap: .3rem .8rem; align-items: center; padding: .8rem 1rem; border: 0; border-radius: 16px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+.ad-item:hover { background: var(--muted); }
+.ad-item[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+.ad-item strong { font-weight: 500; }
+.ad-item em { font-style: normal; color: var(--bronze-text); }
+.ad-item[aria-pressed="true"] em { color: var(--sand); }
+.ad-item span { grid-column: 1 / -1; overflow: hidden; font-size: .8rem; color: var(--muted-foreground); text-overflow: ellipsis; white-space: nowrap; }
+.ad-item[aria-pressed="true"] span { color: var(--muted-dark); }
+.ad-item-domaine span { white-space: normal; }
+.ad-mini-jauge { height: 4px; overflow: hidden; border-radius: 999px; background: color-mix(in oklab, currentColor 14%, transparent); }
+.ad-mini-jauge b { display: block; height: 100%; background: var(--bronze); transform: scaleX(var(--part)); transform-origin: left; transition: transform .5s var(--ease-out); }
+.ad-item small { font-size: .76rem; font-variant-numeric: tabular-nums; }
+.ad-fiche { display: grid; gap: 14px; min-width: 0; }
+.ad-titre { display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: baseline; padding: .4rem .4rem 0; font: 400 clamp(2.2rem, 4vw, 3.2rem)/1 "Italiana", serif; }
+.ad-titre span { font: 400 .86rem/1.4 "DM Sans", sans-serif; color: var(--muted-foreground); }
+.ad-message { position: sticky; top: 6.5rem; z-index: 2; padding: .9rem 1.2rem; border-radius: 14px; font-size: .92rem; animation: ec-entree .3s var(--ease-out); }
+.ad-message.is-ok { background: var(--ink); color: var(--cream); }
+.ad-message.is-erreur { background: oklch(0.95 0.03 27); color: oklch(0.45 0.17 27); box-shadow: inset 0 0 0 1px oklch(0.75 0.1 27); }
+.ad-bloc { padding: clamp(1.3rem, 2.6vw, 2rem); border-radius: 24px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.ad-bloc header { margin-bottom: 1.2rem; }
+.ad-bloc h3 { font: 400 1.75rem/1.1 "Italiana", serif; }
+.ad-bloc header p { margin-top: .35rem; font-size: .86rem; line-height: 1.5; color: var(--muted-foreground); }
+.ad-form { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .9rem; align-items: end; }
+.ad-champ { display: grid; gap: .4rem; font-size: .78rem; color: var(--muted-foreground); }
+.ad-large { grid-column: span 2; }
+.ad-trois { grid-column: span 3; }
+.ad-plein { grid-column: 1 / -1; }
+.ad-champ input, .ad-champ select, .ad-champ textarea { width: 100%; min-height: 2.9rem; padding: .55rem .9rem; border: 0; border-radius: 12px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--input); color: var(--foreground); font: inherit; font-size: .95rem; }
+.ad-champ textarea { line-height: 1.5; resize: vertical; }
+.ad-champ input[type="range"] { padding: 0; background: none; box-shadow: none; accent-color: var(--bronze); }
+.ad-champ input:focus-visible, .ad-champ select:focus-visible, .ad-champ textarea:focus-visible { outline: 2px solid var(--bronze); outline-offset: 2px; }
+.ad-fichier { position: relative; grid-template-columns: auto 1fr; align-items: center; gap: .8rem; min-height: 4.2rem; padding: 0 1.2rem; border: 1px dashed var(--bronze-line); border-radius: 16px; background: var(--paper); color: var(--foreground); font-size: .92rem; cursor: pointer; transition: background .2s; }
+.ad-fichier:hover { background: var(--muted); }
+.ad-fichier:focus-within { outline: 2px solid var(--bronze); outline-offset: 2px; }
+.ad-fichier svg { width: 1.3rem; height: 1.3rem; color: var(--bronze); }
+.ad-fichier input { position: absolute; inset: 0; min-height: 0; opacity: 0; cursor: pointer; }
+.ad-envoyer { justify-self: start; min-height: 2.9rem; }
+.ad-lignes { margin-bottom: 1.2rem; }
+.ad-lignes li { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .6rem 1rem; padding: .85rem 0; border-top: 1px solid var(--border); }
+.ad-lignes li > div:first-child { display: grid; gap: .15rem; }
+.ad-lignes strong { font-weight: 500; }
+.ad-lignes span { font-size: .84rem; color: var(--muted-foreground); }
+.ad-ligne-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ad-bouton, .ad-suppr { display: inline-flex; gap: .4rem; align-items: center; min-height: 2.4rem; padding: 0 .95rem; border: 0; border-radius: 999px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border); color: inherit; font: inherit; font-size: .82rem; cursor: pointer; transition: background .2s, color .2s; }
+.ad-bouton:hover, .ad-bouton:focus-visible { background: var(--ink); color: var(--cream); }
+.ad-suppr svg { width: .95rem; height: .95rem; }
+.ad-suppr:hover, .ad-suppr:focus-visible, .ad-suppr.is-arme { background: oklch(0.55 0.19 27); color: var(--cream); box-shadow: none; }
+.ad-bouton:disabled, .ad-suppr:disabled { opacity: .5; cursor: progress; }
+.ad-totaux { margin-bottom: 1rem; font-size: .92rem; }
+.ad-totaux strong { font-weight: 500; }
+.ad-etapes { display: grid; gap: 10px; }
+.ad-etapes fieldset { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; padding: 1rem 1.1rem 1.1rem; border: 0; border-radius: 16px; background: var(--paper); }
+.ad-etapes fieldset[data-statut="en_cours"] { box-shadow: inset 0 0 0 1px var(--bronze); }
+.ad-etapes legend { float: left; grid-column: 1 / -1; width: 100%; padding: 0; font-weight: 500; }
+.ad-etapes .ad-envoyer { margin-top: .4rem; }
+.ad-photos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 1.2rem; }
+.ad-photos li { display: grid; gap: .5rem; align-content: start; }
+.ad-photos img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; background: var(--muted); }
+.ad-photos p { font-size: .8rem; color: var(--muted-foreground); }
+.ad-photos .ad-suppr { justify-self: start; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ec-photos button:hover img { transform: scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ec-entree, .ad-message { animation-name: ec-fondu; }
+  .ec-jauge span { animation: none; }
+  .ec-visionneuse[open] { animation-name: ec-fondu; }
+  .ec-photos img { transition: none; }
+}
+
+@media (max-width: 900px) {
+  .ec-avancement { grid-template-columns: 1fr; border-radius: 22px; }
+  .ec-sortir { padding-inline: .2rem; }
+  .ec-av-chiffre { text-align: left; }
+  .ec-grille { grid-template-columns: 1fr; }
+  .ec-totaux dl { grid-template-columns: 1fr; gap: .6rem; }
+  .ec-totaux dl > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  .ec-totaux dd { margin-top: 0; }
+  .ec-docs li { grid-template-columns: auto 1fr; }
+  .ec-doc-lien { grid-column: 2; justify-self: start; }
+  .ec-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .ec-photos button { border-radius: 14px; }
+  .ec-vis-prec, .ec-vis-suiv { top: auto; bottom: 4.4rem; }
+  .ad-cadre { grid-template-columns: 1fr; }
+  /* Sur téléphone, les villas défilent en bandeau horizontal au-dessus de la fiche. */
+  .ad-liste { position: static; grid-auto-flow: column; grid-auto-columns: minmax(10.5rem, 46%); max-height: none; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; }
+  .ad-item { scroll-snap-align: start; }
+  .ad-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ad-large, .ad-trois { grid-column: 1 / -1; }
+  .ad-etapes fieldset { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ad-message { top: 5.5rem; }
+}

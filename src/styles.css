@@ -21,6 +21,7 @@
 @import "./styles/ruban.css";
 @import "./styles/wordmark.css";
 @import "./styles/closing.css";
+@import "./styles/espace.css";
 
 @custom-variant dark (&:is(.dark *));
 
