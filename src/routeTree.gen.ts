@@ -10,258 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as FaqRouteImport } from './routes/faq'
-import { Route as GalerieRouteImport } from './routes/galerie'
-import { Route as InvestirRouteImport } from './routes/investir'
-import { Route as MonEspaceRouteImport } from './routes/mon-espace'
-import { Route as VillaDeLuxeMarrakechRouteImport } from './routes/villa-de-luxe-marrakech'
-import { Route as EnIndexRouteImport } from './routes/en.index'
-import { Route as EnContactRouteImport } from './routes/en.contact'
-import { Route as EnFaqRouteImport } from './routes/en.faq'
-import { Route as EnGalerieRouteImport } from './routes/en.galerie'
-import { Route as EnInvestirRouteImport } from './routes/en.investir'
-import { Route as EnLuxuryVillaMarrakechRouteImport } from './routes/en.luxury-villa-marrakech'
-import { Route as EnOwnerAreaRouteImport } from './routes/en.owner-area'
-import { Route as VillasIndexRouteImport } from './routes/villas.index'
-import { Route as VillasTypeRouteImport } from './routes/villas.$type'
-import { Route as EnVillasIndexRouteImport } from './routes/en.villas.index'
-import { Route as EnVillasTypeRouteImport } from './routes/en.villas.$type'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FaqRoute = FaqRouteImport.update({
-  id: '/faq',
-  path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GalerieRoute = GalerieRouteImport.update({
-  id: '/galerie',
-  path: '/galerie',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InvestirRoute = InvestirRouteImport.update({
-  id: '/investir',
-  path: '/investir',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MonEspaceRoute = MonEspaceRouteImport.update({
-  id: '/mon-espace',
-  path: '/mon-espace',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VillaDeLuxeMarrakechRoute = VillaDeLuxeMarrakechRouteImport.update({
-  id: '/villa-de-luxe-marrakech',
-  path: '/villa-de-luxe-marrakech',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnIndexRoute = EnIndexRouteImport.update({
-  id: '/en/',
-  path: '/en/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnContactRoute = EnContactRouteImport.update({
-  id: '/en/contact',
-  path: '/en/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnFaqRoute = EnFaqRouteImport.update({
-  id: '/en/faq',
-  path: '/en/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnGalerieRoute = EnGalerieRouteImport.update({
-  id: '/en/galerie',
-  path: '/en/galerie',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnInvestirRoute = EnInvestirRouteImport.update({
-  id: '/en/investir',
-  path: '/en/investir',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnLuxuryVillaMarrakechRoute = EnLuxuryVillaMarrakechRouteImport.update({
-  id: '/en/luxury-villa-marrakech',
-  path: '/en/luxury-villa-marrakech',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnOwnerAreaRoute = EnOwnerAreaRouteImport.update({
-  id: '/en/owner-area',
-  path: '/en/owner-area',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VillasIndexRoute = VillasIndexRouteImport.update({
-  id: '/villas/',
-  path: '/villas/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const VillasTypeRoute = VillasTypeRouteImport.update({
-  id: '/villas/$type',
-  path: '/villas/$type',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnVillasIndexRoute = EnVillasIndexRouteImport.update({
-  id: '/en/villas/',
-  path: '/en/villas/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EnVillasTypeRoute = EnVillasTypeRouteImport.update({
-  id: '/en/villas/$type',
-  path: '/en/villas/$type',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/galerie': typeof GalerieRoute
-  '/investir': typeof InvestirRoute
-  '/mon-espace': typeof MonEspaceRoute
-  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
-  '/en/contact': typeof EnContactRoute
-  '/en/faq': typeof EnFaqRoute
-  '/en/galerie': typeof EnGalerieRoute
-  '/en/investir': typeof EnInvestirRoute
-  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
-  '/en/owner-area': typeof EnOwnerAreaRoute
-  '/villas/$type': typeof VillasTypeRoute
-  '/en/': typeof EnIndexRoute
-  '/villas/': typeof VillasIndexRoute
-  '/en/villas/$type': typeof EnVillasTypeRoute
-  '/en/villas/': typeof EnVillasIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/galerie': typeof GalerieRoute
-  '/investir': typeof InvestirRoute
-  '/mon-espace': typeof MonEspaceRoute
-  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
-  '/en/contact': typeof EnContactRoute
-  '/en/faq': typeof EnFaqRoute
-  '/en/galerie': typeof EnGalerieRoute
-  '/en/investir': typeof EnInvestirRoute
-  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
-  '/en/owner-area': typeof EnOwnerAreaRoute
-  '/villas/$type': typeof VillasTypeRoute
-  '/en': typeof EnIndexRoute
-  '/villas': typeof VillasIndexRoute
-  '/en/villas/$type': typeof EnVillasTypeRoute
-  '/en/villas': typeof EnVillasIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/contact': typeof ContactRoute
-  '/faq': typeof FaqRoute
-  '/galerie': typeof GalerieRoute
-  '/investir': typeof InvestirRoute
-  '/mon-espace': typeof MonEspaceRoute
-  '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
-  '/en/contact': typeof EnContactRoute
-  '/en/faq': typeof EnFaqRoute
-  '/en/galerie': typeof EnGalerieRoute
-  '/en/investir': typeof EnInvestirRoute
-  '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
-  '/en/owner-area': typeof EnOwnerAreaRoute
-  '/villas/$type': typeof VillasTypeRoute
-  '/en/': typeof EnIndexRoute
-  '/villas/': typeof VillasIndexRoute
-  '/en/villas/$type': typeof EnVillasTypeRoute
-  '/en/villas/': typeof EnVillasIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/contact'
-    | '/faq'
-    | '/galerie'
-    | '/investir'
-    | '/mon-espace'
-    | '/villa-de-luxe-marrakech'
-    | '/en/contact'
-    | '/en/faq'
-    | '/en/galerie'
-    | '/en/investir'
-    | '/en/luxury-villa-marrakech'
-    | '/en/owner-area'
-    | '/villas/$type'
-    | '/en/'
-    | '/villas/'
-    | '/en/villas/$type'
-    | '/en/villas/'
+  fullPaths: '/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/contact'
-    | '/faq'
-    | '/galerie'
-    | '/investir'
-    | '/mon-espace'
-    | '/villa-de-luxe-marrakech'
-    | '/en/contact'
-    | '/en/faq'
-    | '/en/galerie'
-    | '/en/investir'
-    | '/en/luxury-villa-marrakech'
-    | '/en/owner-area'
-    | '/villas/$type'
-    | '/en'
-    | '/villas'
-    | '/en/villas/$type'
-    | '/en/villas'
-  id:
-    | '__root__'
-    | '/'
-    | '/contact'
-    | '/faq'
-    | '/galerie'
-    | '/investir'
-    | '/mon-espace'
-    | '/villa-de-luxe-marrakech'
-    | '/en/contact'
-    | '/en/faq'
-    | '/en/galerie'
-    | '/en/investir'
-    | '/en/luxury-villa-marrakech'
-    | '/en/owner-area'
-    | '/villas/$type'
-    | '/en/'
-    | '/villas/'
-    | '/en/villas/$type'
-    | '/en/villas/'
+  to: '/'
+  id: '__root__' | '/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ContactRoute: typeof ContactRoute
-  FaqRoute: typeof FaqRoute
-  GalerieRoute: typeof GalerieRoute
-  InvestirRoute: typeof InvestirRoute
-  MonEspaceRoute: typeof MonEspaceRoute
-  VillaDeLuxeMarrakechRoute: typeof VillaDeLuxeMarrakechRoute
-  EnContactRoute: typeof EnContactRoute
-  EnFaqRoute: typeof EnFaqRoute
-  EnGalerieRoute: typeof EnGalerieRoute
-  EnInvestirRoute: typeof EnInvestirRoute
-  EnLuxuryVillaMarrakechRoute: typeof EnLuxuryVillaMarrakechRoute
-  EnOwnerAreaRoute: typeof EnOwnerAreaRoute
-  VillasTypeRoute: typeof VillasTypeRoute
-  EnIndexRoute: typeof EnIndexRoute
-  VillasIndexRoute: typeof VillasIndexRoute
-  EnVillasTypeRoute: typeof EnVillasTypeRoute
-  EnVillasIndexRoute: typeof EnVillasIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -273,147 +48,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/faq': {
-      id: '/faq'
-      path: '/faq'
-      fullPath: '/faq'
-      preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/galerie': {
-      id: '/galerie'
-      path: '/galerie'
-      fullPath: '/galerie'
-      preLoaderRoute: typeof GalerieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/investir': {
-      id: '/investir'
-      path: '/investir'
-      fullPath: '/investir'
-      preLoaderRoute: typeof InvestirRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mon-espace': {
-      id: '/mon-espace'
-      path: '/mon-espace'
-      fullPath: '/mon-espace'
-      preLoaderRoute: typeof MonEspaceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/villa-de-luxe-marrakech': {
-      id: '/villa-de-luxe-marrakech'
-      path: '/villa-de-luxe-marrakech'
-      fullPath: '/villa-de-luxe-marrakech'
-      preLoaderRoute: typeof VillaDeLuxeMarrakechRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/': {
-      id: '/en/'
-      path: '/en'
-      fullPath: '/en/'
-      preLoaderRoute: typeof EnIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/contact': {
-      id: '/en/contact'
-      path: '/en/contact'
-      fullPath: '/en/contact'
-      preLoaderRoute: typeof EnContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/faq': {
-      id: '/en/faq'
-      path: '/en/faq'
-      fullPath: '/en/faq'
-      preLoaderRoute: typeof EnFaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/galerie': {
-      id: '/en/galerie'
-      path: '/en/galerie'
-      fullPath: '/en/galerie'
-      preLoaderRoute: typeof EnGalerieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/investir': {
-      id: '/en/investir'
-      path: '/en/investir'
-      fullPath: '/en/investir'
-      preLoaderRoute: typeof EnInvestirRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/luxury-villa-marrakech': {
-      id: '/en/luxury-villa-marrakech'
-      path: '/en/luxury-villa-marrakech'
-      fullPath: '/en/luxury-villa-marrakech'
-      preLoaderRoute: typeof EnLuxuryVillaMarrakechRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/owner-area': {
-      id: '/en/owner-area'
-      path: '/en/owner-area'
-      fullPath: '/en/owner-area'
-      preLoaderRoute: typeof EnOwnerAreaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/villas/': {
-      id: '/villas/'
-      path: '/villas'
-      fullPath: '/villas/'
-      preLoaderRoute: typeof VillasIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/villas/$type': {
-      id: '/villas/$type'
-      path: '/villas/$type'
-      fullPath: '/villas/$type'
-      preLoaderRoute: typeof VillasTypeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/villas/': {
-      id: '/en/villas/'
-      path: '/en/villas'
-      fullPath: '/en/villas/'
-      preLoaderRoute: typeof EnVillasIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/en/villas/$type': {
-      id: '/en/villas/$type'
-      path: '/en/villas/$type'
-      fullPath: '/en/villas/$type'
-      preLoaderRoute: typeof EnVillasTypeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ContactRoute: ContactRoute,
-  FaqRoute: FaqRoute,
-  GalerieRoute: GalerieRoute,
-  InvestirRoute: InvestirRoute,
-  MonEspaceRoute: MonEspaceRoute,
-  VillaDeLuxeMarrakechRoute: VillaDeLuxeMarrakechRoute,
-  EnContactRoute: EnContactRoute,
-  EnFaqRoute: EnFaqRoute,
-  EnGalerieRoute: EnGalerieRoute,
-  EnInvestirRoute: EnInvestirRoute,
-  EnLuxuryVillaMarrakechRoute: EnLuxuryVillaMarrakechRoute,
-  EnOwnerAreaRoute: EnOwnerAreaRoute,
-  VillasTypeRoute: VillasTypeRoute,
-  EnIndexRoute: EnIndexRoute,
-  VillasIndexRoute: VillasIndexRoute,
-  EnVillasTypeRoute: EnVillasTypeRoute,
-  EnVillasIndexRoute: EnVillasIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,38 +1,24 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-import { HomePage } from "@/components/citystar/pages/HomePage";
-import { SiteChrome } from "@/components/citystar/site";
-import { textes } from "@/components/citystar/i18n";
-import { programme } from "@/config/citystar";
-
-const t = textes.fr.pages.accueil;
-const chemin = "/";
-const autre = "/en";
+import CitystarExperience from "@/components/CitystarExperience";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: t.titre },
-      { name: "description", content: t.description(programme.nombreVillas) },
-      { property: "og:title", content: t.titre },
+      { title: "CITYSTAR Marrakech — Villas de luxe privées" },
+      { name: "description", content: "Découvrez CITYSTAR, une résidence privée de 14 villas contemporaines à Marrakech, proche de la Palmeraie." },
+      { property: "og:title", content: "CITYSTAR Marrakech — Villas de luxe privées" },
+      { property: "og:description", content: "Une collection exclusive de 14 villas contemporaines au cœur de Marrakech." },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: chemin },
-      { property: "og:locale", content: "fr_FR" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [
-      { rel: "canonical", href: chemin },
-      { rel: "alternate", hrefLang: "fr", href: chemin },
-      { rel: "alternate", hrefLang: "en", href: autre },
-    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify({ "@context": "https://schema.org", "@type": "RealEstateAgent", name: "CITYSTAR Marrakech", telephone: "+212661825359", email: "Promoimmomarrakech@gmail.com", address: { "@type": "PostalAddress", addressLocality: "Oulad Hassoune", addressRegion: "Marrakech-Safi", addressCountry: "MA" } }) }],
   }),
-  component: Page,
+  component: Index,
 });
 
-function Page() {
-  return (
-    <SiteChrome langue="fr">
-      <HomePage />
-    </SiteChrome>
-  );
+// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+function Index() {
+  return <CitystarExperience />;
 }
