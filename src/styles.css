@@ -22,6 +22,7 @@
 @import "./styles/wordmark.css";
 @import "./styles/closing.css";
 @import "./styles/espace.css";
+@import "./styles/dossier.css";
 
 @custom-variant dark (&:is(.dark *));
 

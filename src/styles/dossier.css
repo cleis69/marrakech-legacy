@@ -1,0 +1,165 @@
+/* Page « Recevoir le dossier » : le langage de l'accueil (cadres arrondis, pastilles, titres en deux tons), une seule action. */
+
+/* Ouverture */
+@keyframes dh-monte { from { opacity: 0; transform: translateY(18px); } }
+.dh { --pill-bg: var(--cream); --pill-fg: var(--ink); padding: 14px 14px 0; background: var(--paper); color: var(--cream); }
+.dh-cadre { position: relative; display: flex; align-items: flex-end; min-height: calc(100svh - 28px); overflow: hidden; border-radius: 28px; background: var(--ink); }
+.dh-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); }
+.dh-voile { position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in oklab, var(--ink) 78%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 55%, color-mix(in oklab, var(--ink) 15%, transparent) 100%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 50%, transparent) 0%, transparent 25%); }
+.dh-contenu { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem); gap: 2.4rem; align-items: end; width: 100%; padding: 8rem var(--gouttiere) 4.4rem; }
+.dh-texte { display: grid; justify-items: start; gap: 1.3rem; max-width: 50rem; }
+.dh-chip { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--ink) 45%, transparent); backdrop-filter: blur(8px); font-size: .78rem; letter-spacing: .04em; animation: dh-monte .9s var(--ease-out) .2s both; }
+.dh-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
+.dh h1 { font: 400 clamp(2.6rem, 5.2vw, 5rem)/1.02 "Italiana", serif; text-wrap: balance; }
+.dh-ligne { display: block; animation: dh-monte 1.1s var(--ease-out) both; }
+.dh-ligne.ton { color: var(--sand); animation-delay: .14s; }
+.dh-intro { max-width: 34rem; font-size: 1.06rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 92%, transparent); animation: dh-monte 1s var(--ease-out) .35s both; }
+.dh-actions { display: flex; flex-wrap: wrap; gap: .6rem; animation: dh-monte 1s var(--ease-out) .45s both; }
+.dh-actions .pill-secondary { gap: .5rem; background: color-mix(in oklab, var(--cream) 10%, transparent); backdrop-filter: blur(8px); }
+.dh-actions .pill-secondary .pill-dot { display: inline-grid; place-items: center; }
+.dh-actions .pill-secondary .pill-dot svg { width: 1rem; height: 1rem; }
+.dh-conditions { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; color: color-mix(in oklab, var(--cream) 88%, transparent); animation: dh-monte 1s var(--ease-out) .55s both; }
+.dh-conditions svg { flex: none; width: 1rem; height: 1rem; color: var(--sand); }
+
+/* La carte du dossier : papier crème posé sur la vidéo. */
+.dh-carte { display: grid; gap: .9rem; padding: 1.7rem; border-radius: 24px; background: var(--cream); color: var(--ink); box-shadow: 0 30px 80px -30px oklch(0.12 0.01 65 / 70%); animation: dh-monte 1.1s var(--ease-out) .6s both; }
+.dh-carte-kicker { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.dh-carte h2 { margin-top: -.3rem; font: 400 2rem/1.05 "Italiana", serif; }
+.dh-carte ul { display: grid; gap: .55rem; padding: .3rem 0 .4rem; }
+.dh-carte li { display: flex; align-items: center; gap: .6rem; font-size: .94rem; }
+.dh-carte li svg { flex: none; width: 1rem; height: 1rem; color: var(--bronze); }
+.dh-carte-bouton { width: 100%; --pill-bg: var(--ink); --pill-fg: var(--cream); }
+.dh-discretion { font-size: .76rem; line-height: 1.45; color: var(--muted-foreground); }
+.dh-brochure { display: inline-flex; align-items: center; gap: .5rem; padding-top: .7rem; border-top: 1px solid var(--border); color: var(--bronze-text); font-size: .84rem; text-decoration: none; }
+.dh-brochure svg { flex: none; width: .95rem; height: .95rem; }
+.dh-brochure:hover, .dh-brochure:focus-visible { color: var(--bronze-deep); text-decoration: underline; text-underline-offset: .2em; }
+.dh-pied { position: absolute; left: var(--gouttiere); right: var(--gouttiere); bottom: 1.2rem; display: flex; align-items: center; gap: .8rem; font-size: .72rem; color: color-mix(in oklab, var(--cream) 70%, transparent); }
+.dh-pause { display: grid; place-items: center; width: 2rem; height: 2rem; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--cream) 14%, transparent); color: var(--cream); cursor: pointer; }
+.dh-pause svg { width: .8rem; height: .8rem; }
+
+/* Garanties */
+.dg { padding: 14px 14px 0; background: var(--paper); }
+.dg ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.dg li { display: grid; align-content: start; gap: .6rem; padding: clamp(1.4rem, 2.4vw, 2rem); border-radius: 22px; background: var(--ink); color: var(--cream); }
+.dg svg { width: 1.5rem; height: 1.5rem; margin-bottom: .4rem; color: var(--sand); stroke-width: 1.4; }
+.dg h3 { font: 400 1.55rem/1.1 "Italiana", serif; }
+.dg p { font-size: .9rem; line-height: 1.5; color: var(--muted-dark); }
+
+/* Contenu du dossier */
+.dc { background: var(--paper); }
+.dc-tete { display: grid; gap: 1rem; max-width: 46rem; margin-bottom: var(--espace-bloc); }
+.dc-kicker { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--bronze-text); }
+.dc h2, .da h2, .dp h2 { font: 400 clamp(2.4rem, 4.6vw, 4.2rem)/1.04 "Italiana", serif; text-wrap: balance; }
+.dp h2 { font-size: clamp(2.3rem, 3.6vw, 3.5rem); }
+.dc-intro { max-width: 40rem; font-size: 1.02rem; line-height: 1.65; color: var(--muted-foreground); }
+.dc-grille { display: grid; grid-template-columns: minmax(0, 1fr) minmax(20rem, 26rem); gap: 14px; align-items: start; }
+.dc-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.dc-liste li { display: grid; align-content: start; gap: .5rem; padding: 1.6rem; border-radius: 22px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.dc-num { font-size: .72rem; letter-spacing: .16em; color: var(--bronze-text); }
+.dc-liste h3 { font: 400 1.6rem/1.1 "Italiana", serif; }
+.dc-liste p { font-size: .92rem; line-height: 1.55; color: var(--muted-foreground); }
+.dc-telecharger { grid-column: 1 / -1; }
+.dc-liens { display: flex; flex-wrap: wrap; gap: .5rem; }
+.dc-liens a { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.6rem; padding: 0 1.1rem; border-radius: 999px; background: var(--paper); box-shadow: inset 0 0 0 1px var(--border); color: inherit; font-size: .86rem; text-decoration: none; transition: background .2s, color .2s, box-shadow .2s; }
+.dc-liens a:hover, .dc-liens a:focus-visible { background: var(--ink); color: var(--cream); box-shadow: none; }
+.dc-liens svg { width: .95rem; height: .95rem; }
+.dc-ensuite { --pill-bg: var(--cream); --pill-fg: var(--ink); position: sticky; top: 6.5rem; display: grid; gap: 1.4rem; justify-items: start; padding: 2rem; border-radius: 24px; background: var(--ink); color: var(--cream); }
+.dc-ensuite h3 { font: 400 2.2rem/1.05 "Italiana", serif; }
+.dc-ensuite ol { display: grid; gap: 1.2rem; }
+.dc-ensuite li { display: grid; grid-template-columns: 2.2rem 1fr; gap: .9rem; }
+.dc-ensuite li > span { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--bronze-line); font: 400 1.1rem/1 "Italiana", serif; color: var(--sand); }
+.dc-etape-titre { margin-bottom: .2rem; font-weight: 500; color: var(--cream); }
+.dc-ensuite li p:last-child { font-size: .9rem; line-height: 1.5; color: var(--muted-dark); }
+
+/* Aperçu de l'espace propriétaire */
+.da { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; margin: 0 14px; border-radius: 28px; background: var(--cream); }
+.da-texte { display: grid; gap: 1rem; }
+.da-points { display: grid; gap: 1rem; margin-top: .8rem; }
+.da-points li { display: grid; grid-template-columns: 1.2rem 1fr; gap: .8rem; }
+.da-points svg { width: 1.1rem; height: 1.1rem; margin-top: .2rem; color: var(--bronze); }
+.da-points h3 { font-weight: 500; }
+.da-points p { margin-top: .15rem; font-size: .92rem; line-height: 1.5; color: var(--muted-foreground); }
+.da-ecran { display: grid; gap: .8rem; }
+.da-ecran figcaption { font-size: .78rem; color: var(--muted-foreground); text-align: center; }
+.da-maquette { display: grid; gap: 10px; padding: 10px; border-radius: 26px; background: var(--paper); box-shadow: 0 40px 90px -40px oklch(0.12 0.01 65 / 45%), inset 0 0 0 1px var(--border); transform: rotate(-1.2deg); }
+.da-tete { display: grid; grid-template-columns: 1fr auto; gap: .3rem 1rem; padding: 1.5rem; border-radius: 18px; background: var(--ink); color: var(--cream); }
+.da-chip { grid-column: 1 / -1; justify-self: start; padding: .35rem .75rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 10%, transparent); font-size: .72rem; }
+.da-avancement { align-self: end; margin-top: .8rem; font: 400 1.7rem/1.05 "Italiana", serif; }
+.da-pourcent { grid-row: 2 / 4; grid-column: 2; align-self: end; font: 400 4.6rem/.9 "Italiana", serif; color: var(--sand); }
+.da-pourcent span { font-size: .4em; }
+.da-etape { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-hi); }
+.da-jauge { grid-column: 1 / -1; height: 5px; margin-top: .8rem; overflow: hidden; border-radius: 999px; background: color-mix(in oklab, var(--cream) 14%, transparent); }
+.da-jauge span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--bronze), var(--sand)); transform: scaleX(.22); transform-origin: left; transition: transform 1.4s var(--ease-out) .3s; }
+.vu-actif .da-ecran:not([data-visible]) .da-jauge span { transform: scaleX(0); }
+.da-bas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.da-frise, .da-paiement, .da-photos { padding: 1.1rem 1.2rem; border-radius: 16px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.da-frise { grid-row: span 2; display: grid; gap: .65rem; font-size: .82rem; }
+.da-frise li { display: flex; align-items: center; gap: .6rem; }
+.da-frise i { width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--bronze-line); }
+.da-frise [data-statut="termine"] i { background: var(--bronze); box-shadow: none; }
+.da-frise [data-statut="en_cours"] i { box-shadow: inset 0 0 0 3px var(--bronze); }
+.da-frise [data-statut="a_venir"] { color: var(--muted-foreground); }
+.da-paiement p, .da-photos p { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--bronze-text); }
+.da-paiement strong { display: block; margin-top: .35rem; font-weight: 500; font-size: .9rem; }
+.da-photos div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: .55rem; }
+.da-photos img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; filter: var(--etalonnage); }
+
+/* Plan de masse */
+.dp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; background: var(--paper); }
+.dp-texte { display: grid; justify-items: start; gap: 1.1rem; }
+.dp-faits { display: flex; flex-wrap: wrap; gap: 1.6rem 2.4rem; margin: .4rem 0 .6rem; }
+.dp-faits div { display: flex; flex-direction: column-reverse; gap: .2rem; }
+.dp-faits dt { font-size: .8rem; color: var(--muted-foreground); }
+.dp-faits dd { font: 400 2.2rem/1 "Italiana", serif; }
+.dp-plan { display: grid; gap: .7rem; }
+.dp-plan button { position: relative; display: block; padding: 0; overflow: hidden; border: 0; border-radius: 24px; background: var(--muted); cursor: zoom-in; }
+.dp-plan img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; filter: saturate(.72) sepia(.08) brightness(.97); transition: transform 1s var(--ease-out); }
+.dp-plan button:focus-visible { outline: 2px solid var(--bronze); outline-offset: 3px; }
+.dp-zoom { position: absolute; top: 1rem; right: 1rem; display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--cream); color: var(--ink); }
+.dp-zoom svg { width: 1.1rem; height: 1.1rem; }
+.dp-pastille { position: absolute; left: 1rem; bottom: 1rem; padding: .5rem .95rem; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: .82rem; letter-spacing: .04em; }
+.dp-plan figcaption { font-size: .78rem; color: var(--muted-foreground); }
+
+/* Dernier appel */
+.df { padding: 0 14px 14px; background: var(--paper); }
+.df-cadre { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; justify-items: center; gap: 1.4rem; padding: clamp(3.5rem, 8vw, 6.5rem) var(--gouttiere); border-radius: 28px; background: var(--ink); color: var(--cream); text-align: center; }
+.df h2 { font: 400 clamp(2.8rem, 6vw, 5.6rem)/1 "Italiana", serif; }
+.df h2 .ton { color: var(--sand); }
+.df-cadre > p { max-width: 36rem; font-size: 1.04rem; line-height: 1.6; color: var(--muted-dark); }
+.df-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; }
+.df-lien { gap: .5rem; color: var(--cream); }
+.df-lien svg { width: 1rem; height: 1rem; }
+
+@media (hover: hover) and (pointer: fine) {
+  .dp-plan button:hover img { transform: scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dh-chip, .dh-ligne, .dh-intro, .dh-actions, .dh-conditions, .dh-carte { animation: none; }
+  .da-jauge span, .dp-plan img { transition: none; }
+}
+
+@media (max-width: 1100px) {
+  .dh-contenu { grid-template-columns: 1fr; padding-top: 7rem; padding-bottom: 4.6rem; }
+  .dh-carte { max-width: 30rem; }
+  .dg ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dc-grille, .da, .dp { grid-template-columns: 1fr; }
+  .dc-ensuite { position: static; }
+}
+
+@media (max-width: 900px) {
+  .dh, .dg { padding: 8px 8px 0; }
+  .dh-cadre { min-height: calc(100svh - 16px); border-radius: 22px; }
+  .dh-voile { background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 35%, color-mix(in oklab, var(--ink) 88%, transparent) 70%); }
+  .dh-contenu { gap: 1.8rem; padding: 6.5rem 1.3rem 4.4rem; }
+  .dh-carte { padding: 1.4rem; }
+  .dg ul { grid-template-columns: 1fr; gap: 8px; }
+  .dg li { padding: 1.3rem 1.4rem; border-radius: 20px; }
+  .dc-liste { grid-template-columns: 1fr; gap: 8px; }
+  .da { margin: 0 8px; border-radius: 22px; }
+  .da-maquette { transform: none; }
+  .da-bas { grid-template-columns: 1fr; }
+  .da-pourcent { font-size: 3.6rem; }
+  .df { padding: 0 8px 8px; }
+  .df-cadre { border-radius: 22px; }
+}

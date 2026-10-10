@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DossierRouteImport } from './routes/dossier'
 import { Route as EspacePromoteurRouteImport } from './routes/espace-promoteur'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalerieRouteImport } from './routes/galerie'
@@ -73,6 +74,11 @@ const IndexRoute = IndexRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DossierRoute = DossierRouteImport.update({
+  id: '/dossier',
+  path: '/dossier',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EspacePromoteurRoute = EspacePromoteurRouteImport.update({
@@ -344,6 +350,7 @@ const NoVillasTypeRoute = NoVillasTypeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/dossier': typeof DossierRoute
   '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
@@ -401,6 +408,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/dossier': typeof DossierRoute
   '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
@@ -459,6 +467,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/dossier': typeof DossierRoute
   '/espace-promoteur': typeof EspacePromoteurRoute
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
@@ -518,6 +527,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/contact'
+    | '/dossier'
     | '/espace-promoteur'
     | '/faq'
     | '/galerie'
@@ -575,6 +585,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/dossier'
     | '/espace-promoteur'
     | '/faq'
     | '/galerie'
@@ -632,6 +643,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/contact'
+    | '/dossier'
     | '/espace-promoteur'
     | '/faq'
     | '/galerie'
@@ -690,6 +702,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ContactRoute: typeof ContactRoute
+  DossierRoute: typeof DossierRoute
   EspacePromoteurRoute: typeof EspacePromoteurRoute
   FaqRoute: typeof FaqRoute
   GalerieRoute: typeof GalerieRoute
@@ -759,6 +772,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dossier': {
+      id: '/dossier'
+      path: '/dossier'
+      fullPath: '/dossier'
+      preLoaderRoute: typeof DossierRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/espace-promoteur': {
@@ -1138,6 +1158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ContactRoute: ContactRoute,
+  DossierRoute: DossierRoute,
   EspacePromoteurRoute: EspacePromoteurRoute,
   FaqRoute: FaqRoute,
   GalerieRoute: GalerieRoute,
