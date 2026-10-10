@@ -5,10 +5,10 @@ import { DossierPage } from "@/components/citystar/pages/DossierPage";
 import { entete } from "@/components/citystar/seo";
 import { SiteChrome } from "@/components/citystar/site";
 
-const LANGUE = "fr" as const;
+const LANGUE = "nl" as const;
 const t = textesDossier[LANGUE];
 
-export const Route = createFileRoute("/dossier")({
+export const Route = createFileRoute("/nl/informatiepakket")({
   head: () => entete(LANGUE, "dossier", { titre: t.titre, description: t.description }),
   component: Page,
 });

@@ -41,7 +41,7 @@ import { scrollTo } from "../data";
 import { fichierPublic } from "../liens";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
-import { textesDossier as t } from "./textes";
+import { textesDossier } from "./textes";
 
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 const acompte = reservation.paliers.find((palier) => palier.etape === "reservation");
@@ -49,8 +49,8 @@ const whatsapp = `https://wa.me/${contact.whatsapp}`;
 
 /** Toutes les demandes de la page ouvrent le formulaire existant, avec le dossier joint. */
 export function useDemanderDossier() {
-  const { ouvrirContactAvec } = useSite();
-  return () => ouvrirContactAvec(t.selection);
+  const { langue, ouvrirContactAvec } = useSite();
+  return () => ouvrirContactAvec(textesDossier[langue].selection);
 }
 
 function Titre({ lignes, id }: { lignes: readonly string[]; id: string }) {
@@ -70,6 +70,7 @@ function Titre({ lignes, id }: { lignes: readonly string[]; id: string }) {
 
 export function DossierHero() {
   const { langue } = useDevise();
+  const t = textesDossier[langue];
   const demander = useDemanderDossier();
   const reduce = useReducedMotion();
   const video = useRef<HTMLVideoElement>(null);
@@ -161,7 +162,7 @@ export function DossierHero() {
               rel="noreferrer"
             >
               <Download aria-hidden="true" />
-              {t.carte.brochure(`${formatDecimal(brochures.citystar.mo, langue)} Mo`)}
+              {t.carte.brochure(t.poids(formatDecimal(brochures.citystar.mo, langue)))}
             </a>
           </aside>
         </div>
@@ -190,9 +191,10 @@ const ICONES_GARANTIES = [Landmark, ShieldCheck, Banknote, Globe2];
 
 export function Garanties() {
   const { langue } = useDevise();
+  const t = textesDossier[langue];
   const garanties = t.garanties(formatPart(engagements.fondsPropres, langue));
   return (
-    <section className="dg" aria-label="Garanties">
+    <section className="dg" aria-label={t.garantiesLabel}>
       <ul>
         {garanties.map((g, i) => {
           const Icone = ICONES_GARANTIES[i] ?? Check;
@@ -216,6 +218,7 @@ export function Garanties() {
 export function ContenuDossier() {
   const { langue } = useDevise();
   const demander = useDemanderDossier();
+  const t = textesDossier[langue];
   const c = t.contenu;
   return (
     <section className="dc section-pad" aria-labelledby="dc-titre">
@@ -245,7 +248,7 @@ export function ContenuDossier() {
               ))}
               <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
                 <Download aria-hidden="true" />
-                {c.brochure} · {formatDecimal(brochures.citystar.mo, langue)} Mo
+                {c.brochure} · {t.poids(formatDecimal(brochures.citystar.mo, langue))}
               </a>
             </div>
           </li>
@@ -278,7 +281,9 @@ export function ContenuDossier() {
 /* ------------------------------------------------------------------ */
 
 export function ApercuEspace() {
-  const e = t.espace;
+  const { langue, t: site } = useDevise();
+  const e = textesDossier[langue].espace;
+  const etapes = Object.values(site.livraison.etapes);
   return (
     <section id="espace-proprietaire" className="da section-pad" aria-labelledby="da-titre">
       <div className="da-texte" data-vu="">
@@ -306,14 +311,14 @@ export function ApercuEspace() {
             <p className="da-pourcent">
               22<span>%</span>
             </p>
-            <p className="da-etape">{e.etape}</p>
+            <p className="da-etape">{site.livraison.etapes.fondations}</p>
             <div className="da-jauge">
               <span />
             </div>
           </div>
           <div className="da-bas">
             <ol className="da-frise">
-              {e.etapes.map((nom, i) => (
+              {etapes.map((nom, i) => (
                 <li key={nom} data-statut={i === 0 ? "termine" : i === 1 ? "en_cours" : "a_venir"}>
                   <i />
                   {nom}
@@ -348,7 +353,7 @@ export function Parcelles() {
   const { langue } = useDevise();
   const { ouvrirPlan } = useSite();
   const demander = useDemanderDossier();
-  const p = t.parcelles;
+  const p = textesDossier[langue].parcelles;
   return (
     <section className="dp section-pad" aria-labelledby="dp-titre">
       <div className="dp-texte" data-vu="">
@@ -386,8 +391,9 @@ export function Parcelles() {
 /* ------------------------------------------------------------------ */
 
 export function DossierFinal() {
+  const { langue } = useDevise();
   const demander = useDemanderDossier();
-  const f = t.final;
+  const f = textesDossier[langue].final;
   return (
     <section className="df" aria-labelledby="df-titre">
       <div className="df-cadre" data-vu="">
