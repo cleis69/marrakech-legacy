@@ -20,6 +20,18 @@ const nl: Copie = {
   suites: (n) => `${n} suites`,
   plainPied: "drempelvrij toegankelijk",
   source: "Bron",
+  contact: {
+    visite: { kicker: "Uw adviseur", titre: "Bezoek het domein samen met ons.", texte: "Ter plaatse in Marrakech of via video, op een moment dat u schikt. Uw adviseur beantwoordt al uw vragen.", principal: "Plan een bezoek", secondaire: "Spreek een adviseur" },
+    avant: { kicker: "Uw adviseur", titre: "Een vraag vóór uw bezoek?", texte: "Uw adviseur antwoordt direct, via WhatsApp of telefoon.", principal: "Stuur mijn adviseur een bericht", secondaire: "Bellen" },
+    apres: { kicker: "Uw adviseur", titre: "Twijfelt u nog?", texte: "Kom het domein nog eens bekijken, ter plaatse of via video, of stel uw vragen aan uw adviseur.", principal: "Plan een nieuw bezoek", secondaire: "Spreek een adviseur" },
+    proprio: { kicker: "Uw adviseur", titre: "Uw adviseur blijft aan uw zijde.", texte: "Een vraag over de bouw, een betaling of een document? Stuur uw adviseur een bericht of bel.", principal: "Stuur mijn adviseur een bericht", secondaire: "Bellen" },
+    telephone: (tel) => `of bel ${tel}`,
+    messages: {
+      visite: "Hallo, ik wil graag een bezoek aan CITYSTAR plannen, ter plaatse of via video.",
+      conseiller: "Hallo, ik wil graag een adviseur van CITYSTAR spreken.",
+      proprio: "Hallo, ik ben koper van een CITYSTAR-villa en ik heb een vraag.",
+    },
+  },
   faits: {
     villas: "privévilla’s",
     construits: "woonoppervlak, maximaal",
@@ -38,9 +50,7 @@ const nl: Copie = {
     planVilla: (type) => `Plattegronden van villa ${type}`,
     texte:
       "Ik stuur u persoonlijk de prijs per villa, de beschikbaarheid en het betalingsschema. Het gaat sneller als u mij laat weten wat u zoekt: de architectuur die u aanspreekt, uw planning en of u koopt om er te wonen of om te verhuren.",
-    bouton: "Antwoord mij via WhatsApp",
-    whatsapp: "Hallo, ik heb zojuist het CITYSTAR-informatiepakket ontvangen. Ik ontvang graag de prijzen en de beschikbaarheid.",
-    secondaire: "Of ontdek het domein online",
+    bouton: "Ontdek het domein online",
   },
   d2: {
     objet: "A, B of C?",

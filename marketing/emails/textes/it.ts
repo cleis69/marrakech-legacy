@@ -20,6 +20,18 @@ const it: Copie = {
   suites: (n) => `${n} suite`,
   plainPied: "accessibile senza gradini",
   source: "Fonte",
+  contact: {
+    visite: { kicker: "Il suo consulente", titre: "Visitiamo insieme il complesso.", texte: "Sul posto a Marrakech o in videochiamata, all’orario che preferisce. Il suo consulente risponde a tutte le sue domande.", principal: "Organizza una visita", secondaire: "Parla con un consulente" },
+    avant: { kicker: "Il suo consulente", titre: "Una domanda prima della visita?", texte: "Il suo consulente le risponde direttamente, su WhatsApp o al telefono.", principal: "Scrivi al mio consulente", secondaire: "Chiama" },
+    apres: { kicker: "Il suo consulente", titre: "Ancora qualche dubbio?", texte: "Torni a vedere il complesso, sul posto o in videochiamata, oppure ponga le sue domande al consulente.", principal: "Organizza un’altra visita", secondaire: "Parla con un consulente" },
+    proprio: { kicker: "Il suo consulente", titre: "Il suo consulente resta al suo fianco.", texte: "Una domanda sul cantiere, un pagamento o un documento? Scriva o chiami il suo consulente.", principal: "Scrivi al mio consulente", secondaire: "Chiama" },
+    telephone: (tel) => `oppure chiami il ${tel}`,
+    messages: {
+      visite: "Buongiorno, vorrei organizzare una visita di CITYSTAR, sul posto o in videochiamata.",
+      conseiller: "Buongiorno, vorrei parlare con un consulente CITYSTAR.",
+      proprio: "Buongiorno, ho acquistato una villa CITYSTAR e ho una domanda.",
+    },
+  },
   faits: {
     villas: "ville private",
     construits: "costruiti, al massimo",
@@ -38,9 +50,7 @@ const it: Copie = {
     planVilla: (type) => `Planimetrie della villa ${type}`,
     texte:
       "Le invierò personalmente i prezzi villa per villa, le disponibilità e il piano dei pagamenti. Per fare prima, mi dica semplicemente cosa cerca: l’architettura che la attira, i suoi tempi, se acquista per viverci o per affittare.",
-    bouton: "Rispondermi su WhatsApp",
-    whatsapp: "Buongiorno, ho appena ricevuto il dossier CITYSTAR. Vorrei ricevere i prezzi e le disponibilità.",
-    secondaire: "Oppure scopra il complesso online",
+    bouton: "Scopri il complesso online",
   },
   d2: {
     objet: "A, B o C?",

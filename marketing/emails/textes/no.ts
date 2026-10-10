@@ -20,6 +20,18 @@ const no: Copie = {
   suites: (n) => `${n} suiter`,
   plainPied: "trinnfri adkomst",
   source: "Kilde",
+  contact: {
+    visite: { kicker: "Rådgiveren din", titre: "Bli med på visning av området.", texte: "På stedet i Marrakech eller på video, når det passer deg. Rådgiveren din svarer på alle spørsmålene dine.", principal: "Avtal en visning", secondaire: "Snakk med en rådgiver" },
+    avant: { kicker: "Rådgiveren din", titre: "Et spørsmål før visningen?", texte: "Rådgiveren din svarer direkte, på WhatsApp eller telefon.", principal: "Skriv til rådgiveren min", secondaire: "Ring" },
+    apres: { kicker: "Rådgiveren din", titre: "Fortsatt i tvil?", texte: "Kom og se området igjen, på stedet eller på video, eller still spørsmålene dine til rådgiveren.", principal: "Avtal en ny visning", secondaire: "Snakk med en rådgiver" },
+    proprio: { kicker: "Rådgiveren din", titre: "Rådgiveren din er fortsatt her for deg.", texte: "Et spørsmål om byggingen, en betaling eller et dokument? Skriv eller ring til rådgiveren din.", principal: "Skriv til rådgiveren min", secondaire: "Ring" },
+    telephone: (tel) => `eller ring ${tel}`,
+    messages: {
+      visite: "Hei, jeg vil gjerne avtale en visning av CITYSTAR, på stedet eller på video.",
+      conseiller: "Hei, jeg vil gjerne snakke med en rådgiver hos CITYSTAR.",
+      proprio: "Hei, jeg har kjøpt en CITYSTAR-villa og har et spørsmål.",
+    },
+  },
   faits: {
     villas: "private villaer",
     construits: "boareal, maksimalt",
@@ -38,9 +50,7 @@ const no: Copie = {
     planVilla: (type) => `Tegninger av villa ${type}`,
     texte:
       "Jeg sender deg personlig prisen per villa, ledigheten og betalingsplanen. Det går raskere om du forteller meg hva du ser etter: arkitekturen som frister, tidsplanen din, og om du kjøper for å bo eller for å leie ut.",
-    bouton: "Svar meg på WhatsApp",
-    whatsapp: "Hei, jeg har nettopp fått salgsoppgaven for CITYSTAR. Jeg vil gjerne ha priser og ledighet.",
-    secondaire: "Eller utforsk området på nett",
+    bouton: "Utforsk området på nett",
   },
   d2: {
     objet: "A, B eller C?",

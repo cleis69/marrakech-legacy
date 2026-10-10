@@ -20,6 +20,18 @@ const es: Copie = {
   suites: (n) => `${n} suites`,
   plainPied: "accesible sin escalones",
   source: "Fuente",
+  contact: {
+    visite: { kicker: "Su asesor", titre: "Visitemos juntos el conjunto.", texte: "In situ en Marrakech o por videollamada, a la hora que le convenga. Su asesor responde a todas sus preguntas.", principal: "Organizar una visita", secondaire: "Hablar con un asesor" },
+    avant: { kicker: "Su asesor", titre: "¿Una pregunta antes de la visita?", texte: "Su asesor le responde directamente, por WhatsApp o por teléfono.", principal: "Escribir a mi asesor", secondaire: "Llamar" },
+    apres: { kicker: "Su asesor", titre: "¿Aún tiene dudas?", texte: "Vuelva a ver el conjunto, in situ o por videollamada, o plantee sus preguntas a su asesor.", principal: "Organizar otra visita", secondaire: "Hablar con un asesor" },
+    proprio: { kicker: "Su asesor", titre: "Su asesor sigue a su lado.", texte: "¿Una pregunta sobre la obra, un pago o un documento? Escríbale o llámele.", principal: "Escribir a mi asesor", secondaire: "Llamar" },
+    telephone: (tel) => `o llame al ${tel}`,
+    messages: {
+      visite: "Hola, me gustaría organizar una visita de CITYSTAR, in situ o por videollamada.",
+      conseiller: "Hola, me gustaría hablar con un asesor de CITYSTAR.",
+      proprio: "Hola, soy comprador de una villa CITYSTAR y tengo una pregunta.",
+    },
+  },
   faits: {
     villas: "villas privadas",
     construits: "construidos, como máximo",
@@ -38,9 +50,7 @@ const es: Copie = {
     planVilla: (type) => `Planos de la villa ${type}`,
     texte:
       "Le enviaré personalmente el precio de cada villa, la disponibilidad y el calendario de pagos. Para ir más rápido, cuénteme qué busca: la arquitectura que le atrae, sus plazos y si compra para vivir o para alquilar.",
-    bouton: "Responderme por WhatsApp",
-    whatsapp: "Hola, acabo de recibir el dossier de CITYSTAR. Me gustaría recibir los precios y la disponibilidad.",
-    secondaire: "O descubra el conjunto en línea",
+    bouton: "Descubrir el conjunto en línea",
   },
   d2: {
     objet: "¿A, B o C?",

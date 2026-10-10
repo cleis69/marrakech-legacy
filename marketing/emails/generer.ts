@@ -42,6 +42,8 @@ const COPIES: Record<Langue, Copie> = { fr, en, es, it, nl, no };
 const SITE = process.env["SITE"] ?? "https://cleis69.github.io/marrakech-legacy";
 const IMAGES = process.env["IMAGES"] ?? `${SITE}/emails`;
 const SORTIE = process.env["SORTIE"] ?? join(import.meta.dir, "modeles");
+/** Lien de prise de rendez-vous (page de réunion HubSpot, par exemple) ; à défaut, WhatsApp avec un message prérempli. */
+const RDV = process.env["RDV"];
 
 /* Couleurs du site, converties de oklch en hexadécimal (les messageries ignorent oklch). */
 const C = {
@@ -248,6 +250,48 @@ const choixNumerotes = (choix: string[]) => `
   .join("")}
 </table>`;
 
+type Variante = "visite" | "avant" | "apres" | "proprio";
+
+/**
+ * Bloc conseiller, présent dans chaque e-mail : deux actions pour parler à
+ * quelqu'un. Prospects : organiser une visite ou parler à un conseiller ;
+ * visite prévue ou acquéreurs : écrire à son conseiller ou l'appeler.
+ */
+function blocConseiller(c: Copie, variante: Variante) {
+  const b = c.contact[variante];
+  const visite = RDV ?? whatsapp(c.contact.messages.visite);
+  const principal =
+    variante === "visite" || variante === "apres"
+      ? visite
+      : whatsapp(variante === "proprio" ? c.contact.messages.proprio : c.contact.messages.conseiller);
+  const secondaire =
+    variante === "visite" || variante === "apres"
+      ? whatsapp(c.contact.messages.conseiller)
+      : `tel:${contact.telephone}`;
+  const pied =
+    variante === "visite" || variante === "apres"
+      ? `<p style="margin:16px 0 0;font:400 13px/1.5 ${SANS};color:${C.grisClair};">${c.contact.telephone(`<a href="tel:${contact.telephone}" style="color:${C.sable};text-decoration:none;">${contact.telephoneAffiche}</a>`)}</p>`
+      : "";
+  return `
+<table role="presentation" cellpadding="0" cellspacing="0" width="100%" bgcolor="${C.encre}" style="margin:30px 0 4px;border-radius:20px;"><tr><td style="padding:28px 28px 26px;">
+  <p style="margin:0 0 10px;font:500 10px/1.4 ${SANS};letter-spacing:3px;text-transform:uppercase;color:${C.sable};">${b.kicker}</p>
+  <p style="margin:0 0 8px;font:400 28px/1.1 ${SERIF};color:${C.creme};">${b.titre}</p>
+  <p style="margin:0 0 20px;font:400 14px/1.6 ${SANS};color:${C.grisClair};">${b.texte}</p>
+  <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+    <td class="col" style="padding:0 10px 10px 0;">
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="${C.sable}" style="border-radius:999px;">
+        <a href="${principal}" style="display:inline-block;padding:14px 24px;font:500 14px/1 ${SANS};color:${C.encre};text-decoration:none;border-radius:999px;">${b.principal}&nbsp;&nbsp;→</a>
+      </td></tr></table>
+    </td>
+    <td class="col" style="padding:0 0 10px;">
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="border-radius:999px;">
+        <a href="${secondaire}" style="display:inline-block;padding:13px 22px;font:500 14px/1 ${SANS};color:${C.creme};text-decoration:none;border:1px solid ${C.gris};border-radius:999px;">${b.secondaire}</a>
+      </td></tr></table>
+    </td>
+  </tr></table>${pied}
+</td></tr></table>`;
+}
+
 /** Signature : le propriétaire du contact dans HubSpot, ou l'équipe s'il n'y en a pas. */
 const signature = (c: Copie) => `
 <p style="margin:26px 0 0;font:400 16px/1.6 ${SANS};color:${C.encre2};">${c.signature.salut}</p>
@@ -395,8 +439,8 @@ function emails(langue: Langue): Email[] {
         ]),
         p(c.d1.texte),
         chiffres(faitsDomaine),
-        bouton({ texte: c.d1.bouton, href: whatsapp(c.d1.whatsapp) }),
-        lienSecondaire({ texte: c.d1.secondaire, href: lien("dossier", "dossier", "d1") }),
+        bouton({ texte: c.d1.bouton, href: lien("dossier", "dossier", "d1") }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -413,6 +457,7 @@ function emails(langue: Langue): Email[] {
         troisVillas(c, langue),
         p(c.d2.texte),
         bouton({ texte: c.d2.bouton, href: lien("villas", "dossier", "d2") }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -430,6 +475,7 @@ function emails(langue: Langue): Email[] {
         coches(c.d3.points),
         bouton({ texte: c.d3.bouton, href: lien("", "dossier", "d3", "#visite") }),
         lienSecondaire({ texte: c.d3.secondaire, href: whatsapp(c.d3.whatsapp) }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -447,6 +493,7 @@ function emails(langue: Langue): Email[] {
         encadre(c.d4.encadre(fondsPropres)),
         p(c.d4.texte),
         bouton({ texte: c.d4.bouton, href: whatsapp(c.d4.whatsapp) }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -468,6 +515,7 @@ function emails(langue: Langue): Email[] {
         `<p style="margin:0 0 22px;font:400 12px/1.5 ${SANS};color:${C.grisClair};">${c.d5.legende(marche.annee)} <a href="${marche.sourceUrl}" style="color:${C.grisClair};">${c.source}</a></p>`,
         p(c.d5.texte(programme.nombreVillas)),
         bouton({ texte: c.d5.bouton, href: lien("investir", "dossier", "d5", "#rentabilite") }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -485,6 +533,7 @@ function emails(langue: Langue): Email[] {
         coches(c.d6.points),
         p(c.d6.texte),
         bouton({ texte: c.d6.bouton, href: lien("dossier", "dossier", "d6", "#espace-proprietaire") }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -501,6 +550,7 @@ function emails(langue: Langue): Email[] {
         p(c.d7.texte),
         p(c.d7.texte2),
         bouton({ texte: c.d7.bouton, href: whatsapp(c.d7.whatsapp) }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -516,6 +566,7 @@ function emails(langue: Langue): Email[] {
         p(c.d8.consigne),
         choixNumerotes(c.d8.choix),
         p(c.d8.fin),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },
@@ -534,6 +585,7 @@ function emails(langue: Langue): Email[] {
         coches(c.v1.points),
         bouton({ texte: c.v1.bouton, href: itineraire }),
         lienSecondaire({ texte: c.v1.secondaire, href: whatsapp(c.v1.whatsapp) }),
+        blocConseiller(c, "avant"),
         signer,
       ].join(""),
     },
@@ -551,6 +603,7 @@ function emails(langue: Langue): Email[] {
           ...c.v2.points,
         ]),
         p(c.v2.visio),
+        blocConseiller(c, "avant"),
         signer,
       ].join(""),
     },
@@ -567,6 +620,7 @@ function emails(langue: Langue): Email[] {
         etapes(c.v3.etapes(part, livraison)),
         bouton({ texte: c.v3.bouton, href: whatsapp(c.v3.whatsapp) }),
         lienSecondaire({ texte: c.v3.secondaire, href: lien("", "visite", "v3", "#visite") }),
+        blocConseiller(c, "apres"),
         signer,
       ].join(""),
     },
@@ -583,6 +637,7 @@ function emails(langue: Langue): Email[] {
         p(c.p1.intro),
         etapes(c.p1.etapes),
         bouton({ texte: c.p1.bouton, href: lien("mon-espace", "proprietaire", "p1") }),
+        blocConseiller(c, "proprio"),
         signer,
       ].join(""),
     },
@@ -599,6 +654,7 @@ function emails(langue: Langue): Email[] {
         coches(c.p2.points),
         encadre(c.p2.encadre(livraison)),
         bouton({ texte: c.p2.bouton, href: lien("mon-espace", "proprietaire", "p2") }),
+        blocConseiller(c, "proprio"),
         signer,
       ].join(""),
     },
@@ -620,6 +676,7 @@ function emails(langue: Langue): Email[] {
         p(c.p3.mot),
         p(c.p3.texte),
         bouton({ texte: c.p3.bouton, href: lien("mon-espace", "proprietaire", "p3") }),
+        blocConseiller(c, "proprio"),
         signer,
       ].join(""),
     },
@@ -642,6 +699,7 @@ function emails(langue: Langue): Email[] {
         p(c.n1.texte),
         bouton({ texte: c.n1.bouton, href: whatsapp(c.n1.whatsapp) }),
         lienSecondaire({ texte: c.n1.secondaire, href: lien("dossier", "nouvelles", "n1") }),
+        blocConseiller(c, "visite"),
         signer,
       ].join(""),
     },

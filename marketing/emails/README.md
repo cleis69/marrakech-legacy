@@ -20,6 +20,7 @@
 4. **E-mails** : créer un e-mail marketing à partir de chaque modèle et reporter l'objet et le texte d'aperçu indiqués dans `index.html`.
 5. **Workflows** : un workflow par séquence, avec une branche par langue sur la propriété « Langue préférée » (`hs_language`), et la sortie du workflow dès qu'un contact répond, prend rendez-vous ou réserve.
 6. **Signature** : elle affiche le propriétaire du contact (`owner.firstname`, `owner.lastname`), ou « L'équipe CITYSTAR » si aucun conseiller n'est attribué. Attribuer chaque contact à un conseiller dès sa demande.
+7. **Bloc conseiller** : chaque e-mail se termine par deux actions pour parler à quelqu'un, adaptées au moment du parcours (organiser une visite et parler à un conseiller ; ou écrire à son conseiller et l'appeler). « Organiser une visite » ouvre WhatsApp avec un message prérempli ; pour ouvrir plutôt la page de réunion HubSpot du conseiller, régénérer avec `RDV=<lien> bun marketing/emails/generer.ts`.
 
 Les champs surlignés en jaune (`[étape]`, `[avancement]`, `[le mot du promoteur]`…) dans `p3-etape` et `n1-le-chantier-avance` sont à remplacer avant chaque envoi, ainsi que leur image, par une vraie photo du chantier.
 

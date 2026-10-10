@@ -20,6 +20,18 @@ const en: Copie = {
   suites: (n) => `${n} suites`,
   plainPied: "step-free access",
   source: "Source",
+  contact: {
+    visite: { kicker: "Your adviser", titre: "Let’s visit the estate together.", texte: "On site in Marrakech or by video call, at a time that suits you. Your adviser answers all your questions.", principal: "Arrange a visit", secondaire: "Talk to an adviser" },
+    avant: { kicker: "Your adviser", titre: "A question before your visit?", texte: "Your adviser answers directly, on WhatsApp or by phone.", principal: "Message my adviser", secondaire: "Call" },
+    apres: { kicker: "Your adviser", titre: "Still hesitating?", texte: "Come back to see the estate, on site or by video call, or ask your adviser your questions.", principal: "Arrange another visit", secondaire: "Talk to an adviser" },
+    proprio: { kicker: "Your adviser", titre: "Your adviser is still by your side.", texte: "A question about the build, a payment or a document? Message or call your adviser.", principal: "Message my adviser", secondaire: "Call" },
+    telephone: (tel) => `or call ${tel}`,
+    messages: {
+      visite: "Hello, I would like to arrange a visit to CITYSTAR, on site or by video call.",
+      conseiller: "Hello, I would like to speak to a CITYSTAR adviser.",
+      proprio: "Hello, I am the buyer of a CITYSTAR villa and I have a question.",
+    },
+  },
   faits: {
     villas: "private villas",
     construits: "of living space, at most",
@@ -38,9 +50,7 @@ const en: Copie = {
     planVilla: (type) => `Floor plans of villa ${type}`,
     texte:
       "I will send you the prices villa by villa, the availability and the payment schedule myself. To speed things up, just tell me what you are looking for: the architecture that appeals to you, your timing, and whether you are buying to live there or to rent it out.",
-    bouton: "Reply to me on WhatsApp",
-    whatsapp: "Hello, I have just received the CITYSTAR information pack. I would like to receive the prices and availability.",
-    secondaire: "Or explore the estate online",
+    bouton: "Explore the estate online",
   },
   d2: {
     objet: "A, B or C?",

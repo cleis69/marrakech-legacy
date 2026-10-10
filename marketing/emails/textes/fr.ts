@@ -24,6 +24,18 @@ const fr = {
   suites: (n: number) => `${n} suites`,
   plainPied: "accessible de plain-pied",
   source: "Source",
+  contact: {
+    visite: { kicker: "Votre conseiller", titre: "Visitons le domaine ensemble.", texte: "Sur place à Marrakech ou en visio, à l’heure qui vous convient. Votre conseiller répond à toutes vos questions.", principal: "Organiser une visite", secondaire: "Parler à un conseiller" },
+    avant: { kicker: "Votre conseiller", titre: "Une question avant la visite ?", texte: "Votre conseiller vous répond directement, sur WhatsApp ou par téléphone.", principal: "Écrire à mon conseiller", secondaire: "Appeler" },
+    apres: { kicker: "Votre conseiller", titre: "Encore une hésitation ?", texte: "Revenez voir le domaine, sur place ou en visio, ou posez vos questions à votre conseiller.", principal: "Organiser une nouvelle visite", secondaire: "Parler à un conseiller" },
+    proprio: { kicker: "Votre conseiller", titre: "Votre conseiller reste à vos côtés.", texte: "Une question sur le chantier, un paiement ou un document ? Écrivez-lui ou appelez-le.", principal: "Écrire à mon conseiller", secondaire: "Appeler" },
+    telephone: (tel: string) => `ou appelez le ${tel}`,
+    messages: {
+      visite: "Bonjour, je souhaite organiser une visite de CITYSTAR, sur place ou en visio.",
+      conseiller: "Bonjour, j’aimerais parler à un conseiller CITYSTAR.",
+      proprio: "Bonjour, je suis acquéreur d’une villa CITYSTAR et j’ai une question.",
+    },
+  },
   faits: {
     villas: "villas privées",
     construits: "construits, au plus",
@@ -42,9 +54,7 @@ const fr = {
     planVilla: (type: string) => `Plans de la villa ${type}`,
     texte:
       "Je vous transmets personnellement les prix villa par villa, les disponibilités et l’échéancier. Pour aller plus vite, dites-moi simplement ce que vous cherchez : l’architecture qui vous attire, votre calendrier, si vous achetez pour y vivre ou pour louer.",
-    bouton: "Me répondre sur WhatsApp",
-    whatsapp: "Bonjour, je viens de recevoir le dossier CITYSTAR. Je souhaite recevoir les prix et les disponibilités.",
-    secondaire: "Ou découvrir le domaine en ligne",
+    bouton: "Découvrir le domaine en ligne",
   },
   d2: {
     objet: "A, B ou C ?",
