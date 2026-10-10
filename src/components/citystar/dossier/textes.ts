@@ -8,7 +8,6 @@ const fr = {
   titre: "Villas de luxe à Marrakech : recevoir le dossier — CITYSTAR",
   description:
     "Quatorze villas avec piscine privée à Marrakech, livrées en août 2027. Prix villa par villa, plans, disponibilités et échéancier : recevez le dossier complet, sans engagement.",
-  poids: (mo: string) => `${mo} Mo`,
   hero: {
     lieu: "Résidence privée · Oulad Hassoune, Marrakech",
     titre: (livraison: string) => ["Votre villa à Marrakech,", `livrée en ${livraison}.`] as [string, string],
@@ -35,7 +34,7 @@ const fr = {
     ],
     bouton: "Recevoir le dossier",
     discretion: "Vos coordonnées servent uniquement à vous recontacter au sujet de CITYSTAR.",
-    brochure: (poids: string) => `Ou téléchargez la brochure maintenant (PDF, ${poids})`,
+    brochure: "Brochure et plans PDF envoyés avec le dossier.",
   },
   garantiesLabel: "Garanties",
   garanties: (fondsPropres: string) => [
@@ -48,7 +47,7 @@ const fr = {
     kicker: "Prix · plans · disponibilités",
     titre: ["Tout pour décider,", "en une seule demande."] as [string, string],
     intro:
-      "Le dossier réunit ce qu’un acquéreur demande d’ordinaire en dix messages. Les plans et la brochure se téléchargent tout de suite ; les prix et les disponibilités vous sont envoyés par un conseiller.",
+      "Le dossier réunit ce qu’un acquéreur demande d’ordinaire en dix messages. Un conseiller vous envoie le tout après une demande d’une minute, sans engagement.",
     elements: [
       { titre: "Prix villa par villa", texte: "Le prix de chacune des quatorze villas, selon son architecture et sa parcelle." },
       { titre: "Disponibilités", texte: "Les villas encore libres, à la date de votre demande." },
@@ -57,8 +56,7 @@ const fr = {
       { titre: "Brochure du domaine", texte: "Architecture, matériaux, prestations et plan de masse." },
       { titre: "Analyse locative", texte: "Une simulation de rendement brut, à partir de vos hypothèses." },
     ],
-    plan: (type: string) => `Villa ${type}`,
-    brochure: "Brochure",
+    demander: "Recevoir les plans et la brochure",
     ensuite: "Et ensuite ?",
     etapes: [
       { titre: "Vous demandez le dossier.", texte: "Une minute, sans engagement ni réservation automatique." },
@@ -118,7 +116,6 @@ const en: TextesDossier = {
   titre: "Luxury villas in Marrakech: request the information pack — CITYSTAR",
   description:
     "Fourteen villas with private pools in Marrakech, delivered in August 2027. Prices villa by villa, floor plans, availability and payment schedule: receive the full information pack, with no commitment.",
-  poids: (mo) => `${mo} MB`,
   hero: {
     lieu: "Private residence · Oulad Hassoune, Marrakech",
     titre: (livraison) => ["Your villa in Marrakech,", `delivered in ${livraison}.`],
@@ -145,7 +142,7 @@ const en: TextesDossier = {
     ],
     bouton: "Get the information pack",
     discretion: "Your details are used only to contact you about CITYSTAR.",
-    brochure: (poids) => `Or download the brochure now (PDF, ${poids})`,
+    brochure: "Brochure and PDF floor plans sent with the pack.",
   },
   garantiesLabel: "Guarantees",
   garanties: (fondsPropres) => [
@@ -158,7 +155,7 @@ const en: TextesDossier = {
     kicker: "Prices · plans · availability",
     titre: ["Everything you need to decide,", "in a single request."],
     intro:
-      "The pack gathers what a buyer usually asks for in ten messages. Floor plans and the brochure download right away; prices and availability are sent to you by an adviser.",
+      "The pack gathers what a buyer usually asks for in ten messages. An adviser sends you everything after a one-minute request, with no commitment.",
     elements: [
       { titre: "Prices villa by villa", texte: "The price of each of the fourteen villas, by architecture and plot." },
       { titre: "Availability", texte: "The villas still available on the date of your request." },
@@ -167,8 +164,7 @@ const en: TextesDossier = {
       { titre: "Estate brochure", texte: "Architecture, materials, specifications and site plan." },
       { titre: "Rental analysis", texte: "A gross yield simulation based on your own assumptions." },
     ],
-    plan: (type) => `Villa ${type}`,
-    brochure: "Brochure",
+    demander: "Get the plans and the brochure",
     ensuite: "What happens next?",
     etapes: [
       { titre: "You request the pack.", texte: "One minute, no commitment, no automatic reservation." },
@@ -226,7 +222,6 @@ const es: TextesDossier = {
   titre: "Villas de lujo en Marrakech: reciba el dossier — CITYSTAR",
   description:
     "Catorce villas con piscina privada en Marrakech, entregadas en agosto de 2027. Precio de cada villa, planos, disponibilidad y calendario de pagos: reciba el dossier completo, sin compromiso.",
-  poids: (mo) => `${mo} MB`,
   hero: {
     lieu: "Residencia privada · Oulad Hassoune, Marrakech",
     titre: (livraison) => ["Su villa en Marrakech,", `entregada en ${livraison}.`],
@@ -252,7 +247,7 @@ const es: TextesDossier = {
     ],
     bouton: "Recibir el dossier",
     discretion: "Sus datos solo se utilizan para contactarle sobre CITYSTAR.",
-    brochure: (poids) => `O descargue ahora el folleto (PDF, ${poids})`,
+    brochure: "Folleto y planos PDF enviados con el dossier.",
   },
   garantiesLabel: "Garantías",
   garanties: (fondsPropres) => [
@@ -265,7 +260,7 @@ const es: TextesDossier = {
     kicker: "Precios · planos · disponibilidad",
     titre: ["Todo para decidir,", "en una sola solicitud."],
     intro:
-      "El dossier reúne lo que un comprador suele pedir en diez mensajes. Los planos y el folleto se descargan al instante; los precios y la disponibilidad se los envía un asesor.",
+      "El dossier reúne lo que un comprador suele pedir en diez mensajes. Un asesor se lo envía todo tras una solicitud de un minuto, sin compromiso.",
     elements: [
       { titre: "Precio de cada villa", texte: "El precio de cada una de las catorce villas, según su arquitectura y su parcela." },
       { titre: "Disponibilidad", texte: "Las villas todavía libres en la fecha de su solicitud." },
@@ -274,8 +269,7 @@ const es: TextesDossier = {
       { titre: "Folleto del conjunto", texte: "Arquitectura, materiales, acabados y plano general." },
       { titre: "Análisis de alquiler", texte: "Una simulación de rentabilidad bruta con sus propias hipótesis." },
     ],
-    plan: (type) => `Villa ${type}`,
-    brochure: "Folleto",
+    demander: "Recibir los planos y el folleto",
     ensuite: "¿Y después?",
     etapes: [
       { titre: "Solicita el dossier.", texte: "Un minuto, sin compromiso ni reserva automática." },
@@ -333,7 +327,6 @@ const it: TextesDossier = {
   titre: "Ville di lusso a Marrakech: richieda il dossier — CITYSTAR",
   description:
     "Quattordici ville con piscina privata a Marrakech, consegnate ad agosto 2027. Prezzo villa per villa, planimetrie, disponibilità e piano dei pagamenti: riceva il dossier completo, senza impegno.",
-  poids: (mo) => `${mo} MB`,
   hero: {
     lieu: "Residenza privata · Oulad Hassoune, Marrakech",
     titre: (livraison) => ["La sua villa a Marrakech,", `consegnata in ${livraison}.`],
@@ -359,7 +352,7 @@ const it: TextesDossier = {
     ],
     bouton: "Ricevi il dossier",
     discretion: "I suoi dati servono solo per ricontattarla riguardo a CITYSTAR.",
-    brochure: (poids) => `Oppure scarichi subito la brochure (PDF, ${poids})`,
+    brochure: "Brochure e planimetrie PDF inviate con il dossier.",
   },
   garantiesLabel: "Garanzie",
   garanties: (fondsPropres) => [
@@ -372,7 +365,7 @@ const it: TextesDossier = {
     kicker: "Prezzi · planimetrie · disponibilità",
     titre: ["Tutto per decidere,", "con una sola richiesta."],
     intro:
-      "Il dossier riunisce ciò che un acquirente chiede di solito in dieci messaggi. Planimetrie e brochure si scaricano subito; prezzi e disponibilità le vengono inviati da un consulente.",
+      "Il dossier riunisce ciò che un acquirente chiede di solito in dieci messaggi. Un consulente le invia tutto dopo una richiesta di un minuto, senza impegno.",
     elements: [
       { titre: "Prezzo villa per villa", texte: "Il prezzo di ciascuna delle quattordici ville, secondo architettura e lotto." },
       { titre: "Disponibilità", texte: "Le ville ancora libere alla data della sua richiesta." },
@@ -381,8 +374,7 @@ const it: TextesDossier = {
       { titre: "Brochure del complesso", texte: "Architettura, materiali, finiture e planimetria generale." },
       { titre: "Analisi locativa", texte: "Una simulazione di rendimento lordo basata sulle sue ipotesi." },
     ],
-    plan: (type) => `Villa ${type}`,
-    brochure: "Brochure",
+    demander: "Ricevi le planimetrie e la brochure",
     ensuite: "E poi?",
     etapes: [
       { titre: "Richiede il dossier.", texte: "Un minuto, senza impegno né prenotazione automatica." },
@@ -440,7 +432,6 @@ const nl: TextesDossier = {
   titre: "Luxe villa’s in Marrakech: vraag het informatiepakket aan — CITYSTAR",
   description:
     "Veertien villa’s met privézwembad in Marrakech, oplevering augustus 2027. Prijs per villa, plattegronden, beschikbaarheid en betalingsschema: ontvang het volledige informatiepakket, vrijblijvend.",
-  poids: (mo) => `${mo} MB`,
   hero: {
     lieu: "Privédomein · Oulad Hassoune, Marrakech",
     titre: (livraison) => ["Uw villa in Marrakech,", `opgeleverd in ${livraison}.`],
@@ -466,7 +457,7 @@ const nl: TextesDossier = {
     ],
     bouton: "Ontvang het informatiepakket",
     discretion: "Uw gegevens worden alleen gebruikt om contact met u op te nemen over CITYSTAR.",
-    brochure: (poids) => `Of download de brochure nu (pdf, ${poids})`,
+    brochure: "Brochure en pdf-plattegronden meegestuurd met het pakket.",
   },
   garantiesLabel: "Garanties",
   garanties: (fondsPropres) => [
@@ -479,7 +470,7 @@ const nl: TextesDossier = {
     kicker: "Prijzen · plattegronden · beschikbaarheid",
     titre: ["Alles om te beslissen,", "in één aanvraag."],
     intro:
-      "Het pakket bundelt wat een koper normaal in tien berichten vraagt. Plattegronden en brochure downloadt u meteen; prijzen en beschikbaarheid stuurt een adviseur u toe.",
+      "Het pakket bundelt wat een koper normaal in tien berichten vraagt. Een adviseur stuurt u alles toe na een aanvraag van één minuut, vrijblijvend.",
     elements: [
       { titre: "Prijs per villa", texte: "De prijs van elk van de veertien villa’s, naar architectuur en kavel." },
       { titre: "Beschikbaarheid", texte: "De villa’s die nog vrij zijn op de datum van uw aanvraag." },
@@ -488,8 +479,7 @@ const nl: TextesDossier = {
       { titre: "Brochure van het domein", texte: "Architectuur, materialen, afwerking en situatietekening." },
       { titre: "Verhuuranalyse", texte: "Een simulatie van het bruto rendement op basis van uw eigen aannames." },
     ],
-    plan: (type) => `Villa ${type}`,
-    brochure: "Brochure",
+    demander: "Plattegronden en brochure ontvangen",
     ensuite: "En dan?",
     etapes: [
       { titre: "U vraagt het pakket aan.", texte: "Eén minuut, vrijblijvend en zonder automatische reservering." },
@@ -547,7 +537,6 @@ const no: TextesDossier = {
   titre: "Luksusvillaer i Marrakech: be om salgsoppgaven — CITYSTAR",
   description:
     "Fjorten villaer med privat basseng i Marrakech, ferdigstilt i august 2027. Pris per villa, plantegninger, ledighet og betalingsplan: få hele salgsoppgaven, helt uforpliktende.",
-  poids: (mo) => `${mo} MB`,
   hero: {
     lieu: "Privat boligområde · Oulad Hassoune, Marrakech",
     titre: (livraison) => ["Din villa i Marrakech,", `ferdig i ${livraison}.`],
@@ -574,7 +563,7 @@ const no: TextesDossier = {
     ],
     bouton: "Få salgsoppgaven",
     discretion: "Opplysningene dine brukes bare til å kontakte deg om CITYSTAR.",
-    brochure: (poids) => `Eller last ned brosjyren nå (PDF, ${poids})`,
+    brochure: "Brosjyre og PDF-tegninger sendes med salgsoppgaven.",
   },
   garantiesLabel: "Garantier",
   garanties: (fondsPropres) => [
@@ -587,7 +576,7 @@ const no: TextesDossier = {
     kicker: "Priser · tegninger · ledighet",
     titre: ["Alt du trenger for å bestemme deg,", "i én forespørsel."],
     intro:
-      "Salgsoppgaven samler det en kjøper vanligvis spør om i ti meldinger. Tegninger og brosjyre lastes ned med en gang; priser og ledighet får du tilsendt av en rådgiver.",
+      "Salgsoppgaven samler det en kjøper vanligvis spør om i ti meldinger. En rådgiver sender deg alt etter en forespørsel på ett minutt, helt uforpliktende.",
     elements: [
       { titre: "Pris per villa", texte: "Prisen på hver av de fjorten villaene, etter arkitektur og tomt." },
       { titre: "Ledighet", texte: "Villaene som fortsatt er ledige på datoen for forespørselen din." },
@@ -596,8 +585,7 @@ const no: TextesDossier = {
       { titre: "Brosjyre for området", texte: "Arkitektur, materialer, standard og situasjonsplan." },
       { titre: "Utleieanalyse", texte: "En simulering av brutto avkastning ut fra dine egne forutsetninger." },
     ],
-    plan: (type) => `Villa ${type}`,
-    brochure: "Brosjyre",
+    demander: "Få tegningene og brosjyren",
     ensuite: "Hva skjer så?",
     etapes: [
       { titre: "Du ber om salgsoppgaven.", texte: "Ett minutt, uforpliktende og uten automatisk reservasjon." },

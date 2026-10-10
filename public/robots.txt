@@ -1,14 +1,19 @@
 User-agent: Googlebot
 Allow: /
+Disallow: /brochures/
 
 User-agent: Bingbot
 Allow: /
+Disallow: /brochures/
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /brochures/
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /brochures/
 
 User-agent: *
 Allow: /
+Disallow: /brochures/

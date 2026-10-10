@@ -17,7 +17,8 @@ export const it: Textes = {
     accueil: "Torna all’inizio",
     sommaire: "Indice",
     brochure: "Brochure CITYSTAR",
-    poids: (mo) => `PDF · ${mo} MB`,
+    brochureDemande: { outil: "Brochure CITYSTAR", lignes: ["Brochure del complesso e planimetrie PDF delle tre ville"] },
+    surDemande: "PDF, su richiesta",
     demander: "Richiedere una richiamata",
     fermer: "Chiudi il menu",
     menu: "Menu",
@@ -142,8 +143,9 @@ export const it: Textes = {
     agrandirPlan: (etage, type) =>
       `Ingrandire la planimetria del ${etage ? "primo piano" : "piano terra"} della villa tipo ${type}`,
     demander: "Richiamatemi per questa villa",
-    brochure: "Brochure",
-    brochureAria: (type) => `Brochure della villa tipo ${type} (PDF)`,
+    brochure: "Ricevi la brochure",
+    brochureAria: (type) => `Ricevi la brochure della villa tipo ${type}`,
+    brochureDemande: (type) => ({ outil: "Brochure CITYSTAR", lignes: [`Brochure e planimetrie PDF della villa tipo ${type}`] }),
     illustration: (type) => `Villa tipo ${type} · Illustrazione non contrattuale`,
     prixM2: (montant) => `Cioè circa ${montant} per m² costruito`,
     disponibilite: "Disponibilità su richiesta",
@@ -369,7 +371,7 @@ export const it: Textes = {
         {
           titre: "Visitare, poi acquistare",
           texte:
-            "Le planimetrie di ogni tipo e le brochure sono scaricabili. La visita sul posto e le condizioni d’acquisto passano dal concierge: un consulente la richiama e organizza la visita.",
+            "Le planimetrie di ogni tipo si consultano sul sito; la brochure e le planimetrie PDF vengono inviate su richiesta. La visita sul posto e le condizioni d’acquisto passano dal concierge: un consulente la richiama e organizza la visita.",
         },
       ],
     },
@@ -438,7 +440,7 @@ export const it: Textes = {
     {
       id: "plans",
       q: "Le planimetrie sono disponibili?",
-      r: "Sì: piano terra e primo piano di ogni tipo, ingrandibili sul sito, oltre a una brochure PDF per villa.",
+      r: "Sì: piano terra e primo piano di ogni tipo, ingrandibili sul sito, oltre a una brochure PDF per villa, inviata su richiesta.",
     },
   ],
   rendus: {
@@ -692,6 +694,7 @@ export const it: Textes = {
     plans: "Planimetrie",
     deuxPlans: "2 planimetrie",
     brochure: "Brochure",
+    recevoir: "Ricevi",
     prix: "Prezzo",
     prixIndicatif: "Prezzo indicativo",
     defiler: "Scorrere per confrontare",

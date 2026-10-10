@@ -17,7 +17,8 @@ export const nl: Textes = {
     accueil: "Terug naar boven",
     sommaire: "Inhoud",
     brochure: "CITYSTAR-brochure",
-    poids: (mo) => `PDF · ${mo} MB`,
+    brochureDemande: { outil: "CITYSTAR-brochure", lignes: ["Brochure van het domein en pdf-plattegronden van de drie villa’s"] },
+    surDemande: "pdf, op aanvraag",
     demander: "Terugbelverzoek",
     fermer: "Menu sluiten",
     menu: "Menu",
@@ -147,8 +148,9 @@ export const nl: Textes = {
     agrandirPlan: (etage, type) =>
       `Plattegrond van de ${etage ? "verdieping" : "begane grond"} van villatype ${type} vergroten`,
     demander: "Terugbellen over deze villa",
-    brochure: "Brochure",
-    brochureAria: (type) => `Brochure van villatype ${type} (pdf)`,
+    brochure: "Brochure ontvangen",
+    brochureAria: (type) => `De brochure van villatype ${type} ontvangen`,
+    brochureDemande: (type) => ({ outil: "CITYSTAR-brochure", lignes: [`Brochure en pdf-plattegronden van villatype ${type}`] }),
     illustration: (type) => `Villatype ${type} · Illustratie, niet contractueel`,
     prixM2: (montant) => `Dat is ongeveer ${montant} per bebouwde m²`,
     disponibilite: "Beschikbaarheid op aanvraag",
@@ -370,7 +372,7 @@ export const nl: Textes = {
         {
           titre: "Eerst bezichtigen, dan kopen",
           texte:
-            "De plattegronden van elk type en de brochures zijn te downloaden. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via de conciërge: een adviseur belt u terug en regelt de bezichtiging.",
+            "De plattegronden van elk type zijn op de site te bekijken; de brochure en de pdf-plattegronden worden op aanvraag toegestuurd. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via de conciërge: een adviseur belt u terug en regelt de bezichtiging.",
         },
       ],
     },
@@ -439,7 +441,7 @@ export const nl: Textes = {
     {
       id: "plans",
       q: "Zijn de plattegronden beschikbaar?",
-      r: "Ja: begane grond en verdieping van elk type, te vergroten op de site, plus een pdf-brochure per villa.",
+      r: "Ja: begane grond en verdieping van elk type, te vergroten op de site, plus een pdf-brochure per villa, op aanvraag toegestuurd.",
     },
   ],
   rendus: {
@@ -694,6 +696,7 @@ export const nl: Textes = {
     plans: "Plattegronden",
     deuxPlans: "2 plattegronden",
     brochure: "Brochure",
+    recevoir: "Ontvangen",
     prix: "Prijs",
     prixIndicatif: "Indicatieve prijs",
     defiler: "Scrollen om te vergelijken",

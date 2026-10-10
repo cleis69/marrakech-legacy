@@ -1,11 +1,10 @@
-import { Download, Expand, PhoneCall } from "lucide-react";
+import { Expand, FileText, PhoneCall } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
   type Devise,
   type TypeVilla,
   bornesBudget,
-  brochures,
   convertirEUR,
   formatNombre,
   formatPrix,
@@ -18,7 +17,7 @@ import {
 
 import { CurrencyPills, useDevise } from "./currency";
 import { type Budget, type Selection, PARAM_BUDGET, faitsVilla, villas } from "./data";
-import { chemin, fichierPublic, Lien } from "./liens";
+import { chemin, Lien } from "./liens";
 import { PillButton } from "./ui/PillButton";
 
 type Props = {
@@ -258,17 +257,19 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
     {
       label: textes.comparateur.brochure,
       same: true,
-      cells: (type) => (
-        <a
-          className="cp-pdf"
-          href={fichierPublic(brochures[type].fichier)}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={textes.villas.brochureAria(type)}
-        >
-          PDF <Download aria-hidden="true" />
-        </a>
-      ),
+      cells: (type) =>
+        onContact ? (
+          <button
+            type="button"
+            className="cp-pdf"
+            onClick={() => onContact(textes.villas.brochureDemande(type))}
+            aria-label={textes.villas.brochureAria(type)}
+          >
+            {textes.comparateur.recevoir} <FileText aria-hidden="true" />
+          </button>
+        ) : (
+          <span>—</span>
+        ),
     },
     {
       label:

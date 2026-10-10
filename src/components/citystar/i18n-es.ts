@@ -17,7 +17,8 @@ export const es: Textes = {
     accueil: "Volver al inicio",
     sommaire: "Índice",
     brochure: "Folleto CITYSTAR",
-    poids: (mo) => `PDF · ${mo} MB`,
+    brochureDemande: { outil: "Folleto CITYSTAR", lignes: ["Folleto del conjunto y planos PDF de las tres villas"] },
+    surDemande: "PDF, a petición",
     demander: "Solicitar una llamada",
     fermer: "Cerrar el menú",
     menu: "Menú",
@@ -147,8 +148,9 @@ export const es: Textes = {
     agrandirPlan: (etage, type) =>
       `Ampliar el plano de la ${etage ? "planta alta" : "planta baja"} de la villa tipo ${type}`,
     demander: "Que me llamen por esta villa",
-    brochure: "Folleto",
-    brochureAria: (type) => `Folleto de la villa tipo ${type} (PDF)`,
+    brochure: "Recibir el folleto",
+    brochureAria: (type) => `Recibir el folleto de la villa tipo ${type}`,
+    brochureDemande: (type) => ({ outil: "Folleto CITYSTAR", lignes: [`Folleto y planos PDF de la villa tipo ${type}`] }),
     illustration: (type) => `Villa tipo ${type} · Ilustración no contractual`,
     prixM2: (montant) => `Es decir, unos ${montant} por m² construido`,
     disponibilite: "Disponibilidad bajo consulta",
@@ -376,7 +378,7 @@ export const es: Textes = {
         {
           titre: "Visitar y después comprar",
           texte:
-            "Los planos de cada tipo y los folletos se pueden descargar. La visita in situ y las condiciones de compra pasan por la conserjería: un asesor le llama y organiza la visita.",
+            "Los planos de cada tipo se consultan en el sitio; el folleto y los planos PDF se envían a petición. La visita in situ y las condiciones de compra pasan por la conserjería: un asesor le llama y organiza la visita.",
         },
       ],
     },
@@ -444,7 +446,7 @@ export const es: Textes = {
     {
       id: "plans",
       q: "¿Están disponibles los planos?",
-      r: "Sí: planta baja y planta alta de cada tipo, ampliables en el sitio, además de un folleto PDF por villa.",
+      r: "Sí: planta baja y planta alta de cada tipo, ampliables en el sitio, además de un folleto PDF por villa, que se envía a petición.",
     },
   ],
   rendus: {
@@ -695,6 +697,7 @@ export const es: Textes = {
     plans: "Planos",
     deuxPlans: "2 planos",
     brochure: "Folleto",
+    recevoir: "Recibir",
     prix: "Precio",
     prixIndicatif: "Precio indicativo",
     defiler: "Desplazar para comparar",

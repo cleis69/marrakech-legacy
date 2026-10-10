@@ -17,7 +17,8 @@ export const no: Textes = {
     accueil: "Tilbake til toppen",
     sommaire: "Innhold",
     brochure: "CITYSTAR-brosjyre",
-    poids: (mo) => `PDF · ${mo} MB`,
+    brochureDemande: { outil: "CITYSTAR-brosjyre", lignes: ["Brosjyre for området og PDF-plantegninger for de tre villaene"] },
+    surDemande: "PDF, på forespørsel",
     demander: "Be om å bli ringt opp",
     fermer: "Lukk menyen",
     menu: "Meny",
@@ -140,8 +141,9 @@ export const no: Textes = {
     agrandirPlan: (etage, type) =>
       `Forstørr plantegningen for ${etage ? "andre" : "første"} etasje i villatype ${type}`,
     demander: "Bli ringt opp om denne villaen",
-    brochure: "Brosjyre",
-    brochureAria: (type) => `Brosjyre for villatype ${type} (PDF)`,
+    brochure: "Få brosjyren",
+    brochureAria: (type) => `Få brosjyren for villatype ${type}`,
+    brochureDemande: (type) => ({ outil: "CITYSTAR-brosjyre", lignes: [`Brosjyre og PDF-plantegninger for villatype ${type}`] }),
     illustration: (type) => `Villatype ${type} · Illustrasjon, ikke bindende`,
     prixM2: (montant) => `Det vil si omtrent ${montant} per bebygd m²`,
     disponibilite: "Tilgjengelighet på forespørsel",
@@ -359,7 +361,7 @@ export const no: Textes = {
         {
           titre: "Se først, kjøp etterpå",
           texte:
-            "Plantegninger for hver type og brosjyrene kan lastes ned. Visning på stedet og kjøpsvilkår går via conciergen: en rådgiver ringer deg opp og avtaler visningen.",
+            "Plantegninger for hver type kan ses på nettstedet; brosjyren og PDF-tegningene sendes på forespørsel. Visning på stedet og kjøpsvilkår går via conciergen: en rådgiver ringer deg opp og avtaler visningen.",
         },
       ],
     },
@@ -427,7 +429,7 @@ export const no: Textes = {
     {
       id: "plans",
       q: "Finnes plantegningene?",
-      r: "Ja: første og andre etasje for hver type, som kan forstørres på nettstedet, og en PDF-brosjyre per villa.",
+      r: "Ja: første og andre etasje for hver type, som kan forstørres på nettstedet, og en PDF-brosjyre per villa, som sendes på forespørsel.",
     },
   ],
   rendus: {
@@ -675,6 +677,7 @@ export const no: Textes = {
     plans: "Plantegninger",
     deuxPlans: "2 plantegninger",
     brochure: "Brosjyre",
+    recevoir: "Få",
     prix: "Pris",
     prixIndicatif: "Veiledende pris",
     defiler: "Rull for å sammenligne",

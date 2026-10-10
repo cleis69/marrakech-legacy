@@ -1,7 +1,6 @@
 import {
   Banknote,
   Check,
-  Download,
   FileText,
   Globe2,
   Landmark,
@@ -17,11 +16,9 @@ import { useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import {
-  brochures,
   calendrier,
   contact,
   engagements,
-  formatDecimal,
   formatMois,
   formatPart,
   formatSurface,
@@ -38,7 +35,6 @@ import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 
 import { useDevise } from "../currency";
 import { scrollTo } from "../data";
-import { fichierPublic } from "../liens";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
 import { textesDossier } from "./textes";
@@ -155,15 +151,10 @@ export function DossierHero() {
               <span className="pill-label">{t.carte.bouton}</span>
             </button>
             <p className="dh-discretion">{t.carte.discretion}</p>
-            <a
-              className="dh-brochure"
-              href={fichierPublic(brochures.citystar.fichier)}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Download aria-hidden="true" />
-              {t.carte.brochure(t.poids(formatDecimal(brochures.citystar.mo, langue)))}
-            </a>
+            <p className="dh-brochure">
+              <FileText aria-hidden="true" />
+              {t.carte.brochure}
+            </p>
           </aside>
         </div>
 
@@ -240,16 +231,10 @@ export function ContenuDossier() {
           <li className="dc-telecharger" data-vu="">
             <span className="dc-num">PDF</span>
             <div className="dc-liens">
-              {(["A", "B", "C"] as const).map((type) => (
-                <a key={type} href={fichierPublic(brochures[type].fichier)} target="_blank" rel="noreferrer">
-                  <Download aria-hidden="true" />
-                  {c.plan(type)}
-                </a>
-              ))}
-              <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
-                <Download aria-hidden="true" />
-                {c.brochure} · {t.poids(formatDecimal(brochures.citystar.mo, langue))}
-              </a>
+              <button type="button" onClick={demander}>
+                <FileText aria-hidden="true" />
+                {c.demander}
+              </button>
             </div>
           </li>
         </ol>

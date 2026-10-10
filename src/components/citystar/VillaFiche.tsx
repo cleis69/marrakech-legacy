@@ -1,8 +1,7 @@
-import { ArrowLeft, Download, Expand, PhoneCall } from "lucide-react";
+import { ArrowLeft, Expand, FileText, PhoneCall } from "lucide-react";
 
 import {
   type TypeVilla,
-  brochures,
   formatPrix,
   prixPublics,
   prixVilla,
@@ -10,7 +9,8 @@ import {
 } from "@/config/citystar";
 
 import { faitsVilla, villas } from "./data";
-import { chemin, fichierPublic, Lien } from "./liens";
+import { useSite } from "./contexte";
+import { chemin, Lien } from "./liens";
 import { VillaPrice, useDevise } from "./currency";
 import { PillButton } from "./ui/PillButton";
 
@@ -23,6 +23,7 @@ type Props = {
 /** Page d'une villa : navigation ronde A · B · C, caractéristiques, prix, plans et brochure. */
 export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
   const { devise, langue, t, taux } = useDevise();
+  const { ouvrirContactAvec } = useSite();
   const index = villas.findIndex((item) => item.type === type);
   const villa = villas[index] ?? villas[0];
   const faits = faitsVilla(villa.type, t, langue);
@@ -136,9 +137,9 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             <PillButton label={t.villas.demander} icon={PhoneCall} onClick={onContact} />
             <PillButton
               label={t.villas.brochure}
-              icon={Download}
+              icon={FileText}
               variant="secondary"
-              href={fichierPublic(brochures[villa.type].fichier)}
+              onClick={() => ouvrirContactAvec(t.villas.brochureDemande(villa.type))}
               ariaLabel={t.villas.brochureAria(villa.type)}
             />
           </div>

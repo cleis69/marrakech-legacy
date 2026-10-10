@@ -3,7 +3,7 @@ import {
   ChevronDown,
   CircleHelp,
   DoorOpen,
-  Download,
+  FileText,
   KeyRound,
   LayoutPanelLeft,
   PhoneCall,
@@ -13,12 +13,13 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { type Langue, LANGUES, brochures, contact, formatDecimal } from "@/config/citystar";
+import { type Langue, LANGUES, contact } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, cheminEspace, fichierPublic, Lien, memePage } from "./liens";
+import type { Selection } from "./data";
+import { chemin, cheminEspace, Lien, memePage } from "./liens";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -27,6 +28,7 @@ type Props = {
   onOpenMenu: () => void;
   onCloseMenu: () => void;
   onContact: () => void;
+  onContactAvec: (selection: Selection) => void;
 };
 
 const whatsappHref = `https://wa.me/${contact.whatsapp}`;
@@ -110,7 +112,15 @@ function LangSwitch({ aPlat = false }: { aPlat?: boolean }) {
   );
 }
 
-function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () => void }) {
+function MenuSheet({
+  onClose,
+  onContact,
+  onContactAvec,
+}: {
+  onClose: () => void;
+  onContact: () => void;
+  onContactAvec: (selection: Selection) => void;
+}) {
   const { langue, t } = useDevise();
   const ref = useModal<HTMLDivElement>(onClose);
   return (
@@ -160,11 +170,17 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
             <MessageCircle aria-hidden="true" />
             {t.header.conciergerie}
           </a>
-          <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
-            <Download aria-hidden="true" />
+          <button
+            type="button"
+            onClick={() => {
+              onClose();
+              onContactAvec(t.header.brochureDemande);
+            }}
+          >
+            <FileText aria-hidden="true" />
             {t.header.brochure}
-            <small>{t.header.poids(formatDecimal(brochures.citystar.mo, langue))}</small>
-          </a>
+            <small>{t.header.surDemande}</small>
+          </button>
           <Lien vers={cheminEspace(langue)}>
             <KeyRound aria-hidden="true" />
             {t.header.espace}
@@ -185,7 +201,14 @@ function MenuSheet({ onClose, onContact }: { onClose: () => void; onContact: () 
   );
 }
 
-export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onContact }: Props) {
+export function SiteHeader({
+  scrolled,
+  menuOpen,
+  onOpenMenu,
+  onCloseMenu,
+  onContact,
+  onContactAvec,
+}: Props) {
   const { langue, t } = useDevise();
   /* Transparent seulement en haut de l'accueil, posé sur la vidéo ; partout ailleurs, un aplat d'encre. */
   const page = useRouterState({ select: (etat) => etat.location.pathname });
@@ -264,7 +287,7 @@ export function SiteHeader({ scrolled, menuOpen, onOpenMenu, onCloseMenu, onCont
       </nav>
 
       <AnimatePresence>
-        {menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} />}
+        {menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} onContactAvec={onContactAvec} />}
       </AnimatePresence>
     </>
   );

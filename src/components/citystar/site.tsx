@@ -1,34 +1,20 @@
 import { AnimatePresence, MotionConfig, motion, useMotionValue, useScroll } from "motion/react";
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { Langue } from "@/config/citystar";
 
 import { useApparitions } from "./apparitions";
 import { ContactPanel } from "./ContactPanel";
+import { SiteContext, type SiteState, useSite } from "./contexte";
 import { DeviseProvider } from "./currency";
-import type { CursorHandlers, Selection } from "./data";
+import type { Selection } from "./data";
 import { FloatingActions } from "./FloatingActions";
 import { PlanModal } from "./PlanModal";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 import { TourModal } from "./TourModal";
 
-type SiteState = CursorHandlers & {
-  langue: Langue;
-  ouvrirContact: () => void;
-  ouvrirContactAvec: (selection: Selection) => void;
-  ouvrirPlan: (src: string) => void;
-  ouvrirVisite: () => void;
-};
-
-const SiteContext = createContext<SiteState | null>(null);
-
-/** Accès aux fenêtres (contact, plan, visite) et au curseur depuis n'importe quelle page. */
-export function useSite() {
-  const site = useContext(SiteContext);
-  if (!site) throw new Error("useSite doit être utilisé dans SiteChrome");
-  return site;
-}
+export { useSite };
 
 /** En-tête, pied de page et fenêtres communs à toutes les pages. */
 export function SiteChrome({
@@ -106,6 +92,7 @@ export function SiteChrome({
               onOpenMenu={() => setMenuOpen(true)}
               onCloseMenu={() => setMenuOpen(false)}
               onContact={valeur.ouvrirContact}
+              onContactAvec={valeur.ouvrirContactAvec}
             />
 
             {children}

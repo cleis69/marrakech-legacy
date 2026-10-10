@@ -26,7 +26,8 @@ const fr = {
     accueil: "Retour à l’accueil",
     sommaire: "Sommaire",
     brochure: "Brochure CITYSTAR",
-    poids: (mo: string) => `PDF · ${mo} Mo`,
+    brochureDemande: { outil: "Brochure CITYSTAR", lignes: ["Brochure du domaine et plans PDF des trois villas"] },
+    surDemande: "PDF, sur demande",
     demander: "Être rappelé par un conseiller",
     fermer: "Fermer le menu",
     menu: "Menu",
@@ -156,8 +157,9 @@ const fr = {
     agrandirPlan: (etage: boolean, type: TypeVilla) =>
       `Agrandir le plan ${etage ? "de l’étage" : "du rez-de-chaussée"} de la villa type ${type}`,
     demander: "Être rappelé pour cette villa",
-    brochure: "Brochure",
-    brochureAria: (type: TypeVilla) => `Brochure de la villa type ${type} (PDF)`,
+    brochure: "Recevoir la brochure",
+    brochureAria: (type: TypeVilla) => `Recevoir la brochure de la villa type ${type}`,
+    brochureDemande: (type: TypeVilla) => ({ outil: "Brochure CITYSTAR", lignes: [`Brochure et plans PDF de la villa type ${type}`] }),
     illustration: (type: TypeVilla) => `Villa type ${type} · Illustration non contractuelle`,
     prixM2: (montant: string) => `Soit environ ${montant} le m² construit`,
     disponibilite: "Disponibilité sur demande",
@@ -381,7 +383,7 @@ const fr = {
         {
           titre: "Visiter, puis acquérir",
           texte:
-            "Les plans de chaque type et les brochures sont téléchargeables. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: un conseiller vous rappelle et organise la visite.",
+            "Les plans de chaque type se consultent sur le site ; la brochure et les plans PDF sont envoyés sur demande. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: un conseiller vous rappelle et organise la visite.",
         },
       ],
     },
@@ -460,7 +462,7 @@ const fr = {
     {
       id: "plans",
       q: "Les plans sont-ils disponibles\u00a0?",
-      r: "Oui\u00a0: rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa.",
+      r: "Oui\u00a0: rez-de-chaussée et étage pour chaque type, agrandissables sur le site, ainsi qu'une brochure PDF par villa, envoyée sur demande.",
     },
   ],
   rendus: {
@@ -715,6 +717,7 @@ const fr = {
     plans: "Plans",
     deuxPlans: "2 plans",
     brochure: "Brochure",
+    recevoir: "Recevoir",
     prix: "Prix",
     prixIndicatif: "Prix indicatif",
     defiler: "Faites défiler pour comparer",
@@ -834,7 +837,8 @@ const en: Textes = {
     accueil: "Back to top",
     sommaire: "Contents",
     brochure: "CITYSTAR brochure",
-    poids: (mo) => `PDF · ${mo} MB`,
+    brochureDemande: { outil: "CITYSTAR brochure", lignes: ["Estate brochure and PDF floor plans of the three villas"] },
+    surDemande: "PDF, on request",
     demander: "Request a call back",
     fermer: "Close menu",
     menu: "Menu",
@@ -959,8 +963,9 @@ const en: Textes = {
     agrandirPlan: (etage, type) =>
       `Enlarge the ${etage ? "upper floor" : "ground floor"} plan of villa type ${type}`,
     demander: "Call back about this villa",
-    brochure: "Brochure",
-    brochureAria: (type) => `Brochure for villa type ${type} (PDF)`,
+    brochure: "Get the brochure",
+    brochureAria: (type) => `Get the brochure for villa type ${type}`,
+    brochureDemande: (type) => ({ outil: "CITYSTAR brochure", lignes: [`Brochure and PDF floor plans of villa type ${type}`] }),
     illustration: (type) => `Villa type ${type} · Illustration, not contractual`,
     prixM2: (montant) => `That is about ${montant} per built m²`,
     disponibilite: "Availability on request",
@@ -1179,7 +1184,7 @@ const en: Textes = {
         {
           titre: "Visit, then buy",
           texte:
-            "Floor plans for each type and the brochures are downloadable. On-site viewings and purchase terms go through the concierge: an adviser calls you back and arranges the viewing.",
+            "Floor plans for each type can be viewed on the site; the brochure and PDF plans are sent on request. On-site viewings and purchase terms go through the concierge: an adviser calls you back and arranges the viewing.",
         },
       ],
     },
@@ -1247,7 +1252,7 @@ const en: Textes = {
     {
       id: "plans",
       q: "Are the floor plans available?",
-      r: "Yes: ground floor and upper floor for each type, enlargeable on the site, plus a PDF brochure per villa.",
+      r: "Yes: ground floor and upper floor for each type, enlargeable on the site, plus a PDF brochure per villa, sent on request.",
     },
   ],
   rendus: {
@@ -1493,6 +1498,7 @@ const en: Textes = {
     plans: "Plans",
     deuxPlans: "2 plans",
     brochure: "Brochure",
+    recevoir: "Request",
     prix: "Price",
     prixIndicatif: "Indicative price",
     defiler: "Scroll to compare",

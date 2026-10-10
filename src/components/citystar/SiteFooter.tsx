@@ -1,6 +1,6 @@
 import {
   ArrowRight,
-  Download,
+  FileText,
   Mail,
   MessageCircle,
   Phone,
@@ -14,16 +14,18 @@ import { useRef } from "react";
 import revLogo from "@/assets/credits/rev.svg";
 import ultravisionLogo from "@/assets/credits/ultravision.svg";
 
-import { brochures, contact, formatDecimal } from "@/config/citystar";
+import { contact } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
-import { chemin, fichierPublic, Lien } from "./liens";
+import { useSite } from "./contexte";
+import { chemin, Lien } from "./liens";
 import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
   const { langue, t } = useDevise();
+  const { ouvrirContactAvec } = useSite();
   /* Sur /contact, les trois tuiles sont déjà le contenu de la page. */
   const surContact = useRouterState({
     select: (etat) => /\/contact\/?$/.test(etat.location.pathname),
@@ -121,11 +123,11 @@ export function SiteFooter() {
             </Lien>
           ))}
           <Lien vers={chemin(langue, t.pied.theme[1])}>{t.pied.theme[0]}</Lien>
-          <a href={fichierPublic(brochures.citystar.fichier)} target="_blank" rel="noreferrer">
+          <button type="button" onClick={() => ouvrirContactAvec(t.header.brochureDemande)}>
             {t.pied.brochure}
-            <small>{t.header.poids(formatDecimal(brochures.citystar.mo, langue))}</small>
-            <Download aria-hidden="true" />
-          </a>
+            <small>{t.header.surDemande}</small>
+            <FileText aria-hidden="true" />
+          </button>
         </nav>
         <p className="ft-legal">{t.pied.legal(new Date().getFullYear())}</p>
       </div>
