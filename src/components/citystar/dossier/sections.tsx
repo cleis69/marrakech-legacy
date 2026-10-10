@@ -280,7 +280,7 @@ export function ContenuDossier() {
 export function ApercuEspace() {
   const e = t.espace;
   return (
-    <section className="da section-pad" aria-labelledby="da-titre">
+    <section id="espace-proprietaire" className="da section-pad" aria-labelledby="da-titre">
       <div className="da-texte" data-vu="">
         <p className="dc-kicker">{e.kicker}</p>
         <Titre id="da-titre" lignes={e.titre} />
