@@ -1,0 +1,91 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Séquences e-mail CITYSTAR</title>
+<style>
+  body { margin: 0; padding: 40px 16px; background: #F6EFE3; color: #080503; font: 15px/1.5 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  main { max-width: 1000px; margin: 0 auto; }
+  h1 { font: 400 44px/1.05 'Italiana', Georgia, 'Times New Roman', serif; margin: 0 0 8px; }
+  h2 { font: 400 28px/1.1 'Italiana', Georgia, 'Times New Roman', serif; margin: 40px 0 12px; }
+  table { width: 100%; border-collapse: collapse; background: #FDF8F0; border-radius: 16px; overflow: hidden; }
+  th, td { padding: 12px 14px; border-bottom: 1px solid #DFD6C9; text-align: left; vertical-align: top; }
+  th { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #836140; }
+  small { color: #60564D; }
+  a { color: #836140; }
+</style></head><body><main>
+<h1>Séquences e-mail CITYSTAR</h1>
+<p>15 modèles, 4 séquences. Chiffres repris de la configuration du site.</p>
+<h2>1. Après la demande de dossier</h2><table><thead><tr><th>Quand</th><th>Objet · aperçu</th><th>Déclencheur</th><th>Modèle</th></tr></thead><tbody><tr>
+          <td>Tout de suite</td>
+          <td><b>Votre dossier CITYSTAR</b><br><small>La brochure, les plans des trois villas, et la suite.</small></td>
+          <td><small>Demande de dossier (formulaire du site ou page /dossier)</small></td>
+          <td><a href="d1-dossier.html">d1-dossier.html</a></td>
+        </tr><tr>
+          <td>J+1</td>
+          <td><b>A, B ou C ?</b><br><small>Trois architectures, la même exigence. Laquelle vous ressemble ?</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d2-architectures.html">d2-architectures.html</a></td>
+        </tr><tr>
+          <td>J+3</td>
+          <td><b>Entrez avant qu’elle existe</b><br><small>La visite 360°, pièce par pièce, depuis votre canapé.</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d3-visite-360.html">d3-visite-360.html</a></td>
+        </tr><tr>
+          <td>J+5</td>
+          <td><b>Ce que vous payez, et quand</b><br><small>30 % chez le notaire, puis le solde au rythme du chantier.</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d4-paiement.html">d4-paiement.html</a></td>
+        </tr><tr>
+          <td>J+8</td>
+          <td><b>Marrakech accélère</b><br><small>+24,1 % de transactions en 2025, devant Rabat et Casablanca.</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d5-marche.html">d5-marche.html</a></td>
+        </tr><tr>
+          <td>J+12</td>
+          <td><b>Votre chantier, depuis chez vous</b><br><small>Avancement, photos, paiements, documents : tout dans votre espace propriétaire.</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d6-espace.html">d6-espace.html</a></td>
+        </tr><tr>
+          <td>J+16</td>
+          <td><b>Quatorze parcelles</b><br><small>Les premiers acquéreurs choisissent l’emplacement.</small></td>
+          <td><small>Séquence dossier</small></td>
+          <td><a href="d7-parcelles.html">d7-parcelles.html</a></td>
+        </tr><tr>
+          <td>J+21</td>
+          <td><b>Une question, {{prenom}}</b><br><small>Une réponse en un chiffre suffit.</small></td>
+          <td><small>Séquence dossier, sans réponse du contact</small></td>
+          <td><a href="d8-question.html">d8-question.html</a></td>
+        </tr></tbody></table><h2>2. Rendez-vous et visite</h2><table><thead><tr><th>Quand</th><th>Objet · aperçu</th><th>Déclencheur</th><th>Modèle</th></tr></thead><tbody><tr>
+          <td>Tout de suite</td>
+          <td><b>Votre visite de CITYSTAR, {{date_visite}}</b><br><small>L’adresse, l’itinéraire et ce que nous verrons ensemble.</small></td>
+          <td><small>Rendez-vous pris (visite sur place ou visio)</small></td>
+          <td><a href="v1-confirmation.html">v1-confirmation.html</a></td>
+        </tr><tr>
+          <td>La veille, 18 h</td>
+          <td><b>À demain, {{prenom}}</b><br><small>Rendez-vous {{heure_visite}}, à 35 minutes de Jemaa el-Fna.</small></td>
+          <td><small>Rendez-vous pris</small></td>
+          <td><a href="v2-rappel.html">v2-rappel.html</a></td>
+        </tr><tr>
+          <td>Le lendemain de la visite</td>
+          <td><b>Merci pour votre visite</b><br><small>Le récapitulatif, et les trois étapes jusqu’aux clés.</small></td>
+          <td><small>Visite effectuée</small></td>
+          <td><a href="v3-apres.html">v3-apres.html</a></td>
+        </tr></tbody></table><h2>3. Nouvel acquéreur</h2><table><thead><tr><th>Quand</th><th>Objet · aperçu</th><th>Déclencheur</th><th>Modèle</th></tr></thead><tbody><tr>
+          <td>Le jour de la réservation</td>
+          <td><b>Bienvenue chez vous, {{prenom}}</b><br><small>Votre espace propriétaire est ouvert.</small></td>
+          <td><small>Réservation signée chez le notaire</small></td>
+          <td><a href="p1-bienvenue.html">p1-bienvenue.html</a></td>
+        </tr><tr>
+          <td>J+7</td>
+          <td><b>Comment suivre votre chantier</b><br><small>Ce que vous trouverez dans votre espace, et quand.</small></td>
+          <td><small>Séquence nouvel acquéreur</small></td>
+          <td><a href="p2-suivi.html">p2-suivi.html</a></td>
+        </tr><tr>
+          <td>À chaque étape du chantier</td>
+          <td><b>Votre villa : {{etape}} terminée</b><br><small>{{avancement}} % des travaux. Les nouvelles photos sont en ligne.</small></td>
+          <td><small>Le promoteur publie une étape dans l’espace promoteur</small></td>
+          <td><a href="p3-etape.html">p3-etape.html</a></td>
+        </tr></tbody></table><h2>4. Relance « le chantier avance »</h2><table><thead><tr><th>Quand</th><th>Objet · aperçu</th><th>Déclencheur</th><th>Modèle</th></tr></thead><tbody><tr>
+          <td>À chaque grande étape (fondations, gros œuvre, finitions)</td>
+          <td><b>Le chantier avance</b><br><small>Des nouvelles du domaine, et les villas qui restent.</small></td>
+          <td><small>Contacts « dossier » sans réservation, après la séquence 1</small></td>
+          <td><a href="n1-le-chantier-avance.html">n1-le-chantier-avance.html</a></td>
+        </tr></tbody></table>
+</main></body></html>
