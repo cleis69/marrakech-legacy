@@ -126,6 +126,23 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
     imposition: { label: t.rentabilite.champs.imposition, format: (v) => pourcent(v * 100, 0) },
   };
 
+  /* Après charges, coûts de détention et impôt : le net suit les hypothèses avancées, quand elles existent. */
+  const avance = (["charges", "coutsAnnuelsEUR", "imposition"] as Cle[]).every(
+    (cle) => SOURCE[cle] !== null,
+  );
+  const lignesNet = (revenu: number): [string, string][] => {
+    if (!avance) return [];
+    const net = revenu * (1 - valeurs.charges) - enDevise(valeurs.coutsAnnuelsEUR);
+    const apresImpot = net * (1 - valeurs.imposition);
+    return [
+      [t.rentabilite.revenuNet, money(net)],
+      [
+        t.rentabilite.rendementNet,
+        `${pourcent((net / prixCalcul) * 100)} · ${pourcent((apresImpot / prixCalcul) * 100)} ${t.rentabilite.apresImpot}`,
+      ],
+    ];
+  };
+
   const resultat = (() => {
     if (!pret) return null;
     if (mode === "court") {
@@ -137,6 +154,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
         detail: [
           [t.rentabilite.nuits, formatNombre(Math.round(nuits), langue)],
           [t.rentabilite.revenuBrut, money(revenu)],
+          ...lignesNet(revenu),
         ] as [string, string][],
       };
     }
@@ -148,6 +166,7 @@ export function YieldSimulator({ onContact }: { onContact: (selection: Selection
         detail: [
           [t.rentabilite.loyerDouze, `${money(enDevise(valeurs.loyerMensuelEUR))} × 12`],
           [t.rentabilite.revenuBrut, money(revenu)],
+          ...lignesNet(revenu),
         ] as [string, string][],
       };
     }

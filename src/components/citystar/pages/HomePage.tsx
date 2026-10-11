@@ -14,6 +14,7 @@ import { QuestionsSection } from "../QuestionsSection";
 import { Ruban } from "../Ruban";
 import { useSite } from "../site";
 import { VillasSection } from "../VillasSection";
+import { Financement } from "../Financement";
 import { YieldSimulator } from "../YieldSimulator";
 
 export function HomePage() {
@@ -41,6 +42,7 @@ export function HomePage() {
       <ProcessusSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
+      <Financement onContact={ouvrirContactAvec} />
       <QuestionsSection />
       <FinalCta />
     </>

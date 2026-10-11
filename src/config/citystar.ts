@@ -317,6 +317,29 @@ export function formatSurface(m2: number, langue: Langue = "fr") {
 }
 
 /* ------------------------------------------------------------------ */
+/* Financement                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Points de départ du simulateur de crédit. Valeurs d'illustration, réglables
+ * par le visiteur : le taux et la durée dépendent de la banque et du profil.
+ */
+export const financement = {
+  // VALEUR D'ILLUSTRATION — à remplacer par les conditions d'une banque partenaire
+  tauxAnnuel: { valeur: 0.05, confirme: false } as Hypothese<number>,
+  // VALEUR D'ILLUSTRATION — à remplacer par les conditions d'une banque partenaire
+  dureeAnnees: { valeur: 15, confirme: false } as Hypothese<number>,
+};
+
+/** Bornes des curseurs du crédit : repères d'interface. L'apport part de la part à la réservation. */
+export const bornesFinancement = {
+  apport: { min: 0.1, max: 0.9, pas: 0.05 },
+  tauxAnnuel: { min: 0.02, max: 0.09, pas: 0.0025 },
+  dureeAnnees: { min: 5, max: 25, pas: 1 },
+  revenuNetMensuelEUR: { min: 0, max: 15_000, pas: 100 },
+};
+
+/* ------------------------------------------------------------------ */
 /* Prix affichés                                                       */
 /* ------------------------------------------------------------------ */
 

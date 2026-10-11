@@ -6,6 +6,7 @@ import { ProcessusSection } from "../ProcessusSection";
 import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
+import { Financement } from "../Financement";
 import { YieldSimulator } from "../YieldSimulator";
 import investirBanniere from "@/assets/citystar/rendus/ext-piscine-soir.webp";
 
@@ -36,6 +37,7 @@ export function InvestirPage() {
       <ProcessusSection />
       <CalendrierSection />
       <YieldSimulator onContact={ouvrirContactAvec} />
+      <Financement onContact={ouvrirContactAvec} />
       <Marquee />
       <FinalCta />
     </>
