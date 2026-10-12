@@ -27,8 +27,8 @@ export const programme = {
   nombreTypes: 3,
   // Plus grand terrain du programme, en m² (identique pour les trois types).
   terrainMaxM2: 2000,
-  // Temps de trajet vers la place Jemaa el-Fna et l'aéroport de Marrakech.
-  trajetMaxMinutes: 35,
+  // Temps de trajet vers la place Jemaa el-Fna et l'aéroport de Marrakech (donné par le client le 12/10/2026 ; 35 auparavant).
+  trajetMaxMinutes: 19,
   // Coordonnées du domaine reprises de la page REV du programme (09/10/2026), validées par le client.
   coordonnees: { latitude: 31.6436578, longitude: -7.8716987, confirme: true },
 } as const;
