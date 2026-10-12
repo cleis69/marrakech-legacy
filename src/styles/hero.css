@@ -40,27 +40,22 @@
 @keyframes hero-up { from { opacity: 0; transform: translateY(18px); } }
 
 @media (max-width: 760px) {
-  /* Sur téléphone, le hero s'empile : titre, puis le film entier en paysage, puis le texte, l'action et les trois cartes. */
-  .hero { height: auto; min-height: 0; padding: 8px; }
-  .hero-cadre { display: grid; gap: .9rem; height: auto; padding: calc(70px + 1.1rem) 1.1rem 1.3rem; border-radius: 22px; }
-  .hero-bottom, .hero-main { display: contents; }
-  .hero-chip { order: 1; }
-  .hero-main h1 { order: 2; font-size: clamp(2rem, 8.6vw, 2.5rem); }
+  .hero-bottom { bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)); gap: 1rem; }
+  .hero-main { gap: .9rem; }
+  .hero-main h1 { font-size: clamp(2rem, 8.6vw, 2.5rem); }
   .hero-chiffre { font-size: 4rem; }
-  .hero-media { order: 3; position: relative; inset: auto; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; background: var(--ink-2); }
-  .hero-video { transform: none !important; object-fit: contain; }
-  .hero-shade { display: none; }
-  .hero-foot { order: 4; position: static; justify-content: flex-end; margin-top: -.3rem; }
-  .hero-texte { order: 5; font-size: .92rem; }
-  .hero-actions { order: 6; }
+  .hero-texte { font-size: .9rem; }
   /* Le rappel est déjà au centre de la barre du bas. */
   .hero-actions .pill-primary { display: none; }
-  /* Trois rangées fines : le titre à gauche, le chiffre à droite, sans la phrase. */
-  .hero-cartes { order: 7; gap: .35rem; width: 100%; margin-top: .2rem; }
-  .hero-verre { grid-template-columns: 1fr auto; align-items: center; gap: .6rem; padding: .6rem .95rem; border-radius: 14px; }
+  /* Trois rangées fines sous les actions : le titre à gauche, le chiffre à droite, sans la phrase. */
+  .hero-cartes { gap: .35rem; width: 100%; }
+  .hero-verre { grid-template-columns: 1fr auto; align-items: center; gap: .6rem; padding: .55rem .9rem; border-radius: 14px; }
   .hero-verre-titre { font-size: .58rem; letter-spacing: .12em; }
-  .hero-verre strong { font-size: 1.1rem; text-align: right; white-space: nowrap; }
+  .hero-verre strong { font-size: 1.05rem; text-align: right; white-space: nowrap; }
   .hero-verre-texte { display: none; }
+  .hero { padding: 8px; }
+  .hero-cadre { border-radius: 22px; }
+  .hero-foot { top: calc(70px + .6rem); bottom: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
