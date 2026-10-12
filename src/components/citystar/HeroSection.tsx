@@ -12,8 +12,8 @@ import {
   reservation,
   villasChiffres,
 } from "@/config/citystar";
-import heroVideo from "@/assets/citystar/hero-rendus.mp4";
-import heroPoster from "@/assets/citystar/hero-rendus-poster.webp";
+import heroVideo from "@/assets/citystar/hero-film.mp4";
+import heroPoster from "@/assets/citystar/hero-film-poster.webp";
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";

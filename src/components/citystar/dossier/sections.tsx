@@ -26,8 +26,8 @@ import {
   reservation,
   villasChiffres,
 } from "@/config/citystar";
-import heroVideo from "@/assets/citystar/hero-rendus.mp4";
-import heroPoster from "@/assets/citystar/hero-rendus-poster.webp";
+import heroVideo from "@/assets/citystar/hero-film.mp4";
+import heroPoster from "@/assets/citystar/hero-film-poster.webp";
 import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
