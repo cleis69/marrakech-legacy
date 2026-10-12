@@ -148,11 +148,19 @@
 }
 
 @media (max-width: 900px) {
+  /* Sur téléphone, le hero s'empile : titre, film entier en paysage, texte, actions, puis la carte du dossier. */
   .dh, .dg { padding: 8px 8px 0; }
-  .dh-cadre { min-height: calc(100svh - 16px); border-radius: 22px; }
-  .dh-voile { background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 35%, color-mix(in oklab, var(--ink) 88%, transparent) 70%); }
-  .dh-contenu { gap: 1.8rem; padding: 6.5rem 1.3rem 4.4rem; }
-  .dh-carte { padding: 1.4rem; }
+  .dh-cadre { display: grid; gap: .9rem; min-height: 0; padding: calc(70px + 1.1rem) 1.1rem 1.3rem; border-radius: 22px; }
+  .dh-contenu, .dh-texte { display: contents; }
+  .dh-chip { order: 1; }
+  .dh h1 { order: 2; }
+  .dh-video { order: 3; position: relative; inset: auto; aspect-ratio: 16 / 9; width: 100%; height: auto; overflow: hidden; border-radius: 14px; background: var(--ink-2); object-fit: contain; }
+  .dh-voile { display: none; }
+  .dh-pied { order: 4; position: static; justify-content: flex-end; margin-top: -.3rem; }
+  .dh-intro { order: 5; }
+  .dh-actions { order: 6; }
+  .dh-conditions { order: 7; }
+  .dh-carte { order: 8; max-width: none; margin-top: .4rem; padding: 1.4rem; }
   .dg ul { grid-template-columns: 1fr; gap: 8px; }
   .dg li { padding: 1.3rem 1.4rem; border-radius: 20px; }
   .dc-liste { grid-template-columns: 1fr; gap: 8px; }

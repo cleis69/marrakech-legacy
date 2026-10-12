@@ -40,7 +40,13 @@ const fr = {
   },
   hero: {
     lieu: "Résidence privée · Oulad Hassoune, Marrakech",
-    accroche: ["Villas de luxe à Marrakech,", "quatorze, pas une de plus."] as [string, string],
+    accroche: ["Villas de luxe à Marrakech,", "villas, pas une de plus."] as [string, string],
+    cartesLabel: "Garanties",
+    cartes: {
+      paiement: { titre: "Plan de paiement flexible", texte: "à la réservation, le solde au rythme du chantier" },
+      notaire: { titre: "Chez le notaire", fort: "Dès le 1er acompte", texte: "La réservation est signée devant notaire." },
+      livraison: { titre: "Livraison", texte: (fondsPropres: string) => `${fondsPropres} fonds propres · crédit immobilier accepté` },
+    },
     texte: (surface: string, terrain: string, minutes: number) =>
       `Jusqu’à ${surface} construits sur ${terrain} de terrain, piscine privée, à ${minutes} minutes de Jemaa el-Fna.`,
     garanties: (fondsPropres: string) => [
@@ -899,7 +905,13 @@ const en: Textes = {
   },
   hero: {
     lieu: "Private residence · Oulad Hassoune, Marrakech",
-    accroche: ["Luxury villas in Marrakech,", "fourteen, not one more."],
+    accroche: ["Luxury villas in Marrakech,", "villas, not one more."],
+    cartesLabel: "Guarantees",
+    cartes: {
+      paiement: { titre: "Flexible payment plan", texte: "on reservation, the balance follows construction" },
+      notaire: { titre: "Before a notary", fort: "From the 1st deposit", texte: "The reservation is signed before a notary." },
+      livraison: { titre: "Delivery", texte: (fondsPropres) => `${fondsPropres} equity-funded · mortgages accepted` },
+    },
     texte: (surface, terrain, minutes) =>
       `Up to ${surface} built on ${terrain} of land, with a private pool, ${minutes} minutes from Jemaa el-Fna.`,
     garanties: (fondsPropres) => [

@@ -1,5 +1,5 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { Check, PhoneCall, Pause, Play, Rotate3d } from "lucide-react";
+import { PhoneCall, Pause, Play, Rotate3d } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import {
@@ -20,9 +20,9 @@ import { scrollTo } from "./data";
 import { PillButton } from "./ui/PillButton";
 
 /**
- * Hero encadré : la vidéo des rendus, étalonnée, dans un grand cadre arrondi.
- * À gauche, ce qui se vend (où, quoi, combien de mètres, à quelle distance),
- * deux actions et trois garanties ; à droite, la carte de livraison.
+ * Hero encadré : le film du domaine dans un grand cadre arrondi. À gauche, le
+ * titre avec le chiffre du programme en grand, la phrase, deux actions ; à
+ * droite, trois cartes en verre (plan de paiement, notaire, livraison).
  * Au défilement, la vidéo glisse un peu moins vite que la page.
  */
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
@@ -34,7 +34,7 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
     formatSurface(programme.terrainMaxM2, langue),
     programme.trajetMaxMinutes,
   );
-  const garanties = t.hero.garanties(formatPart(engagements.fondsPropres, langue));
+  const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
@@ -55,6 +55,8 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
     if (video.paused) void video.play().catch(() => setPlaying(false));
     else video.pause();
   };
+
+  const cartes = t.hero.cartes;
 
   return (
     <section ref={heroRef} id="accueil" className="hero" aria-labelledby="hero-title">
@@ -83,11 +85,16 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
             <p className="hero-chip">{t.hero.lieu}</p>
             <h1 id="hero-title">
               <span className="sr-only">CITYSTAR — </span>
-              {t.hero.accroche.map((ligne, i) => (
-                <span key={ligne} className="hero-line" style={{ "--i": i } as React.CSSProperties}>
-                  {ligne}
-                </span>
-              ))}
+              <span className="hero-line" style={{ "--i": 0 } as React.CSSProperties}>
+                {t.hero.accroche[0]}
+              </span>{" "}
+              <span
+                className="hero-line hero-line-chiffre"
+                style={{ "--i": 1 } as React.CSSProperties}
+              >
+                <strong className="hero-chiffre">{programme.nombreVillas}</strong>{" "}
+                <span>{t.hero.accroche[1]}</span>
+              </span>
             </h1>
             <p className="hero-texte">{texte}</p>
             <div className="hero-actions">
@@ -99,23 +106,30 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
                 onClick={() => scrollTo("visite")}
               />
             </div>
-            <ul className="hero-garanties">
-              {garanties.map((garantie) => (
-                <li key={garantie}>
-                  <Check aria-hidden="true" />
-                  {garantie}
-                </li>
-              ))}
-            </ul>
           </div>
 
-          <aside className="hero-carte" aria-label={t.hero.livraisonLabel}>
-            <span>{t.hero.livraisonLabel}</span>
-            <strong>{formatMois(calendrier.livraison, langue)}</strong>
-            {acompte?.confirme && acompte.part != null && (
-              <span>{t.hero.reservation(formatPart(acompte.part, langue))}</span>
+          {/* Trois cartes en verre : ce qui rassure, lisible d'un coup d'œil. */}
+          <ul className="hero-cartes" aria-label={t.hero.cartesLabel}>
+            {part && (
+              <li className="hero-verre" style={{ "--i": 0 } as React.CSSProperties}>
+                <span className="hero-verre-titre">{cartes.paiement.titre}</span>
+                <strong>{part}</strong>
+                <span className="hero-verre-texte">{cartes.paiement.texte}</span>
+              </li>
             )}
-          </aside>
+            <li className="hero-verre" style={{ "--i": 1 } as React.CSSProperties}>
+              <span className="hero-verre-titre">{cartes.notaire.titre}</span>
+              <strong>{cartes.notaire.fort}</strong>
+              <span className="hero-verre-texte">{cartes.notaire.texte}</span>
+            </li>
+            <li className="hero-verre" style={{ "--i": 2 } as React.CSSProperties}>
+              <span className="hero-verre-titre">{cartes.livraison.titre}</span>
+              <strong>{formatMois(calendrier.livraison, langue)}</strong>
+              <span className="hero-verre-texte">
+                {cartes.livraison.texte(formatPart(engagements.fondsPropres, langue))}
+              </span>
+            </li>
+          </ul>
         </div>
 
         <div className="hero-foot">

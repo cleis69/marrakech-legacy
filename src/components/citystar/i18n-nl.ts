@@ -31,7 +31,13 @@ export const nl: Textes = {
   },
   hero: {
     lieu: "Privéresidentie · Oulad Hassoune, Marrakech",
-    accroche: ["Luxevilla’s in Marrakech,", "veertien, geen enkele meer."],
+    accroche: ["Luxevilla’s in Marrakech,", "villa’s, geen enkele meer."],
+    cartesLabel: "Garanties",
+    cartes: {
+      paiement: { titre: "Flexibel betalingsplan", texte: "bij reservering, het saldo in het tempo van de bouw" },
+      notaire: { titre: "Bij de notaris", fort: "Vanaf de 1e aanbetaling", texte: "De reservering wordt bij de notaris getekend." },
+      livraison: { titre: "Oplevering", texte: (fondsPropres) => `${fondsPropres} eigen vermogen · hypotheek mogelijk` },
+    },
     texte: (surface, terrain, minutes) =>
       `Tot ${surface} bebouwd op ${terrain} grond, met eigen zwembad, op ${minutes} minuten van Jemaa el-Fna.`,
     garanties: (fondsPropres) => [

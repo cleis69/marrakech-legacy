@@ -17,15 +17,19 @@
 .hero-actions .pill-secondary { gap: .5rem; background: color-mix(in oklab, var(--cream) 10%, transparent); backdrop-filter: blur(8px); }
 .hero-actions .pill-secondary .pill-dot { display: inline-grid; place-items: center; }
 .hero-actions .pill-secondary .pill-dot svg { width: 1rem; height: 1rem; }
-/* Trois garanties, cochées : ce qui rassure avant de cliquer. */
-.hero-garanties { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: .2rem 0 0; padding: 0; list-style: none; font-size: .84rem; color: color-mix(in oklab, var(--cream) 88%, transparent); animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) 1.1s both; }
-.hero-garanties li { display: inline-flex; align-items: center; gap: .45rem; }
-.hero-garanties svg { width: .95rem; height: .95rem; color: var(--sand); }
-/* La carte de livraison : verre dépoli, à droite. */
-.hero-carte { display: grid; gap: .3rem; min-width: 15rem; padding: 1.2rem 1.4rem; border-radius: 20px; background: color-mix(in oklab, var(--cream) 12%, transparent); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cream) 22%, transparent); animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) 1.25s both; }
-.hero-carte span { font-size: .78rem; letter-spacing: .04em; color: color-mix(in oklab, var(--cream) 80%, transparent); }
-.hero-carte strong { font: 400 2.2rem/1.05 "Italiana", serif; }
-.hero-carte strong::first-letter { text-transform: uppercase; }
+/* Le chiffre du programme, en grand, dans le titre. */
+.hero-line-chiffre { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .3em; }
+.hero-chiffre { font: 400 clamp(4.6rem, 10vw, 9.5rem)/.82 "Italiana", serif; letter-spacing: -.02em; color: var(--sand); font-variant-numeric: lining-nums; }
+/* Trois cartes en verre, à droite : plan de paiement, notaire, livraison. */
+.hero-cartes { display: grid; gap: .6rem; width: 19rem; margin: 0; padding: 0; list-style: none; }
+.hero-verre { position: relative; display: grid; gap: .3rem; padding: 1rem 1.25rem 1.05rem; overflow: hidden; border-radius: 20px; background: linear-gradient(135deg, color-mix(in oklab, var(--cream) 22%, transparent), color-mix(in oklab, var(--cream) 7%, transparent)); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cream) 26%, transparent), inset 0 1px 0 color-mix(in oklab, var(--cream) 62%, transparent), inset 0 -1px 0 color-mix(in oklab, var(--ink) 30%, transparent), 0 26px 60px -34px oklch(0.12 0.01 65 / 75%); animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) both; animation-delay: calc(1.05s + var(--i) * 120ms); }
+.hero-verre::before { content: ""; position: absolute; inset: -45% -25% auto; height: 95%; background: radial-gradient(55% 60% at 28% 35%, color-mix(in oklab, var(--cream) 32%, transparent), transparent 72%); pointer-events: none; }
+.hero-verre::after { content: ""; position: absolute; inset: auto -30% -70%; height: 90%; background: radial-gradient(50% 55% at 70% 50%, color-mix(in oklab, var(--sand) 18%, transparent), transparent 70%); pointer-events: none; }
+.hero-verre > * { position: relative; }
+.hero-verre-titre { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
+.hero-verre strong { font: 400 2.15rem/1 "Italiana", serif; font-variant-numeric: lining-nums; }
+.hero-verre strong::first-letter { text-transform: uppercase; }
+.hero-verre-texte { font-size: .8rem; line-height: 1.4; color: color-mix(in oklab, var(--cream) 86%, transparent); }
 
 .hero-foot { position: absolute; right: var(--gouttiere); bottom: 1.1rem; display: flex; align-items: center; gap: 1.6rem; font-size: .7rem; letter-spacing: .08em; color: var(--sand); }
 .hero-pause { display: flex; align-items: center; gap: .5rem; padding: .8rem .4rem; margin: -.8rem -.4rem; border: 0; background: none; color: inherit; font-size: inherit; letter-spacing: .16em; text-transform: uppercase; opacity: .8; transition: opacity .3s; }
@@ -36,19 +40,29 @@
 @keyframes hero-up { from { opacity: 0; transform: translateY(18px); } }
 
 @media (max-width: 760px) {
-  .hero-bottom { bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px)); gap: 1.2rem; }
-  .hero-main { gap: .9rem; }
-  .hero-main h1 { font-size: clamp(2.1rem, 9.5vw, 2.7rem); }
-  .hero-texte { font-size: .9rem; }
-  .hero-garanties { font-size: .78rem; gap: .35rem 1rem; }
-  .hero-carte { display: none; }
+  /* Sur téléphone, le hero s'empile : titre, puis le film entier en paysage, puis le texte, l'action et les trois cartes. */
+  .hero { height: auto; min-height: 0; padding: 8px; }
+  .hero-cadre { display: grid; gap: .9rem; height: auto; padding: calc(70px + 1.1rem) 1.1rem 1.3rem; border-radius: 22px; }
+  .hero-bottom, .hero-main { display: contents; }
+  .hero-chip { order: 1; }
+  .hero-main h1 { order: 2; font-size: clamp(2rem, 8.6vw, 2.5rem); }
+  .hero-chiffre { font-size: 4rem; }
+  .hero-media { order: 3; position: relative; inset: auto; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 14px; background: var(--ink-2); }
+  .hero-video { transform: none !important; object-fit: contain; }
+  .hero-shade { display: none; }
+  .hero-foot { order: 4; position: static; justify-content: flex-end; margin-top: -.3rem; }
+  .hero-texte { order: 5; font-size: .92rem; }
+  .hero-actions { order: 6; }
   /* Le rappel est déjà au centre de la barre du bas. */
   .hero-actions .pill-primary { display: none; }
-  .hero { padding: 8px; }
-  .hero-cadre { border-radius: 22px; }
-  .hero-foot { top: calc(70px + .6rem); bottom: auto; }
+  /* Trois rangées fines : le titre à gauche, le chiffre à droite, sans la phrase. */
+  .hero-cartes { order: 7; gap: .35rem; width: 100%; margin-top: .2rem; }
+  .hero-verre { grid-template-columns: 1fr auto; align-items: center; gap: .6rem; padding: .6rem .95rem; border-radius: 14px; }
+  .hero-verre-titre { font-size: .58rem; letter-spacing: .12em; }
+  .hero-verre strong { font-size: 1.1rem; text-align: right; white-space: nowrap; }
+  .hero-verre-texte { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-media, .hero-line, .hero-chip, .hero-texte, .hero-actions, .hero-garanties, .hero-carte { animation: none; }
+  .hero-media, .hero-line, .hero-chip, .hero-texte, .hero-actions, .hero-verre { animation: none; }
 }
