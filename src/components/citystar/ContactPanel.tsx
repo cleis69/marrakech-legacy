@@ -87,7 +87,7 @@ export function ContactPanel({
           </button>
         </form>
         <div className="direct-contact">
-          <a href="tel:+212661825359">+212 661-825359</a>
+          <a href="tel:+212621350800">+212 621-350800</a>
           <a href="mailto:Promoimmomarrakech@gmail.com">Promoimmomarrakech@gmail.com</a>
         </div>
       </div>

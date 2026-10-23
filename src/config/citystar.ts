@@ -277,9 +277,9 @@ export const brochures = {
 /* ------------------------------------------------------------------ */
 
 export const contact = {
-  telephone: "+212661825359",
-  telephoneAffiche: "+212 661-825359",
-  whatsapp: "212661825359",
+  telephone: "+212621350800",
+  telephoneAffiche: "+212 621-350800",
+  whatsapp: "212621350800",
   email: "Promoimmomarrakech@gmail.com",
   reseaux: {
     instagram: "https://www.instagram.com/city_star_marrakech",
