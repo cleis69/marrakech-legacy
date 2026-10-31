@@ -30,7 +30,7 @@ export const nl: Textes = {
     whatsapp: "De CITYSTAR-conciërge een WhatsApp-bericht sturen",
   },
   hero: {
-    lieu: "Privéresidentie · Oulad Hassoune, Marrakech",
+    lieu: "Privéresidentie · Route de Fès, Marrakech",
     accroche: ["Luxevilla’s in Marrakech,", "villa’s, geen enkele meer."],
     cartesLabel: "Garanties",
     cartes: {
@@ -239,11 +239,11 @@ export const nl: Textes = {
       air: { titre: "Luchthaven Marrakech", note: (n) => `Minder dan ${n} minuten` },
       palm: { titre: "De Palmeraie", note: "Vlakbij", mot: "Dichtbij" },
     },
-    adresse: ["Regio Marrakech-Safi", "Prefectuur Marrakech", "Oulad Hassoune"],
+    adresse: ["Regio Marrakech-Safi", "Prefectuur Marrakech", "Route de Fès"],
     planMasse: "Situatieplan",
     schema: "Schematische kaart, niet op schaal",
     carteAria:
-      "Schematische kaart, niet op schaal: CITYSTAR in Oulad Hassoune, vlak bij de Palmeraie, met de medina en de luchthaven van Marrakech",
+      "Schematische kaart, niet op schaal: CITYSTAR aan de Route de Fès, vlak bij de Palmeraie, met de medina en de luchthaven van Marrakech",
     reperes: {
       med: "Medina · Jemaa el-Fna",
       medCourt: "Medina",
@@ -258,7 +258,7 @@ export const nl: Textes = {
     aideLongue: "Slepen om te verplaatsen · Ctrl + scrollwiel om te zoomen",
     aideCourte: "Slepen · tik op een afstand",
     residencePrivee: "Privéresidentie",
-    ou: "Oulad Hassoune · Marrakech",
+    ou: "Route de Fès · Marrakech",
     itineraire: "Route",
     fermerFiche: "Kaartje sluiten",
     proximite: "Dichtbij",
@@ -314,7 +314,7 @@ export const nl: Textes = {
     accueil: {
       titre: "CITYSTAR Marrakech — Exclusieve luxevilla’s",
       description: (n) =>
-        `CITYSTAR, een privéresidentie met ${n} eigentijdse villa’s in Oulad Hassoune, Marrakech, vlak bij de Palmeraie.`,
+        `CITYSTAR, een privéresidentie met ${n} eigentijdse villa’s aan de Route de Fès, Marrakech, vlak bij de Palmeraie.`,
     },
     villas: {
       titre: "De villa’s — CITYSTAR Marrakech",
@@ -399,11 +399,11 @@ export const nl: Textes = {
     luxe: {
       titre: "Luxevilla in Marrakech — CITYSTAR",
       description:
-        "Veertien luxevilla’s in Oulad Hassoune, Marrakech: oppervlaktes, architecturen, ligging en bezichtigingen.",
+        "Veertien luxevilla’s aan de Route de Fès, Marrakech: oppervlaktes, architecturen, ligging en bezichtigingen.",
       kicker: "Luxevilla in Marrakech",
       titreH1: ["Een villa kopen", "in Marrakech."],
       intro:
-        "CITYSTAR bundelt veertien eigentijdse villa’s op een privédomein, volledig beveiligd, in Oulad Hassoune, vlak bij de Palmeraie.",
+        "CITYSTAR bundelt veertien eigentijdse villa’s op een privédomein, volledig beveiligd, aan de Route de Fès, vlak bij de Palmeraie.",
       sections: [
         {
           titre: "Een besloten domein, geen verkaveling",
@@ -467,7 +467,7 @@ export const nl: Textes = {
     {
       id: "lieu",
       q: "Waar ligt het domein?",
-      r: `In Oulad Hassoune, prefectuur Marrakech, vlak bij de Palmeraie. Het Djemaa el-Fna-plein en de luchthaven liggen op minder dan ${v.minutes} minuten.`,
+      r: `Aan de Route de Fès, prefectuur Marrakech, vlak bij de Palmeraie. Het Djemaa el-Fna-plein en de luchthaven liggen op minder dan ${v.minutes} minuten.`,
     },
     {
       id: "surfaces",
@@ -499,17 +499,14 @@ export const nl: Textes = {
     alts: {
       "entree-crepuscule":
         "Toegangspad van een villa, witte volumes en een pergola met donkere lamellen, palmentuin",
-      "entree-palmiers": "Houten voordeur omlijst door donkere lamellen, tussen twee palmen",
       "entree-portail": "Houten voordeur onder een lamellenpergola, recht van voren",
       "ext-aerien-piscine":
         "Zicht van bovenaf op een villa met twee verdiepingen, zwembad en gazon",
       "ext-facade-crepuscule":
         "Lage villagevel, witte pleister en donkere banden, achter een droge tuin",
-      "ext-facade-entree": "Villagevel en oprit, een auto geparkeerd voor de ingang",
+      "ext-facade-entree": "Villagevel en het pad naar de ingang, tussen palmen en gazon",
       "ext-facade-jardin":
-        "Villa met twee verdiepingen vanuit de tuin, overdekt terras en geparkeerde auto",
-      "ext-pergola-allee":
-        "Villa met lage volumes, lamellenpergola boven het terras, gazon en palmen",
+        "Villa met twee verdiepingen vanuit de tuin, ingericht terras en palmen",
       "ext-pergola-jour":
         "Terras onder een pergola met verticale lamellen, aan de rand van het gazon",
       "ext-pergola-portrait": "Pergola met donkere lamellen boven een gemeubileerd terras",
@@ -545,9 +542,9 @@ export const nl: Textes = {
     lecture: "Afspelen",
   },
   marque: {
-    defilant: "CITYSTAR · VEERTIEN PRIVÉVILLA’S · OULAD HASSOUNE · MARRAKECH · ",
-    legende: "Oulad Hassoune · Marrakech",
-    aria: "CITYSTAR, een privéresidentie in Oulad Hassoune, Marrakech",
+    defilant: "CITYSTAR · VEERTIEN PRIVÉVILLA’S · ROUTE DE FÈS · MARRAKECH · ",
+    legende: "Route de Fès · Marrakech",
+    aria: "CITYSTAR, een privéresidentie aan de Route de Fès, Marrakech",
   },
   processus: {
     titre: ["Van het eerste bezoek", "tot de sleuteloverdracht."],
@@ -650,7 +647,7 @@ export const nl: Textes = {
     brochure: "Brochure",
     theme: ["Luxevilla in Marrakech", "luxe-villa-marrakech"],
     nav: "Voettekst",
-    legal: (annee) => `© ${annee} CITYSTAR · Privéresidentie · Oulad Hassoune, Marrakech`,
+    legal: (annee) => `© ${annee} CITYSTAR · Privéresidentie · Route de Fès, Marrakech`,
     instagram: "CITYSTAR op Instagram",
     realise: "Gemaakt door",
     propulse: "Mogelijk gemaakt door",

@@ -39,7 +39,7 @@ const fr = {
     whatsapp: "Contacter la conciergerie CITYSTAR sur WhatsApp",
   },
   hero: {
-    lieu: "Résidence privée · Oulad Hassoune, Marrakech",
+    lieu: "Résidence privée · Route de Fès, Marrakech",
     accroche: ["Villas de luxe à Marrakech,", "villas, pas une de plus."] as [string, string],
     cartesLabel: "Garanties",
     cartes: {
@@ -253,11 +253,11 @@ const fr = {
       air: { titre: "Aéroport de Marrakech", note: (n: number) => `Moins de ${n} minutes` },
       palm: { titre: "La Palmeraie", note: "Toute proche", mot: "Proche" },
     },
-    adresse: ["Wilaya Marrakech-Safi", "Préfecture de Marrakech", "Oulad Hassoune"],
+    adresse: ["Wilaya Marrakech-Safi", "Préfecture de Marrakech", "Route de Fès"],
     planMasse: "Plan de masse",
     schema: "Carte schématique, non à l’échelle",
     carteAria:
-      "Carte schématique, non à l’échelle\u00a0: CITYSTAR à Oulad Hassoune, près de la Palmeraie, avec la médina et l’aéroport de Marrakech",
+      "Carte schématique, non à l’échelle\u00a0: CITYSTAR sur la route de Fès, près de la Palmeraie, avec la médina et l’aéroport de Marrakech",
     reperes: {
       med: "Médina · Jemaa el-Fna",
       medCourt: "Médina",
@@ -272,7 +272,7 @@ const fr = {
     aideLongue: "Glissez pour déplacer · Ctrl + molette pour zoomer",
     aideCourte: "Glissez · touchez une distance",
     residencePrivee: "Résidence privée",
-    ou: "Oulad Hassoune · Marrakech",
+    ou: "Route de Fès · Marrakech",
     itineraire: "Itinéraire",
     fermerFiche: "Fermer la fiche",
     proximite: "À proximité",
@@ -328,7 +328,7 @@ const fr = {
     accueil: {
       titre: "CITYSTAR Marrakech — Villas de luxe privées",
       description: (n: number) =>
-        `CITYSTAR, résidence privée de ${n} villas contemporaines à Oulad Hassoune, Marrakech, proche de la Palmeraie.`,
+        `CITYSTAR, résidence privée de ${n} villas contemporaines sur la route de Fès, à Marrakech, proche de la Palmeraie.`,
     },
     villas: {
       titre: "Les villas — CITYSTAR Marrakech",
@@ -410,11 +410,11 @@ const fr = {
     luxe: {
       titre: "Villa de luxe à Marrakech — CITYSTAR",
       description:
-        "Quatorze villas de luxe à Oulad Hassoune, Marrakech\u00a0: surfaces, architectures, emplacement et conditions de visite.",
+        "Quatorze villas de luxe sur la route de Fès, à Marrakech\u00a0: surfaces, architectures, emplacement et conditions de visite.",
       kicker: "Villa de luxe à Marrakech",
       titreH1: ["Acheter une villa", "à Marrakech."] as [string, string],
       intro:
-        "CITYSTAR réunit quatorze villas contemporaines dans un domaine privé et entièrement sécurisé d'Oulad Hassoune, près de la Palmeraie.",
+        "CITYSTAR réunit quatorze villas contemporaines dans un domaine privé et entièrement sécurisé, sur la route de Fès, près de la Palmeraie.",
       sections: [
         {
           titre: "Un domaine fermé, pas un lotissement",
@@ -488,7 +488,7 @@ const fr = {
     {
       id: "lieu",
       q: "Où se situe le domaine\u00a0?",
-      r: `À Oulad Hassoune, préfecture de Marrakech, près de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
+      r: `Sur la route de Fès, préfecture de Marrakech, près de la Palmeraie. La place Jemaa el-Fna et l'aéroport sont à moins de ${v.minutes} minutes.`,
     },
     {
       id: "surfaces",
@@ -521,15 +521,12 @@ const fr = {
     alts: {
       "entree-crepuscule":
         "Allée d’entrée d’une villa, volumes blancs et pergola en lames sombres, jardin de palmiers",
-      "entree-palmiers": "Porte d’entrée en bois encadrée de lames sombres, entre deux palmiers",
       "entree-portail": "Porte d’entrée en bois sous une pergola à lames, vue de face",
       "ext-aerien-piscine": "Vue en hauteur d’une villa à étage, de sa piscine et de sa pelouse",
       "ext-facade-crepuscule":
         "Façade basse d’une villa, enduit blanc et bandeaux sombres, derrière un jardin sec",
-      "ext-facade-entree": "Façade d’une villa et son allée, voiture garée devant l’entrée",
-      "ext-facade-jardin": "Villa à étage vue depuis le jardin, terrasse couverte et voiture garée",
-      "ext-pergola-allee":
-        "Villa aux volumes bas, pergola à lames sur la terrasse, pelouse et palmiers",
+      "ext-facade-entree": "Façade d’une villa et son allée d’entrée, entre palmiers et pelouse",
+      "ext-facade-jardin": "Villa à étage vue depuis le jardin, terrasse meublée et palmiers",
       "ext-pergola-jour": "Terrasse sous une pergola à lames verticales, au bord de la pelouse",
       "ext-pergola-portrait": "Pergola à lames sombres au-dessus d’une terrasse meublée",
       "ext-piscine-crepuscule": "Angle d’une villa à étage, grandes baies voilées et piscine",
@@ -561,9 +558,9 @@ const fr = {
     lecture: "Lecture",
   },
   marque: {
-    defilant: "CITYSTAR · QUATORZE VILLAS PRIVÉES · OULAD HASSOUNE · MARRAKECH · ",
-    legende: "Oulad Hassoune · Marrakech",
-    aria: "CITYSTAR, résidence privée à Oulad Hassoune, Marrakech",
+    defilant: "CITYSTAR · QUATORZE VILLAS PRIVÉES · ROUTE DE FÈS · MARRAKECH · ",
+    legende: "Route de Fès · Marrakech",
+    aria: "CITYSTAR, résidence privée sur la route de Fès, à Marrakech",
   },
   processus: {
     titre: ["De la première visite", "à la remise des clés."] as [string, string],
@@ -668,7 +665,7 @@ const fr = {
     brochure: "Brochure",
     theme: ["Villa de luxe à Marrakech", "villa-de-luxe-marrakech"] as [string, string],
     nav: "Pied de page",
-    legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Oulad Hassoune, Marrakech`,
+    legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Route de Fès, Marrakech`,
     instagram: "CITYSTAR sur Instagram",
     realise: "Réalisé par",
     propulse: "Propulsé par",
@@ -904,7 +901,7 @@ const en: Textes = {
     whatsapp: "Message the CITYSTAR concierge on WhatsApp",
   },
   hero: {
-    lieu: "Private residence · Oulad Hassoune, Marrakech",
+    lieu: "Private residence · Route de Fès, Marrakech",
     accroche: ["Luxury villas in Marrakech,", "villas, not one more."],
     cartesLabel: "Guarantees",
     cartes: {
@@ -1109,11 +1106,11 @@ const en: Textes = {
       air: { titre: "Marrakech airport", note: (n) => `Under ${n} minutes` },
       palm: { titre: "The Palmeraie", note: "Close by", mot: "Close" },
     },
-    adresse: ["Marrakech-Safi region", "Marrakech prefecture", "Oulad Hassoune"],
+    adresse: ["Marrakech-Safi region", "Marrakech prefecture", "Route de Fès"],
     planMasse: "Site plan",
     schema: "Schematic map, not to scale",
     carteAria:
-      "Schematic map, not to scale: CITYSTAR at Oulad Hassoune, near the Palmeraie, with the medina and Marrakech airport",
+      "Schematic map, not to scale: CITYSTAR on the Route de Fès, near the Palmeraie, with the medina and Marrakech airport",
     reperes: {
       med: "Medina · Jemaa el-Fna",
       medCourt: "Medina",
@@ -1128,7 +1125,7 @@ const en: Textes = {
     aideLongue: "Drag to move · Ctrl + wheel to zoom",
     aideCourte: "Drag · tap a distance",
     residencePrivee: "Private residence",
-    ou: "Oulad Hassoune · Marrakech",
+    ou: "Route de Fès · Marrakech",
     itineraire: "Directions",
     fermerFiche: "Close the card",
     proximite: "Nearby",
@@ -1184,7 +1181,7 @@ const en: Textes = {
     accueil: {
       titre: "CITYSTAR Marrakech — Private luxury villas",
       description: (n) =>
-        `CITYSTAR, a private residence of ${n} contemporary villas in Oulad Hassoune, Marrakech, close to the Palmeraie.`,
+        `CITYSTAR, a private residence of ${n} contemporary villas on the Route de Fès, Marrakech, close to the Palmeraie.`,
     },
     villas: {
       titre: "The villas — CITYSTAR Marrakech",
@@ -1265,11 +1262,11 @@ const en: Textes = {
     luxe: {
       titre: "Luxury villa in Marrakech — CITYSTAR",
       description:
-        "Fourteen luxury villas in Oulad Hassoune, Marrakech: areas, architectures, location and how to visit.",
+        "Fourteen luxury villas on the Route de Fès, Marrakech: areas, architectures, location and how to visit.",
       kicker: "Luxury villa in Marrakech",
       titreH1: ["Buying a villa", "in Marrakech."],
       intro:
-        "CITYSTAR gathers fourteen contemporary villas in a private, fully secured estate in Oulad Hassoune, close to the Palmeraie.",
+        "CITYSTAR gathers fourteen contemporary villas in a private, fully secured estate on the Route de Fès, close to the Palmeraie.",
       sections: [
         {
           titre: "A gated estate, not a subdivision",
@@ -1332,7 +1329,7 @@ const en: Textes = {
     {
       id: "lieu",
       q: "Where is the estate?",
-      r: `In Oulad Hassoune, Marrakech prefecture, close to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
+      r: `On the Route de Fès, Marrakech prefecture, close to the Palmeraie. Jemaa el-Fna square and the airport are both under ${v.minutes} minutes away.`,
     },
     {
       id: "surfaces",
@@ -1364,14 +1361,11 @@ const en: Textes = {
     alts: {
       "entree-crepuscule":
         "Entrance path of a villa, white volumes and a dark slatted pergola, palm garden",
-      "entree-palmiers": "Wooden front door framed by dark slats, between two palm trees",
       "entree-portail": "Wooden front door under a slatted pergola, seen head-on",
       "ext-aerien-piscine": "High view of a two-storey villa with its pool and lawn",
       "ext-facade-crepuscule": "Low villa facade, white render and dark bands, behind a dry garden",
-      "ext-facade-entree": "Villa facade and driveway, a car parked by the entrance",
-      "ext-facade-jardin": "Two-storey villa seen from the garden, covered terrace and parked car",
-      "ext-pergola-allee":
-        "Villa with low volumes, slatted pergola over the terrace, lawn and palms",
+      "ext-facade-entree": "Villa facade and its entrance path, between palm trees and lawn",
+      "ext-facade-jardin": "Two-storey villa seen from the garden, furnished terrace and palm trees",
       "ext-pergola-jour": "Terrace under a pergola of vertical slats, at the edge of the lawn",
       "ext-pergola-portrait": "Dark slatted pergola over a furnished terrace",
       "ext-piscine-crepuscule": "Corner of a two-storey villa, tall curtained windows and pool",
@@ -1403,9 +1397,9 @@ const en: Textes = {
     lecture: "Play",
   },
   marque: {
-    defilant: "CITYSTAR · FOURTEEN PRIVATE VILLAS · OULAD HASSOUNE · MARRAKECH · ",
-    legende: "Oulad Hassoune · Marrakech",
-    aria: "CITYSTAR, a private residence in Oulad Hassoune, Marrakech",
+    defilant: "CITYSTAR · FOURTEEN PRIVATE VILLAS · ROUTE DE FÈS · MARRAKECH · ",
+    legende: "Route de Fès · Marrakech",
+    aria: "CITYSTAR, a private residence on the Route de Fès, Marrakech",
   },
   processus: {
     titre: ["From the first visit", "to handing over the keys."],
@@ -1506,7 +1500,7 @@ const en: Textes = {
     brochure: "Brochure",
     theme: ["Luxury villa in Marrakech", "luxury-villa-marrakech"],
     nav: "Footer",
-    legal: (annee) => `© ${annee} CITYSTAR · Private residence · Oulad Hassoune, Marrakech`,
+    legal: (annee) => `© ${annee} CITYSTAR · Private residence · Route de Fès, Marrakech`,
     instagram: "CITYSTAR on Instagram",
     realise: "Made by",
     propulse: "Powered by",

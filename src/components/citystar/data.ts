@@ -8,7 +8,7 @@ import {
 
 import type { Textes } from "./i18n";
 
-import villaAImage from "@/assets/citystar/rendus/ext-pergola-allee.webp";
+import villaAImage from "@/assets/citystar/rendus/ext-pergola-jour.webp";
 import villaBImage from "@/assets/citystar/rendus/ext-terrasses-cactus.webp";
 import villaCImage from "@/assets/citystar/rendus/ext-piscine-jour.webp";
 import planARdc from "@/assets/citystar/plan-a-rdc.png";
@@ -78,8 +78,8 @@ const modules = import.meta.glob("@/assets/citystar/rendus/*.webp", {
   import: "default",
 }) as Record<string, string>;
 
-/* Hors galerie : le dessin au trait (il sert à l'architecture) et un quasi-doublon d'entree-palmiers. */
-const ECARTES = ["-trait", "entree-portail"];
+/* Hors galerie : le dessin au trait (il sert à l'architecture). */
+const ECARTES = ["-trait"];
 
 /** Rendus triés par nom de fichier. Le nom sert de clé aux textes alternatifs (i18n, rendus.alts). */
 export const rendus = Object.entries(modules)

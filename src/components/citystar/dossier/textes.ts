@@ -9,7 +9,7 @@ const fr = {
   description:
     "Quatorze villas avec piscine privée à Marrakech, livrées en août 2027. Prix villa par villa, plans, disponibilités et échéancier : recevez le dossier complet, sans engagement.",
   hero: {
-    lieu: "Résidence privée · Oulad Hassoune, Marrakech",
+    lieu: "Résidence privée · Route de Fès, Marrakech",
     titre: (livraison: string) => ["Votre villa à Marrakech,", `livrée en ${livraison}.`] as [string, string],
     texte: (surface: string, terrain: string, minutes: number) =>
       `Jusqu’à ${surface} construits sur ${terrain} de terrain, piscine privée, à ${minutes} minutes de Jemaa el-Fna.`,
@@ -117,7 +117,7 @@ const en: TextesDossier = {
   description:
     "Fourteen villas with private pools in Marrakech, delivered in August 2027. Prices villa by villa, floor plans, availability and payment schedule: receive the full information pack, with no commitment.",
   hero: {
-    lieu: "Private residence · Oulad Hassoune, Marrakech",
+    lieu: "Private residence · Route de Fès, Marrakech",
     titre: (livraison) => ["Your villa in Marrakech,", `delivered in ${livraison}.`],
     texte: (surface, terrain, minutes) =>
       `Up to ${surface} of living space on ${terrain} of land, private pool, ${minutes} minutes from Jemaa el-Fna.`,
@@ -223,7 +223,7 @@ const es: TextesDossier = {
   description:
     "Catorce villas con piscina privada en Marrakech, entregadas en agosto de 2027. Precio de cada villa, planos, disponibilidad y calendario de pagos: reciba el dossier completo, sin compromiso.",
   hero: {
-    lieu: "Residencia privada · Oulad Hassoune, Marrakech",
+    lieu: "Residencia privada · Route de Fès, Marrakech",
     titre: (livraison) => ["Su villa en Marrakech,", `entregada en ${livraison}.`],
     texte: (surface, terrain, minutes) =>
       `Hasta ${surface} construidos sobre ${terrain} de terreno, piscina privada, a ${minutes} minutos de Jemaa el-Fna.`,
@@ -328,7 +328,7 @@ const it: TextesDossier = {
   description:
     "Quattordici ville con piscina privata a Marrakech, consegnate ad agosto 2027. Prezzo villa per villa, planimetrie, disponibilità e piano dei pagamenti: riceva il dossier completo, senza impegno.",
   hero: {
-    lieu: "Residenza privata · Oulad Hassoune, Marrakech",
+    lieu: "Residenza privata · Route de Fès, Marrakech",
     titre: (livraison) => ["La sua villa a Marrakech,", `consegnata in ${livraison}.`],
     texte: (surface, terrain, minutes) =>
       `Fino a ${surface} costruiti su ${terrain} di terreno, piscina privata, a ${minutes} minuti da Jemaa el-Fna.`,
@@ -433,7 +433,7 @@ const nl: TextesDossier = {
   description:
     "Veertien villa’s met privézwembad in Marrakech, oplevering augustus 2027. Prijs per villa, plattegronden, beschikbaarheid en betalingsschema: ontvang het volledige informatiepakket, vrijblijvend.",
   hero: {
-    lieu: "Privédomein · Oulad Hassoune, Marrakech",
+    lieu: "Privédomein · Route de Fès, Marrakech",
     titre: (livraison) => ["Uw villa in Marrakech,", `opgeleverd in ${livraison}.`],
     texte: (surface, terrain, minutes) =>
       `Tot ${surface} woonoppervlak op ${terrain} grond, privézwembad, op ${minutes} minuten van Jemaa el-Fna.`,
@@ -538,7 +538,7 @@ const no: TextesDossier = {
   description:
     "Fjorten villaer med privat basseng i Marrakech, ferdigstilt i august 2027. Pris per villa, plantegninger, ledighet og betalingsplan: få hele salgsoppgaven, helt uforpliktende.",
   hero: {
-    lieu: "Privat boligområde · Oulad Hassoune, Marrakech",
+    lieu: "Privat boligområde · Route de Fès, Marrakech",
     titre: (livraison) => ["Din villa i Marrakech,", `ferdig i ${livraison}.`],
     texte: (surface, terrain, minutes) =>
       `Opptil ${surface} boareal på ${terrain} tomt, privat basseng, ${minutes} minutter fra Jemaa el-Fna.`,

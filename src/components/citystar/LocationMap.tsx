@@ -404,7 +404,7 @@ export function LocationMap({ selected, onSelect }: Props) {
             CITYSTAR
           </text>
           <text y="58" textAnchor="middle">
-            Oulad Hassoune
+            Route de Fès
           </text>
         </g>
         <g

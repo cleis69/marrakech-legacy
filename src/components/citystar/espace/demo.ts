@@ -3,7 +3,7 @@ import aerien from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import entree from "@/assets/citystar/rendus/entree-portail.webp";
 import facade from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 import lames from "@/assets/citystar/rendus/ext-volume-lames.webp";
-import pergola from "@/assets/citystar/rendus/ext-pergola-allee.webp";
+import pergola from "@/assets/citystar/rendus/ext-pergola-jour.webp";
 
 import type { Etape, Lot, Photo, StatutEtape } from "./donnees";
 
