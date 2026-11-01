@@ -1,3 +1,5 @@
+import { programme } from "@/config/citystar";
+
 import type { Textes } from "./i18n";
 
 /** Norsk (bokmål). */
@@ -407,7 +409,7 @@ export const no: Textes = {
         {
           titre: "Tilbaketrukket, aldri langt unna",
           texte:
-            "Jemaa el-Fna-plassen og Marrakech-Menara lufthavn ligger under trettifem minutter unna, Palmeraie like ved. 360°-omvisningen lar deg bli kjent med eiendommen før du reiser.",
+            `Jemaa el-Fna-plassen og Marrakech-Menara lufthavn ligger under ${programme.trajetMaxMinutes} minutter unna, Palmeraie like ved. 360°-omvisningen lar deg bli kjent med eiendommen før du reiser.`,
         },
         {
           titre: "Se først, kjøp etterpå",

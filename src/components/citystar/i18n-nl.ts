@@ -1,3 +1,5 @@
+import { programme } from "@/config/citystar";
+
 import type { Textes } from "./i18n";
 
 /** Nederlands. */
@@ -418,7 +420,7 @@ export const nl: Textes = {
         {
           titre: "Afgezonderd, nooit ver",
           texte:
-            "Het Djemaa el-Fna-plein en de luchthaven Marrakech-Menara liggen op minder dan vijfendertig minuten, de Palmeraie vlakbij. De 360°-rondleiding laat u het domein ontdekken voordat u op reis gaat.",
+            `Het Djemaa el-Fna-plein en de luchthaven Marrakech-Menara liggen op minder dan ${programme.trajetMaxMinutes} minuten, de Palmeraie vlakbij. De 360°-rondleiding laat u het domein ontdekken voordat u op reis gaat.`,
         },
         {
           titre: "Eerst bezichtigen, dan kopen",

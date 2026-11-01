@@ -1,4 +1,4 @@
-import type { Langue, TypeVilla } from "@/config/citystar";
+import { type Langue, type TypeVilla, programme } from "@/config/citystar";
 
 import { es } from "./i18n-es";
 import { it } from "./i18n-it";
@@ -429,7 +429,7 @@ const fr = {
         {
           titre: "À l'écart, jamais loin",
           texte:
-            "La place Jemaa el-Fna et l'aéroport Marrakech-Menara sont à moins de trente-cinq minutes, la Palmeraie toute proche. Une visite aérienne à 360° permet de situer le domaine avant de se déplacer.",
+            `La place Jemaa el-Fna et l'aéroport Marrakech-Menara sont à moins de ${programme.trajetMaxMinutes} minutes, la Palmeraie toute proche. Une visite aérienne à 360° permet de situer le domaine avant de se déplacer.`,
         },
         {
           titre: "Visiter, puis acquérir",
@@ -1281,7 +1281,7 @@ const en: Textes = {
         {
           titre: "Set apart, never far",
           texte:
-            "Jemaa el-Fna square and Marrakech-Menara airport are both under thirty-five minutes away, the Palmeraie close by. A 360° aerial tour places the estate before you travel.",
+            `Jemaa el-Fna square and Marrakech-Menara airport are both under ${programme.trajetMaxMinutes} minutes away, the Palmeraie close by. A 360° aerial tour places the estate before you travel.`,
         },
         {
           titre: "Visit, then buy",

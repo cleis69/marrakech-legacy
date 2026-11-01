@@ -1,3 +1,5 @@
+import { programme } from "@/config/citystar";
+
 import type { Textes } from "./i18n";
 
 /** Italiano. */
@@ -417,7 +419,7 @@ export const it: Textes = {
         {
           titre: "In disparte, mai lontano",
           texte:
-            "Piazza Jemaa el-Fna e l’aeroporto di Marrakech-Menara sono a meno di trentacinque minuti, la Palmeraie vicinissima. La visita a 360° permette di scoprire la tenuta prima di partire.",
+            `Piazza Jemaa el-Fna e l’aeroporto di Marrakech-Menara sono a meno di ${programme.trajetMaxMinutes} minuti, la Palmeraie vicinissima. La visita a 360° permette di scoprire la tenuta prima di partire.`,
         },
         {
           titre: "Visitare, poi acquistare",

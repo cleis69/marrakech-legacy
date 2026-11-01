@@ -1,3 +1,5 @@
+import { programme } from "@/config/citystar";
+
 import type { Textes } from "./i18n";
 
 /** Español. */
@@ -424,7 +426,7 @@ export const es: Textes = {
         {
           titre: "Apartado, nunca lejos",
           texte:
-            "La plaza Jemaa el-Fna y el aeropuerto de Marrakech-Menara están a menos de treinta y cinco minutos, la Palmeraie muy cerca. La visita en 360° permite descubrir el dominio antes de viajar.",
+            `La plaza Jemaa el-Fna y el aeropuerto de Marrakech-Menara están a menos de ${programme.trajetMaxMinutes} minutos, la Palmeraie muy cerca. La visita en 360° permite descubrir el dominio antes de viajar.`,
         },
         {
           titre: "Visitar y después comprar",
