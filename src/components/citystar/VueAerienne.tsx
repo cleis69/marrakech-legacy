@@ -16,25 +16,27 @@ const HAUTEUR = 1116;
 const ZOOM_MAX = 3.2;
 
 /**
- * Une villa par repère, avec son type. La vue est une illustration : l'implantation
- * des types n'est pas celle du plan de masse (A × 6, B × 4, C × 4 comme dans la
- * brochure) et reste à valider avec le promoteur.
+ * Une villa par repère, avec son type. L'image reprend la disposition du plan de
+ * masse (villa seule au nord-ouest, rangée de cinq au nord, îlot de deux villas
+ * au centre, quatre villas au sud, deux à l'ouest) : le type de chaque villa est
+ * celui du lot qui occupe la même place sur le plan (A × 6, B × 4, C × 4).
+ * Les toits de l'image sont retravaillés : seule la place sert à reconnaître le lot.
  */
 const REPERES: readonly { x: number; y: number; type: TypeVilla }[] = [
-  { x: 28, y: 14, type: "A" },
-  { x: 38.8, y: 32.7, type: "B" },
-  { x: 49.3, y: 33.2, type: "C" },
-  { x: 60.8, y: 34.4, type: "A" },
-  { x: 69.8, y: 41.6, type: "B" },
-  { x: 79.8, y: 51, type: "C" },
-  { x: 67.5, y: 69.5, type: "A" },
-  { x: 50, y: 74.3, type: "B" },
-  { x: 34.5, y: 77, type: "C" },
-  { x: 15.5, y: 84.5, type: "A" },
-  { x: 20.8, y: 59.5, type: "B" },
-  { x: 23.5, y: 42, type: "C" },
-  { x: 36.8, y: 50.6, type: "A" },
-  { x: 53.2, y: 52.4, type: "A" },
+  { x: 28, y: 14, type: "C" }, // lot 1
+  { x: 38.8, y: 32.7, type: "B" }, // lot 12
+  { x: 49.3, y: 33.2, type: "B" }, // lot 11
+  { x: 60.8, y: 34.4, type: "B" }, // lot 10
+  { x: 69.8, y: 41.6, type: "B" }, // lot 9
+  { x: 79.8, y: 51, type: "C" }, // lot 8
+  { x: 67.5, y: 69.5, type: "A" }, // lot 7
+  { x: 50, y: 74.3, type: "A" }, // lot 6
+  { x: 34.5, y: 77, type: "C" }, // lot 5
+  { x: 15.5, y: 84.5, type: "C" }, // lot 4
+  { x: 20.8, y: 59.5, type: "A" }, // lot 3
+  { x: 23.5, y: 42, type: "A" }, // lot 2
+  { x: 36.8, y: 50.6, type: "A" }, // lot 14
+  { x: 53.2, y: 52.4, type: "A" }, // lot 13
 ];
 
 const borne = (valeur: number, min: number, max: number) =>
