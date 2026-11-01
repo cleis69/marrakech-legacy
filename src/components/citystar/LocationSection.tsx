@@ -1,7 +1,7 @@
 import { Expand } from "lucide-react";
 import { useState } from "react";
 
-import { programme } from "@/config/citystar";
+import { AFFICHER_PLAN_MASSE, programme } from "@/config/citystar";
 import masterplanImage from "@/assets/citystar/masterplan.webp";
 
 import { useDevise } from "./currency";
@@ -94,12 +94,14 @@ export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => v
             ))}
           </address>
           <div className="loc-foot">
-            <PillButton
-              label={t.localisation.planMasse}
-              icon={Expand}
-              variant="secondary"
-              onClick={() => onOpenPlan(masterplanImage)}
-            />
+            {AFFICHER_PLAN_MASSE && (
+              <PillButton
+                label={t.localisation.planMasse}
+                icon={Expand}
+                variant="secondary"
+                onClick={() => onOpenPlan(masterplanImage)}
+              />
+            )}
             <span>{t.localisation.schema}</span>
           </div>
         </div>

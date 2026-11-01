@@ -233,6 +233,18 @@ export const nl: Textes = {
     titreModale: "Virtuele 360°-rondleiding",
     fermer: "Rondleiding sluiten",
   },
+  aerien: {
+    label: "Het domein",
+    titre: ["Het domein,", "van bovenaf."] as [string, string],
+    texte: "Veertien villa’s langs een privéweg, elk op een eigen kavel en met een eigen zwembad. Tik op een villa om haar te ontdekken.",
+    aria: "Interactief luchtbeeld van het domein: veertien villa’s",
+    alt: "Luchtfoto van het CITYSTAR-domein: veertien villa’s met zwembad aan weerszijden van een privéweg",
+    illustration: "Illustratief beeld, niet contractueel.",
+    fermer: "Sluiten",
+    zoomPlus: "Inzoomen",
+    zoomMoins: "Uitzoomen",
+    zoomReset: "Overzicht",
+  },
   localisation: {
     label: "Ligging",
     titre: ["Afgezonderd.", "Nooit ver."],

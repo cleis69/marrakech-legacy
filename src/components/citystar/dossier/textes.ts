@@ -83,7 +83,7 @@ const fr = {
     photos: "Photos du chantier",
   },
   parcelles: {
-    kicker: "Le plan de masse",
+    kicker: "Les parcelles",
     titre: ["Quatorze parcelles.", "Les premiers choisissent."] as [string, string],
     texte:
       "L’emplacement dans le domaine, l’orientation de la piscine, l’architecture A, B ou C : chaque réservation réduit le choix des suivants. Le dossier indique les villas qui restent.",
@@ -191,7 +191,7 @@ const en: TextesDossier = {
     photos: "Site photos",
   },
   parcelles: {
-    kicker: "The site plan",
+    kicker: "The plots",
     titre: ["Fourteen plots.", "First come, first choice."],
     texte:
       "The position within the estate, the orientation of the pool, architecture A, B or C: each reservation narrows the choice for the next buyer. The pack lists the villas still available.",
@@ -296,7 +296,7 @@ const es: TextesDossier = {
     photos: "Fotos de la obra",
   },
   parcelles: {
-    kicker: "El plano general",
+    kicker: "Las parcelas",
     titre: ["Catorce parcelas.", "Los primeros eligen."],
     texte:
       "La ubicación dentro del conjunto, la orientación de la piscina, la arquitectura A, B o C: cada reserva reduce la elección de los siguientes. El dossier indica las villas que quedan.",
@@ -401,7 +401,7 @@ const it: TextesDossier = {
     photos: "Foto del cantiere",
   },
   parcelles: {
-    kicker: "La planimetria generale",
+    kicker: "I lotti",
     titre: ["Quattordici lotti.", "Chi arriva prima sceglie."],
     texte:
       "La posizione nel complesso, l’orientamento della piscina, l’architettura A, B o C: ogni prenotazione riduce la scelta di chi viene dopo. Il dossier indica le ville rimaste.",
@@ -506,7 +506,7 @@ const nl: TextesDossier = {
     photos: "Bouwfoto’s",
   },
   parcelles: {
-    kicker: "De situatietekening",
+    kicker: "De kavels",
     titre: ["Veertien kavels.", "Wie eerst komt, kiest eerst."],
     texte:
       "De plek in het domein, de oriëntatie van het zwembad, architectuur A, B of C: elke reservering beperkt de keuze voor wie volgt. Het pakket vermeldt welke villa’s nog vrij zijn.",
@@ -612,7 +612,7 @@ const no: TextesDossier = {
     photos: "Bilder fra byggeplassen",
   },
   parcelles: {
-    kicker: "Situasjonsplanen",
+    kicker: "Tomtene",
     titre: ["Fjorten tomter.", "De første velger."],
     texte:
       "Plasseringen i området, bassengets retning, arkitektur A, B eller C: hver reservasjon begrenser valget for de neste. Salgsoppgaven viser hvilke villaer som er igjen.",

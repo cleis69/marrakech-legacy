@@ -233,6 +233,18 @@ export const it: Textes = {
     titreModale: "Visita virtuale 360°",
     fermer: "Chiudere la visita",
   },
+  aerien: {
+    label: "La residenza",
+    titre: ["La residenza,", "vista dall’alto."] as [string, string],
+    texte: "Quattordici ville lungo una strada privata, ciascuna sul proprio lotto e con la propria piscina. Tocchi una villa per scoprirla.",
+    aria: "Vista aerea interattiva della residenza: quattordici ville",
+    alt: "Vista aerea della residenza CITYSTAR: quattordici ville con piscina ai due lati di una strada privata",
+    illustration: "Vista illustrativa, non contrattuale.",
+    fermer: "Chiudere la scheda",
+    zoomPlus: "Ingrandire",
+    zoomMoins: "Ridurre",
+    zoomReset: "Vista d’insieme",
+  },
   localisation: {
     label: "Posizione",
     titre: ["In disparte.", "Mai lontano."],

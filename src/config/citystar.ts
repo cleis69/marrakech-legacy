@@ -479,3 +479,9 @@ const UNITES = [
 export function nombreEnLettres(valeur: number) {
   return UNITES[valeur] ?? String(valeur);
 }
+
+/**
+ * Le plan de masse (image du plan de l'architecte) est masqué sur tout le site :
+ * la vue aérienne interactive le remplace. Passer à true pour le réafficher.
+ */
+export const AFFICHER_PLAN_MASSE = false;

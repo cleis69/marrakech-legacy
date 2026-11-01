@@ -226,6 +226,18 @@ export const no: Textes = {
     titreModale: "Virtuell 360°-omvisning",
     fermer: "Lukk omvisningen",
   },
+  aerien: {
+    label: "Området",
+    titre: ["Området,", "sett ovenfra."] as [string, string],
+    texte: "Fjorten villaer langs en privat vei, hver på sin egen tomt og med eget basseng. Trykk på en villa for å oppdage den.",
+    aria: "Interaktivt flyfoto av området: fjorten villaer",
+    alt: "Flyfoto av CITYSTAR-området: fjorten villaer med basseng på begge sider av en privat vei",
+    illustration: "Illustrasjon, ikke kontraktsfestet.",
+    fermer: "Lukk",
+    zoomPlus: "Zoom inn",
+    zoomMoins: "Zoom ut",
+    zoomReset: "Oversikt",
+  },
   localisation: {
     label: "Beliggenhet",
     titre: ["Tilbaketrukket.", "Aldri langt unna."],

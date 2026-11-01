@@ -10,6 +10,7 @@ import { Marquee } from "../Marquee";
 import { ProcessusSection } from "../ProcessusSection";
 import { ProjectSection } from "../ProjectSection";
 import { TourSection } from "../TourSection";
+import { VueAerienne } from "../VueAerienne";
 import { QuestionsSection } from "../QuestionsSection";
 import { Ruban } from "../Ruban";
 import { useSite } from "../site";
@@ -32,6 +33,7 @@ export function HomePage() {
       <ChiffresCles />
       <ProjectSection />
       <EngagementsSection />
+      <VueAerienne />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <Ruban />
       <LifestyleSection />

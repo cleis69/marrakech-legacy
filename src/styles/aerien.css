@@ -1,0 +1,79 @@
+/* ---------- Le domaine vu du ciel : vue aérienne interactive ---------- */
+.va { background: var(--cream); }
+.va-tete { display: grid; grid-template-columns: 1fr minmax(0, 26rem); gap: 1.6rem 4vw; align-items: end; margin-bottom: clamp(1.6rem, 3vw, 2.6rem); }
+.va-tete .section-label { margin-bottom: .6rem; }
+.va-tete h2 { font: 400 clamp(2.8rem, 4.4vw, 4.8rem)/.98 "Italiana", serif; }
+.va-texte { font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
+
+.va-cadre { position: relative; overflow: hidden; width: 100%; aspect-ratio: 2000 / 1116; max-height: 84svh; border-radius: 24px; background: var(--ink); cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; isolation: isolate; }
+.va-cadre.is-zoom { touch-action: none; }
+.va-cadre.is-glisse { cursor: grabbing; }
+.va-scene { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.va-scene img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; pointer-events: none; }
+
+/* Faisceau : le reste de la vue s'assombrit autour de la villa choisie. */
+.va-projecteur { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse 12% 21.5% at var(--px) var(--py), transparent 45%, color-mix(in oklab, var(--ink) 40%, transparent) 100%); animation: va-fondu .45s cubic-bezier(.23, 1, .32, 1) both; }
+@keyframes va-fondu { from { opacity: 0; } to { opacity: 1; } }
+
+/* Repères : taille constante à l'écran, quel que soit le zoom. */
+.va-repere { position: absolute; z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer; transform: translate(-50%, -50%) scale(calc(1 / var(--z, 1))); transition: opacity .35s; }
+.va-repere b { position: relative; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: color-mix(in oklab, var(--cream) 94%, transparent); font: 500 .74rem/1 "DM Sans", system-ui, sans-serif; letter-spacing: 0; box-shadow: 0 2px 10px color-mix(in oklab, var(--ink) 38%, transparent); transition: transform .35s cubic-bezier(.23, 1, .32, 1), background .3s, color .3s; }
+.va-repere::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid color-mix(in oklab, var(--cream) 80%, transparent); animation: va-pouls 3.2s cubic-bezier(.22, 1, .36, 1) infinite; animation-delay: calc(var(--i, 0) * 170ms); }
+@keyframes va-pouls { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(1.7); opacity: 0; } }
+.va-repere:focus-visible { outline: 2px solid var(--cream); outline-offset: -2px; }
+.va-repere.is-attenue { opacity: .55; }
+.va-repere.is-actif { z-index: 3; }
+.va-repere.is-actif b { transform: scale(1.22); background: var(--bronze-deep); color: var(--cream); }
+.va-repere.is-actif::before { animation: none; opacity: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .va-repere:hover b { transform: scale(1.18); background: var(--bronze-deep); color: var(--cream); }
+  .va-repere:hover::before { animation-play-state: paused; }
+}
+
+/* Zoom */
+.va-zoom { position: absolute; z-index: 4; right: 14px; top: 14px; display: grid; gap: 1px; overflow: hidden; border-radius: 16px; background: color-mix(in oklab, var(--ink) 14%, transparent); box-shadow: 0 6px 22px color-mix(in oklab, var(--ink) 30%, transparent); }
+.va-zoom button { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: color-mix(in oklab, var(--cream) 94%, transparent); color: var(--ink); cursor: pointer; transition: background .25s, color .25s, opacity .25s; }
+.va-zoom button svg { width: 1.15rem; height: 1.15rem; }
+.va-zoom button:disabled { opacity: .4; cursor: default; }
+@media (hover: hover) and (pointer: fine) { .va-zoom button:not(:disabled):hover { background: var(--bronze-deep); color: var(--cream); } }
+.va-zoom button:focus-visible { outline: 2px solid var(--bronze-deep); outline-offset: -3px; }
+
+/* Fiche de la villa choisie */
+.va-fiche { position: absolute; z-index: 5; left: 14px; bottom: 14px; display: grid; gap: .9rem; justify-items: start; width: min(23rem, calc(100% - 28px)); padding: 1.4rem 1.5rem 1.5rem; border-radius: 20px; background: color-mix(in oklab, var(--cream) 96%, transparent); color: var(--ink); box-shadow: 0 14px 44px color-mix(in oklab, var(--ink) 34%, transparent); backdrop-filter: blur(10px); cursor: default; }
+.va-fiche-tete { display: flex; align-items: center; gap: 1rem; padding-right: 2.4rem; }
+.va-fiche-tete img { flex: none; width: 4.6rem; height: 4.6rem; object-fit: cover; border-radius: 14px; }
+.va-fiche small { display: block; margin-bottom: .35rem; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bronze-text); }
+.va-fiche h3 { margin: 0; font: 400 1.75rem/1.05 "Italiana", serif; text-wrap: balance; }
+.va-fiche dl { display: grid; width: 100%; margin: 0; border-top: 1px solid var(--border); }
+.va-fiche dl > div { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: .62rem 0; border-bottom: 1px solid var(--border); }
+.va-fiche dt { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.va-fiche dd { margin: 0; font: 400 1.15rem/1.2 "Italiana", serif; }
+.va-fiche .pill { margin-top: .3rem; }
+.va-fiche.is-droite { left: auto; right: 14px; }
+.va-fiche-fermer { position: absolute; right: 10px; top: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer; transition: background .25s; }
+.va-fiche-fermer svg { width: 1.1rem; height: 1.1rem; }
+@media (hover: hover) and (pointer: fine) { .va-fiche-fermer:hover { background: color-mix(in oklab, var(--ink) 8%, transparent); } }
+
+.va-pied { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 1.2rem; }
+.va-pied p { margin: 0; font-size: .78rem; letter-spacing: .04em; color: var(--muted-foreground); }
+
+@media (max-width: 900px) {
+  .va-tete { grid-template-columns: 1fr; gap: 1.2rem; }
+  .va-tete h2 { font-size: clamp(2.8rem, 13vw, 4.2rem); }
+  .va-cadre { aspect-ratio: 4 / 3; max-height: none; border-radius: 20px; }
+  .va-fiche, .va-fiche.is-droite { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 1.2rem 1.2rem 1.3rem; }
+  .va-fiche.is-haut { top: 10px; bottom: auto; }
+  .va-cadre:has(.va-fiche) .va-zoom { display: none; }
+  .va-fiche h3 { font-size: 1.5rem; }
+  .va-fiche-tete img { width: 3.8rem; height: 3.8rem; }
+  .va-zoom { right: 10px; top: 10px; }
+}
+
+@media (max-width: 600px) {
+  .va-cadre { aspect-ratio: 4 / 5; margin: 0 -1.3rem; width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .va-repere::before { animation: none; opacity: 0; }
+  .va-projecteur { animation: none; }
+}

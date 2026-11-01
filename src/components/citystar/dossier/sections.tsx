@@ -16,6 +16,7 @@ import { useReducedMotion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
 import {
+  AFFICHER_PLAN_MASSE,
   calendrier,
   contact,
   engagements,
@@ -340,7 +341,10 @@ export function Parcelles() {
   const demander = useDemanderDossier();
   const p = textesDossier[langue].parcelles;
   return (
-    <section className="dp section-pad" aria-labelledby="dp-titre">
+    <section
+      className={`dp section-pad${AFFICHER_PLAN_MASSE ? "" : " dp--seul"}`}
+      aria-labelledby="dp-titre"
+    >
       <div className="dp-texte" data-vu="">
         <p className="dc-kicker">{p.kicker}</p>
         <Titre id="dp-titre" lignes={p.titre} />
@@ -355,18 +359,20 @@ export function Parcelles() {
         </dl>
         <PillButton label={p.demander} icon={FileText} onClick={demander} />
       </div>
-      <figure className="dp-plan" data-vu="">
-        <button type="button" onClick={() => ouvrirPlan(masterplan)} aria-label={p.agrandir}>
-          <img src={masterplan} alt={p.legende} loading="lazy" />
-          <span className="dp-zoom">
-            <ZoomIn aria-hidden="true" />
-          </span>
-          <span className="dp-pastille">
-            {programme.nombreVillas} × {formatSurface(programme.terrainMaxM2, langue)}
-          </span>
-        </button>
-        <figcaption>{p.legende}</figcaption>
-      </figure>
+      {AFFICHER_PLAN_MASSE && (
+        <figure className="dp-plan" data-vu="">
+          <button type="button" onClick={() => ouvrirPlan(masterplan)} aria-label={p.agrandir}>
+            <img src={masterplan} alt={p.legende} loading="lazy" />
+            <span className="dp-zoom">
+              <ZoomIn aria-hidden="true" />
+            </span>
+            <span className="dp-pastille">
+              {programme.nombreVillas} × {formatSurface(programme.terrainMaxM2, langue)}
+            </span>
+          </button>
+          <figcaption>{p.legende}</figcaption>
+        </figure>
+      )}
     </section>
   );
 }
