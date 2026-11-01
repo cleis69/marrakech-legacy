@@ -2,6 +2,8 @@ import { motion } from "motion/react";
 import { ArrowRight, X } from "lucide-react";
 import { useState } from "react";
 
+import { contact } from "@/config/citystar";
+
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { useModal } from "./useModal";
@@ -54,7 +56,7 @@ export function ContactPanel({
             </button>
           </div>
         )}
-        <form action="mailto:Promoimmomarrakech@gmail.com" method="post" encType="text/plain">
+        <form action={`mailto:${contact.email}`} method="post" encType="text/plain">
           {joined && (
             <input
               type="hidden"
@@ -87,8 +89,8 @@ export function ContactPanel({
           </button>
         </form>
         <div className="direct-contact">
-          <a href="tel:+212621350800">+212 621-350800</a>
-          <a href="mailto:Promoimmomarrakech@gmail.com">Promoimmomarrakech@gmail.com</a>
+          <a href={`tel:${contact.telephone}`}>{contact.telephoneAffiche}</a>
+          <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
       </div>
     </motion.aside>
