@@ -32,7 +32,7 @@ export const es: Textes = {
     whatsapp: "Escribir a la conserjería de CITYSTAR por WhatsApp",
   },
   hero: {
-    lieu: "Residencia privada · Route de Fès, Marrakech",
+    lieu: "Residencia privada · Route de Fès km 11, Marrakech",
     accroche: ["Villas de lujo en Marrakech,", "villas, ni una más."],
     cartesLabel: "Garantías",
     cartes: {
@@ -247,11 +247,11 @@ export const es: Textes = {
       air: { titre: "Aeropuerto de Marrakech", note: (n) => `A menos de ${n} minutos` },
       palm: { titre: "La Palmeraie", note: "Muy cerca", mot: "Cerca" },
     },
-    adresse: ["Región Marrakech-Safi", "Prefectura de Marrakech", "Route de Fès"],
+    adresse: ["Región Marrakech-Safi", "Prefectura de Marrakech", "Route de Fès km 11"],
     planMasse: "Plano de conjunto",
     schema: "Mapa esquemático, sin escala",
     carteAria:
-      "Mapa esquemático, sin escala: CITYSTAR en la Route de Fès, cerca de la Palmeraie, con la medina y el aeropuerto de Marrakech",
+      "Mapa esquemático, sin escala: CITYSTAR en la Route de Fès km 11, cerca de la Palmeraie, con la medina y el aeropuerto de Marrakech",
     reperes: {
       med: "Medina · Jemaa el-Fna",
       medCourt: "Medina",
@@ -266,7 +266,7 @@ export const es: Textes = {
     aideLongue: "Arrastrar para mover · Ctrl + rueda para hacer zoom",
     aideCourte: "Arrastrar · tocar una distancia",
     residencePrivee: "Residencia privada",
-    ou: "Route de Fès · Marrakech",
+    ou: "Route de Fès km 11 · Marrakech",
     itineraire: "Cómo llegar",
     fermerFiche: "Cerrar la ficha",
     proximite: "Cerca",
@@ -322,7 +322,7 @@ export const es: Textes = {
     accueil: {
       titre: "CITYSTAR Marrakech — Villas de lujo privadas",
       description: (n) =>
-        `CITYSTAR, una residencia privada de ${n} villas contemporáneas en la Route de Fès, Marrakech, cerca de la Palmeraie.`,
+        `CITYSTAR, una residencia privada de ${n} villas contemporáneas en la Route de Fès km 11, Marrakech, cerca de la Palmeraie.`,
     },
     villas: {
       titre: "Las villas — CITYSTAR Marrakech",
@@ -407,11 +407,11 @@ export const es: Textes = {
     luxe: {
       titre: "Villa de lujo en Marrakech — CITYSTAR",
       description:
-        "Catorce villas de lujo en la Route de Fès, Marrakech: superficies, arquitecturas, ubicación y visitas.",
+        "Catorce villas de lujo en la Route de Fès km 11, Marrakech: superficies, arquitecturas, ubicación y visitas.",
       kicker: "Villa de lujo en Marrakech",
       titreH1: ["Comprar una villa", "en Marrakech."],
       intro:
-        "CITYSTAR reúne catorce villas contemporáneas en un dominio privado y totalmente protegido en la Route de Fès, cerca de la Palmeraie.",
+        "CITYSTAR reúne catorce villas contemporáneas en un dominio privado y totalmente protegido en la Route de Fès km 11, cerca de la Palmeraie.",
       sections: [
         {
           titre: "Un dominio cerrado, no una urbanización",
@@ -474,7 +474,7 @@ export const es: Textes = {
     {
       id: "lieu",
       q: "¿Dónde está el dominio?",
-      r: `En la Route de Fès, prefectura de Marrakech, cerca de la Palmeraie. La plaza Jemaa el-Fna y el aeropuerto están a menos de ${v.minutes} minutos.`,
+      r: `En la Route de Fès km 11, prefectura de Marrakech, cerca de la Palmeraie. La plaza Jemaa el-Fna y el aeropuerto están a menos de ${v.minutes} minutos.`,
     },
     {
       id: "surfaces",
@@ -545,9 +545,9 @@ export const es: Textes = {
     lecture: "Reproducir",
   },
   marque: {
-    defilant: "CITYSTAR · CATORCE VILLAS PRIVADAS · ROUTE DE FÈS · MARRAKECH · ",
-    legende: "Route de Fès · Marrakech",
-    aria: "CITYSTAR, residencia privada en la Route de Fès, Marrakech",
+    defilant: "CITYSTAR · CATORCE VILLAS PRIVADAS · ROUTE DE FÈS KM 11 · MARRAKECH · ",
+    legende: "Route de Fès km 11 · Marrakech",
+    aria: "CITYSTAR, residencia privada en la Route de Fès km 11, Marrakech",
   },
   processus: {
     titre: ["De la primera visita", "a la entrega de llaves."],
@@ -650,7 +650,7 @@ export const es: Textes = {
     brochure: "Folleto",
     theme: ["Villa de lujo en Marrakech", "villa-de-lujo-marrakech"],
     nav: "Pie de página",
-    legal: (annee) => `© ${annee} CITYSTAR · Residencia privada · Route de Fès, Marrakech`,
+    legal: (annee) => `© ${annee} CITYSTAR · Residencia privada · Route de Fès km 11, Marrakech`,
     instagram: "CITYSTAR en Instagram",
     realise: "Realizado por",
     propulse: "Con la tecnología de",
