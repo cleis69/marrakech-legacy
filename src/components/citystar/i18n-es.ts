@@ -839,7 +839,7 @@ export const es: Textes = {
     kicker: "Conserjería CITYSTAR",
     titre: ["Que le ", "llamemos."],
     texte:
-      "Déjenos sus datos y un asesor de CITYSTAR le llamará para responder a sus preguntas sobre planos, precios o una visita al dominio. Después le envía el dossier del dominio por WhatsApp.",
+      "Déjenos sus datos y un asesor de CITYSTAR le llamará para responder a sus preguntas sobre planos, precios o una visita al dominio.",
     jointe: (outil) => `Adjunto a su solicitud · ${outil}`,
     retirer: "No adjuntar",
     nom: "Nombre y apellidos",
@@ -885,7 +885,7 @@ export const es: Textes = {
       "Al enviar esta solicitud, acepta que CITYSTAR utilice estos datos para contactarle y enviarle el dossier. También recibirá la newsletter de CITYSTAR y las novedades del proyecto. Puede darse de baja en cualquier momento.",
     envoi: "Enviando…",
     merci:
-      "Gracias, su solicitud se ha enviado. Un asesor se pondrá en contacto con usted en breve por WhatsApp para enviarle el dossier.",
+      "Gracias, su solicitud se ha enviado. Un asesor le llamará en breve.",
     erreur:
       "No se ha podido enviar la solicitud. Inténtelo de nuevo o llámenos al número que figura abajo.",
     fermer: "Cerrar",

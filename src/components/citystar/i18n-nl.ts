@@ -837,7 +837,7 @@ export const nl: Textes = {
     kicker: "CITYSTAR-conciërge",
     titre: ["Teruggebeld ", "worden."],
     texte:
-      "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein. Daarna stuurt hij u het informatiepakket van het domein via WhatsApp.",
+      "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein.",
     jointe: (outil) => `Toegevoegd aan uw aanvraag · ${outil}`,
     retirer: "Niet toevoegen",
     nom: "Voor- en achternaam",
@@ -883,7 +883,7 @@ export const nl: Textes = {
       "Door deze aanvraag te verzenden, gaat u ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met u op te nemen en u het informatiepakket te sturen. U ontvangt ook de nieuwsbrief van CITYSTAR en nieuws over het project. U kunt zich op elk moment afmelden.",
     envoi: "Verzenden…",
     merci:
-      "Bedankt, uw aanvraag is verzonden. Een adviseur neemt binnenkort via WhatsApp contact met u op om u het informatiepakket te sturen.",
+      "Bedankt, uw aanvraag is verzonden. Een adviseur belt u binnenkort terug.",
     erreur:
       "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of bel ons op het nummer hieronder.",
     fermer: "Sluiten",

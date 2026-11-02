@@ -835,7 +835,7 @@ export const it: Textes = {
     kicker: "Concierge CITYSTAR",
     titre: ["Farsi ", "richiamare."],
     texte:
-      "Lasci i suoi recapiti e un consulente CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta. Poi le invia il dossier della tenuta su WhatsApp.",
+      "Lasci i suoi recapiti e un consulente CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta.",
     jointe: (outil) => `Allegato alla sua richiesta · ${outil}`,
     retirer: "Non allegare",
     nom: "Nome e cognome",
@@ -881,7 +881,7 @@ export const it: Textes = {
       "Inviando questa richiesta, accetta che CITYSTAR utilizzi questi dati per ricontattarla e inviarle il dossier. Riceverà anche la newsletter di CITYSTAR e le novità del progetto. Può disiscriversi in qualsiasi momento.",
     envoi: "Invio…",
     merci:
-      "Grazie, la sua richiesta è stata inviata. Un consulente la contatterà a breve su WhatsApp per inviarle il dossier.",
+      "Grazie, la sua richiesta è stata inviata. Un consulente la richiamerà a breve.",
     erreur:
       "Non è stato possibile inviare la richiesta. Riprovi, oppure ci chiami al numero qui sotto.",
     fermer: "Chiudere",

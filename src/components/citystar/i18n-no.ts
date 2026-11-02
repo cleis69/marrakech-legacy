@@ -819,7 +819,7 @@ export const no: Textes = {
     kicker: "CITYSTAR-concierge",
     titre: ["Bli ", "ringt opp."],
     texte:
-      "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen. Deretter sender rådgiveren deg salgsoppgaven på WhatsApp.",
+      "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen.",
     jointe: (outil) => `Lagt ved forespørselen din · ${outil}`,
     retirer: "Ikke legg ved",
     nom: "Fullt navn",
@@ -865,7 +865,7 @@ export const no: Textes = {
       "Ved å sende denne forespørselen godtar du at CITYSTAR bruker disse opplysningene til å kontakte deg og sende deg salgsoppgaven. Du får også nyhetsbrevet fra CITYSTAR og nyheter om prosjektet. Du kan melde deg av når som helst.",
     envoi: "Sender…",
     merci:
-      "Takk, forespørselen din er sendt. En rådgiver kontakter deg snart på WhatsApp for å sende deg salgsoppgaven.",
+      "Takk, forespørselen din er sendt. En rådgiver ringer deg opp snart.",
     erreur: "Forespørselen kunne ikke sendes. Prøv igjen, eller ring oss på nummeret nedenfor.",
     fermer: "Lukk",
   },
