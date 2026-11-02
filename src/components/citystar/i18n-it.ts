@@ -840,6 +840,9 @@ export const it: Textes = {
     retirer: "Non allegare",
     nom: "Nome e cognome",
     telephone: "Telefono",
+    indicatif: "Prefisso",
+    europe: "Europa",
+    autresPays: "Altri paesi",
     email: "E-mail",
     projet: "Il suo progetto · facoltativo",
     choisir: "Scegliere",
@@ -875,7 +878,7 @@ export const it: Textes = {
     messageAide: "Una domanda, una data per la visita…",
     envoyer: "Inviare la mia richiesta",
     consentement:
-      "Inviando questa richiesta, accetta che CITYSTAR utilizzi questi dati per ricontattarla e inviarle il dossier. Può disiscriversi in qualsiasi momento.",
+      "Inviando questa richiesta, accetta che CITYSTAR utilizzi questi dati per ricontattarla e inviarle il dossier. Riceverà anche la newsletter di CITYSTAR e le novità del progetto. Può disiscriversi in qualsiasi momento.",
     envoi: "Invio…",
     merci:
       "Grazie, la sua richiesta è stata inviata. Il dossier arriverà nella sua casella e-mail nelle prossime ore e un consulente la richiamerà.",

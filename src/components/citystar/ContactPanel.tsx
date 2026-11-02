@@ -1,11 +1,12 @@
 import { motion } from "motion/react";
 import { ArrowRight, X } from "lucide-react";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 
 import { contact, hubspot } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
+import { listeIndicatifs, numeroComplet } from "./indicatifs";
 import { canal, provenance } from "./provenance";
 import { useModal } from "./useModal";
 
@@ -35,6 +36,7 @@ export function ContactPanel({
   const ref = useModal<HTMLElement>(onClose);
   const [joined, setJoined] = useState(selection ?? null);
   const [etat, setEtat] = useState<Etat>("repos");
+  const indicatifs = useMemo(() => listeIndicatifs(langue), [langue]);
 
   /**
    * La demande crée le contact dans HubSpot avec ses réponses, la langue du site et la provenance
@@ -59,7 +61,7 @@ export function ContactPanel({
             { name: "firstname", value: prenom },
             { name: "lastname", value: reste.join(" ") },
             { name: "email", value: texte("email") },
-            { name: "phone", value: texte("telephone") },
+            { name: "phone", value: numeroComplet(texte("indicatif"), texte("telephone")) },
             { name: "message", value: message },
             { name: "hs_language", value: langue },
             { name: "citystar_langue", value: langue },
@@ -121,14 +123,45 @@ export function ContactPanel({
           </p>
         ) : (
           <form onSubmit={envoyer}>
-            <label>
+            <label className="contact-large">
               {t.contact.nom}
               <input name="nom" autoComplete="name" required />
             </label>
-            <label>
-              {t.contact.telephone}
-              <input type="tel" name="telephone" autoComplete="tel" required />
-            </label>
+            {/* L'indicatif est obligatoire : les acheteurs appellent du Maroc, de France et de toute l'Europe. */}
+            <div className="contact-large contact-telephone">
+              <label htmlFor="contact-telephone">{t.contact.telephone}</label>
+              <div>
+                <select name="indicatif" aria-label={t.contact.indicatif} defaultValue="" required>
+                  <option value="">{t.contact.indicatif}</option>
+                  {indicatifs.prioritaires.map(({ pays, libelle }) => (
+                    <option key={pays} value={pays}>
+                      {libelle}
+                    </option>
+                  ))}
+                  <optgroup label={t.contact.europe}>
+                    {indicatifs.europe.map(({ pays, libelle }) => (
+                      <option key={pays} value={pays}>
+                        {libelle}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label={t.contact.autresPays}>
+                    {indicatifs.monde.map(({ pays, libelle }) => (
+                      <option key={pays} value={pays}>
+                        {libelle}
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
+                <input
+                  id="contact-telephone"
+                  type="tel"
+                  name="telephone"
+                  autoComplete="tel-national"
+                  required
+                />
+              </div>
+            </div>
             <label className="contact-large">
               {t.contact.email}
               <input type="email" name="email" autoComplete="email" required />

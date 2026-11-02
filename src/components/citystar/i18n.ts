@@ -863,6 +863,9 @@ const fr = {
     retirer: "Ne pas joindre",
     nom: "Nom complet",
     telephone: "Téléphone",
+    indicatif: "Indicatif",
+    europe: "Europe",
+    autresPays: "Autres pays",
     email: "E-mail",
     projet: "Votre projet · facultatif",
     choisir: "Choisir",
@@ -898,7 +901,7 @@ const fr = {
     messageAide: "Une question, une date de visite…",
     envoyer: "Envoyer ma demande",
     consentement:
-      "En envoyant cette demande, vous acceptez que CITYSTAR utilise ces informations pour vous recontacter et vous envoyer le dossier. Vous pouvez vous désinscrire à tout moment.",
+      "En envoyant cette demande, vous acceptez que CITYSTAR utilise ces informations pour vous recontacter et vous envoyer le dossier. Vous recevrez aussi la newsletter CITYSTAR et les actualités du domaine. Vous pouvez vous désinscrire à tout moment.",
     envoi: "Envoi…",
     merci:
       "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans les prochaines heures, et un conseiller vous rappelle.",
@@ -1735,6 +1738,9 @@ const en: Textes = {
     retirer: "Do not attach",
     nom: "Full name",
     telephone: "Phone",
+    indicatif: "Country code",
+    europe: "Europe",
+    autresPays: "Other countries",
     email: "Email",
     projet: "Your project · optional",
     choisir: "Select",
@@ -1760,7 +1766,7 @@ const en: Textes = {
     messageAide: "A question, a date for a viewing…",
     envoyer: "Send my request",
     consentement:
-      "By sending this request, you agree that CITYSTAR may use these details to contact you and send you the information pack. You can unsubscribe at any time.",
+      "By sending this request, you agree that CITYSTAR may use these details to contact you and send you the information pack. You will also receive the CITYSTAR newsletter and news about the estate. You can unsubscribe at any time.",
     envoi: "Sending…",
     merci:
       "Thank you, your request has been sent. The information pack will reach your inbox within the next few hours, and an adviser will call you back.",

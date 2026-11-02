@@ -824,6 +824,9 @@ export const no: Textes = {
     retirer: "Ikke legg ved",
     nom: "Fullt navn",
     telephone: "Telefon",
+    indicatif: "Landskode",
+    europe: "Europa",
+    autresPays: "Andre land",
     email: "E-post",
     projet: "Prosjektet ditt · valgfritt",
     choisir: "Velg",
@@ -859,7 +862,7 @@ export const no: Textes = {
     messageAide: "Et spørsmål, en dato for visning…",
     envoyer: "Send forespørselen",
     consentement:
-      "Ved å sende denne forespørselen godtar du at CITYSTAR bruker disse opplysningene til å kontakte deg og sende deg salgsoppgaven. Du kan melde deg av når som helst.",
+      "Ved å sende denne forespørselen godtar du at CITYSTAR bruker disse opplysningene til å kontakte deg og sende deg salgsoppgaven. Du får også nyhetsbrevet fra CITYSTAR og nyheter om prosjektet. Du kan melde deg av når som helst.",
     envoi: "Sender…",
     merci:
       "Takk, forespørselen din er sendt. Salgsoppgaven kommer i innboksen din i løpet av noen timer, og en rådgiver ringer deg opp.",
