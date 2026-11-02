@@ -17,6 +17,7 @@ const no: Copie = {
   signature: { salut: "Snakkes snart,", role: "Rådgiver hos CITYSTAR", equipe: "CITYSTAR-teamet" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Plantegning (PDF)",
+  pageBrochure: (n) => `brosjyre, s. ${n}`,
   suites: (n) => `${n} suiter`,
   plainPied: "trinnfri adkomst",
   source: "Kilde",

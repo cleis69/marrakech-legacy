@@ -17,6 +17,7 @@ const es: Copie = {
   signature: { salut: "Hasta pronto,", role: "Asesor CITYSTAR", equipe: "El equipo CITYSTAR" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Plano en PDF",
+  pageBrochure: (n) => `folleto, p. ${n}`,
   suites: (n) => `${n} suites`,
   plainPied: "accesible sin escalones",
   source: "Fuente",

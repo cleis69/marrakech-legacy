@@ -264,13 +264,19 @@ export const coutsDetention = {
 /* Documents                                                           */
 /* ------------------------------------------------------------------ */
 
-/** Brochures servies depuis public/ ; le poids (en Mo) prévient avant un téléchargement lourd. */
+/**
+ * Brochure du domaine (version légère, plans des trois villas compris), servie depuis public/ : en français
+ * pour le site FR, en anglais pour les autres langues. Le poids (en Mo) prévient avant un téléchargement lourd.
+ * Depuis le 02/11/2026, elle remplace l'ancienne plaquette (citystar.pdf) et les fiches villa-a/b/c.pdf,
+ * dont les adresses redirigent vers elle (public/_redirects).
+ */
 export const brochures = {
-  citystar: { fichier: "brochures/citystar.pdf", mo: 8.4 },
-  A: { fichier: "brochures/villa-a.pdf", mo: 0.3 },
-  B: { fichier: "brochures/villa-b.pdf", mo: 0.3 },
-  C: { fichier: "brochures/villa-c.pdf", mo: 0.3 },
+  fr: { fichier: "brochures/citystar-brochure-fr.pdf", mo: 13.9 },
+  en: { fichier: "brochures/citystar-brochure-en.pdf", mo: 13.8 },
 } as const;
+
+/** Page des plans (rez-de-chaussée et étage) de chaque villa dans la brochure. */
+export const pagePlansBrochure: Record<TypeVilla, number> = { A: 12, B: 15, C: 18 };
 
 /* ------------------------------------------------------------------ */
 /* Contact                                                             */

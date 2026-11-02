@@ -21,6 +21,7 @@ const fr = {
   signature: { salut: "À très vite,", role: "Conseiller CITYSTAR", equipe: "L’équipe CITYSTAR" },
   poids: (mo: string) => `${mo} Mo`,
   planPdf: "Plan PDF",
+  pageBrochure: (n: number) => `brochure, p. ${n}`,
   suites: (n: number) => `${n} suites`,
   plainPied: "accessible de plain-pied",
   source: "Source",

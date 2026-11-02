@@ -24,8 +24,10 @@ import {
   formatPart,
   formatSurface,
   type Langue,
+  type TypeVilla,
   LANGUES,
   marche,
+  pagePlansBrochure,
   programme,
   reservation,
   villasChiffres,
@@ -110,6 +112,9 @@ const page = (langue: Langue, cle = "") => chemin(langue, cle ? slug(cle, langue
 const whatsapp = (message: string) =>
   `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
 const pdf = (fichier: string) => `${SITE}/${fichier}`;
+/** Brochure de la langue (français ou anglais), ouverte à une page donnée si besoin. */
+const brochure = (langue: Langue) => brochures[langue === "fr" ? "fr" : "en"];
+const plansVilla = (langue: Langue, type: TypeVilla) => `${pdf(brochure(langue).fichier)}#page=${pagePlansBrochure[type]}`;
 const image = (nom: string) => `${IMAGES}/${nom}.jpg`;
 const { latitude, longitude } = programme.coordonnees;
 const itineraire = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`;
@@ -173,12 +178,12 @@ const chiffres = (faits: { valeur: string; label: string }[]) => `
   .join("")}
 </tr></table>`;
 
-const telechargements = (liens: { texte: string; href: string; poids: string }[]) => `
+const telechargements = (liens: { texte: string; href: string; detail: string }[]) => `
 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:6px 0 20px;">${liens
   .map(
     (l) => `<tr><td style="padding:14px 0;border-top:1px solid ${C.filet};">
     <a href="${l.href}" style="font:500 15px/1.4 ${SANS};color:${C.encre};text-decoration:none;">↓&nbsp;&nbsp;${l.texte}</a>
-    <span style="font:400 13px/1.4 ${SANS};color:${C.grisClair};">&nbsp;·&nbsp;PDF ${l.poids}</span>
+    <span style="font:400 13px/1.4 ${SANS};color:${C.grisClair};">&nbsp;·&nbsp;${l.detail}</span>
   </td></tr>`,
   )
   .join("")}
@@ -193,7 +198,7 @@ function troisVillas(c: Copie, langue: Langue) {
       <p style="margin:0;font:400 13px/1.5 ${SANS};color:${C.gris};">${formatSurface(v.surfaceConstruiteM2, langue)} · ${c.suites(v.suites)}${
         v.accessiblePmr ? `<br>${c.plainPied}` : ""
       }</p>
-      <p style="margin:6px 0 0;font:400 13px/1.5 ${SANS};"><a href="${pdf(brochures[type].fichier)}" style="color:${C.bronzeTexte};">${c.planPdf}</a></p>
+      <p style="margin:6px 0 0;font:400 13px/1.5 ${SANS};"><a href="${plansVilla(langue, type)}" style="color:${C.bronzeTexte};">${c.planPdf}</a></p>
     </td>`;
   });
   return `<table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="margin:6px -6px 8px;"><tr>${villas.join("")}</tr></table>`;
@@ -430,11 +435,11 @@ function emails(langue: Langue): Email[] {
         titre(c.d1.titre),
         p(c.d1.intro),
         telechargements([
-          { texte: c.d1.brochure, href: pdf(brochures.citystar.fichier), poids: poids(brochures.citystar.mo) },
+          { texte: c.d1.brochure, href: pdf(brochure(langue).fichier), detail: `PDF ${poids(brochure(langue).mo)}` },
           ...(["A", "B", "C"] as const).map((type) => ({
             texte: c.d1.planVilla(type),
-            href: pdf(brochures[type].fichier),
-            poids: poids(brochures[type].mo),
+            href: plansVilla(langue, type),
+            detail: c.pageBrochure(pagePlansBrochure[type]),
           })),
         ]),
         p(c.d1.texte),

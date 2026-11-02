@@ -17,6 +17,7 @@ const en: Copie = {
   signature: { salut: "Speak soon,", role: "CITYSTAR adviser", equipe: "The CITYSTAR team" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Floor plan (PDF)",
+  pageBrochure: (n) => `brochure, p. ${n}`,
   suites: (n) => `${n} suites`,
   plainPied: "step-free access",
   source: "Source",
