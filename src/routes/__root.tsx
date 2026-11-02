@@ -89,7 +89,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      /* Icône : les étoiles du logo CITYSTAR, en or sur fond encre. */
+      { rel: "icon", href: "/favicon.ico", sizes: "16x16 32x32 48x48 64x64", type: "image/x-icon" },
+      { rel: "icon", href: "/icon-512.png", sizes: "512x512", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       /* Polices hébergées sur le site : les deux du premier écran sont préchargées. */
       { rel: "preload", as: "font", type: "font/woff2", href: dmSansLatin, crossOrigin: "anonymous" },
       { rel: "preload", as: "font", type: "font/woff2", href: italianaLatin, crossOrigin: "anonymous" },
