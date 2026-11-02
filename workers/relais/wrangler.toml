@@ -1,0 +1,19 @@
+# Relais des demandes CITYSTAR (voir src/index.ts). Compte Cloudflare CITYSTAR.
+# Secrets à poser une fois : BREVO_CLE et HUBSPOT_JETON (`npx wrangler secret put …`).
+name = "citystar-relais"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+account_id = "fb3e61531c4d822a7f89266f02541fd6"
+workers_dev = false
+routes = [{ pattern = "citystarproperties.com/api/*", zone_name = "citystarproperties.com" }]
+
+[triggers]
+crons = ["* * * * *"]
+
+[vars]
+HUBSPOT_PORTAIL = "149680604"
+HUBSPOT_FORMULAIRE = "7f0548ff-1279-4540-a266-b6f3297e348e"
+BREVO_LISTE_ENTREE = "15"
+
+[observability]
+enabled = true

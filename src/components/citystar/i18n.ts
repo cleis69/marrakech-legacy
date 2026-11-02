@@ -858,7 +858,7 @@ const fr = {
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine. Le dossier du domaine vous est envoyé par e-mail.",
+      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine. Il vous envoie ensuite le dossier du domaine sur WhatsApp.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
@@ -904,7 +904,7 @@ const fr = {
       "En envoyant cette demande, vous acceptez que CITYSTAR utilise ces informations pour vous recontacter et vous envoyer le dossier. Vous recevrez aussi la newsletter CITYSTAR et les actualités du domaine. Vous pouvez vous désinscrire à tout moment.",
     envoi: "Envoi…",
     merci:
-      "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans les prochaines heures, et un conseiller vous rappelle.",
+      "Merci, votre demande est bien envoyée. Un conseiller vous contacte rapidement sur WhatsApp pour vous envoyer le dossier.",
     erreur: "L’envoi n’a pas abouti. Réessayez, ou appelez-nous au numéro ci-dessous.",
     fermer: "Fermer",
   },
@@ -1733,7 +1733,7 @@ const en: Textes = {
     kicker: "CITYSTAR concierge",
     titre: ["Request ", "a call back."],
     texte:
-      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate. The estate’s information pack is sent to you by email.",
+      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate. They will then send you the estate’s information pack on WhatsApp.",
     jointe: (outil) => `Attached to your request · ${outil}`,
     retirer: "Do not attach",
     nom: "Full name",
@@ -1769,7 +1769,7 @@ const en: Textes = {
       "By sending this request, you agree that CITYSTAR may use these details to contact you and send you the information pack. You will also receive the CITYSTAR newsletter and news about the estate. You can unsubscribe at any time.",
     envoi: "Sending…",
     merci:
-      "Thank you, your request has been sent. The information pack will reach your inbox within the next few hours, and an adviser will call you back.",
+      "Thank you, your request has been sent. An adviser will contact you shortly on WhatsApp to send you the information pack.",
     erreur: "Your request could not be sent. Please try again, or call us on the number below.",
     fermer: "Close",
   },

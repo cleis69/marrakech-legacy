@@ -295,10 +295,12 @@ export const contact = {
 
 /**
  * Formulaire HubSpot « Site citystar – Être rappelé » (portail CITYSTAR, région eu1), créé le 02/11/2026.
- * Chaque demande y crée le contact ; Zapier le transmet ensuite à Brevo, qui envoie le dossier
- * dans la langue du contact (champ hs_language).
+ * Chaque demande y crée le contact. `relais` : le Worker du site (workers/relais), qui transmet la
+ * demande à ce formulaire et inscrit aussitôt le contact dans la séquence e-mail Brevo de sa langue.
+ * `envoi` : l'adresse directe du formulaire, utilisée si le relais ne répond pas.
  */
 export const hubspot = {
+  relais: "/api/demande",
   envoi:
     "https://api-eu1.hsforms.com/submissions/v3/integration/submit/149680604/7f0548ff-1279-4540-a266-b6f3297e348e",
 } as const;

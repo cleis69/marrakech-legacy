@@ -40,7 +40,9 @@ export function ContactPanel({
 
   /**
    * La demande crée le contact dans HubSpot avec ses réponses, la langue du site et la provenance
-   * du visiteur : Brevo lui envoie ensuite le dossier. HubSpot ne vérifie pas les valeurs reçues.
+   * du visiteur. Elle passe par le relais du site (`hubspot.relais`), qui inscrit aussitôt le contact
+   * dans la séquence e-mail Brevo ; si le relais ne répond pas (aperçu, panne), elle part directement
+   * à HubSpot. HubSpot ne vérifie pas les valeurs reçues.
    */
   async function envoyer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -52,29 +54,33 @@ export function ContactPanel({
       .join("\n\n");
     const origine = provenance();
     setEtat("envoi");
-    try {
-      const reponse = await fetch(hubspot.envoi, {
+    const corps = JSON.stringify({
+      fields: [
+        { name: "firstname", value: prenom },
+        { name: "lastname", value: reste.join(" ") },
+        { name: "email", value: texte("email") },
+        { name: "phone", value: numeroComplet(texte("indicatif"), texte("telephone")) },
+        { name: "message", value: message },
+        { name: "hs_language", value: langue },
+        { name: "citystar_langue", value: langue },
+        { name: "citystar_canal", value: canal(origine) },
+        ...QUESTIONS.map(([, propriete]) => ({ name: propriete, value: texte(propriete) })),
+        ...Object.entries(origine.utm).map(([name, value]) => ({ name, value })),
+      ].filter((champ) => champ.value),
+      context: { pageUri: window.location.href, pageName: document.title },
+      legalConsentOptions: {
+        consent: { consentToProcess: true, text: t.contact.consentement },
+      },
+    });
+    const envoi = (adresse: string) =>
+      fetch(adresse, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fields: [
-            { name: "firstname", value: prenom },
-            { name: "lastname", value: reste.join(" ") },
-            { name: "email", value: texte("email") },
-            { name: "phone", value: numeroComplet(texte("indicatif"), texte("telephone")) },
-            { name: "message", value: message },
-            { name: "hs_language", value: langue },
-            { name: "citystar_langue", value: langue },
-            { name: "citystar_canal", value: canal(origine) },
-            ...QUESTIONS.map(([, propriete]) => ({ name: propriete, value: texte(propriete) })),
-            ...Object.entries(origine.utm).map(([name, value]) => ({ name, value })),
-          ].filter((champ) => champ.value),
-          context: { pageUri: window.location.href, pageName: document.title },
-          legalConsentOptions: {
-            consent: { consentToProcess: true, text: t.contact.consentement },
-          },
-        }),
+        body: corps,
       });
+    try {
+      const relayee = await envoi(hubspot.relais).catch(() => null);
+      const reponse = relayee?.ok ? relayee : await envoi(hubspot.envoi);
       setEtat(reponse.ok ? "envoye" : "erreur");
     } catch {
       setEtat("erreur");
