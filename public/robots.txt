@@ -17,3 +17,5 @@ Disallow: /brochures/
 User-agent: *
 Allow: /
 Disallow: /brochures/
+
+Sitemap: https://citystarproperties.com/sitemap.xml

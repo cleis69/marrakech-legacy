@@ -276,14 +276,20 @@ export const brochures = {
 /* Contact                                                             */
 /* ------------------------------------------------------------------ */
 
+/** Adresse publique du site (Cloudflare Pages depuis le 02/11/2026) : adresses canoniques, sitemap, partage. */
+export const SITE = "https://citystarproperties.com";
+
 export const contact = {
   telephone: "+212630373961",
   telephoneAffiche: "+212 6 30 37 39 61",
   whatsapp: "212630373961",
   email: "contact@citystarproperties.com",
+  // Adresse du domaine, telle qu'elle figure sur la fiche Google et les réseaux.
+  adresse: { rue: "Route de Fès km 11", ville: "Marrakech", codePostal: "40000", pays: "MA" },
   reseaux: {
     instagram: "https://www.instagram.com/citystarmarrakech",
     youtube: "https://www.youtube.com/@citystarmarrakech",
+    facebook: "https://www.facebook.com/profile.php?id=61571256561826",
   },
 } as const;
 
