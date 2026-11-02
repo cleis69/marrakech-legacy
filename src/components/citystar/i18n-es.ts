@@ -882,7 +882,7 @@ export const es: Textes = {
       "Acepto que CITYSTAR utilice estos datos para contactarme y enviarme el dossier. Puedo darme de baja en cualquier momento.",
     envoi: "Enviando…",
     merci:
-      "Gracias, su solicitud se ha enviado. El dossier llegará a su correo en unos minutos y un asesor le llamará.",
+      "Gracias, su solicitud se ha enviado. El dossier llegará a su correo en las próximas horas y un asesor le llamará.",
     erreur:
       "No se ha podido enviar la solicitud. Inténtelo de nuevo o llámenos al número que figura abajo.",
     fermer: "Cerrar",

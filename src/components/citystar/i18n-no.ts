@@ -862,7 +862,7 @@ export const no: Textes = {
       "Jeg godtar at CITYSTAR bruker disse opplysningene til å kontakte meg og sende meg salgsoppgaven. Jeg kan melde meg av når som helst.",
     envoi: "Sender…",
     merci:
-      "Takk, forespørselen din er sendt. Salgsoppgaven kommer i innboksen din i løpet av noen minutter, og en rådgiver ringer deg opp.",
+      "Takk, forespørselen din er sendt. Salgsoppgaven kommer i innboksen din i løpet av noen timer, og en rådgiver ringer deg opp.",
     erreur: "Forespørselen kunne ikke sendes. Prøv igjen, eller ring oss på nummeret nedenfor.",
     fermer: "Lukk",
   },

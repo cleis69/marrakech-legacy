@@ -880,7 +880,7 @@ export const nl: Textes = {
       "Ik ga ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met mij op te nemen en mij het informatiepakket te sturen. Ik kan me op elk moment afmelden.",
     envoi: "Verzenden…",
     merci:
-      "Bedankt, uw aanvraag is verzonden. Het informatiepakket staat binnen enkele minuten in uw mailbox en een adviseur belt u terug.",
+      "Bedankt, uw aanvraag is verzonden. Het informatiepakket staat binnen enkele uren in uw mailbox en een adviseur belt u terug.",
     erreur:
       "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of bel ons op het nummer hieronder.",
     fermer: "Sluiten",

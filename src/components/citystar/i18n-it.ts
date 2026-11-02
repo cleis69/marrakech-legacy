@@ -878,7 +878,7 @@ export const it: Textes = {
       "Accetto che CITYSTAR utilizzi questi dati per ricontattarmi e inviarmi il dossier. Posso disiscrivermi in qualsiasi momento.",
     envoi: "Invio…",
     merci:
-      "Grazie, la sua richiesta è stata inviata. Il dossier arriverà nella sua casella e-mail tra pochi minuti e un consulente la richiamerà.",
+      "Grazie, la sua richiesta è stata inviata. Il dossier arriverà nella sua casella e-mail nelle prossime ore e un consulente la richiamerà.",
     erreur:
       "Non è stato possibile inviare la richiesta. Riprovi, oppure ci chiami al numero qui sotto.",
     fermer: "Chiudere",

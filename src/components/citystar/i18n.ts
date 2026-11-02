@@ -901,7 +901,7 @@ const fr = {
       "J’accepte que CITYSTAR utilise ces informations pour me recontacter et m’envoyer le dossier. Je peux me désinscrire à tout moment.",
     envoi: "Envoi…",
     merci:
-      "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans quelques minutes, et un conseiller vous rappelle.",
+      "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans les prochaines heures, et un conseiller vous rappelle.",
     erreur: "L’envoi n’a pas abouti. Réessayez, ou appelez-nous au numéro ci-dessous.",
     fermer: "Fermer",
   },
@@ -1763,7 +1763,7 @@ const en: Textes = {
       "I agree that CITYSTAR may use these details to contact me and send me the information pack. I can unsubscribe at any time.",
     envoi: "Sending…",
     merci:
-      "Thank you, your request has been sent. The information pack will reach your inbox within a few minutes, and an adviser will call you back.",
+      "Thank you, your request has been sent. The information pack will reach your inbox within the next few hours, and an adviser will call you back.",
     erreur: "Your request could not be sent. Please try again, or call us on the number below.",
     fermer: "Close",
   },
