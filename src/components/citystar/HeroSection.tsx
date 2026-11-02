@@ -12,11 +12,10 @@ import {
   reservation,
   villasChiffres,
 } from "@/config/citystar";
-import heroVideo from "@/assets/citystar/hero-film.mp4";
-import heroPoster from "@/assets/citystar/hero-film-poster.webp";
 
 import { useDevise } from "./currency";
 import { scrollTo } from "./data";
+import { Affiche, useFilm } from "./film";
 import { PillButton } from "./ui/PillButton";
 
 /**
@@ -39,9 +38,15 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduce = useReducedMotion();
   const [playing, setPlaying] = useState(false);
+  const [lu, setLu] = useState(false);
+  const [etroit, setEtroit] = useState(false);
+  const { src, charger } = useFilm(reduce);
 
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+
+  /* Pas de parallaxe sur petit écran : elle coûte à chaque image sans rien apporter. */
+  useEffect(() => setEtroit(window.matchMedia("(max-width: 800px)").matches), []);
 
   /* Mouvement réduit : la vidéo reste sur son image fixe. */
   useEffect(() => {
@@ -52,6 +57,10 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
   const toggleVideo = () => {
     const video = videoRef.current;
     if (!video) return;
+    if (!src) {
+      charger();
+      return;
+    }
     if (video.paused) void video.play().catch(() => setPlaying(false));
     else video.pause();
   };
@@ -62,21 +71,23 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
     <section ref={heroRef} id="accueil" className="hero" aria-labelledby="hero-title">
       <div className="hero-cadre">
         <div className="hero-media">
-          <motion.video
-            ref={videoRef}
-            className="hero-video"
-            style={reduce ? {} : { y: videoY }}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={heroPoster}
-            aria-hidden="true"
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </motion.video>
+          <motion.div className="hero-fond" style={reduce || etroit ? {} : { y: videoY }}>
+            <Affiche className="hero-affiche" />
+            <video
+              ref={videoRef}
+              className={`hero-video${lu ? " is-lu" : ""}`}
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              onCanPlay={() => setLu(true)}
+              onPlay={() => setPlaying(true)}
+              onPause={() => setPlaying(false)}
+            />
+          </motion.div>
         </div>
         <div className="hero-shade" aria-hidden="true" />
 

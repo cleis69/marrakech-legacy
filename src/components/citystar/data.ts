@@ -78,6 +78,25 @@ const modules = import.meta.glob("@/assets/citystar/rendus/*.webp", {
   import: "default",
 }) as Record<string, string>;
 
+/* Versions réduites (800 px) des mêmes rendus : le mobile ne télécharge pas les 1600 px. */
+const modulesPetits = import.meta.glob("@/assets/citystar/rendus-sm/*.webp", {
+  eager: true,
+  query: "?url",
+  import: "default",
+}) as Record<string, string>;
+
+const nomFichier = (chemin: string) => chemin.split("/").pop() ?? "";
+const petits = new Map(Object.entries(modulesPetits).map(([c, url]) => [nomFichier(c), url]));
+const jeux = new Map<string, string>(
+  Object.entries(modules).flatMap(([chemin, grand]) => {
+    const petit = petits.get(nomFichier(chemin));
+    return petit ? [[grand, `${petit} 800w, ${grand} 1600w`] as [string, string]] : [];
+  }),
+);
+
+/** Jeu d'images (srcset) d'un rendu importé : 800 px pour le mobile, 1600 px pour le grand écran. */
+export const srcSetPour = (src: string) => jeux.get(src);
+
 /* Hors galerie : le dessin au trait (il sert à l'architecture). */
 const ECARTES = ["-trait"];
 
@@ -85,7 +104,11 @@ const ECARTES = ["-trait"];
 export const rendus = Object.entries(modules)
   .filter(([chemin]) => !ECARTES.some((motif) => chemin.includes(motif)))
   .sort(([a], [b]) => a.localeCompare(b))
-  .map(([chemin, src]) => ({ src, nom: (chemin.split("/").pop() ?? "").replace(".webp", "") }));
+  .map(([chemin, src]) => ({
+    src,
+    srcSet: jeux.get(src),
+    nom: nomFichier(chemin).replace(".webp", ""),
+  }));
 
 /** Texte alternatif d'un rendu dans la langue du visiteur. */
 export const altRendu = (t: Textes, nom: string) => t.rendus.alts[nom] ?? nom.replace(/-/g, " ");

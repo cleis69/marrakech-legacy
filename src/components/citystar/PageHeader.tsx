@@ -1,3 +1,5 @@
+import { srcSetPour } from "./data";
+
 /**
  * Ouverture des pages intérieures, dans la langue de l'accueil : une photo dans
  * un grand cadre arrondi, une pastille, un titre en deux tons et une phrase.
@@ -19,7 +21,15 @@ export function PageHeader({
   return (
     <header className="ph">
       <div className="ph-cadre">
-        <img className="ph-photo" src={image} alt="" />
+        <img
+          className="ph-photo"
+          src={image}
+          srcSet={srcSetPour(image)}
+          sizes="100vw"
+          alt=""
+          fetchPriority="high"
+          decoding="async"
+        />
         <div className="ph-voile" aria-hidden="true" />
         <div className="ph-texte">
           <p className="ph-chip">{kicker}</p>

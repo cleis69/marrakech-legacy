@@ -7,6 +7,7 @@ import morningImage from "@/assets/citystar/rendus/ext-piscine-jour.webp";
 import eveningImage from "@/assets/citystar/rendus/int-salon.webp";
 
 import { useDevise } from "./currency";
+import { srcSetPour } from "./data";
 
 const IMAGES = [morningImage, afternoonImage, eveningImage, nightImage];
 
@@ -38,6 +39,8 @@ export function LifestyleSection() {
           <img
             key={item.quand}
             src={IMAGES[i]}
+            srcSet={srcSetPour(IMAGES[i] ?? "")}
+            sizes="100vw"
             alt={i === current ? item.alt : ""}
             aria-hidden={i !== current}
             className={i === current ? "is-on" : ""}

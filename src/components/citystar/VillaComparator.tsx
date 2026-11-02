@@ -16,7 +16,14 @@ import {
 } from "@/config/citystar";
 
 import { CurrencyPills, useDevise } from "./currency";
-import { type Budget, type Selection, PARAM_BUDGET, faitsVilla, villas } from "./data";
+import {
+  type Budget,
+  type Selection,
+  PARAM_BUDGET,
+  faitsVilla,
+  srcSetPour,
+  villas,
+} from "./data";
 import { chemin, Lien } from "./liens";
 import { PillButton } from "./ui/PillButton";
 
@@ -399,7 +406,14 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
                       vers={chemin(langue, `villas/${t.toLowerCase()}`)}
                     >
                       <span className="cp-photo">
-                        <img src={villa?.image} alt="" loading="lazy" />
+                        <img
+                          src={villa?.image}
+                          srcSet={villa ? srcSetPour(villa.image) : undefined}
+                          sizes="(max-width: 900px) 40vw, 22vw"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                        />
                         <b>{t}</b>
                       </span>
                       <span className="cp-name">

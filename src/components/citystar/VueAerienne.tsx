@@ -6,7 +6,7 @@ import type { TypeVilla } from "@/config/citystar";
 import vueAerienne from "@/assets/citystar/vue-aerienne.webp";
 
 import { useDevise } from "./currency";
-import { faitsVilla, villas } from "./data";
+import { faitsVilla, srcSetPour, villas } from "./data";
 import { chemin, Lien } from "./liens";
 import { Reveal } from "./motion";
 
@@ -221,7 +221,15 @@ export function VueAerienne() {
               } as React.CSSProperties
             }
           >
-            <img src={vueAerienne} alt={a.alt} width={LARGEUR} height={HAUTEUR} draggable={false} />
+            <img
+              src={vueAerienne}
+              alt={a.alt}
+              width={LARGEUR}
+              height={HAUTEUR}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+            />
             {repere && (
               <i
                 key={fiche}
@@ -320,7 +328,18 @@ function FicheType({ type }: { type: TypeVilla }) {
   return (
     <>
       <div className="va-fiche-tete">
-        {villa && <img src={villa.image} alt="" width={96} height={96} loading="lazy" />}
+        {villa && (
+          <img
+            src={villa.image}
+            srcSet={srcSetPour(villa.image)}
+            sizes="96px"
+            alt=""
+            width={96}
+            height={96}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
         <div>
           <small>{faits.tag}</small>
           <h3>{t.villas.typeVilla(type)}</h3>

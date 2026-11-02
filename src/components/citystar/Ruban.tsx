@@ -158,6 +158,8 @@ export function Ruban() {
             >
               <img
                 src={rendu.src}
+                srcSet={rendu.srcSet}
+                sizes="clamp(240px, 26vw, 380px)"
                 alt={altRendu(t, rendu.nom)}
                 loading="lazy"
                 decoding="async"

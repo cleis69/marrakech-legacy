@@ -17,7 +17,7 @@ import {
 } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type Budget, type Selection, faitsVilla, villas } from "./data";
+import { type Budget, type Selection, faitsVilla, srcSetPour, villas } from "./data";
 import { chemin, Lien } from "./liens";
 import type { Textes } from "./i18n";
 import { PillButton } from "./ui/PillButton";
@@ -434,7 +434,14 @@ export function VillaSelector({
                 className={`sl-card${reason ? " is-dim" : ""}${type === winner ? " is-win" : ""}`}
               >
                 <div className="sl-card-ph">
-                  <img src={villa.image} alt="" loading="lazy" />
+                  <img
+                    src={villa.image}
+                    srcSet={srcSetPour(villa.image)}
+                    sizes="(max-width: 900px) 50vw, 25vw"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span className="sl-card-letter">{type}</span>
                 </div>
                 <div className="sl-card-info">

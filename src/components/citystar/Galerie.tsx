@@ -25,7 +25,14 @@ export function Galerie() {
               onClick={() => setOuverte(i)}
               aria-label={t.rendus.agrandir(altRendu(t, rendu.nom))}
             >
-              <img src={rendu.src} alt="" loading="lazy" />
+              <img
+                src={rendu.src}
+                srcSet={rendu.srcSet}
+                sizes="(max-width: 900px) 50vw, 33vw"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
             </button>
           </li>
         ))}

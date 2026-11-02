@@ -144,9 +144,9 @@ export function ArchitectureSection() {
             if (event.key === "Escape") setOpen(null);
           }}
         >
-          <img src={drawingImage} alt={t.architecture.altDessin} draggable={false} />
+          <img src={drawingImage} alt={t.architecture.altDessin} loading="lazy" decoding="async" draggable={false} />
           <motion.div className="arch-render" style={{ clipPath: clip }}>
-            <img src={renderImage} alt={t.architecture.altRendu} draggable={false} />
+            <img src={renderImage} alt={t.architecture.altRendu} loading="lazy" decoding="async" draggable={false} />
           </motion.div>
           <span className="arch-tag is-left" aria-hidden="true">
             {t.architecture.rendu}

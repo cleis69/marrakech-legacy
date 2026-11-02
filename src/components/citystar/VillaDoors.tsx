@@ -8,7 +8,7 @@ import {
 } from "@/config/citystar";
 
 import { useDevise } from "./currency";
-import { type CursorHandlers, faitsVilla, villas } from "./data";
+import { type CursorHandlers, faitsVilla, srcSetPour, villas } from "./data";
 import { chemin, Lien } from "./liens";
 import { Reveal } from "./motion";
 
@@ -64,7 +64,14 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
                 onMouseLeave={onCursorLeave}
               >
                 <span className="vd-photo">
-                  <img src={villa.image} alt="" loading="lazy" />
+                  <img
+                    src={villa.image}
+                    srcSet={srcSetPour(villa.image)}
+                    sizes="(max-width: 900px) 92vw, 31vw"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span className="vd-tag">{faits.tag}</span>
                 </span>
                 <span className="vd-ligne">

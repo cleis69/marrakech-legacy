@@ -8,7 +8,7 @@ import {
   villasChiffres,
 } from "@/config/citystar";
 
-import { faitsVilla, villas } from "./data";
+import { faitsVilla, srcSetPour, villas } from "./data";
 import { useSite } from "./contexte";
 import { chemin, Lien } from "./liens";
 import { VillaPrice, useDevise } from "./currency";
@@ -35,6 +35,8 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
           <img
             key={item.type}
             src={item.image}
+            srcSet={srcSetPour(item.image)}
+            sizes="100vw"
             alt={i === index ? t.villas.typeVilla(item.type) : ""}
             aria-hidden={i !== index}
             className={i === index ? "is-on" : ""}

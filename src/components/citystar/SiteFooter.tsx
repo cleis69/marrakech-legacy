@@ -142,11 +142,11 @@ export function SiteFooter() {
       <p className="ft-credits">
         <span>{t.pied.realise}</span>
         <a href="https://ultravisionagency.com" target="_blank" rel="noopener">
-          <img src={ultravisionLogo} alt="Ultravision" width="66" height="26" />
+          <img src={ultravisionLogo} alt="Ultravision" width="66" height="26" loading="lazy" decoding="async" />
         </a>
         <span>{t.pied.propulse}</span>
         <a href="https://realestatevision360.com" target="_blank" rel="noopener">
-          <img src={revLogo} alt="REV — Real Estate Vision" width="64" height="26" />
+          <img src={revLogo} alt="REV — Real Estate Vision" width="64" height="26" loading="lazy" decoding="async" />
         </a>
       </p>
     </footer>

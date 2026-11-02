@@ -27,8 +27,7 @@ import {
   reservation,
   villasChiffres,
 } from "@/config/citystar";
-import heroVideo from "@/assets/citystar/hero-film.mp4";
-import heroPoster from "@/assets/citystar/hero-film-poster.webp";
+import { Affiche, useFilm } from "../film";
 import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
@@ -72,6 +71,8 @@ export function DossierHero() {
   const reduce = useReducedMotion();
   const video = useRef<HTMLVideoElement>(null);
   const [lecture, setLecture] = useState(false);
+  const [lu, setLu] = useState(false);
+  const { src, charger } = useFilm(reduce);
   const [ligne1, ligne2] = t.hero.titre(formatMois(calendrier.livraison, langue));
   const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
 
@@ -82,6 +83,10 @@ export function DossierHero() {
   const basculer = () => {
     const v = video.current;
     if (!v) return;
+    if (!src) {
+      charger();
+      return;
+    }
     if (v.paused) void v.play().catch(() => setLecture(false));
     else v.pause();
   };
@@ -89,20 +94,21 @@ export function DossierHero() {
   return (
     <section className="dh" aria-labelledby="dh-titre">
       <div className="dh-cadre">
+        <Affiche className="dh-affiche" />
         <video
           ref={video}
-          className="dh-video"
+          className={`dh-video${lu ? " is-lu" : ""}`}
+          src={src}
           autoPlay
           muted
           loop
           playsInline
-          poster={heroPoster}
+          preload="auto"
           aria-hidden="true"
+          onCanPlay={() => setLu(true)}
           onPlay={() => setLecture(true)}
           onPause={() => setLecture(false)}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        />
         <div className="dh-voile" aria-hidden="true" />
 
         <div className="dh-contenu">

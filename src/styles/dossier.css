@@ -4,7 +4,9 @@
 @keyframes dh-monte { from { opacity: 0; transform: translateY(18px); } }
 .dh { --pill-bg: var(--cream); --pill-fg: var(--ink); padding: 14px 14px 0; background: var(--paper); color: var(--cream); }
 .dh-cadre { position: relative; display: flex; align-items: flex-end; min-height: calc(100svh - 28px); overflow: hidden; border-radius: 28px; background: var(--ink); }
-.dh-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); }
+.dh-affiche, .dh-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--etalonnage); }
+.dh-video { opacity: 0; transition: opacity .9s ease; }
+.dh-video.is-lu { opacity: 1; }
 .dh-voile { position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in oklab, var(--ink) 78%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 55%, color-mix(in oklab, var(--ink) 15%, transparent) 100%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 50%, transparent) 0%, transparent 25%); }
 .dh-contenu { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem); gap: 2.4rem; align-items: end; width: 100%; padding: 8rem var(--gouttiere) 4.4rem; }
 .dh-texte { display: grid; justify-items: start; gap: 1.3rem; max-width: 50rem; }
