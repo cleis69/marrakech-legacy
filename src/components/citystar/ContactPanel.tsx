@@ -154,10 +154,8 @@ export function ContactPanel({
               {t.contact.message}
               <textarea name="message" rows={3} placeholder={t.contact.messageAide} />
             </label>
-            <label className="contact-consentement">
-              <input type="checkbox" name="consentement" required />
-              <span>{t.contact.consentement}</span>
-            </label>
+            {/* Mention d'information : la demande vaut accord pour le rappel et l'envoi du dossier. */}
+            <p className="contact-consentement">{t.contact.consentement}</p>
             {etat === "erreur" && (
               <p className="contact-erreur" role="alert">
                 {t.contact.erreur}

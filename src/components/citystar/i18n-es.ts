@@ -879,7 +879,7 @@ export const es: Textes = {
     messageAide: "Una pregunta, una fecha de visita…",
     envoyer: "Enviar mi solicitud",
     consentement:
-      "Acepto que CITYSTAR utilice estos datos para contactarme y enviarme el dossier. Puedo darme de baja en cualquier momento.",
+      "Al enviar esta solicitud, acepta que CITYSTAR utilice estos datos para contactarle y enviarle el dossier. Puede darse de baja en cualquier momento.",
     envoi: "Enviando…",
     merci:
       "Gracias, su solicitud se ha enviado. El dossier llegará a su correo en las próximas horas y un asesor le llamará.",

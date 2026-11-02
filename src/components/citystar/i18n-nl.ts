@@ -877,7 +877,7 @@ export const nl: Textes = {
     messageAide: "Een vraag, een datum voor een bezichtiging…",
     envoyer: "Mijn aanvraag versturen",
     consentement:
-      "Ik ga ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met mij op te nemen en mij het informatiepakket te sturen. Ik kan me op elk moment afmelden.",
+      "Door deze aanvraag te verzenden, gaat u ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met u op te nemen en u het informatiepakket te sturen. U kunt zich op elk moment afmelden.",
     envoi: "Verzenden…",
     merci:
       "Bedankt, uw aanvraag is verzonden. Het informatiepakket staat binnen enkele uren in uw mailbox en een adviseur belt u terug.",

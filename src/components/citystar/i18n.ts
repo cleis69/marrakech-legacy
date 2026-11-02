@@ -898,7 +898,7 @@ const fr = {
     messageAide: "Une question, une date de visite…",
     envoyer: "Envoyer ma demande",
     consentement:
-      "J’accepte que CITYSTAR utilise ces informations pour me recontacter et m’envoyer le dossier. Je peux me désinscrire à tout moment.",
+      "En envoyant cette demande, vous acceptez que CITYSTAR utilise ces informations pour vous recontacter et vous envoyer le dossier. Vous pouvez vous désinscrire à tout moment.",
     envoi: "Envoi…",
     merci:
       "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans les prochaines heures, et un conseiller vous rappelle.",
@@ -1760,7 +1760,7 @@ const en: Textes = {
     messageAide: "A question, a date for a viewing…",
     envoyer: "Send my request",
     consentement:
-      "I agree that CITYSTAR may use these details to contact me and send me the information pack. I can unsubscribe at any time.",
+      "By sending this request, you agree that CITYSTAR may use these details to contact you and send you the information pack. You can unsubscribe at any time.",
     envoi: "Sending…",
     merci:
       "Thank you, your request has been sent. The information pack will reach your inbox within the next few hours, and an adviser will call you back.",
