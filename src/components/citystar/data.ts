@@ -8,9 +8,11 @@ import {
 
 import type { Textes } from "./i18n";
 
-import villaAImage from "@/assets/citystar/rendus/ext-pergola-jour.webp";
-import villaBImage from "@/assets/citystar/rendus/ext-terrasses-cactus.webp";
-import villaCImage from "@/assets/citystar/rendus/ext-piscine-jour.webp";
+// Une vue par type, attribuée d'après la plaquette professionnelle du promoteur (référence validée par le client le 01/11/2026),
+// choisie pour aller avec l'accroche du type : B « en terrasses », C « autour de l'eau ».
+import villaAImage from "@/assets/citystar/rendus/ext-terrasses-cactus.webp";
+import villaBImage from "@/assets/citystar/rendus/ext-terrasse-jour.webp";
+import villaCImage from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import planARdc from "@/assets/citystar/plan-a-rdc.png";
 import planAFloor from "@/assets/citystar/plan-a-floor.png";
 import planBRdc from "@/assets/citystar/plan-b-rdc.png";

@@ -10,7 +10,8 @@ import { useDevise } from "../currency";
 import type { Budget } from "../data";
 import { VillaComparator } from "../VillaComparator";
 import { VillaSelector } from "../VillaSelector";
-import villasBanniere from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
+// Pas la vue aérienne : elle illustre la villa C, juste en dessous.
+import villasBanniere from "@/assets/citystar/rendus/ext-piscine-jour.webp";
 
 /**
  * Page de décision : le quiz recommande, le comparateur confirme. Les portes A/B/C
