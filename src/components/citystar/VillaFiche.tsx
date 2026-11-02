@@ -142,7 +142,9 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
               label={t.villas.brochure}
               icon={FileText}
               variant="secondary"
-              onClick={() => ouvrirContactAvec(t.villas.brochureDemande(villa.type))}
+              onClick={() =>
+                ouvrirContactAvec({ ...t.villas.brochureDemande(villa.type), villa: villa.type })
+              }
               ariaLabel={t.villas.brochureAria(villa.type)}
             />
           </div>

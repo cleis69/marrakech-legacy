@@ -835,21 +835,52 @@ export const it: Textes = {
     kicker: "Concierge CITYSTAR",
     titre: ["Farsi ", "richiamare."],
     texte:
-      "Lasci i suoi recapiti e un consulente CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta. All’invio si apre la sua app di posta con la richiesta pronta.",
+      "Lasci i suoi recapiti e un consulente CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta. Il dossier della tenuta le viene inviato via e-mail.",
     jointe: (outil) => `Allegato alla sua richiesta · ${outil}`,
     retirer: "Non allegare",
     nom: "Nome e cognome",
     telephone: "Telefono",
     email: "E-mail",
-    interet: "Il suo interesse",
-    interets: [
-      "Scoprire il progetto",
-      "Villa tipo A",
-      "Villa tipo B",
-      "Villa tipo C",
-      "Organizzare una visita",
-    ],
+    projet: "Il suo progetto · facoltativo",
+    choisir: "Scegliere",
+    questions: {
+      villa: {
+        titre: "Villa di suo interesse",
+        choix: ["Non ancora deciso", "Villa tipo A", "Villa tipo B", "Villa tipo C"],
+      },
+      projet: {
+        titre: "Tipo di progetto",
+        choix: [
+          "Residenza principale",
+          "Seconda casa",
+          "Investimento da affittare",
+          "Investimento patrimoniale",
+        ],
+      },
+      horizon: {
+        titre: "Tempi di acquisto",
+        choix: [
+          "Entro 3 mesi",
+          "Tra 3 e 6 mesi",
+          "Tra 6 e 12 mesi",
+          "Più avanti, mi sto informando",
+        ],
+      },
+      budget: {
+        titre: "Budget",
+        choix: ["Meno di 1 M€", "Da 1 a 1,5 M€", "Oltre 1,5 M€", "Preferisco parlarne"],
+      },
+    },
+    message: "Il suo messaggio",
+    messageAide: "Una domanda, una data per la visita…",
     envoyer: "Inviare la mia richiesta",
+    consentement:
+      "Accetto che CITYSTAR utilizzi questi dati per ricontattarmi e inviarmi il dossier. Posso disiscrivermi in qualsiasi momento.",
+    envoi: "Invio…",
+    merci:
+      "Grazie, la sua richiesta è stata inviata. Il dossier arriverà nella sua casella e-mail tra pochi minuti e un consulente la richiamerà.",
+    erreur:
+      "Non è stato possibile inviare la richiesta. Riprovi, oppure ci chiami al numero qui sotto.",
     fermer: "Chiudere",
   },
   modales: {

@@ -839,21 +839,52 @@ export const es: Textes = {
     kicker: "Conserjería CITYSTAR",
     titre: ["Que le ", "llamemos."],
     texte:
-      "Déjenos sus datos y un asesor de CITYSTAR le llamará para responder a sus preguntas sobre planos, precios o una visita al dominio. Al enviar, se abre su aplicación de correo con la solicitud lista.",
+      "Déjenos sus datos y un asesor de CITYSTAR le llamará para responder a sus preguntas sobre planos, precios o una visita al dominio. Le enviamos el dossier del dominio por correo electrónico.",
     jointe: (outil) => `Adjunto a su solicitud · ${outil}`,
     retirer: "No adjuntar",
     nom: "Nombre y apellidos",
     telephone: "Teléfono",
     email: "Correo electrónico",
-    interet: "Su interés",
-    interets: [
-      "Descubrir el proyecto",
-      "Villa tipo A",
-      "Villa tipo B",
-      "Villa tipo C",
-      "Organizar una visita",
-    ],
+    projet: "Su proyecto · opcional",
+    choisir: "Elegir",
+    questions: {
+      villa: {
+        titre: "Villa que le interesa",
+        choix: ["Aún no lo he decidido", "Villa tipo A", "Villa tipo B", "Villa tipo C"],
+      },
+      projet: {
+        titre: "Tipo de proyecto",
+        choix: [
+          "Residencia principal",
+          "Segunda residencia",
+          "Inversión para alquilar",
+          "Inversión patrimonial",
+        ],
+      },
+      horizon: {
+        titre: "Plazo de compra",
+        choix: [
+          "En los próximos 3 meses",
+          "Dentro de 3 a 6 meses",
+          "Dentro de 6 a 12 meses",
+          "Más adelante, me estoy informando",
+        ],
+      },
+      budget: {
+        titre: "Presupuesto",
+        choix: ["Menos de 1 M€", "De 1 a 1,5 M€", "Más de 1,5 M€", "Prefiero hablarlo"],
+      },
+    },
+    message: "Su mensaje",
+    messageAide: "Una pregunta, una fecha de visita…",
     envoyer: "Enviar mi solicitud",
+    consentement:
+      "Acepto que CITYSTAR utilice estos datos para contactarme y enviarme el dossier. Puedo darme de baja en cualquier momento.",
+    envoi: "Enviando…",
+    merci:
+      "Gracias, su solicitud se ha enviado. El dossier llegará a su correo en unos minutos y un asesor le llamará.",
+    erreur:
+      "No se ha podido enviar la solicitud. Inténtelo de nuevo o llámenos al número que figura abajo.",
     fermer: "Cerrar",
   },
   modales: {

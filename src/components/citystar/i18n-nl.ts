@@ -837,21 +837,52 @@ export const nl: Textes = {
     kicker: "CITYSTAR-conciërge",
     titre: ["Teruggebeld ", "worden."],
     texte:
-      "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein. Bij het verzenden opent uw e-mailprogramma met de aanvraag klaar.",
+      "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein. Het informatiepakket van het domein ontvangt u per e-mail.",
     jointe: (outil) => `Toegevoegd aan uw aanvraag · ${outil}`,
     retirer: "Niet toevoegen",
     nom: "Voor- en achternaam",
     telephone: "Telefoon",
     email: "E-mail",
-    interet: "Uw interesse",
-    interets: [
-      "Het project ontdekken",
-      "Villatype A",
-      "Villatype B",
-      "Villatype C",
-      "Een bezichtiging plannen",
-    ],
+    projet: "Uw project · optioneel",
+    choisir: "Kiezen",
+    questions: {
+      villa: {
+        titre: "Villa van uw interesse",
+        choix: ["Nog niet beslist", "Villatype A", "Villatype B", "Villatype C"],
+      },
+      projet: {
+        titre: "Soort project",
+        choix: ["Hoofdverblijf", "Tweede woning", "Verhuurbelegging", "Vermogensbelegging"],
+      },
+      horizon: {
+        titre: "Aankooptermijn",
+        choix: [
+          "Binnen 3 maanden",
+          "Over 3 tot 6 maanden",
+          "Over 6 tot 12 maanden",
+          "Later, ik oriënteer me",
+        ],
+      },
+      budget: {
+        titre: "Budget",
+        choix: [
+          "Minder dan € 1 mln",
+          "€ 1 tot 1,5 mln",
+          "Meer dan € 1,5 mln",
+          "Bespreek ik liever",
+        ],
+      },
+    },
+    message: "Uw bericht",
+    messageAide: "Een vraag, een datum voor een bezichtiging…",
     envoyer: "Mijn aanvraag versturen",
+    consentement:
+      "Ik ga ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met mij op te nemen en mij het informatiepakket te sturen. Ik kan me op elk moment afmelden.",
+    envoi: "Verzenden…",
+    merci:
+      "Bedankt, uw aanvraag is verzonden. Het informatiepakket staat binnen enkele minuten in uw mailbox en een adviseur belt u terug.",
+    erreur:
+      "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of bel ons op het nummer hieronder.",
     fermer: "Sluiten",
   },
   modales: {

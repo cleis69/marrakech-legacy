@@ -819,21 +819,51 @@ export const no: Textes = {
     kicker: "CITYSTAR-concierge",
     titre: ["Bli ", "ringt opp."],
     texte:
-      "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen. Når du sender, åpnes e-postprogrammet ditt med forespørselen klar.",
+      "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen. Salgsoppgaven sendes deg på e-post.",
     jointe: (outil) => `Lagt ved forespørselen din · ${outil}`,
     retirer: "Ikke legg ved",
     nom: "Fullt navn",
     telephone: "Telefon",
     email: "E-post",
-    interet: "Din interesse",
-    interets: [
-      "Bli kjent med prosjektet",
-      "Villatype A",
-      "Villatype B",
-      "Villatype C",
-      "Avtale en visning",
-    ],
+    projet: "Prosjektet ditt · valgfritt",
+    choisir: "Velg",
+    questions: {
+      villa: {
+        titre: "Villaen du er interessert i",
+        choix: ["Ikke bestemt ennå", "Villatype A", "Villatype B", "Villatype C"],
+      },
+      projet: {
+        titre: "Type prosjekt",
+        choix: ["Fast bolig", "Fritidsbolig", "Utleieinvestering", "Langsiktig formuesplassering"],
+      },
+      horizon: {
+        titre: "Når vil du kjøpe?",
+        choix: [
+          "Innen 3 måneder",
+          "Om 3 til 6 måneder",
+          "Om 6 til 12 måneder",
+          "Senere, jeg undersøker",
+        ],
+      },
+      budget: {
+        titre: "Budsjett",
+        choix: [
+          "Under 1 mill. €",
+          "1 til 1,5 mill. €",
+          "Over 1,5 mill. €",
+          "Vil heller snakke om det",
+        ],
+      },
+    },
+    message: "Meldingen din",
+    messageAide: "Et spørsmål, en dato for visning…",
     envoyer: "Send forespørselen",
+    consentement:
+      "Jeg godtar at CITYSTAR bruker disse opplysningene til å kontakte meg og sende meg salgsoppgaven. Jeg kan melde meg av når som helst.",
+    envoi: "Sender…",
+    merci:
+      "Takk, forespørselen din er sendt. Salgsoppgaven kommer i innboksen din i løpet av noen minutter, og en rådgiver ringer deg opp.",
+    erreur: "Forespørselen kunne ikke sendes. Prøv igjen, eller ring oss på nummeret nedenfor.",
     fermer: "Lukk",
   },
   modales: {

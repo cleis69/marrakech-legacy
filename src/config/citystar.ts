@@ -282,9 +282,19 @@ export const contact = {
   whatsapp: "212630373961",
   email: "contact@citystarproperties.com",
   reseaux: {
-    instagram: "https://www.instagram.com/city_star_marrakech",
+    instagram: "https://www.instagram.com/citystarmarrakech",
     youtube: "https://www.youtube.com/@citystarmarrakech",
   },
+} as const;
+
+/**
+ * Formulaire HubSpot « Site citystar – Être rappelé » (portail CITYSTAR, région eu1), créé le 02/11/2026.
+ * Chaque demande y crée le contact ; Zapier le transmet ensuite à Brevo, qui envoie le dossier
+ * dans la langue du contact (champ hs_language).
+ */
+export const hubspot = {
+  envoi:
+    "https://api-eu1.hsforms.com/submissions/v3/integration/submit/149680604/7f0548ff-1279-4540-a266-b6f3297e348e",
 } as const;
 
 /* ------------------------------------------------------------------ */

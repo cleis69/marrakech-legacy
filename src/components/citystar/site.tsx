@@ -10,6 +10,7 @@ import { DeviseProvider } from "./currency";
 import type { Selection } from "./data";
 import { FloatingActions } from "./FloatingActions";
 import { PlanModal } from "./PlanModal";
+import { retenirProvenance } from "./provenance";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 import { TourModal } from "./TourModal";
@@ -36,6 +37,8 @@ export function SiteChrome({
   const cursorY = useMotionValue(-100);
   const [cursorLabel, setCursorLabel] = useState("");
   const { scrollYProgress } = useScroll();
+
+  useEffect(retenirProvenance, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);

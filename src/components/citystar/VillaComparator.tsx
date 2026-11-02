@@ -265,7 +265,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
           <button
             type="button"
             className="cp-pdf"
-            onClick={() => onContact(textes.villas.brochureDemande(type))}
+            onClick={() => onContact({ ...textes.villas.brochureDemande(type), villa: type })}
             aria-label={textes.villas.brochureAria(type)}
           >
             {textes.comparateur.recevoir} <FileText aria-hidden="true" />
@@ -465,6 +465,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
             icon={PhoneCall}
             onClick={() =>
               onContact({
+                villa: pin,
                 outil: textes.comparateur.outil,
                 lignes: [
                   textes.comparateur.ligneReference(pin),

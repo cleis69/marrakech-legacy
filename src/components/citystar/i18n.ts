@@ -858,21 +858,51 @@ const fr = {
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine. À l’envoi, votre messagerie s’ouvre avec la demande prête à partir.",
+      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine. Le dossier du domaine vous est envoyé par e-mail.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
     telephone: "Téléphone",
     email: "E-mail",
-    interet: "Votre intérêt",
-    interets: [
-      "Découvrir le projet",
-      "Villa Type A",
-      "Villa Type B",
-      "Villa Type C",
-      "Planifier une visite",
-    ],
+    projet: "Votre projet · facultatif",
+    choisir: "Choisir",
+    questions: {
+      villa: {
+        titre: "Villa qui vous intéresse",
+        choix: ["Pas encore décidé", "Villa Type A", "Villa Type B", "Villa Type C"],
+      },
+      projet: {
+        titre: "Type de projet",
+        choix: [
+          "Résidence principale",
+          "Résidence secondaire",
+          "Investissement locatif",
+          "Placement patrimonial",
+        ],
+      },
+      horizon: {
+        titre: "Horizon d’achat",
+        choix: [
+          "Dans les 3 mois",
+          "Dans 3 à 6 mois",
+          "Dans 6 à 12 mois",
+          "Plus tard, je me renseigne",
+        ],
+      },
+      budget: {
+        titre: "Budget",
+        choix: ["Moins de 1 M€", "De 1 à 1,5 M€", "Plus de 1,5 M€", "Je préfère en parler"],
+      },
+    },
+    message: "Votre message",
+    messageAide: "Une question, une date de visite…",
     envoyer: "Envoyer ma demande",
+    consentement:
+      "J’accepte que CITYSTAR utilise ces informations pour me recontacter et m’envoyer le dossier. Je peux me désinscrire à tout moment.",
+    envoi: "Envoi…",
+    merci:
+      "Merci, votre demande est bien envoyée. Le dossier arrive dans votre boîte e-mail dans quelques minutes, et un conseiller vous rappelle.",
+    erreur: "L’envoi n’a pas abouti. Réessayez, ou appelez-nous au numéro ci-dessous.",
     fermer: "Fermer",
   },
   modales: {
@@ -1700,21 +1730,41 @@ const en: Textes = {
     kicker: "CITYSTAR concierge",
     titre: ["Request ", "a call back."],
     texte:
-      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate. When you send, your email app opens with the request ready to go.",
+      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate. The estate’s information pack is sent to you by email.",
     jointe: (outil) => `Attached to your request · ${outil}`,
     retirer: "Do not attach",
     nom: "Full name",
     telephone: "Phone",
     email: "Email",
-    interet: "Your interest",
-    interets: [
-      "Discover the project",
-      "Villa Type A",
-      "Villa Type B",
-      "Villa Type C",
-      "Plan a viewing",
-    ],
+    projet: "Your project · optional",
+    choisir: "Select",
+    questions: {
+      villa: {
+        titre: "Villa you are interested in",
+        choix: ["Not decided yet", "Villa Type A", "Villa Type B", "Villa Type C"],
+      },
+      projet: {
+        titre: "Type of project",
+        choix: ["Main residence", "Second home", "Rental investment", "Long-term asset"],
+      },
+      horizon: {
+        titre: "Buying timeline",
+        choix: ["Within 3 months", "In 3 to 6 months", "In 6 to 12 months", "Later, just looking"],
+      },
+      budget: {
+        titre: "Budget",
+        choix: ["Under €1M", "€1M to €1.5M", "Over €1.5M", "I’d rather discuss it"],
+      },
+    },
+    message: "Your message",
+    messageAide: "A question, a date for a viewing…",
     envoyer: "Send my request",
+    consentement:
+      "I agree that CITYSTAR may use these details to contact me and send me the information pack. I can unsubscribe at any time.",
+    envoi: "Sending…",
+    merci:
+      "Thank you, your request has been sent. The information pack will reach your inbox within a few minutes, and an adviser will call you back.",
+    erreur: "Your request could not be sent. Please try again, or call us on the number below.",
     fermer: "Close",
   },
   modales: {

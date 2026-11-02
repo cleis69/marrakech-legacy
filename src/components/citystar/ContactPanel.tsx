@@ -1,12 +1,27 @@
 import { motion } from "motion/react";
 import { ArrowRight, X } from "lucide-react";
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 
-import { contact } from "@/config/citystar";
+import { contact, hubspot } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
+import { canal, provenance } from "./provenance";
 import { useModal } from "./useModal";
+
+type Etat = "repos" | "envoi" | "envoye" | "erreur";
+
+/** Questions facultatives : chaque valeur est celle de la propriété HubSpot, dans l'ordre des choix traduits. */
+const QUESTIONS = [
+  ["villa", "citystar_villa", ["indecis", "A", "B", "C"]],
+  [
+    "projet",
+    "citystar_projet",
+    ["residence_principale", "residence_secondaire", "investissement_locatif", "patrimonial"],
+  ],
+  ["horizon", "citystar_horizon", ["3_mois", "3_6_mois", "6_12_mois", "plus_tard"]],
+  ["budget", "citystar_budget", ["moins_1m", "1_1_5m", "plus_1_5m", "non_precise"]],
+] as const;
 
 /** `selection` : réponses d'un outil, affichées et jointes à la demande seulement si le visiteur l'envoie. */
 export function ContactPanel({
@@ -16,9 +31,53 @@ export function ContactPanel({
   onClose: () => void;
   selection?: Selection | null;
 }) {
-  const { t } = useDevise();
+  const { t, langue } = useDevise();
   const ref = useModal<HTMLElement>(onClose);
   const [joined, setJoined] = useState(selection ?? null);
+  const [etat, setEtat] = useState<Etat>("repos");
+
+  /**
+   * La demande crée le contact dans HubSpot avec ses réponses, la langue du site et la provenance
+   * du visiteur : Brevo lui envoie ensuite le dossier. HubSpot ne vérifie pas les valeurs reçues.
+   */
+  async function envoyer(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const champs = new FormData(event.currentTarget);
+    const texte = (nom: string) => String(champs.get(nom) ?? "").trim();
+    const [prenom, ...reste] = texte("nom").split(/\s+/);
+    const message = [texte("message"), joined && `${joined.outil} : ${joined.lignes.join(" · ")}`]
+      .filter(Boolean)
+      .join("\n\n");
+    const origine = provenance();
+    setEtat("envoi");
+    try {
+      const reponse = await fetch(hubspot.envoi, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fields: [
+            { name: "firstname", value: prenom },
+            { name: "lastname", value: reste.join(" ") },
+            { name: "email", value: texte("email") },
+            { name: "phone", value: texte("telephone") },
+            { name: "message", value: message },
+            { name: "hs_language", value: langue },
+            { name: "citystar_langue", value: langue },
+            { name: "citystar_canal", value: canal(origine) },
+            ...QUESTIONS.map(([, propriete]) => ({ name: propriete, value: texte(propriete) })),
+            ...Object.entries(origine.utm).map(([name, value]) => ({ name, value })),
+          ].filter((champ) => champ.value),
+          context: { pageUri: window.location.href, pageName: document.title },
+          legalConsentOptions: {
+            consent: { consentToProcess: true, text: t.contact.consentement },
+          },
+        }),
+      });
+      setEtat(reponse.ok ? "envoye" : "erreur");
+    } catch {
+      setEtat("erreur");
+    }
+  }
   return (
     <motion.aside
       ref={ref}
@@ -56,38 +115,59 @@ export function ContactPanel({
             </button>
           </div>
         )}
-        <form action={`mailto:${contact.email}`} method="post" encType="text/plain">
-          {joined && (
-            <input
-              type="hidden"
-              name="Sélection"
-              value={`${joined.outil} : ${joined.lignes.join(" · ")}`}
-            />
-          )}
-          <label>
-            {t.contact.nom}
-            <input name="Nom" required />
-          </label>
-          <label>
-            {t.contact.telephone}
-            <input type="tel" name="Téléphone" required />
-          </label>
-          <label>
-            {t.contact.email}
-            <input type="email" name="Email" required />
-          </label>
-          <label>
-            {t.contact.interet}
-            <select name="Intérêt">
-              {t.contact.interets.map((interet) => (
-                <option key={interet}>{interet}</option>
-              ))}
-            </select>
-          </label>
-          <button type="submit">
-            {t.contact.envoyer} <ArrowRight />
-          </button>
-        </form>
+        {etat === "envoye" ? (
+          <p className="contact-merci" role="status">
+            {t.contact.merci}
+          </p>
+        ) : (
+          <form onSubmit={envoyer}>
+            <label>
+              {t.contact.nom}
+              <input name="nom" autoComplete="name" required />
+            </label>
+            <label>
+              {t.contact.telephone}
+              <input type="tel" name="telephone" autoComplete="tel" required />
+            </label>
+            <label className="contact-large">
+              {t.contact.email}
+              <input type="email" name="email" autoComplete="email" required />
+            </label>
+            <p className="contact-intertitre">{t.contact.projet}</p>
+            {QUESTIONS.map(([cle, propriete, valeurs]) => (
+              <label key={cle}>
+                {t.contact.questions[cle].titre}
+                <select
+                  name={propriete}
+                  defaultValue={cle === "villa" ? (selection?.villa ?? "") : ""}
+                >
+                  <option value="">{t.contact.choisir}</option>
+                  {valeurs.map((valeur, i) => (
+                    <option key={valeur} value={valeur}>
+                      {t.contact.questions[cle].choix[i]}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            ))}
+            <label className="contact-large">
+              {t.contact.message}
+              <textarea name="message" rows={3} placeholder={t.contact.messageAide} />
+            </label>
+            <label className="contact-consentement">
+              <input type="checkbox" name="consentement" required />
+              <span>{t.contact.consentement}</span>
+            </label>
+            {etat === "erreur" && (
+              <p className="contact-erreur" role="alert">
+                {t.contact.erreur}
+              </p>
+            )}
+            <button type="submit" disabled={etat === "envoi"}>
+              {etat === "envoi" ? t.contact.envoi : t.contact.envoyer} <ArrowRight />
+            </button>
+          </form>
+        )}
         <div className="direct-contact">
           <a href={`tel:${contact.telephone}`}>{contact.telephoneAffiche}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>

@@ -61,8 +61,8 @@ export type CursorHandlers = {
   onCursorLeave: () => void;
 };
 
-/** Réponses d'un outil transmises au formulaire de contact existant. */
-export type Selection = { outil: string; lignes: string[] };
+/** Réponses d'un outil transmises au formulaire de contact existant ; `villa` : type à présélectionner. */
+export type Selection = { outil: string; lignes: string[]; villa?: TypeVilla };
 
 /** Budget tel que le visiteur l'a choisi : le montant garde la devise dans laquelle il l'a vu. */
 export type Budget = { montant: number; devise: Devise };
