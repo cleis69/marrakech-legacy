@@ -54,6 +54,8 @@ export function canal({ utm, clicGoogle, referent = "" }: Provenance) {
   );
   if (clicGoogle || (source.includes("google") && payant)) return "google_ads";
   if (/facebook|\bfb\b|instagram|\big\b|meta/.test(source) && payant) return "meta_ads";
+  if (source.includes("linkedin") && payant) return "linkedin_ads";
+  if (/snapchat|\bsnap\b/.test(source) && payant) return "snapchat_ads";
   if (/gbp|gmb|google_?business/.test(`${source} ${campagne}`)) return "google_business";
   if (/instagram|\big\b/.test(source) || referent.includes("instagram")) return "instagram";
   if (source.includes("whatsapp") || /whatsapp|wa\.me/.test(referent)) return "whatsapp";
