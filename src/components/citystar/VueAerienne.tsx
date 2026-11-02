@@ -341,7 +341,7 @@ function FicheType({ type }: { type: TypeVilla }) {
           />
         )}
         <div>
-          <small>{faits.tag}</small>
+          {faits.tag && <small>{faits.tag}</small>}
           <h3>{t.villas.typeVilla(type)}</h3>
         </div>
       </div>

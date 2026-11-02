@@ -149,7 +149,7 @@ const fr = {
     decouvrir: "Découvrir la villa",
     curseur: "Explorer",
     decouvrirAria: (type: TypeVilla, surface: string, suites: string, tag: string) =>
-      `Découvrir la villa type ${type}\u00a0: ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Découvrir la villa type ${type}\u00a0: ${surface}, ${suites}${tag ? `, ${tag.toLowerCase()}` : ""}`,
     retour: "Les trois villas",
     onglets: "Types de villa",
     typeVilla: (type: TypeVilla) => `Villa type ${type}`,
@@ -174,7 +174,7 @@ const fr = {
       B: ["La vie", "en terrasses."],
       C: ["Des volumes", "autour de l’eau."],
     } as Record<TypeVilla, [string, string]>,
-    tags: { A: "Accessible", B: "Terrasses", C: "Contemporaine" } as Record<TypeVilla, string>,
+    tags: { A: "Avec ascenseur", B: "", C: "" } as Record<TypeVilla, string>,
     descriptions: {
       A: "Pensée pour les résidents à mobilité réduite\u00a0: ascenseur, salles de bains accessibles et circulations généreuses.",
       B: "Une architecture exigeante et des matériaux de haute qualité, prolongés par de vastes terrasses.",
@@ -1018,7 +1018,7 @@ const en: Textes = {
     decouvrir: "Discover the villa",
     curseur: "Explore",
     decouvrirAria: (type, surface, suites, tag) =>
-      `Discover villa type ${type}: ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Discover villa type ${type}: ${surface}, ${suites}${tag ? `, ${tag.toLowerCase()}` : ""}`,
     retour: "The three villas",
     onglets: "Villa types",
     typeVilla: (type) => `Villa type ${type}`,
@@ -1043,7 +1043,7 @@ const en: Textes = {
       B: ["Life on", "the terraces."],
       C: ["Volumes", "around the water."],
     },
-    tags: { A: "Accessible", B: "Terraces", C: "Contemporary" },
+    tags: { A: "With lift", B: "", C: "" },
     descriptions: {
       A: "Designed for residents with reduced mobility: lift, accessible bathrooms and generous circulation.",
       B: "Demanding architecture and high quality materials, extended by wide terraces.",

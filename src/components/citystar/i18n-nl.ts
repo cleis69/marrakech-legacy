@@ -142,7 +142,7 @@ export const nl: Textes = {
     decouvrir: "Ontdek de villa",
     curseur: "Ontdek",
     decouvrirAria: (type, surface, suites, tag) =>
-      `Ontdek villatype ${type}: ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Ontdek villatype ${type}: ${surface}, ${suites}${tag ? `, ${tag.toLowerCase()}` : ""}`,
     retour: "De drie villa’s",
     onglets: "Villatypes",
     typeVilla: (type) => `Villatype ${type}`,
@@ -167,7 +167,7 @@ export const nl: Textes = {
       B: ["Leven op", "de terrassen."],
       C: ["Volumes", "rond het water."],
     },
-    tags: { A: "Toegankelijk", B: "Terrassen", C: "Eigentijds" },
+    tags: { A: "Met lift", B: "", C: "" },
     descriptions: {
       A: "Ontworpen voor bewoners met beperkte mobiliteit: lift, toegankelijke badkamers en ruime doorgangen.",
       B: "Veeleisende architectuur en hoogwaardige materialen, verlengd door ruime terrassen.",

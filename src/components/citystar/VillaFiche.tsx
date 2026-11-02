@@ -76,7 +76,8 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
             ))}
           </nav>
           <span className="vf-tabs-label">
-            {t.villas.typeVilla(villa.type)} · {faits.tag}
+            {t.villas.typeVilla(villa.type)}
+            {faits.tag && ` · ${faits.tag}`}
           </span>
         </div>
 

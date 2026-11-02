@@ -135,7 +135,7 @@ export const no: Textes = {
     decouvrir: "Oppdag villaen",
     curseur: "Utforsk",
     decouvrirAria: (type, surface, suites, tag) =>
-      `Oppdag villatype ${type}: ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Oppdag villatype ${type}: ${surface}, ${suites}${tag ? `, ${tag.toLowerCase()}` : ""}`,
     retour: "De tre villaene",
     onglets: "Villatyper",
     typeVilla: (type) => `Villatype ${type}`,
@@ -160,7 +160,7 @@ export const no: Textes = {
       B: ["Livet på", "terrassene."],
       C: ["Volumer", "rundt vannet."],
     },
-    tags: { A: "Tilgjengelig", B: "Terrasser", C: "Moderne" },
+    tags: { A: "Med heis", B: "", C: "" },
     descriptions: {
       A: "Tenkt for beboere med nedsatt bevegelighet: heis, tilgjengelige bad og romslige gangarealer.",
       B: "Krevende arkitektur og materialer av høy kvalitet, utvidet med store terrasser.",

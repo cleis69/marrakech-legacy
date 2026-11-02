@@ -72,7 +72,7 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
                     loading="lazy"
                     decoding="async"
                   />
-                  <span className="vd-tag">{faits.tag}</span>
+                  {faits.tag && <span className="vd-tag">{faits.tag}</span>}
                 </span>
                 <span className="vd-ligne">
                   <strong>

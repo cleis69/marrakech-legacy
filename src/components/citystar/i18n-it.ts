@@ -137,7 +137,7 @@ export const it: Textes = {
     decouvrir: "Scoprire la villa",
     curseur: "Esplora",
     decouvrirAria: (type, surface, suites, tag) =>
-      `Scoprire la villa tipo ${type}: ${surface}, ${suites}, ${tag.toLowerCase()}`,
+      `Scoprire la villa tipo ${type}: ${surface}, ${suites}${tag ? `, ${tag.toLowerCase()}` : ""}`,
     retour: "Le tre ville",
     onglets: "Tipi di villa",
     typeVilla: (type) => `Villa tipo ${type}`,
@@ -162,7 +162,7 @@ export const it: Textes = {
       B: ["La vita sulle", "terrazze."],
       C: ["Volumi", "intorno all’acqua."],
     },
-    tags: { A: "Accessibile", B: "Terrazze", C: "Contemporanea" },
+    tags: { A: "Con ascensore", B: "", C: "" },
     descriptions: {
       A: "Pensata per i residenti a mobilità ridotta: ascensore, bagni accessibili e percorsi ampi.",
       B: "Un’architettura esigente e materiali di alta qualità, prolungati da ampie terrazze.",

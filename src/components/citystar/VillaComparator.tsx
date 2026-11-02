@@ -225,10 +225,6 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
         ),
     },
     {
-      label: textes.comparateur.atout,
-      cells: (type) => <span className="cp-text">{textes.villas.tags[type]}</span>,
-    },
-    {
       label: textes.comparateur.plans,
       cells: (t) => {
         const villa = villas.find((v) => v.type === t);
