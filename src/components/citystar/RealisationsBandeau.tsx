@@ -36,7 +36,8 @@ export function RealisationsBandeau() {
           <p className="rb-kicker">{t.bandeau.kicker}</p>
           <Reveal>
             <h2 id="rb-titre">
-              {debut} <span className="ton">{suite}</span>
+              {debut} <br />
+              <span className="ton">{suite}</span>
             </h2>
           </Reveal>
         </div>

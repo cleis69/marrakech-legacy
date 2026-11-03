@@ -188,7 +188,7 @@ export const textesRealisations: Partial<Record<Langue, TexteRealisations>> = {
     description:
       "Espagne, Royaume-Uni, Norvège, Irak : les projets menés par le promoteur de CITYSTAR et ses associés avant Marrakech.",
     kicker: "Réalisations",
-    titreH1: ["Avant Marrakech,", "déjà bâti ailleurs."],
+    titreH1: ["Un promoteur", "qui a déjà fait ses preuves."],
     intro:
       "Des hôtels aux îles Canaries, des maisons à Sheffield, des immeubles réhabilités en Norvège : ce que le promoteur de CITYSTAR et ses associés ont déjà mené.",
     apercu:
@@ -211,8 +211,8 @@ export const textesRealisations: Partial<Record<Langue, TexteRealisations>> = {
     },
     lienAccueil: "Voir ses réalisations",
     bandeau: {
-      kicker: "Réalisations du promoteur",
-      titre: ["Avant Marrakech,", "déjà bâti ailleurs."],
+      kicker: "Réalisations",
+      titre: ["Un promoteur", "qui a déjà fait ses preuves."],
       lien: "Toutes les réalisations",
     },
   },
