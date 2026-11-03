@@ -21,7 +21,7 @@ const QUESTIONS = [
     ["residence_principale", "residence_secondaire", "investissement_locatif", "patrimonial"],
   ],
   ["horizon", "citystar_horizon", ["3_mois", "3_6_mois", "6_12_mois", "plus_tard"]],
-  ["budget", "citystar_budget", ["moins_1m", "1_1_5m", "plus_1_5m", "non_precise"]],
+  ["budget", "citystar_budget", ["moins_800k", "800k_1m", "1_1_5m", "plus_1_5m", "non_precise"]],
 ] as const;
 
 /** `selection` : réponses d'un outil, affichées et jointes à la demande seulement si le visiteur l'envoie. */

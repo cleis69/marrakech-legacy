@@ -851,7 +851,8 @@ export const no: Textes = {
       budget: {
         titre: "Budsjett",
         choix: [
-          "Under 1 mill. €",
+          "Under 800 000 €",
+          "800 000 € til 1 mill. €",
           "1 til 1,5 mill. €",
           "Over 1,5 mill. €",
           "Vil heller snakke om det",

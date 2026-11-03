@@ -871,7 +871,13 @@ export const it: Textes = {
       },
       budget: {
         titre: "Budget",
-        choix: ["Meno di 1 M€", "Da 1 a 1,5 M€", "Oltre 1,5 M€", "Preferisco parlarne"],
+        choix: [
+          "Meno di 800.000 €",
+          "Da 800.000 € a 1 M€",
+          "Da 1 a 1,5 M€",
+          "Oltre 1,5 M€",
+          "Preferisco parlarne",
+        ],
       },
     },
     message: "Il suo messaggio",

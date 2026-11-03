@@ -869,7 +869,8 @@ export const nl: Textes = {
       budget: {
         titre: "Budget",
         choix: [
-          "Minder dan € 1 mln",
+          "Minder dan € 800.000",
+          "€ 800.000 tot 1 mln",
           "€ 1 tot 1,5 mln",
           "Meer dan € 1,5 mln",
           "Bespreek ik liever",

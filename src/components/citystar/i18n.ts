@@ -894,7 +894,13 @@ const fr = {
       },
       budget: {
         titre: "Budget",
-        choix: ["Moins de 1 M€", "De 1 à 1,5 M€", "Plus de 1,5 M€", "Je préfère en parler"],
+        choix: [
+          "Moins de 800 k€",
+          "De 800 k€ à 1 M€",
+          "De 1 à 1,5 M€",
+          "Plus de 1,5 M€",
+          "Je préfère en parler",
+        ],
       },
     },
     message: "Votre message",
@@ -1759,7 +1765,7 @@ const en: Textes = {
       },
       budget: {
         titre: "Budget",
-        choix: ["Under €1M", "€1M to €1.5M", "Over €1.5M", "I’d rather discuss it"],
+        choix: ["Under €800k", "€800k to €1M", "€1M to €1.5M", "Over €1.5M", "I’d rather discuss it"],
       },
     },
     message: "Your message",
