@@ -13,7 +13,7 @@ const nl: Copie = {
     visite: "U ontvangt deze e-mail over uw afspraak bij CITYSTAR.",
     proprio: "U ontvangt deze e-mail als koper van een CITYSTAR-villa.",
   },
-  signature: { salut: "Tot snel,", role: "Adviseur CITYSTAR", equipe: "Het CITYSTAR-team" },
+  signature: { salut: "Tot snel,", role: "Deskundige vastgoedconsultant van CITYSTAR", equipe: "Het CITYSTAR-team" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Plattegrond (pdf)",
   pageBrochure: (n) => `brochure, p. ${n}`,
@@ -21,14 +21,14 @@ const nl: Copie = {
   plainPied: "drempelvrij toegankelijk",
   source: "Bron",
   contact: {
-    visite: { kicker: "Uw adviseur", titre: "Bezoek het domein samen met ons.", texte: "Ter plaatse in Marrakech of via video, op een moment dat u schikt. Uw adviseur beantwoordt al uw vragen.", principal: "Plan een bezoek", secondaire: "Spreek een adviseur" },
-    avant: { kicker: "Uw adviseur", titre: "Een vraag vóór uw bezoek?", texte: "Uw adviseur antwoordt direct, via WhatsApp of telefoon.", principal: "Stuur mijn adviseur een bericht", secondaire: "Bellen" },
-    apres: { kicker: "Uw adviseur", titre: "Twijfelt u nog?", texte: "Kom het domein nog eens bekijken, ter plaatse of via video, of stel uw vragen aan uw adviseur.", principal: "Plan een nieuw bezoek", secondaire: "Spreek een adviseur" },
-    proprio: { kicker: "Uw adviseur", titre: "Uw adviseur blijft aan uw zijde.", texte: "Een vraag over de bouw, een betaling of een document? Stuur uw adviseur een bericht of bel.", principal: "Stuur mijn adviseur een bericht", secondaire: "Bellen" },
+    visite: { kicker: "Uw consultant", titre: "Bezoek het domein samen met ons.", texte: "Ter plaatse in Marrakech of via video, op een moment dat u schikt. Uw consultant beantwoordt al uw vragen.", principal: "Plan een bezoek", secondaire: "Spreek een consultant" },
+    avant: { kicker: "Uw consultant", titre: "Een vraag vóór uw bezoek?", texte: "Uw consultant antwoordt direct, via WhatsApp of telefoon.", principal: "Stuur mijn consultant een bericht", secondaire: "Bellen" },
+    apres: { kicker: "Uw consultant", titre: "Twijfelt u nog?", texte: "Kom het domein nog eens bekijken, ter plaatse of via video, of stel uw vragen aan uw consultant.", principal: "Plan een nieuw bezoek", secondaire: "Spreek een consultant" },
+    proprio: { kicker: "Uw consultant", titre: "Uw consultant blijft aan uw zijde.", texte: "Een vraag over de bouw, een betaling of een document? Stuur uw consultant een bericht of bel.", principal: "Stuur mijn consultant een bericht", secondaire: "Bellen" },
     telephone: (tel) => `of bel ${tel}`,
     messages: {
       visite: "Hallo, ik wil graag een bezoek aan CITYSTAR plannen, ter plaatse of via video.",
-      conseiller: "Hallo, ik wil graag een adviseur van CITYSTAR spreken.",
+      conseiller: "Hallo, ik wil graag een consultant van CITYSTAR spreken.",
       proprio: "Hallo, ik ben koper van een CITYSTAR-villa en ik heb een vraag.",
     },
   },
@@ -93,7 +93,7 @@ const nl: Copie = {
       texte:
         "De ontwikkelaar financiert de bouw met eigen middelen. Hij accepteert ook kopers die hun villa met een hypotheek financieren, en heeft al projecten in het buitenland opgeleverd.",
     }),
-    texte: "Uw adviseur geeft u het exacte betalingsschema van de villa die u kiest.",
+    texte: "Uw consultant geeft u het exacte betalingsschema van de villa die u kiest.",
     bouton: "Ontvang het schema van mijn villa",
     whatsapp: "Hallo, ik ontvang graag het gedetailleerde betalingsschema van een CITYSTAR-villa.",
   },
@@ -162,7 +162,7 @@ const nl: Copie = {
     alt: "De ingang van het CITYSTAR-domein bij schemering",
     kicker: "Uw afspraak",
     titre: ["Tot binnenkort", "bij CITYSTAR."],
-    lieu: "Oulad Hassoune, Marrakech. Uw adviseur wacht u op bij de ingang van het domein.",
+    lieu: "Oulad Hassoune, Marrakech. Uw consultant wacht u op bij de ingang van het domein.",
     intro: "Tijdens het bezoek bekijken we samen:",
     points: [
       "Het domein en de ligging van de kavels die nog vrij zijn",
@@ -228,7 +228,7 @@ const nl: Copie = {
     encadre: (livraison) => ({
       titre: `Oplevering ${livraison}`,
       texte:
-        "U ontvangt een e-mail bij elke nieuwe bouwfase. Uw adviseur blijft bereikbaar via WhatsApp voor al uw vragen.",
+        "U ontvangt een e-mail bij elke nieuwe bouwfase. Uw consultant blijft bereikbaar via WhatsApp voor al uw vragen.",
     }),
     bouton: "Open mijn omgeving",
   },

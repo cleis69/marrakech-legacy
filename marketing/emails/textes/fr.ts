@@ -17,7 +17,7 @@ const fr = {
     visite: "Vous recevez cet e-mail au sujet de votre rendez-vous CITYSTAR.",
     proprio: "Vous recevez cet e-mail en tant qu’acquéreur d’une villa CITYSTAR.",
   },
-  signature: { salut: "À très vite,", role: "Conseiller CITYSTAR", equipe: "L’équipe CITYSTAR" },
+  signature: { salut: "À très vite,", role: "Consultant expert en immobilier CITYSTAR", equipe: "L’équipe CITYSTAR" },
   poids: (mo: string) => `${mo} Mo`,
   planPdf: "Plan PDF",
   pageBrochure: (n: number) => `brochure, p. ${n}`,
@@ -25,14 +25,14 @@ const fr = {
   plainPied: "accessible de plain-pied",
   source: "Source",
   contact: {
-    visite: { kicker: "Votre conseiller", titre: "Visitons le domaine ensemble.", texte: "Sur place à Marrakech ou en visio, à l’heure qui vous convient. Votre conseiller répond à toutes vos questions.", principal: "Organiser une visite", secondaire: "Parler à un conseiller" },
-    avant: { kicker: "Votre conseiller", titre: "Une question avant la visite ?", texte: "Votre conseiller vous répond directement, sur WhatsApp ou par téléphone.", principal: "Écrire à mon conseiller", secondaire: "Appeler" },
-    apres: { kicker: "Votre conseiller", titre: "Encore une hésitation ?", texte: "Revenez voir le domaine, sur place ou en visio, ou posez vos questions à votre conseiller.", principal: "Organiser une nouvelle visite", secondaire: "Parler à un conseiller" },
-    proprio: { kicker: "Votre conseiller", titre: "Votre conseiller reste à vos côtés.", texte: "Une question sur le chantier, un paiement ou un document ? Écrivez-lui ou appelez-le.", principal: "Écrire à mon conseiller", secondaire: "Appeler" },
+    visite: { kicker: "Votre consultant", titre: "Visitons le domaine ensemble.", texte: "Sur place à Marrakech ou en visio, à l’heure qui vous convient. Votre consultant répond à toutes vos questions.", principal: "Organiser une visite", secondaire: "Parler à un consultant" },
+    avant: { kicker: "Votre consultant", titre: "Une question avant la visite ?", texte: "Votre consultant vous répond directement, sur WhatsApp ou par téléphone.", principal: "Écrire à mon consultant", secondaire: "Appeler" },
+    apres: { kicker: "Votre consultant", titre: "Encore une hésitation ?", texte: "Revenez voir le domaine, sur place ou en visio, ou posez vos questions à votre consultant.", principal: "Organiser une nouvelle visite", secondaire: "Parler à un consultant" },
+    proprio: { kicker: "Votre consultant", titre: "Votre consultant reste à vos côtés.", texte: "Une question sur le chantier, un paiement ou un document ? Écrivez-lui ou appelez-le.", principal: "Écrire à mon consultant", secondaire: "Appeler" },
     telephone: (tel: string) => `ou appelez le ${tel}`,
     messages: {
       visite: "Bonjour, je souhaite organiser une visite de CITYSTAR, sur place ou en visio.",
-      conseiller: "Bonjour, j’aimerais parler à un conseiller CITYSTAR.",
+      conseiller: "Bonjour, j’aimerais parler à un consultant CITYSTAR.",
       proprio: "Bonjour, je suis acquéreur d’une villa CITYSTAR et j’ai une question.",
     },
   },
@@ -98,7 +98,7 @@ const fr = {
       texte:
         "Le promoteur finance le chantier sur ses propres fonds. Il accepte aussi les acquéreurs qui financent leur villa par crédit immobilier, et il a déjà livré des programmes à l’étranger.",
     }),
-    texte: "Votre conseiller vous remet l’échéancier exact de la villa que vous choisissez.",
+    texte: "Votre consultant vous remet l’échéancier exact de la villa que vous choisissez.",
     bouton: "Recevoir l’échéancier de ma villa",
     whatsapp: "Bonjour, je souhaite recevoir l’échéancier détaillé d’une villa CITYSTAR.",
   },
@@ -168,7 +168,7 @@ const fr = {
     alt: "L’entrée du domaine CITYSTAR au crépuscule",
     kicker: "Votre rendez-vous",
     titre: ["À bientôt", "à CITYSTAR."] as [string, string],
-    lieu: "Oulad Hassoune, Marrakech. Votre conseiller vous attend à l’entrée du domaine.",
+    lieu: "Oulad Hassoune, Marrakech. Votre consultant vous attend à l’entrée du domaine.",
     intro: "Pendant la visite, nous verrons ensemble :",
     points: [
       "Le domaine et l’emplacement des parcelles encore libres",
@@ -235,7 +235,7 @@ const fr = {
     encadre: (livraison: string) => ({
       titre: `Livraison ${livraison}`,
       texte:
-        "Vous recevez un e-mail à chaque nouvelle étape du chantier. Votre conseiller reste joignable sur WhatsApp pour toute question.",
+        "Vous recevez un e-mail à chaque nouvelle étape du chantier. Votre consultant reste joignable sur WhatsApp pour toute question.",
     }),
     bouton: "Ouvrir mon espace",
   },

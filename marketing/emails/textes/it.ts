@@ -13,7 +13,7 @@ const it: Copie = {
     visite: "Riceve questa e-mail in merito al suo appuntamento CITYSTAR.",
     proprio: "Riceve questa e-mail in quanto acquirente di una villa CITYSTAR.",
   },
-  signature: { salut: "A presto,", role: "Consulente CITYSTAR", equipe: "Il team CITYSTAR" },
+  signature: { salut: "A presto,", role: "Consulente immobiliare esperto CITYSTAR", equipe: "Il team CITYSTAR" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Planimetria PDF",
   pageBrochure: (n) => `brochure, p. ${n}`,

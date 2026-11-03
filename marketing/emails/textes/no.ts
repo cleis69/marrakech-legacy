@@ -13,7 +13,7 @@ const no: Copie = {
     visite: "Du mottar denne e-posten i forbindelse med avtalen din hos CITYSTAR.",
     proprio: "Du mottar denne e-posten som kjøper av en CITYSTAR-villa.",
   },
-  signature: { salut: "Snakkes snart,", role: "Rådgiver hos CITYSTAR", equipe: "CITYSTAR-teamet" },
+  signature: { salut: "Snakkes snart,", role: "Fagkyndig eiendomskonsulent hos CITYSTAR", equipe: "CITYSTAR-teamet" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Plantegning (PDF)",
   pageBrochure: (n) => `brosjyre, s. ${n}`,
@@ -21,14 +21,14 @@ const no: Copie = {
   plainPied: "trinnfri adkomst",
   source: "Kilde",
   contact: {
-    visite: { kicker: "Rådgiveren din", titre: "Bli med på visning av området.", texte: "På stedet i Marrakech eller på video, når det passer deg. Rådgiveren din svarer på alle spørsmålene dine.", principal: "Avtal en visning", secondaire: "Snakk med en rådgiver" },
-    avant: { kicker: "Rådgiveren din", titre: "Et spørsmål før visningen?", texte: "Rådgiveren din svarer direkte, på WhatsApp eller telefon.", principal: "Skriv til rådgiveren min", secondaire: "Ring" },
-    apres: { kicker: "Rådgiveren din", titre: "Fortsatt i tvil?", texte: "Kom og se området igjen, på stedet eller på video, eller still spørsmålene dine til rådgiveren.", principal: "Avtal en ny visning", secondaire: "Snakk med en rådgiver" },
-    proprio: { kicker: "Rådgiveren din", titre: "Rådgiveren din er fortsatt her for deg.", texte: "Et spørsmål om byggingen, en betaling eller et dokument? Skriv eller ring til rådgiveren din.", principal: "Skriv til rådgiveren min", secondaire: "Ring" },
+    visite: { kicker: "Konsulenten din", titre: "Bli med på visning av området.", texte: "På stedet i Marrakech eller på video, når det passer deg. Konsulenten din svarer på alle spørsmålene dine.", principal: "Avtal en visning", secondaire: "Snakk med en konsulent" },
+    avant: { kicker: "Konsulenten din", titre: "Et spørsmål før visningen?", texte: "Konsulenten din svarer direkte, på WhatsApp eller telefon.", principal: "Skriv til konsulenten min", secondaire: "Ring" },
+    apres: { kicker: "Konsulenten din", titre: "Fortsatt i tvil?", texte: "Kom og se området igjen, på stedet eller på video, eller still spørsmålene dine til konsulenten.", principal: "Avtal en ny visning", secondaire: "Snakk med en konsulent" },
+    proprio: { kicker: "Konsulenten din", titre: "Konsulenten din er fortsatt her for deg.", texte: "Et spørsmål om byggingen, en betaling eller et dokument? Skriv eller ring til konsulenten din.", principal: "Skriv til konsulenten min", secondaire: "Ring" },
     telephone: (tel) => `eller ring ${tel}`,
     messages: {
       visite: "Hei, jeg vil gjerne avtale en visning av CITYSTAR, på stedet eller på video.",
-      conseiller: "Hei, jeg vil gjerne snakke med en rådgiver hos CITYSTAR.",
+      conseiller: "Hei, jeg vil gjerne snakke med en konsulent hos CITYSTAR.",
       proprio: "Hei, jeg har kjøpt en CITYSTAR-villa og har et spørsmål.",
     },
   },
@@ -93,7 +93,7 @@ const no: Copie = {
       texte:
         "Utbyggeren finansierer byggingen med egne midler. Utbyggeren tar også imot kjøpere som finansierer villaen med boliglån, og har allerede levert prosjekter i utlandet.",
     }),
-    texte: "Rådgiveren din gir deg den nøyaktige betalingsplanen for villaen du velger.",
+    texte: "Konsulenten din gir deg den nøyaktige betalingsplanen for villaen du velger.",
     bouton: "Få betalingsplanen for min villa",
     whatsapp: "Hei, jeg vil gjerne ha den detaljerte betalingsplanen for en CITYSTAR-villa.",
   },
@@ -162,7 +162,7 @@ const no: Copie = {
     alt: "Inngangen til CITYSTAR-området i skumringen",
     kicker: "Avtalen din",
     titre: ["Vi ses snart", "hos CITYSTAR."],
-    lieu: "Oulad Hassoune, Marrakech. Rådgiveren din møter deg ved inngangen til området.",
+    lieu: "Oulad Hassoune, Marrakech. Konsulenten din møter deg ved inngangen til området.",
     intro: "Under visningen ser vi sammen på:",
     points: [
       "Området og plasseringen av tomtene som fortsatt er ledige",
@@ -228,7 +228,7 @@ const no: Copie = {
     encadre: (livraison) => ({
       titre: `Ferdig ${livraison}`,
       texte:
-        "Du får en e-post ved hver nye etappe i byggingen. Rådgiveren din er fortsatt tilgjengelig på WhatsApp for alle spørsmål.",
+        "Du får en e-post ved hver nye etappe i byggingen. Konsulenten din er fortsatt tilgjengelig på WhatsApp for alle spørsmål.",
     }),
     bouton: "Åpne eiersiden min",
   },

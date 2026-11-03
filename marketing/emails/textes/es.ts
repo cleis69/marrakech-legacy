@@ -13,7 +13,7 @@ const es: Copie = {
     visite: "Recibe este correo en relación con su cita en CITYSTAR.",
     proprio: "Recibe este correo como comprador de una villa CITYSTAR.",
   },
-  signature: { salut: "Hasta pronto,", role: "Asesor CITYSTAR", equipe: "El equipo CITYSTAR" },
+  signature: { salut: "Hasta pronto,", role: "Consultor inmobiliario experto de CITYSTAR", equipe: "El equipo CITYSTAR" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Plano en PDF",
   pageBrochure: (n) => `folleto, p. ${n}`,
@@ -21,14 +21,14 @@ const es: Copie = {
   plainPied: "accesible sin escalones",
   source: "Fuente",
   contact: {
-    visite: { kicker: "Su asesor", titre: "Visitemos juntos el conjunto.", texte: "In situ en Marrakech o por videollamada, a la hora que le convenga. Su asesor responde a todas sus preguntas.", principal: "Organizar una visita", secondaire: "Hablar con un asesor" },
-    avant: { kicker: "Su asesor", titre: "¿Una pregunta antes de la visita?", texte: "Su asesor le responde directamente, por WhatsApp o por teléfono.", principal: "Escribir a mi asesor", secondaire: "Llamar" },
-    apres: { kicker: "Su asesor", titre: "¿Aún tiene dudas?", texte: "Vuelva a ver el conjunto, in situ o por videollamada, o plantee sus preguntas a su asesor.", principal: "Organizar otra visita", secondaire: "Hablar con un asesor" },
-    proprio: { kicker: "Su asesor", titre: "Su asesor sigue a su lado.", texte: "¿Una pregunta sobre la obra, un pago o un documento? Escríbale o llámele.", principal: "Escribir a mi asesor", secondaire: "Llamar" },
+    visite: { kicker: "Su consultor", titre: "Visitemos juntos el conjunto.", texte: "In situ en Marrakech o por videollamada, a la hora que le convenga. Su consultor responde a todas sus preguntas.", principal: "Organizar una visita", secondaire: "Hablar con un consultor" },
+    avant: { kicker: "Su consultor", titre: "¿Una pregunta antes de la visita?", texte: "Su consultor le responde directamente, por WhatsApp o por teléfono.", principal: "Escribir a mi consultor", secondaire: "Llamar" },
+    apres: { kicker: "Su consultor", titre: "¿Aún tiene dudas?", texte: "Vuelva a ver el conjunto, in situ o por videollamada, o plantee sus preguntas a su consultor.", principal: "Organizar otra visita", secondaire: "Hablar con un consultor" },
+    proprio: { kicker: "Su consultor", titre: "Su consultor sigue a su lado.", texte: "¿Una pregunta sobre la obra, un pago o un documento? Escríbale o llámele.", principal: "Escribir a mi consultor", secondaire: "Llamar" },
     telephone: (tel) => `o llame al ${tel}`,
     messages: {
       visite: "Hola, me gustaría organizar una visita de CITYSTAR, in situ o por videollamada.",
-      conseiller: "Hola, me gustaría hablar con un asesor de CITYSTAR.",
+      conseiller: "Hola, me gustaría hablar con un consultor de CITYSTAR.",
       proprio: "Hola, soy comprador de una villa CITYSTAR y tengo una pregunta.",
     },
   },
@@ -93,7 +93,7 @@ const es: Copie = {
       texte:
         "El promotor financia la obra con sus propios fondos. También acepta compradores que financian su villa con hipoteca, y ya ha entregado proyectos en el extranjero.",
     }),
-    texte: "Su asesor le entregará el calendario exacto de la villa que elija.",
+    texte: "Su consultor le entregará el calendario exacto de la villa que elija.",
     bouton: "Recibir el calendario de mi villa",
     whatsapp: "Hola, me gustaría recibir el calendario de pagos detallado de una villa CITYSTAR.",
   },
@@ -162,7 +162,7 @@ const es: Copie = {
     alt: "La entrada del conjunto CITYSTAR al atardecer",
     kicker: "Su cita",
     titre: ["Hasta pronto", "en CITYSTAR."],
-    lieu: "Oulad Hassoune, Marrakech. Su asesor le espera en la entrada del conjunto.",
+    lieu: "Oulad Hassoune, Marrakech. Su consultor le espera en la entrada del conjunto.",
     intro: "Durante la visita veremos juntos:",
     points: [
       "El conjunto y la ubicación de las parcelas todavía libres",
@@ -228,7 +228,7 @@ const es: Copie = {
     encadre: (livraison) => ({
       titre: `Entrega en ${livraison}`,
       texte:
-        "Recibirá un correo en cada nueva etapa de la obra. Su asesor sigue disponible por WhatsApp para cualquier pregunta.",
+        "Recibirá un correo en cada nueva etapa de la obra. Su consultor sigue disponible por WhatsApp para cualquier pregunta.",
     }),
     bouton: "Abrir mi espacio",
   },

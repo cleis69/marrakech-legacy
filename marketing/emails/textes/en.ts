@@ -13,7 +13,7 @@ const en: Copie = {
     visite: "You are receiving this email about your CITYSTAR appointment.",
     proprio: "You are receiving this email as the buyer of a CITYSTAR villa.",
   },
-  signature: { salut: "Speak soon,", role: "CITYSTAR adviser", equipe: "The CITYSTAR team" },
+  signature: { salut: "Speak soon,", role: "CITYSTAR expert real estate consultant", equipe: "The CITYSTAR team" },
   poids: (mo) => `${mo} MB`,
   planPdf: "Floor plan (PDF)",
   pageBrochure: (n) => `brochure, p. ${n}`,
@@ -21,14 +21,14 @@ const en: Copie = {
   plainPied: "step-free access",
   source: "Source",
   contact: {
-    visite: { kicker: "Your adviser", titre: "Let’s visit the estate together.", texte: "On site in Marrakech or by video call, at a time that suits you. Your adviser answers all your questions.", principal: "Arrange a visit", secondaire: "Talk to an adviser" },
-    avant: { kicker: "Your adviser", titre: "A question before your visit?", texte: "Your adviser answers directly, on WhatsApp or by phone.", principal: "Message my adviser", secondaire: "Call" },
-    apres: { kicker: "Your adviser", titre: "Still hesitating?", texte: "Come back to see the estate, on site or by video call, or ask your adviser your questions.", principal: "Arrange another visit", secondaire: "Talk to an adviser" },
-    proprio: { kicker: "Your adviser", titre: "Your adviser is still by your side.", texte: "A question about the build, a payment or a document? Message or call your adviser.", principal: "Message my adviser", secondaire: "Call" },
+    visite: { kicker: "Your consultant", titre: "Let’s visit the estate together.", texte: "On site in Marrakech or by video call, at a time that suits you. Your consultant answers all your questions.", principal: "Arrange a visit", secondaire: "Talk to a consultant" },
+    avant: { kicker: "Your consultant", titre: "A question before your visit?", texte: "Your consultant answers directly, on WhatsApp or by phone.", principal: "Message my consultant", secondaire: "Call" },
+    apres: { kicker: "Your consultant", titre: "Still hesitating?", texte: "Come back to see the estate, on site or by video call, or ask your consultant your questions.", principal: "Arrange another visit", secondaire: "Talk to a consultant" },
+    proprio: { kicker: "Your consultant", titre: "Your consultant is still by your side.", texte: "A question about the build, a payment or a document? Message or call your consultant.", principal: "Message my consultant", secondaire: "Call" },
     telephone: (tel) => `or call ${tel}`,
     messages: {
       visite: "Hello, I would like to arrange a visit to CITYSTAR, on site or by video call.",
-      conseiller: "Hello, I would like to speak to a CITYSTAR adviser.",
+      conseiller: "Hello, I would like to speak to a CITYSTAR consultant.",
       proprio: "Hello, I am the buyer of a CITYSTAR villa and I have a question.",
     },
   },
@@ -94,7 +94,7 @@ const en: Copie = {
       texte:
         "The developer funds construction from its own capital. It also welcomes buyers who finance their villa with a mortgage, and it has already delivered projects abroad.",
     }),
-    texte: "Your adviser will give you the exact payment schedule for the villa you choose.",
+    texte: "Your consultant will give you the exact payment schedule for the villa you choose.",
     bouton: "Get the payment schedule for my villa",
     whatsapp: "Hello, I would like to receive the detailed payment schedule for a CITYSTAR villa.",
   },
@@ -163,7 +163,7 @@ const en: Copie = {
     alt: "The entrance to the CITYSTAR estate at dusk",
     kicker: "Your appointment",
     titre: ["See you soon", "at CITYSTAR."],
-    lieu: "Oulad Hassoune, Marrakech. Your adviser will meet you at the entrance to the estate.",
+    lieu: "Oulad Hassoune, Marrakech. Your consultant will meet you at the entrance to the estate.",
     intro: "During the visit, we will look together at:",
     points: [
       "The estate and the location of the plots still available",
@@ -229,7 +229,7 @@ const en: Copie = {
     encadre: (livraison) => ({
       titre: `Delivery ${livraison}`,
       texte:
-        "You will receive an email at each new construction stage. Your adviser remains available on WhatsApp for any question.",
+        "You will receive an email at each new construction stage. Your consultant remains available on WhatsApp for any question.",
     }),
     bouton: "Open my area",
   },
