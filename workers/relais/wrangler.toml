@@ -14,6 +14,8 @@ crons = ["* * * * *"]
 HUBSPOT_PORTAIL = "149680604"
 HUBSPOT_FORMULAIRE = "7f0548ff-1279-4540-a266-b6f3297e348e"
 BREVO_LISTE_ENTREE = "15"
+# Reçoit l'alerte « lead chaud » (appel sous 1 h) ; c'est aussi l'expéditeur, authentifié dans Brevo.
+ALERTE_EMAIL = "contact@citystarproperties.com"
 
 [observability]
 enabled = true
