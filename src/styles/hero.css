@@ -16,6 +16,7 @@
 .hero-chip { display: inline-flex; align-items: center; gap: .6rem; width: fit-content; padding: .5rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--ink) 45%, transparent); backdrop-filter: blur(8px); font-size: .78rem; letter-spacing: .04em; animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) .3s both; }
 .hero-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
 .hero-texte { max-width: 36rem; font-size: 1.06rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 92%, transparent); animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) .8s both; }
+.hero-prix { font-weight: 600; color: var(--cream); white-space: nowrap; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; animation: hero-up 1s cubic-bezier(.22, 1, .36, 1) .95s both; }
 .hero-actions .pill-secondary { gap: .5rem; background: color-mix(in oklab, var(--cream) 10%, transparent); backdrop-filter: blur(8px); }
 .hero-actions .pill-secondary .pill-dot { display: inline-grid; place-items: center; }

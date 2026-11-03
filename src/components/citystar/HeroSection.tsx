@@ -7,9 +7,13 @@ import {
   engagements,
   formatMois,
   formatPart,
+  formatPrix,
   formatSurface,
+  prixPublics,
+  prixVilla,
   programme,
   reservation,
+  typeDepart,
   villasChiffres,
 } from "@/config/citystar";
 
@@ -27,12 +31,18 @@ import { PillButton } from "./ui/PillButton";
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 const acompte = reservation.paliers.find((palier) => palier.etape === "reservation");
 export function HeroSection({ onContact }: { onContact: () => void }) {
-  const { langue, t } = useDevise();
+  const { devise, langue, t, taux } = useDevise();
   const texte = t.hero.texte(
     formatSurface(surfaceMax, langue),
     formatSurface(programme.terrainMaxM2, langue),
     programme.trajetMaxMinutes,
   );
+  const depart = prixVilla(typeDepart, devise, taux);
+  const aPartirDe = prixPublics
+    ? t.hero.aPartirDe(
+        `${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`,
+      )
+    : null;
   const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
   const heroRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -107,7 +117,10 @@ export function HeroSection({ onContact }: { onContact: () => void }) {
                 <span>{t.hero.accroche[1]}</span>
               </span>
             </h1>
-            <p className="hero-texte">{texte}</p>
+            <p className="hero-texte">
+              {texte}
+              {aPartirDe && <strong className="hero-prix"> {aPartirDe}</strong>}
+            </p>
             <div className="hero-actions">
               <PillButton label={t.hero.acces} icon={PhoneCall} onClick={onContact} />
               <PillButton

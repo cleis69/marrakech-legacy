@@ -48,24 +48,28 @@ export const villasChiffres: Record<
 /* ------------------------------------------------------------------ */
 
 /**
- * Prix psychologiques, fixés à la main pour les deux devises principales
- * (euros pour le site FR, livres pour le site EN). Ils ne suivent pas le taux
- * de change. Base communiquée par le client le 17/09/2026 : 1,5 M, 1,2 M et
- * 1 M €.
+ * Prix des villas en euros, donnés par le client le 03/11/2026 (avant : 1,48 M,
+ * 1,18 M et 980 000 €, avec des prix en livres fixés à la main). Seul l'euro fait
+ * foi : les autres devises sont des contre-valeurs au taux du jour, signalées « ≈ ».
  */
-// ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
 /**
- * Affichage des prix : coupé à la demande du client (09/10/2026). Tant qu'il vaut
- * false, aucun montant de villa n'apparaît ; les outils affichent « Prix sur demande »
- * et le sélecteur comme le comparateur n'ont plus de curseur de budget.
+ * Affichage des prix : coupé à la demande du client le 09/10/2026, rétabli le
+ * 03/11/2026. Tant qu'il vaut false, aucun montant de villa n'apparaît ; les outils
+ * affichent « Prix sur demande » et le sélecteur comme le comparateur n'ont plus de
+ * curseur de budget.
  */
-export const prixPublics = false;
+export const prixPublics = true;
 
-export const prixVillas: Record<TypeVilla, { EUR: number; GBP: number; confirme: boolean }> = {
-  A: { EUR: 1_480_000, GBP: 1_269_000, confirme: false },
-  B: { EUR: 1_180_000, GBP: 999_000, confirme: false },
-  C: { EUR: 980_000, GBP: 839_000, confirme: false },
+export const prixVillas: Record<TypeVilla, { EUR: number; confirme: boolean }> = {
+  A: { EUR: 1_500_000, confirme: true },
+  B: { EUR: 1_200_000, confirme: true },
+  C: { EUR: 950_000, confirme: true },
 };
+
+/** La villa d'entrée du domaine, la moins chère : son prix est le « à partir de ». */
+export const typeDepart = (Object.keys(prixVillas) as TypeVilla[]).reduce((moins, type) =>
+  prixVillas[type].EUR < prixVillas[moins].EUR ? type : moins,
+);
 
 export const devises = {
   principaleParLangue: {
@@ -378,13 +382,13 @@ export const symbolesDevise: Record<Devise, string> = {
 };
 
 /**
- * Prix d'une villa dans la devise demandée. Euros et livres : prix fixés à la
- * main. Dirhams et couronnes : contre-valeur du prix en euros, arrondie à la
+ * Prix d'une villa dans la devise demandée. Euros : prix donné par le client.
+ * Livres, dirhams et couronnes : contre-valeur du prix en euros, arrondie à la
  * dizaine de milliers inférieure, donc approximative.
  */
 export function prixVilla(type: TypeVilla, devise: Devise, taux: Taux = devises.tauxDeSecours) {
   const prix = prixVillas[type];
-  if (devise === "EUR" || devise === "GBP") return { montant: prix[devise], approximatif: false };
+  if (devise === "EUR") return { montant: prix.EUR, approximatif: false };
   const pas = devises.arrondiContreValeur;
   return { montant: Math.floor((prix.EUR * taux[devise]) / pas) * pas, approximatif: true };
 }

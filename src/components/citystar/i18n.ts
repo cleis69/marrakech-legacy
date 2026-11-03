@@ -48,6 +48,7 @@ const fr = {
     },
     texte: (surface: string, terrain: string, minutes: number) =>
       `Jusqu’à ${surface} construits sur ${terrain} de terrain, piscine privée, à ${minutes} minutes de Jemaa el-Fna.`,
+    aPartirDe: (prix: string) => `À partir de ${prix}.`,
     garanties: (fondsPropres: string) => [
       "Réservation chez le notaire",
       `${fondsPropres} fonds propres`,
@@ -470,6 +471,9 @@ const fr = {
     acompte: string;
     livraison: string;
     fondsPropres: string;
+    prixA: string;
+    prixB: string;
+    prixC: string;
   }) => [
     {
       id: "securite",
@@ -514,7 +518,7 @@ const fr = {
     {
       id: "prix",
       q: "Quel est le prix des villas\u00a0?",
-      r: "Les prix sont communiqués sur demande, avec l’échéancier détaillé de la villa qui vous intéresse. Demandez à être rappelé par un consultant.",
+      r: `Les prix vont de ${v.prixC} pour la villa type C à ${v.prixA} pour la villa type A\u00a0; la villa type B est à ${v.prixB}. Un consultant vous remet l’échéancier détaillé de la villa qui vous intéresse.`,
     },
     {
       id: "visite",
@@ -957,6 +961,7 @@ const en: Textes = {
     },
     texte: (surface, terrain, minutes) =>
       `Up to ${surface} built on ${terrain} of land, with a private pool, ${minutes} minutes from Jemaa el-Fna.`,
+    aPartirDe: (prix) => `From ${prix}.`,
     garanties: (fondsPropres) => [
       "Reservation at the notary",
       `${fondsPropres} equity-funded`,
@@ -1402,7 +1407,7 @@ const en: Textes = {
     {
       id: "prix",
       q: "What do the villas cost?",
-      r: "Prices are given on request, together with the detailed payment schedule for the villa you are interested in. Ask a consultant to call you back.",
+      r: `Prices range from ${v.prixC} for villa type C to ${v.prixA} for villa type A; villa type B is ${v.prixB}. A consultant gives you the detailed payment schedule for the villa you are interested in.`,
     },
     {
       id: "visite",

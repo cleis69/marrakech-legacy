@@ -3,7 +3,9 @@ import {
   engagements,
   formatMois,
   formatPart,
+  formatPrix,
   formatSurface,
+  prixVillas,
   programme,
   reservation,
   villasChiffres,
@@ -26,5 +28,8 @@ export function useQuestions() {
     acompte: acompte?.part != null ? formatPart(acompte.part, langue) : "",
     livraison: formatMois(calendrier.livraison, langue),
     fondsPropres: formatPart(engagements.fondsPropres, langue),
+    prixA: formatPrix(prixVillas.A.EUR, "EUR", langue),
+    prixB: formatPrix(prixVillas.B.EUR, "EUR", langue),
+    prixC: formatPrix(prixVillas.C.EUR, "EUR", langue),
   });
 }
