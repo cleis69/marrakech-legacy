@@ -623,8 +623,9 @@ const fr = {
     intro: "Des garanties concrètes, à chaque étape de votre acquisition.",
     items: (fondsPropres: string) => [
       {
-        titre: "Une expérience déjà éprouvée",
-        texte: "Des projets de promotion immobilière déjà menés à l’étranger.",
+        titre: "Un savoir-faire international",
+        texte:
+          "Des projets immobiliers et hôteliers déjà menés au Royaume-Uni, en Espagne et en Norvège.",
       },
       {
         titre: `${fondsPropres} fonds propres`,
@@ -1509,8 +1510,9 @@ const en: Textes = {
     intro: "Concrete guarantees at every stage of your purchase.",
     items: (fondsPropres) => [
       {
-        titre: "Experience already proven",
-        texte: "Property development projects already carried out abroad.",
+        titre: "International expertise",
+        texte:
+          "Property and hotel projects already carried out in the United Kingdom, Spain and Norway.",
       },
       {
         titre: `${fondsPropres} equity-funded`,

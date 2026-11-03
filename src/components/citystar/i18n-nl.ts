@@ -604,8 +604,9 @@ export const nl: Textes = {
     intro: "Concrete garanties, in elke fase van uw aankoop.",
     items: (fondsPropres) => [
       {
-        titre: "Een bewezen ervaring",
-        texte: "Vastgoedprojecten die al in het buitenland zijn gerealiseerd.",
+        titre: "Internationale knowhow",
+        texte:
+          "Vastgoed- en hotelprojecten die al zijn gerealiseerd in het Verenigd Koninkrijk, Spanje en Noorwegen.",
       },
       {
         titre: `${fondsPropres} eigen vermogen`,

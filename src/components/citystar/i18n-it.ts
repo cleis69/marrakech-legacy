@@ -602,8 +602,9 @@ export const it: Textes = {
     intro: "Garanzie concrete, in ogni fase del suo acquisto.",
     items: (fondsPropres) => [
       {
-        titre: "Un’esperienza già collaudata",
-        texte: "Progetti di promozione immobiliare già realizzati all’estero.",
+        titre: "Un know-how internazionale",
+        texte:
+          "Progetti immobiliari e alberghieri già realizzati nel Regno Unito, in Spagna e in Norvegia.",
       },
       {
         titre: `${fondsPropres} fondi propri`,

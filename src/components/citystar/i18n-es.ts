@@ -606,8 +606,9 @@ export const es: Textes = {
     intro: "Garantías concretas, en cada etapa de su compra.",
     items: (fondsPropres) => [
       {
-        titre: "Una experiencia ya probada",
-        texte: "Proyectos de promoción inmobiliaria ya realizados en el extranjero.",
+        titre: "Un saber hacer internacional",
+        texte:
+          "Proyectos inmobiliarios y hoteleros ya realizados en el Reino Unido, España y Noruega.",
       },
       {
         titre: `${fondsPropres} fondos propios`,
