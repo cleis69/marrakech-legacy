@@ -24,6 +24,12 @@ export type TexteConfidentialite = {
 const { email, telephoneAffiche } = contact;
 const adresse = `${contact.adresse.rue}, ${contact.adresse.codePostal} ${contact.adresse.ville}`;
 
+/** Société qui porte le programme et traite les données (bulletin d'identification fiscale, Drive CITYSTAR > Administratif). */
+const societe = "Central Property Investment SARL AU";
+const siege =
+  "Av. Abdelkrim El Khattabi, Résidence Jawad 109, 3e étage, appt 43, Guéliz, Marrakech";
+const rc = "150941";
+
 export const confidentialite: Record<Langue, TexteConfidentialite> = {
   fr: {
     titre: "Politique de confidentialité — CITYSTAR Marrakech",
@@ -39,7 +45,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Qui traite vos données",
         blocs: [
-          `CITYSTAR, ${adresse}, Maroc. Pour toute question sur vos données : ${email} ou ${telephoneAffiche}.`,
+          `${societe}, qui porte le programme CITYSTAR (RC Marrakech ${rc}, siège : ${siege}). Le domaine se situe ${adresse}, Maroc. Pour toute question sur vos données : ${email} ou ${telephoneAffiche}.`,
         ],
       },
       {
@@ -112,7 +118,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Who processes your data",
         blocs: [
-          `CITYSTAR, ${adresse}, Morocco. For any question about your data: ${email} or ${telephoneAffiche}.`,
+          `${societe}, the company behind the CITYSTAR development (Marrakech trade register ${rc}, registered office: ${siege}). The estate is located at ${adresse}, Morocco. For any question about your data: ${email} or ${telephoneAffiche}.`,
         ],
       },
       {
@@ -185,7 +191,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Quién trata sus datos",
         blocs: [
-          `CITYSTAR, ${adresse}, Marruecos. Para cualquier pregunta sobre sus datos: ${email} o ${telephoneAffiche}.`,
+          `${societe}, sociedad promotora del programa CITYSTAR (Registro Mercantil de Marrakech ${rc}, domicilio social: ${siege}). El complejo se encuentra en ${adresse}, Marruecos. Para cualquier pregunta sobre sus datos: ${email} o ${telephoneAffiche}.`,
         ],
       },
       {
@@ -258,7 +264,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Chi tratta i suoi dati",
         blocs: [
-          `CITYSTAR, ${adresse}, Marocco. Per qualsiasi domanda sui suoi dati: ${email} o ${telephoneAffiche}.`,
+          `${societe}, la società che realizza il progetto CITYSTAR (Registro delle imprese di Marrakech ${rc}, sede legale: ${siege}). La tenuta si trova in ${adresse}, Marocco. Per qualsiasi domanda sui suoi dati: ${email} o ${telephoneAffiche}.`,
         ],
       },
       {
@@ -331,7 +337,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Wie uw gegevens verwerkt",
         blocs: [
-          `CITYSTAR, ${adresse}, Marokko. Voor vragen over uw gegevens: ${email} of ${telephoneAffiche}.`,
+          `${societe}, de vennootschap achter het project CITYSTAR (handelsregister Marrakech ${rc}, statutaire zetel: ${siege}). Het domein ligt aan ${adresse}, Marokko. Voor vragen over uw gegevens: ${email} of ${telephoneAffiche}.`,
         ],
       },
       {
@@ -404,7 +410,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
       {
         titre: "Hvem som behandler opplysningene dine",
         blocs: [
-          `CITYSTAR, ${adresse}, Marokko. Spørsmål om opplysningene dine: ${email} eller ${telephoneAffiche}.`,
+          `${societe}, selskapet bak prosjektet CITYSTAR (handelsregisteret i Marrakech ${rc}, forretningsadresse: ${siege}). Eiendommen ligger i ${adresse}, Marokko. Spørsmål om opplysningene dine: ${email} eller ${telephoneAffiche}.`,
         ],
       },
       {
