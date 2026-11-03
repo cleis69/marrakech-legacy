@@ -7,6 +7,7 @@ import { contact, hubspot } from "@/config/citystar";
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { listeIndicatifs, numeroComplet } from "./indicatifs";
+import { langueSequence, languesAppareil } from "./langueAppareil";
 import { canal, provenance } from "./provenance";
 import { useModal } from "./useModal";
 
@@ -39,8 +40,8 @@ export function ContactPanel({
   const indicatifs = useMemo(() => listeIndicatifs(langue), [langue]);
 
   /**
-   * La demande crée le contact dans HubSpot avec ses réponses, la langue du site et la provenance
-   * du visiteur. Elle passe par le relais du site (`hubspot.relais`), qui inscrit aussitôt le contact
+   * La demande crée le contact dans HubSpot avec ses réponses, la langue de sa séquence e-mail,
+   * celle de son appareil et sa provenance. Elle passe par le relais du site (`hubspot.relais`), qui inscrit aussitôt le contact
    * dans la séquence e-mail Brevo ; si le relais ne répond pas (aperçu, panne), elle part directement
    * à HubSpot. HubSpot ne vérifie pas les valeurs reçues.
    */
@@ -53,6 +54,8 @@ export function ContactPanel({
       .filter(Boolean)
       .join("\n\n");
     const origine = provenance();
+    const appareil = languesAppareil();
+    const sequence = langueSequence(langue, appareil);
     setEtat("envoi");
     const corps = JSON.stringify({
       fields: [
@@ -61,8 +64,9 @@ export function ContactPanel({
         { name: "email", value: texte("email") },
         { name: "phone", value: numeroComplet(texte("indicatif"), texte("telephone")) },
         { name: "message", value: message },
-        { name: "hs_language", value: langue },
-        { name: "citystar_langue", value: langue },
+        { name: "hs_language", value: sequence },
+        { name: "citystar_langue", value: sequence },
+        { name: "citystar_langue_appareil", value: appareil.join(", ") },
         { name: "citystar_canal", value: canal(origine) },
         ...QUESTIONS.map(([, propriete]) => ({ name: propriete, value: texte(propriete) })),
         ...Object.entries(origine.utm).map(([name, value]) => ({ name, value })),

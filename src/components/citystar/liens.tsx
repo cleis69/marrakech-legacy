@@ -12,6 +12,7 @@ type Props = {
   hrefLang?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: () => void;
+  onClick?: () => void;
   children?: React.ReactNode;
 };
 

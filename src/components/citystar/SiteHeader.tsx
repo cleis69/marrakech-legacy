@@ -19,6 +19,7 @@ import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
+import { retenirChoixLangue } from "./langueAppareil";
 import { chemin, cheminEspace, Lien, memePage } from "./liens";
 import { useModal } from "./useModal";
 
@@ -78,6 +79,7 @@ function LangSwitch({ aPlat = false }: { aPlat?: boolean }) {
             vers={memePage(page, code)}
             hrefLang={code}
             ariaLabel={NOMS_LANGUES[code]}
+            onClick={retenirChoixLangue}
           >
             {code.toUpperCase()}
           </Lien>
@@ -101,7 +103,7 @@ function LangSwitch({ aPlat = false }: { aPlat?: boolean }) {
         <ul className="lang-liste">
           {LANGUES.map((code) => (
             <li key={code}>
-              <Lien vers={memePage(page, code)} hrefLang={code}>
+              <Lien vers={memePage(page, code)} hrefLang={code} onClick={retenirChoixLangue}>
                 {NOMS_LANGUES[code]}
               </Lien>
             </li>
