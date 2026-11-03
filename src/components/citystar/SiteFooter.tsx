@@ -18,9 +18,10 @@ import { contact } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
+import { confidentialite } from "./confidentialite";
 import { useDevise } from "./currency";
 import { useSite } from "./contexte";
-import { chemin, Lien } from "./liens";
+import { chemin, Lien, slug } from "./liens";
 import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
@@ -129,7 +130,12 @@ export function SiteFooter() {
             <FileText aria-hidden="true" />
           </button>
         </nav>
-        <p className="ft-legal">{t.pied.legal(new Date().getFullYear())}</p>
+        <p className="ft-legal">
+          {t.pied.legal(new Date().getFullYear())} ·{" "}
+          <Lien vers={chemin(langue, slug("confidentialite", langue))}>
+            {confidentialite[langue].lien}
+          </Lien>
+        </p>
       </div>
 
       <div ref={wordRef} className={`ft-giant${wordInView ? " is-in" : ""}`} aria-hidden="true">

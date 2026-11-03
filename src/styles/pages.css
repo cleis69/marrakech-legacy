@@ -92,3 +92,9 @@
   .gl-grid img, .ct-tile { transition: none; }
   .ph-texte > *, .ph-photo { animation: none; }
 }
+
+/* Confidentialité : les questions en liste de définitions, avec des listes à puces */
+.conf .faq-list dd + dd { margin-top: 0.9rem; }
+.conf .faq-list ul { display: grid; gap: 0.35rem; margin: 0; padding-left: 1.1rem; list-style: disc; }
+.conf .faq-list li::marker { color: var(--bronze); }
+.conf-maj { margin-top: var(--espace-bloc); font-size: 0.82rem; color: var(--muted-foreground); }
