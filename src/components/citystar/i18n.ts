@@ -623,8 +623,8 @@ const fr = {
     intro: "Des garanties concrètes, à chaque étape de votre acquisition.",
     items: (fondsPropres: string) => [
       {
-        titre: "Un promoteur qui a déjà livré",
-        texte: "Une expérience de la promotion immobilière déjà éprouvée à l’étranger.",
+        titre: "Une expérience déjà éprouvée",
+        texte: "Des projets de promotion immobilière déjà menés à l’étranger.",
       },
       {
         titre: `${fondsPropres} fonds propres`,
@@ -1509,8 +1509,8 @@ const en: Textes = {
     intro: "Concrete guarantees at every stage of your purchase.",
     items: (fondsPropres) => [
       {
-        titre: "A developer with a proven record",
-        texte: "Property development experience already proven abroad.",
+        titre: "Experience already proven",
+        texte: "Property development projects already carried out abroad.",
       },
       {
         titre: `${fondsPropres} equity-funded`,

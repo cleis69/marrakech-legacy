@@ -586,8 +586,8 @@ export const no: Textes = {
     intro: "Konkrete garantier i hver fase av kjøpet ditt.",
     items: (fondsPropres) => [
       {
-        titre: "En utbygger som allerede har levert",
-        texte: "Erfaring med eiendomsutvikling som allerede er bevist i utlandet.",
+        titre: "Erfaring som allerede er bevist",
+        texte: "Eiendomsprosjekter som allerede er gjennomført i utlandet.",
       },
       {
         titre: `${fondsPropres} egenkapital`,
