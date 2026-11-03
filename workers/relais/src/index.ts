@@ -17,6 +17,8 @@
  * Sans les secrets BREVO_CLE et HUBSPOT_JETON, le relais transmet seulement les demandes à HubSpot.
  */
 
+import { alerteLeadChaud, libelle } from "./alerte";
+
 interface Env {
   HUBSPOT_PORTAIL: string;
   HUBSPOT_FORMULAIRE: string;
@@ -271,29 +273,6 @@ const STATUTS_CLOS = ["reserve", "vendu", "non_qualifie", "hors_cible"];
 /** Délai de rappel en heures, par score. Un lead froid ne reçoit que la séquence e-mail. */
 const RAPPEL_HEURES: Partial<Record<Score, number>> = { chaud: 1, tiede: 24, a_qualifier: 24 };
 
-const LIBELLES: Record<string, Record<string, string>> = {
-  citystar_budget: {
-    moins_800k: "moins de 800 k€",
-    "800k_1m": "800 k€ à 1 M€",
-    "1_1_5m": "1 à 1,5 M€",
-    plus_1_5m: "plus de 1,5 M€",
-    non_precise: "préfère en parler",
-    moins_1m: "moins de 1 M€",
-  },
-  citystar_horizon: {
-    "3_mois": "dans les 3 mois",
-    "3_6_mois": "dans 3 à 6 mois",
-    "6_12_mois": "dans 6 à 12 mois",
-    plus_tard: "plus tard / se renseigne",
-  },
-  citystar_financement: {
-    fonds_propres: "fonds propres",
-    mixte: "mixte",
-    credit: "crédit",
-    inconnu: "pas encore connu",
-  },
-};
-
 /**
  * Leads modifiés récemment (demande du site, lead de pub, ou fiche mise à jour par le commercial) :
  * la tranche de budget suit le budget déclaré, converti en euros, puis le score est recalculé.
@@ -322,7 +301,11 @@ async function scores(env: Env) {
       "citystar_horizon",
       "citystar_financement",
       "citystar_villa",
+      "citystar_lot",
+      "citystar_projet",
+      "citystar_langue",
       "citystar_canal",
+      "message",
     ],
     limit: 100,
   });
@@ -354,26 +337,26 @@ async function prevenir(env: Env, id: string, p: Proprietes, s: Score) {
   const heures = RAPPEL_HEURES[s];
   if (!heures) return;
   const nom = [p["firstname"], p["lastname"]].filter(Boolean).join(" ") || p["email"] || id;
-  const libelle = (cle: string) => LIBELLES[cle]?.[p[cle] ?? ""] ?? p[cle] ?? "–";
   const fiche = `https://app-eu1.hubspot.com/contacts/${env.HUBSPOT_PORTAIL}/record/0-1/${id}`;
-  const lignes = [
-    `Téléphone : ${p["phone"] ?? "–"}`,
-    `E-mail : ${p["email"] ?? "–"}`,
-    `Budget : ${libelle("citystar_budget")}${p["citystar_budget_declare"] ? ` (déclaré : ${p["citystar_budget_declare"]})` : ""}`,
-    `Horizon : ${libelle("citystar_horizon")}`,
-    `Financement : ${libelle("citystar_financement")}`,
-    `Villa : ${p["citystar_villa"] ?? "–"} · canal : ${p["citystar_canal"] ?? "–"}`,
-    `Fiche HubSpot : ${fiche}`,
-  ];
+  const echeance = new Date(Date.now() + heures * 3_600_000);
+  const alerte = s === "chaud" ? alerteLeadChaud(p, fiche) : null;
   const sujet =
-    s === "chaud"
-      ? `🔥 Lead chaud : appeler ${nom} sous 1 h`
-      : `${s === "tiede" ? "🟠 Lead tiède" : "Lead à qualifier"} : rappeler ${nom} sous 24 h`;
+    alerte?.sujet ??
+    `${s === "tiede" ? "🟠 Lead tiède" : "Lead à qualifier"} : rappeler ${nom} sous 24 h`;
+  const corps =
+    alerte?.texte ??
+    [
+      `Téléphone : ${p["phone"] ?? "–"}`,
+      `Budget : ${libelle(p, "citystar_budget") || "–"}${p["citystar_budget_declare"] ? ` (déclaré : ${p["citystar_budget_declare"]})` : ""}`,
+      `Achat : ${libelle(p, "citystar_horizon") || "–"}`,
+      `Financement : ${libelle(p, "citystar_financement") || "–"}`,
+      `Fiche HubSpot : ${fiche}`,
+    ].join("\n");
   await hubspot(env, "POST", "/crm/v3/objects/tasks", {
     properties: {
-      hs_timestamp: new Date(Date.now() + heures * 3_600_000).toISOString(),
+      hs_timestamp: echeance.toISOString(),
       hs_task_subject: sujet,
-      hs_task_body: lignes.join("\n"),
+      hs_task_body: corps,
       hs_task_status: "NOT_STARTED",
       hs_task_priority: s === "chaud" ? "HIGH" : "MEDIUM",
       hs_task_type: "CALL",
@@ -381,16 +364,16 @@ async function prevenir(env: Env, id: string, p: Proprietes, s: Score) {
     // 204 : association standard tâche → contact
     associations: [{ to: { id }, types: [{ associationCategory: "HUBSPOT_DEFINED", associationTypeId: 204 }] }],
   });
-  if (s !== "chaud" || !env.BREVO_CLE || !env.ALERTE_EMAIL) return;
-  const echapper = (t: string) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  if (!alerte || !env.BREVO_CLE || !env.ALERTE_EMAIL) return;
   const reponse = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: { "api-key": env.BREVO_CLE, "Content-Type": "application/json", Accept: "application/json" },
     body: JSON.stringify({
       sender: { name: "CITYSTAR · Leads", email: env.ALERTE_EMAIL },
       to: [{ email: env.ALERTE_EMAIL }],
-      subject: sujet,
-      htmlContent: `<p>${lignes.map(echapper).join("<br>")}</p>`,
+      subject: alerte.sujet,
+      htmlContent: alerte.html,
+      textContent: alerte.texte,
     }),
   });
   if (!reponse.ok) console.error(`Alerte Brevo ${reponse.status} : ${await reponse.text()}`);
