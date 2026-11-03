@@ -45,7 +45,7 @@ export function SiteFooter() {
       href: `https://wa.me/${contact.whatsapp}`,
       icon: MessageCircle,
       kicker: t.pied.whatsapp,
-      value: t.pied.conciergerie,
+      value: t.pied.conseiller,
       external: true,
     },
     {

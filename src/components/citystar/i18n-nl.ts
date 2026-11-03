@@ -15,7 +15,6 @@ export const nl: Textes = {
   header: {
     acces: "Terugbellen",
     rappelCourt: "Terugbellen",
-    conciergerie: "Conciërge",
     accueil: "Terug naar boven",
     sommaire: "Inhoud",
     brochure: "CITYSTAR-brochure",
@@ -29,7 +28,7 @@ export const nl: Textes = {
     questions: "Vragen",
     espace: "Mijn omgeving",
     langue: "Taal van de site",
-    whatsapp: "De CITYSTAR-conciërge een WhatsApp-bericht sturen",
+    whatsapp: "Een CITYSTAR-adviseur een WhatsApp-bericht sturen",
   },
   hero: {
     lieu: "Privéresidentie · Route de Fès km 11, Marrakech",
@@ -408,7 +407,7 @@ export const nl: Textes = {
         "Ligging, oppervlaktes, toegankelijkheid, prijzen, plattegronden, bezichtigingen: antwoorden op de meest gestelde vragen.",
       kicker: "Vragen",
       titreH1: ["De vragen", "die ons gesteld worden."],
-      intro: "Mist u een antwoord? De conciërge antwoordt u rechtstreeks.",
+      intro: "Mist u een antwoord? Een adviseur antwoordt u rechtstreeks.",
     },
     luxe: {
       titre: "Luxevilla in Marrakech — CITYSTAR",
@@ -437,7 +436,7 @@ export const nl: Textes = {
         {
           titre: "Eerst bezichtigen, dan kopen",
           texte:
-            "De plattegronden van elk type zijn op de site te bekijken; de brochure en de pdf-plattegronden worden op aanvraag toegestuurd. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via de conciërge: een adviseur belt u terug en regelt de bezichtiging.",
+            "De plattegronden van elk type zijn op de site te bekijken; de brochure en de pdf-plattegronden worden op aanvraag toegestuurd. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via een adviseur, die u terugbelt en de bezichtiging regelt.",
         },
       ],
     },
@@ -501,7 +500,7 @@ export const nl: Textes = {
     {
       id: "visite",
       q: "Kunnen we een bezichtiging doen?",
-      r: "De 360°-rondleiding is online beschikbaar. Een bezichtiging ter plaatse vraagt u aan bij de conciërge, na beoordeling van uw aanvraag.",
+      r: "De 360°-rondleiding is online beschikbaar. Een bezichtiging ter plaatse vraagt u aan bij een adviseur, na beoordeling van uw aanvraag.",
     },
     {
       id: "plans",
@@ -656,7 +655,7 @@ export const nl: Textes = {
     titre: ["Een rechtstreeks ", "contact."],
     appeler: "Bellen",
     whatsapp: "WhatsApp",
-    conciergerie: "Conciërge",
+    conseiller: "Een adviseur",
     ecrire: "Schrijven",
     brochure: "Brochure",
     theme: ["Luxevilla in Marrakech", "luxe-villa-marrakech"],
@@ -834,7 +833,6 @@ export const nl: Textes = {
     ligneNeutre: "Aannames worden gevalideerd",
   },
   contact: {
-    kicker: "CITYSTAR-conciërge",
     titre: ["Teruggebeld ", "worden."],
     texte:
       "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein.",

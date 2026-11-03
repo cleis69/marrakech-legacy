@@ -44,7 +44,7 @@ export function ContactPage() {
             </i>
             <span>
               <small>{t.pied.whatsapp}</small>
-              <b>{t.pied.conciergerie}</b>
+              <b>{t.pied.conseiller}</b>
             </span>
           </a>
           <a className="ct-tile" href={`mailto:${contact.email}`}>

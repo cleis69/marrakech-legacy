@@ -15,7 +15,6 @@ export const es: Textes = {
   header: {
     acces: "Que me llamen",
     rappelCourt: "Llamada",
-    conciergerie: "Conserjería",
     accueil: "Volver al inicio",
     sommaire: "Índice",
     brochure: "Folleto CITYSTAR",
@@ -29,7 +28,7 @@ export const es: Textes = {
     questions: "Preguntas",
     espace: "Mi espacio",
     langue: "Idioma del sitio",
-    whatsapp: "Escribir a la conserjería de CITYSTAR por WhatsApp",
+    whatsapp: "Escribir a un asesor de CITYSTAR por WhatsApp",
   },
   hero: {
     lieu: "Residencia privada · Route de Fès km 11, Marrakech",
@@ -414,7 +413,7 @@ export const es: Textes = {
         "Ubicación, superficies, accesibilidad, precios, planos, visitas: las respuestas a las preguntas más habituales.",
       kicker: "Preguntas",
       titreH1: ["Las preguntas", "que nos hacen."],
-      intro: "¿Falta una respuesta? La conserjería le responde directamente.",
+      intro: "¿Falta una respuesta? Un asesor le responde directamente.",
     },
     luxe: {
       titre: "Villa de lujo en Marrakech — CITYSTAR",
@@ -443,7 +442,7 @@ export const es: Textes = {
         {
           titre: "Visitar y después comprar",
           texte:
-            "Los planos de cada tipo se consultan en el sitio; el folleto y los planos PDF se envían a petición. La visita in situ y las condiciones de compra pasan por la conserjería: un asesor le llama y organiza la visita.",
+            "Los planos de cada tipo se consultan en el sitio; el folleto y los planos PDF se envían a petición. La visita in situ y las condiciones de compra pasan por un asesor, que le llama y organiza la visita.",
         },
       ],
     },
@@ -506,7 +505,7 @@ export const es: Textes = {
     {
       id: "visite",
       q: "¿Se puede visitar?",
-      r: "La visita en 360° está disponible en línea. La visita in situ se solicita a la conserjería, tras el estudio de su solicitud.",
+      r: "La visita en 360° está disponible en línea. La visita in situ se solicita a un asesor, tras el estudio de su solicitud.",
     },
     {
       id: "plans",
@@ -657,7 +656,7 @@ export const es: Textes = {
     titre: ["Un contacto ", "directo."],
     appeler: "Llamar",
     whatsapp: "WhatsApp",
-    conciergerie: "Conserjería",
+    conseiller: "Un asesor",
     ecrire: "Escribir",
     brochure: "Folleto",
     theme: ["Villa de lujo en Marrakech", "villa-de-lujo-marrakech"],
@@ -836,7 +835,6 @@ export const es: Textes = {
     ligneNeutre: "Hipótesis en validación",
   },
   contact: {
-    kicker: "Conserjería CITYSTAR",
     titre: ["Que le ", "llamemos."],
     texte:
       "Déjenos sus datos y un asesor de CITYSTAR le llamará para responder a sus preguntas sobre planos, precios o una visita al dominio.",

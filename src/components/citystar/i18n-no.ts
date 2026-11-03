@@ -15,7 +15,6 @@ export const no: Textes = {
   header: {
     acces: "Bli ringt opp",
     rappelCourt: "Ring meg",
-    conciergerie: "Concierge",
     accueil: "Tilbake til toppen",
     sommaire: "Innhold",
     brochure: "CITYSTAR-brosjyre",
@@ -29,7 +28,7 @@ export const no: Textes = {
     questions: "Spørsmål",
     espace: "Min side",
     langue: "Nettstedets språk",
-    whatsapp: "Skriv til CITYSTAR-conciergen på WhatsApp",
+    whatsapp: "Skriv til en CITYSTAR-rådgiver på WhatsApp",
   },
   hero: {
     lieu: "Privat residens · Route de Fès km 11, Marrakech",
@@ -397,7 +396,7 @@ export const no: Textes = {
         "Beliggenhet, arealer, tilgjengelighet, priser, plantegninger, visninger: svar på de vanligste spørsmålene.",
       kicker: "Spørsmål",
       titreH1: ["Spørsmålene", "vi får."],
-      intro: "Mangler du et svar? Conciergen svarer deg direkte.",
+      intro: "Mangler du et svar? En rådgiver svarer deg direkte.",
     },
     luxe: {
       titre: "Luksusvilla i Marrakech — CITYSTAR",
@@ -426,7 +425,7 @@ export const no: Textes = {
         {
           titre: "Se først, kjøp etterpå",
           texte:
-            "Plantegninger for hver type kan ses på nettstedet; brosjyren og PDF-tegningene sendes på forespørsel. Visning på stedet og kjøpsvilkår går via conciergen: en rådgiver ringer deg opp og avtaler visningen.",
+            "Plantegninger for hver type kan ses på nettstedet; brosjyren og PDF-tegningene sendes på forespørsel. Visning på stedet og kjøpsvilkår går via en rådgiver, som ringer deg opp og avtaler visningen.",
         },
       ],
     },
@@ -489,7 +488,7 @@ export const no: Textes = {
     {
       id: "visite",
       q: "Kan vi komme på visning?",
-      r: "360°-omvisningen er tilgjengelig på nett. Visning på stedet bestilles via conciergen, etter at forespørselen din er vurdert.",
+      r: "360°-omvisningen er tilgjengelig på nett. Visning på stedet bestilles via en rådgiver, etter at forespørselen din er vurdert.",
     },
     {
       id: "plans",
@@ -638,7 +637,7 @@ export const no: Textes = {
     titre: ["En direkte ", "kontakt."],
     appeler: "Ring",
     whatsapp: "WhatsApp",
-    conciergerie: "Concierge",
+    conseiller: "En rådgiver",
     ecrire: "Skriv",
     brochure: "Brosjyre",
     theme: ["Luksusvilla i Marrakech", "luksusvilla-marrakech"],
@@ -816,7 +815,6 @@ export const no: Textes = {
     ligneNeutre: "Forutsetningene valideres",
   },
   contact: {
-    kicker: "CITYSTAR-concierge",
     titre: ["Bli ", "ringt opp."],
     texte:
       "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen.",

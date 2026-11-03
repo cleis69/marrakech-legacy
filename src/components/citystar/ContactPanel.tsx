@@ -107,7 +107,6 @@ export function ContactPanel({
         <X aria-hidden="true" /> {t.contact.fermer}
       </button>
       <div>
-        <p className="eyebrow">{t.contact.kicker}</p>
         <h2 id="contact-panel-title">
           {t.contact.titre[0]}
           <br />

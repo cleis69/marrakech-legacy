@@ -4,7 +4,7 @@ import { contact } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 
-/** Bulle WhatsApp sur ordinateur ; sur mobile, la conciergerie passe dans l'en-tête. */
+/** Bulle WhatsApp sur ordinateur ; sur mobile, le lien WhatsApp passe dans l'en-tête. */
 export function FloatingActions() {
   const { t } = useDevise();
   return (

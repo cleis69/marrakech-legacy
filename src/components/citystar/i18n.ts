@@ -22,7 +22,6 @@ const fr = {
   header: {
     acces: "Être rappelé",
     rappelCourt: "Rappel",
-    conciergerie: "Conciergerie",
     accueil: "Retour à l’accueil",
     sommaire: "Sommaire",
     brochure: "Brochure CITYSTAR",
@@ -36,7 +35,7 @@ const fr = {
     questions: "Questions",
     espace: "Mon espace",
     langue: "Langue du site",
-    whatsapp: "Contacter la conciergerie CITYSTAR sur WhatsApp",
+    whatsapp: "Écrire à un conseiller CITYSTAR sur WhatsApp",
   },
   hero: {
     lieu: "Résidence privée · Route de Fès km 11, Marrakech",
@@ -417,7 +416,7 @@ const fr = {
         "Emplacement, surfaces, accessibilité, prix, plans, visites\u00a0: les réponses aux questions les plus posées.",
       kicker: "Questions",
       titreH1: ["Les questions", "qu'on nous pose."] as [string, string],
-      intro: "Une réponse manque\u00a0? La conciergerie répond directement.",
+      intro: "Une réponse manque\u00a0? Un conseiller vous répond directement.",
     },
     luxe: {
       titre: "Villa de luxe à Marrakech — CITYSTAR",
@@ -446,7 +445,7 @@ const fr = {
         {
           titre: "Visiter, puis acquérir",
           texte:
-            "Les plans de chaque type se consultent sur le site ; la brochure et les plans PDF sont envoyés sur demande. La visite sur place et les conditions d'acquisition passent par la conciergerie\u00a0: un conseiller vous rappelle et organise la visite.",
+            "Les plans de chaque type se consultent sur le site ; la brochure et les plans PDF sont envoyés sur demande. La visite sur place et les conditions d'acquisition passent par un conseiller, qui vous rappelle et organise la visite.",
         },
       ],
     },
@@ -520,7 +519,7 @@ const fr = {
     {
       id: "visite",
       q: "Peut-on visiter\u00a0?",
-      r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande par la conciergerie, après étude de la demande d'accès.",
+      r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande à un conseiller, après étude de la demande d'accès.",
     },
     {
       id: "plans",
@@ -672,7 +671,7 @@ const fr = {
     titre: ["Un contact ", "direct."] as [string, string],
     appeler: "Appeler",
     whatsapp: "WhatsApp",
-    conciergerie: "Conciergerie",
+    conseiller: "Un conseiller",
     ecrire: "Écrire",
     brochure: "Brochure",
     theme: ["Villa de luxe à Marrakech", "villa-de-luxe-marrakech"] as [string, string],
@@ -854,7 +853,6 @@ const fr = {
     ligneNeutre: "Hypothèses en cours de validation",
   },
   contact: {
-    kicker: "Conciergerie CITYSTAR",
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
@@ -935,7 +933,6 @@ const en: Textes = {
   header: {
     acces: "Call back",
     rappelCourt: "Call back",
-    conciergerie: "Concierge",
     accueil: "Back to top",
     sommaire: "Contents",
     brochure: "CITYSTAR brochure",
@@ -949,7 +946,7 @@ const en: Textes = {
     questions: "Questions",
     espace: "Owner area",
     langue: "Site language",
-    whatsapp: "Message the CITYSTAR concierge on WhatsApp",
+    whatsapp: "Message a CITYSTAR adviser on WhatsApp",
   },
   hero: {
     lieu: "Private residence · Route de Fès km 11, Marrakech",
@@ -1320,7 +1317,7 @@ const en: Textes = {
         "Location, areas, accessibility, prices, plans, viewings: answers to the most common questions.",
       kicker: "Questions",
       titreH1: ["The questions", "we are asked."],
-      intro: "An answer missing? The concierge replies directly.",
+      intro: "An answer missing? An adviser replies directly.",
     },
     luxe: {
       titre: "Luxury villa in Marrakech — CITYSTAR",
@@ -1349,7 +1346,7 @@ const en: Textes = {
         {
           titre: "Visit, then buy",
           texte:
-            "Floor plans for each type can be viewed on the site; the brochure and PDF plans are sent on request. On-site viewings and purchase terms go through the concierge: an adviser calls you back and arranges the viewing.",
+            "Floor plans for each type can be viewed on the site; the brochure and PDF plans are sent on request. On-site viewings and purchase terms go through an adviser, who calls you back and arranges the viewing.",
         },
       ],
     },
@@ -1412,7 +1409,7 @@ const en: Textes = {
     {
       id: "visite",
       q: "Can we visit?",
-      r: "The 360° aerial tour is open online. An on-site viewing is arranged by the concierge once your access request has been reviewed.",
+      r: "The 360° aerial tour is open online. An on-site viewing is arranged by an adviser once your access request has been reviewed.",
     },
     {
       id: "plans",
@@ -1558,7 +1555,7 @@ const en: Textes = {
     titre: ["A direct ", "line."],
     appeler: "Call",
     whatsapp: "WhatsApp",
-    conciergerie: "Concierge",
+    conseiller: "An adviser",
     ecrire: "Write",
     brochure: "Brochure",
     theme: ["Luxury villa in Marrakech", "luxury-villa-marrakech"],
@@ -1736,7 +1733,6 @@ const en: Textes = {
     ligneNeutre: "Assumptions being validated",
   },
   contact: {
-    kicker: "CITYSTAR concierge",
     titre: ["Request ", "a call back."],
     texte:
       "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate.",

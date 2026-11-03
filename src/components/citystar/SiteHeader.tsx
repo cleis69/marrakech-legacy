@@ -170,7 +170,7 @@ function MenuSheet({
         <div className="menu-sheet-links">
           <a href={whatsappHref} target="_blank" rel="noreferrer">
             <MessageCircle aria-hidden="true" />
-            {t.header.conciergerie}
+            {t.pied.whatsapp}
           </a>
           <button
             type="button"
@@ -259,9 +259,9 @@ export function SiteHeader({
             href={whatsappHref}
             target="_blank"
             rel="noreferrer"
-            aria-label={t.header.conciergerie}
+            aria-label={t.header.whatsapp}
           >
-            <span className="float-concierge-label">{t.header.conciergerie}</span>
+            <span className="float-concierge-label">{t.pied.whatsapp}</span>
             <MessageCircle aria-hidden="true" />
           </a>
         </div>
