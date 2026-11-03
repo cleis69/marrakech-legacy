@@ -4,7 +4,6 @@ const no: Copie = {
   lieu: "Privat boligområde · Marrakech",
   rendu: "3D-illustrasjon, ikke bindende.",
   pied: {
-    accroche: ["Fjorten villaer.", " Ikke én til."],
     lieu: (livraison) => `Oulad Hassoune, Marrakech · Ferdig ${livraison}`,
     site: "Nettsiden",
   },

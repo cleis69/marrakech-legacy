@@ -8,7 +8,6 @@ const fr = {
   lieu: "Résidence privée · Marrakech",
   rendu: "Rendu 3D, non contractuel.",
   pied: {
-    accroche: ["Quatorze villas.", " Pas une de plus."] as [string, string],
     lieu: (livraison: string) => `Oulad Hassoune, Marrakech · Livraison ${livraison}`,
     site: "Le site",
   },

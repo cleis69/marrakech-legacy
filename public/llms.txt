@@ -5,8 +5,8 @@
 ## L'essentiel
 
 - 14 villas, en trois types d'architecture : A, B et C.
-- Villa A : 585 m² construits, 5 suites, avec ascenseur.
-- Villa B : 536 m² construits, 5 suites.
+- Villa A : 546 m² construits, 5 suites, avec ascenseur.
+- Villa B : 565 m² construits, 5 suites.
 - Villa C : 525 m² construits, 4 suites.
 - Terrains jusqu'à 2 000 m², une piscine privée pour chaque villa.
 - Domaine fermé, gardé jour et nuit.

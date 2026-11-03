@@ -33,12 +33,13 @@ export const programme = {
   coordonnees: { latitude: 31.6436578, longitude: -7.8716987, confirme: true },
 } as const;
 
+// Surfaces plancher de la plaquette du promoteur, retenues par le client le 02/11/2026 (avant : A 585, B 536).
 export const villasChiffres: Record<
   TypeVilla,
   { surfaceConstruiteM2: number; terrainM2: number; suites: number; accessiblePmr: boolean }
 > = {
-  A: { surfaceConstruiteM2: 585, terrainM2: 2000, suites: 5, accessiblePmr: true },
-  B: { surfaceConstruiteM2: 536, terrainM2: 2000, suites: 5, accessiblePmr: false },
+  A: { surfaceConstruiteM2: 546, terrainM2: 2000, suites: 5, accessiblePmr: true },
+  B: { surfaceConstruiteM2: 565, terrainM2: 2000, suites: 5, accessiblePmr: false },
   C: { surfaceConstruiteM2: 525, terrainM2: 2000, suites: 4, accessiblePmr: false },
 };
 

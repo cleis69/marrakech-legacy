@@ -4,7 +4,6 @@ const nl: Copie = {
   lieu: "Privédomein · Marrakech",
   rendu: "3D-impressie, niet contractueel.",
   pied: {
-    accroche: ["Veertien villa’s.", " Geen enkele meer."],
     lieu: (livraison) => `Oulad Hassoune, Marrakech · Oplevering ${livraison}`,
     site: "De website",
   },

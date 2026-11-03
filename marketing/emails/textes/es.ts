@@ -4,7 +4,6 @@ const es: Copie = {
   lieu: "Residencia privada · Marrakech",
   rendu: "Render 3D, no contractual.",
   pied: {
-    accroche: ["Catorce villas.", " Ni una más."],
     lieu: (livraison) => `Oulad Hassoune, Marrakech · Entrega en ${livraison}`,
     site: "La web",
   },

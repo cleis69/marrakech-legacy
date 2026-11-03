@@ -368,7 +368,6 @@ function document(e: Email, langue: Langue, c: Copie) {
     <tr><td style="padding:14px 0 0;">
       <table role="presentation" cellpadding="0" cellspacing="0" width="100%" bgcolor="${C.encre}" style="border-radius:24px;">
         <tr><td class="px" style="padding:30px 44px;">
-          <p style="margin:0 0 6px;font:400 26px/1.1 ${SERIF};color:${C.creme};">${c.pied.accroche[0]}<span style="color:${C.sable};">${c.pied.accroche[1]}</span></p>
           <p style="margin:0 0 18px;font:400 13px/1.6 ${SANS};color:${C.grisClair};">${c.pied.lieu(formatMois(calendrier.livraison, langue))}</p>
           <p style="margin:0;font:500 13px/2 ${SANS};">
             <a href="https://wa.me/${contact.whatsapp}" style="color:${C.sable};text-decoration:none;">WhatsApp</a>
