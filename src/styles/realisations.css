@@ -20,7 +20,8 @@
 .rl-liste > li:first-child .rl-carte { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-rows: none; }
 
 .rl-media { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; gap: 3px; background: var(--cream); }
-.rl-media button { position: relative; padding: 0; border: 0; overflow: hidden; background: var(--ink); cursor: zoom-in; }
+/* Fond sable pendant le chargement : une photo qui arrive ne laisse pas de trou noir. */
+.rl-media button { position: relative; padding: 0; border: 0; overflow: hidden; background: var(--muted); cursor: zoom-in; }
 .rl-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
 .rl-media button:hover img, .rl-media button:focus-visible img { transform: scale(1.04); }
 .rl-principale { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
@@ -55,6 +56,34 @@
 .rl-suite .ton { color: var(--sand); }
 .rl-suite p { max-width: 32rem; margin-top: 1.2rem; font-size: 1rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 78%, transparent); }
 .rl-suite-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+/* ---------- Bandeau de l'accueil : les réalisations défilent sans fin ---------- */
+.rb { display: grid; gap: var(--espace-bloc); padding: var(--espace-bloc) 0 var(--espace-section); background: var(--paper); overflow: hidden; }
+.rb-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.2rem 3rem; padding: 0 var(--gouttiere); }
+.rb-kicker { margin-bottom: .9rem; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.rb-head h2 { font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.04 "Italiana", serif; }
+.rb-head .ton { color: var(--bronze-text); }
+.rb-lien { display: inline-flex; align-items: center; gap: .5rem; padding-bottom: .25rem; border-bottom: 1px solid currentColor; color: var(--foreground); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+.rb-lien svg { width: .9rem; height: .9rem; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.rb-lien:hover svg, .rb-lien:focus-visible svg { transform: translateX(.25rem); }
+.rb-defilement { mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
+.rb-piste { display: flex; gap: 14px; width: max-content; margin: 0; padding: 0; list-style: none; animation: rb-defile 80s linear infinite; }
+.rb-defilement:hover .rb-piste, .rb-defilement:focus-within .rb-piste { animation-play-state: paused; }
+.rb-piste a { position: relative; display: block; width: clamp(15rem, 24vw, 22rem); aspect-ratio: 4 / 5; overflow: hidden; border-radius: 22px; background: var(--muted); color: var(--cream); text-decoration: none; }
+.rb-piste img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.22, 1, .36, 1); }
+.rb-piste a:hover img, .rb-piste a:focus-visible img { transform: scale(1.05); }
+.rb-piste a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, color-mix(in oklab, var(--ink) 82%, transparent)); }
+.rb-legende { position: absolute; right: 1.3rem; bottom: 1.2rem; left: 1.3rem; z-index: 1; display: grid; gap: .35rem; }
+.rb-legende small { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); }
+.rb-legende b { font: 400 clamp(1.4rem, 1.8vw, 1.7rem)/1.1 "Italiana", serif; }
+/* La piste contient deux fois les mêmes photos : reculer d'une moitié (et d'un demi-écart) boucle sans saut. */
+@keyframes rb-defile { to { transform: translateX(calc(-50% - 7px)); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rb-defilement { overflow-x: auto; mask-image: none; padding: 0 var(--gouttiere); }
+  .rb-piste { animation: none; }
+  .rb-piste li[inert] { display: none; }
+}
 
 @media (max-width: 900px) {
   .rl-chiffres { grid-template-columns: 1fr; gap: 1.4rem; }

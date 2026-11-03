@@ -9,6 +9,7 @@ import { MarcheSection } from "../MarcheSection";
 import { Marquee } from "../Marquee";
 import { ProcessusSection } from "../ProcessusSection";
 import { ProjectSection } from "../ProjectSection";
+import { RealisationsBandeau } from "../RealisationsBandeau";
 import { TourSection } from "../TourSection";
 import { VueAerienne } from "../VueAerienne";
 import { QuestionsSection } from "../QuestionsSection";
@@ -33,6 +34,7 @@ export function HomePage() {
       <ChiffresCles />
       <ProjectSection />
       <EngagementsSection />
+      <RealisationsBandeau />
       <VueAerienne />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <Ruban />

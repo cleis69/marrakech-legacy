@@ -9,6 +9,7 @@ import { chemin } from "../liens";
 import { Reveal } from "../motion";
 import { PageHeader } from "../PageHeader";
 import {
+  banniere,
   PAYS,
   realisations,
   textesRealisations,
@@ -37,12 +38,7 @@ export function RealisationsPage() {
 
   return (
     <>
-      <PageHeader
-        image={realisations[0]?.photos.at(-1) ?? ""}
-        kicker={t.kicker}
-        titre={t.titreH1}
-        intro={t.intro}
-      />
+      <PageHeader image={banniere} kicker={t.kicker} titre={t.titreH1} intro={t.intro} />
       {APERCU && <p className="rl-apercu">{t.apercu}</p>}
 
       <dl className="rl-chiffres">
