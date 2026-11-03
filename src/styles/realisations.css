@@ -1,0 +1,67 @@
+/* ---------- Réalisations du promoteur : chiffres, filtres par pays, cartes photo ---------- */
+.rl-apercu, .rl-note { border: 1px dashed oklch(0.7 0.12 75); background: oklch(0.96 0.04 85); color: oklch(0.38 0.08 65); }
+.rl-apercu { margin: 14px 14px 0; padding: .9rem 1.2rem; border-radius: 14px; font-size: .86rem; line-height: 1.6; }
+
+.rl-chiffres { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 4vw, 3.5rem); margin: 0; padding: var(--espace-section) var(--gouttiere) 0; }
+.rl-chiffres div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .7rem; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
+.rl-chiffres dt { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.rl-chiffres dd { margin: 0; font: 400 clamp(3.4rem, 6.5vw, 6rem)/1 "Italiana", serif; }
+
+.rl { display: grid; gap: var(--espace-bloc); padding: var(--espace-section) var(--gouttiere); background: var(--paper); }
+.rl-filtres { display: flex; flex-wrap: wrap; gap: .5rem; }
+.rl-filtres button { display: inline-flex; align-items: baseline; gap: .45rem; padding: .7rem 1.15rem; border: 1px solid var(--border); border-radius: 999px; background: none; color: var(--foreground); font-size: .84rem; transition: background .3s, color .3s, border-color .3s; }
+.rl-filtres button:hover { border-color: var(--bronze-line); }
+.rl-filtres button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--cream); }
+.rl-filtres small { font-size: .72rem; opacity: .6; font-variant-numeric: tabular-nums; }
+
+.rl-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+.rl-liste > li:first-child { grid-column: 1 / -1; }
+.rl-carte { display: grid; grid-template-rows: auto 1fr; height: 100%; overflow: hidden; border-radius: 24px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
+.rl-liste > li:first-child .rl-carte { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); grid-template-rows: none; }
+
+.rl-media { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; gap: 3px; background: var(--cream); }
+.rl-media button { position: relative; padding: 0; border: 0; overflow: hidden; background: var(--ink); cursor: zoom-in; }
+.rl-media img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.22, 1, .36, 1); }
+.rl-media button:hover img, .rl-media button:focus-visible img { transform: scale(1.04); }
+.rl-principale { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+.rl-vignette { aspect-ratio: 4 / 3; }
+/* Le projet mis en avant : la grande photo à gauche, ses trois vignettes en colonne. */
+.rl-liste > li:first-child .rl-media { grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr); grid-template-rows: repeat(3, minmax(0, 1fr)); align-content: stretch; }
+.rl-liste > li:first-child .rl-principale { grid-column: 1; grid-row: 1 / -1; aspect-ratio: auto; min-height: 32rem; }
+.rl-liste > li:first-child .rl-vignette { aspect-ratio: auto; }
+.rl-liste > li:first-child .rl-corps { align-content: center; }
+.rl-plus { position: absolute; inset: 0; display: grid; place-items: center; background: color-mix(in oklab, var(--ink) 55%, transparent); color: var(--cream); font: 400 1.7rem "Italiana", serif; }
+.rl-statut { position: absolute; top: 1rem; left: 1rem; z-index: 1; padding: .5rem .85rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 90%, transparent); backdrop-filter: blur(8px); color: var(--ink); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; pointer-events: none; }
+
+.rl-corps { display: grid; align-content: start; gap: 1rem; padding: clamp(1.4rem, 2.6vw, 2.4rem); }
+.rl-lieu { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.rl-corps h2 { margin: 0; font: 400 clamp(2rem, 3.2vw, 3rem)/1.05 "Italiana", serif; text-wrap: balance; }
+.rl-corps > p:not(.rl-lieu) { max-width: 34rem; font-size: .98rem; line-height: 1.7; color: var(--muted-foreground); }
+.rl-faits { display: flex; flex-wrap: wrap; gap: 1.2rem 2.6rem; margin: .2rem 0 0; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+.rl-faits div { display: flex; flex-direction: column-reverse; gap: .35rem; }
+.rl-faits dt { font-size: .74rem; color: var(--muted-foreground); }
+.rl-faits dd { margin: 0; font: 400 2.4rem/1 "Italiana", serif; }
+.rl-details { display: grid; gap: .85rem; margin: 0; padding: 0; list-style: none; }
+.rl-details li { display: grid; gap: .2rem; padding-left: 1rem; border-left: 1px solid var(--bronze-line); font-size: .9rem; line-height: 1.6; color: var(--muted-foreground); }
+.rl-details b { font-weight: 500; color: var(--foreground); }
+.rl-voir { justify-self: start; display: inline-flex; align-items: center; gap: .6rem; margin-top: .2rem; padding: .3rem 0; border: 0; border-bottom: 1px solid currentColor; background: none; color: var(--foreground); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
+.rl-voir svg { width: 1rem; height: 1rem; }
+.rl-note { display: grid; gap: .45rem; margin-top: .3rem; padding: .9rem 1rem; border-radius: 12px; font-size: .8rem; line-height: 1.55; }
+.rl-note b { font-size: .66rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.rl-note ul { display: grid; gap: .3rem; margin: 0; padding-left: 1rem; }
+
+.rl-suite { --pill-bg: var(--cream); --pill-fg: var(--ink); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 2rem 4rem; margin: 0 14px 14px; padding: var(--espace-section) clamp(1.5rem, 4vw, 3.5rem); border-radius: 28px; background: var(--ink); color: var(--cream); }
+.rl-suite h2 { font: 400 clamp(2.6rem, 5vw, 4.6rem)/1.02 "Italiana", serif; }
+.rl-suite .ton { color: var(--sand); }
+.rl-suite p { max-width: 32rem; margin-top: 1.2rem; font-size: 1rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 78%, transparent); }
+.rl-suite-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+@media (max-width: 900px) {
+  .rl-chiffres { grid-template-columns: 1fr; gap: 1.4rem; }
+  .rl-liste { grid-template-columns: 1fr; }
+  .rl-liste > li:first-child .rl-carte { grid-template-columns: 1fr; }
+  .rl-liste > li:first-child .rl-media { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: none; }
+  .rl-liste > li:first-child .rl-principale { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 10; min-height: 0; }
+  .rl-liste > li:first-child .rl-vignette { aspect-ratio: 4 / 3; }
+  .rl-suite { grid-template-columns: 1fr; margin: 0 8px 8px; border-radius: 22px; }
+}

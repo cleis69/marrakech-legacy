@@ -20,6 +20,7 @@ import { Route as InvestirRouteImport } from './routes/investir'
 import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as MerciRouteImport } from './routes/merci'
 import { Route as MonEspaceRouteImport } from './routes/mon-espace'
+import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as VillaDeLuxeMarrakechRouteImport } from './routes/villa-de-luxe-marrakech'
 import { Route as EnIndexRouteImport } from './routes/en.index'
 import { Route as EnContactRouteImport } from './routes/en.contact'
@@ -142,6 +143,11 @@ const MerciRoute = MerciRouteImport.update({
 const MonEspaceRoute = MonEspaceRouteImport.update({
   id: '/mon-espace',
   path: '/mon-espace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsRoute = RealisationsRouteImport.update({
+  id: '/realisations',
+  path: '/realisations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VillaDeLuxeMarrakechRoute = VillaDeLuxeMarrakechRouteImport.update({
@@ -497,6 +503,7 @@ export interface FileRoutesByFullPath {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
+  '/realisations': typeof RealisationsRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
@@ -578,6 +585,7 @@ export interface FileRoutesByTo {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
+  '/realisations': typeof RealisationsRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
@@ -660,6 +668,7 @@ export interface FileRoutesById {
   '/mentions-legales': typeof MentionsLegalesRoute
   '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
+  '/realisations': typeof RealisationsRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
   '/en/faq': typeof EnFaqRoute
@@ -743,6 +752,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/merci'
     | '/mon-espace'
+    | '/realisations'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
@@ -824,6 +834,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/merci'
     | '/mon-espace'
+    | '/realisations'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
@@ -905,6 +916,7 @@ export interface FileRouteTypes {
     | '/mentions-legales'
     | '/merci'
     | '/mon-espace'
+    | '/realisations'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
     | '/en/faq'
@@ -987,6 +999,7 @@ export interface RootRouteChildren {
   MentionsLegalesRoute: typeof MentionsLegalesRoute
   MerciRoute: typeof MerciRoute
   MonEspaceRoute: typeof MonEspaceRoute
+  RealisationsRoute: typeof RealisationsRoute
   VillaDeLuxeMarrakechRoute: typeof VillaDeLuxeMarrakechRoute
   EnContactRoute: typeof EnContactRoute
   EnFaqRoute: typeof EnFaqRoute
@@ -1134,6 +1147,13 @@ declare module '@tanstack/react-router' {
       path: '/mon-espace'
       fullPath: '/mon-espace'
       preLoaderRoute: typeof MonEspaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations': {
+      id: '/realisations'
+      path: '/realisations'
+      fullPath: '/realisations'
+      preLoaderRoute: typeof RealisationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/villa-de-luxe-marrakech': {
@@ -1627,6 +1647,7 @@ const rootRouteChildren: RootRouteChildren = {
   MentionsLegalesRoute: MentionsLegalesRoute,
   MerciRoute: MerciRoute,
   MonEspaceRoute: MonEspaceRoute,
+  RealisationsRoute: RealisationsRoute,
   VillaDeLuxeMarrakechRoute: VillaDeLuxeMarrakechRoute,
   EnContactRoute: EnContactRoute,
   EnFaqRoute: EnFaqRoute,

@@ -40,7 +40,12 @@ export function Galerie() {
       <p className="gl-note">{t.architecture.note}</p>
       <AnimatePresence>
         {ouverte !== null && (
-          <Visionneuse index={ouverte} onIndex={setOuverte} onClose={() => setOuverte(null)} />
+          <Visionneuse
+            images={rendus.map((rendu) => ({ src: rendu.src, alt: altRendu(t, rendu.nom) }))}
+            index={ouverte}
+            onIndex={setOuverte}
+            onClose={() => setOuverte(null)}
+          />
         )}
       </AnimatePresence>
     </section>
@@ -48,22 +53,24 @@ export function Galerie() {
 }
 
 /** Une image en grand, avec la précédente et la suivante au clavier (flèches) ou aux boutons. */
-function Visionneuse({
+export function Visionneuse({
+  images,
   index,
   onIndex,
   onClose,
 }: {
+  images: { src: string; alt: string }[];
   index: number;
   onIndex: (index: number) => void;
   onClose: () => void;
 }) {
   const { t } = useDevise();
   const ref = useModal<HTMLDivElement>(onClose);
-  const total = rendus.length;
+  const total = images.length;
   const aller = (pas: number) => onIndex((index + pas + total) % total);
-  const rendu = rendus[index];
+  const rendu = images[index];
   if (!rendu) return null;
-  const alt = altRendu(t, rendu.nom);
+  const alt = rendu.alt;
   return (
     <motion.div
       ref={ref}

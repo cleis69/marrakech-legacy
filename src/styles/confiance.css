@@ -9,6 +9,10 @@
 .eg-liste li::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, color-mix(in oklab, var(--ink) 84%, transparent)); }
 .eg-texte { position: relative; z-index: 1; display: grid; gap: .6rem; padding: 1.6rem; }
 .eg-num { font-size: .75rem; letter-spacing: .16em; color: var(--sand); }
+.eg-lien { display: inline-flex; align-items: center; gap: .5rem; width: fit-content; margin-top: .3rem; padding-bottom: .25rem; border-bottom: 1px solid color-mix(in oklab, var(--cream) 55%, transparent); color: var(--cream); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; transition: border-color .3s; }
+.eg-lien:hover, .eg-lien:focus-visible { border-color: var(--cream); }
+.eg-lien svg { width: .9rem; height: .9rem; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+.eg-lien:hover svg, .eg-lien:focus-visible svg { transform: translateX(.25rem); }
 .eg-liste h3 { margin: 0; font: 400 clamp(1.6rem, 2.1vw, 1.9rem)/1.15 "Italiana", serif; }
 .eg-liste p { max-width: 24rem; font-size: .9rem; line-height: 1.6; color: color-mix(in oklab, var(--cream) 85%, transparent); }
 
