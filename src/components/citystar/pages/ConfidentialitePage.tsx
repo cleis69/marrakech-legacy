@@ -1,12 +1,15 @@
-import { confidentialite } from "../confidentialite";
+import { confidentialite, type TexteConfidentialite } from "../confidentialite";
 import { useDevise } from "../currency";
 import { PageHeader } from "../PageHeader";
 import banniere from "@/assets/citystar/rendus/entree-portail.webp";
 
-/** Politique de confidentialité : vers elle pointent le pied de page et les formulaires de pub. */
-export function ConfidentialitePage() {
+/**
+ * Politique de confidentialité : vers elle pointent le pied de page et les formulaires de pub.
+ * Les mentions légales passent leurs propres textes et reprennent la même mise en page.
+ */
+export function ConfidentialitePage({ textes = confidentialite }: { textes?: typeof confidentialite }) {
   const { langue } = useDevise();
-  const t = confidentialite[langue];
+  const t: TexteConfidentialite = textes[langue];
 
   return (
     <>

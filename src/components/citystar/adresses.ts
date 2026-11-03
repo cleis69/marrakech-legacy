@@ -48,6 +48,14 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     nl: "privacy",
     no: "personvern",
   },
+  "mentions-legales": {
+    fr: "mentions-legales",
+    en: "legal-notice",
+    es: "aviso-legal",
+    it: "note-legali",
+    nl: "juridische-informatie",
+    no: "juridisk-informasjon",
+  },
   "mon-espace": {
     fr: "mon-espace",
     en: "owner-area",

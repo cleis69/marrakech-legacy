@@ -19,6 +19,7 @@ import { contact } from "@/config/citystar";
 import { useRouterState } from "@tanstack/react-router";
 
 import { confidentialite } from "./confidentialite";
+import { mentions } from "./mentions";
 import { useDevise } from "./currency";
 import { useSite } from "./contexte";
 import { chemin, Lien, slug } from "./liens";
@@ -135,6 +136,8 @@ export function SiteFooter() {
           <Lien vers={chemin(langue, slug("confidentialite", langue))}>
             {confidentialite[langue].lien}
           </Lien>
+          {" · "}
+          <Lien vers={chemin(langue, slug("mentions-legales", langue))}>{mentions[langue].lien}</Lien>
         </p>
       </div>
 
