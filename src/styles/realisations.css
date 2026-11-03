@@ -58,10 +58,12 @@
 .rl-suite-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
 
 /* ---------- Bandeau de l'accueil : les réalisations défilent sans fin ---------- */
-.rb { display: grid; gap: var(--espace-bloc); padding: var(--espace-bloc) 0 var(--espace-section); background: var(--paper); overflow: hidden; }
+/* minmax(0, 1fr) : la piste, très large, ne doit pas élargir la colonne (et pousser le titre hors de l'écran). */
+.rb { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--espace-bloc); padding: var(--espace-bloc) 0 var(--espace-section); background: var(--paper); overflow: hidden; }
 .rb-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.2rem 3rem; padding: 0 var(--gouttiere); }
 .rb-kicker { margin-bottom: .9rem; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
-.rb-head h2 { font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.04 "Italiana", serif; }
+.rb-head > div { flex: 1 1 18rem; min-width: 0; }
+.rb-head h2 { font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.04 "Italiana", serif; text-wrap: balance; }
 .rb-head .ton { color: var(--bronze-text); }
 .rb-lien { display: inline-flex; align-items: center; gap: .5rem; padding-bottom: .25rem; border-bottom: 1px solid currentColor; color: var(--foreground); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
 .rb-lien svg { width: .9rem; height: .9rem; transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
