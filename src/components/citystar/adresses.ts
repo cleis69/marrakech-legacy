@@ -32,6 +32,14 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     nl: "informatiepakket",
     no: "salgsoppgave",
   },
+  merci: {
+    fr: "merci",
+    en: "thank-you",
+    es: "gracias",
+    it: "grazie",
+    nl: "bedankt",
+    no: "takk",
+  },
   confidentialite: {
     fr: "confidentialite",
     en: "privacy",

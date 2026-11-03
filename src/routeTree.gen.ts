@@ -17,6 +17,7 @@ import { Route as EspacePromoteurRouteImport } from './routes/espace-promoteur'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as InvestirRouteImport } from './routes/investir'
+import { Route as MerciRouteImport } from './routes/merci'
 import { Route as MonEspaceRouteImport } from './routes/mon-espace'
 import { Route as VillaDeLuxeMarrakechRouteImport } from './routes/villa-de-luxe-marrakech'
 import { Route as EnIndexRouteImport } from './routes/en.index'
@@ -28,12 +29,14 @@ import { Route as EnInvestirRouteImport } from './routes/en.investir'
 import { Route as EnLuxuryVillaMarrakechRouteImport } from './routes/en.luxury-villa-marrakech'
 import { Route as EnOwnerAreaRouteImport } from './routes/en.owner-area'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
+import { Route as EnThankYouRouteImport } from './routes/en.thank-you'
 import { Route as EsIndexRouteImport } from './routes/es.index'
 import { Route as EsAreaPropietariosRouteImport } from './routes/es.area-propietarios'
 import { Route as EsContactRouteImport } from './routes/es.contact'
 import { Route as EsDossierRouteImport } from './routes/es.dossier'
 import { Route as EsFaqRouteImport } from './routes/es.faq'
 import { Route as EsGalerieRouteImport } from './routes/es.galerie'
+import { Route as EsGraciasRouteImport } from './routes/es.gracias'
 import { Route as EsInvestirRouteImport } from './routes/es.investir'
 import { Route as EsPrivacidadRouteImport } from './routes/es.privacidad'
 import { Route as EsVillaDeLujoMarrakechRouteImport } from './routes/es.villa-de-lujo-marrakech'
@@ -43,10 +46,12 @@ import { Route as ItContactRouteImport } from './routes/it.contact'
 import { Route as ItDossierRouteImport } from './routes/it.dossier'
 import { Route as ItFaqRouteImport } from './routes/it.faq'
 import { Route as ItGalerieRouteImport } from './routes/it.galerie'
+import { Route as ItGrazieRouteImport } from './routes/it.grazie'
 import { Route as ItInvestirRouteImport } from './routes/it.investir'
 import { Route as ItPrivacyRouteImport } from './routes/it.privacy'
 import { Route as ItVillaDiLussoMarrakechRouteImport } from './routes/it.villa-di-lusso-marrakech'
 import { Route as NlIndexRouteImport } from './routes/nl.index'
+import { Route as NlBedanktRouteImport } from './routes/nl.bedankt'
 import { Route as NlContactRouteImport } from './routes/nl.contact'
 import { Route as NlEigenaarsportaalRouteImport } from './routes/nl.eigenaarsportaal'
 import { Route as NlFaqRouteImport } from './routes/nl.faq'
@@ -64,6 +69,7 @@ import { Route as NoInvestirRouteImport } from './routes/no.investir'
 import { Route as NoLuksusvillaMarrakechRouteImport } from './routes/no.luksusvilla-marrakech'
 import { Route as NoPersonvernRouteImport } from './routes/no.personvern'
 import { Route as NoSalgsoppgaveRouteImport } from './routes/no.salgsoppgave'
+import { Route as NoTakkRouteImport } from './routes/no.takk'
 import { Route as VillasIndexRouteImport } from './routes/villas.index'
 import { Route as VillasTypeRouteImport } from './routes/villas.$type'
 import { Route as EnVillasIndexRouteImport } from './routes/en.villas.index'
@@ -115,6 +121,11 @@ const GalerieRoute = GalerieRouteImport.update({
 const InvestirRoute = InvestirRouteImport.update({
   id: '/investir',
   path: '/investir',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerciRoute = MerciRouteImport.update({
+  id: '/merci',
+  path: '/merci',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MonEspaceRoute = MonEspaceRouteImport.update({
@@ -172,6 +183,11 @@ const EnPrivacyRoute = EnPrivacyRouteImport.update({
   path: '/en/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnThankYouRoute = EnThankYouRouteImport.update({
+  id: '/en/thank-you',
+  path: '/en/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EsIndexRoute = EsIndexRouteImport.update({
   id: '/es/',
   path: '/es/',
@@ -200,6 +216,11 @@ const EsFaqRoute = EsFaqRouteImport.update({
 const EsGalerieRoute = EsGalerieRouteImport.update({
   id: '/es/galerie',
   path: '/es/galerie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsGraciasRoute = EsGraciasRouteImport.update({
+  id: '/es/gracias',
+  path: '/es/gracias',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EsInvestirRoute = EsInvestirRouteImport.update({
@@ -247,6 +268,11 @@ const ItGalerieRoute = ItGalerieRouteImport.update({
   path: '/it/galerie',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ItGrazieRoute = ItGrazieRouteImport.update({
+  id: '/it/grazie',
+  path: '/it/grazie',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ItInvestirRoute = ItInvestirRouteImport.update({
   id: '/it/investir',
   path: '/it/investir',
@@ -265,6 +291,11 @@ const ItVillaDiLussoMarrakechRoute = ItVillaDiLussoMarrakechRouteImport.update({
 const NlIndexRoute = NlIndexRouteImport.update({
   id: '/nl/',
   path: '/nl/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NlBedanktRoute = NlBedanktRouteImport.update({
+  id: '/nl/bedankt',
+  path: '/nl/bedankt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NlContactRoute = NlContactRouteImport.update({
@@ -352,6 +383,11 @@ const NoSalgsoppgaveRoute = NoSalgsoppgaveRouteImport.update({
   path: '/no/salgsoppgave',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NoTakkRoute = NoTakkRouteImport.update({
+  id: '/no/takk',
+  path: '/no/takk',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VillasIndexRoute = VillasIndexRouteImport.update({
   id: '/villas/',
   path: '/villas/',
@@ -422,6 +458,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
@@ -432,11 +469,13 @@ export interface FileRoutesByFullPath {
   '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/thank-you': typeof EnThankYouRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/contact': typeof EsContactRoute
   '/es/dossier': typeof EsDossierRoute
   '/es/faq': typeof EsFaqRoute
   '/es/galerie': typeof EsGalerieRoute
+  '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
@@ -445,9 +484,11 @@ export interface FileRoutesByFullPath {
   '/it/dossier': typeof ItDossierRoute
   '/it/faq': typeof ItFaqRoute
   '/it/galerie': typeof ItGalerieRoute
+  '/it/grazie': typeof ItGrazieRoute
   '/it/investir': typeof ItInvestirRoute
   '/it/privacy': typeof ItPrivacyRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
+  '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
   '/nl/eigenaarsportaal': typeof NlEigenaarsportaalRoute
   '/nl/faq': typeof NlFaqRoute
@@ -464,6 +505,7 @@ export interface FileRoutesByFullPath {
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
+  '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en/': typeof EnIndexRoute
   '/es/': typeof EsIndexRoute
@@ -491,6 +533,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
@@ -501,11 +544,13 @@ export interface FileRoutesByTo {
   '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/thank-you': typeof EnThankYouRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/contact': typeof EsContactRoute
   '/es/dossier': typeof EsDossierRoute
   '/es/faq': typeof EsFaqRoute
   '/es/galerie': typeof EsGalerieRoute
+  '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
@@ -514,9 +559,11 @@ export interface FileRoutesByTo {
   '/it/dossier': typeof ItDossierRoute
   '/it/faq': typeof ItFaqRoute
   '/it/galerie': typeof ItGalerieRoute
+  '/it/grazie': typeof ItGrazieRoute
   '/it/investir': typeof ItInvestirRoute
   '/it/privacy': typeof ItPrivacyRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
+  '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
   '/nl/eigenaarsportaal': typeof NlEigenaarsportaalRoute
   '/nl/faq': typeof NlFaqRoute
@@ -533,6 +580,7 @@ export interface FileRoutesByTo {
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
+  '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en': typeof EnIndexRoute
   '/es': typeof EsIndexRoute
@@ -561,6 +609,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/galerie': typeof GalerieRoute
   '/investir': typeof InvestirRoute
+  '/merci': typeof MerciRoute
   '/mon-espace': typeof MonEspaceRoute
   '/villa-de-luxe-marrakech': typeof VillaDeLuxeMarrakechRoute
   '/en/contact': typeof EnContactRoute
@@ -571,11 +620,13 @@ export interface FileRoutesById {
   '/en/luxury-villa-marrakech': typeof EnLuxuryVillaMarrakechRoute
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
+  '/en/thank-you': typeof EnThankYouRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/contact': typeof EsContactRoute
   '/es/dossier': typeof EsDossierRoute
   '/es/faq': typeof EsFaqRoute
   '/es/galerie': typeof EsGalerieRoute
+  '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
@@ -584,9 +635,11 @@ export interface FileRoutesById {
   '/it/dossier': typeof ItDossierRoute
   '/it/faq': typeof ItFaqRoute
   '/it/galerie': typeof ItGalerieRoute
+  '/it/grazie': typeof ItGrazieRoute
   '/it/investir': typeof ItInvestirRoute
   '/it/privacy': typeof ItPrivacyRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
+  '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
   '/nl/eigenaarsportaal': typeof NlEigenaarsportaalRoute
   '/nl/faq': typeof NlFaqRoute
@@ -603,6 +656,7 @@ export interface FileRoutesById {
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
+  '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
   '/en/': typeof EnIndexRoute
   '/es/': typeof EsIndexRoute
@@ -632,6 +686,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/merci'
     | '/mon-espace'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
@@ -642,11 +697,13 @@ export interface FileRouteTypes {
     | '/en/luxury-villa-marrakech'
     | '/en/owner-area'
     | '/en/privacy'
+    | '/en/thank-you'
     | '/es/area-propietarios'
     | '/es/contact'
     | '/es/dossier'
     | '/es/faq'
     | '/es/galerie'
+    | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
     | '/es/villa-de-lujo-marrakech'
@@ -655,9 +712,11 @@ export interface FileRouteTypes {
     | '/it/dossier'
     | '/it/faq'
     | '/it/galerie'
+    | '/it/grazie'
     | '/it/investir'
     | '/it/privacy'
     | '/it/villa-di-lusso-marrakech'
+    | '/nl/bedankt'
     | '/nl/contact'
     | '/nl/eigenaarsportaal'
     | '/nl/faq'
@@ -674,6 +733,7 @@ export interface FileRouteTypes {
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
     | '/no/salgsoppgave'
+    | '/no/takk'
     | '/villas/$type'
     | '/en/'
     | '/es/'
@@ -701,6 +761,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/merci'
     | '/mon-espace'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
@@ -711,11 +772,13 @@ export interface FileRouteTypes {
     | '/en/luxury-villa-marrakech'
     | '/en/owner-area'
     | '/en/privacy'
+    | '/en/thank-you'
     | '/es/area-propietarios'
     | '/es/contact'
     | '/es/dossier'
     | '/es/faq'
     | '/es/galerie'
+    | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
     | '/es/villa-de-lujo-marrakech'
@@ -724,9 +787,11 @@ export interface FileRouteTypes {
     | '/it/dossier'
     | '/it/faq'
     | '/it/galerie'
+    | '/it/grazie'
     | '/it/investir'
     | '/it/privacy'
     | '/it/villa-di-lusso-marrakech'
+    | '/nl/bedankt'
     | '/nl/contact'
     | '/nl/eigenaarsportaal'
     | '/nl/faq'
@@ -743,6 +808,7 @@ export interface FileRouteTypes {
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
     | '/no/salgsoppgave'
+    | '/no/takk'
     | '/villas/$type'
     | '/en'
     | '/es'
@@ -770,6 +836,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/galerie'
     | '/investir'
+    | '/merci'
     | '/mon-espace'
     | '/villa-de-luxe-marrakech'
     | '/en/contact'
@@ -780,11 +847,13 @@ export interface FileRouteTypes {
     | '/en/luxury-villa-marrakech'
     | '/en/owner-area'
     | '/en/privacy'
+    | '/en/thank-you'
     | '/es/area-propietarios'
     | '/es/contact'
     | '/es/dossier'
     | '/es/faq'
     | '/es/galerie'
+    | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
     | '/es/villa-de-lujo-marrakech'
@@ -793,9 +862,11 @@ export interface FileRouteTypes {
     | '/it/dossier'
     | '/it/faq'
     | '/it/galerie'
+    | '/it/grazie'
     | '/it/investir'
     | '/it/privacy'
     | '/it/villa-di-lusso-marrakech'
+    | '/nl/bedankt'
     | '/nl/contact'
     | '/nl/eigenaarsportaal'
     | '/nl/faq'
@@ -812,6 +883,7 @@ export interface FileRouteTypes {
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
     | '/no/salgsoppgave'
+    | '/no/takk'
     | '/villas/$type'
     | '/en/'
     | '/es/'
@@ -840,6 +912,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalerieRoute: typeof GalerieRoute
   InvestirRoute: typeof InvestirRoute
+  MerciRoute: typeof MerciRoute
   MonEspaceRoute: typeof MonEspaceRoute
   VillaDeLuxeMarrakechRoute: typeof VillaDeLuxeMarrakechRoute
   EnContactRoute: typeof EnContactRoute
@@ -850,11 +923,13 @@ export interface RootRouteChildren {
   EnLuxuryVillaMarrakechRoute: typeof EnLuxuryVillaMarrakechRoute
   EnOwnerAreaRoute: typeof EnOwnerAreaRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
+  EnThankYouRoute: typeof EnThankYouRoute
   EsAreaPropietariosRoute: typeof EsAreaPropietariosRoute
   EsContactRoute: typeof EsContactRoute
   EsDossierRoute: typeof EsDossierRoute
   EsFaqRoute: typeof EsFaqRoute
   EsGalerieRoute: typeof EsGalerieRoute
+  EsGraciasRoute: typeof EsGraciasRoute
   EsInvestirRoute: typeof EsInvestirRoute
   EsPrivacidadRoute: typeof EsPrivacidadRoute
   EsVillaDeLujoMarrakechRoute: typeof EsVillaDeLujoMarrakechRoute
@@ -863,9 +938,11 @@ export interface RootRouteChildren {
   ItDossierRoute: typeof ItDossierRoute
   ItFaqRoute: typeof ItFaqRoute
   ItGalerieRoute: typeof ItGalerieRoute
+  ItGrazieRoute: typeof ItGrazieRoute
   ItInvestirRoute: typeof ItInvestirRoute
   ItPrivacyRoute: typeof ItPrivacyRoute
   ItVillaDiLussoMarrakechRoute: typeof ItVillaDiLussoMarrakechRoute
+  NlBedanktRoute: typeof NlBedanktRoute
   NlContactRoute: typeof NlContactRoute
   NlEigenaarsportaalRoute: typeof NlEigenaarsportaalRoute
   NlFaqRoute: typeof NlFaqRoute
@@ -882,6 +959,7 @@ export interface RootRouteChildren {
   NoLuksusvillaMarrakechRoute: typeof NoLuksusvillaMarrakechRoute
   NoPersonvernRoute: typeof NoPersonvernRoute
   NoSalgsoppgaveRoute: typeof NoSalgsoppgaveRoute
+  NoTakkRoute: typeof NoTakkRoute
   VillasTypeRoute: typeof VillasTypeRoute
   EnIndexRoute: typeof EnIndexRoute
   EsIndexRoute: typeof EsIndexRoute
@@ -957,6 +1035,13 @@ declare module '@tanstack/react-router' {
       path: '/investir'
       fullPath: '/investir'
       preLoaderRoute: typeof InvestirRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merci': {
+      id: '/merci'
+      path: '/merci'
+      fullPath: '/merci'
+      preLoaderRoute: typeof MerciRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mon-espace': {
@@ -1036,6 +1121,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/thank-you': {
+      id: '/en/thank-you'
+      path: '/en/thank-you'
+      fullPath: '/en/thank-you'
+      preLoaderRoute: typeof EnThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/es/': {
       id: '/es/'
       path: '/es'
@@ -1076,6 +1168,13 @@ declare module '@tanstack/react-router' {
       path: '/es/galerie'
       fullPath: '/es/galerie'
       preLoaderRoute: typeof EsGalerieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/gracias': {
+      id: '/es/gracias'
+      path: '/es/gracias'
+      fullPath: '/es/gracias'
+      preLoaderRoute: typeof EsGraciasRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/es/investir': {
@@ -1141,6 +1240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ItGalerieRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/it/grazie': {
+      id: '/it/grazie'
+      path: '/it/grazie'
+      fullPath: '/it/grazie'
+      preLoaderRoute: typeof ItGrazieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/it/investir': {
       id: '/it/investir'
       path: '/it/investir'
@@ -1167,6 +1273,13 @@ declare module '@tanstack/react-router' {
       path: '/nl'
       fullPath: '/nl/'
       preLoaderRoute: typeof NlIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/nl/bedankt': {
+      id: '/nl/bedankt'
+      path: '/nl/bedankt'
+      fullPath: '/nl/bedankt'
+      preLoaderRoute: typeof NlBedanktRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/nl/contact': {
@@ -1288,6 +1401,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NoSalgsoppgaveRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/no/takk': {
+      id: '/no/takk'
+      path: '/no/takk'
+      fullPath: '/no/takk'
+      preLoaderRoute: typeof NoTakkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/villas/': {
       id: '/villas/'
       path: '/villas'
@@ -1384,6 +1504,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalerieRoute: GalerieRoute,
   InvestirRoute: InvestirRoute,
+  MerciRoute: MerciRoute,
   MonEspaceRoute: MonEspaceRoute,
   VillaDeLuxeMarrakechRoute: VillaDeLuxeMarrakechRoute,
   EnContactRoute: EnContactRoute,
@@ -1394,11 +1515,13 @@ const rootRouteChildren: RootRouteChildren = {
   EnLuxuryVillaMarrakechRoute: EnLuxuryVillaMarrakechRoute,
   EnOwnerAreaRoute: EnOwnerAreaRoute,
   EnPrivacyRoute: EnPrivacyRoute,
+  EnThankYouRoute: EnThankYouRoute,
   EsAreaPropietariosRoute: EsAreaPropietariosRoute,
   EsContactRoute: EsContactRoute,
   EsDossierRoute: EsDossierRoute,
   EsFaqRoute: EsFaqRoute,
   EsGalerieRoute: EsGalerieRoute,
+  EsGraciasRoute: EsGraciasRoute,
   EsInvestirRoute: EsInvestirRoute,
   EsPrivacidadRoute: EsPrivacidadRoute,
   EsVillaDeLujoMarrakechRoute: EsVillaDeLujoMarrakechRoute,
@@ -1407,9 +1530,11 @@ const rootRouteChildren: RootRouteChildren = {
   ItDossierRoute: ItDossierRoute,
   ItFaqRoute: ItFaqRoute,
   ItGalerieRoute: ItGalerieRoute,
+  ItGrazieRoute: ItGrazieRoute,
   ItInvestirRoute: ItInvestirRoute,
   ItPrivacyRoute: ItPrivacyRoute,
   ItVillaDiLussoMarrakechRoute: ItVillaDiLussoMarrakechRoute,
+  NlBedanktRoute: NlBedanktRoute,
   NlContactRoute: NlContactRoute,
   NlEigenaarsportaalRoute: NlEigenaarsportaalRoute,
   NlFaqRoute: NlFaqRoute,
@@ -1426,6 +1551,7 @@ const rootRouteChildren: RootRouteChildren = {
   NoLuksusvillaMarrakechRoute: NoLuksusvillaMarrakechRoute,
   NoPersonvernRoute: NoPersonvernRoute,
   NoSalgsoppgaveRoute: NoSalgsoppgaveRoute,
+  NoTakkRoute: NoTakkRoute,
   VillasTypeRoute: VillasTypeRoute,
   EnIndexRoute: EnIndexRoute,
   EsIndexRoute: EsIndexRoute,

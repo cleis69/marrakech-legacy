@@ -98,3 +98,9 @@
 .conf .faq-list ul { display: grid; gap: 0.35rem; margin: 0; padding-left: 1.1rem; list-style: disc; }
 .conf .faq-list li::marker { color: var(--bronze); }
 .conf-maj { margin-top: var(--espace-bloc); font-size: 0.82rem; color: var(--muted-foreground); }
+
+/* Merci (formulaires de pub) : les choix sont des liens, au style des boutons de fin de page */
+.merci .circle-choix a { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; padding: 1.6rem .4rem; color: inherit; text-decoration: none; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
+.merci .circle-choix a span { display: grid; gap: .35rem; }
+.merci .circle-choix a:hover, .merci .circle-choix a:focus-visible { padding-inline: 1rem; background: color-mix(in oklab, var(--cream) 45%, transparent); }
+.merci .circle-choix a:hover svg, .merci .circle-choix a:focus-visible svg { transform: translateX(.3rem); }
