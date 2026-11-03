@@ -28,7 +28,7 @@ export const nl: Textes = {
     questions: "Vragen",
     espace: "Mijn omgeving",
     langue: "Taal van de site",
-    whatsapp: "Een CITYSTAR-adviseur een WhatsApp-bericht sturen",
+    whatsapp: "Een deskundige vastgoedconsultant van CITYSTAR een WhatsApp-bericht sturen",
   },
   hero: {
     lieu: "Privéresidentie · Route de Fès km 11, Marrakech",
@@ -99,7 +99,7 @@ export const nl: Textes = {
     part: "Deel van de prijs",
     aConfirmer: "Nog te bevestigen",
     notePaiement: (reste) =>
-      `De reservering wordt rechtstreeks bij de notaris ondertekend. De verdeling van de resterende ${reste} wordt met de ontwikkelaar afgestemd: uw adviseur stuurt u het gedetailleerde betalingsschema van uw villa.`,
+      `De reservering wordt rechtstreeks bij de notaris ondertekend. De verdeling van de resterende ${reste} wordt met de ontwikkelaar afgestemd: uw consultant stuurt u het gedetailleerde betalingsschema van uw villa.`,
     echeancier: "Het betalingsschema ontvangen",
     selection: {
       outil: "Kalender en betalingen",
@@ -317,7 +317,7 @@ export const nl: Textes = {
       excedent: (montant) => `De huur overtreft het maandbedrag met ${montant} per maand.`,
       mention:
         "Indicatieve simulatie, zonder verzekering en dossierkosten. Rente en looptijd hangen af van uw bank en uw profiel.",
-      cta: "Financiering bespreken met een adviseur",
+      cta: "Financiering bespreken met een consultant",
       outil: "Hypotheeksimulator",
       ligne: (apport, duree, taux) => `Inbreng ${apport} · ${duree} · rente ${taux}`,
       ligneMensualite: (montant) => `Geschat maandbedrag: ${montant}`,
@@ -400,14 +400,14 @@ export const nl: Textes = {
         titre: "Verder gaan",
         plans: "De villa’s en hun plattegronden bekijken",
         simulateur: "Een rendement schatten",
-        rappel: "Teruggebeld worden door een adviseur",
+        rappel: "Teruggebeld worden door een consultant",
       },
       titre: "Veelgestelde vragen — CITYSTAR Marrakech",
       description:
         "Ligging, oppervlaktes, toegankelijkheid, prijzen, plattegronden, bezichtigingen: antwoorden op de meest gestelde vragen.",
       kicker: "Vragen",
       titreH1: ["De vragen", "die ons gesteld worden."],
-      intro: "Mist u een antwoord? Een adviseur antwoordt u rechtstreeks.",
+      intro: "Mist u een antwoord? Een deskundige vastgoedconsultant antwoordt u rechtstreeks.",
     },
     luxe: {
       titre: "Luxevilla in Marrakech — CITYSTAR",
@@ -436,7 +436,7 @@ export const nl: Textes = {
         {
           titre: "Eerst bezichtigen, dan kopen",
           texte:
-            "De plattegronden van elk type zijn op de site te bekijken; de brochure en de pdf-plattegronden worden op aanvraag toegestuurd. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via een adviseur, die u terugbelt en de bezichtiging regelt.",
+            "De plattegronden van elk type zijn op de site te bekijken; de brochure en de pdf-plattegronden worden op aanvraag toegestuurd. Bezichtigingen ter plaatse en de koopvoorwaarden lopen via een consultant, die u terugbelt en de bezichtiging regelt.",
         },
       ],
     },
@@ -447,7 +447,7 @@ export const nl: Textes = {
       kicker: "Contact",
       titreH1: ["Laten we het hebben over", "uw project."],
       intro:
-        "Een adviseur antwoordt u rechtstreeks: telefoon, WhatsApp of terugbellen, naar keuze.",
+        "Een deskundige vastgoedconsultant antwoordt u rechtstreeks: telefoon, WhatsApp of terugbellen, naar keuze.",
       formulaire: "Terugbelverzoek",
     },
   },
@@ -460,12 +460,12 @@ export const nl: Textes = {
     {
       id: "acquisition",
       q: "Hoe verloopt de aankoop?",
-      r: `U reserveert uw villa bij de notaris, met ${v.acompte} van de prijs. De verdeling van het restant tot de sleuteloverdracht wordt met de ontwikkelaar afgestemd; uw adviseur stuurt u het gedetailleerde schema.`,
+      r: `U reserveert uw villa bij de notaris, met ${v.acompte} van de prijs. De verdeling van het restant tot de sleuteloverdracht wordt met de ontwikkelaar afgestemd; uw consultant stuurt u het gedetailleerde schema.`,
     },
     {
       id: "financement",
       q: "Kan ik kopen met een hypotheek?",
-      r: "Ja. De ontwikkelaar aanvaardt aankopen die met een hypothecaire lening van een bank worden gefinancierd. Uw adviseur begeleidt u bij de stappen met uw bank.",
+      r: "Ja. De ontwikkelaar aanvaardt aankopen die met een hypothecaire lening van een bank worden gefinancierd. Uw consultant begeleidt u bij de stappen met uw bank.",
     },
     {
       id: "livraison",
@@ -495,12 +495,12 @@ export const nl: Textes = {
     {
       id: "prix",
       q: "Wat kosten de villa’s?",
-      r: "De prijzen worden op aanvraag gegeven, samen met het gedetailleerde betalingsschema van de villa die u interesseert. Vraag een adviseur om u terug te bellen.",
+      r: "De prijzen worden op aanvraag gegeven, samen met het gedetailleerde betalingsschema van de villa die u interesseert. Vraag een consultant om u terug te bellen.",
     },
     {
       id: "visite",
       q: "Kunnen we een bezichtiging doen?",
-      r: "De 360°-rondleiding is online beschikbaar. Een bezichtiging ter plaatse vraagt u aan bij een adviseur, na beoordeling van uw aanvraag.",
+      r: "De 360°-rondleiding is online beschikbaar. Een bezichtiging ter plaatse vraagt u aan bij een consultant, na beoordeling van uw aanvraag.",
     },
     {
       id: "plans",
@@ -566,7 +566,7 @@ export const nl: Textes = {
       {
         titre: "Het eerste gesprek",
         texte:
-          "Via video of telefoon stelt een adviseur u het domein, de villa’s, de plattegronden en de 360°-rondleiding voor.",
+          "Via video of telefoon stelt een consultant u het domein, de villa’s, de plattegronden en de 360°-rondleiding voor.",
       },
       {
         titre: "De keuze van uw villa",
@@ -579,7 +579,7 @@ export const nl: Textes = {
       },
       {
         titre: "De financiering",
-        texte: "Contant of met een hypotheek: uw adviseur begeleidt u bij de stappen met uw bank.",
+        texte: "Contant of met een hypotheek: uw consultant begeleidt u bij de stappen met uw bank.",
       },
       {
         titre: "De bouw volgen",
@@ -641,7 +641,7 @@ export const nl: Textes = {
       },
       rappel: {
         titre: "Teruggebeld worden",
-        texte: "Een adviseur belt u terug om uw vragen te beantwoorden.",
+        texte: "Een consultant belt u terug om uw vragen te beantwoorden.",
       },
       rendement: {
         titre: "Mijn rendement simuleren",
@@ -655,7 +655,7 @@ export const nl: Textes = {
     titre: ["Een rechtstreeks ", "contact."],
     appeler: "Bellen",
     whatsapp: "WhatsApp",
-    conseiller: "Een adviseur",
+    consultant: "Een deskundige vastgoedconsultant",
     ecrire: "Schrijven",
     brochure: "Brochure",
     theme: ["Luxevilla in Marrakech", "luxe-villa-marrakech"],
@@ -835,7 +835,7 @@ export const nl: Textes = {
   contact: {
     titre: ["Teruggebeld ", "worden."],
     texte:
-      "Laat uw gegevens achter en een CITYSTAR-adviseur belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein.",
+      "Laat uw gegevens achter en een deskundige vastgoedconsultant van CITYSTAR belt u terug om uw vragen te beantwoorden, over plattegronden, prijzen of een bezoek aan het domein.",
     jointe: (outil) => `Toegevoegd aan uw aanvraag · ${outil}`,
     retirer: "Niet toevoegen",
     nom: "Voor- en achternaam",
@@ -882,7 +882,7 @@ export const nl: Textes = {
       "Door deze aanvraag te verzenden, gaat u ermee akkoord dat CITYSTAR deze gegevens gebruikt om contact met u op te nemen en u het informatiepakket te sturen. U ontvangt ook de nieuwsbrief van CITYSTAR en nieuws over het project. U kunt zich op elk moment afmelden.",
     envoi: "Verzenden…",
     merci:
-      "Bedankt, uw aanvraag is verzonden. Een adviseur belt u binnenkort terug.",
+      "Bedankt, uw aanvraag is verzonden. Een consultant belt u binnenkort terug.",
     erreur:
       "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of bel ons op het nummer hieronder.",
     fermer: "Sluiten",

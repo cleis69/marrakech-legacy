@@ -28,7 +28,7 @@ export const it: Textes = {
     questions: "Domande",
     espace: "La mia area",
     langue: "Lingua del sito",
-    whatsapp: "Scrivere a un consulente CITYSTAR su WhatsApp",
+    whatsapp: "Scrivere a un consulente immobiliare esperto CITYSTAR su WhatsApp",
   },
   hero: {
     lieu: "Residenza privata · Route de Fès km 11, Marrakech",
@@ -406,7 +406,7 @@ export const it: Textes = {
         "Posizione, superfici, accessibilità, prezzi, planimetrie, visite: le risposte alle domande più comuni.",
       kicker: "Domande",
       titreH1: ["Le domande", "che ci fanno."],
-      intro: "Manca una risposta? Un consulente le risponde direttamente.",
+      intro: "Manca una risposta? Un consulente immobiliare esperto le risponde direttamente.",
     },
     luxe: {
       titre: "Villa di lusso a Marrakech — CITYSTAR",
@@ -446,7 +446,7 @@ export const it: Textes = {
       kicker: "Contatti",
       titreH1: ["Parliamo del", "suo progetto."],
       intro:
-        "Un consulente le risponde direttamente: telefono, WhatsApp o richiamata, come preferisce.",
+        "Un consulente immobiliare esperto le risponde direttamente: telefono, WhatsApp o richiamata, come preferisce.",
       formulaire: "Richiedere una richiamata",
     },
   },
@@ -653,7 +653,7 @@ export const it: Textes = {
     titre: ["Un contatto ", "diretto."],
     appeler: "Chiamare",
     whatsapp: "WhatsApp",
-    conseiller: "Un consulente",
+    consultant: "Un consulente immobiliare esperto",
     ecrire: "Scrivere",
     brochure: "Brochure",
     theme: ["Villa di lusso a Marrakech", "villa-di-lusso-marrakech"],
@@ -833,7 +833,7 @@ export const it: Textes = {
   contact: {
     titre: ["Farsi ", "richiamare."],
     texte:
-      "Lasci i suoi recapiti e un consulente CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta.",
+      "Lasci i suoi recapiti e un consulente immobiliare esperto di CITYSTAR la richiamerà per rispondere alle sue domande su planimetrie, prezzi o una visita della tenuta.",
     jointe: (outil) => `Allegato alla sua richiesta · ${outil}`,
     retirer: "Non allegare",
     nom: "Nome e cognome",

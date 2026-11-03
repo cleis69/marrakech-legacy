@@ -28,7 +28,7 @@ export const no: Textes = {
     questions: "Spørsmål",
     espace: "Min side",
     langue: "Nettstedets språk",
-    whatsapp: "Skriv til en CITYSTAR-rådgiver på WhatsApp",
+    whatsapp: "Skriv til en fagkyndig eiendomskonsulent hos CITYSTAR på WhatsApp",
   },
   hero: {
     lieu: "Privat residens · Route de Fès km 11, Marrakech",
@@ -99,7 +99,7 @@ export const no: Textes = {
     part: "Andel av prisen",
     aConfirmer: "Bekreftes senere",
     notePaiement: (reste) =>
-      `Reservasjonen signeres direkte hos notarius. Fordelingen av de resterende ${reste} avklares med utbyggeren: rådgiveren din sender deg den detaljerte betalingsplanen for villaen din.`,
+      `Reservasjonen signeres direkte hos notarius. Fordelingen av de resterende ${reste} avklares med utbyggeren: konsulenten din sender deg den detaljerte betalingsplanen for villaen din.`,
     echeancier: "Motta betalingsplanen",
     selection: { outil: "Kalender og betaling", ligne: "Forespørsel om detaljert betalingsplan" },
     espace: {
@@ -310,7 +310,7 @@ export const no: Textes = {
       excedent: (montant) => `Leien overstiger terminbeløpet med ${montant} per måned.`,
       mention:
         "Veiledende beregning, uten forsikring og etableringsgebyr. Rente og løpetid avhenger av banken og profilen din.",
-      cta: "Snakk finansiering med en rådgiver",
+      cta: "Snakk finansiering med en konsulent",
       outil: "Lånekalkulator",
       ligne: (apport, duree, taux) => `Egenkapital ${apport} · ${duree} · rente ${taux}`,
       ligneMensualite: (montant) => `Anslått terminbeløp: ${montant}`,
@@ -389,14 +389,14 @@ export const no: Textes = {
         titre: "Gå videre",
         plans: "Se villaene og plantegningene",
         simulateur: "Beregn en avkastning",
-        rappel: "Bli ringt opp av en rådgiver",
+        rappel: "Bli ringt opp av en konsulent",
       },
       titre: "Ofte stilte spørsmål — CITYSTAR Marrakech",
       description:
         "Beliggenhet, arealer, tilgjengelighet, priser, plantegninger, visninger: svar på de vanligste spørsmålene.",
       kicker: "Spørsmål",
       titreH1: ["Spørsmålene", "vi får."],
-      intro: "Mangler du et svar? En rådgiver svarer deg direkte.",
+      intro: "Mangler du et svar? En fagkyndig eiendomskonsulent svarer deg direkte.",
     },
     luxe: {
       titre: "Luksusvilla i Marrakech — CITYSTAR",
@@ -425,7 +425,7 @@ export const no: Textes = {
         {
           titre: "Se først, kjøp etterpå",
           texte:
-            "Plantegninger for hver type kan ses på nettstedet; brosjyren og PDF-tegningene sendes på forespørsel. Visning på stedet og kjøpsvilkår går via en rådgiver, som ringer deg opp og avtaler visningen.",
+            "Plantegninger for hver type kan ses på nettstedet; brosjyren og PDF-tegningene sendes på forespørsel. Visning på stedet og kjøpsvilkår går via en konsulent, som ringer deg opp og avtaler visningen.",
         },
       ],
     },
@@ -435,7 +435,7 @@ export const no: Textes = {
         "Be om privat tilgang, brosjyren eller en visning av CITYSTAR-eiendommen i Marrakech.",
       kicker: "Kontakt",
       titreH1: ["La oss snakke om", "prosjektet ditt."],
-      intro: "En rådgiver svarer deg direkte: telefon, WhatsApp eller oppringing, som du vil.",
+      intro: "En fagkyndig eiendomskonsulent svarer deg direkte: telefon, WhatsApp eller oppringing, som du vil.",
       formulaire: "Be om å bli ringt opp",
     },
   },
@@ -448,12 +448,12 @@ export const no: Textes = {
     {
       id: "acquisition",
       q: "Hvordan foregår kjøpet?",
-      r: `Du reserverer villaen hos notarius, med ${v.acompte} av prisen. Fordelingen av restbeløpet fram til nøkkeloverleveringen avklares med utbyggeren; rådgiveren din sender deg den detaljerte planen.`,
+      r: `Du reserverer villaen hos notarius, med ${v.acompte} av prisen. Fordelingen av restbeløpet fram til nøkkeloverleveringen avklares med utbyggeren; konsulenten din sender deg den detaljerte planen.`,
     },
     {
       id: "financement",
       q: "Kan jeg kjøpe med boliglån?",
-      r: "Ja. Utbyggeren godtar kjøp finansiert med boliglån fra bank. Rådgiveren din hjelper deg gjennom trinnene med banken.",
+      r: "Ja. Utbyggeren godtar kjøp finansiert med boliglån fra bank. Konsulenten din hjelper deg gjennom trinnene med banken.",
     },
     {
       id: "livraison",
@@ -483,12 +483,12 @@ export const no: Textes = {
     {
       id: "prix",
       q: "Hva koster villaene?",
-      r: "Prisene oppgis på forespørsel, sammen med den detaljerte betalingsplanen for villaen du er interessert i. Be om å bli ringt opp av en rådgiver.",
+      r: "Prisene oppgis på forespørsel, sammen med den detaljerte betalingsplanen for villaen du er interessert i. Be om å bli ringt opp av en konsulent.",
     },
     {
       id: "visite",
       q: "Kan vi komme på visning?",
-      r: "360°-omvisningen er tilgjengelig på nett. Visning på stedet bestilles via en rådgiver, etter at forespørselen din er vurdert.",
+      r: "360°-omvisningen er tilgjengelig på nett. Visning på stedet bestilles via en konsulent, etter at forespørselen din er vurdert.",
     },
     {
       id: "plans",
@@ -547,7 +547,7 @@ export const no: Textes = {
       {
         titre: "Den første samtalen",
         texte:
-          "På video eller telefon presenterer en rådgiver eiendommen, villaene, plantegningene og 360°-omvisningen.",
+          "På video eller telefon presenterer en konsulent eiendommen, villaene, plantegningene og 360°-omvisningen.",
       },
       {
         titre: "Valg av villa",
@@ -561,7 +561,7 @@ export const no: Textes = {
       {
         titre: "Finansiering",
         texte:
-          "Kontant eller med boliglån: rådgiveren din hjelper deg gjennom trinnene med banken.",
+          "Kontant eller med boliglån: konsulenten din hjelper deg gjennom trinnene med banken.",
       },
       {
         titre: "Oppfølging av byggingen",
@@ -623,7 +623,7 @@ export const no: Textes = {
       },
       rappel: {
         titre: "Bli ringt opp",
-        texte: "En rådgiver ringer deg opp for å svare på spørsmålene dine.",
+        texte: "En konsulent ringer deg opp for å svare på spørsmålene dine.",
       },
       rendement: {
         titre: "Beregn min avkastning",
@@ -637,7 +637,7 @@ export const no: Textes = {
     titre: ["En direkte ", "kontakt."],
     appeler: "Ring",
     whatsapp: "WhatsApp",
-    conseiller: "En rådgiver",
+    consultant: "En fagkyndig eiendomskonsulent",
     ecrire: "Skriv",
     brochure: "Brosjyre",
     theme: ["Luksusvilla i Marrakech", "luksusvilla-marrakech"],
@@ -817,7 +817,7 @@ export const no: Textes = {
   contact: {
     titre: ["Bli ", "ringt opp."],
     texte:
-      "Legg igjen kontaktopplysningene dine, så ringer en CITYSTAR-rådgiver deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen.",
+      "Legg igjen kontaktopplysningene dine, så ringer en fagkyndig eiendomskonsulent hos CITYSTAR deg opp for å svare på spørsmål om plantegninger, priser eller en visning av eiendommen.",
     jointe: (outil) => `Lagt ved forespørselen din · ${outil}`,
     retirer: "Ikke legg ved",
     nom: "Fullt navn",
@@ -864,7 +864,7 @@ export const no: Textes = {
       "Ved å sende denne forespørselen godtar du at CITYSTAR bruker disse opplysningene til å kontakte deg og sende deg salgsoppgaven. Du får også nyhetsbrevet fra CITYSTAR og nyheter om prosjektet. Du kan melde deg av når som helst.",
     envoi: "Sender…",
     merci:
-      "Takk, forespørselen din er sendt. En rådgiver ringer deg opp snart.",
+      "Takk, forespørselen din er sendt. En konsulent ringer deg opp snart.",
     erreur: "Forespørselen kunne ikke sendes. Prøv igjen, eller ring oss på nummeret nedenfor.",
     fermer: "Lukk",
   },

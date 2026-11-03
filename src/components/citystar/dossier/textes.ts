@@ -47,7 +47,7 @@ const fr = {
     kicker: "Prix · plans · disponibilités",
     titre: ["Tout pour décider,", "en une seule demande."] as [string, string],
     intro:
-      "Le dossier réunit ce qu’un acquéreur demande d’ordinaire en dix messages. Un conseiller vous envoie le tout après une demande d’une minute, sans engagement.",
+      "Le dossier réunit ce qu’un acquéreur demande d’ordinaire en dix messages. Un consultant expert en immobilier vous envoie le tout après une demande d’une minute, sans engagement.",
     elements: [
       { titre: "Prix villa par villa", texte: "Le prix de chacune des quatorze villas, selon son architecture et sa parcelle." },
       { titre: "Disponibilités", texte: "Les villas encore libres, à la date de votre demande." },
@@ -60,7 +60,7 @@ const fr = {
     ensuite: "Et ensuite ?",
     etapes: [
       { titre: "Vous demandez le dossier.", texte: "Une minute, sans engagement ni réservation automatique." },
-      { titre: "Un conseiller vous l’envoie.", texte: "Prix, disponibilités, échéancier ; il répond à vos questions par téléphone, WhatsApp ou visio." },
+      { titre: "Un consultant vous l’envoie.", texte: "Prix, disponibilités, échéancier ; il répond à vos questions par téléphone, WhatsApp ou visio." },
       { titre: "Vous visitez, puis décidez.", texte: "Sur place ou à distance. La réservation se signe chez le notaire." },
     ],
   },
@@ -99,7 +99,7 @@ const fr = {
   final: {
     titre: ["Recevez le dossier", "CITYSTAR."] as [string, string],
     texte:
-      "Prix villa par villa, disponibilités, plans, échéancier et simulation locative. Un conseiller vous l’envoie, sans engagement.",
+      "Prix villa par villa, disponibilités, plans, échéancier et simulation locative. Un consultant expert en immobilier vous l’envoie, sans engagement.",
     demander: "Recevoir le dossier",
     whatsapp: "Écrire sur WhatsApp",
     appeler: "Appeler",
@@ -155,7 +155,7 @@ const en: TextesDossier = {
     kicker: "Prices · plans · availability",
     titre: ["Everything you need to decide,", "in a single request."],
     intro:
-      "The pack gathers what a buyer usually asks for in ten messages. An adviser sends you everything after a one-minute request, with no commitment.",
+      "The pack gathers what a buyer usually asks for in ten messages. An expert real estate consultant sends you everything after a one-minute request, with no commitment.",
     elements: [
       { titre: "Prices villa by villa", texte: "The price of each of the fourteen villas, by architecture and plot." },
       { titre: "Availability", texte: "The villas still available on the date of your request." },
@@ -168,7 +168,7 @@ const en: TextesDossier = {
     ensuite: "What happens next?",
     etapes: [
       { titre: "You request the pack.", texte: "One minute, no commitment, no automatic reservation." },
-      { titre: "An adviser sends it to you.", texte: "Prices, availability, payment schedule; they answer your questions by phone, WhatsApp or video call." },
+      { titre: "A consultant sends it to you.", texte: "Prices, availability, payment schedule; they answer your questions by phone, WhatsApp or video call." },
       { titre: "You visit, then decide.", texte: "On site or remotely. The reservation is signed before a notary." },
     ],
   },
@@ -207,7 +207,7 @@ const en: TextesDossier = {
   final: {
     titre: ["Get the CITYSTAR", "information pack."],
     texte:
-      "Prices villa by villa, availability, floor plans, payment schedule and rental simulation. An adviser sends it to you, with no commitment.",
+      "Prices villa by villa, availability, floor plans, payment schedule and rental simulation. An expert real estate consultant sends it to you, with no commitment.",
     demander: "Get the information pack",
     whatsapp: "Message us on WhatsApp",
     appeler: "Call",
@@ -260,7 +260,7 @@ const es: TextesDossier = {
     kicker: "Precios · planos · disponibilidad",
     titre: ["Todo para decidir,", "en una sola solicitud."],
     intro:
-      "El dossier reúne lo que un comprador suele pedir en diez mensajes. Un asesor se lo envía todo tras una solicitud de un minuto, sin compromiso.",
+      "El dossier reúne lo que un comprador suele pedir en diez mensajes. Un consultor inmobiliario experto se lo envía todo tras una solicitud de un minuto, sin compromiso.",
     elements: [
       { titre: "Precio de cada villa", texte: "El precio de cada una de las catorce villas, según su arquitectura y su parcela." },
       { titre: "Disponibilidad", texte: "Las villas todavía libres en la fecha de su solicitud." },
@@ -273,7 +273,7 @@ const es: TextesDossier = {
     ensuite: "¿Y después?",
     etapes: [
       { titre: "Solicita el dossier.", texte: "Un minuto, sin compromiso ni reserva automática." },
-      { titre: "Un asesor se lo envía.", texte: "Precios, disponibilidad, calendario; responde a sus preguntas por teléfono, WhatsApp o videollamada." },
+      { titre: "Un consultor se lo envía.", texte: "Precios, disponibilidad, calendario; responde a sus preguntas por teléfono, WhatsApp o videollamada." },
       { titre: "Visita y decide.", texte: "In situ o a distancia. La reserva se firma ante notario." },
     ],
   },
@@ -312,7 +312,7 @@ const es: TextesDossier = {
   final: {
     titre: ["Reciba el dossier", "CITYSTAR."],
     texte:
-      "Precio de cada villa, disponibilidad, planos, calendario de pagos y simulación de alquiler. Un asesor se lo envía, sin compromiso.",
+      "Precio de cada villa, disponibilidad, planos, calendario de pagos y simulación de alquiler. Un consultor inmobiliario experto se lo envía, sin compromiso.",
     demander: "Recibir el dossier",
     whatsapp: "Escribir por WhatsApp",
     appeler: "Llamar",
@@ -365,7 +365,7 @@ const it: TextesDossier = {
     kicker: "Prezzi · planimetrie · disponibilità",
     titre: ["Tutto per decidere,", "con una sola richiesta."],
     intro:
-      "Il dossier riunisce ciò che un acquirente chiede di solito in dieci messaggi. Un consulente le invia tutto dopo una richiesta di un minuto, senza impegno.",
+      "Il dossier riunisce ciò che un acquirente chiede di solito in dieci messaggi. Un consulente immobiliare esperto le invia tutto dopo una richiesta di un minuto, senza impegno.",
     elements: [
       { titre: "Prezzo villa per villa", texte: "Il prezzo di ciascuna delle quattordici ville, secondo architettura e lotto." },
       { titre: "Disponibilità", texte: "Le ville ancora libere alla data della sua richiesta." },
@@ -417,7 +417,7 @@ const it: TextesDossier = {
   final: {
     titre: ["Riceva il dossier", "CITYSTAR."],
     texte:
-      "Prezzo villa per villa, disponibilità, planimetrie, piano dei pagamenti e simulazione locativa. Un consulente glielo invia, senza impegno.",
+      "Prezzo villa per villa, disponibilità, planimetrie, piano dei pagamenti e simulazione locativa. Un consulente immobiliare esperto glielo invia, senza impegno.",
     demander: "Ricevi il dossier",
     whatsapp: "Ci scriva su WhatsApp",
     appeler: "Chiama",
@@ -470,7 +470,7 @@ const nl: TextesDossier = {
     kicker: "Prijzen · plattegronden · beschikbaarheid",
     titre: ["Alles om te beslissen,", "in één aanvraag."],
     intro:
-      "Het pakket bundelt wat een koper normaal in tien berichten vraagt. Een adviseur stuurt u alles toe na een aanvraag van één minuut, vrijblijvend.",
+      "Het pakket bundelt wat een koper normaal in tien berichten vraagt. Een deskundige vastgoedconsultant stuurt u alles toe na een aanvraag van één minuut, vrijblijvend.",
     elements: [
       { titre: "Prijs per villa", texte: "De prijs van elk van de veertien villa’s, naar architectuur en kavel." },
       { titre: "Beschikbaarheid", texte: "De villa’s die nog vrij zijn op de datum van uw aanvraag." },
@@ -483,7 +483,7 @@ const nl: TextesDossier = {
     ensuite: "En dan?",
     etapes: [
       { titre: "U vraagt het pakket aan.", texte: "Eén minuut, vrijblijvend en zonder automatische reservering." },
-      { titre: "Een adviseur stuurt het u toe.", texte: "Prijzen, beschikbaarheid, betalingsschema; hij beantwoordt uw vragen per telefoon, WhatsApp of videogesprek." },
+      { titre: "Een consultant stuurt het u toe.", texte: "Prijzen, beschikbaarheid, betalingsschema; hij beantwoordt uw vragen per telefoon, WhatsApp of videogesprek." },
       { titre: "U bezoekt en beslist.", texte: "Ter plaatse of op afstand. De reservering wordt bij de notaris getekend." },
     ],
   },
@@ -522,7 +522,7 @@ const nl: TextesDossier = {
   final: {
     titre: ["Ontvang het", "CITYSTAR-pakket."],
     texte:
-      "Prijs per villa, beschikbaarheid, plattegronden, betalingsschema en huursimulatie. Een adviseur stuurt het u vrijblijvend toe.",
+      "Prijs per villa, beschikbaarheid, plattegronden, betalingsschema en huursimulatie. Een deskundige vastgoedconsultant stuurt het u vrijblijvend toe.",
     demander: "Ontvang het informatiepakket",
     whatsapp: "Stuur een WhatsApp",
     appeler: "Bellen",
@@ -576,7 +576,7 @@ const no: TextesDossier = {
     kicker: "Priser · tegninger · ledighet",
     titre: ["Alt du trenger for å bestemme deg,", "i én forespørsel."],
     intro:
-      "Salgsoppgaven samler det en kjøper vanligvis spør om i ti meldinger. En rådgiver sender deg alt etter en forespørsel på ett minutt, helt uforpliktende.",
+      "Salgsoppgaven samler det en kjøper vanligvis spør om i ti meldinger. En fagkyndig eiendomskonsulent sender deg alt etter en forespørsel på ett minutt, helt uforpliktende.",
     elements: [
       { titre: "Pris per villa", texte: "Prisen på hver av de fjorten villaene, etter arkitektur og tomt." },
       { titre: "Ledighet", texte: "Villaene som fortsatt er ledige på datoen for forespørselen din." },
@@ -589,7 +589,7 @@ const no: TextesDossier = {
     ensuite: "Hva skjer så?",
     etapes: [
       { titre: "Du ber om salgsoppgaven.", texte: "Ett minutt, uforpliktende og uten automatisk reservasjon." },
-      { titre: "En rådgiver sender den til deg.", texte: "Priser, ledighet, betalingsplan; rådgiveren svarer på spørsmålene dine på telefon, WhatsApp eller video." },
+      { titre: "En konsulent sender den til deg.", texte: "Priser, ledighet, betalingsplan; konsulenten svarer på spørsmålene dine på telefon, WhatsApp eller video." },
       { titre: "Du besøker, og bestemmer deg.", texte: "På stedet eller på avstand. Reservasjonen signeres hos notarius." },
     ],
   },
@@ -628,7 +628,7 @@ const no: TextesDossier = {
   final: {
     titre: ["Få salgsoppgaven", "for CITYSTAR."],
     texte:
-      "Pris per villa, ledighet, tegninger, betalingsplan og leiesimulering. En rådgiver sender den til deg, helt uforpliktende.",
+      "Pris per villa, ledighet, tegninger, betalingsplan og leiesimulering. En fagkyndig eiendomskonsulent sender den til deg, helt uforpliktende.",
     demander: "Få salgsoppgaven",
     whatsapp: "Skriv på WhatsApp",
     appeler: "Ring",

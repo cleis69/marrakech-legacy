@@ -27,7 +27,7 @@ const fr = {
   aucun: {
     titre: "Aucune villa n’est encore reliée à cette adresse.",
     texte:
-      "Votre conseiller relie votre villa à votre adresse e-mail après la réservation. Si c’est déjà fait, écrivez-nous.",
+      "Votre consultant relie votre villa à votre adresse e-mail après la réservation. Si c’est déjà fait, écrivez-nous.",
   },
   villa: (numero: number) => `Villa ${String(numero).padStart(2, "0")}`,
   type: (type: string) => `Type ${type}`,
@@ -103,7 +103,7 @@ const en: TextesEspace = {
   aucun: {
     titre: "No villa is linked to this address yet.",
     texte:
-      "Your adviser links your villa to your email address after the reservation. If that is already done, write to us.",
+      "Your consultant links your villa to your email address after the reservation. If that is already done, write to us.",
   },
   villa: (numero) => `Villa ${String(numero).padStart(2, "0")}`,
   type: (type) => `Type ${type}`,
@@ -177,7 +177,7 @@ const es: TextesEspace = {
   aucun: {
     titre: "Todavía no hay ninguna villa vinculada a esta dirección.",
     texte:
-      "Su asesor vincula su villa a su correo electrónico tras la reserva. Si ya está hecho, escríbanos.",
+      "Su consultor vincula su villa a su correo electrónico tras la reserva. Si ya está hecho, escríbanos.",
   },
   villa: (numero) => `Villa ${String(numero).padStart(2, "0")}`,
   type: (type) => `Tipo ${type}`,
@@ -325,7 +325,7 @@ const nl: TextesEspace = {
   aucun: {
     titre: "Er is nog geen villa aan dit adres gekoppeld.",
     texte:
-      "Uw adviseur koppelt uw villa na de reservering aan uw e-mailadres. Is dat al gebeurd, schrijf ons dan.",
+      "Uw consultant koppelt uw villa na de reservering aan uw e-mailadres. Is dat al gebeurd, schrijf ons dan.",
   },
   villa: (numero) => `Villa ${String(numero).padStart(2, "0")}`,
   type: (type) => `Type ${type}`,
@@ -399,7 +399,7 @@ const no: TextesEspace = {
   aucun: {
     titre: "Ingen villa er knyttet til denne adressen ennå.",
     texte:
-      "Rådgiveren din knytter villaen til e-postadressen din etter reservasjonen. Er det allerede gjort, skriv til oss.",
+      "Konsulenten din knytter villaen til e-postadressen din etter reservasjonen. Er det allerede gjort, skriv til oss.",
   },
   villa: (numero) => `Villa ${String(numero).padStart(2, "0")}`,
   type: (type) => `Type ${type}`,

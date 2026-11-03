@@ -27,7 +27,7 @@ const fr = {
     brochure: "Brochure CITYSTAR",
     brochureDemande: { outil: "Brochure CITYSTAR", lignes: ["Brochure du domaine et plans PDF des trois villas"] },
     surDemande: "PDF, sur demande",
-    demander: "Être rappelé par un conseiller",
+    demander: "Être rappelé par un consultant",
     fermer: "Fermer le menu",
     menu: "Menu",
     villas: "Villas",
@@ -35,7 +35,7 @@ const fr = {
     questions: "Questions",
     espace: "Mon espace",
     langue: "Langue du site",
-    whatsapp: "Écrire à un conseiller CITYSTAR sur WhatsApp",
+    whatsapp: "Écrire à un consultant expert en immobilier CITYSTAR sur WhatsApp",
   },
   hero: {
     lieu: "Résidence privée · Route de Fès km 11, Marrakech",
@@ -59,7 +59,7 @@ const fr = {
     reservation: (part: string) => `${part} à la réservation`,
     visite: "Visite 360°",
     decouvrir: "Découvrir les villas",
-    acces: "Être rappelé par un conseiller",
+    acces: "Être rappelé par un consultant",
     pause: "Mettre la vidéo en pause",
     lecture: "Reprendre la vidéo",
     pauseCourt: "Pause",
@@ -106,7 +106,7 @@ const fr = {
     part: "Part du prix",
     aConfirmer: "À confirmer",
     notePaiement: (reste: string) =>
-      `La réservation se signe directement chez le notaire. La répartition des ${reste} restants est en cours de validation avec le promoteur\u00a0: votre conseiller vous remet l’échéancier détaillé de votre villa.`,
+      `La réservation se signe directement chez le notaire. La répartition des ${reste} restants est en cours de validation avec le promoteur\u00a0: votre consultant vous remet l’échéancier détaillé de votre villa.`,
     echeancier: "Recevoir l’échéancier",
     selection: { outil: "Calendrier et paiement", ligne: "Demande de l’échéancier détaillé" },
     espace: {
@@ -329,7 +329,7 @@ const fr = {
       excedent: (montant: string) => `Les loyers dépassent la mensualité de ${montant} par mois.`,
       mention:
         "Simulation indicative, hors assurance et frais de dossier. Le taux et la durée dépendent de votre banque et de votre profil.",
-      cta: "Parler financement avec un conseiller",
+      cta: "Parler financement avec un consultant",
       outil: "Simulateur de crédit",
       ligne: (apport: string, duree: string, taux: string) => `Apport ${apport} · ${duree} · taux ${taux}`,
       ligneMensualite: (montant: string) => `Mensualité estimée\u00a0: ${montant}`,
@@ -409,14 +409,14 @@ const fr = {
         titre: "Aller plus loin",
         plans: "Voir les villas et leurs plans",
         simulateur: "Estimer un rendement",
-        rappel: "Être rappelé par un conseiller",
+        rappel: "Être rappelé par un consultant",
       },
       titre: "Questions fréquentes — CITYSTAR Marrakech",
       description:
         "Emplacement, surfaces, accessibilité, prix, plans, visites\u00a0: les réponses aux questions les plus posées.",
       kicker: "Questions",
       titreH1: ["Les questions", "qu'on nous pose."] as [string, string],
-      intro: "Une réponse manque\u00a0? Un conseiller vous répond directement.",
+      intro: "Une réponse manque\u00a0? Un consultant expert en immobilier vous répond directement.",
     },
     luxe: {
       titre: "Villa de luxe à Marrakech — CITYSTAR",
@@ -445,7 +445,7 @@ const fr = {
         {
           titre: "Visiter, puis acquérir",
           texte:
-            "Les plans de chaque type se consultent sur le site ; la brochure et les plans PDF sont envoyés sur demande. La visite sur place et les conditions d'acquisition passent par un conseiller, qui vous rappelle et organise la visite.",
+            "Les plans de chaque type se consultent sur le site ; la brochure et les plans PDF sont envoyés sur demande. La visite sur place et les conditions d'acquisition passent par un consultant, qui vous rappelle et organise la visite.",
         },
       ],
     },
@@ -456,8 +456,8 @@ const fr = {
       kicker: "Contact",
       titreH1: ["Parlons de", "votre projet."] as [string, string],
       intro:
-        "Un conseiller vous répond directement\u00a0: téléphone, WhatsApp ou rappel, au choix.",
-      formulaire: "Être rappelé par un conseiller",
+        "Un consultant expert en immobilier vous répond directement\u00a0: téléphone, WhatsApp ou rappel, au choix.",
+      formulaire: "Être rappelé par un consultant",
     },
   },
   faq: (v: {
@@ -479,12 +479,12 @@ const fr = {
     {
       id: "acquisition",
       q: "Comment se déroule l'acquisition\u00a0?",
-      r: `Vous réservez votre villa chez le notaire, avec ${v.acompte} du prix. La répartition du solde jusqu’à la remise des clés est en cours de validation avec le promoteur\u00a0; votre conseiller vous remet l’échéancier détaillé.`,
+      r: `Vous réservez votre villa chez le notaire, avec ${v.acompte} du prix. La répartition du solde jusqu’à la remise des clés est en cours de validation avec le promoteur\u00a0; votre consultant vous remet l’échéancier détaillé.`,
     },
     {
       id: "financement",
       q: "Peut-on acheter avec un crédit immobilier\u00a0?",
-      r: "Oui. Le promoteur accepte les acquisitions financées par un crédit immobilier bancaire. Votre conseiller vous accompagne dans les étapes avec votre banque.",
+      r: "Oui. Le promoteur accepte les acquisitions financées par un crédit immobilier bancaire. Votre consultant vous accompagne dans les étapes avec votre banque.",
     },
     {
       id: "livraison",
@@ -514,12 +514,12 @@ const fr = {
     {
       id: "prix",
       q: "Quel est le prix des villas\u00a0?",
-      r: "Les prix sont communiqués sur demande, avec l’échéancier détaillé de la villa qui vous intéresse. Demandez à être rappelé par un conseiller.",
+      r: "Les prix sont communiqués sur demande, avec l’échéancier détaillé de la villa qui vous intéresse. Demandez à être rappelé par un consultant.",
     },
     {
       id: "visite",
       q: "Peut-on visiter\u00a0?",
-      r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande à un conseiller, après étude de la demande d'accès.",
+      r: "La visite aérienne à 360° est accessible en ligne. Une visite sur place se demande à un consultant, après étude de la demande d'accès.",
     },
     {
       id: "plans",
@@ -581,7 +581,7 @@ const fr = {
       {
         titre: "Le premier échange",
         texte:
-          "En visio ou par téléphone, un conseiller vous présente le domaine, les villas, les plans et la visite 360°.",
+          "En visio ou par téléphone, un consultant vous présente le domaine, les villas, les plans et la visite 360°.",
       },
       {
         titre: "Le choix de votre villa",
@@ -595,7 +595,7 @@ const fr = {
       {
         titre: "Le financement",
         texte:
-          "Comptant ou par crédit immobilier : votre conseiller vous accompagne dans les démarches avec votre banque.",
+          "Comptant ou par crédit immobilier : votre consultant vous accompagne dans les démarches avec votre banque.",
       },
       {
         titre: "Le suivi du chantier",
@@ -657,7 +657,7 @@ const fr = {
       },
       rappel: {
         titre: "Être rappelé",
-        texte: "Un conseiller vous rappelle pour répondre à vos questions.",
+        texte: "Un consultant vous rappelle pour répondre à vos questions.",
       },
       rendement: {
         titre: "Simuler mon rendement",
@@ -671,7 +671,7 @@ const fr = {
     titre: ["Un contact ", "direct."] as [string, string],
     appeler: "Appeler",
     whatsapp: "WhatsApp",
-    conseiller: "Un conseiller",
+    consultant: "Un consultant expert en immobilier",
     ecrire: "Écrire",
     brochure: "Brochure",
     theme: ["Villa de luxe à Marrakech", "villa-de-luxe-marrakech"] as [string, string],
@@ -856,7 +856,7 @@ const fr = {
     // Titre court : le panneau est étroit ; l'espace finale sépare les deux lignes pour les lecteurs d'écran.
     titre: ["Être ", "rappelé."] as [string, string],
     texte:
-      "Laissez vos coordonnées\u00a0: un conseiller CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
+      "Laissez vos coordonnées\u00a0: un consultant expert en immobilier de CITYSTAR vous rappelle pour répondre à vos questions, sur les plans, les prix ou une visite du domaine.",
     jointe: (outil: string) => `Jointe à votre demande · ${outil}`,
     retirer: "Ne pas joindre",
     nom: "Nom complet",
@@ -908,7 +908,7 @@ const fr = {
       "En envoyant cette demande, vous acceptez que CITYSTAR utilise ces informations pour vous recontacter et vous envoyer le dossier. Vous recevrez aussi la newsletter CITYSTAR et les actualités du domaine. Vous pouvez vous désinscrire à tout moment.",
     envoi: "Envoi…",
     merci:
-      "Merci, votre demande est bien envoyée. Un conseiller vous rappelle rapidement.",
+      "Merci, votre demande est bien envoyée. Un consultant vous rappelle rapidement.",
     erreur: "L’envoi n’a pas abouti. Réessayez, ou appelez-nous au numéro ci-dessous.",
     fermer: "Fermer",
   },
@@ -946,7 +946,7 @@ const en: Textes = {
     questions: "Questions",
     espace: "Owner area",
     langue: "Site language",
-    whatsapp: "Message a CITYSTAR adviser on WhatsApp",
+    whatsapp: "Message an expert real estate consultant at CITYSTAR on WhatsApp",
   },
   hero: {
     lieu: "Private residence · Route de Fès km 11, Marrakech",
@@ -1016,7 +1016,7 @@ const en: Textes = {
     part: "Share of the price",
     aConfirmer: "To be confirmed",
     notePaiement: (reste) =>
-      `The reservation is signed directly at the notary. The split of the remaining ${reste} is being confirmed with the developer: your adviser will send you the detailed schedule for your villa.`,
+      `The reservation is signed directly at the notary. The split of the remaining ${reste} is being confirmed with the developer: your consultant will send you the detailed schedule for your villa.`,
     echeancier: "Receive the schedule",
     selection: {
       outil: "Calendar and payment",
@@ -1231,7 +1231,7 @@ const en: Textes = {
       excedent: (montant) => `Rent exceeds the repayment by ${montant} per month.`,
       mention:
         "Indicative simulation, excluding insurance and arrangement fees. Rate and term depend on your bank and your profile.",
-      cta: "Talk financing with an adviser",
+      cta: "Talk financing with a consultant",
       outil: "Mortgage simulator",
       ligne: (apport, duree, taux) => `Deposit ${apport} · ${duree} · rate ${taux}`,
       ligneMensualite: (montant) => `Estimated monthly repayment: ${montant}`,
@@ -1317,7 +1317,7 @@ const en: Textes = {
         "Location, areas, accessibility, prices, plans, viewings: answers to the most common questions.",
       kicker: "Questions",
       titreH1: ["The questions", "we are asked."],
-      intro: "An answer missing? An adviser replies directly.",
+      intro: "An answer missing? An expert real estate consultant replies directly.",
     },
     luxe: {
       titre: "Luxury villa in Marrakech — CITYSTAR",
@@ -1346,7 +1346,7 @@ const en: Textes = {
         {
           titre: "Visit, then buy",
           texte:
-            "Floor plans for each type can be viewed on the site; the brochure and PDF plans are sent on request. On-site viewings and purchase terms go through an adviser, who calls you back and arranges the viewing.",
+            "Floor plans for each type can be viewed on the site; the brochure and PDF plans are sent on request. On-site viewings and purchase terms go through a consultant, who calls you back and arranges the viewing.",
         },
       ],
     },
@@ -1356,7 +1356,7 @@ const en: Textes = {
         "Request private access, the brochure or a viewing of the CITYSTAR estate in Marrakech.",
       kicker: "Contact",
       titreH1: ["Let's talk about", "your project."],
-      intro: "An adviser answers you directly: phone, WhatsApp or a call back, your choice.",
+      intro: "An expert real estate consultant answers you directly: phone, WhatsApp or a call back, your choice.",
       formulaire: "Request a call back",
     },
   },
@@ -1369,12 +1369,12 @@ const en: Textes = {
     {
       id: "acquisition",
       q: "How does buying work?",
-      r: `You reserve your villa at the notary, with ${v.acompte} of the price. The split of the balance up to handover is being confirmed with the developer; your adviser will send you the detailed schedule.`,
+      r: `You reserve your villa at the notary, with ${v.acompte} of the price. The split of the balance up to handover is being confirmed with the developer; your consultant will send you the detailed schedule.`,
     },
     {
       id: "financement",
       q: "Can I buy with a mortgage?",
-      r: "Yes. The developer accepts purchases financed by a bank mortgage. Your adviser will guide you through the steps with your bank.",
+      r: "Yes. The developer accepts purchases financed by a bank mortgage. Your consultant will guide you through the steps with your bank.",
     },
     {
       id: "livraison",
@@ -1404,12 +1404,12 @@ const en: Textes = {
     {
       id: "prix",
       q: "What do the villas cost?",
-      r: "Prices are given on request, together with the detailed payment schedule for the villa you are interested in. Ask an adviser to call you back.",
+      r: "Prices are given on request, together with the detailed payment schedule for the villa you are interested in. Ask a consultant to call you back.",
     },
     {
       id: "visite",
       q: "Can we visit?",
-      r: "The 360° aerial tour is open online. An on-site viewing is arranged by an adviser once your access request has been reviewed.",
+      r: "The 360° aerial tour is open online. An on-site viewing is arranged by a consultant once your access request has been reviewed.",
     },
     {
       id: "plans",
@@ -1469,7 +1469,7 @@ const en: Textes = {
       {
         titre: "The first conversation",
         texte:
-          "By video or phone, an adviser presents the estate, the villas, the floor plans and the 360° tour.",
+          "By video or phone, a consultant presents the estate, the villas, the floor plans and the 360° tour.",
       },
       {
         titre: "Choosing your villa",
@@ -1482,7 +1482,7 @@ const en: Textes = {
       },
       {
         titre: "Financing",
-        texte: "Cash or with a mortgage: your adviser guides you through the steps with your bank.",
+        texte: "Cash or with a mortgage: your consultant guides you through the steps with your bank.",
       },
       {
         titre: "Following the construction",
@@ -1544,7 +1544,7 @@ const en: Textes = {
       },
       rappel: {
         titre: "Request a call back",
-        texte: "An adviser calls you back to answer your questions.",
+        texte: "A consultant calls you back to answer your questions.",
       },
       rendement: { titre: "Simulate my return", texte: "A first projection, to refine together." },
     },
@@ -1555,7 +1555,7 @@ const en: Textes = {
     titre: ["A direct ", "line."],
     appeler: "Call",
     whatsapp: "WhatsApp",
-    conseiller: "An adviser",
+    consultant: "An expert real estate consultant",
     ecrire: "Write",
     brochure: "Brochure",
     theme: ["Luxury villa in Marrakech", "luxury-villa-marrakech"],
@@ -1735,7 +1735,7 @@ const en: Textes = {
   contact: {
     titre: ["Request ", "a call back."],
     texte:
-      "Leave your details and a CITYSTAR adviser will call you back to answer your questions, on floor plans, prices or a visit to the estate.",
+      "Leave your details and an expert real estate consultant from CITYSTAR will call you back to answer your questions, on floor plans, prices or a visit to the estate.",
     jointe: (outil) => `Attached to your request · ${outil}`,
     retirer: "Do not attach",
     nom: "Full name",
@@ -1771,7 +1771,7 @@ const en: Textes = {
       "By sending this request, you agree that CITYSTAR may use these details to contact you and send you the information pack. You will also receive the CITYSTAR newsletter and news about the estate. You can unsubscribe at any time.",
     envoi: "Sending…",
     merci:
-      "Thank you, your request has been sent. An adviser will call you back shortly.",
+      "Thank you, your request has been sent. A consultant will call you back shortly.",
     erreur: "Your request could not be sent. Please try again, or call us on the number below.",
     fermer: "Close",
   },
