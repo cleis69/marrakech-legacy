@@ -25,7 +25,7 @@ export type Hypothese<T> = { valeur: T | null; confirme: boolean };
 export const programme = {
   nombreVillas: 14,
   nombreTypes: 3,
-  // Plus grand terrain du programme, en m² (identique pour les trois types).
+  // Terrain de chaque villa, en m² : 2 000 m² pour les 14 villas (précisé par le client le 03/11/2026).
   terrainMaxM2: 2000,
   // Temps de trajet vers la place Jemaa el-Fna et l'aéroport de Marrakech (donné par le client le 12/10/2026 ; 35 auparavant).
   trajetMaxMinutes: 19,

@@ -37,7 +37,7 @@ export const nl: Textes = {
     cartes: {
       paiement: { titre: "Flexibel betalingsplan", texte: "bij reservering, het saldo in het tempo van de bouw" },
       notaire: { titre: "Bij de notaris", fort: "Vanaf de 1e aanbetaling", texte: "De reservering wordt bij de notaris getekend." },
-      livraison: { titre: "Oplevering", texte: (fondsPropres) => `${fondsPropres} eigen vermogen · hypotheek mogelijk` },
+      livraison: { titre: "Eerste villa opgeleverd", texte: (fondsPropres) => `${fondsPropres} eigen vermogen · hypotheek mogelijk` },
     },
     texte: (surface, terrain, minutes) =>
       `Tot ${surface} bebouwd op ${terrain} grond, met eigen zwembad, op ${minutes} minuten van Jemaa el-Fna.`,
@@ -47,8 +47,8 @@ export const nl: Textes = {
       "Hypotheek mogelijk",
     ],
     rendu: "3D-render, niet contractueel",
-    livraison: (mois) => `Oplevering ${mois}`,
-    livraisonLabel: "Oplevering",
+    livraison: (mois) => `Eerste villa opgeleverd in ${mois}`,
+    livraisonLabel: "Eerste oplevering",
     reservation: (part) => `${part} bij reservering`,
     visite: "360°-rondleiding",
     decouvrir: "Ontdek de villa’s",
@@ -62,7 +62,7 @@ export const nl: Textes = {
     aria: "Kerncijfers van het domein",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna en luchthaven" }),
     villas: (n) => ({ valeur: String(n), libelle: "privévilla’s, geen enkele meer" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "grond, het grootste perceel" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "grond per villa" }),
   },
   projet: {
     titre: ["De zeldzame ruimte", "van een ", "privéleven."],
@@ -80,18 +80,18 @@ export const nl: Textes = {
   },
   livraison: {
     aria: "Opleveringskalender en betalingsplan",
-    titre: (mois) => `Oplevering in ${mois}.`,
+    titre: (mois) => `Eerste villa opgeleverd in ${mois}.`,
     intro:
-      "De bouw verloopt in fasen, en bij elke fase wordt een deel van de prijs betaald. De tussentijdse data en de verdeling van het restant worden met de ontwikkelaar afgestemd.",
+      "De bouw verloopt in fasen, en bij elke fase wordt een deel van de prijs betaald. De tussentijdse data en de verdeling van het restant worden met de ontwikkelaar afgestemd. De modelvilla is uiterlijk eind januari 2027 te bezichtigen.",
     compte: (n) =>
-      n === 0 ? "Oplevering deze maand" : n === 1 ? "Over 1 maand" : `Over ${n} maanden`,
+      n === 0 ? "Eerste oplevering deze maand" : n === 1 ? "Over 1 maand" : `Over ${n} maanden`,
     frise: "De bouwfasen",
     etapes: {
       reservation: "Reservering",
       fondations: "Fundering",
       grosOeuvre: "Ruwbouw",
       finitions: "Afwerking",
-      livraison: "Sleuteloverdracht",
+      livraison: "Eerste sleuteloverdracht",
     },
     signature: "Ondertekening bij de notaris",
     dateAConfirmer: "Datum nog te bevestigen",
@@ -294,8 +294,8 @@ export const nl: Textes = {
       reservationNote: "Rechtstreeks bij de notaris getekend, niet op een verkoopkantoor.",
       solde: "Saldo, in het tempo van de bouw",
       soldeNote: (livraison) =>
-        `Gespreid over de fasen tot de sleuteloverdracht in ${livraison}. Verdeling nog te bevestigen door de ontwikkelaar.`,
-      livraison: (mois) => `Sleuteloverdracht, ${mois}`,
+        `Gespreid over de fasen tot de sleuteloverdracht (eerste villa opgeleverd in ${livraison}). Verdeling nog te bevestigen door de ontwikkelaar.`,
+      livraison: (mois) => `Eerste sleuteloverdracht, ${mois}`,
       total: "Totaal",
       dans: (n) => `over ${n} maanden`,
       cta: "Ontvang het schema van mijn villa",
@@ -470,12 +470,12 @@ export const nl: Textes = {
     {
       id: "livraison",
       q: "Wanneer wordt het domein opgeleverd?",
-      r: `De oplevering is gepland voor ${v.livraison}. De data van de tussentijdse bouwfasen worden met de ontwikkelaar afgestemd.`,
+      r: `De eerste villa wordt in ${v.livraison} opgeleverd en de modelvilla is uiterlijk eind januari 2027 te bezichtigen. De data van de tussentijdse bouwfasen worden met de ontwikkelaar afgestemd.`,
     },
     {
       id: "villas",
       q: "Hoeveel villa’s telt CITYSTAR?",
-      r: `${v.villas} villa’s, in drie types. Elke villa heeft een eigen perceel, tot ${v.terrain}, en een eigen zwembad.`,
+      r: `${v.villas} villa’s, in drie types. Elke villa heeft een eigen perceel van ${v.terrain} en een eigen zwembad.`,
     },
     {
       id: "lieu",
@@ -588,7 +588,7 @@ export const nl: Textes = {
       },
       {
         titre: "De sleuteloverdracht",
-        texte: `Oplevering gepland voor ${livraison}. Uw villa wordt sleutelklaar aan u overgedragen.`,
+        texte: `Eerste villa opgeleverd in ${livraison}. Uw villa wordt sleutelklaar aan u overgedragen.`,
       },
     ],
     cta: "Beginnen met een eerste gesprek",
@@ -861,7 +861,6 @@ export const nl: Textes = {
           "Binnen 3 maanden",
           "Over 3 tot 6 maanden",
           "Over 6 tot 12 maanden",
-          "Later, ik oriënteer me",
         ],
       },
       budget: {
@@ -871,7 +870,6 @@ export const nl: Textes = {
           "€ 800.000 tot 1 mln",
           "€ 1 tot 1,5 mln",
           "Meer dan € 1,5 mln",
-          "Bespreek ik liever",
         ],
       },
     },

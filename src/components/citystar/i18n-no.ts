@@ -37,7 +37,7 @@ export const no: Textes = {
     cartes: {
       paiement: { titre: "Fleksibel betalingsplan", texte: "ved reservasjon, resten i takt med byggingen" },
       notaire: { titre: "Hos notarius", fort: "Fra 1. innbetaling", texte: "Reservasjonen signeres hos notarius." },
-      livraison: { titre: "Ferdigstillelse", texte: (fondsPropres) => `${fondsPropres} egenkapital · boliglån godtas` },
+      livraison: { titre: "Første villa ferdig", texte: (fondsPropres) => `${fondsPropres} egenkapital · boliglån godtas` },
     },
     texte: (surface, terrain, minutes) =>
       `Opptil ${surface} bebygd på ${terrain} tomt, eget basseng, ${minutes} minutter fra Jemaa el-Fna.`,
@@ -47,8 +47,8 @@ export const no: Textes = {
       "Boliglån godtas",
     ],
     rendu: "3D-gjengivelse, ikke bindende",
-    livraison: (mois) => `Ferdigstillelse ${mois}`,
-    livraisonLabel: "Ferdigstillelse",
+    livraison: (mois) => `Første villa ferdig i ${mois}`,
+    livraisonLabel: "Første ferdigstillelse",
     reservation: (part) => `${part} ved reservasjon`,
     visite: "360°-omvisning",
     decouvrir: "Oppdag villaene",
@@ -62,7 +62,7 @@ export const no: Textes = {
     aria: "Nøkkeltall for eiendommen",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna og flyplassen" }),
     villas: (n) => ({ valeur: String(n), libelle: "private villaer, ikke én til" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "tomt, den største" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "tomt per villa" }),
   },
   projet: {
     titre: ["Det sjeldne rommet", "for et ", "privatliv."],
@@ -80,18 +80,18 @@ export const no: Textes = {
   },
   livraison: {
     aria: "Ferdigstillelseskalender og betalingsplan",
-    titre: (mois) => `Ferdigstillelse i ${mois}.`,
+    titre: (mois) => `Første villa ferdig i ${mois}.`,
     intro:
-      "Byggingen skjer i etapper, og hver etappe utløser betaling av en del av prisen. Mellomliggende datoer og fordelingen av restbeløpet avklares med utbyggeren.",
+      "Byggingen skjer i etapper, og hver etappe utløser betaling av en del av prisen. Mellomliggende datoer og fordelingen av restbeløpet avklares med utbyggeren. Visningsvillaen kan besøkes innen utgangen av januar 2027.",
     compte: (n) =>
-      n === 0 ? "Ferdigstillelse denne måneden" : n === 1 ? "Om 1 måned" : `Om ${n} måneder`,
+      n === 0 ? "Første ferdigstillelse denne måneden" : n === 1 ? "Om 1 måned" : `Om ${n} måneder`,
     frise: "Byggeetappene",
     etapes: {
       reservation: "Reservasjon",
       fondations: "Fundament",
       grosOeuvre: "Råbygg",
       finitions: "Innredning",
-      livraison: "Nøkkeloverlevering",
+      livraison: "Første nøkkeloverlevering",
     },
     signature: "Signeres hos notarius",
     dateAConfirmer: "Dato bekreftes senere",
@@ -287,8 +287,8 @@ export const no: Textes = {
       reservationNote: "Signeres direkte hos notarius, ikke på et salgskontor.",
       solde: "Resten, i takt med byggingen",
       soldeNote: (livraison) =>
-        `Fordelt på etappene frem til nøkkeloverleveringen i ${livraison}. Fordelingen bekreftes av utbyggeren.`,
-      livraison: (mois) => `Nøkkeloverlevering, ${mois}`,
+        `Fordelt på etappene frem til nøkkeloverleveringen (første villa ferdig i ${livraison}). Fordelingen bekreftes av utbyggeren.`,
+      livraison: (mois) => `Første nøkkeloverlevering, ${mois}`,
       total: "Totalt",
       dans: (n) => `om ${n} måneder`,
       cta: "Få betalingsplanen for min villa",
@@ -458,12 +458,12 @@ export const no: Textes = {
     {
       id: "livraison",
       q: "Når står eiendommen ferdig?",
-      r: `Ferdigstillelsen er planlagt til ${v.livraison}. Datoene for byggets mellomliggende etapper avklares med utbyggeren.`,
+      r: `Den første villaen skal etter planen overleveres i ${v.livraison}, og visningsvillaen kan besøkes innen utgangen av januar 2027. Datoene for byggets mellomliggende etapper avklares med utbyggeren.`,
     },
     {
       id: "villas",
       q: "Hvor mange villaer har CITYSTAR?",
-      r: `${v.villas} villaer, i tre typer. Hver har sin egen tomt, på opptil ${v.terrain}, og sitt eget basseng.`,
+      r: `${v.villas} villaer, i tre typer. Hver har sin egen tomt på ${v.terrain} og sitt eget basseng.`,
     },
     {
       id: "lieu",
@@ -570,7 +570,7 @@ export const no: Textes = {
       },
       {
         titre: "Nøkkeloverlevering",
-        texte: `Ferdigstillelse planlagt til ${livraison}. Villaen overleveres nøkkelferdig.`,
+        texte: `Første villa ferdig i ${livraison}. Villaen overleveres nøkkelferdig.`,
       },
     ],
     cta: "Start med en første samtale",
@@ -843,7 +843,6 @@ export const no: Textes = {
           "Innen 3 måneder",
           "Om 3 til 6 måneder",
           "Om 6 til 12 måneder",
-          "Senere, jeg undersøker",
         ],
       },
       budget: {
@@ -853,7 +852,6 @@ export const no: Textes = {
           "800 000 € til 1 mill. €",
           "1 til 1,5 mill. €",
           "Over 1,5 mill. €",
-          "Vil heller snakke om det",
         ],
       },
     },

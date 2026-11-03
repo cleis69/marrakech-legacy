@@ -44,7 +44,7 @@ const fr = {
     cartes: {
       paiement: { titre: "Plan de paiement flexible", texte: "à la réservation, le solde au rythme du chantier" },
       notaire: { titre: "Chez le notaire", fort: "Dès le 1er acompte", texte: "La réservation est signée devant notaire." },
-      livraison: { titre: "Livraison", texte: (fondsPropres: string) => `${fondsPropres} fonds propres · crédit immobilier accepté` },
+      livraison: { titre: "Première villa livrée", texte: (fondsPropres: string) => `${fondsPropres} fonds propres · crédit immobilier accepté` },
     },
     texte: (surface: string, terrain: string, minutes: number) =>
       `Jusqu’à ${surface} construits sur ${terrain} de terrain, piscine privée, à ${minutes} minutes de Jemaa el-Fna.`,
@@ -54,8 +54,8 @@ const fr = {
       "Crédit immobilier accepté",
     ],
     rendu: "Rendu 3D, non contractuel",
-    livraison: (mois: string) => `Livraison ${mois}`,
-    livraisonLabel: "Livraison",
+    livraison: (mois: string) => `Première villa livrée en ${mois}`,
+    livraisonLabel: "Première livraison",
     reservation: (part: string) => `${part} à la réservation`,
     visite: "Visite 360°",
     decouvrir: "Découvrir les villas",
@@ -69,7 +69,7 @@ const fr = {
     aria: "Les repères du domaine",
     trajet: (n: number) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & aéroport" }),
     villas: (n: number) => ({ valeur: String(n), libelle: "villas privées, pas une de plus" }),
-    terrain: (surface: string) => ({ valeur: surface, libelle: "de terrain, au plus grand" }),
+    terrain: (surface: string) => ({ valeur: surface, libelle: "de terrain par villa" }),
   },
   projet: {
     titre: ["L’espace rare", "d’une vie ", "privée."] as [string, string, string],
@@ -87,18 +87,18 @@ const fr = {
   },
   livraison: {
     aria: "Calendrier de livraison et plan de paiement",
-    titre: (mois: string) => `Livraison en ${mois}.`,
+    titre: (mois: string) => `Première villa livrée en ${mois}.`,
     intro:
-      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et la répartition du solde sont en cours de validation avec le promoteur.",
+      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et la répartition du solde sont en cours de validation avec le promoteur. La villa témoin sera visitable d’ici fin janvier 2027.",
     compte: (n: number) =>
-      n === 0 ? "Livraison ce mois-ci" : n === 1 ? "Dans 1 mois" : `Dans ${n} mois`,
+      n === 0 ? "Première livraison ce mois-ci" : n === 1 ? "Dans 1 mois" : `Dans ${n} mois`,
     frise: "Les étapes du chantier",
     etapes: {
       reservation: "Réservation",
       fondations: "Fondations",
       grosOeuvre: "Gros œuvre",
       finitions: "Finitions",
-      livraison: "Remise des clés",
+      livraison: "Première remise des clés",
     },
     signature: "Signature chez le notaire",
     dateAConfirmer: "Date à confirmer",
@@ -306,8 +306,8 @@ const fr = {
       reservationNote: "Signée directement chez le notaire, pas dans un bureau de vente.",
       solde: "Solde, au fil du chantier",
       soldeNote: (livraison: string) =>
-        `Réparti par étapes jusqu’à la remise des clés en ${livraison}. Répartition à confirmer par le promoteur.`,
-      livraison: (mois: string) => `Remise des clés, ${mois}`,
+        `Réparti par étapes jusqu’à la remise des clés (première villa livrée en ${livraison}). Répartition à confirmer par le promoteur.`,
+      livraison: (mois: string) => `Première remise des clés, ${mois}`,
       total: "Total",
       dans: (n: number) => `dans ${n} mois`,
       cta: "Recevoir l’échéancier de ma villa",
@@ -489,12 +489,12 @@ const fr = {
     {
       id: "livraison",
       q: "Quand le domaine sera-t-il livré\u00a0?",
-      r: `La livraison est prévue en ${v.livraison}. Les dates des étapes intermédiaires du chantier sont en cours de validation avec le promoteur.`,
+      r: `La première villa doit être livrée en ${v.livraison}, et la villa témoin sera visitable d’ici fin janvier 2027. Les dates des étapes intermédiaires du chantier sont en cours de validation avec le promoteur.`,
     },
     {
       id: "villas",
       q: "Combien de villas compte CITYSTAR\u00a0?",
-      r: `${v.villas} villas, réparties en trois types. Chacune dispose de son terrain, jusqu'à ${v.terrain}, et de sa piscine privée.`,
+      r: `${v.villas} villas, réparties en trois types. Chacune dispose de son terrain de ${v.terrain} et de sa piscine privée.`,
     },
     {
       id: "lieu",
@@ -604,7 +604,7 @@ const fr = {
       },
       {
         titre: "La remise des clés",
-        texte: `Livraison prévue en ${livraison}. Votre villa vous est remise, clés en main.`,
+        texte: `Première villa livrée en ${livraison}. Votre villa vous est remise, clés en main.`,
       },
     ],
     cta: "Commencer par un premier échange",
@@ -887,7 +887,6 @@ const fr = {
           "Dans les 3 mois",
           "Dans 3 à 6 mois",
           "Dans 6 à 12 mois",
-          "Plus tard, je me renseigne",
         ],
       },
       budget: {
@@ -897,7 +896,6 @@ const fr = {
           "De 800 k€ à 1 M€",
           "De 1 à 1,5 M€",
           "Plus de 1,5 M€",
-          "Je préfère en parler",
         ],
       },
     },
@@ -955,7 +953,7 @@ const en: Textes = {
     cartes: {
       paiement: { titre: "Flexible payment plan", texte: "on reservation, the balance follows construction" },
       notaire: { titre: "Before a notary", fort: "From the 1st deposit", texte: "The reservation is signed before a notary." },
-      livraison: { titre: "Delivery", texte: (fondsPropres) => `${fondsPropres} equity-funded · mortgages accepted` },
+      livraison: { titre: "First villa delivered", texte: (fondsPropres) => `${fondsPropres} equity-funded · mortgages accepted` },
     },
     texte: (surface, terrain, minutes) =>
       `Up to ${surface} built on ${terrain} of land, with a private pool, ${minutes} minutes from Jemaa el-Fna.`,
@@ -965,8 +963,8 @@ const en: Textes = {
       "Mortgages accepted",
     ],
     rendu: "3D render, not contractual",
-    livraison: (mois) => `Delivery ${mois}`,
-    livraisonLabel: "Delivery",
+    livraison: (mois) => `First villa delivered in ${mois}`,
+    livraisonLabel: "First delivery",
     reservation: (part) => `${part} on reservation`,
     visite: "360° tour",
     decouvrir: "Discover the villas",
@@ -980,7 +978,7 @@ const en: Textes = {
     aria: "Key facts about the estate",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna & airport" }),
     villas: (n) => ({ valeur: String(n), libelle: "private villas, not one more" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "largest plot" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "plot per villa" }),
   },
   projet: {
     titre: ["The rare space", "of a private ", "life."],
@@ -998,17 +996,17 @@ const en: Textes = {
   },
   livraison: {
     aria: "Delivery calendar and payment plan",
-    titre: (mois) => `Delivery in ${mois}.`,
+    titre: (mois) => `First villa delivered in ${mois}.`,
     intro:
-      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and the split of the balance are being confirmed with the developer.",
-    compte: (n) => (n === 0 ? "Delivery this month" : n === 1 ? "In 1 month" : `In ${n} months`),
+      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and the split of the balance are being confirmed with the developer. The show villa will be open for viewings by the end of January 2027.",
+    compte: (n) => (n === 0 ? "First delivery this month" : n === 1 ? "In 1 month" : `In ${n} months`),
     frise: "Construction stages",
     etapes: {
       reservation: "Reservation",
       fondations: "Foundations",
       grosOeuvre: "Structural work",
       finitions: "Finishing",
-      livraison: "Handover",
+      livraison: "First handover",
     },
     signature: "Signed at the notary",
     dateAConfirmer: "Date to be confirmed",
@@ -1208,8 +1206,8 @@ const en: Textes = {
       reservationNote: "Signed directly before a notary, not in a sales office.",
       solde: "Balance, as construction progresses",
       soldeNote: (livraison) =>
-        `Spread over the stages until the keys are handed over in ${livraison}. Split to be confirmed by the developer.`,
-      livraison: (mois) => `Handover of the keys, ${mois}`,
+        `Spread over the stages until the keys are handed over (first villa delivered in ${livraison}). Split to be confirmed by the developer.`,
+      livraison: (mois) => `First handover of the keys, ${mois}`,
       total: "Total",
       dans: (n) => `in ${n} months`,
       cta: "Get the schedule for my villa",
@@ -1379,12 +1377,12 @@ const en: Textes = {
     {
       id: "livraison",
       q: "When will the estate be delivered?",
-      r: `Delivery is planned for ${v.livraison}. The dates of the intermediate construction stages are being confirmed with the developer.`,
+      r: `The first villa is due to be delivered in ${v.livraison}, and the show villa will be open for viewings by the end of January 2027. The dates of the intermediate construction stages are being confirmed with the developer.`,
     },
     {
       id: "villas",
       q: "How many villas does CITYSTAR have?",
-      r: `${v.villas} villas in three types. Each has its own plot, up to ${v.terrain}, and its own pool.`,
+      r: `${v.villas} villas in three types. Each has its own ${v.terrain} plot and its own pool.`,
     },
     {
       id: "lieu",
@@ -1491,7 +1489,7 @@ const en: Textes = {
       },
       {
         titre: "Handing over the keys",
-        texte: `Delivery planned for ${livraison}. Your villa is handed over to you, turnkey.`,
+        texte: `First villa delivered in ${livraison}. Your villa is handed over to you, turnkey.`,
       },
     ],
     cta: "Start with a first conversation",
@@ -1757,11 +1755,11 @@ const en: Textes = {
       },
       horizon: {
         titre: "Buying timeline",
-        choix: ["Within 3 months", "In 3 to 6 months", "In 6 to 12 months", "Later, just looking"],
+        choix: ["Within 3 months", "In 3 to 6 months", "In 6 to 12 months"],
       },
       budget: {
         titre: "Budget",
-        choix: ["Under €800k", "€800k to €1M", "€1M to €1.5M", "Over €1.5M", "I’d rather discuss it"],
+        choix: ["Under €800k", "€800k to €1M", "€1M to €1.5M", "Over €1.5M"],
       },
     },
     message: "Your message",

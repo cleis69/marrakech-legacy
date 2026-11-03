@@ -37,7 +37,7 @@ export const es: Textes = {
     cartes: {
       paiement: { titre: "Plan de pago flexible", texte: "al reservar, el resto al ritmo de la obra" },
       notaire: { titre: "Ante notario", fort: "Desde el 1.er pago", texte: "La reserva se firma ante notario." },
-      livraison: { titre: "Entrega", texte: (fondsPropres) => `${fondsPropres} fondos propios · hipoteca aceptada` },
+      livraison: { titre: "Primera villa entregada", texte: (fondsPropres) => `${fondsPropres} fondos propios · hipoteca aceptada` },
     },
     texte: (surface, terrain, minutes) =>
       `Hasta ${surface} construidos sobre ${terrain} de terreno, piscina privada, a ${minutes} minutos de Jemaa el-Fna.`,
@@ -47,8 +47,8 @@ export const es: Textes = {
       "Se acepta hipoteca",
     ],
     rendu: "Render 3D, no contractual",
-    livraison: (mois) => `Entrega ${mois}`,
-    livraisonLabel: "Entrega",
+    livraison: (mois) => `Primera villa entregada en ${mois}`,
+    livraisonLabel: "Primera entrega",
     reservation: (part) => `${part} a la reserva`,
     visite: "Visita 360°",
     decouvrir: "Descubrir las villas",
@@ -62,7 +62,7 @@ export const es: Textes = {
     aria: "Las cifras clave del dominio",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna y aeropuerto" }),
     villas: (n) => ({ valeur: String(n), libelle: "villas privadas, ni una más" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "de terreno, la parcela mayor" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "de terreno por villa" }),
   },
   projet: {
     titre: ["El espacio excepcional", "de una vida ", "privada."],
@@ -80,18 +80,18 @@ export const es: Textes = {
   },
   livraison: {
     aria: "Calendario de entrega y plan de pagos",
-    titre: (mois) => `Entrega en ${mois}.`,
+    titre: (mois) => `Primera villa entregada en ${mois}.`,
     intro:
-      "La obra avanza por etapas, y cada una supone el pago de una parte del precio. Las fechas intermedias y el reparto del resto se están validando con el promotor.",
+      "La obra avanza por etapas, y cada una supone el pago de una parte del precio. Las fechas intermedias y el reparto del resto se están validando con el promotor. La villa piloto podrá visitarse antes de finales de enero de 2027.",
     compte: (n) =>
-      n === 0 ? "Entrega este mes" : n === 1 ? "Dentro de 1 mes" : `Dentro de ${n} meses`,
+      n === 0 ? "Primera entrega este mes" : n === 1 ? "Dentro de 1 mes" : `Dentro de ${n} meses`,
     frise: "Las etapas de la obra",
     etapes: {
       reservation: "Reserva",
       fondations: "Cimientos",
       grosOeuvre: "Estructura",
       finitions: "Acabados",
-      livraison: "Entrega de llaves",
+      livraison: "Primera entrega de llaves",
     },
     signature: "Firma ante notario",
     dateAConfirmer: "Fecha por confirmar",
@@ -300,8 +300,8 @@ export const es: Textes = {
       reservationNote: "Firmada directamente ante notario, no en una oficina de ventas.",
       solde: "Resto, al ritmo de la obra",
       soldeNote: (livraison) =>
-        `Repartido por etapas hasta la entrega de llaves en ${livraison}. Reparto a confirmar por el promotor.`,
-      livraison: (mois) => `Entrega de llaves, ${mois}`,
+        `Repartido por etapas hasta la entrega de llaves (primera villa entregada en ${livraison}). Reparto a confirmar por el promotor.`,
+      livraison: (mois) => `Primera entrega de llaves, ${mois}`,
       total: "Total",
       dans: (n) => `en ${n} meses`,
       cta: "Recibir el calendario de mi villa",
@@ -475,12 +475,12 @@ export const es: Textes = {
     {
       id: "livraison",
       q: "¿Cuándo se entregará el dominio?",
-      r: `La entrega está prevista para ${v.livraison}. Las fechas de las etapas intermedias de la obra se están validando con el promotor.`,
+      r: `La primera villa debe entregarse en ${v.livraison}, y la villa piloto podrá visitarse antes de finales de enero de 2027. Las fechas de las etapas intermedias de la obra se están validando con el promotor.`,
     },
     {
       id: "villas",
       q: "¿Cuántas villas tiene CITYSTAR?",
-      r: `${v.villas} villas, de tres tipos. Cada una tiene su parcela, de hasta ${v.terrain}, y su piscina privada.`,
+      r: `${v.villas} villas, de tres tipos. Cada una tiene su parcela de ${v.terrain} y su piscina privada.`,
     },
     {
       id: "lieu",
@@ -590,7 +590,7 @@ export const es: Textes = {
       },
       {
         titre: "La entrega de llaves",
-        texte: `Entrega prevista para ${livraison}. Su villa se le entrega llave en mano.`,
+        texte: `Primera villa entregada en ${livraison}. Su villa se le entrega llave en mano.`,
       },
     ],
     cta: "Empezar con una primera conversación",
@@ -868,7 +868,6 @@ export const es: Textes = {
           "En los próximos 3 meses",
           "Dentro de 3 a 6 meses",
           "Dentro de 6 a 12 meses",
-          "Más adelante, me estoy informando",
         ],
       },
       budget: {
@@ -878,7 +877,6 @@ export const es: Textes = {
           "De 800.000 € a 1 M€",
           "De 1 a 1,5 M€",
           "Más de 1,5 M€",
-          "Prefiero hablarlo",
         ],
       },
     },

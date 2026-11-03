@@ -37,7 +37,7 @@ export const it: Textes = {
     cartes: {
       paiement: { titre: "Piano di pagamento flessibile", texte: "alla prenotazione, il saldo al ritmo del cantiere" },
       notaire: { titre: "Dal notaio", fort: "Dal 1º acconto", texte: "La prenotazione si firma dal notaio." },
-      livraison: { titre: "Consegna", texte: (fondsPropres) => `${fondsPropres} fondi propri · mutuo accettato` },
+      livraison: { titre: "Prima villa consegnata", texte: (fondsPropres) => `${fondsPropres} fondi propri · mutuo accettato` },
     },
     texte: (surface, terrain, minutes) =>
       `Fino a ${surface} costruiti su ${terrain} di terreno, piscina privata, a ${minutes} minuti da Jemaa el-Fna.`,
@@ -47,8 +47,8 @@ export const it: Textes = {
       "Mutuo accettato",
     ],
     rendu: "Render 3D, non contrattuale",
-    livraison: (mois) => `Consegna ${mois}`,
-    livraisonLabel: "Consegna",
+    livraison: (mois) => `Prima villa consegnata a ${mois}`,
+    livraisonLabel: "Prima consegna",
     reservation: (part) => `${part} alla prenotazione`,
     visite: "Visita 360°",
     decouvrir: "Scoprire le ville",
@@ -62,7 +62,7 @@ export const it: Textes = {
     aria: "I numeri chiave della tenuta",
     trajet: (n) => ({ valeur: `${n} min`, libelle: "Jemaa el-Fna e aeroporto" }),
     villas: (n) => ({ valeur: String(n), libelle: "ville private, non una di più" }),
-    terrain: (surface) => ({ valeur: surface, libelle: "di terreno, il lotto più grande" }),
+    terrain: (surface) => ({ valeur: surface, libelle: "di terreno per villa" }),
   },
   projet: {
     titre: ["Lo spazio raro", "di una vita ", "privata."],
@@ -80,17 +80,17 @@ export const it: Textes = {
   },
   livraison: {
     aria: "Calendario di consegna e piano dei pagamenti",
-    titre: (mois) => `Consegna a ${mois}.`,
+    titre: (mois) => `Prima villa consegnata a ${mois}.`,
     intro:
-      "Il cantiere procede per fasi, e ognuna richiede il pagamento di una parte del prezzo. Le date intermedie e la ripartizione del saldo sono in corso di convalida con il promotore.",
-    compte: (n) => (n === 0 ? "Consegna questo mese" : n === 1 ? "Tra 1 mese" : `Tra ${n} mesi`),
+      "Il cantiere procede per fasi, e ognuna richiede il pagamento di una parte del prezzo. Le date intermedie e la ripartizione del saldo sono in corso di convalida con il promotore. La villa campione sarà visitabile entro fine gennaio 2027.",
+    compte: (n) => (n === 0 ? "Prima consegna questo mese" : n === 1 ? "Tra 1 mese" : `Tra ${n} mesi`),
     frise: "Le fasi del cantiere",
     etapes: {
       reservation: "Prenotazione",
       fondations: "Fondazioni",
       grosOeuvre: "Struttura",
       finitions: "Finiture",
-      livraison: "Consegna delle chiavi",
+      livraison: "Prima consegna delle chiavi",
     },
     signature: "Firma dal notaio",
     dateAConfirmer: "Data da confermare",
@@ -294,8 +294,8 @@ export const it: Textes = {
       reservationNote: "Firmata direttamente dal notaio, non in un ufficio vendite.",
       solde: "Saldo, al ritmo del cantiere",
       soldeNote: (livraison) =>
-        `Ripartito per fasi fino alla consegna delle chiavi in ${livraison}. Ripartizione da confermare dal promotore.`,
-      livraison: (mois) => `Consegna delle chiavi, ${mois}`,
+        `Ripartito per fasi fino alla consegna delle chiavi (prima villa consegnata a ${livraison}). Ripartizione da confermare dal promotore.`,
+      livraison: (mois) => `Prima consegna delle chiavi, ${mois}`,
       total: "Totale",
       dans: (n) => `tra ${n} mesi`,
       cta: "Ricevi il piano della mia villa",
@@ -469,12 +469,12 @@ export const it: Textes = {
     {
       id: "livraison",
       q: "Quando sarà consegnata la tenuta?",
-      r: `La consegna è prevista per ${v.livraison}. Le date delle fasi intermedie del cantiere sono in corso di convalida con il promotore.`,
+      r: `La prima villa sarà consegnata a ${v.livraison} e la villa campione sarà visitabile entro fine gennaio 2027. Le date delle fasi intermedie del cantiere sono in corso di convalida con il promotore.`,
     },
     {
       id: "villas",
       q: "Quante ville conta CITYSTAR?",
-      r: `${v.villas} ville, in tre tipi. Ognuna ha il proprio lotto, fino a ${v.terrain}, e la propria piscina privata.`,
+      r: `${v.villas} ville, in tre tipi. Ognuna ha il proprio lotto di ${v.terrain} e la propria piscina privata.`,
     },
     {
       id: "lieu",
@@ -586,7 +586,7 @@ export const it: Textes = {
       },
       {
         titre: "La consegna delle chiavi",
-        texte: `Consegna prevista per ${livraison}. La sua villa le viene consegnata chiavi in mano.`,
+        texte: `Prima villa consegnata a ${livraison}. La sua villa le viene consegnata chiavi in mano.`,
       },
     ],
     cta: "Iniziare con un primo colloquio",
@@ -864,7 +864,6 @@ export const it: Textes = {
           "Entro 3 mesi",
           "Tra 3 e 6 mesi",
           "Tra 6 e 12 mesi",
-          "Più avanti, mi sto informando",
         ],
       },
       budget: {
@@ -874,7 +873,6 @@ export const it: Textes = {
           "Da 800.000 € a 1 M€",
           "Da 1 a 1,5 M€",
           "Oltre 1,5 M€",
-          "Preferisco parlarne",
         ],
       },
     },
