@@ -49,7 +49,7 @@ const it: Copie = {
     brochure: "Brochure del complesso",
     planVilla: (type) => `Planimetrie della villa ${type}`,
     texte:
-      "Le invierò personalmente i prezzi villa per villa, le disponibilità e il piano dei pagamenti. Per fare prima, mi dica semplicemente cosa cerca: l’architettura che la attira, i suoi tempi, se acquista per viverci o per affittare.",
+      "Le invierò personalmente le disponibilità e il piano dei pagamenti di ogni villa. Per fare prima, mi dica semplicemente cosa cerca: l’architettura che la attira, i suoi tempi, se acquista per viverci o per affittare.",
     bouton: "Scopri il complesso online",
   },
   d2: {

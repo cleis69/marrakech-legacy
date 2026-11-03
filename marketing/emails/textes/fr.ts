@@ -53,7 +53,7 @@ const fr = {
     brochure: "Brochure du domaine",
     planVilla: (type: string) => `Plans de la villa ${type}`,
     texte:
-      "Je vous transmets personnellement les prix villa par villa, les disponibilités et l’échéancier. Pour aller plus vite, dites-moi simplement ce que vous cherchez : l’architecture qui vous attire, votre calendrier, si vous achetez pour y vivre ou pour louer.",
+      "Je vous transmets personnellement les disponibilités et l’échéancier de chaque villa. Pour aller plus vite, dites-moi simplement ce que vous cherchez : l’architecture qui vous attire, votre calendrier, si vous achetez pour y vivre ou pour louer.",
     bouton: "Découvrir le domaine en ligne",
   },
   d2: {

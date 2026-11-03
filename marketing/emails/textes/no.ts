@@ -49,7 +49,7 @@ const no: Copie = {
     brochure: "Brosjyre for området",
     planVilla: (type) => `Tegninger av villa ${type}`,
     texte:
-      "Jeg sender deg personlig prisen per villa, ledigheten og betalingsplanen. Det går raskere om du forteller meg hva du ser etter: arkitekturen som frister, tidsplanen din, og om du kjøper for å bo eller for å leie ut.",
+      "Jeg sender deg personlig ledigheten og betalingsplanen for hver villa. Det går raskere om du forteller meg hva du ser etter: arkitekturen som frister, tidsplanen din, og om du kjøper for å bo eller for å leie ut.",
     bouton: "Utforsk området på nett",
   },
   d2: {

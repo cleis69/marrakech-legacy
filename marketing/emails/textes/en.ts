@@ -49,7 +49,7 @@ const en: Copie = {
     brochure: "Estate brochure",
     planVilla: (type) => `Floor plans of villa ${type}`,
     texte:
-      "I will send you the prices villa by villa, the availability and the payment schedule myself. To speed things up, just tell me what you are looking for: the architecture that appeals to you, your timing, and whether you are buying to live there or to rent it out.",
+      "I will send you the availability and payment schedule of each villa myself. To speed things up, just tell me what you are looking for: the architecture that appeals to you, your timing, and whether you are buying to live there or to rent it out.",
     bouton: "Explore the estate online",
   },
   d2: {

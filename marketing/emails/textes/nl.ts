@@ -49,7 +49,7 @@ const nl: Copie = {
     brochure: "Brochure van het domein",
     planVilla: (type) => `Plattegronden van villa ${type}`,
     texte:
-      "Ik stuur u persoonlijk de prijs per villa, de beschikbaarheid en het betalingsschema. Het gaat sneller als u mij laat weten wat u zoekt: de architectuur die u aanspreekt, uw planning en of u koopt om er te wonen of om te verhuren.",
+      "Ik stuur u persoonlijk de beschikbaarheid en het betalingsschema van elke villa. Het gaat sneller als u mij laat weten wat u zoekt: de architectuur die u aanspreekt, uw planning en of u koopt om er te wonen of om te verhuren.",
     bouton: "Ontdek het domein online",
   },
   d2: {

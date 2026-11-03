@@ -49,7 +49,7 @@ const es: Copie = {
     brochure: "Folleto del conjunto",
     planVilla: (type) => `Planos de la villa ${type}`,
     texte:
-      "Le enviaré personalmente el precio de cada villa, la disponibilidad y el calendario de pagos. Para ir más rápido, cuénteme qué busca: la arquitectura que le atrae, sus plazos y si compra para vivir o para alquilar.",
+      "Le enviaré personalmente la disponibilidad y el calendario de pagos de cada villa. Para ir más rápido, cuénteme qué busca: la arquitectura que le atrae, sus plazos y si compra para vivir o para alquilar.",
     bouton: "Descubrir el conjunto en línea",
   },
   d2: {
