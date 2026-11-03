@@ -41,6 +41,7 @@ export const no: Textes = {
     },
     texte: (surface, terrain, minutes) =>
       `Opptil ${surface} bebygd på ${terrain} tomt, eget basseng, ${minutes} minutter fra Jemaa el-Fna.`,
+    aPartirDe: (prix) => `Fra ${prix}.`,
     garanties: (fondsPropres) => [
       "Reservasjon hos notarius",
       `${fondsPropres} egenkapital`,
@@ -483,7 +484,7 @@ export const no: Textes = {
     {
       id: "prix",
       q: "Hva koster villaene?",
-      r: "Prisene oppgis på forespørsel, sammen med den detaljerte betalingsplanen for villaen du er interessert i. Be om å bli ringt opp av en konsulent.",
+      r: `Prisene går fra ${v.prixC} for villatype C til ${v.prixA} for villatype A; villatype B koster ${v.prixB}. En konsulent gir deg den detaljerte betalingsplanen for villaen du er interessert i.`,
     },
     {
       id: "visite",

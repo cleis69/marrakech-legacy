@@ -41,6 +41,7 @@ export const nl: Textes = {
     },
     texte: (surface, terrain, minutes) =>
       `Tot ${surface} bebouwd op ${terrain} grond, met eigen zwembad, op ${minutes} minuten van Jemaa el-Fna.`,
+    aPartirDe: (prix) => `Vanaf ${prix}.`,
     garanties: (fondsPropres) => [
       "Reservering bij de notaris",
       `${fondsPropres} eigen vermogen`,
@@ -495,7 +496,7 @@ export const nl: Textes = {
     {
       id: "prix",
       q: "Wat kosten de villa’s?",
-      r: "De prijzen worden op aanvraag gegeven, samen met het gedetailleerde betalingsschema van de villa die u interesseert. Vraag een consultant om u terug te bellen.",
+      r: `De prijzen lopen van ${v.prixC} voor villatype C tot ${v.prixA} voor villatype A; villatype B kost ${v.prixB}. Een consultant geeft u het gedetailleerde betalingsschema van de villa die u interesseert.`,
     },
     {
       id: "visite",

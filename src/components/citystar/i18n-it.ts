@@ -41,6 +41,7 @@ export const it: Textes = {
     },
     texte: (surface, terrain, minutes) =>
       `Fino a ${surface} costruiti su ${terrain} di terreno, piscina privata, a ${minutes} minuti da Jemaa el-Fna.`,
+    aPartirDe: (prix) => `A partire da ${prix}.`,
     garanties: (fondsPropres) => [
       "Prenotazione dal notaio",
       `${fondsPropres} fondi propri`,
@@ -494,7 +495,7 @@ export const it: Textes = {
     {
       id: "prix",
       q: "Qual è il prezzo delle ville?",
-      r: "I prezzi sono comunicati su richiesta, insieme al piano dei pagamenti dettagliato della villa che le interessa. Chieda di essere richiamato da un consulente.",
+      r: `I prezzi vanno da ${v.prixC} per la villa tipo C a ${v.prixA} per la villa tipo A; la villa tipo B costa ${v.prixB}. Un consulente le consegna il piano dei pagamenti dettagliato della villa che le interessa.`,
     },
     {
       id: "visite",
