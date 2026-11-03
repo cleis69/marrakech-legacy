@@ -6,8 +6,8 @@
  *   quelle au formulaire HubSpot, puis le contact est ajouté à la liste d'entrée Brevo, dont le
  *   scénario d'aiguillage choisit la séquence de sa langue.
  * - Chaque minute : les leads des formulaires de pub que HubSpot vient de récupérer (Meta, Google,
- *   LinkedIn) reçoivent dans HubSpot le statut Nouveau, leur canal et leur langue, puis sont ajoutés
- *   à la même liste Brevo.
+ *   LinkedIn) reçoivent dans HubSpot le statut Nouveau, leur canal et leur langue (à défaut d'une
+ *   langue connue, celle du nom du formulaire), puis sont ajoutés à la même liste Brevo.
  *
  * - Chaque minute aussi : le score des leads modifiés récemment est recalculé (voir `score`), avec
  *   la tranche de budget tirée du budget déclaré dans sa devise. Quand le score change, le commercial
@@ -34,6 +34,8 @@ type Lead = { email: string; prenom?: string; nom?: string; langue?: string; int
 const FENETRE_MS = 15 * 60 * 1000;
 
 const CANAUX_PUB = ["meta_ads", "google_ads", "linkedin_ads", "snapchat_ads"];
+
+const LANGUES = ["fr", "en", "es", "it", "nl", "no"];
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -148,6 +150,8 @@ async function leadsPublicitaires(env: Env) {
       "citystar_langue",
       "hs_analytics_source",
       "hs_analytics_source_data_1",
+      "hs_object_source_detail_1",
+      "first_conversion_event_name",
       "are_you_interested_in",
       "vous_tes_intresss_par_",
     ],
@@ -159,6 +163,7 @@ async function leadsPublicitaires(env: Env) {
   for (const { id, properties: p } of results) {
     const langue =
       p["citystar_langue"] ||
+      langueFormulaire(p) ||
       (p["are_you_interested_in"] ? "en" : p["vous_tes_intresss_par_"] ? "fr" : "");
     const lead: Lead = { email: p["email"] ?? "" };
     if (p["firstname"]) lead.prenom = p["firstname"];
@@ -389,6 +394,18 @@ async function prevenir(env: Env, id: string, p: Proprietes, s: Score) {
     }),
   });
   if (!reponse.ok) console.error(`Alerte Brevo ${reponse.status} : ${await reponse.text()}`);
+}
+
+/**
+ * Langue écrite à la fin du nom du formulaire de pub, que HubSpot garde sur le contact
+ * (« CityStar-pro-EN », « CITYSTAR · Rappel · NO ») : un formulaire par langue.
+ */
+export function langueFormulaire(p: Record<string, string | null>) {
+  for (const nom of [p["hs_object_source_detail_1"], p["first_conversion_event_name"]]) {
+    const code = /[\s·_|–-]([a-z]{2})$/.exec(nom?.trim().toLowerCase() ?? "")?.[1];
+    if (code && LANGUES.includes(code)) return code;
+  }
+  return "";
 }
 
 /** Canal déduit de la source d'origine que HubSpot donne aux leads synchronisés. */
