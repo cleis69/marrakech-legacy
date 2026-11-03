@@ -35,6 +35,13 @@ type Lead = { email: string; prenom?: string; nom?: string; langue?: string; int
 /** Fenêtre de recherche des leads de pub : large devant la minute du déclencheur, pour ne rien manquer. */
 const FENETRE_MS = 15 * 60 * 1000;
 
+/**
+ * HubSpot date un lead de pub du moment où le prospect a rempli le formulaire, pas de son arrivée,
+ * qui peut suivre de deux heures. La fenêtre porte donc sur la dernière modification (l'arrivée) ;
+ * la date de création écarte seulement les contacts anciens.
+ */
+const ANCIENNETE_MAX_MS = 7 * 24 * 60 * 60 * 1000;
+
 const CANAUX_PUB = ["meta_ads", "google_ads", "linkedin_ads", "snapchat_ads"];
 
 const LANGUES = ["fr", "en", "es", "it", "nl", "no"];
@@ -130,10 +137,10 @@ type ContactHubSpot = { id: string; properties: Record<string, string | null> };
  */
 async function leadsPublicitaires(env: Env) {
   if (!env.HUBSPOT_JETON) return;
-  const depuis = String(Date.now() - FENETRE_MS);
+  // HubSpot accepte 18 filtres par recherche : l'e-mail est vérifié dans la boucle.
   const communs = [
-    { propertyName: "createdate", operator: "GTE", value: depuis },
-    { propertyName: "email", operator: "HAS_PROPERTY" },
+    { propertyName: "lastmodifieddate", operator: "GTE", value: String(Date.now() - FENETRE_MS) },
+    { propertyName: "createdate", operator: "GTE", value: String(Date.now() - ANCIENNETE_MAX_MS) },
     { propertyName: "citystar_statut", operator: "NOT_HAS_PROPERTY" },
   ];
   const criteres = [
@@ -150,12 +157,15 @@ async function leadsPublicitaires(env: Env) {
       "lastname",
       "citystar_canal",
       "citystar_langue",
+      "langue",
+      "canal",
       "hs_analytics_source",
       "hs_analytics_source_data_1",
       "hs_object_source_detail_1",
       "first_conversion_event_name",
       "are_you_interested_in",
       "vous_tes_intresss_par_",
+      ...CHAMPS_REPONSES,
     ],
     limit: 50,
   });
@@ -163,8 +173,11 @@ async function leadsPublicitaires(env: Env) {
   const { results } = (await recherche.json()) as { results: ContactHubSpot[] };
 
   for (const { id, properties: p } of results) {
+    if (!p["email"]) continue;
+    const parametre = p["langue"]?.trim().toLowerCase() ?? "";
     const langue =
       p["citystar_langue"] ||
+      (LANGUES.includes(parametre) ? parametre : "") ||
       langueFormulaire(p) ||
       (p["are_you_interested_in"] ? "en" : p["vous_tes_intresss_par_"] ? "fr" : "");
     const lead: Lead = { email: p["email"] ?? "" };
@@ -174,8 +187,9 @@ async function leadsPublicitaires(env: Env) {
     if (p["are_you_interested_in"]) lead.interetEn = p["are_you_interested_in"];
     // Le statut sert de marque « déjà traité » : il n'est posé qu'une fois le lead accepté par Brevo.
     if (!(await versBrevo(env, lead))) continue;
-    const complements: Record<string, string> = { citystar_statut: "nouveau" };
-    if (!p["citystar_canal"]) complements["citystar_canal"] = canalPub(p);
+    const complements: Record<string, string> = { citystar_statut: "nouveau", ...reponsesPub(p) };
+    const canal = p["canal"]?.trim() ?? "";
+    if (!p["citystar_canal"]) complements["citystar_canal"] = CANAUX_PUB.includes(canal) ? canal : canalPub(p);
     if (!p["citystar_langue"] && langue) complements["citystar_langue"] = langue;
     await hubspot(env, "PATCH", `/crm/v3/objects/contacts/${id}`, { properties: complements });
   }
@@ -306,6 +320,7 @@ async function scores(env: Env) {
       "citystar_langue",
       "citystar_canal",
       "message",
+      ...CHAMPS_REPONSES,
     ],
     limit: 100,
   });
@@ -314,7 +329,9 @@ async function scores(env: Env) {
 
   let taux: Record<string, number> | null | undefined;
   for (const { id, properties: p } of results) {
-    const maj: Record<string, string> = {};
+    // Un lead traité avant la recopie des réponses Meta les reçoit à sa prochaine modification.
+    const maj: Record<string, string> = reponsesPub(p);
+    Object.assign(p, maj);
     const declare = p["citystar_budget_declare"] ? lireBudget(p["citystar_budget_declare"]) : null;
     if (declare) {
       if (declare.devise !== "EUR") taux ??= await tauxEuro();
@@ -377,6 +394,28 @@ async function prevenir(env: Env, id: string, p: Proprietes, s: Score) {
     }),
   });
   if (!reponse.ok) console.error(`Alerte Brevo ${reponse.status} : ${await reponse.text()}`);
+}
+
+/**
+ * Réponses des formulaires Meta, que HubSpot range dans les champs créés à leur nom
+ * (`meta_budget`…), avec les codes du formulaire du site : recopiées dans les champs du score
+ * quand ceux-ci sont vides. Un code inconnu est ignoré, sinon HubSpot refuserait toute la mise à jour.
+ */
+const REPONSES_PUB = {
+  meta_budget: { champ: "citystar_budget", codes: ["moins_800k", "800k_1m", "1_1_5m", "plus_1_5m"] },
+  meta_horizon: { champ: "citystar_horizon", codes: ["3_mois", "3_6_mois", "6_12_mois"] },
+  meta_financement: { champ: "citystar_financement", codes: ["fonds_propres", "mixte", "credit", "inconnu"] },
+};
+
+const CHAMPS_REPONSES = Object.entries(REPONSES_PUB).flatMap(([source, { champ }]) => [source, champ]);
+
+export function reponsesPub(p: Proprietes) {
+  const maj: Record<string, string> = {};
+  for (const [source, { champ, codes }] of Object.entries(REPONSES_PUB)) {
+    const code = p[source]?.trim() ?? "";
+    if (codes.includes(code) && !p[champ]) maj[champ] = code;
+  }
+  return maj;
 }
 
 /**
