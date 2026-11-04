@@ -24,6 +24,7 @@ const pages = [
   { path: "/confidentialite" },
   { path: "/mentions-legales" },
   { path: "/merci" },
+  { path: "/realisations" },
   { path: "/villas/a" },
   { path: "/villas/b" },
   { path: "/villas/c" },
