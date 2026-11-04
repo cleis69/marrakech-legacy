@@ -10,8 +10,8 @@ import { Reveal } from "../motion";
 import { PageHeader } from "../PageHeader";
 import {
   banniere,
+  listeRealisations,
   PAYS,
-  realisations,
   textesRealisations,
   type Pays,
   type Realisation,
@@ -27,7 +27,8 @@ const VIGNETTES = 3;
 export function RealisationsPage() {
   const { langue, t: ts } = useDevise();
   const { ouvrirContactAvec } = useSite();
-  const t = textesRealisations[langue] ?? textesRealisations.fr!;
+  const t = textesRealisations[langue];
+  const realisations = listeRealisations(langue);
   const [filtre, setFiltre] = useState<Pays | null>(null);
   const [vue, setVue] = useState<{ id: string; index: number } | null>(null);
 
@@ -51,14 +52,14 @@ export function RealisationsPage() {
       </dl>
 
       <section className="rl" aria-label={t.kicker}>
-        <div className="rl-filtres" role="group" aria-label="Pays">
+        <div className="rl-filtres" role="group" aria-label={t.pays}>
           <button type="button" aria-pressed={filtre === null} onClick={() => setFiltre(null)}>
             {t.tous}
             <small>{realisations.length}</small>
           </button>
           {pays.map((p) => (
             <button key={p} type="button" aria-pressed={filtre === p} onClick={() => setFiltre(p)}>
-              {PAYS[p]}
+              {PAYS[langue][p]}
               <small>{realisations.filter((r) => r.pays === p).length}</small>
             </button>
           ))}
@@ -121,7 +122,7 @@ export function RealisationsPage() {
 /** Un projet : la grande photo et trois vignettes, puis le lieu, les chiffres et le détail. */
 function Carte({ projet, ouvrir }: { projet: Realisation; ouvrir: (index: number) => void }) {
   const { langue } = useDevise();
-  const t = textesRealisations[langue] ?? textesRealisations.fr!;
+  const t = textesRealisations[langue];
   const [principale, ...autres] = projet.photos;
   const vignettes = autres.slice(0, VIGNETTES);
   const reste = projet.photos.length - 1 - vignettes.length;

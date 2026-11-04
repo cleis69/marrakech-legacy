@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 
 import { useDevise } from "./currency";
-import { chemin, Lien } from "./liens";
+import { chemin, Lien, slug } from "./liens";
 import { Reveal } from "./motion";
-import { PAYS, photosBandeau, realisations, textesRealisations } from "./realisations";
+import { listeRealisations, PAYS, photosBandeau, textesRealisations } from "./realisations";
 
 /* Deux photos par projet, la plus belle d'abord : assez pour couvrir un grand écran.
    Elles sont chargées d'avance (versions légères) : une carte ne doit jamais entrer noire. */
@@ -18,11 +18,8 @@ const PHOTOS_PAR_PROJET = 2;
 export function RealisationsBandeau() {
   const { langue } = useDevise();
   const t = textesRealisations[langue];
-  /* La page des réalisations n'existe encore qu'en français. */
-  if (!t) return null;
-
-  const vers = chemin(langue, "realisations");
-  const photos = realisations.flatMap((r) =>
+  const vers = chemin(langue, slug("realisations", langue));
+  const photos = listeRealisations(langue).flatMap((r) =>
     photosBandeau(r.id)
       .slice(0, PHOTOS_PAR_PROJET)
       .map((src, j) => ({ src, r, j })),
@@ -59,7 +56,7 @@ export function RealisationsBandeau() {
                     fetchPriority="low"
                   />
                   <span className="rb-legende">
-                    <small>{PAYS[r.pays]}</small>
+                    <small>{PAYS[langue][r.pays]}</small>
                     <b>{r.titre}</b>
                   </span>
                 </Lien>

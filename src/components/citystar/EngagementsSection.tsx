@@ -7,7 +7,7 @@ import notaireImage from "@/assets/citystar/rendus/int-chambre-jour.webp";
 
 import { useDevise } from "./currency";
 import { altRendu } from "./data";
-import { chemin, Lien } from "./liens";
+import { chemin, Lien, slug } from "./liens";
 import { Reveal } from "./motion";
 import { textesRealisations } from "./realisations";
 import { useSite } from "./site";
@@ -24,7 +24,6 @@ export function EngagementsSection() {
   const { langue, t } = useDevise();
   const { ouvrirContactAvec } = useSite();
   const items = t.engagements.items(formatPart(engagements.fondsPropres, langue));
-  /* La page des réalisations n'existe encore qu'en français. */
   const realisations = textesRealisations[langue];
   const [debut, suite] = t.engagements.titre;
 
@@ -49,8 +48,8 @@ export function EngagementsSection() {
               </span>
               <h3>{item.titre}</h3>
               <p>{item.texte}</p>
-              {i === 0 && realisations && (
-                <Lien vers={chemin(langue, "realisations")} className="eg-lien">
+              {i === 0 && (
+                <Lien vers={chemin(langue, slug("realisations", langue))} className="eg-lien">
                   {realisations.lienAccueil}
                   <ArrowRight aria-hidden="true" />
                 </Lien>

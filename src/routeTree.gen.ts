@@ -33,6 +33,7 @@ import { Route as EnLuxuryVillaMarrakechRouteImport } from './routes/en.luxury-v
 import { Route as EnOwnerAreaRouteImport } from './routes/en.owner-area'
 import { Route as EnPrivacyRouteImport } from './routes/en.privacy'
 import { Route as EnThankYouRouteImport } from './routes/en.thank-you'
+import { Route as EnTrackRecordRouteImport } from './routes/en.track-record'
 import { Route as EsIndexRouteImport } from './routes/es.index'
 import { Route as EsAreaPropietariosRouteImport } from './routes/es.area-propietarios'
 import { Route as EsAvisoLegalRouteImport } from './routes/es.aviso-legal'
@@ -43,6 +44,7 @@ import { Route as EsGalerieRouteImport } from './routes/es.galerie'
 import { Route as EsGraciasRouteImport } from './routes/es.gracias'
 import { Route as EsInvestirRouteImport } from './routes/es.investir'
 import { Route as EsPrivacidadRouteImport } from './routes/es.privacidad'
+import { Route as EsRealizacionesRouteImport } from './routes/es.realizaciones'
 import { Route as EsVillaDeLujoMarrakechRouteImport } from './routes/es.villa-de-lujo-marrakech'
 import { Route as ItIndexRouteImport } from './routes/it.index'
 import { Route as ItAreaProprietariRouteImport } from './routes/it.area-proprietari'
@@ -54,6 +56,7 @@ import { Route as ItGrazieRouteImport } from './routes/it.grazie'
 import { Route as ItInvestirRouteImport } from './routes/it.investir'
 import { Route as ItNoteLegaliRouteImport } from './routes/it.note-legali'
 import { Route as ItPrivacyRouteImport } from './routes/it.privacy'
+import { Route as ItRealizzazioniRouteImport } from './routes/it.realizzazioni'
 import { Route as ItVillaDiLussoMarrakechRouteImport } from './routes/it.villa-di-lusso-marrakech'
 import { Route as NlIndexRouteImport } from './routes/nl.index'
 import { Route as NlBedanktRouteImport } from './routes/nl.bedankt'
@@ -66,6 +69,7 @@ import { Route as NlInvestirRouteImport } from './routes/nl.investir'
 import { Route as NlJuridischeInformatieRouteImport } from './routes/nl.juridische-informatie'
 import { Route as NlLuxeVillaMarrakechRouteImport } from './routes/nl.luxe-villa-marrakech'
 import { Route as NlPrivacyRouteImport } from './routes/nl.privacy'
+import { Route as NlRealisatiesRouteImport } from './routes/nl.realisaties'
 import { Route as NoIndexRouteImport } from './routes/no.index'
 import { Route as NoContactRouteImport } from './routes/no.contact'
 import { Route as NoEierportalRouteImport } from './routes/no.eierportal'
@@ -75,6 +79,7 @@ import { Route as NoInvestirRouteImport } from './routes/no.investir'
 import { Route as NoJuridiskInformasjonRouteImport } from './routes/no.juridisk-informasjon'
 import { Route as NoLuksusvillaMarrakechRouteImport } from './routes/no.luksusvilla-marrakech'
 import { Route as NoPersonvernRouteImport } from './routes/no.personvern'
+import { Route as NoReferanseprosjekterRouteImport } from './routes/no.referanseprosjekter'
 import { Route as NoSalgsoppgaveRouteImport } from './routes/no.salgsoppgave'
 import { Route as NoTakkRouteImport } from './routes/no.takk'
 import { Route as VillasIndexRouteImport } from './routes/villas.index'
@@ -210,6 +215,11 @@ const EnThankYouRoute = EnThankYouRouteImport.update({
   path: '/en/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnTrackRecordRoute = EnTrackRecordRouteImport.update({
+  id: '/en/track-record',
+  path: '/en/track-record',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EsIndexRoute = EsIndexRouteImport.update({
   id: '/es/',
   path: '/es/',
@@ -258,6 +268,11 @@ const EsInvestirRoute = EsInvestirRouteImport.update({
 const EsPrivacidadRoute = EsPrivacidadRouteImport.update({
   id: '/es/privacidad',
   path: '/es/privacidad',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EsRealizacionesRoute = EsRealizacionesRouteImport.update({
+  id: '/es/realizaciones',
+  path: '/es/realizaciones',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EsVillaDeLujoMarrakechRoute = EsVillaDeLujoMarrakechRouteImport.update({
@@ -313,6 +328,11 @@ const ItNoteLegaliRoute = ItNoteLegaliRouteImport.update({
 const ItPrivacyRoute = ItPrivacyRouteImport.update({
   id: '/it/privacy',
   path: '/it/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ItRealizzazioniRoute = ItRealizzazioniRouteImport.update({
+  id: '/it/realizzazioni',
+  path: '/it/realizzazioni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ItVillaDiLussoMarrakechRoute = ItVillaDiLussoMarrakechRouteImport.update({
@@ -375,6 +395,11 @@ const NlPrivacyRoute = NlPrivacyRouteImport.update({
   path: '/nl/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NlRealisatiesRoute = NlRealisatiesRouteImport.update({
+  id: '/nl/realisaties',
+  path: '/nl/realisaties',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NoIndexRoute = NoIndexRouteImport.update({
   id: '/no/',
   path: '/no/',
@@ -418,6 +443,11 @@ const NoLuksusvillaMarrakechRoute = NoLuksusvillaMarrakechRouteImport.update({
 const NoPersonvernRoute = NoPersonvernRouteImport.update({
   id: '/no/personvern',
   path: '/no/personvern',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NoReferanseprosjekterRoute = NoReferanseprosjekterRouteImport.update({
+  id: '/no/referanseprosjekter',
+  path: '/no/referanseprosjekter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NoSalgsoppgaveRoute = NoSalgsoppgaveRouteImport.update({
@@ -515,6 +545,7 @@ export interface FileRoutesByFullPath {
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/thank-you': typeof EnThankYouRoute
+  '/en/track-record': typeof EnTrackRecordRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/aviso-legal': typeof EsAvisoLegalRoute
   '/es/contact': typeof EsContactRoute
@@ -524,6 +555,7 @@ export interface FileRoutesByFullPath {
   '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
+  '/es/realizaciones': typeof EsRealizacionesRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
   '/it/area-proprietari': typeof ItAreaProprietariRoute
   '/it/contact': typeof ItContactRoute
@@ -534,6 +566,7 @@ export interface FileRoutesByFullPath {
   '/it/investir': typeof ItInvestirRoute
   '/it/note-legali': typeof ItNoteLegaliRoute
   '/it/privacy': typeof ItPrivacyRoute
+  '/it/realizzazioni': typeof ItRealizzazioniRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
   '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
@@ -545,6 +578,7 @@ export interface FileRoutesByFullPath {
   '/nl/juridische-informatie': typeof NlJuridischeInformatieRoute
   '/nl/luxe-villa-marrakech': typeof NlLuxeVillaMarrakechRoute
   '/nl/privacy': typeof NlPrivacyRoute
+  '/nl/realisaties': typeof NlRealisatiesRoute
   '/no/contact': typeof NoContactRoute
   '/no/eierportal': typeof NoEierportalRoute
   '/no/faq': typeof NoFaqRoute
@@ -553,6 +587,7 @@ export interface FileRoutesByFullPath {
   '/no/juridisk-informasjon': typeof NoJuridiskInformasjonRoute
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
+  '/no/referanseprosjekter': typeof NoReferanseprosjekterRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
   '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
@@ -597,6 +632,7 @@ export interface FileRoutesByTo {
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/thank-you': typeof EnThankYouRoute
+  '/en/track-record': typeof EnTrackRecordRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/aviso-legal': typeof EsAvisoLegalRoute
   '/es/contact': typeof EsContactRoute
@@ -606,6 +642,7 @@ export interface FileRoutesByTo {
   '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
+  '/es/realizaciones': typeof EsRealizacionesRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
   '/it/area-proprietari': typeof ItAreaProprietariRoute
   '/it/contact': typeof ItContactRoute
@@ -616,6 +653,7 @@ export interface FileRoutesByTo {
   '/it/investir': typeof ItInvestirRoute
   '/it/note-legali': typeof ItNoteLegaliRoute
   '/it/privacy': typeof ItPrivacyRoute
+  '/it/realizzazioni': typeof ItRealizzazioniRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
   '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
@@ -627,6 +665,7 @@ export interface FileRoutesByTo {
   '/nl/juridische-informatie': typeof NlJuridischeInformatieRoute
   '/nl/luxe-villa-marrakech': typeof NlLuxeVillaMarrakechRoute
   '/nl/privacy': typeof NlPrivacyRoute
+  '/nl/realisaties': typeof NlRealisatiesRoute
   '/no/contact': typeof NoContactRoute
   '/no/eierportal': typeof NoEierportalRoute
   '/no/faq': typeof NoFaqRoute
@@ -635,6 +674,7 @@ export interface FileRoutesByTo {
   '/no/juridisk-informasjon': typeof NoJuridiskInformasjonRoute
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
+  '/no/referanseprosjekter': typeof NoReferanseprosjekterRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
   '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
@@ -680,6 +720,7 @@ export interface FileRoutesById {
   '/en/owner-area': typeof EnOwnerAreaRoute
   '/en/privacy': typeof EnPrivacyRoute
   '/en/thank-you': typeof EnThankYouRoute
+  '/en/track-record': typeof EnTrackRecordRoute
   '/es/area-propietarios': typeof EsAreaPropietariosRoute
   '/es/aviso-legal': typeof EsAvisoLegalRoute
   '/es/contact': typeof EsContactRoute
@@ -689,6 +730,7 @@ export interface FileRoutesById {
   '/es/gracias': typeof EsGraciasRoute
   '/es/investir': typeof EsInvestirRoute
   '/es/privacidad': typeof EsPrivacidadRoute
+  '/es/realizaciones': typeof EsRealizacionesRoute
   '/es/villa-de-lujo-marrakech': typeof EsVillaDeLujoMarrakechRoute
   '/it/area-proprietari': typeof ItAreaProprietariRoute
   '/it/contact': typeof ItContactRoute
@@ -699,6 +741,7 @@ export interface FileRoutesById {
   '/it/investir': typeof ItInvestirRoute
   '/it/note-legali': typeof ItNoteLegaliRoute
   '/it/privacy': typeof ItPrivacyRoute
+  '/it/realizzazioni': typeof ItRealizzazioniRoute
   '/it/villa-di-lusso-marrakech': typeof ItVillaDiLussoMarrakechRoute
   '/nl/bedankt': typeof NlBedanktRoute
   '/nl/contact': typeof NlContactRoute
@@ -710,6 +753,7 @@ export interface FileRoutesById {
   '/nl/juridische-informatie': typeof NlJuridischeInformatieRoute
   '/nl/luxe-villa-marrakech': typeof NlLuxeVillaMarrakechRoute
   '/nl/privacy': typeof NlPrivacyRoute
+  '/nl/realisaties': typeof NlRealisatiesRoute
   '/no/contact': typeof NoContactRoute
   '/no/eierportal': typeof NoEierportalRoute
   '/no/faq': typeof NoFaqRoute
@@ -718,6 +762,7 @@ export interface FileRoutesById {
   '/no/juridisk-informasjon': typeof NoJuridiskInformasjonRoute
   '/no/luksusvilla-marrakech': typeof NoLuksusvillaMarrakechRoute
   '/no/personvern': typeof NoPersonvernRoute
+  '/no/referanseprosjekter': typeof NoReferanseprosjekterRoute
   '/no/salgsoppgave': typeof NoSalgsoppgaveRoute
   '/no/takk': typeof NoTakkRoute
   '/villas/$type': typeof VillasTypeRoute
@@ -764,6 +809,7 @@ export interface FileRouteTypes {
     | '/en/owner-area'
     | '/en/privacy'
     | '/en/thank-you'
+    | '/en/track-record'
     | '/es/area-propietarios'
     | '/es/aviso-legal'
     | '/es/contact'
@@ -773,6 +819,7 @@ export interface FileRouteTypes {
     | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
+    | '/es/realizaciones'
     | '/es/villa-de-lujo-marrakech'
     | '/it/area-proprietari'
     | '/it/contact'
@@ -783,6 +830,7 @@ export interface FileRouteTypes {
     | '/it/investir'
     | '/it/note-legali'
     | '/it/privacy'
+    | '/it/realizzazioni'
     | '/it/villa-di-lusso-marrakech'
     | '/nl/bedankt'
     | '/nl/contact'
@@ -794,6 +842,7 @@ export interface FileRouteTypes {
     | '/nl/juridische-informatie'
     | '/nl/luxe-villa-marrakech'
     | '/nl/privacy'
+    | '/nl/realisaties'
     | '/no/contact'
     | '/no/eierportal'
     | '/no/faq'
@@ -802,6 +851,7 @@ export interface FileRouteTypes {
     | '/no/juridisk-informasjon'
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
+    | '/no/referanseprosjekter'
     | '/no/salgsoppgave'
     | '/no/takk'
     | '/villas/$type'
@@ -846,6 +896,7 @@ export interface FileRouteTypes {
     | '/en/owner-area'
     | '/en/privacy'
     | '/en/thank-you'
+    | '/en/track-record'
     | '/es/area-propietarios'
     | '/es/aviso-legal'
     | '/es/contact'
@@ -855,6 +906,7 @@ export interface FileRouteTypes {
     | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
+    | '/es/realizaciones'
     | '/es/villa-de-lujo-marrakech'
     | '/it/area-proprietari'
     | '/it/contact'
@@ -865,6 +917,7 @@ export interface FileRouteTypes {
     | '/it/investir'
     | '/it/note-legali'
     | '/it/privacy'
+    | '/it/realizzazioni'
     | '/it/villa-di-lusso-marrakech'
     | '/nl/bedankt'
     | '/nl/contact'
@@ -876,6 +929,7 @@ export interface FileRouteTypes {
     | '/nl/juridische-informatie'
     | '/nl/luxe-villa-marrakech'
     | '/nl/privacy'
+    | '/nl/realisaties'
     | '/no/contact'
     | '/no/eierportal'
     | '/no/faq'
@@ -884,6 +938,7 @@ export interface FileRouteTypes {
     | '/no/juridisk-informasjon'
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
+    | '/no/referanseprosjekter'
     | '/no/salgsoppgave'
     | '/no/takk'
     | '/villas/$type'
@@ -928,6 +983,7 @@ export interface FileRouteTypes {
     | '/en/owner-area'
     | '/en/privacy'
     | '/en/thank-you'
+    | '/en/track-record'
     | '/es/area-propietarios'
     | '/es/aviso-legal'
     | '/es/contact'
@@ -937,6 +993,7 @@ export interface FileRouteTypes {
     | '/es/gracias'
     | '/es/investir'
     | '/es/privacidad'
+    | '/es/realizaciones'
     | '/es/villa-de-lujo-marrakech'
     | '/it/area-proprietari'
     | '/it/contact'
@@ -947,6 +1004,7 @@ export interface FileRouteTypes {
     | '/it/investir'
     | '/it/note-legali'
     | '/it/privacy'
+    | '/it/realizzazioni'
     | '/it/villa-di-lusso-marrakech'
     | '/nl/bedankt'
     | '/nl/contact'
@@ -958,6 +1016,7 @@ export interface FileRouteTypes {
     | '/nl/juridische-informatie'
     | '/nl/luxe-villa-marrakech'
     | '/nl/privacy'
+    | '/nl/realisaties'
     | '/no/contact'
     | '/no/eierportal'
     | '/no/faq'
@@ -966,6 +1025,7 @@ export interface FileRouteTypes {
     | '/no/juridisk-informasjon'
     | '/no/luksusvilla-marrakech'
     | '/no/personvern'
+    | '/no/referanseprosjekter'
     | '/no/salgsoppgave'
     | '/no/takk'
     | '/villas/$type'
@@ -1011,6 +1071,7 @@ export interface RootRouteChildren {
   EnOwnerAreaRoute: typeof EnOwnerAreaRoute
   EnPrivacyRoute: typeof EnPrivacyRoute
   EnThankYouRoute: typeof EnThankYouRoute
+  EnTrackRecordRoute: typeof EnTrackRecordRoute
   EsAreaPropietariosRoute: typeof EsAreaPropietariosRoute
   EsAvisoLegalRoute: typeof EsAvisoLegalRoute
   EsContactRoute: typeof EsContactRoute
@@ -1020,6 +1081,7 @@ export interface RootRouteChildren {
   EsGraciasRoute: typeof EsGraciasRoute
   EsInvestirRoute: typeof EsInvestirRoute
   EsPrivacidadRoute: typeof EsPrivacidadRoute
+  EsRealizacionesRoute: typeof EsRealizacionesRoute
   EsVillaDeLujoMarrakechRoute: typeof EsVillaDeLujoMarrakechRoute
   ItAreaProprietariRoute: typeof ItAreaProprietariRoute
   ItContactRoute: typeof ItContactRoute
@@ -1030,6 +1092,7 @@ export interface RootRouteChildren {
   ItInvestirRoute: typeof ItInvestirRoute
   ItNoteLegaliRoute: typeof ItNoteLegaliRoute
   ItPrivacyRoute: typeof ItPrivacyRoute
+  ItRealizzazioniRoute: typeof ItRealizzazioniRoute
   ItVillaDiLussoMarrakechRoute: typeof ItVillaDiLussoMarrakechRoute
   NlBedanktRoute: typeof NlBedanktRoute
   NlContactRoute: typeof NlContactRoute
@@ -1041,6 +1104,7 @@ export interface RootRouteChildren {
   NlJuridischeInformatieRoute: typeof NlJuridischeInformatieRoute
   NlLuxeVillaMarrakechRoute: typeof NlLuxeVillaMarrakechRoute
   NlPrivacyRoute: typeof NlPrivacyRoute
+  NlRealisatiesRoute: typeof NlRealisatiesRoute
   NoContactRoute: typeof NoContactRoute
   NoEierportalRoute: typeof NoEierportalRoute
   NoFaqRoute: typeof NoFaqRoute
@@ -1049,6 +1113,7 @@ export interface RootRouteChildren {
   NoJuridiskInformasjonRoute: typeof NoJuridiskInformasjonRoute
   NoLuksusvillaMarrakechRoute: typeof NoLuksusvillaMarrakechRoute
   NoPersonvernRoute: typeof NoPersonvernRoute
+  NoReferanseprosjekterRoute: typeof NoReferanseprosjekterRoute
   NoSalgsoppgaveRoute: typeof NoSalgsoppgaveRoute
   NoTakkRoute: typeof NoTakkRoute
   VillasTypeRoute: typeof VillasTypeRoute
@@ -1240,6 +1305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/track-record': {
+      id: '/en/track-record'
+      path: '/en/track-record'
+      fullPath: '/en/track-record'
+      preLoaderRoute: typeof EnTrackRecordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/es/': {
       id: '/es/'
       path: '/es'
@@ -1308,6 +1380,13 @@ declare module '@tanstack/react-router' {
       path: '/es/privacidad'
       fullPath: '/es/privacidad'
       preLoaderRoute: typeof EsPrivacidadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/es/realizaciones': {
+      id: '/es/realizaciones'
+      path: '/es/realizaciones'
+      fullPath: '/es/realizaciones'
+      preLoaderRoute: typeof EsRealizacionesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/es/villa-de-lujo-marrakech': {
@@ -1385,6 +1464,13 @@ declare module '@tanstack/react-router' {
       path: '/it/privacy'
       fullPath: '/it/privacy'
       preLoaderRoute: typeof ItPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/it/realizzazioni': {
+      id: '/it/realizzazioni'
+      path: '/it/realizzazioni'
+      fullPath: '/it/realizzazioni'
+      preLoaderRoute: typeof ItRealizzazioniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/it/villa-di-lusso-marrakech': {
@@ -1471,6 +1557,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NlPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/nl/realisaties': {
+      id: '/nl/realisaties'
+      path: '/nl/realisaties'
+      fullPath: '/nl/realisaties'
+      preLoaderRoute: typeof NlRealisatiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/no/': {
       id: '/no/'
       path: '/no'
@@ -1532,6 +1625,13 @@ declare module '@tanstack/react-router' {
       path: '/no/personvern'
       fullPath: '/no/personvern'
       preLoaderRoute: typeof NoPersonvernRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/no/referanseprosjekter': {
+      id: '/no/referanseprosjekter'
+      path: '/no/referanseprosjekter'
+      fullPath: '/no/referanseprosjekter'
+      preLoaderRoute: typeof NoReferanseprosjekterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/no/salgsoppgave': {
@@ -1659,6 +1759,7 @@ const rootRouteChildren: RootRouteChildren = {
   EnOwnerAreaRoute: EnOwnerAreaRoute,
   EnPrivacyRoute: EnPrivacyRoute,
   EnThankYouRoute: EnThankYouRoute,
+  EnTrackRecordRoute: EnTrackRecordRoute,
   EsAreaPropietariosRoute: EsAreaPropietariosRoute,
   EsAvisoLegalRoute: EsAvisoLegalRoute,
   EsContactRoute: EsContactRoute,
@@ -1668,6 +1769,7 @@ const rootRouteChildren: RootRouteChildren = {
   EsGraciasRoute: EsGraciasRoute,
   EsInvestirRoute: EsInvestirRoute,
   EsPrivacidadRoute: EsPrivacidadRoute,
+  EsRealizacionesRoute: EsRealizacionesRoute,
   EsVillaDeLujoMarrakechRoute: EsVillaDeLujoMarrakechRoute,
   ItAreaProprietariRoute: ItAreaProprietariRoute,
   ItContactRoute: ItContactRoute,
@@ -1678,6 +1780,7 @@ const rootRouteChildren: RootRouteChildren = {
   ItInvestirRoute: ItInvestirRoute,
   ItNoteLegaliRoute: ItNoteLegaliRoute,
   ItPrivacyRoute: ItPrivacyRoute,
+  ItRealizzazioniRoute: ItRealizzazioniRoute,
   ItVillaDiLussoMarrakechRoute: ItVillaDiLussoMarrakechRoute,
   NlBedanktRoute: NlBedanktRoute,
   NlContactRoute: NlContactRoute,
@@ -1689,6 +1792,7 @@ const rootRouteChildren: RootRouteChildren = {
   NlJuridischeInformatieRoute: NlJuridischeInformatieRoute,
   NlLuxeVillaMarrakechRoute: NlLuxeVillaMarrakechRoute,
   NlPrivacyRoute: NlPrivacyRoute,
+  NlRealisatiesRoute: NlRealisatiesRoute,
   NoContactRoute: NoContactRoute,
   NoEierportalRoute: NoEierportalRoute,
   NoFaqRoute: NoFaqRoute,
@@ -1697,6 +1801,7 @@ const rootRouteChildren: RootRouteChildren = {
   NoJuridiskInformasjonRoute: NoJuridiskInformasjonRoute,
   NoLuksusvillaMarrakechRoute: NoLuksusvillaMarrakechRoute,
   NoPersonvernRoute: NoPersonvernRoute,
+  NoReferanseprosjekterRoute: NoReferanseprosjekterRoute,
   NoSalgsoppgaveRoute: NoSalgsoppgaveRoute,
   NoTakkRoute: NoTakkRoute,
   VillasTypeRoute: VillasTypeRoute,
