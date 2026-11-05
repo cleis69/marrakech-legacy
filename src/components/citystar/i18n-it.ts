@@ -661,8 +661,9 @@ export const it: Textes = {
     nav: "Piè di pagina",
     legal: (annee) => `© ${annee} CITYSTAR · Residenza privata · Route de Fès km 11, Marrakech`,
     instagram: "CITYSTAR su Instagram",
-    realise: "Realizzato da",
+    realise: "Sito realizzato da",
     propulse: "Con la tecnologia di",
+    projet: "Un progetto sviluppato da",
     youtube: "CITYSTAR su YouTube",
   },
   selecteur: {

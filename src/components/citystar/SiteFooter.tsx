@@ -148,16 +148,24 @@ export function SiteFooter() {
           </span>
         ))}
       </div>
-      <p className="ft-credits">
-        <span>{t.pied.realise}</span>
-        <a href="https://ultravisionagency.com" target="_blank" rel="noopener">
-          <img src={ultravisionLogo} alt="Ultravision" width="66" height="26" loading="lazy" decoding="async" />
-        </a>
-        <span>{t.pied.propulse}</span>
-        <a href="https://realestatevision360.com" target="_blank" rel="noopener">
-          <img src={revLogo} alt="REV — Real Estate Vision" width="64" height="26" loading="lazy" decoding="async" />
-        </a>
-      </p>
+      <div className="ft-credits">
+        <p className="ft-credits-projet">
+          <span>{t.pied.projet}</span>
+          <a href="https://bivetygroup.co.uk" target="_blank" rel="noopener">
+            Bivety Group
+          </a>
+        </p>
+        <p className="ft-credits-site">
+          <span>{t.pied.realise}</span>
+          <a href="https://ultravisionagency.com" target="_blank" rel="noopener">
+            <img src={ultravisionLogo} alt="Ultravision Agency" width="66" height="26" loading="lazy" decoding="async" />
+          </a>
+          <span aria-hidden="true">&amp;</span>
+          <a href="https://realestatevision360.com" target="_blank" rel="noopener">
+            <img src={revLogo} alt="REV — Real Estate Vision" width="64" height="26" loading="lazy" decoding="async" />
+          </a>
+        </p>
+      </div>
     </footer>
   );
 }

@@ -663,8 +663,9 @@ export const nl: Textes = {
     nav: "Voettekst",
     legal: (annee) => `© ${annee} CITYSTAR · Privéresidentie · Route de Fès km 11, Marrakech`,
     instagram: "CITYSTAR op Instagram",
-    realise: "Gemaakt door",
+    realise: "Website gemaakt door",
     propulse: "Mogelijk gemaakt door",
+    projet: "Een project ontwikkeld door",
     youtube: "CITYSTAR op YouTube",
   },
   selecteur: {

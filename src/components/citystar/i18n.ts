@@ -682,8 +682,9 @@ const fr = {
     nav: "Pied de page",
     legal: (annee: number) => `© ${annee} CITYSTAR · Résidence privée · Route de Fès km 11, Marrakech`,
     instagram: "CITYSTAR sur Instagram",
-    realise: "Réalisé par",
+    realise: "Site réalisé par",
     propulse: "Propulsé par",
+    projet: "Un projet développé par",
     youtube: "CITYSTAR sur YouTube",
   },
   selecteur: {
@@ -1565,8 +1566,9 @@ const en: Textes = {
     nav: "Footer",
     legal: (annee) => `© ${annee} CITYSTAR · Private residence · Route de Fès km 11, Marrakech`,
     instagram: "CITYSTAR on Instagram",
-    realise: "Made by",
+    realise: "Website by",
     propulse: "Powered by",
+    projet: "A project developed by",
     youtube: "CITYSTAR on YouTube",
   },
   selecteur: {
