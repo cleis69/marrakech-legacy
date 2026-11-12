@@ -225,3 +225,18 @@
   .df { padding: 0 8px 8px; }
   .df-cadre { border-radius: 22px; }
 }
+
+/* Page d'atterrissage sur mobile : une page courte. Les villas se font défiler de côté, les
+   garanties tiennent sur deux colonnes, la frise s'efface devant le plan de paiement qui reprend
+   les mêmes étapes, et le rappel du formulaire va droit aux champs. */
+@media (max-width: 900px) {
+  .is-tunnel .vd-cartes { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 82%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -1.3rem; padding: 0 1.3rem; }
+  .is-tunnel .vd-cartes::-webkit-scrollbar { display: none; }
+  .is-tunnel .vd-cartes > li { scroll-snap-align: center; }
+  .is-tunnel .dg ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .is-tunnel .dg li { padding: 1.1rem; }
+  .is-tunnel .dg h3 { font-size: 1.25rem; }
+  .is-tunnel .dg p { font-size: .82rem; }
+  .is-tunnel .lv-frise { display: none; }
+  .is-tunnel .dd-liste { display: none; }
+}

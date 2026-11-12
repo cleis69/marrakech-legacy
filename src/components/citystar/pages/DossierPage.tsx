@@ -1,15 +1,6 @@
 import { CalendrierSection } from "../CalendrierSection";
 import { ChiffresCles } from "../ChiffresCles";
-import {
-  ApercuEspace,
-  ContenuDossier,
-  DossierDemande,
-  DossierHero,
-  Garanties,
-  Parcelles,
-} from "../dossier/sections";
-import { LocationSection } from "../LocationSection";
-import { MarcheSection } from "../MarcheSection";
+import { DossierDemande, DossierHero, Garanties } from "../dossier/sections";
 import { QuestionsSection } from "../QuestionsSection";
 import { useSite } from "../site";
 import { TourSection } from "../TourSection";
@@ -17,29 +8,25 @@ import { VillasSection } from "../VillasSection";
 
 /**
  * Page d'atterrissage des publicités : une seule action, recevoir la brochure. Le formulaire
- * est affiché dès l'ouverture, puis rappelé trois fois ; rien ne mène hors de la page.
- * Après l'ouverture viennent les villas, puis les garanties, le contenu de l'envoi, la visite,
- * le suivi du chantier, le calendrier, les parcelles, le marché, la situation et les questions.
+ * est affiché dès l'ouverture, puis rappelé deux fois ; rien ne mène hors de la page.
+ * La page est courte (12/11/2026) : les villas, les chiffres, les garanties, la visite, le
+ * calendrier et son plan de paiement, les questions. Le contenu de l'envoi, l'espace
+ * propriétaire, les parcelles, le marché et la carte n'y sont plus ; leurs sections restent
+ * dans `dossier/sections` et sur les autres pages du site.
  */
 export function DossierPage() {
-  const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirVisite } = useSite();
+  const { onCursorEnter, onCursorLeave, ouvrirVisite } = useSite();
   return (
     <>
       <DossierHero />
       <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <ChiffresCles />
       <Garanties />
-      <ContenuDossier />
-      <DossierDemande rang={2} />
       <TourSection onOpenTour={ouvrirVisite} />
-      <ApercuEspace />
+      <DossierDemande rang={2} />
       <CalendrierSection avecEspace={false} />
-      <Parcelles />
-      <DossierDemande rang={3} />
-      <MarcheSection />
-      <LocationSection onOpenPlan={ouvrirPlan} />
       <QuestionsSection />
-      <DossierDemande rang={4} final />
+      <DossierDemande rang={3} final />
     </>
   );
 }
