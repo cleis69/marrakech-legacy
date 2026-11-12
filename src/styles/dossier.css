@@ -8,7 +8,7 @@
 .dh-video { opacity: 0; transition: opacity .9s ease; }
 .dh-video.is-lu { opacity: 1; }
 .dh-voile { position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in oklab, var(--ink) 78%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 55%, color-mix(in oklab, var(--ink) 15%, transparent) 100%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 50%, transparent) 0%, transparent 25%); }
-.dh-contenu { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem); gap: 2.4rem; align-items: end; width: 100%; padding: 8rem var(--gouttiere) 4.4rem; }
+.dh-contenu { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(20rem, 27rem); gap: 2.4rem; align-items: end; width: 100%; padding: 8rem var(--gouttiere) 4.4rem; }
 .dh-texte { display: grid; justify-items: start; gap: 1.3rem; max-width: 50rem; }
 .dh-chip { display: inline-flex; align-items: center; gap: .6rem; padding: .5rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--ink) 45%, transparent); backdrop-filter: blur(8px); font-size: .78rem; letter-spacing: .04em; animation: dh-monte .9s var(--ease-out) .2s both; }
 .dh-chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--sand); }
@@ -35,6 +35,31 @@
 .dh-brochure { display: inline-flex; align-items: center; gap: .5rem; padding-top: .7rem; border-top: 1px solid var(--border); color: var(--bronze-text); font-size: .84rem; text-decoration: none; }
 .dh-brochure svg { flex: none; width: .95rem; height: .95rem; }
 .dh-brochure:hover, .dh-brochure:focus-visible { color: var(--bronze-deep); text-decoration: underline; text-underline-offset: .2em; }
+/* Le formulaire dans la carte : champs clairs, lisibles sur la vidéo, 16 px pour ne pas zoomer sur iPhone */
+.dh-carte { scroll-margin-top: 6rem; }
+.dh-carte-contenu { font-size: .84rem; line-height: 1.5; color: var(--muted-foreground); }
+.dh-carte form { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .75rem .6rem; margin-top: .2rem; }
+.dh-carte form > label { grid-column: span 2; }
+.dh-carte label { display: grid; gap: .3rem; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--bronze-text); }
+.dh-carte input, .dh-carte select { width: 100%; min-height: 2.9rem; padding: .5rem .75rem; border: 1px solid color-mix(in oklab, var(--ink) 22%, transparent); border-radius: 12px; background: #fff; color: var(--ink); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+.dh-carte input:focus-visible, .dh-carte select:focus-visible { outline: 2px solid var(--bronze); outline-offset: 1px; border-color: transparent; }
+.dh-carte .contact-large { grid-column: 1 / -1; }
+.dh-carte .contact-telephone { display: grid; gap: .3rem; }
+.dh-carte .contact-telephone > label { display: block; }
+.dh-carte .contact-telephone > div { display: flex; gap: .5rem; }
+.dh-carte .contact-telephone select { flex: 0 0 8.6rem; }
+.dh-carte .contact-intertitre { grid-column: 1 / -1; margin-top: .1rem; padding-top: .8rem; border-top: 1px solid var(--border); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.dh-carte .contact-consentement { grid-column: 1 / -1; font-size: .7rem; line-height: 1.5; color: var(--muted-foreground); }
+.dh-carte .contact-erreur { grid-column: 1 / -1; font-size: .86rem; color: var(--destructive, #b3261e); }
+.dh-carte form > button { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.2rem; border: 0; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: .95rem; font-weight: 500; cursor: pointer; transition: background .3s; }
+.dh-carte form > button:hover, .dh-carte form > button:focus-visible { background: var(--bronze-deep); }
+.dh-carte form > button:disabled { opacity: .6; cursor: progress; }
+.dh-carte form > button svg { width: 1rem; height: 1rem; }
+.dh-carte .contact-merci { padding: 1.1rem 1.2rem; border-radius: 16px; background: color-mix(in oklab, var(--sand) 28%, transparent); font-size: .98rem; line-height: 1.6; }
+.dh-carte .contact-selection { margin-top: 0; padding: .8rem .9rem; border-radius: 14px; box-shadow: inset 0 0 0 1px var(--border); }
+.dh-carte .contact-selection p { color: var(--bronze-text); }
+.dh-carte .contact-selection li { box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 22%, transparent); }
+.dh-carte .contact-selection button { color: var(--muted-foreground); }
 .dh-pied { position: absolute; left: var(--gouttiere); right: var(--gouttiere); bottom: 1.2rem; display: flex; align-items: center; gap: .8rem; font-size: .72rem; color: color-mix(in oklab, var(--cream) 70%, transparent); }
 .dh-pause { display: grid; place-items: center; width: 2rem; height: 2rem; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--cream) 14%, transparent); color: var(--cream); cursor: pointer; }
 .dh-pause svg { width: .8rem; height: .8rem; }
@@ -137,25 +162,59 @@
   .dp-plan button:hover img { transform: scale(1.03); }
 }
 
+/* Rappel du formulaire au fil de la page : un cadre d'encre, le contenu de l'envoi et la carte */
+.dd { padding: 1rem 14px; background: var(--paper); }
+.dd-cadre { display: grid; grid-template-columns: minmax(0, 1fr) minmax(20rem, 27rem); gap: 2.4rem 4rem; align-items: center; padding: clamp(2.4rem, 5vw, 4.6rem) var(--gouttiere); border-radius: 28px; background: var(--ink); color: var(--cream); }
+.dd-texte { display: grid; justify-items: start; gap: 1.2rem; }
+.dd-texte .dc-kicker { color: var(--sand); }
+.dd-texte h2 { font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.05 "Italiana", serif; text-wrap: balance; }
+.dd-texte h2 .ton { color: var(--sand); }
+.dd-texte > p:not(.dc-kicker) { max-width: 34rem; font-size: 1.02rem; line-height: 1.65; color: color-mix(in oklab, var(--cream) 82%, transparent); }
+.dd-liste { display: grid; gap: .65rem; margin: 0; padding: 0; list-style: none; }
+.dd-liste li { display: flex; align-items: center; gap: .65rem; font-size: 1rem; color: color-mix(in oklab, var(--cream) 90%, transparent); }
+.dd-liste svg { flex: none; width: 1rem; height: 1rem; color: var(--sand); }
+.dd .dh-carte { animation: none; }
+
+/* Écrans d'ordinateur peu hauts : le formulaire entier tient dans le premier écran */
+@media (min-width: 1101px) and (max-height: 840px) {
+  .dh-contenu { padding-top: 5.6rem; padding-bottom: 3.2rem; }
+  .dh-carte { gap: .6rem; padding: 1.2rem 1.4rem; }
+  .dh-carte h2 { font-size: 1.7rem; }
+  .dh-carte form { gap: .5rem .6rem; }
+  .dh-carte input, .dh-carte select { min-height: 2.5rem; padding: .35rem .7rem; }
+  .dh-carte form > button { min-height: 2.9rem; }
+  .dh h1 { font-size: clamp(2.4rem, 4.2vw, 4rem); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .dh-chip, .dh-ligne, .dh-intro, .dh-actions, .dh-conditions, .dh-carte { animation: none; }
   .da-jauge span, .dp-plan img { transition: none; }
 }
 
 @media (max-width: 1100px) {
+  .dd-cadre { grid-template-columns: 1fr; }
   .dh-contenu { grid-template-columns: 1fr; padding-top: 7rem; padding-bottom: 4.6rem; }
-  .dh-carte { max-width: 30rem; }
+  .dh-carte { max-width: 32rem; }
   .dg ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dc-grille, .da, .dp { grid-template-columns: 1fr; }
   .dc-ensuite { position: static; }
 }
 
 @media (max-width: 900px) {
+  .dd { padding: .6rem 8px; }
+  .dd-cadre { gap: 1.6rem; padding: 2.2rem 1.3rem; border-radius: 22px; }
   .dh, .dg { padding: 8px 8px 0; }
   .dh-cadre { min-height: calc(100svh - 16px); border-radius: 22px; }
   .dh-voile { background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 55%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 35%, color-mix(in oklab, var(--ink) 88%, transparent) 70%); }
   .dh-contenu { gap: 1.8rem; padding: 6.5rem 1.3rem 4.4rem; }
-  .dh-carte { padding: 1.4rem; }
+  .dh-carte { padding: 1.3rem; }
+  /* Trois questions sur un écran étroit : deux côte à côte, la troisième sur toute la largeur */
+  .dh-carte form > label { grid-column: span 3; }
+  .dh-carte form > label:last-of-type { grid-column: 1 / -1; }
+  /* Sur mobile, le formulaire remonte : le titre, puis les champs, dès le premier écran. */
+  .dh-intro, .dh-conditions { display: none; }
+  .dh h1 { font-size: 2.3rem; }
+  .dh-contenu { gap: 1.1rem; padding-top: 5.4rem; }
   .dg ul { grid-template-columns: 1fr; gap: 8px; }
   .dg li { padding: 1.3rem 1.4rem; border-radius: 20px; }
   .dc-liste { grid-template-columns: 1fr; gap: 8px; }

@@ -181,7 +181,7 @@ export const reservation = {
   /**
    * Part du prix appelée à chaque étape du chantier, en fraction (0,1 = 10 %).
    * Ne pas reprendre les paliers 35/70/95/5 : c'est du droit français, pas
-   * marocain. Une part non confirmée s'affiche « à confirmer ».
+   * marocain. Les parts non confirmées sont réunies en un solde « étalé jusqu'à la remise des clés ».
    */
   // ESPACE RÉSERVÉ — à remplacer par la donnée contractuelle du promoteur
   paliers: [

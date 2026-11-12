@@ -21,6 +21,7 @@ import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { retenirChoixLangue } from "./langueAppareil";
 import { chemin, cheminEspace, Lien, memePage } from "./liens";
+import { CLASSE_DEMANDE } from "./contexte";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -30,6 +31,8 @@ type Props = {
   onCloseMenu: () => void;
   onContact: () => void;
   onContactAvec: (selection: Selection) => void;
+  /** Page d'atterrissage : le nom, la langue et l'appel au formulaire, rien d'autre. */
+  tunnel?: boolean;
 };
 
 const whatsappHref = `https://wa.me/${contact.whatsapp}`;
@@ -203,6 +206,37 @@ function MenuSheet({
   );
 }
 
+/**
+ * Page d'atterrissage, sur mobile : une seule action en bas de l'écran, qui ramène au formulaire.
+ * Elle ne paraît que lorsque le formulaire est sorti de l'écran.
+ */
+function BarreTunnel({ onContact, libelle }: { onContact: () => void; libelle: string }) {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    /* La page compte plusieurs formulaires : la barre s'efface dès que l'un d'eux est à l'écran. */
+    const aLEcran = new Set<Element>();
+    const guetteur = new IntersectionObserver((entrees) => {
+      for (const entree of entrees) {
+        if (entree.isIntersecting) aLEcran.add(entree.target);
+        else aLEcran.delete(entree.target);
+      }
+      setVisible(aLEcran.size === 0);
+    });
+    document
+      .querySelectorAll(`.${CLASSE_DEMANDE}`)
+      .forEach((formulaire) => guetteur.observe(formulaire));
+    return () => guetteur.disconnect();
+  }, []);
+  return (
+    <div className={`tabbar tabbar--tunnel${visible ? " is-visible" : ""}`} aria-hidden={!visible}>
+      <button type="button" onClick={onContact} tabIndex={visible ? 0 : -1}>
+        <FileText aria-hidden="true" />
+        {libelle}
+      </button>
+    </div>
+  );
+}
+
 export function SiteHeader({
   scrolled,
   menuOpen,
@@ -210,6 +244,7 @@ export function SiteHeader({
   onCloseMenu,
   onContact,
   onContactAvec,
+  tunnel = false,
 }: Props) {
   const { langue, t } = useDevise();
   /* Transparent seulement en haut de l'accueil, posé sur la vidéo ; partout ailleurs, un aplat d'encre. */
@@ -221,6 +256,22 @@ export function SiteHeader({
       <span>{label}</span>
     </Lien>
   );
+
+  if (tunnel)
+    return (
+      <>
+        <header className={`float-header is-tunnel ${solide ? "is-solid" : ""}`}>
+          <span className="float-wordmark">CITYSTAR</span>
+          <div className="float-actions">
+            <LangSwitch />
+            <button className="float-cta" onClick={onContact}>
+              {t.villas.brochure}
+            </button>
+          </div>
+        </header>
+        <BarreTunnel onContact={onContact} libelle={t.villas.brochure} />
+      </>
+    );
 
   return (
     <>
@@ -289,7 +340,9 @@ export function SiteHeader({
       </nav>
 
       <AnimatePresence>
-        {menuOpen && <MenuSheet onClose={onCloseMenu} onContact={onContact} onContactAvec={onContactAvec} />}
+        {menuOpen && (
+          <MenuSheet onClose={onCloseMenu} onContact={onContact} onContactAvec={onContactAvec} />
+        )}
       </AnimatePresence>
     </>
   );

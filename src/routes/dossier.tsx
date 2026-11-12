@@ -15,7 +15,7 @@ export const Route = createFileRoute("/dossier")({
 
 function Page() {
   return (
-    <SiteChrome langue={LANGUE}>
+    <SiteChrome langue={LANGUE} tunnel>
       <DossierPage />
     </SiteChrome>
   );

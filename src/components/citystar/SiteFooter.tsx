@@ -27,7 +27,7 @@ import { Seal } from "./ui/Seal";
 
 export function SiteFooter() {
   const { langue, t } = useDevise();
-  const { ouvrirContactAvec } = useSite();
+  const { ouvrirContactAvec, tunnel } = useSite();
   /* Sur /contact, les trois tuiles sont déjà le contenu de la page. */
   const surContact = useRouterState({
     select: (etat) => /\/contact\/?$/.test(etat.location.pathname),
@@ -57,6 +57,31 @@ export function SiteFooter() {
       external: false,
     },
   ];
+
+  /* Page d'atterrissage : les mentions obligatoires seulement, ouvertes dans un autre onglet. */
+  if (tunnel)
+    return (
+      <footer className="ft ft--tunnel">
+        <p className="ft-legal">
+          {t.pied.legal(new Date().getFullYear())} ·{" "}
+          <Lien
+            vers={chemin(langue, slug("confidentialite", langue))}
+            target="_blank"
+            rel="noopener"
+          >
+            {confidentialite[langue].lien}
+          </Lien>
+          {" · "}
+          <Lien
+            vers={chemin(langue, slug("mentions-legales", langue))}
+            target="_blank"
+            rel="noopener"
+          >
+            {mentions[langue].lien}
+          </Lien>
+        </p>
+      </footer>
+    );
 
   return (
     <footer className="ft">

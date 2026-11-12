@@ -7,6 +7,7 @@ import {
 } from "@/config/citystar";
 
 import { Compteur } from "./Compteur";
+import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 import { Reveal } from "./motion";
 
@@ -30,6 +31,7 @@ function Grand({ part, langue }: { part: number; langue: Langue }) {
 /** Le marché en deux chiffres, puis Marrakech face aux autres grandes villes, source à l'appui. */
 export function MarcheSection() {
   const { langue, t } = useDevise();
+  const { tunnel } = useSite();
   const marrakech = marche.transactions.find((ville) => ville.ville === "Marrakech");
   const villas =
     langue === "fr" ? nombreEnLettres(programme.nombreVillas) : String(programme.nombreVillas);
@@ -83,9 +85,13 @@ export function MarcheSection() {
         <summary>{t.marche.source}</summary>
         <p>
           {t.marche.sourceTexte(marche.annee)}{" "}
-          <a href={marche.sourceUrl} target="_blank" rel="noreferrer">
-            {t.marche.sourceLien}
-          </a>
+          {tunnel ? (
+            t.marche.sourceLien
+          ) : (
+            <a href={marche.sourceUrl} target="_blank" rel="noreferrer">
+              {t.marche.sourceLien}
+            </a>
+          )}
         </p>
       </details>
     </section>

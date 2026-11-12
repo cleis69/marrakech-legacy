@@ -83,7 +83,7 @@ export const nl: Textes = {
     aria: "Opleveringskalender en betalingsplan",
     titre: (mois) => `Eerste villa opgeleverd in ${mois}.`,
     intro:
-      "De bouw verloopt in fasen, en bij elke fase wordt een deel van de prijs betaald. De tussentijdse data en de verdeling van het restant worden met de ontwikkelaar afgestemd. De modelvilla is uiterlijk eind januari 2027 te bezichtigen.",
+      "De bouw verloopt in fasen, en bij elke fase wordt een deel van de prijs betaald. Het restant wordt gespreid tot de sleuteloverdracht. De modelvilla is uiterlijk eind januari 2027 te bezichtigen.",
     compte: (n) =>
       n === 0 ? "Eerste oplevering deze maand" : n === 1 ? "Over 1 maand" : `Over ${n} maanden`,
     frise: "De bouwfasen",
@@ -95,12 +95,11 @@ export const nl: Textes = {
       livraison: "Eerste sleuteloverdracht",
     },
     signature: "Ondertekening bij de notaris",
-    dateAConfirmer: "Datum nog te bevestigen",
     paiement: "Het betalingsplan",
     part: "Deel van de prijs",
-    aConfirmer: "Nog te bevestigen",
+    etale: "gespreid tot de sleuteloverdracht",
     notePaiement: (reste) =>
-      `De reservering wordt rechtstreeks bij de notaris ondertekend. De verdeling van de resterende ${reste} wordt met de ontwikkelaar afgestemd: uw consultant stuurt u het gedetailleerde betalingsschema van uw villa.`,
+      `De reservering wordt rechtstreeks bij de notaris ondertekend. De resterende ${reste} wordt gespreid over de bouwfasen, tot de sleuteloverdracht: uw consultant stuurt u het gedetailleerde betalingsschema van uw villa.`,
     echeancier: "Het betalingsschema ontvangen",
     selection: {
       outil: "Kalender en betalingen",
@@ -295,7 +294,7 @@ export const nl: Textes = {
       reservationNote: "Rechtstreeks bij de notaris getekend, niet op een verkoopkantoor.",
       solde: "Saldo, in het tempo van de bouw",
       soldeNote: (livraison) =>
-        `Gespreid over de fasen tot de sleuteloverdracht (eerste villa opgeleverd in ${livraison}). Verdeling nog te bevestigen door de ontwikkelaar.`,
+        `Gespreid over de fasen tot de sleuteloverdracht (eerste villa opgeleverd in ${livraison}).`,
       livraison: (mois) => `Eerste sleuteloverdracht, ${mois}`,
       total: "Totaal",
       dans: (n) => `over ${n} maanden`,
@@ -461,7 +460,7 @@ export const nl: Textes = {
     {
       id: "acquisition",
       q: "Hoe verloopt de aankoop?",
-      r: `U reserveert uw villa bij de notaris, met ${v.acompte} van de prijs. De verdeling van het restant tot de sleuteloverdracht wordt met de ontwikkelaar afgestemd; uw consultant stuurt u het gedetailleerde schema.`,
+      r: `U reserveert uw villa bij de notaris, met ${v.acompte} van de prijs. Het restant wordt gespreid over de bouwfasen, tot de sleuteloverdracht; uw consultant stuurt u het gedetailleerde schema.`,
     },
     {
       id: "financement",
@@ -471,7 +470,7 @@ export const nl: Textes = {
     {
       id: "livraison",
       q: "Wanneer wordt het domein opgeleverd?",
-      r: `De eerste villa wordt in ${v.livraison} opgeleverd en de modelvilla is uiterlijk eind januari 2027 te bezichtigen. De data van de tussentijdse bouwfasen worden met de ontwikkelaar afgestemd.`,
+      r: `De eerste villa wordt in ${v.livraison} opgeleverd en de modelvilla is uiterlijk eind januari 2027 te bezichtigen.`,
     },
     {
       id: "villas",

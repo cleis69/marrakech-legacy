@@ -83,7 +83,7 @@ export const no: Textes = {
     aria: "Ferdigstillelseskalender og betalingsplan",
     titre: (mois) => `Første villa ferdig i ${mois}.`,
     intro:
-      "Byggingen skjer i etapper, og hver etappe utløser betaling av en del av prisen. Mellomliggende datoer og fordelingen av restbeløpet avklares med utbyggeren. Visningsvillaen kan besøkes innen utgangen av januar 2027.",
+      "Byggingen skjer i etapper, og hver etappe utløser betaling av en del av prisen. Restbeløpet fordeles frem til nøkkeloverleveringen. Visningsvillaen kan besøkes innen utgangen av januar 2027.",
     compte: (n) =>
       n === 0 ? "Første ferdigstillelse denne måneden" : n === 1 ? "Om 1 måned" : `Om ${n} måneder`,
     frise: "Byggeetappene",
@@ -95,12 +95,11 @@ export const no: Textes = {
       livraison: "Første nøkkeloverlevering",
     },
     signature: "Signeres hos notarius",
-    dateAConfirmer: "Dato bekreftes senere",
     paiement: "Betalingsplanen",
     part: "Andel av prisen",
-    aConfirmer: "Bekreftes senere",
+    etale: "fordelt frem til nøkkeloverleveringen",
     notePaiement: (reste) =>
-      `Reservasjonen signeres direkte hos notarius. Fordelingen av de resterende ${reste} avklares med utbyggeren: konsulenten din sender deg den detaljerte betalingsplanen for villaen din.`,
+      `Reservasjonen signeres direkte hos notarius. De resterende ${reste} fordeles på byggeetappene, frem til nøkkeloverleveringen: konsulenten din sender deg den detaljerte betalingsplanen for villaen din.`,
     echeancier: "Motta betalingsplanen",
     selection: { outil: "Kalender og betaling", ligne: "Forespørsel om detaljert betalingsplan" },
     espace: {
@@ -288,7 +287,7 @@ export const no: Textes = {
       reservationNote: "Signeres direkte hos notarius, ikke på et salgskontor.",
       solde: "Resten, i takt med byggingen",
       soldeNote: (livraison) =>
-        `Fordelt på etappene frem til nøkkeloverleveringen (første villa ferdig i ${livraison}). Fordelingen bekreftes av utbyggeren.`,
+        `Fordelt på etappene frem til nøkkeloverleveringen (første villa ferdig i ${livraison}).`,
       livraison: (mois) => `Første nøkkeloverlevering, ${mois}`,
       total: "Totalt",
       dans: (n) => `om ${n} måneder`,
@@ -449,7 +448,7 @@ export const no: Textes = {
     {
       id: "acquisition",
       q: "Hvordan foregår kjøpet?",
-      r: `Du reserverer villaen hos notarius, med ${v.acompte} av prisen. Fordelingen av restbeløpet fram til nøkkeloverleveringen avklares med utbyggeren; konsulenten din sender deg den detaljerte planen.`,
+      r: `Du reserverer villaen hos notarius, med ${v.acompte} av prisen. Restbeløpet fordeles på byggeetappene, frem til nøkkeloverleveringen; konsulenten din sender deg den detaljerte planen.`,
     },
     {
       id: "financement",
@@ -459,7 +458,7 @@ export const no: Textes = {
     {
       id: "livraison",
       q: "Når står eiendommen ferdig?",
-      r: `Den første villaen skal etter planen overleveres i ${v.livraison}, og visningsvillaen kan besøkes innen utgangen av januar 2027. Datoene for byggets mellomliggende etapper avklares med utbyggeren.`,
+      r: `Den første villaen skal etter planen overleveres i ${v.livraison}, og visningsvillaen kan besøkes innen utgangen av januar 2027.`,
     },
     {
       id: "villas",

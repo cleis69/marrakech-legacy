@@ -1,5 +1,6 @@
 import { Plus } from "lucide-react";
 
+import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 import { chemin, Lien } from "./liens";
 import { Reveal } from "./motion";
@@ -10,6 +11,7 @@ const CLES = ["securite", "acquisition", "financement", "livraison", "prix"];
 
 export function QuestionsSection() {
   const { langue, t } = useDevise();
+  const { tunnel } = useSite();
   const questions = useQuestions().filter((question) => CLES.includes(question.id));
 
   return (
@@ -22,9 +24,11 @@ export function QuestionsSection() {
           </h2>
         </Reveal>
         <p data-vu="">{t.questions.intro}</p>
-        <Lien className="pill pill-secondary" vers={chemin(langue, "faq")}>
-          <span className="pill-label">{t.questions.toutes}</span>
-        </Lien>
+        {!tunnel && (
+          <Lien className="pill pill-secondary" vers={chemin(langue, "faq")}>
+            <span className="pill-label">{t.questions.toutes}</span>
+          </Lien>
+        )}
       </div>
       <div className="qs-liste">
         {questions.map((question, i) => (

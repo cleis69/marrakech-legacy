@@ -90,7 +90,7 @@ const fr = {
     aria: "Calendrier de livraison et plan de paiement",
     titre: (mois: string) => `Première villa livrée en ${mois}.`,
     intro:
-      "Le chantier avance par étapes, et chacune appelle une part du prix. Les dates intermédiaires et la répartition du solde sont en cours de validation avec le promoteur. La villa témoin sera visitable d’ici fin janvier 2027.",
+      "Le chantier avance par étapes, et chacune appelle une part du prix. Le solde est étalé jusqu’à la remise des clés. La villa témoin sera visitable d’ici fin janvier 2027.",
     compte: (n: number) =>
       n === 0 ? "Première livraison ce mois-ci" : n === 1 ? "Dans 1 mois" : `Dans ${n} mois`,
     frise: "Les étapes du chantier",
@@ -102,12 +102,11 @@ const fr = {
       livraison: "Première remise des clés",
     },
     signature: "Signature chez le notaire",
-    dateAConfirmer: "Date à confirmer",
     paiement: "Le plan de paiement",
     part: "Part du prix",
-    aConfirmer: "À confirmer",
+    etale: "étalés jusqu’à la remise des clés",
     notePaiement: (reste: string) =>
-      `La réservation se signe directement chez le notaire. La répartition des ${reste} restants est en cours de validation avec le promoteur\u00a0: votre consultant vous remet l’échéancier détaillé de votre villa.`,
+      `La réservation se signe directement chez le notaire. Les ${reste} restants sont étalés sur les étapes du chantier, jusqu’à la remise des clés\u00a0: votre consultant vous remet l’échéancier détaillé de votre villa.`,
     echeancier: "Recevoir l’échéancier",
     selection: { outil: "Calendrier et paiement", ligne: "Demande de l’échéancier détaillé" },
     espace: {
@@ -307,7 +306,7 @@ const fr = {
       reservationNote: "Signée directement chez le notaire, pas dans un bureau de vente.",
       solde: "Solde, au fil du chantier",
       soldeNote: (livraison: string) =>
-        `Réparti par étapes jusqu’à la remise des clés (première villa livrée en ${livraison}). Répartition à confirmer par le promoteur.`,
+        `Réparti par étapes jusqu’à la remise des clés (première villa livrée en ${livraison}).`,
       livraison: (mois: string) => `Première remise des clés, ${mois}`,
       total: "Total",
       dans: (n: number) => `dans ${n} mois`,
@@ -483,7 +482,7 @@ const fr = {
     {
       id: "acquisition",
       q: "Comment se déroule l'acquisition\u00a0?",
-      r: `Vous réservez votre villa chez le notaire, avec ${v.acompte} du prix. La répartition du solde jusqu’à la remise des clés est en cours de validation avec le promoteur\u00a0; votre consultant vous remet l’échéancier détaillé.`,
+      r: `Vous réservez votre villa chez le notaire, avec ${v.acompte} du prix. Le reste est étalé sur les étapes du chantier, jusqu’à la remise des clés\u00a0; votre consultant vous remet l’échéancier détaillé.`,
     },
     {
       id: "financement",
@@ -493,7 +492,7 @@ const fr = {
     {
       id: "livraison",
       q: "Quand le domaine sera-t-il livré\u00a0?",
-      r: `La première villa doit être livrée en ${v.livraison}, et la villa témoin sera visitable d’ici fin janvier 2027. Les dates des étapes intermédiaires du chantier sont en cours de validation avec le promoteur.`,
+      r: `La première villa doit être livrée en ${v.livraison}, et la villa témoin sera visitable d’ici fin janvier 2027.`,
     },
     {
       id: "villas",
@@ -1004,7 +1003,7 @@ const en: Textes = {
     aria: "Delivery calendar and payment plan",
     titre: (mois) => `First villa delivered in ${mois}.`,
     intro:
-      "Construction moves forward in stages, and each one calls a share of the price. Intermediate dates and the split of the balance are being confirmed with the developer. The show villa will be open for viewings by the end of January 2027.",
+      "Construction moves forward in stages, and each one calls a share of the price. The balance is spread until the keys are handed over. The show villa will be open for viewings by the end of January 2027.",
     compte: (n) => (n === 0 ? "First delivery this month" : n === 1 ? "In 1 month" : `In ${n} months`),
     frise: "Construction stages",
     etapes: {
@@ -1015,12 +1014,11 @@ const en: Textes = {
       livraison: "First handover",
     },
     signature: "Signed at the notary",
-    dateAConfirmer: "Date to be confirmed",
     paiement: "The payment plan",
     part: "Share of the price",
-    aConfirmer: "To be confirmed",
+    etale: "spread until the keys are handed over",
     notePaiement: (reste) =>
-      `The reservation is signed directly at the notary. The split of the remaining ${reste} is being confirmed with the developer: your consultant will send you the detailed schedule for your villa.`,
+      `The reservation is signed directly at the notary. The remaining ${reste} is spread over the construction stages, until the keys are handed over: your consultant will send you the detailed schedule for your villa.`,
     echeancier: "Receive the schedule",
     selection: {
       outil: "Calendar and payment",
@@ -1212,7 +1210,7 @@ const en: Textes = {
       reservationNote: "Signed directly before a notary, not in a sales office.",
       solde: "Balance, as construction progresses",
       soldeNote: (livraison) =>
-        `Spread over the stages until the keys are handed over (first villa delivered in ${livraison}). Split to be confirmed by the developer.`,
+        `Spread over the stages until the keys are handed over (first villa delivered in ${livraison}).`,
       livraison: (mois) => `First handover of the keys, ${mois}`,
       total: "Total",
       dans: (n) => `in ${n} months`,
@@ -1373,7 +1371,7 @@ const en: Textes = {
     {
       id: "acquisition",
       q: "How does buying work?",
-      r: `You reserve your villa at the notary, with ${v.acompte} of the price. The split of the balance up to handover is being confirmed with the developer; your consultant will send you the detailed schedule.`,
+      r: `You reserve your villa at the notary, with ${v.acompte} of the price. The balance is spread over the construction stages, until the keys are handed over; your consultant will send you the detailed schedule.`,
     },
     {
       id: "financement",
@@ -1383,7 +1381,7 @@ const en: Textes = {
     {
       id: "livraison",
       q: "When will the estate be delivered?",
-      r: `The first villa is due to be delivered in ${v.livraison}, and the show villa will be open for viewings by the end of January 2027. The dates of the intermediate construction stages are being confirmed with the developer.`,
+      r: `The first villa is due to be delivered in ${v.livraison}, and the show villa will be open for viewings by the end of January 2027.`,
     },
     {
       id: "villas",

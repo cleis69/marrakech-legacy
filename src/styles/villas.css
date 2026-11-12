@@ -98,3 +98,6 @@
 }
 
 /* Cadrage des photos (paysage) dans les portes verticales */
+
+/* Page d'atterrissage : la porte est un bouton qui ramène au formulaire */
+button.vd-carte { width: 100%; border: 0; font: inherit; text-align: left; cursor: pointer; }

@@ -23,8 +23,8 @@ const solde =
 
 /**
  * Frise de livraison, puis le plan de paiement aligné sous chaque étape.
- * Seule la livraison est datée ; le reste s'affiche « à confirmer » tant que
- * le promoteur n'a pas fourni son planning et son échéancier.
+ * Seules la réservation et la livraison sont datées. Le plan de paiement donne la part de la
+ * réservation, puis le solde étalé sur les étapes suivantes jusqu'à la remise des clés.
  */
 export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean }) {
   const { langue, t } = useDevise();
@@ -38,9 +38,8 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
   const dateEtape = (id: EtapeChantier, date: Mois | null) => {
     if (id === "reservation") return t.livraison.signature;
     if (id === "livraison") return livraison;
-    return calendrier.etapesConfirmees && date
-      ? formatMois(date, langue)
-      : t.livraison.dateAConfirmer;
+    /* Une étape sans date arrêtée n'affiche rien : pas de mention d'attente. */
+    return calendrier.etapesConfirmees && date ? formatMois(date, langue) : null;
   };
 
   const pourcent = (part: number) => formatPart(part, langue);
@@ -49,6 +48,9 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
     const palier = paliers.get(id);
     return palier?.confirme && palier.part != null ? pourcent(palier.part) : null;
   };
+
+  const chiffrees = calendrier.etapes.filter((etape) => partEtape(etape.id));
+  const etalees = calendrier.etapes.filter((etape) => !partEtape(etape.id));
 
   return (
     <section id="livraison" className="lv" aria-labelledby="livraison-title">
@@ -73,7 +75,9 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
               {String(i + 1).padStart(2, "0")}
             </span>
             <p className="lv-etape">{t.livraison.etapes[etape.id]}</p>
-            <p className="lv-date">{dateEtape(etape.id, etape.date)}</p>
+            {dateEtape(etape.id, etape.date) && (
+              <p className="lv-date">{dateEtape(etape.id, etape.date)}</p>
+            )}
           </li>
         ))}
       </ol>
@@ -81,18 +85,34 @@ export function CalendrierSection({ avecEspace = true }: { avecEspace?: boolean 
       <div className="lv-paiement" data-vu="">
         <h3>{t.livraison.paiement}</h3>
         <ol className="lv-paliers">
-          {calendrier.etapes.map((etape) => {
-            const part = partEtape(etape.id);
-            return (
-              <li key={etape.id}>
-                <span className="lv-palier-etape">{t.livraison.etapes[etape.id]}</span>
-                <span className={`lv-palier-part ${part ? "" : "is-vide"}`.trim()}>
-                  <span className="sr-only">{t.livraison.part}&nbsp;: </span>
-                  {part ?? t.livraison.aConfirmer}
-                </span>
-              </li>
-            );
-          })}
+          {chiffrees.map((etape) => (
+            <li key={etape.id}>
+              <span className="lv-palier-etape">{t.livraison.etapes[etape.id]}</span>
+              <span className="lv-palier-part">
+                <span className="sr-only">{t.livraison.part}&nbsp;: </span>
+                {partEtape(etape.id)}
+              </span>
+            </li>
+          ))}
+          {/* Le solde : une seule part, étalée sur les étapes qui restent, toutes nommées. */}
+          {etalees.length > 0 && (
+            <li
+              className="lv-palier-reste"
+              style={{ "--etapes": etalees.length } as React.CSSProperties}
+            >
+              <span className="lv-palier-etapes">
+                {etalees.map((etape) => (
+                  <span key={etape.id} className="lv-palier-etape">
+                    {t.livraison.etapes[etape.id]}
+                  </span>
+                ))}
+              </span>
+              <span className="lv-palier-part">
+                <span className="sr-only">{t.livraison.part}&nbsp;: </span>
+                {pourcent(solde)} <small>{t.livraison.etale}</small>
+              </span>
+            </li>
+          )}
         </ol>
         <div className="lv-pied">
           <p>{t.livraison.notePaiement(pourcent(solde))}</p>

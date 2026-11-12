@@ -4,7 +4,8 @@
  *
  * - POST /api/demande : le formulaire « Être rappelé » du site. La demande est transmise telle
  *   quelle au formulaire HubSpot, puis le contact est ajouté à la liste d'entrée Brevo, dont le
- *   scénario d'aiguillage choisit la séquence de sa langue.
+ *   scénario d'aiguillage choisit la séquence de sa langue. Sans e-mail (seul le téléphone est
+ *   obligatoire), le contact est créé directement dans HubSpot et n'entre pas dans la séquence.
  * - Chaque minute : les leads des formulaires de pub que HubSpot vient de récupérer (Meta, Google,
  *   LinkedIn) reçoivent dans HubSpot le statut Nouveau, leur canal et leur langue (à défaut d'une
  *   langue connue, celle du nom du formulaire), puis sont ajoutés à la même liste Brevo.
@@ -63,7 +64,9 @@ export default {
     const champs = Array.isArray(corps.fields) ? corps.fields : [];
     const valeur = (nom: string) => champs.find((champ) => champ.name === nom)?.value?.trim();
     const email = valeur("email");
-    if (!email) return new Response("E-mail manquant", { status: 400 });
+    /* Depuis le 12/11/2026, seul le téléphone est obligatoire sur le site. Le formulaire HubSpot ne
+       crée pas de contact sans e-mail : la demande est alors enregistrée par l'API des contacts. */
+    if (!email) return sansEmail(env, champs);
 
     const ip = request.headers.get("CF-Connecting-IP");
     const hubspot = await fetch(
@@ -95,6 +98,62 @@ export default {
     ctx.waitUntil(leadsPublicitaires(env).then(() => scores(env)));
   },
 };
+
+/** Propriétés HubSpot qu'une demande du site peut renseigner (les autres champs sont ignorés). */
+const PROPRIETES_DEMANDE = [
+  "firstname",
+  "lastname",
+  "phone",
+  "message",
+  "hs_language",
+  "citystar_langue",
+  "citystar_canal",
+  "citystar_villa",
+  "citystar_projet",
+  "citystar_horizon",
+  "citystar_budget",
+];
+/** Propriétés de suivi : jointes si HubSpot les connaît, retirées s'il les refuse. */
+const PROPRIETES_SUIVI = /^(utm_|citystar_langue_appareil$)/;
+
+/**
+ * Demande sans e-mail : le contact est créé (ou complété, si ce numéro est déjà connu) avec le
+ * statut Nouveau. Il n'entre pas dans la séquence e-mail ; le score lui attribue une tâche d'appel.
+ */
+async function sansEmail(env: Env, champs: Champ[]): Promise<Response> {
+  const json = (corps: unknown, status: number) =>
+    new Response(JSON.stringify(corps), { status, headers: { "Content-Type": "application/json" } });
+  const telephone = champs.find((champ) => champ.name === "phone")?.value?.trim();
+  if (!telephone) return json({ message: "Téléphone manquant" }, 400);
+  if (!env.HUBSPOT_JETON) return json({ message: "Relais sans accès aux contacts" }, 503);
+
+  const proprietes = (avecSuivi: boolean) => ({
+    citystar_statut: "nouveau",
+    ...Object.fromEntries(
+      champs
+        .filter(
+          ({ name, value }) =>
+            value?.trim() &&
+            (PROPRIETES_DEMANDE.includes(name) || (avecSuivi && PROPRIETES_SUIVI.test(name))),
+        )
+        .map(({ name, value }) => [name, value.trim()]),
+    ),
+  });
+  const recherche = await hubspot(env, "POST", "/crm/v3/objects/contacts/search", {
+    filterGroups: [{ filters: [{ propertyName: "phone", operator: "EQ", value: telephone }] }],
+    properties: ["phone"],
+    limit: 1,
+  });
+  const connu = recherche
+    ? ((await recherche.json()) as { results: { id: string }[] }).results[0]?.id
+    : undefined;
+  const enregistrer = (avecSuivi: boolean) =>
+    connu
+      ? hubspot(env, "PATCH", `/crm/v3/objects/contacts/${connu}`, { properties: proprietes(avecSuivi) })
+      : hubspot(env, "POST", "/crm/v3/objects/contacts", { properties: proprietes(avecSuivi) });
+  const reponse = (await enregistrer(true)) ?? (await enregistrer(false));
+  return reponse ? json({ ok: true }, 200) : json({ message: "Demande non enregistrée" }, 502);
+}
 
 /** Ajoute le contact à la liste d'entrée Brevo ; renvoie false si Brevo refuse. */
 async function versBrevo(env: Env, lead: Lead): Promise<boolean> {

@@ -71,7 +71,17 @@
   .tabbar-fab i { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 50%; background: var(--bronze); color: var(--cream); box-shadow: 0 0 0 4px var(--ink); transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
   .tabbar-fab:active i { transform: scale(.94); }
   .tabbar-fab i svg { width: 1.35rem; height: 1.35rem; }
+
+  /* Page d'atterrissage : une seule action, qui ne paraît qu'une fois le formulaire sorti de l'écran */
+  .tabbar--tunnel { display: block; height: auto; padding: 7px; transform: translateY(160%); transition: transform .45s cubic-bezier(.22, 1, .36, 1); }
+  .tabbar--tunnel.is-visible { transform: none; }
+  .tabbar--tunnel button { display: flex; align-items: center; justify-content: center; gap: .6rem; width: 100%; min-height: 3rem; border: 0; border-radius: 16px; background: var(--bronze); color: var(--cream); font-size: .95rem; font-weight: 500; }
+  .tabbar--tunnel button svg { width: 1.1rem; height: 1.1rem; }
 }
+
+/* Page d'atterrissage : l'en-tête ne garde que le nom, la langue et l'appel au formulaire */
+.float-header.is-tunnel { gap: .6rem; }
+.float-header.is-tunnel .float-wordmark { cursor: default; }
 
 @media (max-width: 360px) {
   .float-concierge-label { display: none; }

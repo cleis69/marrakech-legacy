@@ -4,11 +4,8 @@ import {
   FileText,
   Globe2,
   Landmark,
-  MessageCircle,
   Pause,
-  Phone,
   Play,
-  Rotate3d,
   ShieldCheck,
   ZoomIn,
 } from "lucide-react";
@@ -18,7 +15,6 @@ import { useEffect, useRef, useState } from "react";
 import {
   AFFICHER_PLAN_MASSE,
   calendrier,
-  contact,
   engagements,
   formatMois,
   formatPart,
@@ -34,19 +30,19 @@ import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 
 import { useDevise } from "../currency";
-import { scrollTo } from "../data";
+import { FormulaireDemande } from "../FormulaireDemande";
+import { CLASSE_DEMANDE, ID_DEMANDE } from "../contexte";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
 import { textesDossier } from "./textes";
 
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 const acompte = reservation.paliers.find((palier) => palier.etape === "reservation");
-const whatsapp = `https://wa.me/${contact.whatsapp}`;
 
-/** Toutes les demandes de la page ouvrent le formulaire existant, avec le dossier joint. */
+/** Toutes les demandes de la page ramènent au formulaire du haut de page. */
 export function useDemanderDossier() {
-  const { langue, ouvrirContactAvec } = useSite();
-  return () => ouvrirContactAvec(textesDossier[langue].selection);
+  const { ouvrirContact } = useSite();
+  return ouvrirContact;
 }
 
 function Titre({ lignes, id }: { lignes: readonly string[]; id: string }) {
@@ -61,13 +57,88 @@ function Titre({ lignes, id }: { lignes: readonly string[]; id: string }) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Ouverture : la vidéo des rendus, la promesse datée, la carte du dossier */
+/* Le formulaire, affiché dans la page : en ouverture, puis rappelé     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * La carte du formulaire « Recevoir la brochure ». Sans réponse d'un outil de la page, la demande
+ * porte sur la brochure ; une villa choisie sur une porte ou le sélecteur y est jointe et affichée.
+ * `rang` distingue les formulaires d'une même page ; le premier porte l'ancre de la page.
+ */
+function CarteDemande({ rang, entete = false }: { rang: number; entete?: boolean }) {
+  const { langue, t: site } = useDevise();
+  const { selection } = useSite();
+  const t = textesDossier[langue];
+  return (
+    <aside
+      id={rang === 1 ? ID_DEMANDE : undefined}
+      className={`dh-carte ${CLASSE_DEMANDE}`}
+      aria-label={site.villas.brochure}
+    >
+      {entete && (
+        <>
+          <p className="dh-carte-kicker">{t.carte.intro}</p>
+          <h2>{site.villas.brochure}</h2>
+          <p className="dh-carte-contenu">{t.carte.elements.slice(0, 4).join(" · ")}</p>
+        </>
+      )}
+      <FormulaireDemande
+        selection={selection ?? site.header.brochureDemande}
+        discret={!selection}
+        court
+        prefixe={`${ID_DEMANDE}-${rang}`}
+        envoyer={site.villas.brochure}
+      />
+    </aside>
+  );
+}
+
+/**
+ * Rappel du formulaire au fil de la page : ce que contient l'envoi à gauche, le formulaire à droite.
+ * `final` : dernier appel, avec le titre de fin de page.
+ */
+export function DossierDemande({ rang, final = false }: { rang: number; final?: boolean }) {
+  const { langue, t: site } = useDevise();
+  const t = textesDossier[langue];
+  const id = `dd-titre-${rang}`;
+  return (
+    <section className="dd" aria-labelledby={id}>
+      {/* Pas d'apparition au défilement : le formulaire ne doit jamais dépendre d'une animation. */}
+      <div className="dd-cadre">
+        <div className="dd-texte">
+          {final ? (
+            <>
+              <Titre id={id} lignes={t.final.titre} />
+              <p>{t.final.texte}</p>
+            </>
+          ) : (
+            <>
+              <p className="dc-kicker">{t.carte.intro}</p>
+              <h2 id={id}>{site.villas.brochure}</h2>
+              <ul className="dd-liste">
+                {t.carte.elements.map((element) => (
+                  <li key={element}>
+                    <Check aria-hidden="true" />
+                    {element}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+        <CarteDemande rang={rang} />
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Ouverture : la vidéo des rendus, la promesse datée, le formulaire   */
 /* ------------------------------------------------------------------ */
 
 export function DossierHero() {
   const { langue } = useDevise();
   const t = textesDossier[langue];
-  const demander = useDemanderDossier();
   const reduce = useReducedMotion();
   const video = useRef<HTMLVideoElement>(null);
   const [lecture, setLecture] = useState(false);
@@ -126,15 +197,6 @@ export function DossierHero() {
                 programme.trajetMaxMinutes,
               )}
             </p>
-            <div className="dh-actions">
-              <PillButton label={t.hero.demander} icon={FileText} onClick={demander} />
-              <PillButton
-                label={t.hero.visite}
-                icon={Rotate3d}
-                variant="secondary"
-                onClick={() => scrollTo("visite")}
-              />
-            </div>
             {part && (
               <p className="dh-conditions">
                 <Check aria-hidden="true" />
@@ -143,26 +205,8 @@ export function DossierHero() {
             )}
           </div>
 
-          <aside className="dh-carte" aria-labelledby="dh-carte-titre">
-            <p className="dh-carte-kicker">{t.carte.intro}</p>
-            <h2 id="dh-carte-titre">{t.carte.titre}</h2>
-            <ul>
-              {t.carte.elements.map((element) => (
-                <li key={element}>
-                  <Check aria-hidden="true" />
-                  {element}
-                </li>
-              ))}
-            </ul>
-            <button type="button" className="pill pill-primary dh-carte-bouton" onClick={demander}>
-              <span className="pill-label">{t.carte.bouton}</span>
-            </button>
-            <p className="dh-discretion">{t.carte.discretion}</p>
-            <p className="dh-brochure">
-              <FileText aria-hidden="true" />
-              {t.carte.brochure}
-            </p>
-          </aside>
+          {/* Le formulaire est là dès l'arrivée : rien à ouvrir. */}
+          <CarteDemande rang={1} entete />
         </div>
 
         <div className="dh-pied">
@@ -379,37 +423,6 @@ export function Parcelles() {
           <figcaption>{p.legende}</figcaption>
         </figure>
       )}
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Dernier appel                                                       */
-/* ------------------------------------------------------------------ */
-
-export function DossierFinal() {
-  const { langue } = useDevise();
-  const demander = useDemanderDossier();
-  const f = textesDossier[langue].final;
-  return (
-    <section className="df" aria-labelledby="df-titre">
-      <div className="df-cadre" data-vu="">
-        <Titre id="df-titre" lignes={f.titre} />
-        <p>{f.texte}</p>
-        <div className="df-actions">
-          <PillButton label={f.demander} icon={FileText} onClick={demander} />
-          <a className="pill pill-secondary df-lien" href={whatsapp} target="_blank" rel="noreferrer">
-            <MessageCircle aria-hidden="true" />
-            <span className="pill-label">{f.whatsapp}</span>
-          </a>
-          <a className="pill pill-secondary df-lien" href={`tel:${contact.telephone}`}>
-            <Phone aria-hidden="true" />
-            <span className="pill-label">
-              {f.appeler} · {contact.telephoneAffiche}
-            </span>
-          </a>
-        </div>
-      </div>
     </section>
   );
 }

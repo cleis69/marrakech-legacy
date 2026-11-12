@@ -83,7 +83,7 @@ export const it: Textes = {
     aria: "Calendario di consegna e piano dei pagamenti",
     titre: (mois) => `Prima villa consegnata a ${mois}.`,
     intro:
-      "Il cantiere procede per fasi, e ognuna richiede il pagamento di una parte del prezzo. Le date intermedie e la ripartizione del saldo sono in corso di convalida con il promotore. La villa campione sarà visitabile entro fine gennaio 2027.",
+      "Il cantiere procede per fasi, e ognuna richiede il pagamento di una parte del prezzo. Il saldo è distribuito fino alla consegna delle chiavi. La villa campione sarà visitabile entro fine gennaio 2027.",
     compte: (n) => (n === 0 ? "Prima consegna questo mese" : n === 1 ? "Tra 1 mese" : `Tra ${n} mesi`),
     frise: "Le fasi del cantiere",
     etapes: {
@@ -94,12 +94,11 @@ export const it: Textes = {
       livraison: "Prima consegna delle chiavi",
     },
     signature: "Firma dal notaio",
-    dateAConfirmer: "Data da confermare",
     paiement: "Il piano dei pagamenti",
     part: "Quota del prezzo",
-    aConfirmer: "Da confermare",
+    etale: "distribuito fino alla consegna delle chiavi",
     notePaiement: (reste) =>
-      `La prenotazione si firma direttamente dal notaio. La ripartizione del ${reste} restante è in corso di convalida con il promotore: il suo consulente le invierà il piano dettagliato della sua villa.`,
+      `La prenotazione si firma direttamente dal notaio. Il ${reste} restante è distribuito sulle fasi del cantiere, fino alla consegna delle chiavi: il suo consulente le invierà il piano dettagliato della sua villa.`,
     echeancier: "Ricevere il piano dei pagamenti",
     selection: {
       outil: "Calendario e pagamenti",
@@ -295,7 +294,7 @@ export const it: Textes = {
       reservationNote: "Firmata direttamente dal notaio, non in un ufficio vendite.",
       solde: "Saldo, al ritmo del cantiere",
       soldeNote: (livraison) =>
-        `Ripartito per fasi fino alla consegna delle chiavi (prima villa consegnata a ${livraison}). Ripartizione da confermare dal promotore.`,
+        `Ripartito per fasi fino alla consegna delle chiavi (prima villa consegnata a ${livraison}).`,
       livraison: (mois) => `Prima consegna delle chiavi, ${mois}`,
       total: "Totale",
       dans: (n) => `tra ${n} mesi`,
@@ -460,7 +459,7 @@ export const it: Textes = {
     {
       id: "acquisition",
       q: "Come si svolge l’acquisto?",
-      r: `Prenota la sua villa dal notaio, con il ${v.acompte} del prezzo. La ripartizione del saldo fino alla consegna delle chiavi è in corso di convalida con il promotore; il suo consulente le invierà il piano dettagliato.`,
+      r: `Prenota la sua villa dal notaio, con il ${v.acompte} del prezzo. Il saldo è distribuito sulle fasi del cantiere, fino alla consegna delle chiavi; il suo consulente le invierà il piano dettagliato.`,
     },
     {
       id: "financement",
@@ -470,7 +469,7 @@ export const it: Textes = {
     {
       id: "livraison",
       q: "Quando sarà consegnata la tenuta?",
-      r: `La prima villa sarà consegnata a ${v.livraison} e la villa campione sarà visitabile entro fine gennaio 2027. Le date delle fasi intermedie del cantiere sono in corso di convalida con il promotore.`,
+      r: `La prima villa sarà consegnata a ${v.livraison} e la villa campione sarà visitabile entro fine gennaio 2027.`,
     },
     {
       id: "villas",

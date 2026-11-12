@@ -7,6 +7,7 @@ import {
   programme,
 } from "@/config/citystar";
 
+import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 import { type CursorHandlers, faitsVilla, srcSetPour, villas } from "./data";
 import { chemin, Lien } from "./liens";
@@ -17,6 +18,7 @@ type Props = CursorHandlers & { sansEntete?: boolean };
 /** Les trois villas en cartes : photo, pastille, nom, prix et repères ; chaque carte ouvre sa page. */
 export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }: Props) {
   const { devise, langue, t, taux } = useDevise();
+  const { tunnel, ouvrirContactAvec } = useSite();
 
   return (
     <div className="vd section-pad">
@@ -38,9 +40,11 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
                 formatSurface(programme.terrainMaxM2, langue),
               )}
             </p>
-            <Lien className="pill pill-secondary" vers={chemin(langue, "villas")}>
-              <span className="pill-label">{t.villas.comparer}</span>
-            </Lien>
+            {!tunnel && (
+              <Lien className="pill pill-secondary" vers={chemin(langue, "villas")}>
+                <span className="pill-label">{t.villas.comparer}</span>
+              </Lien>
+            )}
           </div>
         </div>
       )}
@@ -49,47 +53,68 @@ export function VillaDoors({ onCursorEnter, onCursorLeave, sansEntete = false }:
         {villas.map((villa, i) => {
           const faits = faitsVilla(villa.type, t, langue);
           const { montant, approximatif } = prixVilla(villa.type, devise, taux);
+          const contenuCarte = (
+            <>
+              <span className="vd-photo">
+                <img
+                  src={villa.image}
+                  srcSet={srcSetPour(villa.image)}
+                  sizes="(max-width: 900px) 92vw, 31vw"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+                {faits.tag && <span className="vd-tag">{faits.tag}</span>}
+              </span>
+              <span className="vd-ligne">
+                <strong>
+                  {t.villas.villa} {villa.type}
+                </strong>
+                <span className="vd-prix">
+                  {prixPublics
+                    ? `${approximatif ? "≈ " : ""}${formatPrix(montant, devise, langue)}`
+                    : t.prix.surDemande}
+                </span>
+              </span>
+              <span className="vd-specs">
+                {faits.surface} · {faits.suites} · {t.villas.terrain.toLowerCase()} {faits.terrain}
+                {prixPublics && !prixVillas[villa.type].confirme && ` · ${t.prix.indicatifCourt}`}
+              </span>
+            </>
+          );
           return (
             <li key={villa.type} data-vu="" style={{ "--i": i } as React.CSSProperties}>
-              <Lien
-                className="vd-carte"
-                vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
-                ariaLabel={t.villas.decouvrirAria(
-                  villa.type,
-                  faits.surface,
-                  faits.suites,
-                  faits.tag,
-                )}
-                onMouseEnter={onCursorEnter(t.villas.curseur)}
-                onMouseLeave={onCursorLeave}
-              >
-                <span className="vd-photo">
-                  <img
-                    src={villa.image}
-                    srcSet={srcSetPour(villa.image)}
-                    sizes="(max-width: 900px) 92vw, 31vw"
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {faits.tag && <span className="vd-tag">{faits.tag}</span>}
-                </span>
-                <span className="vd-ligne">
-                  <strong>
-                    {t.villas.villa} {villa.type}
-                  </strong>
-                  <span className="vd-prix">
-                    {prixPublics
-                      ? `${approximatif ? "≈ " : ""}${formatPrix(montant, devise, langue)}`
-                      : t.prix.surDemande}
-                  </span>
-                </span>
-                <span className="vd-specs">
-                  {faits.surface} · {faits.suites} · {t.villas.terrain.toLowerCase()}{" "}
-                  {faits.terrain}
-                  {prixPublics && !prixVillas[villa.type].confirme && ` · ${t.prix.indicatifCourt}`}
-                </span>
-              </Lien>
+              {tunnel ? (
+                /* Page d'atterrissage : la porte ramène au formulaire, la villa déjà choisie. */
+                <button
+                  type="button"
+                  className="vd-carte"
+                  aria-label={t.villas.brochureAria(villa.type)}
+                  onClick={() =>
+                    ouvrirContactAvec({
+                      ...t.villas.brochureDemande(villa.type),
+                      villa: villa.type,
+                    })
+                  }
+                >
+                  {contenuCarte}
+                </button>
+              ) : (
+                <Lien
+                  className="vd-carte"
+                  vers={chemin(langue, `villas/${villa.type.toLowerCase()}`)}
+                  ariaLabel={t.villas.decouvrirAria(
+                    villa.type,
+                    faits.surface,
+                    faits.suites,
+                    faits.tag,
+                  )}
+                  onMouseEnter={onCursorEnter(t.villas.curseur)}
+                  onMouseLeave={onCursorLeave}
+                >
+                  {contenuCarte}
+                </Lien>
+              )}
             </li>
           );
         })}

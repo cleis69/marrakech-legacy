@@ -83,7 +83,7 @@ export const es: Textes = {
     aria: "Calendario de entrega y plan de pagos",
     titre: (mois) => `Primera villa entregada en ${mois}.`,
     intro:
-      "La obra avanza por etapas, y cada una supone el pago de una parte del precio. Las fechas intermedias y el reparto del resto se están validando con el promotor. La villa piloto podrá visitarse antes de finales de enero de 2027.",
+      "La obra avanza por etapas, y cada una supone el pago de una parte del precio. El resto se reparte hasta la entrega de llaves. La villa piloto podrá visitarse antes de finales de enero de 2027.",
     compte: (n) =>
       n === 0 ? "Primera entrega este mes" : n === 1 ? "Dentro de 1 mes" : `Dentro de ${n} meses`,
     frise: "Las etapas de la obra",
@@ -95,12 +95,11 @@ export const es: Textes = {
       livraison: "Primera entrega de llaves",
     },
     signature: "Firma ante notario",
-    dateAConfirmer: "Fecha por confirmar",
     paiement: "El plan de pagos",
     part: "Parte del precio",
-    aConfirmer: "Por confirmar",
+    etale: "repartido hasta la entrega de llaves",
     notePaiement: (reste) =>
-      `La reserva se firma directamente ante notario. El reparto del ${reste} restante se está validando con el promotor: su consultor le enviará el calendario detallado de su villa.`,
+      `La reserva se firma directamente ante notario. El ${reste} restante se reparte entre las etapas de la obra, hasta la entrega de llaves: su consultor le enviará el calendario detallado de su villa.`,
     echeancier: "Recibir el calendario",
     selection: {
       outil: "Calendario y pagos",
@@ -301,7 +300,7 @@ export const es: Textes = {
       reservationNote: "Firmada directamente ante notario, no en una oficina de ventas.",
       solde: "Resto, al ritmo de la obra",
       soldeNote: (livraison) =>
-        `Repartido por etapas hasta la entrega de llaves (primera villa entregada en ${livraison}). Reparto a confirmar por el promotor.`,
+        `Repartido por etapas hasta la entrega de llaves (primera villa entregada en ${livraison}).`,
       livraison: (mois) => `Primera entrega de llaves, ${mois}`,
       total: "Total",
       dans: (n) => `en ${n} meses`,
@@ -466,7 +465,7 @@ export const es: Textes = {
     {
       id: "acquisition",
       q: "¿Cómo se desarrolla la compra?",
-      r: `Reserva su villa ante notario, con el ${v.acompte} del precio. El reparto del resto hasta la entrega de llaves se está validando con el promotor; su consultor le enviará el calendario detallado.`,
+      r: `Reserva su villa ante notario, con el ${v.acompte} del precio. El resto se reparte entre las etapas de la obra, hasta la entrega de llaves; su consultor le enviará el calendario detallado.`,
     },
     {
       id: "financement",
@@ -476,7 +475,7 @@ export const es: Textes = {
     {
       id: "livraison",
       q: "¿Cuándo se entregará el dominio?",
-      r: `La primera villa debe entregarse en ${v.livraison}, y la villa piloto podrá visitarse antes de finales de enero de 2027. Las fechas de las etapas intermedias de la obra se están validando con el promotor.`,
+      r: `La primera villa debe entregarse en ${v.livraison}, y la villa piloto podrá visitarse antes de finales de enero de 2027.`,
     },
     {
       id: "villas",

@@ -26,7 +26,9 @@
 .lv-paliers li { display: grid; gap: .7rem; align-content: start; padding-top: 1.2rem; border-top: 1px solid color-mix(in oklab, var(--cream) 14%, transparent); }
 .lv-palier-etape { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 66%, transparent); }
 .lv-palier-part { font: 400 2.4rem/1 "Italiana", serif; }
-.lv-palier-part.is-vide { font: 400 .82rem/1.4 "DM Sans", sans-serif; color: var(--sand); }
+.lv-palier-part small { margin-left: .5rem; font: 400 .92rem/1.4 "DM Sans", sans-serif; color: var(--sand); }
+.lv-palier-reste { grid-column: span var(--etapes, 4); }
+.lv-palier-etapes { display: grid; grid-template-columns: repeat(var(--etapes, 4), minmax(0, 1fr)); gap: 1.5rem; }
 .lv-pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; }
 .lv-pied p { max-width: 40rem; font-size: .92rem; line-height: 1.7; color: color-mix(in oklab, var(--cream) 72%, transparent); }
 
@@ -47,6 +49,10 @@
   .lv-frise li { gap: .4rem; }
   .lv-paliers { grid-template-columns: 1fr; gap: 0; }
   .lv-paliers li { grid-template-columns: 1fr auto; align-items: baseline; padding: 1rem 0; }
+  .lv-palier-reste { grid-column: auto; }
+  .lv-paliers li.lv-palier-reste { grid-template-columns: 1fr; gap: .8rem; }
+  .lv-palier-etapes { grid-template-columns: 1fr 1fr; gap: .5rem 1rem; }
+  .lv-palier-part small { display: block; margin: .4rem 0 0; }
   .lv { margin: 0 8px; border-radius: 22px; }
   .lv-espace { padding: 1.4rem; }
   .es-statut { padding: 1.6rem 1.4rem; }

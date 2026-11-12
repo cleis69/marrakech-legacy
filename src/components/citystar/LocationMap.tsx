@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { programme } from "@/config/citystar";
 import photo from "@/assets/citystar/rendus/entree-crepuscule.webp";
 
+import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 
 export type Place = "med" | "air" | "palm";
@@ -80,6 +81,7 @@ type Props = { selected: Place | null; onSelect: (place: Place | null) => void }
  */
 export function LocationMap({ selected, onSelect }: Props) {
   const { t } = useDevise();
+  const { tunnel } = useSite();
   const boxRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const liveRef = useRef<SVGPathElement>(null);
@@ -459,9 +461,11 @@ export function LocationMap({ selected, onSelect }: Props) {
           <small>{t.localisation.residencePrivee}</small>
           <b>CITYSTAR</b>
           <small className="mp-pop-where">{t.localisation.ou}</small>
-          <a href={ITINERARY_URL} target="_blank" rel="noreferrer" tabIndex={popOpen ? 0 : -1}>
-            {t.localisation.itineraire} <ArrowRight aria-hidden="true" />
-          </a>
+          {!tunnel && (
+            <a href={ITINERARY_URL} target="_blank" rel="noreferrer" tabIndex={popOpen ? 0 : -1}>
+              {t.localisation.itineraire} <ArrowRight aria-hidden="true" />
+            </a>
+          )}
         </div>
       </div>
     </div>

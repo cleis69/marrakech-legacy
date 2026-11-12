@@ -80,3 +80,7 @@ button.seal:focus-visible { outline: 2px solid var(--bronze); outline-offset: 6p
   .seal-ring { animation: none; }
   .ft-giant.is-in span { animation: none; }
 }
+
+/* Page d'atterrissage : les mentions obligatoires, sans navigation */
+.ft--tunnel { padding: 2.2rem 5vw calc(2.2rem + 80px); text-align: center; }
+@media (min-width: 901px) { .ft--tunnel { padding-bottom: 2.2rem; } }

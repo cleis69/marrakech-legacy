@@ -16,6 +16,7 @@ import {
   villasChiffres,
 } from "@/config/citystar";
 
+import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 import { type Budget, type Selection, faitsVilla, srcSetPour, villas } from "./data";
 import { chemin, Lien } from "./liens";
@@ -104,6 +105,7 @@ export function VillaSelector({
   onComparer?: (type: TypeVilla, budget: Budget | null) => void;
 }) {
   const { devise, langue, t, taux } = useDevise();
+  const { tunnel } = useSite();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [dir, setDir] = useState(1);
@@ -372,15 +374,17 @@ export function VillaSelector({
                     {questions.map((q) => labelOf(q.key) && <li key={q.key}>{labelOf(q.key)}</li>)}
                   </ul>
                   <div className="sl-actions">
-                    <Lien
-                      className="pill pill-secondary"
-                      vers={chemin(langue, `villas/${winner.toLowerCase()}`)}
-                    >
-                      <span className="pill-label">{t.selecteur.voirVilla}</span>
-                      <i className="pill-dot" aria-hidden="true">
-                        <ArrowRight />
-                      </i>
-                    </Lien>
+                    {!tunnel && (
+                      <Lien
+                        className="pill pill-secondary"
+                        vers={chemin(langue, `villas/${winner.toLowerCase()}`)}
+                      >
+                        <span className="pill-label">{t.selecteur.voirVilla}</span>
+                        <i className="pill-dot" aria-hidden="true">
+                          <ArrowRight />
+                        </i>
+                      </Lien>
+                    )}
                     <PillButton
                       label={t.selecteur.dossier}
                       icon={PhoneCall}
@@ -398,7 +402,7 @@ export function VillaSelector({
                         {t.selecteur.comparer} <ArrowRight aria-hidden="true" />
                       </button>
                     )}
-                    {answers.usage === "investir" && (
+                    {answers.usage === "investir" && !tunnel && (
                       <Lien className="sl-link" vers={`${chemin(langue, "investir")}#rentabilite`}>
                         {t.selecteur.rendement} <ArrowRight aria-hidden="true" />
                       </Lien>

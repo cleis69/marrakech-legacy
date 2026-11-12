@@ -3,7 +3,7 @@ import { ChiffresCles } from "../ChiffresCles";
 import {
   ApercuEspace,
   ContenuDossier,
-  DossierFinal,
+  DossierDemande,
   DossierHero,
   Garanties,
   Parcelles,
@@ -16,28 +16,30 @@ import { TourSection } from "../TourSection";
 import { VillasSection } from "../VillasSection";
 
 /**
- * Page d'atterrissage « Recevoir le dossier » : une seule action, demander le dossier,
- * reprise à chaque étape. Elle répond dans l'ordre aux questions d'un acquéreur
- * venu d'une publicité : quoi, quelles garanties, que reçoit-il, à quoi ressemble
- * la villa, comment suivre le chantier, quand, où, combien de choix il reste.
+ * Page d'atterrissage des publicités : une seule action, recevoir la brochure. Le formulaire
+ * est affiché dès l'ouverture, puis rappelé trois fois ; rien ne mène hors de la page.
+ * Après l'ouverture viennent les villas, puis les garanties, le contenu de l'envoi, la visite,
+ * le suivi du chantier, le calendrier, les parcelles, le marché, la situation et les questions.
  */
 export function DossierPage() {
   const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirVisite } = useSite();
   return (
     <>
       <DossierHero />
+      <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
       <ChiffresCles />
       <Garanties />
       <ContenuDossier />
-      <VillasSection onCursorEnter={onCursorEnter} onCursorLeave={onCursorLeave} />
+      <DossierDemande rang={2} />
       <TourSection onOpenTour={ouvrirVisite} />
       <ApercuEspace />
       <CalendrierSection avecEspace={false} />
       <Parcelles />
+      <DossierDemande rang={3} />
       <MarcheSection />
       <LocationSection onOpenPlan={ouvrirPlan} />
       <QuestionsSection />
-      <DossierFinal />
+      <DossierDemande rang={4} final />
     </>
   );
 }

@@ -10,6 +10,9 @@ type Props = {
   className?: string;
   ariaLabel?: string;
   hrefLang?: string;
+  /** `_blank` : la page d'atterrissage ouvre ses mentions dans un autre onglet. */
+  target?: "_blank";
+  rel?: string;
   onMouseEnter?: (event: React.MouseEvent) => void;
   onMouseLeave?: () => void;
   onClick?: () => void;
