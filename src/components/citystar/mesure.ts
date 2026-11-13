@@ -1,0 +1,64 @@
+/**
+ * Balise Google du compte Google Ads CITYSTAR (737-955-6760), posée sur toutes les pages.
+ * Elle sert à compter les demandes venues des annonces : après l'envoi d'un formulaire, le
+ * visiteur arrive sur la page de remerciement, que Google Ads compte comme une conversion.
+ *
+ * Le site n'a pas de bandeau de consentement : dans l'Espace économique européen, au
+ * Royaume-Uni et en Suisse, le consentement est refusé d'office et Google ne dépose aucun
+ * cookie publicitaire. La page de confidentialité le dit dans les six langues.
+ */
+export const BALISE_GOOGLE = "GTM-P64LSTXF";
+
+export const ADRESSE_BALISE = `https://www.googletagmanager.com/gtm.js?id=${BALISE_GOOGLE}`;
+
+/** Espace économique européen, Royaume-Uni et Suisse. */
+const SANS_COOKIE = [
+  "AT",
+  "BE",
+  "BG",
+  "HR",
+  "CY",
+  "CZ",
+  "DK",
+  "EE",
+  "FI",
+  "FR",
+  "DE",
+  "GR",
+  "HU",
+  "IE",
+  "IT",
+  "LV",
+  "LT",
+  "LU",
+  "MT",
+  "NL",
+  "PL",
+  "PT",
+  "RO",
+  "SK",
+  "SI",
+  "ES",
+  "SE",
+  "IS",
+  "LI",
+  "NO",
+  "GB",
+  "CH",
+];
+
+const REFUS = {
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  analytics_storage: "denied",
+  region: SANS_COOKIE,
+};
+
+/** À placer avant le chargement de la balise : le refus doit être connu de Google dès le départ. */
+export const AMORCE_BALISE = [
+  "window.dataLayer=window.dataLayer||[];",
+  "function gtag(){dataLayer.push(arguments);}",
+  `gtag('consent','default',${JSON.stringify(REFUS)});`,
+  "gtag('js',new Date());",
+].join("");

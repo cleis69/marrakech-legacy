@@ -7,6 +7,7 @@ import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { listeIndicatifs, numeroComplet } from "./indicatifs";
 import { langueSequence, languesAppareil } from "./langueAppareil";
+import { chemin, slug } from "./adresses";
 import { canal, provenance } from "./provenance";
 
 type Etat = "repos" | "envoi" | "envoye" | "erreur";
@@ -107,6 +108,9 @@ export function FormulaireDemande({
          une demande faite avec le téléphone seul. S'il ne répond pas, le visiteur voit l'erreur. */
       const reponse = relayee?.ok || !texte("email") ? relayee : await envoi(hubspot.envoi);
       setEtat(reponse?.ok ? "envoye" : "erreur");
+      /* La demande est partie : le visiteur arrive sur la page de remerciement, par un vrai
+         chargement de page. C'est cette arrivée que Google Ads compte comme une demande. */
+      if (reponse?.ok) window.location.assign(chemin(langue, slug("merci", langue)));
     } catch {
       setEtat("erreur");
     }
