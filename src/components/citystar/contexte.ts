@@ -20,6 +20,8 @@ export type SiteState = CursorHandlers & {
 export const ID_DEMANDE = "demande";
 /** Classe de chaque formulaire de la page d'atterrissage : il y en a plusieurs au fil de la page. */
 export const CLASSE_DEMANDE = "js-demande";
+/** Zones qui portent déjà le bouton « Recevoir la brochure » : la barre du bas s'efface devant elles. */
+export const CLASSE_SANS_BARRE = "js-sans-barre";
 
 export const SiteContext = createContext<SiteState | null>(null);
 

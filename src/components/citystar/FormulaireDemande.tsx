@@ -1,15 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { type FormEvent, useEffect, useState } from "react";
 
-import { hubspot } from "@/config/citystar";
-
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
+import { allerAuRemerciement, envoyerDemande } from "./demande";
 import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "./indicatifs";
-import { langueSequence, languesAppareil } from "./langueAppareil";
-import { chemin, slug } from "./adresses";
 import { signaler, signalerDebutGoogleAds } from "./mesure";
-import { canal, provenance } from "./provenance";
 
 type Etat = "repos" | "envoi" | "envoye" | "erreur";
 type Moyen = "whatsapp" | "email";
@@ -24,7 +20,7 @@ const NOTE_MOYEN: Record<Moyen, string> = {
  * Questions facultatives : chaque valeur est celle de la propriété HubSpot, dans l'ordre des choix traduits.
  * Le type de villa n'est plus demandé (12/11/2026).
  */
-const QUESTIONS = [
+export const QUESTIONS = [
   [
     "projet",
     "citystar_projet",
@@ -89,7 +85,6 @@ export function FormulaireDemande({
     event.preventDefault();
     const champs = new FormData(event.currentTarget);
     const texte = (nom: string) => String(champs.get(nom) ?? "").trim();
-    const [prenom, ...reste] = texte("nom").split(/\s+/);
     const message = [
       choixEnvoi && NOTE_MOYEN[moyen],
       texte("message"),
@@ -97,50 +92,22 @@ export function FormulaireDemande({
     ]
       .filter(Boolean)
       .join("\n\n");
-    const origine = provenance();
-    const appareil = languesAppareil();
-    const sequence = langueSequence(langue, appareil);
     setEtat("envoi");
-    const corps = JSON.stringify({
-      fields: [
-        { name: "firstname", value: prenom },
-        { name: "lastname", value: reste.join(" ") },
-        { name: "email", value: texte("email") },
-        { name: "phone", value: numeroComplet(texte("indicatif"), texte("telephone")) },
-        { name: "message", value: message },
-        { name: "hs_language", value: sequence },
-        { name: "citystar_langue", value: sequence },
-        { name: "citystar_langue_appareil", value: appareil.join(", ") },
-        { name: "citystar_canal", value: canal(origine) },
-        { name: "citystar_villa", value: texte("citystar_villa") },
-        ...QUESTIONS.map(([, propriete]) => ({ name: propriete, value: texte(propriete) })),
-        ...Object.entries(origine.utm).map(([name, value]) => ({ name, value })),
-      ].filter((champ) => champ.value),
-      context: { pageUri: window.location.href, pageName: document.title },
-      legalConsentOptions: {
-        consent: { consentToProcess: true, text: t.contact.consentement },
-      },
+    const ok = await envoyerDemande({
+      nom: texte("nom"),
+      email: texte("email"),
+      telephone: numeroComplet(texte("indicatif"), texte("telephone")),
+      message,
+      villa: texte("citystar_villa"),
+      reponses: Object.fromEntries(
+        QUESTIONS.map(([, propriete]) => [propriete, texte(propriete)]),
+      ),
+      langue,
+      consentement: t.contact.consentement,
     });
-    const envoi = (adresse: string) =>
-      fetch(adresse, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: corps,
-      });
-    try {
-      const relayee = await envoi(hubspot.relais).catch(() => null);
-      /* Sans e-mail, le formulaire HubSpot ne crée pas de contact : seul le relais sait enregistrer
-         une demande faite avec le téléphone seul. S'il ne répond pas, le visiteur voit l'erreur. */
-      const reponse = relayee?.ok || !texte("email") ? relayee : await envoi(hubspot.envoi);
-      setEtat(reponse?.ok ? "envoye" : "erreur");
-      /* La demande est partie : le visiteur arrive sur la page de remerciement, par un vrai
-         chargement de page. C'est cette arrivée que Google Ads compte comme une demande. */
-      if (reponse?.ok) window.location.assign(chemin(langue, slug("merci", langue)));
-      else signaler("formulaire_erreur", { formulaire: prefixe });
-    } catch {
-      setEtat("erreur");
-      signaler("formulaire_erreur", { formulaire: prefixe });
-    }
+    setEtat(ok ? "envoye" : "erreur");
+    if (ok) allerAuRemerciement(langue);
+    else signaler("formulaire_erreur", { formulaire: prefixe });
   }
 
   /** Premier champ touché : le visiteur a commencé la demande. */

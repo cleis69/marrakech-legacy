@@ -21,7 +21,7 @@ import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { retenirChoixLangue } from "./langueAppareil";
 import { chemin, cheminEspace, Lien, memePage } from "./liens";
-import { CLASSE_DEMANDE } from "./contexte";
+import { CLASSE_DEMANDE, CLASSE_SANS_BARRE } from "./contexte";
 import { useModal } from "./useModal";
 
 type Props = {
@@ -223,7 +223,7 @@ function BarreTunnel({ onContact, libelle }: { onContact: () => void; libelle: s
       setVisible(aLEcran.size === 0);
     });
     document
-      .querySelectorAll(`.${CLASSE_DEMANDE}`)
+      .querySelectorAll(`.${CLASSE_DEMANDE}, .${CLASSE_SANS_BARRE}`)
       .forEach((formulaire) => guetteur.observe(formulaire));
     return () => guetteur.disconnect();
   }, []);

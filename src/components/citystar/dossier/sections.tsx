@@ -1,7 +1,10 @@
 import {
+  ArrowRight,
   Banknote,
   Check,
   FileText,
+  MessageCircle,
+  Phone,
   Globe2,
   Landmark,
   Pause,
@@ -15,6 +18,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   AFFICHER_PLAN_MASSE,
   calendrier,
+  contact,
   engagements,
   formatMois,
   formatPart,
@@ -35,12 +39,99 @@ import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 
 import { useDevise } from "../currency";
 import { FormulaireDemande } from "../FormulaireDemande";
-import { CLASSE_DEMANDE, ID_DEMANDE } from "../contexte";
+import { CLASSE_DEMANDE, CLASSE_SANS_BARRE, ID_DEMANDE } from "../contexte";
 import { useSite } from "../site";
+import { signaler } from "../mesure";
 import { PillButton } from "../ui/PillButton";
+import { FormulaireEtapes } from "./FormulaireEtapes";
 import { textesDossier } from "./textes";
 
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
+const surfaceMin = Math.min(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
+
+/**
+ * Lien WhatsApp de la page d'atterrissage (15/11/2026, accord de l'utilisateur) : message prérempli.
+ * Chaque clic est signalé à la balise (`whatsapp_clic`), pour le compter à côté des demandes.
+ */
+export function LienWhatsApp({ className, children }: { className?: string; children: React.ReactNode }) {
+  const { langue } = useDevise();
+  const texte = textesDossier[langue].parcours.messageWhatsapp;
+  return (
+    <a
+      className={className}
+      href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(texte)}`}
+      target="_blank"
+      rel="noopener"
+      onClick={() => signaler("whatsapp_clic", { page: "dossier" })}
+    >
+      {children}
+    </a>
+  );
+}
+
+/** Bulle WhatsApp en bas de l'écran, sur mobile, au-dessus de la barre « Recevoir la brochure ». */
+export function BulleWhatsApp() {
+  const { langue } = useDevise();
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    /* Comme la barre du bas : cachée tant que l'ouverture, le formulaire ou le dernier appel est à l'écran. */
+    const aLEcran = new Set<Element>();
+    const guetteur = new IntersectionObserver((entrees) => {
+      for (const entree of entrees) {
+        if (entree.isIntersecting) aLEcran.add(entree.target);
+        else aLEcran.delete(entree.target);
+      }
+      setVisible(aLEcran.size === 0);
+    });
+    document
+      .querySelectorAll(`.${CLASSE_DEMANDE}, .${CLASSE_SANS_BARRE}`)
+      .forEach((zone) => guetteur.observe(zone));
+    return () => guetteur.disconnect();
+  }, []);
+  return (
+    <LienWhatsApp className={`dw-bulle${visible ? " is-visible" : ""}`}>
+      <MessageCircle aria-hidden="true" />
+      <span className="sr-only">{textesDossier[langue].parcours.bulleWhatsapp}</span>
+    </LienWhatsApp>
+  );
+}
+
+/** Le formulaire en étapes, juste sous l'ouverture : c'est l'ancre de la page. */
+export function DossierFormulaire() {
+  return (
+    <section className="df2" aria-label="Formulaire">
+      <FormulaireEtapes id={ID_DEMANDE} classe={CLASSE_DEMANDE} />
+    </section>
+  );
+}
+
+/** Dernier appel, en bas de page : ramène au formulaire, ou WhatsApp, ou le téléphone. */
+export function DossierAppel() {
+  const { langue } = useDevise();
+  const demander = useDemanderDossier();
+  const t = textesDossier[langue].parcours;
+  return (
+    <section className={`dap ${CLASSE_SANS_BARRE}`} aria-labelledby="dap-titre">
+      <div className="dap-carte">
+        <p className="dap-kicker">{t.final.kicker}</p>
+        <h2 id="dap-titre">{t.final.titre}</h2>
+        <p>{t.final.texte}</p>
+        <button type="button" className="dap-bouton" onClick={demander}>
+          {t.cta} <ArrowRight aria-hidden="true" />
+        </button>
+        <LienWhatsApp className="dap-whatsapp">
+          <MessageCircle aria-hidden="true" /> {t.whatsapp}
+        </LienWhatsApp>
+        <div className="dap-bureau">
+          <p>{t.final.question}</p>
+          <a href={`tel:${contact.telephone}`}>
+            <Phone aria-hidden="true" /> {contact.telephoneAffiche}
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
 const acompte = reservation.paliers.find((palier) => palier.etape === "reservation");
 
 /** Toutes les demandes de la page ramènent au formulaire du haut de page. */
@@ -147,9 +238,9 @@ export function DossierHero() {
   const reduce = useReducedMotion();
   /* Le prix d'entrée, promis par l'annonce (« dès 950 k€ »), visible dès l'arrivée, y compris sur mobile. */
   const depart = prixVilla(typeDepart, devise, taux);
-  const aPartirDe = prixPublics
-    ? t.hero.prix(`${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`)
-    : null;
+  const prixDepart = `${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`;
+  const aPartirDe = prixPublics ? t.hero.prix(prixDepart) : null;
+  const demander = useDemanderDossier();
   const video = useRef<HTMLVideoElement>(null);
   const [lecture, setLecture] = useState(false);
   const [lu, setLu] = useState(false);
@@ -173,7 +264,7 @@ export function DossierHero() {
   };
 
   return (
-    <section className="dh" aria-labelledby="dh-titre">
+    <section className={`dh ${CLASSE_SANS_BARRE}`} aria-labelledby="dh-titre">
       <div className="dh-cadre">
         <Affiche className="dh-affiche" />
         <video
@@ -193,6 +284,8 @@ export function DossierHero() {
         <div className="dh-voile" aria-hidden="true" />
 
         <div className="dh-contenu">
+          {/* Ouverture sur le modèle demandé le 15/11/2026 : le titre, une ligne, trois chiffres, un
+              bouton vers le formulaire en étapes et WhatsApp. Pas d'animation d'apparition. */}
           <div className="dh-texte">
             <p className="dh-chip">{t.hero.lieu}</p>
             <h1 id="dh-titre">
@@ -200,7 +293,6 @@ export function DossierHero() {
               <span className="dh-ligne">{ligne1}</span>
               <span className="dh-ligne ton">{ligne2}</span>
             </h1>
-            {aPartirDe && <p className="dh-prix">{aPartirDe}</p>}
             <p className="dh-intro">
               {t.hero.texte(
                 formatSurface(surfaceMax, langue),
@@ -208,6 +300,32 @@ export function DossierHero() {
                 programme.trajetMaxMinutes,
               )}
             </p>
+            <dl className="dh-chiffres">
+              {aPartirDe && (
+                <div>
+                  <dt>{t.parcours.chiffres.prix}</dt>
+                  <dd>{prixDepart}</dd>
+                </div>
+              )}
+              <div>
+                <dt>{t.parcours.chiffres.surfaces}</dt>
+                <dd>
+                  {t.parcours.surfaces(String(surfaceMin), formatSurface(surfaceMax, langue))}
+                </dd>
+              </div>
+              <div>
+                <dt>{t.parcours.chiffres.livraison}</dt>
+                <dd>{formatMois(calendrier.livraison, langue)}</dd>
+              </div>
+            </dl>
+            <div className="dh-appel">
+              <button type="button" className="dh-bouton" onClick={demander}>
+                {t.parcours.cta} <ArrowRight aria-hidden="true" />
+              </button>
+              <LienWhatsApp className="dh-whatsapp">
+                <MessageCircle aria-hidden="true" /> {t.parcours.whatsapp}
+              </LienWhatsApp>
+            </div>
             {part && (
               <p className="dh-conditions">
                 <Check aria-hidden="true" />
@@ -215,9 +333,6 @@ export function DossierHero() {
               </p>
             )}
           </div>
-
-          {/* Le formulaire est là dès l'arrivée : rien à ouvrir. */}
-          <CarteDemande rang={1} entete />
         </div>
 
         <div className="dh-pied">

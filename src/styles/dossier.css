@@ -254,3 +254,109 @@
   .is-tunnel .lv-frise { display: none; }
   .is-tunnel .dd-liste { display: none; }
 }
+
+
+/* ------------------------------------------------------------------ */
+/* Parcours en étapes (15/11/2026) : ouverture, formulaire, dernier appel */
+/* ------------------------------------------------------------------ */
+
+/* Ouverture : une seule colonne, rien n'attend une animation pour paraître. */
+.dh-contenu { grid-template-columns: minmax(0, 1fr); }
+.dh-texte { max-width: 46rem; gap: 1.1rem; }
+.dh-chip, .dh-ligne, .dh-intro, .dh-conditions { animation: none; }
+.dh-chiffres { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; margin: .2rem 0 0; padding-top: 1rem; border-top: 1px solid color-mix(in oklab, var(--cream) 22%, transparent); }
+.dh-chiffres > div { padding: 0 1.4rem; border-left: 1px solid color-mix(in oklab, var(--cream) 22%, transparent); }
+.dh-chiffres > div:first-child { padding-left: 0; border-left: 0; }
+.dh-chiffres dt { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 70%, transparent); }
+.dh-chiffres dd { margin: .25rem 0 0; font: 400 1.5rem/1.1 "Italiana", serif; color: var(--cream); white-space: nowrap; }
+.dh-appel { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; margin-top: .3rem; }
+.dh-bouton { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.4rem; padding: 0 1.9rem; border: 0; border-radius: 999px; background: var(--cream); color: var(--ink); font-size: 1rem; font-weight: 500; cursor: pointer; transition: background .3s; }
+.dh-bouton:hover, .dh-bouton:focus-visible { background: var(--sand); }
+.dh-bouton svg { width: 1rem; height: 1rem; }
+.dh-whatsapp { display: inline-flex; align-items: center; gap: .45rem; color: color-mix(in oklab, var(--cream) 88%, transparent); font-size: .92rem; text-decoration: none; }
+.dh-whatsapp svg { width: 1.05rem; height: 1.05rem; color: #25d366; }
+.dh-whatsapp:hover, .dh-whatsapp:focus-visible { text-decoration: underline; text-underline-offset: .2em; }
+
+/* Le formulaire en étapes : la photo en tête (à gauche sur grand écran), puis une question par écran. */
+.df2 { padding: 14px 14px 0; background: var(--paper); scroll-margin-top: 5rem; }
+.fe { display: grid; max-width: 64rem; margin: 1.6rem auto; overflow: hidden; border-radius: 24px; background: #fff; color: var(--ink); box-shadow: 0 24px 70px -30px oklch(0.12 0.01 65 / 45%), inset 0 0 0 1px var(--border); scroll-margin-top: 5rem; }
+.fe-entete { position: relative; display: grid; align-content: end; min-height: 11.5rem; padding: 1.3rem 1.4rem; color: var(--cream); }
+.fe-entete img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fe-entete::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 20%, color-mix(in oklab, var(--ink) 75%, transparent) 100%); }
+.fe-entete > div { position: relative; z-index: 1; display: grid; gap: .35rem; }
+.fe-kicker { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 85%, transparent); }
+.fe-entete h2 { font: 400 1.9rem/1.05 "Italiana", serif; }
+.fe-corps { display: grid; gap: .9rem; padding: 1.3rem 1.4rem 1.4rem; }
+.fe-progression { display: flex; align-items: center; gap: .35rem; }
+.fe-progression span { flex: 1; height: 2px; border-radius: 2px; background: var(--border); transition: background .3s; }
+.fe-progression span.is-fait { background: var(--bronze-deep); }
+.fe-progression em { margin-left: .5rem; font-style: normal; font-size: .75rem; color: var(--muted-foreground); white-space: nowrap; }
+.fe-etape { display: grid; gap: .6rem; }
+.fe-etape h3 { margin: .2rem 0 .3rem; font-size: 1.28rem; font-weight: 400; line-height: 1.3; }
+.fe-aide { margin-top: -.2rem; font-size: .85rem; line-height: 1.45; color: var(--muted-foreground); }
+.fe-option { display: flex; align-items: center; justify-content: space-between; gap: .8rem; width: 100%; min-height: 3.4rem; padding: 0 .55rem 0 1.2rem; border: 1px solid color-mix(in oklab, var(--ink) 18%, transparent); border-radius: 999px; background: #fff; color: var(--ink); font-size: 1rem; text-align: left; cursor: pointer; transition: border-color .2s, background .2s; }
+.fe-option svg { flex: none; width: 2.2rem; height: 2.2rem; padding: .55rem; border-radius: 50%; background: color-mix(in oklab, var(--sand) 30%, transparent); color: var(--bronze-deep); }
+.fe-option:hover, .fe-option:focus-visible, .fe-option.is-actif { border-color: var(--ink); background: color-mix(in oklab, var(--sand) 12%, #fff); }
+.fe-retour { justify-self: start; display: inline-flex; align-items: center; gap: .35rem; padding: .2rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .85rem; cursor: pointer; }
+.fe-retour svg { width: .9rem; height: .9rem; }
+.fe-rassurance { display: grid; gap: .5rem; margin-top: .3rem; padding-top: .9rem; border-top: 1px solid var(--border); }
+.fe-rassurance li { display: flex; align-items: center; gap: .6rem; font-size: .88rem; color: color-mix(in oklab, var(--ink) 80%, transparent); }
+.fe-rassurance svg { flex: none; width: 1rem; height: 1rem; color: var(--bronze-deep); }
+.fe-contact { display: grid; gap: .8rem; }
+.fe-contact label, .fe-telephone > label { display: grid; gap: .3rem; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--bronze-text); }
+.fe-contact input, .fe-contact select { width: 100%; min-height: 3rem; padding: .5rem .8rem; border: 1px solid color-mix(in oklab, var(--ink) 22%, transparent); border-radius: 12px; background: #fff; color: var(--ink); font-size: 1rem; letter-spacing: 0; text-transform: none; }
+.fe-contact input:focus-visible, .fe-contact select:focus-visible { outline: 2px solid var(--bronze); outline-offset: 1px; border-color: transparent; }
+.fe-telephone { display: grid; gap: .3rem; }
+.fe-telephone > label { display: block; }
+.fe-telephone > div { display: flex; gap: .5rem; }
+.fe-telephone select { flex: 0 0 8.4rem; }
+.fe-envoyer { display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.4rem; border: 0; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: 1rem; font-weight: 500; cursor: pointer; transition: background .3s; }
+.fe-envoyer:hover, .fe-envoyer:focus-visible { background: var(--bronze-deep); }
+.fe-envoyer:disabled { opacity: .6; cursor: progress; }
+.fe-envoyer svg { width: 1rem; height: 1rem; }
+.fe-consentement { font-size: .7rem; line-height: 1.5; color: var(--muted-foreground); }
+.fe-erreur { font-size: .86rem; color: var(--destructive, #b3261e); }
+@media (min-width: 901px) {
+  .fe { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
+  .fe-entete { min-height: 100%; padding: 2rem; }
+  .fe-entete h2 { font-size: 2.4rem; }
+  .fe-corps { padding: 2rem 2.2rem; }
+}
+
+/* Dernier appel : une carte, le bouton, WhatsApp, le téléphone. */
+.dap { padding: 1.2rem 14px 2rem; background: var(--paper); }
+.dap-carte { display: grid; justify-items: center; gap: .9rem; max-width: 34rem; margin: 0 auto; padding: 2rem 1.4rem; border-radius: 24px; background: #fff; text-align: center; box-shadow: inset 0 0 0 1px var(--border); }
+.dap-kicker { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bronze-text); }
+.dap-carte h2 { font: 400 2rem/1.1 "Italiana", serif; }
+.dap-carte > p { font-size: .95rem; line-height: 1.55; color: color-mix(in oklab, var(--ink) 75%, transparent); }
+.dap-bouton { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; width: 100%; min-height: 3.4rem; border: 0; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: 1rem; font-weight: 500; cursor: pointer; }
+.dap-bouton svg { width: 1rem; height: 1rem; }
+.dap-whatsapp { display: inline-flex; align-items: center; gap: .45rem; color: var(--ink); font-size: .92rem; text-decoration: none; }
+.dap-whatsapp svg { width: 1.05rem; height: 1.05rem; color: #25d366; }
+.dap-bureau { display: grid; gap: .3rem; width: 100%; margin-top: .4rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: .88rem; color: var(--muted-foreground); }
+.dap-bureau a { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; color: var(--ink); text-decoration: none; }
+.dap-bureau svg { width: .95rem; height: .95rem; }
+
+/* Bulle WhatsApp : seulement sur mobile, au-dessus de la barre « Recevoir la brochure ». */
+.dw-bulle { display: none; }
+@media (max-width: 900px) {
+  .dw-bulle { opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .25s, transform .25s; }
+  .dw-bulle.is-visible { opacity: 1; pointer-events: auto; transform: none; }
+  .dw-bulle { position: fixed; right: 14px; bottom: calc(5.4rem + env(safe-area-inset-bottom)); z-index: 60; display: grid; place-items: center; width: 3.3rem; height: 3.3rem; border-radius: 50%; background: #25d366; color: #fff; box-shadow: 0 10px 24px -8px oklch(0.2 0.02 150 / 55%); }
+  .dw-bulle svg { width: 1.5rem; height: 1.5rem; }
+  /* Ouverture mobile : plein écran, le texte en bas, sur la photo. */
+  .dh-intro { display: block; font-size: .95rem; line-height: 1.5; }
+  .dh-conditions { display: none; }
+  .dh h1 { font-size: 2.35rem; }
+  .dh-contenu { align-content: end; padding: 5.6rem 1.2rem 1.6rem; }
+  .dh-chiffres { grid-template-columns: repeat(3, minmax(0, auto)); }
+  .dh-chiffres > div { padding: 0 .8rem; }
+  .dh-chiffres dd { font-size: 1.12rem; }
+  .dh-appel { flex-direction: column; align-items: stretch; justify-self: stretch; width: 100%; gap: .7rem; }
+  .dh-bouton { width: 100%; }
+  .dh-whatsapp { justify-content: center; }
+  .df2 { padding: 8px 8px 0; }
+  .fe { margin: .8rem auto; border-radius: 22px; }
+  .dap { padding: 1rem 8px 2rem; }
+  .dh-pied { display: none; }
+}
