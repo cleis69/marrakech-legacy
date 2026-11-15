@@ -15,7 +15,8 @@ import {
   formatPart,
   formatPrix,
   hypothesesRendement,
-  LOCALE,
+  LOCALE_CHIFFRES,
+  gaucheADroite,
   moisRestants,
   prixVilla,
   reservation,
@@ -59,7 +60,10 @@ export function Financement({ onContact }: { onContact: (selection: Selection) =
     source === "EUR" ? montant : montant / taux[source];
   const money = (valeur: number) => formatPrix(Math.round(valeur), devise, langue);
   const pourcent = (valeur: number, decimales = 0) =>
-    `${valeur.toLocaleString(LOCALE[langue], { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`;
+    gaucheADroite(
+      `${valeur.toLocaleString(LOCALE_CHIFFRES[langue], { minimumFractionDigits: decimales, maximumFractionDigits: decimales })} %`,
+      langue,
+    );
 
   const prixReference = saisi
     ? saisi.devise === devise

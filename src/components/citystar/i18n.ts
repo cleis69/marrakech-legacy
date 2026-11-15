@@ -1,5 +1,6 @@
 import { type Langue, type TypeVilla, programme } from "@/config/citystar";
 
+import { ar } from "./i18n-ar";
 import { es } from "./i18n-es";
 import { it } from "./i18n-it";
 import { nl } from "./i18n-nl";
@@ -7,7 +8,7 @@ import { no } from "./i18n-no";
 
 /**
  * Tous les textes du site : français et anglais ici, espagnol, italien,
- * néerlandais et norvégien dans i18n-es, -it, -nl et -no.
+ * néerlandais, norvégien et arabe dans i18n-es, -it, -nl, -no et -ar.
  * Les chiffres restent dans src/config/citystar.ts : ici, uniquement des mots.
  */
 const fr = {
@@ -1787,4 +1788,4 @@ const en: Textes = {
   },
 };
 
-export const textes: Record<Langue, Textes> = { fr, en, es, it, nl, no };
+export const textes: Record<Langue, Textes> = { fr, en, es, it, nl, no, ar };

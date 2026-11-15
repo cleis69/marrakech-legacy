@@ -6,7 +6,7 @@
 .cp-note { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
 .cp-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 2.4rem; margin-bottom: 1.4rem; }
 .cp-pins { display: flex; align-items: center; gap: .6rem; }
-.cp-pins > span { margin-right: .3rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.cp-pins > span { margin-inline-end: .3rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
 .cp-pins button { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; padding: 0; border: 0; border-radius: 50%; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 35%, transparent); color: var(--foreground); font: 400 1.3rem/1 "Italiana", serif; cursor: pointer; transition: background .3s, color .3s, box-shadow .3s; }
 .cp-pins button[aria-pressed="true"] { background: var(--bronze); color: var(--cream); box-shadow: none; }
 .cp-switch { display: inline-flex; align-items: center; gap: .7rem; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; }
@@ -18,11 +18,12 @@
 .cp-switch input:focus-visible + i { outline: 2px solid var(--bronze); outline-offset: 3px; }
 
 .cp-scroll { position: relative; overflow-x: auto; overscroll-behavior-x: contain; }
+/* « left » et non « start » : avec « start », le navigateur recentre les en-têtes de colonne (th). L'arabe est traité dans rtl.css. */
 .cp-table { width: 100%; border-collapse: collapse; text-align: left; }
 .cp-table th, .cp-table td { padding: .9rem 1.2rem; border-bottom: 1px solid var(--border); font-weight: 400; vertical-align: middle; transition: background .25s, color .25s; }
 .cp-table thead th { padding-bottom: .8rem; vertical-align: bottom; }
-.cp-table thead td { position: sticky; left: 0; z-index: 4; border-bottom: 0; background: var(--cream); }
-.cp-table th[scope="row"] { position: sticky; left: 0; z-index: 2; padding-left: 0; background: var(--cream); font-size: .7rem; letter-spacing: .16em; line-height: 1.35; text-transform: uppercase; color: var(--muted-foreground); }
+.cp-table thead td { position: sticky; inset-inline-start: 0; z-index: 4; border-bottom: 0; background: var(--cream); }
+.cp-table th[scope="row"] { position: sticky; inset-inline-start: 0; z-index: 2; padding-inline-start: 0; background: var(--cream); font-size: .7rem; letter-spacing: .16em; line-height: 1.35; text-transform: uppercase; color: var(--muted-foreground); }
 .cp-table tbody tr:hover td, .cp-table tbody tr:focus-within td { background: color-mix(in oklab, var(--ink) 5%, transparent); }
 .cp-table tbody tr:hover th[scope="row"], .cp-table tbody tr:focus-within th[scope="row"] { color: var(--bronze-text); }
 .cp-table td.is-pin, .cp-table thead th.is-pin { background: color-mix(in oklab, var(--bronze) 9%, transparent); }
@@ -35,7 +36,7 @@
 .cp-head-link:hover .cp-photo img, .cp-head-link:focus-visible .cp-photo img { transform: scale(1.05); }
 .cp-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cp-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 25%, oklch(0.1 0.01 60 / 85%)); }
-.cp-photo b { position: absolute; z-index: 1; left: .8rem; bottom: .3rem; font: 400 2.6rem/1 "Italiana", serif; color: var(--cream); }
+.cp-photo b { position: absolute; z-index: 1; inset-inline-start: .8rem; bottom: .3rem; font: 400 2.6rem/1 "Italiana", serif; color: var(--cream); }
 .cp-name { display: block; margin-top: .5rem; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; }
 .cp-name em { font-style: normal; color: var(--bronze-text); }
 .cp-value { display: block; font: 400 1.5rem/1.05 "Italiana", serif; }
@@ -76,20 +77,20 @@
   .cp-scroll { margin: 0 -1.3rem; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .cp-scroll::-webkit-scrollbar { display: none; }
   .cp-table { width: max-content; }
-  .cp-table th[scope="row"] { width: 6.6rem; min-width: 6.6rem; padding-right: .6rem; padding-left: 1.3rem; font-size: .7rem; box-shadow: 1px 0 0 color-mix(in oklab, var(--ink) 12%, transparent); }
+  .cp-table th[scope="row"] { width: 6.6rem; min-width: 6.6rem; padding-inline-end: .6rem; padding-inline-start: 1.3rem; font-size: .7rem; box-shadow: 1px 0 0 color-mix(in oklab, var(--ink) 12%, transparent); }
   .cp-table thead th { position: sticky; top: 0; z-index: 3; background: var(--cream); }
   .cp-table thead td { top: 0; width: 6.6rem; min-width: 6.6rem; }
   .cp-table thead th[scope="col"] { width: 8.6rem; min-width: 8.6rem; scroll-snap-align: start; }
   .cp-table td { padding: .7rem; scroll-snap-align: start; }
   .cp-photo { height: 4rem; }
-  .cp-photo b { font-size: 1.8rem; left: .5rem; }
+  .cp-photo b { font-size: 1.8rem; inset-inline-start: .5rem; }
   .cp-value { font-size: 1.15rem; }
   .cp-delta { padding: .2rem .4rem; background: color-mix(in oklab, var(--ink) 8%, transparent); font-size: .7rem; }
   .cp-delta.is-up { background: color-mix(in oklab, var(--bronze) 22%, transparent); color: var(--ink); }
   .cp-plans { display: none; }
   .cp-plans-mobile { position: relative; display: block; width: 100%; padding: 0; border: 0; background: var(--paper); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 16%, transparent); cursor: pointer; }
   .cp-plans-mobile img { width: 100%; height: 4rem; object-fit: contain; mix-blend-mode: multiply; }
-  .cp-plans-mobile em { position: absolute; right: .2rem; bottom: .2rem; padding: .1rem .3rem; background: var(--ink); color: var(--cream); font-size: .7rem; font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
+  .cp-plans-mobile em { position: absolute; inset-inline-end: .2rem; bottom: .2rem; padding: .1rem .3rem; background: var(--ink); color: var(--cream); font-size: .7rem; font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
   .cp-foot { display: flex; justify-content: space-between; align-items: center; margin-top: .8rem; padding-top: .7rem; border-top: 1px solid var(--border); }
   .cp-foot p { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
   .cp-visible { display: flex; gap: .4rem; }

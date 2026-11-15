@@ -13,9 +13,12 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import dmSansLatin from "../assets/fonts/dm-sans-latin.woff2?url";
 import italianaLatin from "../assets/fonts/italiana-latin.woff2?url";
+import alexandriaArabe from "../assets/fonts/alexandria-arabic-300.woff2?url";
+import readexArabe from "../assets/fonts/readex-pro-arabic.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { langueDe } from "@/components/citystar/liens";
 import { AMORCE_BALISE, chargerBalise, chargerClarity } from "@/components/citystar/mesure";
+import { estRtl } from "@/config/citystar";
 
 function NotFoundComponent() {
   return (
@@ -118,7 +121,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  // Chaque langue vit sous son préfixe (/en, /es…) : la langue du document suit la route, dès le rendu serveur.
+  // Chaque langue vit sous son préfixe (/en, /es…) : la langue du document et son sens de lecture
+  // (de droite à gauche pour l'arabe) suivent la route, dès le rendu serveur.
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
   const langue = langueDe(chemin);
 
@@ -130,9 +134,21 @@ function RootShell({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <html lang={langue}>
+    <html lang={langue} dir={estRtl(langue) ? "rtl" : "ltr"}>
       <head>
         <HeadContent />
+        {/* Arabe : ses deux polices du premier écran sont préchargées, sur les pages arabes seulement. */}
+        {estRtl(langue) &&
+          [alexandriaArabe, readexArabe].map((police) => (
+            <link
+              key={police}
+              rel="preload"
+              as="font"
+              type="font/woff2"
+              href={police}
+              crossOrigin="anonymous"
+            />
+          ))}
         {/* Amorce de la balise Google (file d'attente, refus des cookies par défaut) : seulement sur le
             site en ligne. La balise elle-même et Clarity sont chargés après l'hydratation, ci-dessus. */}
         {import.meta.env.PROD && <script dangerouslySetInnerHTML={{ __html: AMORCE_BALISE }} />}

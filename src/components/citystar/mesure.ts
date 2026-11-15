@@ -5,7 +5,7 @@
  *
  * Le site n'a pas de bandeau de consentement : dans l'Espace économique européen, au
  * Royaume-Uni et en Suisse, le consentement est refusé d'office et Google ne dépose aucun
- * cookie publicitaire. La page de confidentialité le dit dans les six langues.
+ * cookie publicitaire. La page de confidentialité le dit dans les sept langues.
  */
 export const BALISE_GOOGLE = "GTM-P64LSTXF";
 
@@ -113,7 +113,7 @@ export function signalerDebutGoogleAds() {
  * Microsoft Clarity (15/11/2026), compte contact@citystarproperties.com : enregistrements de
  * visites et cartes de clics, pour voir où les visiteurs de la page d'atterrissage s'arrêtent.
  * Les saisies des formulaires sont masquées par Clarity. La page de confidentialité le dit
- * dans les six langues.
+ * dans les sept langues.
  */
 export const PROJET_CLARITY = "ze4a8lyxf2";
 

@@ -1,0 +1,81 @@
+/* ---------- Arabe : lecture de droite à gauche ----------
+   Tout ce fichier ne s'applique qu'aux pages dont <html> porte dir="rtl" (l'arabe). Les marges,
+   alignements et positions du site sont écrits en propriétés logiques (inline-start / inline-end) :
+   ils se retournent seuls. Ici, seulement ce que le navigateur ne retourne pas de lui-même. */
+
+/* L'écriture arabe est liée : l'espacement des lettres la casse. Le nom CITYSTAR garde le sien. */
+[dir="rtl"] *, [dir="rtl"] *::before, [dir="rtl"] *::after { letter-spacing: 0 !important; }
+[dir="rtl"] .float-wordmark { letter-spacing: .3em !important; }
+[dir="rtl"] .wm-word { letter-spacing: .02em !important; }
+[dir="rtl"] .mq-copy { letter-spacing: .06em !important; }
+
+/* Le grand nom du pied de page est posé lettre par lettre : il reste dans l'ordre latin. */
+[dir="rtl"] .ft-giant { direction: ltr; }
+
+/* Pas d'italique en arabe : la police n'en a pas, et un texte penché de force se lit mal. */
+[dir="rtl"] * { font-style: normal !important; }
+
+/* Les lettres arabes montent et descendent plus que les latines : les titres serrés respirent. */
+[dir="rtl"] :is(h1, h2, h3, h4, blockquote) { line-height: 1.32 !important; }
+[dir="rtl"] :is(p, li, dd, label, summary, figcaption) { line-height: 1.85; }
+/* Les petites mentions en capitales espacées (11 px) n'existent pas en arabe, qui n'a pas de capitales :
+   elles passent à un corps lisible. Liste : toutes les règles du site en capitales de moins de 0,8 rem. */
+[dir="rtl"] :is(
+  .section-label, .eyebrow, .modal-close, .contact-panel label, .contact-panel .contact-preciser summary, .contact-panel .contact-intertitre,
+  .contact-panel form > button, .contact-selection p, .contact-selection button, .va-fiche small, .va-fiche dt, .arch-tag, .arch-note,
+  .lv-intro .lv-compte, .lv-palier-etape, .es-statut h2, .ft-tile small, .ft-credits, .ft-legal, .cp-kicker, .cp-note, .cp-pins > span, .cp-switch,
+  .cp-table th[scope="row"], .cp-over, .cp-name, .cp-plans small, .cp-pdf, .cp-budget label, .cp-plans-mobile em, .cp-foot p, .mc-chiffres dt,
+  .mc-villes figcaption, .dh-carte-kicker, .dh-carte label, .dh-carte .contact-intertitre, .dh-carte .contact-moyen legend,
+  .dh-carte .contact-preciser summary, .dc-kicker, .da-etape, .da-paiement p, .da-photos p, .dh-chiffres dt, .fe-kicker, .fe-contact label,
+  .fe-telephone > label, .dap-kicker, .vp-kicker, .vp figcaption span, .ec-en-cours, .ec-mot-titre, .ec-totaux dt, .fi-key span, .float-concierge,
+  .menu-sheet-head p, .menu-sheet-links a, .menu-sheet-links button, .menu-sheet-cta, .hero-verre-titre, .day-head h2, .day-timeline button,
+  .loc-n small, .loc-l b, .loc-aside address, .loc-foot > span, .mp-hint, .mp-pop-bd small, .mp-pop-bd a, .gl-note, .faq-next p, .ct-tile small,
+  .pj-vues figcaption, .arc-note, .sl-kicker, .sl-back, .sl-progress, .sl-option span, .sl-note, .sl-keys, .sl-recap li, .sl-link, .sl-again,
+  .sl-card-info span, .sl-card-why, .sl-curseur label, .sm-kicker, .sm-field label, .sm-submit, .sm-key span, .sm-warn small, .sm-advanced summary,
+  .sm-slider label, .tv-poster small, .vf-cap, .vf-back, .vf-tabs-label, .vf-badge, .vf-specs dt, .vprice-label, .vprice-note, .vf-plans span,
+  .wm-caption
+) { font-size: .8rem; }
+
+/* Ce qui reste écrit de gauche à droite dans une page arabe : numéros, adresses e-mail, saisie du téléphone. */
+[dir="rtl"] :is(input[type="tel"], input[type="email"], input[type="url"], input[type="number"]) { direction: ltr; text-align: end; }
+[dir="rtl"] input::placeholder { text-align: end; }
+
+/* Curseurs des simulateurs : le minimum reste à gauche, comme les chiffres. */
+[dir="rtl"] input[type="range"] { direction: ltr; }
+
+/* Avant / après de l'architecture, vue aérienne et carte : positions calculées depuis la gauche. */
+[dir="rtl"] :is(.arch-ba, .va-scene, .mp-svg) { direction: ltr; }
+
+/* Jauges et traits qui se remplissent : ils partent de la droite. */
+[dir="rtl"] :is(.page-progress, .da-jauge span, .ec-jauge span, .sl-line i) { transform-origin: right; }
+[dir="rtl"] .mc-barre::before, [dir="rtl"] .lv-frise::before, [dir="rtl"] .day-timeline button::before { transform-origin: right; }
+[dir="rtl"] :is(.da-jauge span, .ec-jauge span) { background: linear-gradient(270deg, var(--bronze), var(--sand)); }
+[dir="rtl"] .cp-bar i { inset: 0 0 0 auto; }
+
+/* Tableau comparatif : aligné à droite (la règle d'origine dit « left » pour ne pas recentrer les en-têtes). */
+[dir="rtl"] .cp-table { text-align: right; }
+
+/* Voiles posés sur les photos : le côté sombre suit le texte, à droite. */
+@media (min-width: 761px) {
+  [dir="rtl"] .dh-voile { background: linear-gradient(270deg, color-mix(in oklab, var(--ink) 78%, transparent) 0%, color-mix(in oklab, var(--ink) 35%, transparent) 55%, color-mix(in oklab, var(--ink) 15%, transparent) 100%), linear-gradient(180deg, color-mix(in oklab, var(--ink) 50%, transparent) 0%, transparent 25%); }
+}
+[dir="rtl"] .day-tint { transform: scaleX(-1); }
+
+/* Flèches et chevrons : ils pointent dans le sens de la lecture. */
+[dir="rtl"] :is(.lucide-arrow-right, .lucide-arrow-left, .lucide-chevron-right, .lucide-chevron-left, .lucide-arrow-up-right, .lucide-move-right, .lucide-chevrons-right) { transform: scaleX(-1); }
+/* Au survol, elles avancent vers la gauche. */
+[dir="rtl"] :is(.ft-tile:hover > svg, .circle-choix button:hover svg, .circle-choix button:focus-visible svg, .merci .circle-choix a:hover svg, .merci .circle-choix a:focus-visible svg) { transform: translateX(-.3rem) scaleX(-1); }
+[dir="rtl"] :is(.faq-next a:hover svg, .faq-next a:focus-visible svg, .faq-next button:hover svg) { transform: translateX(-4px) scaleX(-1); }
+[dir="rtl"] :is(.sl-link:hover svg, .sl-link:focus-visible svg) { transform: translateX(-3px) scaleX(-1); }
+[dir="rtl"] :is(.arch-list button:hover > *, .arch-list button.is-on > *) { transform: translateX(-.6rem); }
+[dir="rtl"] .loc-dist button[aria-pressed="true"] > * { transform: translateX(-1rem); }
+
+/* Choix du formulaire en étapes : le texte à droite, la flèche à gauche. */
+[dir="rtl"] .fe-option { padding: 0 1.2rem 0 .55rem; }
+
+/* Nom défilant : la bande part de la droite et défile vers la droite. */
+[dir="rtl"] .mq-track { animation-name: mq-slide-rtl; }
+@keyframes mq-slide-rtl { to { transform: translateX(50%); } }
+
+/* Téléphone : l'indicatif à gauche, le numéro à droite, comme on l'écrit (« +212 6… »). */
+[dir="rtl"] :is(.fe-telephone > div, .contact-telephone > div) { direction: ltr; }

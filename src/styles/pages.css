@@ -36,8 +36,8 @@
 .gl-view figcaption { display: flex; gap: 1rem; max-width: 60ch; font-size: .82rem; line-height: 1.5; color: color-mix(in oklab, var(--cream) 78%, transparent); text-align: center; }
 .gl-view figcaption span { flex: none; font-variant-numeric: tabular-nums; color: var(--sand); }
 .gl-view .gl-prev, .gl-view .gl-next { position: absolute; top: 50%; display: grid; place-items: center; width: 3.2rem; height: 3.2rem; margin-top: -1.6rem; border: 0; border-radius: 50%; background: color-mix(in oklab, var(--cream) 12%, transparent); color: var(--cream); cursor: pointer; transition: background .3s; }
-.gl-view .gl-prev { left: 1.2rem; }
-.gl-view .gl-next { right: 1.2rem; }
+.gl-view .gl-prev { inset-inline-start: 1.2rem; }
+.gl-view .gl-next { inset-inline-end: 1.2rem; }
 .gl-view .gl-prev:hover, .gl-view .gl-next:hover { background: var(--bronze); }
 .gl-note { margin-top: 1.2rem; font-size: .7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted-foreground); }
 
@@ -95,7 +95,7 @@
 
 /* Confidentialité : les questions en liste de définitions, avec des listes à puces */
 .conf .faq-list dd + dd { margin-top: 0.9rem; }
-.conf .faq-list ul { display: grid; gap: 0.35rem; margin: 0; padding-left: 1.1rem; list-style: disc; }
+.conf .faq-list ul { display: grid; gap: 0.35rem; margin: 0; padding-inline-start: 1.1rem; list-style: disc; }
 .conf .faq-list li::marker { color: var(--bronze); }
 .conf-maj { margin-top: var(--espace-bloc); font-size: 0.82rem; color: var(--muted-foreground); }
 

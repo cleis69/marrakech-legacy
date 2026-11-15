@@ -26,7 +26,7 @@
 .lv-paliers li { display: grid; gap: .7rem; align-content: start; padding-top: 1.2rem; border-top: 1px solid color-mix(in oklab, var(--cream) 14%, transparent); }
 .lv-palier-etape { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 66%, transparent); }
 .lv-palier-part { font: 400 2.4rem/1 "Italiana", serif; }
-.lv-palier-part small { margin-left: .5rem; font: 400 .92rem/1.4 "DM Sans", sans-serif; color: var(--sand); }
+.lv-palier-part small { margin-inline-start: .5rem; font: 400 .92rem/1.4 "DM Sans", sans-serif; color: var(--sand); }
 .lv-palier-reste { grid-column: span var(--etapes, 4); }
 .lv-palier-etapes { display: grid; grid-template-columns: repeat(var(--etapes, 4), minmax(0, 1fr)); gap: 1.5rem; }
 .lv-pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem 3rem; }
@@ -43,9 +43,9 @@
 
 @media (max-width: 900px) {
   /* La frise devient verticale : le filet descend le long des points. */
-  .lv-frise { grid-template-columns: 1fr; gap: 2rem; padding-left: 2.2rem; }
-  .lv-frise::before { left: 6px; right: auto; top: 6px; bottom: 6px; width: 1px; height: auto; }
-  .lv-point { position: absolute; left: -2.2rem; top: 0; margin: 0; }
+  .lv-frise { grid-template-columns: 1fr; gap: 2rem; padding-inline-start: 2.2rem; }
+  .lv-frise::before { inset-inline-start: 6px; inset-inline-end: auto; top: 6px; bottom: 6px; width: 1px; height: auto; }
+  .lv-point { position: absolute; inset-inline-start: -2.2rem; top: 0; margin: 0; }
   .lv-frise li { gap: .4rem; }
   .lv-paliers { grid-template-columns: 1fr; gap: 0; }
   .lv-paliers li { grid-template-columns: 1fr auto; align-items: baseline; padding: 1rem 0; }

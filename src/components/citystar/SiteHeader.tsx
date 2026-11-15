@@ -33,11 +33,12 @@ const NOMS_LANGUES: Record<Langue, string> = {
   it: "Italiano",
   nl: "Nederlands",
   no: "Norsk",
+  ar: "العربية",
 };
 
 /**
- * Choix de la langue. Dans l'en-tête, un bouton ouvre la liste des six langues
- * (Échap ou un clic ailleurs la referme) ; dans le menu mobile, les six codes
+ * Choix de la langue. Dans l'en-tête, un bouton ouvre la liste des sept langues
+ * (Échap ou un clic ailleurs la referme) ; dans le menu mobile, les sept codes
  * sont posés à plat. Chaque lien garde la page courante, adresse traduite comprise.
  */
 function LangSwitch({ aPlat = false }: { aPlat?: boolean }) {
@@ -238,7 +239,7 @@ export function SiteHeader({
   const { langue, t } = useDevise();
   /* Transparent seulement en haut de l'accueil, posé sur la vidéo ; partout ailleurs, un aplat d'encre. */
   const page = useRouterState({ select: (etat) => etat.location.pathname });
-  const solide = scrolled || !/^\/(en\/?)?$/.test(page);
+  const solide = scrolled || !/^\/((en|ar)\/?)?$/.test(page);
 
   if (tunnel)
     return (

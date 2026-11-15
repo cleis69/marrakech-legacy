@@ -9,6 +9,7 @@ const OG_LOCALE: Record<Langue, string> = {
   it: "it_IT",
   nl: "nl_NL",
   no: "nb_NO",
+  ar: "ar_AR",
 };
 
 /** Image de partage (réseaux, messageries) : la villa et sa piscine, au format 1200 × 630. */

@@ -20,7 +20,7 @@
 .fi-lignes { margin: 0; }
 .fi-lignes > div { display: grid; grid-template-columns: 1fr auto; gap: .3rem 1rem; align-items: baseline; padding: .85rem 0; border-top: 1px solid var(--border); }
 .fi-lignes dt { font-weight: 500; }
-.fi-lignes dd { margin: 0; text-align: right; font-size: .82rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fi-lignes dd { margin: 0; text-align: end; font-size: .82rem; color: var(--muted-foreground); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .fi-lignes dd b { display: block; font: 400 1.3rem/1.1 "Italiana", serif; color: var(--foreground); }
 .fi-lignes p { grid-column: 1 / -1; font-size: .82rem; line-height: 1.5; color: var(--muted-foreground); }
 .fi-note { font-size: .8rem; font-style: italic; line-height: 1.5; color: var(--muted-foreground); }
@@ -30,5 +30,5 @@
   .fi-tete, .fi-grille { grid-template-columns: 1fr; }
   .fi-carte { border-radius: 20px; }
   .fi-lignes > div { grid-template-columns: 1fr; }
-  .fi-lignes dd { text-align: left; }
+  .fi-lignes dd { text-align: start; }
 }

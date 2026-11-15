@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight, Download, FileText, LogOut, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { type Devise, formatDate, formatPrix, type Langue, LOCALE } from "@/config/citystar";
+import { type Devise, formatDate, formatPrix, type Langue, LOCALE_CHIFFRES } from "@/config/citystar";
 
 import { Compteur } from "../Compteur";
 import { useDevise } from "../currency";
@@ -16,7 +16,7 @@ const dateCourte = (iso: string, langue: Langue) => formatDate(iso.slice(0, 10),
 
 function taille(octets: number, langue: Langue) {
   const mo = octets >= 1_000_000;
-  return new Intl.NumberFormat(LOCALE[langue], {
+  return new Intl.NumberFormat(LOCALE_CHIFFRES[langue], {
     style: "unit",
     unit: mo ? "megabyte" : "kilobyte",
     unitDisplay: "short",

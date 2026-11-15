@@ -1,9 +1,9 @@
 /**
- * Page de remerciement des formulaires de pub (Meta…), dans les six langues. Meta refuse les liens
+ * Page de remerciement des formulaires de pub (Meta…), dans les sept langues. Meta refuse les liens
  * WhatsApp sur le bouton de fin d'un formulaire : le bouton mène ici, et cette page propose
  * WhatsApp (message pré-rempli), l'appel et les villas. Elle n'est pas indexée.
  */
-import { contact, type Langue } from "@/config/citystar";
+import { contact, gaucheADroite, type Langue } from "@/config/citystar";
 
 export type TexteMerci = {
   titre: string;
@@ -126,5 +126,23 @@ export const merci: Record<Langue, TexteMerci> = {
     },
     appeler: { titre: "Ring en konsulent" },
     villas: { titre: "Se villaene", texte: "Planløsninger, arealer og 360°-visning" },
+  },
+  ar: {
+    titre: "شكرًا — CITYSTAR مراكش",
+    description: "تم إرسال طلبكم بنجاح.",
+    kicker: "تم إرسال الطلب",
+    titreH1: ["شكرًا،", "تم إرسال طلبكم بنجاح"],
+    intro:
+      "سيتواصل معكم مستشار عقاري خبير في أقرب وقت. ولاستلام قائمة الفلل التي ما زالت متاحة فورًا، راسلونا على واتساب: الرسالة جاهزة.",
+    sousTitre: "استلام القائمة الآن",
+    rappel: "الفيلا النموذجية متاحة للزيارة قبل نهاية يناير 2027. تسليم أول فيلا في أغسطس 2027.",
+    whatsapp: {
+      titre: "استلام القائمة على واتساب",
+      /* Le numéro reste de gauche à droite (marques d'isolement), sinon ses groupes s'inversent. */
+      texte: `رسالة جاهزة للإرسال إلى ${gaucheADroite(tel, "ar")}`,
+      message: "مرحبًا، أودّ الحصول على قائمة فلل CITYSTAR التي ما زالت متاحة.",
+    },
+    appeler: { titre: "الاتصال بمستشار" },
+    villas: { titre: "اكتشاف الفلل", texte: "المخططات والمساحات وجولة \u2066360°\u2069" },
   },
 };

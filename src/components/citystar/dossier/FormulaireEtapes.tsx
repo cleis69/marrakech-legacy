@@ -325,7 +325,8 @@ export function FormulaireEtapes({
           {Array.from({ length: NB_ETAPES }, (_, i) => (
             <span key={i} className={i <= etape ? "is-fait" : undefined} />
           ))}
-          <em>
+          {/* « 1 / 6 » se lit de gauche à droite, même en arabe. */}
+          <em dir="ltr">
             {etape + 1} / {NB_ETAPES}
           </em>
         </div>

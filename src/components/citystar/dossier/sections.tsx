@@ -21,6 +21,7 @@ import {
   formatPart,
   formatPrix,
   formatSurface,
+  gaucheADroite,
   prixPublics,
   prixVilla,
   programme,
@@ -191,7 +192,7 @@ export function DossierAppel() {
         <div className="dap-bureau">
           <p>{t.final.question}</p>
           <a href={`tel:${contact.telephone}`}>
-            <Phone aria-hidden="true" /> {contact.telephoneAffiche}
+            <Phone aria-hidden="true" /> {gaucheADroite(contact.telephoneAffiche, langue)}
           </a>
         </div>
       </div>

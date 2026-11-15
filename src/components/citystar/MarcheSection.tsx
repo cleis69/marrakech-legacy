@@ -11,12 +11,21 @@ import { useSite } from "./contexte";
 import { useDevise } from "./currency";
 import { Reveal } from "./motion";
 
+/** Noms arabes des villes du comparatif (la config les garde en français). */
+const VILLES_AR: Record<string, string> = {
+  Marrakech: "مراكش",
+  Rabat: "الرباط",
+  Casablanca: "الدار البيضاء",
+  Tanger: "طنجة",
+};
+
 const plusForte = Math.max(...marche.transactions.map((ville) => ville.evolution));
 
 /* En grand, le « % » est composé à part : celui de l'Italiana flotte loin des chiffres. */
 function Grand({ part, langue }: { part: number; langue: Langue }) {
   return (
-    <>
+    /* Le signe, le chiffre et le « % » restent dans cet ordre, même en arabe. */
+    <bdo dir="ltr">
       {part >= 0 ? "+" : "−"}
       <Compteur
         valeur={Math.abs(part) * 100}
@@ -24,7 +33,7 @@ function Grand({ part, langue }: { part: number; langue: Langue }) {
         decimales={Number.isInteger(Math.round(part * 1000) / 10) ? 0 : 1}
       />
       <small>%</small>
-    </>
+    </bdo>
   );
 }
 
@@ -72,7 +81,7 @@ export function MarcheSection() {
                 className={ville === marrakech ? "is-ici" : undefined}
                 style={{ "--part": ville.evolution / plusForte, "--i": i } as React.CSSProperties}
               >
-                <span>{ville.ville}</span>
+                <span>{(langue === "ar" && VILLES_AR[ville.ville]) || ville.ville}</span>
                 <span className="mc-barre" aria-hidden="true" />
                 <b>{formatEvolution(ville.evolution, langue)}</b>
               </li>

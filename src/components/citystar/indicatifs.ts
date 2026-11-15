@@ -1,4 +1,4 @@
-import { LOCALE, type Langue } from "@/config/citystar";
+import { LOCALE, gaucheADroite, type Langue } from "@/config/citystar";
 
 /**
  * Indicatifs téléphoniques du formulaire de rappel, par code pays ISO. Les noms des pays
@@ -288,7 +288,8 @@ export function listeIndicatifs(langue: Langue) {
   const noms = new Intl.DisplayNames([LOCALE[langue]], { type: "region" });
   const option = (pays: string): Indicatif => ({
     pays,
-    libelle: `${drapeau(pays)} +${INDICATIFS[pays]} · ${noms.of(pays) ?? pays}`,
+    /* En arabe, l'indicatif reste lu de gauche à droite (« +212 », pas « 212+ »). */
+    libelle: `${drapeau(pays)} ${gaucheADroite(`+${INDICATIFS[pays]}`, langue)} · ${noms.of(pays) ?? pays}`,
   });
   const triees = (pays: string[]) =>
     pays
@@ -343,6 +344,7 @@ const PAR_LANGUE: Record<Langue, string> = {
   it: "IT",
   nl: "NL",
   no: "NO",
+  ar: "MA",
 };
 
 /**

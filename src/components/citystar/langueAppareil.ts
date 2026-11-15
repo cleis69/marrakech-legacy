@@ -3,16 +3,18 @@
  * la page remplie. Seule exception : un visiteur resté sur la version française par défaut, dont
  * l'appareil est en espagnol, italien, néerlandais ou norvégien, la reçoit dans sa langue.
  * L'anglais ne compte pas : beaucoup de francophones ont un téléphone en anglais.
+ *
+ * L'arabe n'a pas encore de séquence e-mail ni de choix « ar » dans HubSpot : voir `langueSuivi`.
  */
 
-import type { Langue } from "@/config/citystar";
+import { LANGUES, type Langue } from "@/config/citystar";
 
 const CLE = "citystar-langue-choisie";
 /** Choix fait dans le sélecteur, gardé d'une visite à l'autre : la langue du téléphone ne l'emporte plus. */
 const CLE_MANUELLE = "citystar-langue-manuelle";
 /** La bascule vers la langue du téléphone n'a lieu qu'une fois par visite. */
 const CLE_AUTO = "citystar-langue-auto";
-const LANGUES_APPAREIL: readonly Langue[] = ["es", "it", "nl", "no"];
+const LANGUES_APPAREIL: readonly LangueSuivi[] = ["es", "it", "nl", "no"];
 
 /** Le visiteur a choisi une langue dans le sélecteur : la page affichée n'est plus un défaut. */
 export function retenirChoixLangue() {
@@ -42,7 +44,8 @@ export function langueSequence(
   langue: Langue,
   appareil: readonly string[],
   choisie = langueChoisie(),
-): Langue {
+): LangueSuivi {
+  if (langue === "ar") return langueSuivi(appareil);
   if (langue !== "fr" || choisie) return langue;
   const code = (appareil[0] ?? "").toLowerCase().split("-")[0];
   // Le norvégien de l'appareil s'écrit nb (bokmål) ou nn (nynorsk).
@@ -54,17 +57,32 @@ export function langueSequence(
 function versLangueSite(code: string): Langue | null {
   const base = code.toLowerCase().split("-")[0] ?? "";
   const norvegien = base === "nb" || base === "nn" ? "no" : base;
-  const langues: readonly Langue[] = ["fr", "en", "es", "it", "nl", "no"];
-  return langues.find((candidate) => candidate === norvegien) ?? null;
+  return LANGUES.find((candidate) => candidate === norvegien) ?? null;
+}
+
+/** Langues que HubSpot (`citystar_langue`, six choix) et les séquences e-mail Brevo connaissent. */
+export type LangueSuivi = Exclude<Langue, "ar">;
+
+/**
+ * Langue de suivi d'un visiteur de la version arabe (e-mails, propriété HubSpot `citystar_langue`).
+ * HubSpot refuserait la valeur « ar » et le contact ne serait pas créé. En attendant un choix
+ * « arabe » dans HubSpot et une séquence arabe dans Brevo, le contact reçoit la deuxième langue
+ * de son téléphone si le site la propose (« arabe, anglais » → anglais), sinon le français.
+ * Le message de la demande dit que la page était en arabe (voir demande.ts).
+ */
+export function langueSuivi(appareil: readonly string[]): LangueSuivi {
+  const autre = appareil
+    .map(versLangueSite)
+    .find((langue): langue is LangueSuivi => langue !== null && langue !== "ar");
+  return autre ?? "fr";
 }
 
 const ROBOT = /bot|crawl|spider|slurp|google|lighthouse|headless|preview|facebookexternalhit/i;
 
 /**
  * Langue vers laquelle basculer la page à l'arrivée (15/11/2026, demande de l'utilisateur : chaque
- * visiteur dans la langue de son téléphone). La première langue de l'appareil que le site propose ;
- * l'arabe n'existe pas encore sur le site, il est donc passé (un téléphone « arabe, français » va
- * en français). Jamais pour les robots (référencement, vérification des annonces), jamais après un
+ * visiteur dans la langue de son téléphone). La première langue de l'appareil que le site propose,
+ * arabe compris depuis le 15/11/2026 (un téléphone « arabe, français » va en arabe). Jamais pour les robots (référencement, vérification des annonces), jamais après un
  * choix dans le sélecteur, une seule fois par visite. Rend null si la page est déjà la bonne.
  */
 export function langueABasculer(langue: Langue): Langue | null {

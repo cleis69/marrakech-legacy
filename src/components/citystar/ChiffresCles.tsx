@@ -1,4 +1,4 @@
-import { programme, villasChiffres } from "@/config/citystar";
+import { programme, uniteMinutes, villasChiffres } from "@/config/citystar";
 
 import { Compteur } from "./Compteur";
 import { useDevise } from "./currency";
@@ -16,7 +16,7 @@ export function ChiffresCles() {
     { libelle: t.projet.faits.villas, valeur: programme.nombreVillas, unite: "" },
     { libelle: t.projet.faits.terrain, valeur: programme.terrainMaxM2, unite: "m²" },
     { libelle: t.projet.faits.surface, valeur: surfaceMax, unite: "m²" },
-    { libelle: t.projet.faits.trajet, valeur: programme.trajetMaxMinutes, unite: "min" },
+    { libelle: t.projet.faits.trajet, valeur: programme.trajetMaxMinutes, unite: uniteMinutes(langue) },
   ];
 
   return (

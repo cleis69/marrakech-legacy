@@ -36,7 +36,8 @@ export async function envoyerDemande(d: Demande) {
       { name: "lastname", value: reste.join(" ") },
       { name: "email", value: d.email.trim() },
       { name: "phone", value: d.telephone },
-      { name: "message", value: d.message },
+      /* Page arabe : HubSpot n'a pas de choix « arabe », le commercial le lit en tête du message. */
+      { name: "message", value: d.langue === "ar" ? `Page en arabe. ${d.message}`.trim() : d.message },
       { name: "hs_language", value: sequence },
       { name: "citystar_langue", value: sequence },
       { name: "citystar_langue_appareil", value: appareil.join(", ") },

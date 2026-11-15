@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { X } from "lucide-react";
 
-import { contact } from "@/config/citystar";
+import { contact, gaucheADroite } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
@@ -16,7 +16,7 @@ export function ContactPanel({
   onClose: () => void;
   selection?: Selection | null;
 }) {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const ref = useModal<HTMLElement>(onClose);
   return (
     <motion.aside
@@ -44,7 +44,7 @@ export function ContactPanel({
         {/* Le même formulaire en six étapes que la page d'atterrissage (15/11/2026). */}
         <FormulaireEtapes id="panneau-demande" classe="" selection={selection ?? null} />
         <div className="direct-contact">
-          <a href={`tel:${contact.telephone}`}>{contact.telephoneAffiche}</a>
+          <a href={`tel:${contact.telephone}`}>{gaucheADroite(contact.telephoneAffiche, langue)}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
       </div>

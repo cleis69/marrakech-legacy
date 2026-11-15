@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 /** Base et pré-rendu pour une publication statique (GitHub Pages) : `PAGES=/chemin/ bun run build`. */
 const basePages = process.env["PAGES"];
 
-/* Chaque page est listée explicitement, dans les six langues : l’exploration automatique suivrait aussi les PDF. */
+/* Chaque page est listée explicitement, dans les sept langues : l’exploration automatique suivrait aussi les PDF. */
 const pages = [
   { path: "/" },
   { path: "/villas" },
@@ -102,6 +102,21 @@ const pages = [
   { path: "/no/villas/a" },
   { path: "/no/villas/b" },
   { path: "/no/villas/c" },
+  { path: "/ar" },
+  { path: "/ar/villas" },
+  { path: "/ar/galerie" },
+  { path: "/ar/investir" },
+  { path: "/ar/faq" },
+  { path: "/ar/contact" },
+  { path: "/ar/luxury-villa-marrakech" },
+  { path: "/ar/owner-area" },
+  { path: "/ar/information-pack" },
+  { path: "/ar/privacy" },
+  { path: "/ar/legal-notice" },
+  { path: "/ar/thank-you" },
+  { path: "/ar/villas/a" },
+  { path: "/ar/villas/b" },
+  { path: "/ar/villas/c" },
 ];
 
 export default defineConfig({

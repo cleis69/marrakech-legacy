@@ -14,7 +14,7 @@ import { useRef } from "react";
 import revLogo from "@/assets/credits/rev.svg";
 import ultravisionLogo from "@/assets/credits/ultravision.svg";
 
-import { contact } from "@/config/citystar";
+import { contact, gaucheADroite } from "@/config/citystar";
 
 import { useRouterState } from "@tanstack/react-router";
 
@@ -39,7 +39,7 @@ export function SiteFooter() {
       href: `tel:${contact.telephone}`,
       icon: Phone,
       kicker: t.pied.appeler,
-      value: contact.telephoneAffiche,
+      value: gaucheADroite(contact.telephoneAffiche, langue),
       external: false,
     },
     {

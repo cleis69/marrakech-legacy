@@ -1,10 +1,10 @@
 /**
- * Politique de confidentialité, dans les six langues. Les formulaires de pub (Meta, Google,
+ * Politique de confidentialité, dans les sept langues. Les formulaires de pub (Meta, Google,
  * LinkedIn, Snapchat) renvoient vers cette page : elle décrit ce que le site et ces formulaires
  * collectent réellement. Toute nouvelle collecte (outil de mesure, champ, prestataire) doit y
  * être ajoutée.
  */
-import { contact, type Langue } from "@/config/citystar";
+import { contact, gaucheADroite, type Langue } from "@/config/citystar";
 
 /** Un paragraphe, ou une liste à puces. */
 type Bloc = string | readonly string[];
@@ -29,6 +29,12 @@ const societe = "Central Property Investment SARL AU";
 const siege =
   "Av. Abdelkrim El Khattabi, Résidence Jawad 109, 3e étage, appt 43, Guéliz, Marrakech";
 const rc = "150941";
+
+/**
+ * Dans un texte arabe (droite à gauche), un numéro écrit avec des espaces s'afficherait groupe par
+ * groupe à l'envers : les marques d'isolement de la config le gardent de gauche à droite.
+ */
+const GAUCHE_A_DROITE = (texte: string) => gaucheADroite(texte, "ar");
 
 export const confidentialite: Record<Langue, TexteConfidentialite> = {
   fr: {
@@ -477,6 +483,81 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
         blocs: [
           `Du kan når som helst se opplysningene dine, få dem rettet eller slettet, og protestere mot bruken av dem, ved å skrive til ${email}. Vi svarer innen én måned.`,
           "Disse rettighetene er sikret av marokkansk lov nr. 09-08 og, hvis du bor i EU/EØS, av personvernforordningen (GDPR). Du kan også klage til CNDP (cndp.ma) eller til datatilsynet i landet ditt.",
+        ],
+      },
+    ],
+  },
+  ar: {
+    titre: "سياسة الخصوصية — CITYSTAR مراكش",
+    description:
+      "البيانات التي يجمعها CITYSTAR عندما تطلبون معاودة الاتصال بكم، وما يفعله بها، ومدة الاحتفاظ بها، وكيفية ممارسة حقوقكم.",
+    kicker: "سياسة الخصوصية",
+    titreH1: ["بياناتكم،", "وما نفعله بها"],
+    intro:
+      "ما نجمعه عندما تراسلوننا أو تملؤون استمارة، ولماذا، وكيف يمكنكم الاطلاع عليه أو تصحيحه أو طلب حذفه.",
+    lien: "سياسة الخصوصية",
+    miseAJour: "آخر تحديث: 15 نوفمبر 2026.",
+    sections: [
+      {
+        titre: "من يعالج بياناتكم",
+        blocs: [
+          `${societe}، الشركة التي تحمل برنامج CITYSTAR (السجل التجاري بمراكش ${rc}، المقر الاجتماعي: ${siege}). يقع المجمّع في ${adresse}، المغرب. لأي سؤال حول بياناتكم: ${email} أو ${GAUCHE_A_DROITE(telephoneAffiche)}.`,
+        ],
+      },
+      {
+        titre: "ما الذي نجمعه",
+        blocs: [
+          "عندما تطلبون معاودة الاتصال بكم عبر هذا الموقع، أو تجيبون عن إحدى استماراتنا الإعلانية (Facebook، Instagram، Google، LinkedIn، Snapchat):",
+          [
+            "اسمكم وعنوان بريدكم الإلكتروني ورقم هاتفكم؛",
+            "إجاباتكم الاختيارية: الفيلا التي تهمّكم، نوع المشروع، أفق الشراء، الميزانية، طريقة التمويل، الرسالة؛",
+            "لغة الصفحة ولغة جهازكم، لنراسلكم بلغتكم؛",
+            "مصدر زيارتكم (الإعلان أو الرابط الذي اتبعتموه)، وصفحة الإرسال، وعنوان IP الخاص بكم.",
+          ],
+          "إذا أصبحتم مالكين، تستخدم بوابة المالك عنوان بريدكم الإلكتروني لترسل إليكم رابط تسجيل الدخول، وتعرض معلومات ملف الشراء الخاص بكم.",
+          "يستخدم الموقع وسم Google Ads لمعرفة الإعلانات التي تجلب الطلبات: قد تضع Google ملف تعريف ارتباط إعلانيا في متصفحكم، إلا إذا كنتم تزورون الموقع من المنطقة الاقتصادية الأوروبية أو المملكة المتحدة أو سويسرا. ويستخدم كذلك Microsoft Clarity لمعرفة طريقة تصفّح الصفحات (النقرات، التمرير)، دون تسجيل ما تكتبونه في الاستمارات؛ ومن المنطقة الاقتصادية الأوروبية أو المملكة المتحدة أو سويسرا، لا يضع Clarity أي ملف تعريف ارتباط. ويحتفظ أيضا، في متصفحكم، بمصدر الزيارة وباللغة المختارة طوال مدة الزيارة، وكذلك بأسعار الصرف المعروضة.",
+        ],
+      },
+      {
+        titre: "لماذا",
+        blocs: [
+          [
+            "معاودة الاتصال بكم والرد على طلبكم؛",
+            "إرسال سلسلة قصيرة من الرسائل الإلكترونية إليكم، بلغتكم، حول المجمّع وتقدّم المشروع؛",
+            "متابعة مشروع الشراء الخاص بكم والتحضير، إن رغبتم، لحجز إحدى القطع؛",
+            "معرفة الإعلانات التي تجلب لنا الطلبات.",
+          ],
+          "تستند هذه المعالجات إلى موافقتكم، التي تمنحونها بإرسال الاستمارة، وإلى الإجراءات التي تطلبونها منا قبل أي شراء محتمل. تتضمن كل رسالة إلكترونية رابطا لإلغاء الاشتراك.",
+        ],
+      },
+      {
+        titre: "من يطّلع عليها",
+        blocs: [
+          "فريق CITYSTAR التجاري، ومزوّدو الخدمات الذين يوفرون لنا أدواتنا، لهذه الخدمة حصرا:",
+          [
+            "HubSpot، لإدارة الطلبات وجهات الاتصال؛",
+            "Brevo، لإرسال الرسائل الإلكترونية؛",
+            "Cloudflare، لاستضافة الموقع ونقل الطلبات؛",
+            "Google Workspace، لبريدنا الإلكتروني؛",
+            "Supabase، لبوابة المالك؛",
+            "Google Ads، لقياس إعلاناتنا؛",
+            "Microsoft Clarity، لفهم طريقة استخدام الموقع.",
+          ],
+          "إذا أجبتم عن استمارة إعلانية، فإن المنصة المعنية (Meta أو Google أو LinkedIn أو Snapchat) تعالج هي أيضا إجاباتكم وفق سياستها الخاصة. نحن لا نبيع بياناتكم ولا نؤجرها.",
+          "يحتفظ بعض هؤلاء المزوّدين بالبيانات خارج المغرب، في الاتحاد الأوروبي أو في الولايات المتحدة.",
+        ],
+      },
+      {
+        titre: "مدة الاحتفاظ",
+        blocs: [
+          "تحفظ بيانات الطلب ثلاث سنوات بعد آخر تواصل بيننا، ثم تحذف. أما بيانات المشتري فتحفظ طوال مدة البيع والالتزامات القانونية التي تليه.",
+        ],
+      },
+      {
+        titre: "حقوقكم",
+        blocs: [
+          `يمكنكم في أي وقت الاطلاع على بياناتكم، وطلب تصحيحها أو حذفها، والاعتراض على استخدامها، بمراسلتنا على ${email}. نجيب في غضون شهر واحد.`,
+          "هذه الحقوق مكفولة لكم بموجب القانون المغربي رقم \u206609-08\u2069، وبموجب اللائحة العامة لحماية البيانات (RGPD) إذا كنتم تقيمون في الاتحاد الأوروبي. يمكنكم أيضا تقديم شكوى إلى اللجنة الوطنية لمراقبة حماية المعطيات ذات الطابع الشخصي (CNDP، cndp.ma) أو إلى هيئة حماية البيانات في بلدكم.",
         ],
       },
     ],

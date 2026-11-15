@@ -1,11 +1,11 @@
 /**
- * Mentions légales, dans les six langues. Meta et Google les demandent pour diffuser des
+ * Mentions légales, dans les sept langues. Meta et Google les demandent pour diffuser des
  * annonces. Identité de la société : extrait du registre du commerce et bulletin
  * d'identification fiscale (Drive CITYSTAR > Administratif).
  */
-import { contact, type Langue } from "@/config/citystar";
+import { contact, gaucheADroite, type Langue } from "@/config/citystar";
 
-import type { TexteConfidentialite } from "./confidentialite";
+import { type TexteConfidentialite } from "./confidentialite";
 
 const { email, telephoneAffiche } = contact;
 
@@ -400,6 +400,73 @@ export const mentions: Record<Langue, TexteConfidentialite> = {
         titre: "Gjeldende lov",
         blocs: [
           "Dette nettstedet er underlagt marokkansk lov. Eventuelle tvister hører inn under de kompetente domstolene i Marrakech.",
+        ],
+      },
+    ],
+  },
+  ar: {
+    titre: "إشعار قانوني — CITYSTAR مراكش",
+    description:
+      "ناشر موقع CITYSTAR، الشركة، السجل التجاري، ICE، مستضيف الموقع، الملكية الفكرية والقانون المطبّق.",
+    kicker: "إشعار قانوني",
+    titreH1: ["إشعار", "قانوني"],
+    intro: "من ينشر هذا الموقع، ومن يستضيفه، وما الذي ينظّم محتواه.",
+    lien: "إشعار قانوني",
+    miseAJour: "آخر تحديث: 3 نوفمبر 2026.",
+    sections: [
+      {
+        titre: "ناشر الموقع",
+        blocs: [
+          `ينشر هذا الموقع ${societe}، شركة ذات مسؤولية محدودة بشريك وحيد رأسمالها 100 000 درهم، وهي التي تحمل برنامج CITYSTAR.`,
+          [
+            `المقر الاجتماعي: ${siege}`,
+            `السجل التجاري: مراكش ${rc}`,
+            `التعريف الموحد للمقاولة (ICE): ${ice}`,
+            `التعريف الضريبي: ${identifiantFiscal}`,
+            `الضريبة المهنية: ${taxeProfessionnelle}`,
+            `الهاتف: ${gaucheADroite(telephoneAffiche, "ar")}`,
+            `البريد الإلكتروني: ${email}`,
+          ],
+        ],
+      },
+      {
+        titre: "مدير النشر",
+        blocs: [`${gerant}، المسيّر.`],
+      },
+      {
+        titre: "الاستضافة",
+        blocs: [
+          "Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107، الولايات المتحدة (cloudflare.com)",
+        ],
+      },
+      {
+        titre: "التصميم والإنجاز",
+        /* La marque finale (U+200E) garde le point à droite du nom, écrit en lettres latines. */
+        blocs: ["Ultravision (ultravisionagency.com).‎"],
+      },
+      {
+        titre: "معلومات عن البرنامج",
+        blocs: [
+          "المناظر ثلاثية الأبعاد والصور والمخططات المعروضة صور توضيحية غير تعاقدية. المساحات والتجهيزات والأسعار والتواريخ مقدّمة على سبيل الإرشاد وقد تتغير. وحدها العقود الموقّعة لدى الموثّق تلزم الشركة.",
+          "تقدّم أدوات المحاكاة تقديرات إرشادية. وهي لا تشكّل عرض قرض ولا استشارة مالية أو ضريبية.",
+        ],
+      },
+      {
+        titre: "الملكية الفكرية",
+        blocs: [
+          "النصوص والصور ومقاطع الفيديو والمخططات والشعارات الواردة في هذا الموقع ملك للشركة أو لأصحابها. يمنع أي نسخ لها، ولو جزئيا، دون إذن كتابي.",
+        ],
+      },
+      {
+        titre: "البيانات الشخصية",
+        blocs: [
+          "تعالج البيانات المجموعة عبر هذا الموقع وفقا للقانون رقم \u206609-08\u2069. التفاصيل واردة في سياسة الخصوصية الخاصة بنا، المتاحة في أسفل الصفحة.",
+        ],
+      },
+      {
+        titre: "القانون المطبّق",
+        blocs: [
+          "يخضع هذا الموقع للقانون المغربي. ويعود النظر في أي نزاع إلى المحاكم المختصة بمراكش.",
         ],
       },
     ],

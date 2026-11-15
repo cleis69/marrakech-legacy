@@ -7,6 +7,7 @@ import {
   bornesBudget,
   convertirEUR,
   formatNombre,
+  gaucheADroite,
   formatPrix,
   formatSurface,
   prixPublics,
@@ -51,9 +52,11 @@ function Delta({
   noun?: string;
   argent?: boolean;
 }) {
+  const { langue } = useDevise();
   if (!value) return null;
   const size = Math.abs(value);
-  const texte = `${value > 0 ? "+" : "−"}${argent ? formatNombre(size) : size}${unit ? ` ${unit}` : ""}${noun ? ` ${noun}${size > 1 ? "s" : ""}` : ""}`;
+  /* En arabe, l'écart reste lu de gauche à droite : « −19 m² », pas « m² 19− ». */
+  const texte = gaucheADroite(`${value > 0 ? "+" : "−"}${argent ? formatNombre(size) : size}${unit ? ` ${unit}` : ""}${noun ? ` ${noun}${size > 1 ? "s" : ""}` : ""}`, langue);
   return <span className={`cp-delta${value > 0 ? " is-up" : ""}`}>{texte}</span>;
 }
 

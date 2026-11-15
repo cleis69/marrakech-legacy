@@ -40,7 +40,7 @@
 
 /* Fiche de la villa choisie */
 .va-fiche { position: absolute; z-index: 5; left: 14px; bottom: 14px; display: grid; gap: .9rem; justify-items: start; width: min(23rem, calc(100% - 28px)); padding: 1.4rem 1.5rem 1.5rem; border-radius: 20px; background: color-mix(in oklab, var(--cream) 96%, transparent); color: var(--ink); box-shadow: 0 14px 44px color-mix(in oklab, var(--ink) 34%, transparent); backdrop-filter: blur(10px); cursor: default; }
-.va-fiche-tete { display: flex; align-items: center; gap: 1rem; padding-right: 2.4rem; }
+.va-fiche-tete { display: flex; align-items: center; gap: 1rem; padding-inline-end: 2.4rem; }
 .va-fiche-tete img { flex: none; width: 4.6rem; height: 4.6rem; object-fit: cover; border-radius: 14px; }
 .va-fiche small { display: block; margin-bottom: .35rem; font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--bronze-text); }
 .va-fiche h3 { margin: 0; font: 400 1.75rem/1.05 "Italiana", serif; text-wrap: balance; }
@@ -50,7 +50,7 @@
 .va-fiche dd { margin: 0; font: 400 1.15rem/1.2 "Italiana", serif; }
 .va-fiche .pill { margin-top: .3rem; }
 .va-fiche.is-droite { left: auto; right: 14px; }
-.va-fiche-fermer { position: absolute; right: 10px; top: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer; transition: background .25s; }
+.va-fiche-fermer { position: absolute; inset-inline-end: 10px; top: 10px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: none; color: var(--ink); cursor: pointer; transition: background .25s; }
 .va-fiche-fermer svg { width: 1.1rem; height: 1.1rem; }
 @media (hover: hover) and (pointer: fine) { .va-fiche-fermer:hover { background: color-mix(in oklab, var(--ink) 8%, transparent); } }
 

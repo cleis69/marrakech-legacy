@@ -1,10 +1,10 @@
 /**
- * Adresses du site dans les six langues, sans dépendance au routeur : le site
+ * Adresses du site dans les sept langues, sans dépendance au routeur : le site
  * les utilise, et les scripts hors navigateur aussi (e-mails).
  */
 import { LANGUES, type Langue } from "@/config/citystar";
 
-/** Préfixe d'adresse d'une langue : rien pour le français, /en, /es, /it, /nl, /no pour les autres. */
+/** Préfixe d'adresse d'une langue : rien pour le français, /en, /es, /it, /nl, /no, /ar pour les autres. */
 export const prefixe = (langue: Langue) => (langue === "fr" ? "" : `/${langue}`);
 
 /** Chemin d'une page dans une langue : « villas » → /villas, /en/villas, /es/villas… */
@@ -14,7 +14,10 @@ export function chemin(langue: Langue, sous = "") {
   return `${base}/${sous}`;
 }
 
-/** Les pages dont l'adresse se traduit, rangées sous leur nom français. */
+/**
+ * Les pages dont l'adresse se traduit, rangées sous leur nom français. L'arabe reprend les
+ * adresses anglaises : des lettres latines, lisibles par tous, sous /ar.
+ */
 const SLUGS: Record<string, Record<Langue, string>> = {
   "villa-de-luxe-marrakech": {
     fr: "villa-de-luxe-marrakech",
@@ -23,6 +26,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "villa-di-lusso-marrakech",
     nl: "luxe-villa-marrakech",
     no: "luksusvilla-marrakech",
+    ar: "luxury-villa-marrakech",
   },
   dossier: {
     fr: "dossier",
@@ -31,6 +35,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "dossier",
     nl: "informatiepakket",
     no: "salgsoppgave",
+    ar: "information-pack",
   },
   merci: {
     fr: "merci",
@@ -39,6 +44,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "grazie",
     nl: "bedankt",
     no: "takk",
+    ar: "thank-you",
   },
   confidentialite: {
     fr: "confidentialite",
@@ -47,6 +53,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "privacy",
     nl: "privacy",
     no: "personvern",
+    ar: "privacy",
   },
   "mentions-legales": {
     fr: "mentions-legales",
@@ -55,6 +62,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "note-legali",
     nl: "juridische-informatie",
     no: "juridisk-informasjon",
+    ar: "legal-notice",
   },
   "mon-espace": {
     fr: "mon-espace",
@@ -63,6 +71,7 @@ const SLUGS: Record<string, Record<Langue, string>> = {
     it: "area-proprietari",
     nl: "eigenaarsportaal",
     no: "eierportal",
+    ar: "owner-area",
   },
 };
 

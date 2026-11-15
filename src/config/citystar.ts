@@ -10,8 +10,8 @@
  */
 
 export type Devise = "EUR" | "GBP" | "MAD" | "NOK";
-/** Langues du site : le français à la racine, les autres sous /en, /es, /it, /nl, /no. */
-export const LANGUES = ["fr", "en", "es", "it", "nl", "no"] as const;
+/** Langues du site : le français à la racine, les autres sous /en, /es, /it, /nl, /no, /ar. */
+export const LANGUES = ["fr", "en", "es", "it", "nl", "no", "ar"] as const;
 export type Langue = (typeof LANGUES)[number];
 export type TypeVilla = "A" | "B" | "C";
 
@@ -79,6 +79,8 @@ export const devises = {
     it: "EUR",
     nl: "EUR",
     no: "NOK",
+    // Arabe : le prix fait foi en euros, comme en français.
+    ar: "EUR",
   } as Record<Langue, Devise>,
   affichees: ["EUR", "GBP", "MAD", "NOK"] as Devise[],
   // Contre-valeurs calculées : arrondi à la dizaine de milliers inférieure.
@@ -327,22 +329,45 @@ export const LOCALE: Record<Langue, string> = {
   it: "it-IT",
   nl: "nl-NL",
   no: "nb-NO",
+  ar: "ar",
 };
+
+/**
+ * Chiffres : l'arabe garde les chiffres occidentaux et la présentation française (« 950 000 »,
+ * « 8,4 »), pour que les prix se lisent comme partout ailleurs sur le site et qu'ils soient
+ * identiques au pré-rendu et dans le navigateur (la locale « ar » varie d'un moteur à l'autre).
+ */
+export const LOCALE_CHIFFRES: Record<Langue, string> = { ...LOCALE, ar: "fr-FR" };
+
+/** Abréviation des minutes à côté d'un chiffre : « 19 min », « 19 د » en arabe (دقيقة). */
+export const uniteMinutes = (langue: Langue) => (langue === "ar" ? "د" : "min");
+
+/** Écriture de droite à gauche : l'arabe seulement. */
+export const estRtl = (langue: Langue) => langue === "ar";
+
+/**
+ * Montant, surface ou pourcentage posé dans une phrase arabe : entouré de marques d'isolement
+ * (U+2066 … U+2069) pour rester lu de gauche à droite, « 950 000 € » et non « € 950 000 », et
+ * d'espaces insécables pour ne pas être coupé en fin de ligne. Sans effet dans les autres langues.
+ */
+export function gaucheADroite(texte: string, langue: Langue) {
+  return estRtl(langue) ? `\u2066${texte.replace(/ /g, "\u00a0")}\u2069` : texte;
+}
 
 /** 2000 → « 2 000 » (fr) ou « 2,000 » (en), sans espace fine insécable. */
 /** 8.4 → « 8,4 » (fr) ou « 8.4 » (en) : une décimale au plus. */
 export function formatDecimal(valeur: number, langue: Langue = "fr") {
-  return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 1 }).format(valeur);
+  return new Intl.NumberFormat(LOCALE_CHIFFRES[langue], { maximumFractionDigits: 1 }).format(valeur);
 }
 
 export function formatNombre(valeur: number, langue: Langue = "fr") {
-  return new Intl.NumberFormat(LOCALE[langue], { maximumFractionDigits: 0 })
+  return new Intl.NumberFormat(LOCALE_CHIFFRES[langue], { maximumFractionDigits: 0 })
     .format(valeur)
     .replace(/\u202f/g, "\u00a0");
 }
 
 export function formatSurface(m2: number, langue: Langue = "fr") {
-  return `${formatNombre(m2, langue)} m²`;
+  return gaucheADroite(`${formatNombre(m2, langue)} m²`, langue);
 }
 
 /* ------------------------------------------------------------------ */
@@ -412,7 +437,7 @@ export function formatPrix(montant: number, devise: Devise, langue: Langue = "fr
   const nombre = formatNombre(montant, langue);
   if (langue === "en" && (devise === "EUR" || devise === "GBP"))
     return `${symbolesDevise[devise]}${nombre}`;
-  return `${nombre} ${symbolesDevise[devise]}`;
+  return gaucheADroite(`${nombre} ${symbolesDevise[devise]}`, langue);
 }
 
 /** Montant en euros converti dans la devise demandée, pour un repère (pas un prix de villa). */
@@ -426,7 +451,7 @@ export function convertirEUR(
 
 /** 1200000 → « 1,2 M € » ; 857400 → « 857 k £ ». */
 export function formatMontantCourt(montant: number, devise: Devise, langue: Langue = "fr") {
-  const nombre = new Intl.NumberFormat(LOCALE[langue], {
+  const nombre = new Intl.NumberFormat(LOCALE_CHIFFRES[langue], {
     notation: "compact",
     maximumSignificantDigits: 3,
   })
@@ -434,7 +459,7 @@ export function formatMontantCourt(montant: number, devise: Devise, langue: Lang
     .replace(/\u202f/g, "\u00a0");
   if (langue === "en" && (devise === "EUR" || devise === "GBP"))
     return `${symbolesDevise[devise]}${nombre}`;
-  return `${nombre} ${symbolesDevise[devise]}`;
+  return gaucheADroite(`${nombre} ${symbolesDevise[devise]}`, langue);
 }
 
 /** « 2026-09-16 » → « 16/09/2026 » (fr) ou « 16 Sep 2026 » (en). */
@@ -444,11 +469,28 @@ export function formatDate(iso: string, langue: Langue = "fr") {
     langue === "en"
       ? { day: "numeric", month: "short", year: "numeric" }
       : { day: "2-digit", month: "2-digit", year: "numeric" };
-  return new Intl.DateTimeFormat(LOCALE[langue], { ...options, timeZone: "UTC" }).format(date);
+  return new Intl.DateTimeFormat(LOCALE_CHIFFRES[langue], { ...options, timeZone: "UTC" }).format(date);
 }
+
+/** Mois en arabe standard, écrits ici : le nom rendu par le navigateur change d'un pays arabe à l'autre. */
+const MOIS_ARABES = [
+  "يناير",
+  "فبراير",
+  "مارس",
+  "أبريل",
+  "مايو",
+  "يونيو",
+  "يوليو",
+  "أغسطس",
+  "سبتمبر",
+  "أكتوبر",
+  "نوفمبر",
+  "ديسمبر",
+];
 
 /** Mois et année : « août 2027 » (fr) ou « August 2027 » (en), identiques au pré-rendu et dans le navigateur. */
 export function formatMois({ annee, mois }: Mois, langue: Langue = "fr") {
+  if (langue === "ar") return `${MOIS_ARABES[mois - 1]} ${annee}`;
   const date = new Date(Date.UTC(annee, mois - 1, 15));
   return new Intl.DateTimeFormat(LOCALE[langue], {
     month: "long",
@@ -459,19 +501,25 @@ export function formatMois({ annee, mois }: Mois, langue: Langue = "fr") {
 
 /** Évolution signée, à la typographie de chaque langue : 0,241 → « +24,1 % » (fr), « +24.1% » (en). */
 export function formatEvolution(part: number, langue: Langue = "fr") {
-  return new Intl.NumberFormat(LOCALE[langue], {
-    style: "percent",
-    maximumFractionDigits: 1,
-    signDisplay: "exceptZero",
-  }).format(part);
+  return gaucheADroite(
+    new Intl.NumberFormat(LOCALE_CHIFFRES[langue], {
+      style: "percent",
+      maximumFractionDigits: 1,
+      signDisplay: "exceptZero",
+    }).format(part),
+    langue,
+  );
 }
 
 /** Part entière, à la typographie de chaque langue : 1 → « 100 % » (fr), « 100% » (en). */
 export function formatPart(part: number, langue: Langue = "fr") {
-  return new Intl.NumberFormat(LOCALE[langue], {
-    style: "percent",
-    maximumFractionDigits: 0,
-  }).format(part);
+  return gaucheADroite(
+    new Intl.NumberFormat(LOCALE_CHIFFRES[langue], {
+      style: "percent",
+      maximumFractionDigits: 0,
+    }).format(part),
+    langue,
+  );
 }
 
 /** Mois entiers d'aujourd'hui jusqu'à une échéance (0 si elle est passée). */

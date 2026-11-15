@@ -1,6 +1,6 @@
 import type { Langue } from "@/config/citystar";
 
-/** Textes de l'espace propriétaire, dans les six langues du site. */
+/** Textes de l'espace propriétaire, dans les sept langues du site. */
 const fr = {
   connexion: {
     titre: "Connexion à mon espace",
@@ -448,4 +448,78 @@ const no: TextesEspace = {
   },
 };
 
-export const textesEspace: Record<Langue, TextesEspace> = { fr, en, es, it, nl, no };
+const ar: TextesEspace = {
+  connexion: {
+    titre: "تسجيل الدخول إلى حسابي",
+    texte:
+      "أدخلوا عنوان البريد الإلكتروني الذي قدّمتموه عند الحجز. ستتلقون رابطا لتسجيل الدخول، دون كلمة مرور.",
+    email: "عنوان البريد الإلكتروني",
+    envoyer: "استلام الرابط",
+    envoi: "يتم الإرسال…",
+    envoye: (email) => `تم إرسال رابط تسجيل الدخول إلى ${email}. افتحوه من هذا الجهاز.`,
+    autre: "استخدام عنوان آخر",
+    pasAcces: "لم تحصلوا على حق الدخول بعد؟",
+    demander: "طلب الدخول إلى حسابي",
+    erreurEnvoi: "تعذّر الإرسال. تحققوا من العنوان ثم أعيدوا المحاولة.",
+    erreurLimite: "طلبات كثيرة في وقت قصير. أعيدوا المحاولة بعد بضع دقائق.",
+    erreurLien: "انتهت صلاحية هذا الرابط أو سبق استخدامه. اطلبوا رابطا جديدا أدناه.",
+  },
+  chargement: "يتم تحميل حسابكم…",
+  erreur: "تعذّر تحميل حسابكم.",
+  reessayer: "إعادة المحاولة",
+  connecte: (email) => `تم تسجيل الدخول بالعنوان ${email}`,
+  deconnexion: "تسجيل الخروج",
+  promoteur: "بوابة المطوّر العقاري",
+  aucun: {
+    titre: "لا توجد بعد أي فيلا مرتبطة بهذا العنوان.",
+    texte:
+      "يربط مستشاركم فيلتكم بعنوان بريدكم الإلكتروني بعد الحجز. إن تم ذلك فعلا، راسلونا.",
+  },
+  villa: (numero) => `فيلا ${String(numero).padStart(2, "0")}`,
+  type: (type) => `النوع ${type}`,
+  choisir: "فللي",
+  avancement: "تقدّم الأشغال",
+  majLe: (date) => `آخر تحديث: ${date}`,
+  mot: "كلمة المطوّر العقاري",
+  etapes: {
+    titre: "مراحل أشغال البناء",
+    statuts: { a_venir: "قادمة", en_cours: "جارية", termine: "منتهية" },
+    prevue: (date) => `مقررة في ${date}`,
+    finie: (date) => `انتهت في ${date}`,
+  },
+  paiements: {
+    titre: "دفعاتي",
+    regle: "المدفوع",
+    reste: "المتبقي",
+    total: "سعر الفيلا",
+    paye: (date) => `تم الدفع في ${date}`,
+    echeance: (date) => `تستحق في ${date}`,
+    sansDate: "التاريخ يحدد لاحقا",
+    aRegler: "مستحقة الدفع",
+    aVenir: "قادمة",
+    vide: "سيظهر هنا جدول الدفعات الخاص بفيلتكم.",
+  },
+  photos: {
+    titre: "صور أشغال البناء",
+    domaine: "المجمّع",
+    vide: "ستصل هنا أولى صور أشغال البناء.",
+    agrandir: "تكبير الصورة",
+    fermer: "إغلاق",
+    precedente: "الصورة السابقة",
+    suivante: "الصورة التالية",
+  },
+  documents: {
+    titre: "وثائقي",
+    vide: "ستحفظ هنا عقودكم ومخططاتكم وطلبات الدفعات.",
+    ouvrir: "تنزيل",
+    categories: {
+      contrat: "عقد",
+      plan: "مخطط",
+      appel: "طلب دفعة",
+      recu: "إيصال",
+      autre: "وثيقة",
+    },
+  },
+};
+
+export const textesEspace: Record<Langue, TextesEspace> = { fr, en, es, it, nl, no, ar };

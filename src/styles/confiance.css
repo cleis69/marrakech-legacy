@@ -22,12 +22,12 @@
 .mc-chiffres div { display: grid; gap: .6rem; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
 .mc-chiffres dt { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
 .mc-chiffres dd { margin: 0; font: 400 clamp(3.6rem, 7vw, 6.2rem)/1 "Italiana", serif; }
-.mc-chiffres dd small { margin-left: .2em; font: 400 1.4rem "DM Sans", sans-serif; }
+.mc-chiffres dd small { margin-inline-start: .2em; font: 400 1.4rem "DM Sans", sans-serif; }
 .mc-villes { display: grid; gap: 1.6rem; margin: 0; padding-top: 1.4rem; border-top: 1px solid var(--bronze-line); }
 .mc-villes figcaption { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
 .mc-villes ul { display: grid; gap: 1.1rem; margin: 0; padding: 0; list-style: none; }
 .mc-villes li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr) 4.5rem; align-items: center; gap: 1.2rem; font-size: .95rem; }
-.mc-villes b { font-weight: 400; text-align: right; font-variant-numeric: tabular-nums; }
+.mc-villes b { font-weight: 400; text-align: end; font-variant-numeric: tabular-nums; }
 .mc-villes .is-ici { font-weight: 500; }
 .mc-villes .is-ici b { font-weight: 500; }
 .mc-source summary { width: fit-content; padding: .6rem 0; font-size: .78rem; letter-spacing: .08em; color: var(--bronze-text); cursor: pointer; }
@@ -41,7 +41,7 @@
 .circle-text p { max-width: 26rem; font-size: 1.02rem; line-height: 1.7; color: color-mix(in oklab, var(--ink) 72%, var(--sand)); }
 .circle-choix { margin: 0; padding: 0; list-style: none; border-top: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); }
 .circle-choix li { border-bottom: 1px solid color-mix(in oklab, var(--ink) 25%, transparent); }
-.circle-choix button { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; padding: 1.6rem .4rem; border: 0; background: none; color: inherit; text-align: left; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
+.circle-choix button { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; width: 100%; padding: 1.6rem .4rem; border: 0; background: none; color: inherit; text-align: start; transition: background .35s, padding .45s cubic-bezier(.22, 1, .36, 1); }
 .circle-choix button span { display: grid; gap: .35rem; }
 .circle-choix b { font: 400 clamp(1.6rem, 2.4vw, 2.2rem)/1.1 "Italiana", serif; }
 .circle-choix small { font-size: .9rem; color: color-mix(in oklab, var(--ink) 70%, var(--sand)); }

@@ -1,7 +1,7 @@
 import { Expand } from "lucide-react";
 import { useState } from "react";
 
-import { AFFICHER_PLAN_MASSE, programme } from "@/config/citystar";
+import { AFFICHER_PLAN_MASSE, programme, uniteMinutes } from "@/config/citystar";
 import masterplanImage from "@/assets/citystar/masterplan.webp";
 
 import { useDevise } from "./currency";
@@ -11,7 +11,7 @@ import { PillButton } from "./ui/PillButton";
 
 /** Les distances pilotent la carte : chaque destination trace son trajet depuis CITYSTAR. */
 export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => void }) {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const [selected, setSelected] = useState<Place | null>(null);
   const lieux = t.localisation.lieux;
   const places: {
@@ -70,7 +70,7 @@ export function LocationSection({ onOpenPlan }: { onOpenPlan: (src: string) => v
                 >
                   <span className={`loc-n${place.minutes === null ? " is-word" : ""}`}>
                     {place.minutes ?? place.word}
-                    {place.minutes !== null && <small>min</small>}
+                    {place.minutes !== null && <small>{uniteMinutes(langue)}</small>}
                   </span>
                   <span className="loc-l">
                     <b>{place.title}</b>

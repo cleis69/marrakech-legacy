@@ -27,7 +27,7 @@ const LienRoute = Link as unknown as React.ComponentType<Record<string, unknown>
 
 export function Lien({ vers, ariaLabel, ...reste }: Props) {
   /* L'accueil n'est « page courante » que sur lui-même, pas sur toutes les pages qu'il contient. */
-  const accueil = vers === "/" || vers === "/en";
+  const accueil = vers === "/" || vers === "/en" || vers === "/ar";
   return (
     <LienRoute
       to={vers}

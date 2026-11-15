@@ -1,7 +1,7 @@
 import { animate, useInView, useReducedMotion } from "motion/react";
 import { useEffect, useRef } from "react";
 
-import { type Langue, LOCALE } from "@/config/citystar";
+import { type Langue, LOCALE_CHIFFRES } from "@/config/citystar";
 
 /**
  * Chiffre qui défile de zéro à sa valeur quand il arrive à l'écran, une seule fois.
@@ -20,7 +20,7 @@ export function Compteur({
   const vu = useInView(ref, { once: true, margin: "0px 0px -12% 0px" });
   const reduce = useReducedMotion();
   const format = (n: number) =>
-    n.toLocaleString(LOCALE[langue], {
+    n.toLocaleString(LOCALE_CHIFFRES[langue], {
       minimumFractionDigits: decimales,
       maximumFractionDigits: decimales,
     });

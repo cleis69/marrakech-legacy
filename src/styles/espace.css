@@ -39,9 +39,9 @@
 .ec-chip { display: inline-block; padding: .45rem .9rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 10%, transparent); font-size: .78rem; letter-spacing: .06em; }
 .ec-av-tete h2 { margin-top: 1.2rem; font: 400 clamp(2.2rem, 4.4vw, 3.6rem)/1 "Italiana", serif; }
 .ec-maj { margin-top: .7rem; font-size: .84rem; color: var(--muted-dark); }
-.ec-av-chiffre { align-self: end; text-align: right; }
+.ec-av-chiffre { align-self: end; text-align: end; }
 .ec-pourcent { font: 400 clamp(4.4rem, 11vw, 8.5rem)/.9 "Italiana", serif; color: var(--sand); font-variant-numeric: tabular-nums; }
-.ec-pourcent span:last-child { margin-left: .06em; font-size: .42em; }
+.ec-pourcent span:last-child { margin-inline-start: .06em; font-size: .42em; }
 .ec-en-cours { margin-top: .6rem; font-size: .76rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-hi); }
 .ec-avancement .ec-jauge { grid-column: 1 / -1; }
 .ec-mot { grid-column: 1 / -1; padding: 1.2rem 1.4rem; border-radius: 18px; background: color-mix(in oklab, var(--cream) 7%, transparent); }
@@ -66,7 +66,7 @@
 
 /* Étapes : frise verticale */
 .ec-etapes { position: relative; display: grid; gap: 1.3rem; }
-.ec-etapes::before { content: ""; position: absolute; top: 10px; bottom: 10px; left: 6px; width: 1px; background: var(--bronze-line); opacity: .5; }
+.ec-etapes::before { content: ""; position: absolute; top: 10px; bottom: 10px; inset-inline-start: 6px; width: 1px; background: var(--bronze-line); opacity: .5; }
 .ec-etapes li { position: relative; display: grid; grid-template-columns: 13px 1fr; gap: 1rem; }
 .ec-point { width: 13px; height: 13px; margin-top: .3rem; border-radius: 50%; background: var(--cream); box-shadow: inset 0 0 0 1px var(--bronze-line); }
 [data-statut="termine"] .ec-point { background: var(--bronze); box-shadow: none; }
@@ -84,7 +84,7 @@
 .ec-paiements li { display: flex; justify-content: space-between; gap: 1rem; padding: .95rem 0; border-top: 1px solid var(--border); }
 .ec-paiement-nom { font-weight: 500; }
 .ec-paiement-date { margin-top: .2rem; font-size: .84rem; color: var(--muted-foreground); }
-.ec-paiement-droite { display: grid; justify-items: end; gap: .35rem; text-align: right; }
+.ec-paiement-droite { display: grid; justify-items: end; gap: .35rem; text-align: end; }
 .ec-montant { font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 /* Photos du chantier */
@@ -107,9 +107,9 @@
 .ec-vis-prec, .ec-vis-suiv, .ec-vis-fermer { position: absolute; display: grid; place-items: center; width: 2.8rem; height: 2.8rem; border: 0; border-radius: 50%; background: oklch(0.12 0.01 65 / 60%); color: var(--cream); cursor: pointer; backdrop-filter: blur(8px); transition: background .2s; }
 .ec-vis-prec:hover, .ec-vis-suiv:hover, .ec-vis-fermer:hover { background: var(--bronze-deep); }
 .ec-vis-prec svg, .ec-vis-suiv svg, .ec-vis-fermer svg { width: 1.2rem; height: 1.2rem; }
-.ec-vis-prec { top: 42%; left: 1rem; }
-.ec-vis-suiv { top: 42%; right: 1rem; }
-.ec-vis-fermer { top: 1rem; right: 1rem; }
+.ec-vis-prec { top: 42%; inset-inline-start: 1rem; }
+.ec-vis-suiv { top: 42%; inset-inline-end: 1rem; }
+.ec-vis-fermer { top: 1rem; inset-inline-end: 1rem; }
 
 /* Documents */
 .ec-docs li { display: grid; grid-template-columns: auto 1fr auto; gap: 1rem; align-items: center; padding: 1rem 0; border-top: 1px solid var(--border); }
@@ -125,7 +125,7 @@
 .ad .ec-barre { max-width: 1340px; }
 .ad-cadre { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 14px; align-items: start; max-width: 1340px; margin: 0 auto; }
 .ad-liste { position: sticky; top: 6.5rem; display: grid; gap: 4px; max-height: calc(100vh - 8rem); padding: 8px; overflow: auto; border-radius: 24px; background: var(--cream); box-shadow: inset 0 0 0 1px var(--border); }
-.ad-item { display: grid; grid-template-columns: 1fr auto; gap: .3rem .8rem; align-items: center; padding: .8rem 1rem; border: 0; border-radius: 16px; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; transition: background .2s, color .2s; }
+.ad-item { display: grid; grid-template-columns: 1fr auto; gap: .3rem .8rem; align-items: center; padding: .8rem 1rem; border: 0; border-radius: 16px; background: none; color: inherit; font: inherit; text-align: start; cursor: pointer; transition: background .2s, color .2s; }
 .ad-item:hover { background: var(--muted); }
 .ad-item[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
 .ad-item strong { font-weight: 500; }
@@ -200,7 +200,7 @@
 @media (max-width: 900px) {
   .ec-avancement { grid-template-columns: 1fr; border-radius: 22px; }
   .ec-sortir { padding-inline: .2rem; }
-  .ec-av-chiffre { text-align: left; }
+  .ec-av-chiffre { text-align: start; }
   .ec-grille { grid-template-columns: 1fr; }
   .ec-totaux dl { grid-template-columns: 1fr; gap: .6rem; }
   .ec-totaux dl > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }

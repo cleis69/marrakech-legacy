@@ -39,7 +39,10 @@ import it from "./textes/it";
 import nl from "./textes/nl";
 import no from "./textes/no";
 
-const COPIES: Record<Langue, Copie> = { fr, en, es, it, nl, no };
+/* Les séquences e-mail existent en six langues. L'arabe du site (ajouté le 15/11/2026) n'a pas
+   encore de séquence : ses contacts reçoivent celle d'une autre langue (voir langueSuivi). */
+const COPIES = { fr, en, es, it, nl, no } as Record<Langue, Copie>;
+const LANGUES_EMAILS = LANGUES.filter((langue) => COPIES[langue]);
 
 const SITE = process.env["SITE"] ?? "https://cleis69.github.io/marrakech-legacy";
 const IMAGES = process.env["IMAGES"] ?? `${SITE}/emails`;
@@ -747,7 +750,7 @@ const NOMS: Record<Sequence, string> = {
 
 let total = 0;
 const sommaires: string[] = [];
-for (const langue of LANGUES) {
+for (const langue of LANGUES_EMAILS) {
   const dossier = join(SORTIE, langue);
   mkdirSync(dossier, { recursive: true });
   const liste = emails(langue);
@@ -787,8 +790,8 @@ writeFileSync(
   a { color: ${C.bronzeTexte}; }
 </style></head><body><main>
 <h1>Séquences e-mail CITYSTAR</h1>
-<p>${total} modèles HubSpot : 15 e-mails × ${LANGUES.length} langues. L’objet et le texte d’aperçu sont à reporter dans HubSpot.</p>
-<nav>${LANGUES.map((l) => `<a href="#${l}">${l.toUpperCase()}</a>`).join("")}</nav>
+<p>${total} modèles HubSpot : 15 e-mails × ${LANGUES_EMAILS.length} langues. L’objet et le texte d’aperçu sont à reporter dans HubSpot.</p>
+<nav>${LANGUES_EMAILS.map((l) => `<a href="#${l}">${l.toUpperCase()}</a>`).join("")}</nav>
 ${sommaires.join("")}
 </main></body></html>`,
 );

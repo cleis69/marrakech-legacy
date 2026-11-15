@@ -1,6 +1,6 @@
 import { Mail, MessageCircle, Phone, PhoneCall } from "lucide-react";
 
-import { contact } from "@/config/citystar";
+import { contact, gaucheADroite } from "@/config/citystar";
 
 import { useDevise } from "../currency";
 import { LocationSection } from "../LocationSection";
@@ -11,7 +11,7 @@ import contactBanniere from "@/assets/citystar/rendus/ext-facade-crepuscule.webp
 import { DossierFormulaire } from "../dossier/sections";
 
 export function ContactPage() {
-  const { t } = useDevise();
+  const { langue, t } = useDevise();
   const { ouvrirContact, ouvrirPlan } = useSite();
 
   return (
@@ -32,7 +32,7 @@ export function ContactPage() {
             </i>
             <span>
               <small>{t.pied.appeler}</small>
-              <b>{contact.telephoneAffiche}</b>
+              <b>{gaucheADroite(contact.telephoneAffiche, langue)}</b>
             </span>
           </a>
           <a

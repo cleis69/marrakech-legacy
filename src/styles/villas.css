@@ -12,7 +12,7 @@
 .vd-photo { position: relative; display: block; overflow: hidden; border-radius: 18px; }
 .vd-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: var(--etalonnage); transition: transform 1.2s cubic-bezier(.22, 1, .36, 1); }
 .vd-carte:hover .vd-photo img { transform: scale(1.04); }
-.vd-tag { position: absolute; left: 12px; top: 12px; padding: .4rem .8rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .75rem; }
+.vd-tag { position: absolute; inset-inline-start: 12px; top: 12px; padding: .4rem .8rem; border-radius: 999px; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .75rem; }
 .vd-ligne { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0 .6rem; }
 .vd-ligne strong { font: 400 1.9rem/1 "Italiana", serif; }
 .vd-prix { font-size: .95rem; font-variant-numeric: tabular-nums; }
@@ -45,7 +45,7 @@
 .vf-panel h1 { font-size: clamp(2.6rem, 4vw, 4.2rem); }
 .vf-panel h1:focus { outline: none; }
 .vf-m2 { margin-top: -.4rem; font-size: .78rem; color: var(--muted-foreground); }
-.vf-badge { position: absolute; top: 0; right: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
+.vf-badge { position: absolute; top: 0; inset-inline-end: 0; padding: .45em .8em; background: color-mix(in oklab, var(--cream) 92%, transparent); color: var(--ink); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
 .vf-desc { max-width: 34rem; font-size: 1rem; line-height: 1.8; color: var(--muted-foreground); }
 .vf-specs { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 1px solid var(--border); }
 .vf-specs div { display: grid; gap: .45rem; padding: 1rem 0; border-bottom: 1px solid var(--border); }
@@ -86,7 +86,7 @@
   .vf-panel { order: 4; }
   .vf-pic-over { inset: 1rem 1.3rem; grid-template-rows: auto 1fr; }
   .vf-pic-title { display: none; }
-  .vf-badge { top: 0; right: 0; }
+  .vf-badge { top: 0; inset-inline-end: 0; }
   .vf-tabs nav a { width: 3rem; height: 3rem; font-size: 1.35rem; }
   .vf-specs dd { font-size: 1.3rem; }
   .vf-plans { gap: .6rem; }
@@ -100,4 +100,4 @@
 /* Cadrage des photos (paysage) dans les portes verticales */
 
 /* Page d'atterrissage : la porte est un bouton qui ramène au formulaire */
-button.vd-carte { width: 100%; border: 0; font: inherit; text-align: left; cursor: pointer; }
+button.vd-carte { width: 100%; border: 0; font: inherit; text-align: start; cursor: pointer; }

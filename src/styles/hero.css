@@ -35,7 +35,7 @@
 .hero-verre strong::first-letter { text-transform: uppercase; }
 .hero-verre-texte { font-size: .8rem; line-height: 1.4; color: color-mix(in oklab, var(--cream) 86%, transparent); }
 
-.hero-foot { position: absolute; right: var(--gouttiere); bottom: 1.1rem; display: flex; align-items: center; gap: 1.6rem; font-size: .7rem; letter-spacing: .08em; color: var(--sand); }
+.hero-foot { position: absolute; inset-inline-end: var(--gouttiere); bottom: 1.1rem; display: flex; align-items: center; gap: 1.6rem; font-size: .7rem; letter-spacing: .08em; color: var(--sand); }
 .hero-pause { display: flex; align-items: center; gap: .5rem; padding: .8rem .4rem; margin: -.8rem -.4rem; border: 0; background: none; color: inherit; font-size: inherit; letter-spacing: .16em; text-transform: uppercase; opacity: .8; transition: opacity .3s; }
 .hero-pause:hover, .hero-pause:focus-visible { opacity: 1; }
 .hero-pause svg { width: .75rem; height: .75rem; }
@@ -55,7 +55,7 @@
   .hero-cartes { gap: .35rem; width: 100%; }
   .hero-verre { grid-template-columns: 1fr auto; align-items: center; gap: .6rem; padding: .55rem .9rem; border-radius: 14px; }
   .hero-verre-titre { font-size: .58rem; letter-spacing: .12em; }
-  .hero-verre strong { font-size: 1.05rem; text-align: right; white-space: nowrap; }
+  .hero-verre strong { font-size: 1.05rem; text-align: end; white-space: nowrap; }
   .hero-verre-texte { display: none; }
   .hero { padding: 8px; }
   .hero-cadre { border-radius: 22px; }

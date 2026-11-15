@@ -1,7 +1,7 @@
 import { ArrowRight, MessageCircle, PhoneCall } from "lucide-react";
 import { useEffect } from "react";
 
-import { contact } from "@/config/citystar";
+import { contact, gaucheADroite } from "@/config/citystar";
 
 import { useDevise } from "../currency";
 import { chemin } from "../liens";
@@ -25,7 +25,7 @@ export function MerciPage() {
     {
       href: `tel:${contact.telephone}`,
       titre: t.appeler.titre,
-      texte: contact.telephoneAffiche,
+      texte: gaucheADroite(contact.telephoneAffiche, langue),
       icone: PhoneCall,
     },
     {

@@ -11,13 +11,13 @@
 .sl-back:disabled { opacity: .25; cursor: default; }
 .sl-progress { display: flex; align-items: center; gap: 1.2rem; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; }
 .sl-line { position: relative; flex: 1; height: 1px; background: var(--border); }
-.sl-line i { position: absolute; left: 0; top: -1px; width: 100%; height: 3px; background: var(--bronze); transform-origin: left; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.sl-line i { position: absolute; inset-inline-start: 0; top: -1px; width: 100%; height: 3px; background: var(--bronze); transform-origin: left; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
 
 .sl-body { align-self: center; }
 .sl-stage { display: grid; gap: 1.6rem; justify-items: start; }
 .sl-question { font: 400 clamp(2.2rem, 3.2vw, 3.4rem)/1.08 "Italiana", serif; text-wrap: balance; }
 .sl-options { width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; }
-.sl-option { display: grid; align-content: start; gap: .4rem; padding: 1.3rem 1.4rem; border: 0; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 24%, transparent); color: var(--foreground); text-align: left; cursor: pointer; transition: background .35s, color .35s, box-shadow .35s, transform .3s; }
+.sl-option { display: grid; align-content: start; gap: .4rem; padding: 1.3rem 1.4rem; border: 0; background: none; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--ink) 24%, transparent); color: var(--foreground); text-align: start; cursor: pointer; transition: background .35s, color .35s, box-shadow .35s, transform .3s; }
 .sl-option em { font-size: .7rem; letter-spacing: .14em; color: var(--bronze-text); }
 .sl-option b { font: 400 1.6rem/1.1 "Italiana", serif; }
 .sl-option span { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted-foreground); }
@@ -44,7 +44,7 @@
 .sl-card-ph { position: relative; min-height: 0; }
 .sl-card-ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .sl-card-ph::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, oklch(0.1 0.01 60 / 70%)); }
-.sl-card-letter { position: absolute; z-index: 1; left: 1rem; bottom: .6rem; font: 400 4.4rem/1 "Italiana", serif; transition: color .6s; }
+.sl-card-letter { position: absolute; z-index: 1; inset-inline-start: 1rem; bottom: .6rem; font: 400 4.4rem/1 "Italiana", serif; transition: color .6s; }
 .sl-card-info { display: grid; gap: .3rem; padding: .9rem 1rem 1rem; }
 .sl-card-info b { font: 400 1.2rem/1.1 "Italiana", serif; }
 .sl-card-info span { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--sand); }
@@ -64,7 +64,7 @@
   .sl-grid { grid-template-columns: 1fr; gap: 1.6rem; min-height: 0; }
   .sl-trio { order: -1; height: 9.5rem; gap: .4rem; }
   .sl-card-info { display: none; }
-  .sl-card-letter { left: .6rem; bottom: .2rem; font-size: 2.6rem; }
+  .sl-card-letter { inset-inline-start: .6rem; bottom: .2rem; font-size: 2.6rem; }
   .sl-card-why { top: .4rem; left: .4rem; right: .4rem; font-size: .7rem; }
   .sl-card.is-win { transform: none; }
   .sl-pane { gap: 1.6rem; }
