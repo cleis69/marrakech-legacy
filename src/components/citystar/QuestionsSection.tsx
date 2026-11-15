@@ -8,11 +8,14 @@ import { useQuestions } from "./questions";
 
 /* Les cinq questions qui précèdent une réservation ; les autres restent sur la page Questions. */
 const CLES = ["securite", "acquisition", "financement", "livraison", "prix"];
+/* Page d'atterrissage : une seule villa, donc pas la question des prix par type ; l'emplacement à la place. */
+const CLES_TUNNEL = ["securite", "acquisition", "financement", "livraison", "lieu"];
 
 export function QuestionsSection() {
   const { langue, t } = useDevise();
   const { tunnel } = useSite();
-  const questions = useQuestions().filter((question) => CLES.includes(question.id));
+  const cles = tunnel ? CLES_TUNNEL : CLES;
+  const questions = useQuestions().filter((question) => cles.includes(question.id));
 
   return (
     <section className="qs" aria-labelledby="questions-title">

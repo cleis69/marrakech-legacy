@@ -36,6 +36,18 @@ import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
+import salonSm from "@/assets/citystar/rendus-sm/int-salon.webp";
+import salonLg from "@/assets/citystar/rendus/int-salon.webp";
+import piscineSm from "@/assets/citystar/rendus-sm/ext-piscine-jour.webp";
+import piscineLg from "@/assets/citystar/rendus/ext-piscine-jour.webp";
+import facadeSm from "@/assets/citystar/rendus-sm/ext-facade-entree.webp";
+import facadeLg from "@/assets/citystar/rendus/ext-facade-entree.webp";
+import chambreSm from "@/assets/citystar/rendus-sm/int-chambre-jour.webp";
+import chambreLg from "@/assets/citystar/rendus/int-chambre-jour.webp";
+import terrasseSm from "@/assets/citystar/rendus-sm/ext-terrasse-jour.webp";
+import terrasseLg from "@/assets/citystar/rendus/ext-terrasse-jour.webp";
+import suiteSm from "@/assets/citystar/rendus-sm/int-chambre-bois.webp";
+import suiteLg from "@/assets/citystar/rendus/int-chambre-bois.webp";
 
 import { useDevise } from "../currency";
 import { FormulaireDemande } from "../FormulaireDemande";
@@ -47,13 +59,18 @@ import { FormulaireEtapes } from "./FormulaireEtapes";
 import { textesDossier } from "./textes";
 
 const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
-const surfaceMin = Math.min(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 
 /**
  * Lien WhatsApp de la page d'atterrissage (15/11/2026, accord de l'utilisateur) : message prérempli.
  * Chaque clic est signalé à la balise (`whatsapp_clic`), pour le compter à côté des demandes.
  */
-export function LienWhatsApp({ className, children }: { className?: string; children: React.ReactNode }) {
+export function LienWhatsApp({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) {
   const { langue } = useDevise();
   const texte = textesDossier[langue].parcours.messageWhatsapp;
   return (
@@ -93,6 +110,56 @@ export function BulleWhatsApp() {
       <MessageCircle aria-hidden="true" />
       <span className="sr-only">{textesDossier[langue].parcours.bulleWhatsapp}</span>
     </LienWhatsApp>
+  );
+}
+
+/* Une seule villa à l'écran (15/11/2026, demande de l'utilisateur) : ni types A, B, C ni comparaison,
+   les pièces en images. Trois grandes cartes, puis le reste en bande que l'on fait défiler. */
+const PIECES = [
+  { sm: salonSm, lg: salonLg },
+  { sm: piscineSm, lg: piscineLg },
+  { sm: facadeSm, lg: facadeLg },
+  { sm: chambreSm, lg: chambreLg },
+  { sm: terrasseSm, lg: terrasseLg },
+  { sm: suiteSm, lg: suiteLg },
+];
+
+export function LaVilla() {
+  const { langue } = useDevise();
+  const t = textesDossier[langue].parcours.villa;
+  const carte = (i: number, grande: boolean) => {
+    const piece = PIECES[i];
+    if (!piece) return null;
+    return (
+      <figure key={i} className={grande ? "lv-grande" : "lv-petite"}>
+        <img
+          src={piece.sm}
+          srcSet={`${piece.sm} 800w, ${piece.lg} 1600w`}
+          sizes={grande ? "(max-width: 900px) 100vw, 60vw" : "(max-width: 900px) 80vw, 30vw"}
+          alt={t.pieces[i]}
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="450"
+        />
+        <figcaption>
+          <span>{t.kicker}</span>
+          <strong>{t.pieces[i]}</strong>
+          {i === 1 && <em>{t.piscine}</em>}
+        </figcaption>
+      </figure>
+    );
+  };
+  return (
+    <section className="lv" aria-labelledby="lv-titre">
+      <div className="lv-tete">
+        <p className="lv-kicker">{t.kicker}</p>
+        <Titre id="lv-titre" lignes={t.titre} />
+      </div>
+      <div className="lv-grandes">{[0, 1, 2].map((i) => carte(i, true))}</div>
+      <div className="lv-bande">{[3, 4, 5].map((i) => carte(i, false))}</div>
+      <p className="lv-rendu">{t.rendu}</p>
+    </section>
   );
 }
 
@@ -294,8 +361,7 @@ export function DossierHero() {
               <span className="dh-ligne ton">{ligne2}</span>
             </h1>
             <p className="dh-intro">
-              {t.hero.texte(
-                formatSurface(surfaceMax, langue),
+              {t.parcours.intro(
                 formatSurface(programme.terrainMaxM2, langue),
                 programme.trajetMaxMinutes,
               )}
@@ -308,10 +374,8 @@ export function DossierHero() {
                 </div>
               )}
               <div>
-                <dt>{t.parcours.chiffres.surfaces}</dt>
-                <dd>
-                  {t.parcours.surfaces(String(surfaceMin), formatSurface(surfaceMax, langue))}
-                </dd>
+                <dt>{t.parcours.terrain}</dt>
+                <dd>{formatSurface(programme.terrainMaxM2, langue)}</dd>
               </div>
               <div>
                 <dt>{t.parcours.chiffres.livraison}</dt>
