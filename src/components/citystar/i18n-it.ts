@@ -842,6 +842,7 @@ export const it: Textes = {
     indicatif: "Prefisso",
     europe: "Europa",
     autresPays: "Altri paesi",
+    recevoirPar: "Ricevere la brochure via",
     email: "E-mail",
     projet: "Il suo progetto · facoltativo",
     choisir: "Scegliere",

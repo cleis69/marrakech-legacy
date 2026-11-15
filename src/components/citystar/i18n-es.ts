@@ -846,6 +846,7 @@ export const es: Textes = {
     indicatif: "Prefijo",
     europe: "Europa",
     autresPays: "Otros países",
+    recevoirPar: "Recibir el folleto por",
     email: "Correo electrónico",
     projet: "Su proyecto · opcional",
     choisir: "Elegir",

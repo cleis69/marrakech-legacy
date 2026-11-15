@@ -244,6 +244,9 @@ em { font-weight: 400; color: var(--bronze); }
 .contact-panel .contact-large { grid-column: 1/-1; }
 .contact-panel .contact-telephone > div { display: flex; gap: 1rem; }
 .contact-panel .contact-telephone select { flex: 0 0 11rem; }
+.contact-panel .contact-preciser { padding-top: 1.4rem; border-top: 1px solid color-mix(in oklab, var(--cream) 18%, transparent); }
+.contact-panel .contact-preciser summary { cursor: pointer; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 60%, transparent); }
+.contact-panel .contact-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
 .contact-panel .contact-intertitre { grid-column: 1/-1; margin-top: .8rem; padding-top: 1.6rem; border-top: 1px solid color-mix(in oklab, var(--cream) 18%, transparent); font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: color-mix(in oklab, var(--cream) 60%, transparent); }
 .contact-panel form > button { grid-column: 1/-1; margin-top: 1rem; border: 1px solid var(--cream); background: transparent; color: var(--cream); padding: 1rem 1.2rem; display: flex; justify-content: space-between; text-transform: uppercase; font-size: .7rem; letter-spacing: .15em; }
 .contact-panel form > button:disabled { opacity: .6; cursor: progress; }

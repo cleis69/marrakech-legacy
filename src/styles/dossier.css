@@ -22,6 +22,8 @@
 .dh-actions .pill-secondary .pill-dot svg { width: 1rem; height: 1rem; }
 .dh-conditions { display: inline-flex; align-items: center; gap: .5rem; font-size: .88rem; color: color-mix(in oklab, var(--cream) 88%, transparent); animation: dh-monte 1s var(--ease-out) .55s both; }
 .dh-conditions svg { flex: none; width: 1rem; height: 1rem; color: var(--sand); }
+/* Le prix d'entrée sous le titre : la promesse de l'annonce, gardée sur mobile. */
+.dh-prix { padding: .45rem .95rem; border-radius: 999px; background: color-mix(in oklab, var(--ink) 45%, transparent); backdrop-filter: blur(8px); font-size: .95rem; letter-spacing: .02em; color: var(--sand); animation: dh-monte 1s var(--ease-out) .3s both; }
 
 /* La carte du dossier : papier crème posé sur la vidéo. */
 .dh-carte { display: grid; gap: .9rem; padding: 1.7rem; border-radius: 24px; background: var(--cream); color: var(--ink); box-shadow: 0 30px 80px -30px oklch(0.12 0.01 65 / 70%); animation: dh-monte 1.1s var(--ease-out) .6s both; }
@@ -50,6 +52,18 @@
 .dh-carte .contact-telephone select { flex: 0 0 8.6rem; }
 .dh-carte .contact-intertitre { grid-column: 1 / -1; margin-top: .1rem; padding-top: .8rem; border-top: 1px solid var(--border); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
 .dh-carte .contact-consentement { grid-column: 1 / -1; font-size: .7rem; line-height: 1.5; color: var(--muted-foreground); }
+/* WhatsApp ou e-mail : deux pastilles côte à côte, WhatsApp coché d'office. */
+.dh-carte .contact-moyen { display: grid; gap: .35rem; margin: 0; padding: 0; border: 0; min-width: 0; }
+.dh-carte .contact-moyen legend { padding: 0; margin-bottom: .3rem; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--bronze-text); }
+.dh-carte .contact-moyen > div { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+.dh-carte .contact-moyen label { position: relative; display: flex; align-items: center; justify-content: center; min-height: 2.9rem; border: 1px solid color-mix(in oklab, var(--ink) 22%, transparent); border-radius: 12px; background: #fff; font-size: .95rem; letter-spacing: 0; text-transform: none; color: var(--ink); cursor: pointer; }
+.dh-carte .contact-moyen input { position: absolute; opacity: 0; width: 1px; height: 1px; min-height: 0; }
+.dh-carte .contact-moyen label:has(input:checked) { border-color: var(--ink); background: var(--ink); color: var(--cream); }
+.dh-carte .contact-moyen label:has(input:focus-visible) { outline: 2px solid var(--bronze); outline-offset: 2px; }
+/* Les questions facultatives, repliées sous une ligne discrète. */
+.dh-carte .contact-preciser { padding-top: .7rem; border-top: 1px solid var(--border); }
+.dh-carte .contact-preciser summary { cursor: pointer; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-foreground); }
+.dh-carte .contact-questions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .6rem; margin-top: .7rem; }
 .dh-carte .contact-erreur { grid-column: 1 / -1; font-size: .86rem; color: var(--destructive, #b3261e); }
 .dh-carte form > button { grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.2rem; border: 0; border-radius: 999px; background: var(--ink); color: var(--cream); font-size: .95rem; font-weight: 500; cursor: pointer; transition: background .3s; }
 .dh-carte form > button:hover, .dh-carte form > button:focus-visible { background: var(--bronze-deep); }
@@ -187,7 +201,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dh-chip, .dh-ligne, .dh-intro, .dh-actions, .dh-conditions, .dh-carte { animation: none; }
+  .dh-chip, .dh-ligne, .dh-prix, .dh-intro, .dh-actions, .dh-conditions, .dh-carte { animation: none; }
   .da-jauge span, .dp-plan img { transition: none; }
 }
 
@@ -209,8 +223,8 @@
   .dh-contenu { gap: 1.8rem; padding: 6.5rem 1.3rem 4.4rem; }
   .dh-carte { padding: 1.3rem; }
   /* Trois questions sur un écran étroit : deux côte à côte, la troisième sur toute la largeur */
-  .dh-carte form > label { grid-column: span 3; }
-  .dh-carte form > label:last-of-type { grid-column: 1 / -1; }
+  .dh-carte .contact-questions { grid-template-columns: 1fr 1fr; }
+  .dh-carte .contact-questions > label:last-child { grid-column: 1 / -1; }
   /* Sur mobile, le formulaire remonte : le titre, puis les champs, dès le premier écran. */
   .dh-intro, .dh-conditions { display: none; }
   .dh h1 { font-size: 2.3rem; }

@@ -18,9 +18,13 @@ import {
   engagements,
   formatMois,
   formatPart,
+  formatPrix,
   formatSurface,
+  prixPublics,
+  prixVilla,
   programme,
   reservation,
+  typeDepart,
   villasChiffres,
 } from "@/config/citystar";
 import { Affiche, useFilm } from "../film";
@@ -86,6 +90,7 @@ function CarteDemande({ rang, entete = false }: { rang: number; entete?: boolean
         selection={selection ?? site.header.brochureDemande}
         discret={!selection}
         court
+        choixEnvoi
         prefixe={`${ID_DEMANDE}-${rang}`}
         envoyer={site.villas.brochure}
       />
@@ -137,9 +142,14 @@ export function DossierDemande({ rang, final = false }: { rang: number; final?: 
 /* ------------------------------------------------------------------ */
 
 export function DossierHero() {
-  const { langue } = useDevise();
+  const { langue, devise, taux } = useDevise();
   const t = textesDossier[langue];
   const reduce = useReducedMotion();
+  /* Le prix d'entrée, promis par l'annonce (« dès 950 k€ »), visible dès l'arrivée, y compris sur mobile. */
+  const depart = prixVilla(typeDepart, devise, taux);
+  const aPartirDe = prixPublics
+    ? t.hero.prix(`${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`)
+    : null;
   const video = useRef<HTMLVideoElement>(null);
   const [lecture, setLecture] = useState(false);
   const [lu, setLu] = useState(false);
@@ -190,6 +200,7 @@ export function DossierHero() {
               <span className="dh-ligne">{ligne1}</span>
               <span className="dh-ligne ton">{ligne2}</span>
             </h1>
+            {aPartirDe && <p className="dh-prix">{aPartirDe}</p>}
             <p className="dh-intro">
               {t.hero.texte(
                 formatSurface(surfaceMax, langue),

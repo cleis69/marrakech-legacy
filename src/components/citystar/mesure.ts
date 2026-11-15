@@ -62,3 +62,15 @@ export const AMORCE_BALISE = [
   `gtag('consent','default',${JSON.stringify(REFUS)});`,
   "gtag('js',new Date());",
 ].join("");
+
+/**
+ * Étapes du formulaire envoyées à la balise (15/11/2026), pour savoir où les visiteurs s'arrêtent :
+ * `formulaire_commence` (premier champ touché), `formulaire_incomplet` (envoi refusé par un champ
+ * obligatoire), `formulaire_erreur` (le relais n'a pas répondu). L'envoi réussi reste compté par
+ * l'arrivée sur la page de remerciement.
+ */
+export function signaler(evenement: string, details: Record<string, string> = {}) {
+  const fenetre = window as typeof window & { dataLayer?: unknown[] };
+  fenetre.dataLayer = fenetre.dataLayer ?? [];
+  fenetre.dataLayer.push({ event: evenement, ...details });
+}

@@ -5,12 +5,20 @@ import { hubspot } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
-import { listeIndicatifs, numeroComplet } from "./indicatifs";
+import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "./indicatifs";
 import { langueSequence, languesAppareil } from "./langueAppareil";
 import { chemin, slug } from "./adresses";
+import { signaler } from "./mesure";
 import { canal, provenance } from "./provenance";
 
 type Etat = "repos" | "envoi" | "envoye" | "erreur";
+type Moyen = "whatsapp" | "email";
+
+/** Note jointe au message HubSpot, en français pour le consultant, quelle que soit la langue du site. */
+const NOTE_MOYEN: Record<Moyen, string> = {
+  whatsapp: "Brochure à envoyer par WhatsApp.",
+  email: "Brochure à envoyer par e-mail.",
+};
 
 /**
  * Questions facultatives : chaque valeur est celle de la propriété HubSpot, dans l'ordre des choix traduits.
@@ -31,17 +39,21 @@ const QUESTIONS = [
  * où il est affiché d'emblée. `selection` : réponses d'un outil, jointes à la demande seulement
  * si le visiteur l'envoie. `discret` : la sélection part avec la demande sans être affichée
  * (la page d'atterrissage ne demande que le dossier). `court` : sans le champ de message.
+ * `choixEnvoi` : le visiteur choisit de recevoir la brochure par WhatsApp (d'office) ou par
+ * e-mail ; le champ e-mail n'apparaît, obligatoire, que pour l'e-mail.
  */
 export function FormulaireDemande({
   selection,
   discret = false,
   court = false,
+  choixEnvoi = false,
   prefixe = "contact",
   envoyer: libelleEnvoyer,
 }: {
   selection?: Selection | null | undefined;
   discret?: boolean;
   court?: boolean;
+  choixEnvoi?: boolean;
   /** Préfixe des identifiants, pour deux formulaires sur une même page. */
   prefixe?: string;
   /** Libellé du bouton d'envoi, s'il diffère de « Envoyer ma demande ». */
@@ -53,7 +65,16 @@ export function FormulaireDemande({
   /* Les noms de pays viennent du navigateur : la liste est remplie une fois la page affichée,
      sinon le rendu du serveur et celui du navigateur diffèrent (noms et ordre de tri). */
   const [indicatifs, setIndicatifs] = useState<ReturnType<typeof listeIndicatifs> | null>(null);
-  useEffect(() => setIndicatifs(listeIndicatifs(langue)), [langue]);
+  /* Le pays de l'indicatif est proposé d'office (fuseau de l'appareil, sinon langue de la page) :
+     il était vide et obligatoire, et bloquait l'envoi tant qu'on ne l'avait pas cherché. */
+  const [pays, setPays] = useState("");
+  const [numero, setNumero] = useState("");
+  const [moyen, setMoyen] = useState<Moyen>("whatsapp");
+  const [commence, setCommence] = useState(false);
+  useEffect(() => {
+    setIndicatifs(listeIndicatifs(langue));
+    setPays((actuel) => actuel || paysProbable(langue));
+  }, [langue]);
 
   /* Un outil de la page (sélecteur de villa…) peut joindre ses réponses après l'affichage. */
   useEffect(() => setJoined(selection ?? null), [selection]);
@@ -69,7 +90,11 @@ export function FormulaireDemande({
     const champs = new FormData(event.currentTarget);
     const texte = (nom: string) => String(champs.get(nom) ?? "").trim();
     const [prenom, ...reste] = texte("nom").split(/\s+/);
-    const message = [texte("message"), joined && `${joined.outil} : ${joined.lignes.join(" · ")}`]
+    const message = [
+      choixEnvoi && NOTE_MOYEN[moyen],
+      texte("message"),
+      joined && `${joined.outil} : ${joined.lignes.join(" · ")}`,
+    ]
       .filter(Boolean)
       .join("\n\n");
     const origine = provenance();
@@ -111,9 +136,24 @@ export function FormulaireDemande({
       /* La demande est partie : le visiteur arrive sur la page de remerciement, par un vrai
          chargement de page. C'est cette arrivée que Google Ads compte comme une demande. */
       if (reponse?.ok) window.location.assign(chemin(langue, slug("merci", langue)));
+      else signaler("formulaire_erreur", { formulaire: prefixe });
     } catch {
       setEtat("erreur");
+      signaler("formulaire_erreur", { formulaire: prefixe });
     }
+  }
+
+  /** Premier champ touché : le visiteur a commencé la demande. */
+  function debut() {
+    if (commence) return;
+    setCommence(true);
+    signaler("formulaire_commence", { formulaire: prefixe });
+  }
+
+  /** Envoi refusé par le navigateur : le champ obligatoire qui manque. */
+  function incomplet(event: FormEvent<HTMLFormElement>) {
+    const champ = event.target as HTMLInputElement | HTMLSelectElement;
+    signaler("formulaire_incomplet", { formulaire: prefixe, champ: champ.name });
   }
 
   return (
@@ -136,15 +176,22 @@ export function FormulaireDemande({
           {t.contact.merci}
         </p>
       ) : (
-        <form onSubmit={envoyer}>
+        <form onSubmit={envoyer} onFocus={debut} onInvalidCapture={incomplet}>
           {/* Seul le téléphone est obligatoire : le consultant rappelle. L'indicatif, avec son drapeau,
-              est demandé car les acheteurs appellent du Maroc, de France et de toute l'Europe. */}
+              est demandé car les acheteurs appellent du Maroc, de France et de toute l'Europe ;
+              il est proposé d'office, et inutile si le numéro commence par + ou 00. */}
           <div className="contact-large contact-telephone">
             <label htmlFor={`${prefixe}-telephone`}>
               {t.contact.telephone} <span aria-hidden="true">*</span>
             </label>
             <div>
-              <select name="indicatif" aria-label={t.contact.indicatif} defaultValue="" required>
+              <select
+                name="indicatif"
+                aria-label={t.contact.indicatif}
+                value={pays}
+                onChange={(event) => setPays(event.target.value)}
+                required={!numeroInternational(numero)}
+              >
                 <option value="">{t.contact.indicatif}</option>
                 {indicatifs?.prioritaires.map(({ pays, libelle }) => (
                   <option key={pays} value={pays}>
@@ -175,6 +222,9 @@ export function FormulaireDemande({
                 type="tel"
                 name="telephone"
                 autoComplete="tel-national"
+                inputMode="tel"
+                value={numero}
+                onChange={(event) => setNumero(event.target.value)}
                 required
               />
             </div>
@@ -183,26 +233,54 @@ export function FormulaireDemande({
             {t.contact.nom}
             <input name="nom" autoComplete="name" />
           </label>
-          <label className="contact-large">
-            {t.contact.email}
-            <input type="email" name="email" autoComplete="email" />
-          </label>
+          {/* Au Maroc, la brochure se reçoit d'abord sur WhatsApp : c'est le choix proposé d'office. */}
+          {choixEnvoi && (
+            <fieldset className="contact-large contact-moyen">
+              <legend>{t.contact.recevoirPar}</legend>
+              <div>
+                {(["whatsapp", "email"] as const).map((valeur) => (
+                  <label key={valeur}>
+                    <input
+                      type="radio"
+                      name="moyen"
+                      value={valeur}
+                      checked={moyen === valeur}
+                      onChange={() => setMoyen(valeur)}
+                    />
+                    <span>{valeur === "whatsapp" ? "WhatsApp" : t.contact.email}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          )}
+          {(!choixEnvoi || moyen === "email") && (
+            <label className="contact-large">
+              {t.contact.email}
+              <input type="email" name="email" autoComplete="email" required={choixEnvoi} />
+            </label>
+          )}
           {/* La villa n'est plus demandée ; celle choisie sur une fiche ou une porte part avec la demande. */}
           {joined?.villa && <input type="hidden" name="citystar_villa" value={joined.villa} />}
-          <p className="contact-intertitre">{t.contact.projet}</p>
-          {QUESTIONS.map(([cle, propriete, valeurs]) => (
-            <label key={cle}>
-              {t.contact.questions[cle].titre}
-              <select name={propriete} defaultValue="">
-                <option value="">{t.contact.choisir}</option>
-                {valeurs.map((valeur, i) => (
-                  <option key={valeur} value={valeur}>
-                    {t.contact.questions[cle].choix[i]}
-                  </option>
-                ))}
-              </select>
-            </label>
-          ))}
+          {/* Les trois questions sont facultatives : repliées, pour que le formulaire paraisse court.
+              Fermées, leurs listes partent quand même avec la demande. */}
+          <details className="contact-large contact-preciser">
+            <summary>{t.contact.projet}</summary>
+            <div className="contact-questions">
+              {QUESTIONS.map(([cle, propriete, valeurs]) => (
+                <label key={cle}>
+                  {t.contact.questions[cle].titre}
+                  <select name={propriete} defaultValue="">
+                    <option value="">{t.contact.choisir}</option>
+                    {valeurs.map((valeur, i) => (
+                      <option key={valeur} value={valeur}>
+                        {t.contact.questions[cle].choix[i]}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ))}
+            </div>
+          </details>
           {!court && (
             <label className="contact-large">
               {t.contact.message}

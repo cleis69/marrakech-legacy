@@ -826,6 +826,7 @@ export const no: Textes = {
     indicatif: "Landskode",
     europe: "Europa",
     autresPays: "Andre land",
+    recevoirPar: "Motta brosjyren på",
     email: "E-post",
     projet: "Prosjektet ditt · valgfritt",
     choisir: "Velg",

@@ -844,6 +844,7 @@ export const nl: Textes = {
     indicatif: "Landcode",
     europe: "Europa",
     autresPays: "Overige landen",
+    recevoirPar: "Brochure ontvangen via",
     email: "E-mail",
     projet: "Uw project · optioneel",
     choisir: "Kiezen",

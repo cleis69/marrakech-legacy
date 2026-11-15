@@ -305,6 +305,65 @@ export function listeIndicatifs(langue: Langue) {
   };
 }
 
+/** Fuseau horaire de l'appareil → pays de l'indicatif proposé d'office. */
+const FUSEAUX: Record<string, string> = {
+  "Africa/Casablanca": "MA",
+  "Africa/El_Aaiun": "MA",
+  "Europe/Paris": "FR",
+  "Europe/Brussels": "BE",
+  "Europe/Zurich": "CH",
+  "Europe/London": "GB",
+  "Europe/Rome": "IT",
+  "Europe/Madrid": "ES",
+  "Atlantic/Canary": "ES",
+  "Europe/Amsterdam": "NL",
+  "Europe/Oslo": "NO",
+  "Europe/Berlin": "DE",
+  "Europe/Lisbon": "PT",
+  "Europe/Luxembourg": "LU",
+  "Europe/Monaco": "MC",
+  "Europe/Dublin": "IE",
+  "Europe/Vienna": "AT",
+  "Europe/Stockholm": "SE",
+  "Europe/Copenhagen": "DK",
+  "Asia/Dubai": "AE",
+  "Asia/Riyadh": "SA",
+  "Asia/Qatar": "QA",
+  "Asia/Kuwait": "KW",
+  "America/Toronto": "CA",
+  "America/Montreal": "CA",
+  "America/New_York": "US",
+};
+
+/** Sans fuseau reconnu : le marché principal de chaque langue du site. */
+const PAR_LANGUE: Record<Langue, string> = {
+  fr: "MA",
+  en: "GB",
+  es: "ES",
+  it: "IT",
+  nl: "NL",
+  no: "NO",
+};
+
+/**
+ * Pays proposé d'office dans la liste des indicatifs (15/11/2026) : celui du fuseau horaire de
+ * l'appareil, sinon celui de la langue de la page. Le visiteur n'a plus à chercher son pays
+ * dans la liste avant d'envoyer ; il peut toujours en choisir un autre.
+ */
+export function paysProbable(langue: Langue) {
+  let fuseau = "";
+  try {
+    fuseau = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  } catch {
+    /* Navigateur sans fuseau : la langue décide. */
+  }
+  const pays = FUSEAUX[fuseau] ?? PAR_LANGUE[langue];
+  return INDICATIFS[pays] ? pays : "MA";
+}
+
+/** Un numéro saisi avec + ou 00 porte déjà son indicatif. */
+export const numeroInternational = (saisi: string) => /^\s*(\+|00)/.test(saisi);
+
 /**
  * Numéro complet envoyé à HubSpot : « +212 630373961 ». Le 0 national tombe, sauf en Italie
  * où il fait partie du numéro ; un numéro déjà saisi avec + ou 00 est gardé tel quel.
