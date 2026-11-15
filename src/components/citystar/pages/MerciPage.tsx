@@ -1,10 +1,12 @@
 import { ArrowRight, MessageCircle, PhoneCall } from "lucide-react";
+import { useEffect } from "react";
 
 import { contact } from "@/config/citystar";
 
 import { useDevise } from "../currency";
 import { chemin } from "../liens";
 import { merci } from "../merci";
+import { signalerDemandeGoogleAds } from "../mesure";
 import { PageHeader } from "../PageHeader";
 import banniere from "@/assets/citystar/rendus/ext-piscine-soir.webp";
 
@@ -12,6 +14,10 @@ import banniere from "@/assets/citystar/rendus/ext-piscine-soir.webp";
 export function MerciPage() {
   const { langue } = useDevise();
   const t = merci[langue];
+  /* Hors /merci (français, compté par le conteneur de balises), la page compte elle-même la demande. */
+  useEffect(() => {
+    if (langue !== "fr") signalerDemandeGoogleAds();
+  }, [langue]);
   const whatsapp = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(t.whatsapp.message)}`;
 
   const choix = [

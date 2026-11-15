@@ -82,6 +82,18 @@ export function signaler(evenement: string, details: Record<string, string> = {}
  */
 const DEBUT_FORMULAIRE = "AW-18550611884/W9nECPDP_rgdEKy_z41F";
 
+/**
+ * Action principale « Envois de formulaires de lead ». Le conteneur de balises ne la compte que
+ * sur /merci (français) ; les cinq autres pages de remerciement l'envoient elles-mêmes (15/11/2026),
+ * depuis que le visiteur peut arriver dans la langue de son téléphone.
+ */
+const DEMANDE = "AW-18550611884/gWaECMvk77cdEKy_z41F";
+
+export function signalerDemandeGoogleAds() {
+  const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
+  fenetre.gtag?.("event", "conversion", { send_to: DEMANDE });
+}
+
 /** Action secondaire « Clic WhatsApp (secondaire, observation) », créée le 15/11/2026. */
 const CLIC_WHATSAPP = "AW-18550611884/8ST-CLyShrkdEKy_z41F";
 

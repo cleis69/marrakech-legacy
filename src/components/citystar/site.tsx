@@ -9,6 +9,8 @@ import { CLASSE_DEMANDE, ID_DEMANDE, SiteContext, type SiteState, useSite } from
 import { DeviseProvider } from "./currency";
 import { type Selection, prefersReducedMotion } from "./data";
 import { FloatingActions } from "./FloatingActions";
+import { langueABasculer } from "./langueAppareil";
+import { memePage } from "./adresses";
 import { PlanModal } from "./PlanModal";
 import { retenirProvenance } from "./provenance";
 import { SiteFooter } from "./SiteFooter";
@@ -67,6 +69,17 @@ export function SiteChrome({
   const { scrollYProgress } = useScroll();
 
   useEffect(retenirProvenance, []);
+
+  /* Le visiteur arrive dans la langue de son téléphone, si le site la propose ; l'adresse
+     (gclid, utm, ancre) est gardée telle quelle. */
+  useEffect(() => {
+    const cible = langueABasculer(langue);
+    if (!cible) return;
+    const { pathname, search, hash } = window.location;
+    window.location.replace(`${memePage(pathname, cible)}${search}${hash}`);
+    // Une seule fois, à l'arrivée.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
