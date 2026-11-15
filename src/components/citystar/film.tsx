@@ -27,7 +27,9 @@ export function useFilm(mouvementReduit: boolean | null) {
   const charger = useCallback(() => setSrc((actuel) => actuel ?? choisir()), []);
 
   useEffect(() => {
-    if (mouvementReduit || lente()) return;
+    /* Sur mobile, plus de chargement automatique (15/11/2026) : 1,3 Mo qui retardaient l'affichage
+       jusqu'à 16 s en 4G. L'image fixe reste ; le bouton lecture charge le film à la demande. */
+    if (mouvementReduit || lente() || window.matchMedia("(max-width: 800px)").matches) return;
     let annule = false;
     const lancer = () => {
       if (annule) return;
