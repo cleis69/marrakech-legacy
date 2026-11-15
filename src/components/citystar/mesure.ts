@@ -118,8 +118,25 @@ export function signalerDebutGoogleAds() {
 export const PROJET_CLARITY = "ze4a8lyxf2";
 
 /**
- * Clarity est chargé après l'affichage (15/11/2026) : placé dans le <head>, son script s'insérait
- * dans la page avant que React ne la reprenne et provoquait une erreur d'hydratation (n° 418).
+ * La balise Google est chargée après la reprise de la page par React (15/11/2026). Placée dans le
+ * <head>, elle insérait ses propres scripts (Google Ads, pixel Meta) avant l'hydratation, ce qui
+ * provoquait par moments l'erreur React n° 418 depuis le 13/11/2026. L'amorce (dataLayer, refus des
+ * cookies par défaut) reste dans le <head> : les appels faits avant le chargement sont gardés en file.
+ */
+export function chargerBalise() {
+  if (document.querySelector(`script[src="${ADRESSE_BALISE}"]`)) return;
+  const fenetre = window as typeof window & { dataLayer?: unknown[] };
+  fenetre.dataLayer = fenetre.dataLayer ?? [];
+  fenetre.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = ADRESSE_BALISE;
+  document.head.appendChild(script);
+}
+
+/**
+ * Clarity est chargé après l'affichage (15/11/2026), comme la balise Google : rien ne s'insère dans
+ * la page avant que React ne l'ait reprise.
  */
 export function chargerClarity() {
   if (!PROJET_CLARITY) return;

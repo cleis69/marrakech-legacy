@@ -15,7 +15,7 @@ import dmSansLatin from "../assets/fonts/dm-sans-latin.woff2?url";
 import italianaLatin from "../assets/fonts/italiana-latin.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { langueDe } from "@/components/citystar/liens";
-import { ADRESSE_BALISE, AMORCE_BALISE } from "@/components/citystar/mesure";
+import { AMORCE_BALISE, chargerBalise, chargerClarity } from "@/components/citystar/mesure";
 
 function NotFoundComponent() {
   return (
@@ -122,17 +122,20 @@ function RootShell({ children }: { children: ReactNode }) {
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
   const langue = langueDe(chemin);
 
+  /* Mesure (balise Google, puis Clarity) : après la reprise de la page par React, jamais avant. */
+  useEffect(() => {
+    if (!import.meta.env.PROD) return;
+    chargerBalise();
+    chargerClarity();
+  }, []);
+
   return (
     <html lang={langue}>
       <head>
         <HeadContent />
-        {/* Balise Google Ads : seulement sur le site en ligne ; Clarity est chargé par SiteChrome après l'affichage. */}
-        {import.meta.env.PROD && (
-          <>
-            <script dangerouslySetInnerHTML={{ __html: AMORCE_BALISE }} />
-            <script async src={ADRESSE_BALISE} />
-          </>
-        )}
+        {/* Amorce de la balise Google (file d'attente, refus des cookies par défaut) : seulement sur le
+            site en ligne. La balise elle-même et Clarity sont chargés après l'hydratation, ci-dessus. */}
+        {import.meta.env.PROD && <script dangerouslySetInnerHTML={{ __html: AMORCE_BALISE }} />}
       </head>
       <body>
         {children}
