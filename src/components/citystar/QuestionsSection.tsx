@@ -18,7 +18,7 @@ export function QuestionsSection() {
   const questions = useQuestions().filter((question) => cles.includes(question.id));
 
   return (
-    <section className="qs" aria-labelledby="questions-title">
+    <section id="questions" className="qs" aria-labelledby="questions-title">
       <div className="qs-head">
         <Reveal>
           <h2 id="questions-title">

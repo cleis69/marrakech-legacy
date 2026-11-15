@@ -363,30 +363,32 @@
 
 
 /* Une seule villa, pièce par pièce (15/11/2026). */
-.lv { padding: 2.4rem 14px 1rem; background: var(--paper); }
-.lv-tete { display: grid; justify-items: center; gap: .6rem; margin-bottom: 1.4rem; text-align: center; }
-.lv-kicker { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bronze-text); }
-.lv-tete h2 { font: 400 clamp(2rem, 4vw, 3rem)/1.05 "Italiana", serif; color: var(--ink); }
-.lv-grandes { display: grid; gap: 14px; max-width: 72rem; margin: 0 auto; }
-.lv figure { overflow: hidden; margin: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
-.lv img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
-.lv figcaption { display: grid; gap: .3rem; padding: 1rem 1.2rem 1.2rem; }
-.lv figcaption span { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
-.lv figcaption strong { font: 400 1.55rem/1.1 "Italiana", serif; }
-.lv figcaption em { font-style: normal; font-size: .9rem; line-height: 1.45; color: color-mix(in oklab, var(--ink) 72%, transparent); }
-.lv-grande:nth-child(2) { background: var(--bronze-deep); color: var(--cream); }
-.lv-grande:nth-child(2) figcaption span, .lv-grande:nth-child(2) figcaption em { color: color-mix(in oklab, var(--cream) 85%, transparent); }
-.lv-bande { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px; max-width: 72rem; margin: 14px auto 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-.lv-bande::-webkit-scrollbar { display: none; }
-.lv-bande figure { scroll-snap-align: start; }
-.lv-rendu { margin-top: .9rem; text-align: center; font-size: .72rem; color: var(--muted-foreground); }
+.vp { padding: 2.4rem 14px 1rem; background: var(--paper); }
+.vp-tete { display: grid; justify-items: center; gap: .6rem; margin-bottom: 1.4rem; text-align: center; }
+.vp-kicker { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--bronze-text); }
+.vp-tete h2 { font: 400 clamp(2rem, 4vw, 3rem)/1.05 "Italiana", serif; color: var(--ink); }
+.vp-grandes { display: grid; gap: 14px; max-width: 72rem; margin: 0 auto; }
+.vp figure { overflow: hidden; margin: 0; border-radius: 22px; background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); }
+.vp img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.vp figcaption { display: grid; gap: .3rem; padding: 1rem 1.2rem 1.2rem; }
+.vp figcaption span { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--bronze-text); }
+.vp figcaption strong { font: 400 1.55rem/1.1 "Italiana", serif; }
+.vp figcaption em { font-style: normal; font-size: .9rem; line-height: 1.45; color: color-mix(in oklab, var(--ink) 72%, transparent); }
+.vp-grande:nth-child(2) { background: var(--bronze-deep); color: var(--cream); }
+.vp-grande:nth-child(2) figcaption span, .vp-grande:nth-child(2) figcaption em { color: color-mix(in oklab, var(--cream) 85%, transparent); }
+.vp-bande { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px; max-width: 72rem; margin: 14px auto 0; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.vp-bande::-webkit-scrollbar { display: none; }
+.vp-bande figure { scroll-snap-align: start; }
 @media (min-width: 901px) {
-  .lv { padding: 4rem 14px 2rem; }
-  .lv-grandes { grid-template-columns: 1.4fr 1fr; }
-  .lv-grandes figure:first-child { grid-row: span 2; }
-  .lv-grandes figure:first-child img { aspect-ratio: auto; height: 100%; min-height: 32rem; }
-  .lv-bande { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; }
+  .vp { padding: 4rem 14px 2rem; }
+  .vp-grandes { grid-template-columns: 1.4fr 1fr; }
+  .vp-grandes figure:first-child { grid-row: span 2; }
+  .vp-grandes figure:first-child img { aspect-ratio: auto; height: 100%; min-height: 32rem; }
+  .vp-bande { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; }
 }
 @media (max-width: 900px) {
-  .lv { padding: 1.8rem 8px .8rem; }
+  .vp { padding: 1.8rem 8px .8rem; }
 }
+
+/* Ancres des liens annexes Google Ads : le titre ne passe pas sous l'en-tête. */
+#la-villa, #questions, #livraison, #visite { scroll-margin-top: 5rem; }

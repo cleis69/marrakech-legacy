@@ -36,6 +36,10 @@ import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
+import ouvertureMobileSm from "@/assets/citystar/rendus-sm/ext-pergola-portrait.webp";
+import ouvertureMobileLg from "@/assets/citystar/rendus/ext-pergola-portrait.webp";
+import ouvertureSm from "@/assets/citystar/rendus-sm/ext-facade-crepuscule.webp";
+import ouvertureLg from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
 import salonSm from "@/assets/citystar/rendus-sm/int-salon.webp";
 import salonLg from "@/assets/citystar/rendus/int-salon.webp";
 import piscineSm from "@/assets/citystar/rendus-sm/ext-piscine-jour.webp";
@@ -53,7 +57,7 @@ import { useDevise } from "../currency";
 import { FormulaireDemande } from "../FormulaireDemande";
 import { CLASSE_DEMANDE, CLASSE_SANS_BARRE, ID_DEMANDE } from "../contexte";
 import { useSite } from "../site";
-import { signaler } from "../mesure";
+import { signaler, signalerWhatsAppGoogleAds } from "../mesure";
 import { PillButton } from "../ui/PillButton";
 import { FormulaireEtapes } from "./FormulaireEtapes";
 import { textesDossier } from "./textes";
@@ -79,7 +83,10 @@ export function LienWhatsApp({
       href={`https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(texte)}`}
       target="_blank"
       rel="noopener"
-      onClick={() => signaler("whatsapp_clic", { page: "dossier" })}
+      onClick={() => {
+        signaler("whatsapp_clic", { page: "dossier" });
+        signalerWhatsAppGoogleAds();
+      }}
     >
       {children}
     </a>
@@ -131,7 +138,7 @@ export function LaVilla() {
     const piece = PIECES[i];
     if (!piece) return null;
     return (
-      <figure key={i} className={grande ? "lv-grande" : "lv-petite"}>
+      <figure key={i} className={grande ? "vp-grande" : "vp-petite"}>
         <img
           src={piece.sm}
           srcSet={`${piece.sm} 800w, ${piece.lg} 1600w`}
@@ -151,14 +158,13 @@ export function LaVilla() {
     );
   };
   return (
-    <section className="lv" aria-labelledby="lv-titre">
-      <div className="lv-tete">
-        <p className="lv-kicker">{t.kicker}</p>
-        <Titre id="lv-titre" lignes={t.titre} />
+    <section id="la-villa" className="vp" aria-labelledby="vp-titre">
+      <div className="vp-tete">
+        <p className="vp-kicker">{t.kicker}</p>
+        <Titre id="vp-titre" lignes={t.titre} />
       </div>
-      <div className="lv-grandes">{[0, 1, 2].map((i) => carte(i, true))}</div>
-      <div className="lv-bande">{[3, 4, 5].map((i) => carte(i, false))}</div>
-      <p className="lv-rendu">{t.rendu}</p>
+      <div className="vp-grandes">{[0, 1, 2].map((i) => carte(i, true))}</div>
+      <div className="vp-bande">{[3, 4, 5].map((i) => carte(i, false))}</div>
     </section>
   );
 }
@@ -308,46 +314,33 @@ export function DossierHero() {
   const prixDepart = `${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`;
   const aPartirDe = prixPublics ? t.hero.prix(prixDepart) : null;
   const demander = useDemanderDossier();
-  const video = useRef<HTMLVideoElement>(null);
-  const [lecture, setLecture] = useState(false);
-  const [lu, setLu] = useState(false);
-  const { src, charger } = useFilm(reduce);
   const [ligne1, ligne2] = t.hero.titre(formatMois(calendrier.livraison, langue));
   const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
-
-  useEffect(() => {
-    if (reduce) video.current?.pause();
-  }, [reduce]);
-
-  const basculer = () => {
-    const v = video.current;
-    if (!v) return;
-    if (!src) {
-      charger();
-      return;
-    }
-    if (v.paused) void v.play().catch(() => setLecture(false));
-    else v.pause();
-  };
 
   return (
     <section className={`dh ${CLASSE_SANS_BARRE}`} aria-labelledby="dh-titre">
       <div className="dh-cadre">
-        <Affiche className="dh-affiche" />
-        <video
-          ref={video}
-          className={`dh-video${lu ? " is-lu" : ""}`}
-          src={src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          onCanPlay={() => setLu(true)}
-          onPlay={() => setLecture(true)}
-          onPause={() => setLecture(false)}
-        />
+        {/* Pas de vidéo sur la page d'atterrissage (15/11/2026) : une image fixe, verticale sur mobile
+            (la pergola), en largeur sur grand écran (la façade au crépuscule). */}
+        <picture>
+          <source
+            media="(max-width: 900px)"
+            srcSet={`${ouvertureMobileSm} 800w, ${ouvertureMobileLg} 1600w`}
+            sizes="100vw"
+          />
+          <img
+            className="dh-affiche"
+            src={ouvertureLg}
+            srcSet={`${ouvertureSm} 800w, ${ouvertureLg} 1600w`}
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+            fetchPriority="high"
+            decoding="async"
+            width="1600"
+            height="900"
+          />
+        </picture>
         <div className="dh-voile" aria-hidden="true" />
 
         <div className="dh-contenu">
@@ -397,18 +390,6 @@ export function DossierHero() {
               </p>
             )}
           </div>
-        </div>
-
-        <div className="dh-pied">
-          <button
-            type="button"
-            className="dh-pause"
-            onClick={basculer}
-            aria-label={lecture ? t.hero.pause : t.hero.lecture}
-          >
-            {lecture ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-          </button>
-          <p>{t.hero.rendu}</p>
         </div>
       </div>
     </section>

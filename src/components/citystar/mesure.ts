@@ -82,6 +82,15 @@ export function signaler(evenement: string, details: Record<string, string> = {}
  */
 const DEBUT_FORMULAIRE = "AW-18550611884/W9nECPDP_rgdEKy_z41F";
 
+/** Action secondaire « Clic WhatsApp (secondaire, observation) », créée le 15/11/2026. */
+const CLIC_WHATSAPP = "AW-18550611884/8ST-CLyShrkdEKy_z41F";
+
+/** Clic sur un lien WhatsApp de la page d'atterrissage : envoyé à Google Ads. */
+export function signalerWhatsAppGoogleAds() {
+  const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
+  fenetre.gtag?.("event", "conversion", { send_to: CLIC_WHATSAPP });
+}
+
 /** Premier champ touché : envoyé à Google Ads par la balise Google déjà chargée. */
 export function signalerDebutGoogleAds() {
   const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
