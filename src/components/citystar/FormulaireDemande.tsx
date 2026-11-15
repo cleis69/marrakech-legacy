@@ -8,7 +8,7 @@ import type { Selection } from "./data";
 import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "./indicatifs";
 import { langueSequence, languesAppareil } from "./langueAppareil";
 import { chemin, slug } from "./adresses";
-import { signaler } from "./mesure";
+import { signaler, signalerDebutGoogleAds } from "./mesure";
 import { canal, provenance } from "./provenance";
 
 type Etat = "repos" | "envoi" | "envoye" | "erreur";
@@ -148,6 +148,7 @@ export function FormulaireDemande({
     if (commence) return;
     setCommence(true);
     signaler("formulaire_commence", { formulaire: prefixe });
+    signalerDebutGoogleAds();
   }
 
   /** Envoi refusé par le navigateur : le champ obligatoire qui manque. */

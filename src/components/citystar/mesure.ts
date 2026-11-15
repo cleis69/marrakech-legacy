@@ -74,3 +74,16 @@ export function signaler(evenement: string, details: Record<string, string> = {}
   fenetre.dataLayer = fenetre.dataLayer ?? [];
   fenetre.dataLayer.push({ event: evenement, ...details });
 }
+
+/**
+ * Action de conversion secondaire « Début de formulaire (secondaire, observation) » du compte
+ * Google Ads, créée le 15/11/2026 : elle n'entre pas dans les enchères ni dans la colonne
+ * « Conversions », seulement dans « Toutes les conversions ».
+ */
+const DEBUT_FORMULAIRE = "AW-18550611884/W9nECPDP_rgdEKy_z41F";
+
+/** Premier champ touché : envoyé à Google Ads par la balise Google déjà chargée. */
+export function signalerDebutGoogleAds() {
+  const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
+  fenetre.gtag?.("event", "conversion", { send_to: DEBUT_FORMULAIRE });
+}
