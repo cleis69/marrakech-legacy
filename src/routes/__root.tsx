@@ -15,7 +15,7 @@ import dmSansLatin from "../assets/fonts/dm-sans-latin.woff2?url";
 import italianaLatin from "../assets/fonts/italiana-latin.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { langueDe } from "@/components/citystar/liens";
-import { ADRESSE_BALISE, AMORCE_BALISE } from "@/components/citystar/mesure";
+import { ADRESSE_BALISE, AMORCE_BALISE, AMORCE_CLARITY } from "@/components/citystar/mesure";
 
 function NotFoundComponent() {
   return (
@@ -126,11 +126,12 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang={langue}>
       <head>
         <HeadContent />
-        {/* Balise Google Ads : seulement sur le site en ligne, jamais en développement. */}
+        {/* Balise Google Ads et Clarity : seulement sur le site en ligne, jamais en développement. */}
         {import.meta.env.PROD && (
           <>
             <script dangerouslySetInnerHTML={{ __html: AMORCE_BALISE }} />
             <script async src={ADRESSE_BALISE} />
+            {AMORCE_CLARITY && <script dangerouslySetInnerHTML={{ __html: AMORCE_CLARITY }} />}
           </>
         )}
       </head>

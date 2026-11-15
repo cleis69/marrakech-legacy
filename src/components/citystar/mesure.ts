@@ -87,3 +87,20 @@ export function signalerDebutGoogleAds() {
   const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
   fenetre.gtag?.("event", "conversion", { send_to: DEBUT_FORMULAIRE });
 }
+
+/**
+ * Microsoft Clarity (15/11/2026), compte contact@citystarproperties.com : enregistrements de
+ * visites et cartes de clics, pour voir où les visiteurs de la page d'atterrissage s'arrêtent.
+ * Les saisies des formulaires sont masquées par Clarity. La page de confidentialité le dit
+ * dans les six langues.
+ */
+export const PROJET_CLARITY = "ze4a8lyxf2";
+
+export const AMORCE_CLARITY = PROJET_CLARITY
+  ? [
+      '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};',
+      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;',
+      'y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);',
+      `})(window,document,"clarity","script",${JSON.stringify(PROJET_CLARITY)});`,
+    ].join("")
+  : "";

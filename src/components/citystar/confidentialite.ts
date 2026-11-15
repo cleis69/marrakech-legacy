@@ -40,7 +40,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "Ce que nous recueillons quand vous nous écrivez ou remplissez un formulaire, pourquoi, et comment le consulter, le corriger ou le faire supprimer.",
     lien: "Confidentialité",
-    miseAJour: "Mise à jour le 3 novembre 2026.",
+    miseAJour: "Mise à jour le 15 novembre 2026.",
     sections: [
       {
         titre: "Qui traite vos données",
@@ -59,7 +59,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "la provenance de votre visite (annonce ou lien suivi), la page d'envoi et votre adresse IP.",
           ],
           "Si vous devenez propriétaire, l'espace propriétaire utilise votre adresse e-mail pour vous envoyer un lien de connexion, et affiche les informations de votre dossier d'achat.",
-          "Le site utilise la balise Google Ads pour savoir quelles annonces amènent des demandes : Google peut déposer un cookie publicitaire dans votre navigateur, sauf si vous visitez le site depuis l'Espace économique européen, le Royaume-Uni ou la Suisse. Il n'utilise aucun autre outil de mesure d'audience. Il garde aussi, dans votre navigateur, la provenance de la visite et la langue choisie le temps de la visite, ainsi que les taux de change affichés.",
+          "Le site utilise la balise Google Ads pour savoir quelles annonces amènent des demandes : Google peut déposer un cookie publicitaire dans votre navigateur, sauf si vous visitez le site depuis l'Espace économique européen, le Royaume-Uni ou la Suisse. Il utilise aussi Microsoft Clarity pour voir comment les pages sont parcourues (clics, défilement), sans enregistrer ce que vous saisissez dans les formulaires ; depuis l'Espace économique européen, le Royaume-Uni ou la Suisse, Clarity ne dépose aucun cookie. Il garde aussi, dans votre navigateur, la provenance de la visite et la langue choisie le temps de la visite, ainsi que les taux de change affichés.",
         ],
       },
       {
@@ -84,7 +84,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, pour l'hébergement du site et la transmission des demandes ;",
             "Google Workspace, pour notre messagerie ;",
             "Supabase, pour l'espace propriétaire ;",
-            "Google Ads, pour mesurer nos annonces.",
+            "Google Ads, pour mesurer nos annonces ;",
+            "Microsoft Clarity, pour comprendre l'usage du site.",
           ],
           "Si vous répondez à un formulaire publicitaire, la plateforme concernée (Meta, Google, LinkedIn ou Snapchat) traite aussi vos réponses selon sa propre politique. Nous ne vendons ni ne louons vos données.",
           "Certains de ces prestataires conservent les données hors du Maroc, dans l'Union européenne ou aux États-Unis.",
@@ -114,7 +115,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "What we collect when you write to us or fill in a form, why, and how to see it, correct it or have it deleted.",
     lien: "Privacy",
-    miseAJour: "Updated on 3 November 2026.",
+    miseAJour: "Updated on 15 November 2026.",
     sections: [
       {
         titre: "Who processes your data",
@@ -133,7 +134,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "where your visit came from (ad or link followed), the page you sent the form from and your IP address.",
           ],
           "If you become an owner, the owner area uses your email address to send you a sign-in link, and shows the details of your purchase file.",
-          "The website uses the Google Ads tag to know which ads bring enquiries: Google may set an advertising cookie in your browser, unless you visit from the European Economic Area, the United Kingdom or Switzerland. It uses no other audience measurement tool. It also keeps, in your browser, where your visit came from and the language you chose for the length of the visit, and the exchange rates it displays.",
+          "The website uses the Google Ads tag to know which ads bring enquiries: Google may set an advertising cookie in your browser, unless you visit from the European Economic Area, the United Kingdom or Switzerland. It also uses Microsoft Clarity to see how pages are browsed (clicks, scrolling), without recording what you type into forms; from the European Economic Area, the United Kingdom or Switzerland, Clarity sets no cookie. It also keeps, in your browser, where your visit came from and the language you chose for the length of the visit, and the exchange rates it displays.",
         ],
       },
       {
@@ -158,7 +159,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, to host the website and forward requests;",
             "Google Workspace, for our email;",
             "Supabase, for the owner area;",
-            "Google Ads, to measure our ads.",
+            "Google Ads, to measure our ads;",
+            "Microsoft Clarity, to understand how the website is used.",
           ],
           "If you answer an ad form, the platform concerned (Meta, Google, LinkedIn or Snapchat) also processes your answers under its own policy. We do not sell or rent your data.",
           "Some of these providers store data outside Morocco, in the European Union or the United States.",
@@ -188,7 +190,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "Lo que recogemos cuando nos escribe o rellena un formulario, por qué, y cómo consultarlo, corregirlo o pedir que se borre.",
     lien: "Privacidad",
-    miseAJour: "Actualizada el 3 de noviembre de 2026.",
+    miseAJour: "Actualizada el 15 de noviembre de 2026.",
     sections: [
       {
         titre: "Quién trata sus datos",
@@ -207,7 +209,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "la procedencia de su visita (anuncio o enlace seguido), la página de envío y su dirección IP.",
           ],
           "Si se convierte en propietario, el área de propietarios utiliza su correo electrónico para enviarle un enlace de acceso y muestra la información de su expediente de compra.",
-          "El sitio utiliza la etiqueta de Google Ads para saber qué anuncios generan solicitudes: Google puede instalar una cookie publicitaria en su navegador, salvo si visita el sitio desde el Espacio Económico Europeo, el Reino Unido o Suiza. No utiliza ninguna otra herramienta de medición de audiencia. También guarda en su navegador la procedencia de la visita y el idioma elegido mientras dura la visita, así como los tipos de cambio mostrados.",
+          "El sitio utiliza la etiqueta de Google Ads para saber qué anuncios generan solicitudes: Google puede instalar una cookie publicitaria en su navegador, salvo si visita el sitio desde el Espacio Económico Europeo, el Reino Unido o Suiza. También utiliza Microsoft Clarity para ver cómo se recorren las páginas (clics, desplazamiento), sin registrar lo que escribe en los formularios; desde el Espacio Económico Europeo, el Reino Unido o Suiza, Clarity no instala ninguna cookie. También guarda en su navegador la procedencia de la visita y el idioma elegido mientras dura la visita, así como los tipos de cambio mostrados.",
         ],
       },
       {
@@ -232,7 +234,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, para alojar el sitio y transmitir las solicitudes;",
             "Google Workspace, para nuestro correo;",
             "Supabase, para el área de propietarios;",
-            "Google Ads, para medir nuestros anuncios.",
+            "Google Ads, para medir nuestros anuncios;",
+            "Microsoft Clarity, para entender el uso del sitio.",
           ],
           "Si responde a un formulario publicitario, la plataforma correspondiente (Meta, Google, LinkedIn o Snapchat) también trata sus respuestas según su propia política. No vendemos ni alquilamos sus datos.",
           "Algunos de estos proveedores conservan los datos fuera de Marruecos, en la Unión Europea o en Estados Unidos.",
@@ -262,7 +265,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "Che cosa raccogliamo quando ci scrive o compila un modulo, perché, e come consultarlo, correggerlo o farlo cancellare.",
     lien: "Privacy",
-    miseAJour: "Aggiornata il 3 novembre 2026.",
+    miseAJour: "Aggiornata il 15 novembre 2026.",
     sections: [
       {
         titre: "Chi tratta i suoi dati",
@@ -281,7 +284,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "la provenienza della visita (annuncio o link seguito), la pagina di invio e il suo indirizzo IP.",
           ],
           "Se diventa proprietario, l'area proprietari usa il suo indirizzo e-mail per inviarle un link di accesso e mostra le informazioni della sua pratica di acquisto.",
-          "Il sito usa il tag di Google Ads per sapere quali annunci portano richieste: Google può installare un cookie pubblicitario nel suo browser, salvo se visita il sito dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera. Non usa alcun altro strumento di misurazione del pubblico. Conserva inoltre, nel suo browser, la provenienza della visita e la lingua scelta per la durata della visita, oltre ai tassi di cambio visualizzati.",
+          "Il sito usa il tag di Google Ads per sapere quali annunci portano richieste: Google può installare un cookie pubblicitario nel suo browser, salvo se visita il sito dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera. Usa inoltre Microsoft Clarity per vedere come vengono consultate le pagine (clic, scorrimento), senza registrare ciò che digita nei moduli; dallo Spazio economico europeo, dal Regno Unito o dalla Svizzera, Clarity non installa alcun cookie. Conserva inoltre, nel suo browser, la provenienza della visita e la lingua scelta per la durata della visita, oltre ai tassi di cambio visualizzati.",
         ],
       },
       {
@@ -306,7 +309,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, per l'hosting del sito e la trasmissione delle richieste;",
             "Google Workspace, per la nostra posta;",
             "Supabase, per l'area proprietari;",
-            "Google Ads, per misurare i nostri annunci.",
+            "Google Ads, per misurare i nostri annunci;",
+            "Microsoft Clarity, per capire come viene usato il sito.",
           ],
           "Se risponde a un modulo pubblicitario, la piattaforma interessata (Meta, Google, LinkedIn o Snapchat) tratta anche le sue risposte secondo la propria informativa. Non vendiamo né affittiamo i suoi dati.",
           "Alcuni di questi fornitori conservano i dati fuori dal Marocco, nell'Unione europea o negli Stati Uniti.",
@@ -336,7 +340,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "Wat we verzamelen als u ons schrijft of een formulier invult, waarom, en hoe u het kunt inzien, laten corrigeren of laten verwijderen.",
     lien: "Privacy",
-    miseAJour: "Bijgewerkt op 3 november 2026.",
+    miseAJour: "Bijgewerkt op 15 november 2026.",
     sections: [
       {
         titre: "Wie uw gegevens verwerkt",
@@ -355,7 +359,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "de herkomst van uw bezoek (advertentie of gevolgde link), de pagina waarop u het formulier verstuurde en uw IP-adres.",
           ],
           "Wordt u eigenaar, dan gebruikt het eigenaarsportaal uw e-mailadres om u een inloglink te sturen, en toont het de gegevens van uw aankoopdossier.",
-          "De website gebruikt de Google Ads-tag om te weten welke advertenties aanvragen opleveren: Google kan een advertentiecookie in uw browser plaatsen, behalve als u de website bezoekt vanuit de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland. Hij gebruikt geen andere tool voor bezoekersstatistieken. Hij bewaart in uw browser ook de herkomst van het bezoek en de gekozen taal zolang het bezoek duurt, en de getoonde wisselkoersen.",
+          "De website gebruikt de Google Ads-tag om te weten welke advertenties aanvragen opleveren: Google kan een advertentiecookie in uw browser plaatsen, behalve als u de website bezoekt vanuit de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland. Hij gebruikt ook Microsoft Clarity om te zien hoe de pagina's worden bekeken (klikken, scrollen), zonder vast te leggen wat u in formulieren typt; vanuit de Europese Economische Ruimte, het Verenigd Koninkrijk of Zwitserland plaatst Clarity geen cookie. Hij bewaart in uw browser ook de herkomst van het bezoek en de gekozen taal zolang het bezoek duurt, en de getoonde wisselkoersen.",
         ],
       },
       {
@@ -380,7 +384,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, voor de hosting van de website en het doorsturen van aanvragen;",
             "Google Workspace, voor onze e-mail;",
             "Supabase, voor het eigenaarsportaal;",
-            "Google Ads, om onze advertenties te meten.",
+            "Google Ads, om onze advertenties te meten;",
+            "Microsoft Clarity, om te begrijpen hoe de website wordt gebruikt.",
           ],
           "Als u een advertentieformulier invult, verwerkt het betreffende platform (Meta, Google, LinkedIn of Snapchat) uw antwoorden ook volgens zijn eigen beleid. Wij verkopen of verhuren uw gegevens niet.",
           "Sommige van deze leveranciers bewaren gegevens buiten Marokko, in de Europese Unie of in de Verenigde Staten.",
@@ -410,7 +415,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
     intro:
       "Hva vi samler inn når du skriver til oss eller fyller ut et skjema, hvorfor, og hvordan du kan se, rette eller slette det.",
     lien: "Personvern",
-    miseAJour: "Oppdatert 3. november 2026.",
+    miseAJour: "Oppdatert 15. november 2026.",
     sections: [
       {
         titre: "Hvem som behandler opplysningene dine",
@@ -429,7 +434,7 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "hvor besøket kom fra (annonse eller lenke du fulgte), siden du sendte skjemaet fra og IP-adressen din.",
           ],
           "Blir du eier, bruker eierportalen e-postadressen din til å sende deg en innloggingslenke, og viser opplysningene i kjøpsdokumentene dine.",
-          "Nettstedet bruker Google Ads-taggen for å vite hvilke annonser som gir henvendelser: Google kan sette en reklamecookie i nettleseren din, med mindre du besøker nettstedet fra EØS, Storbritannia eller Sveits. Det bruker ingen andre verktøy for besøksstatistikk. Det lagrer også i nettleseren din hvor besøket kom fra og språket du valgte så lenge besøket varer, samt valutakursene som vises.",
+          "Nettstedet bruker Google Ads-taggen for å vite hvilke annonser som gir henvendelser: Google kan sette en reklamecookie i nettleseren din, med mindre du besøker nettstedet fra EØS, Storbritannia eller Sveits. Det bruker også Microsoft Clarity for å se hvordan sidene brukes (klikk, rulling), uten å registrere det du skriver i skjemaene; fra EØS, Storbritannia eller Sveits setter Clarity ingen informasjonskapsel. Det lagrer også i nettleseren din hvor besøket kom fra og språket du valgte så lenge besøket varer, samt valutakursene som vises.",
         ],
       },
       {
@@ -454,7 +459,8 @@ export const confidentialite: Record<Langue, TexteConfidentialite> = {
             "Cloudflare, for drift av nettstedet og videresending av henvendelser;",
             "Google Workspace, for e-posten vår;",
             "Supabase, for eierportalen;",
-            "Google Ads, for å måle annonsene våre.",
+            "Google Ads, for å måle annonsene våre;",
+            "Microsoft Clarity, for å forstå hvordan nettstedet brukes.",
           ],
           "Hvis du svarer på et annonseskjema, behandler også den aktuelle plattformen (Meta, Google, LinkedIn eller Snapchat) svarene dine etter sine egne retningslinjer. Vi selger eller leier ikke ut opplysningene dine.",
           "Noen av disse leverandørene lagrer opplysninger utenfor Marokko, i EU eller i USA.",
