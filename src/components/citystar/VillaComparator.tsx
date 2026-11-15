@@ -21,6 +21,7 @@ import {
   type Selection,
   PARAM_BUDGET,
   faitsVilla,
+  miniaturePlan,
   srcSetPour,
   villas,
 } from "./data";
@@ -238,7 +239,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
                   onClick={() => onOpenPlan(plan)}
                   aria-label={textes.villas.agrandirPlan(i === 1, t)}
                 >
-                  <img src={plan} alt="" loading="lazy" />
+                  <img src={miniaturePlan(plan)} alt="" loading="lazy" decoding="async" />
                   <small>
                     {i ? textes.villas.etage : textes.villas.rdc} <Expand aria-hidden="true" />
                   </small>
@@ -250,7 +251,7 @@ export function VillaComparator({ onOpenPlan, onContact, reference = null }: Pro
               vers={`${chemin(langue, `villas/${t.toLowerCase()}`)}#plans`}
               ariaLabel={textes.villas.plansAria(t)}
             >
-              <img src={villa?.plans[0]} alt="" loading="lazy" />
+              <img src={miniaturePlan(villa?.plans[0])} alt="" loading="lazy" decoding="async" />
               <em>{textes.comparateur.deuxPlans}</em>
             </Lien>
           </>

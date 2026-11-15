@@ -8,7 +8,7 @@ import {
   villasChiffres,
 } from "@/config/citystar";
 
-import { faitsVilla, srcSetPour, villas } from "./data";
+import { faitsVilla, miniaturePlan, srcSetPour, villas } from "./data";
 import { useSite } from "./contexte";
 import { chemin, Lien } from "./liens";
 import { VillaPrice, useDevise } from "./currency";
@@ -129,7 +129,7 @@ export function VillaFiche({ type, onOpenPlan, onContact }: Props) {
                 onClick={() => onOpenPlan(plan)}
                 aria-label={t.villas.agrandirPlan(i === 1, villa.type)}
               >
-                <img src={plan} alt="" loading="lazy" />
+                <img src={miniaturePlan(plan)} alt="" loading="lazy" decoding="async" />
                 <span>
                   {i ? t.villas.etage : t.villas.rdc} <Expand aria-hidden="true" />
                 </span>

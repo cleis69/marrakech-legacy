@@ -13,12 +13,18 @@ import type { Textes } from "./i18n";
 import villaAImage from "@/assets/citystar/rendus/ext-terrasses-cactus.webp";
 import villaBImage from "@/assets/citystar/rendus/ext-terrasse-jour.webp";
 import villaCImage from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
-import planARdc from "@/assets/citystar/plan-a-rdc.png";
-import planAFloor from "@/assets/citystar/plan-a-floor.png";
-import planBRdc from "@/assets/citystar/plan-b-rdc.png";
-import planBFloor from "@/assets/citystar/plan-b-floor.png";
-import planCRdc from "@/assets/citystar/plan-c-rdc.png";
-import planCFloor from "@/assets/citystar/plan-c-floor.png";
+import planARdc from "@/assets/citystar/plans/plan-a-rdc.webp";
+import planARdcPetit from "@/assets/citystar/plans/plan-a-rdc-sm.webp";
+import planAFloor from "@/assets/citystar/plans/plan-a-floor.webp";
+import planAFloorPetit from "@/assets/citystar/plans/plan-a-floor-sm.webp";
+import planBRdc from "@/assets/citystar/plans/plan-b-rdc.webp";
+import planBRdcPetit from "@/assets/citystar/plans/plan-b-rdc-sm.webp";
+import planBFloor from "@/assets/citystar/plans/plan-b-floor.webp";
+import planBFloorPetit from "@/assets/citystar/plans/plan-b-floor-sm.webp";
+import planCRdc from "@/assets/citystar/plans/plan-c-rdc.webp";
+import planCRdcPetit from "@/assets/citystar/plans/plan-c-rdc-sm.webp";
+import planCFloor from "@/assets/citystar/plans/plan-c-floor.webp";
+import planCFloorPetit from "@/assets/citystar/plans/plan-c-floor-sm.webp";
 
 export const villas = [
   { type: "A", image: villaAImage, plans: [planARdc, planAFloor] },
@@ -70,11 +76,28 @@ export type Budget = { montant: number; devise: Devise };
 /** Le simulateur envoie son budget au comparateur par l'URL : /villas?budget=1200000 (en euros). */
 export const PARAM_BUDGET = "budget";
 
+/**
+ * Plans en WebP (15/11/2026) : la grande version (2 000 px) s'ouvre dans la visionneuse, la
+ * miniature (720 px) s'affiche dans les fiches et le comparateur. Avant : six PNG de 150 à 350 Ko.
+ */
+const MINIATURES_PLANS = new Map<string, string>([
+  [planARdc, planARdcPetit],
+  [planAFloor, planAFloorPetit],
+  [planBRdc, planBRdcPetit],
+  [planBFloor, planBFloorPetit],
+  [planCRdc, planCRdcPetit],
+  [planCFloor, planCFloorPetit],
+]);
+export const miniaturePlan = (plan: string | undefined) =>
+  plan ? (MINIATURES_PLANS.get(plan) ?? plan) : undefined;
+
 /* ------------------------------------------------------------------ */
 /* Galerie : tous les rendus fournis par le promoteur                   */
 /* ------------------------------------------------------------------ */
 
-const modules = import.meta.glob("@/assets/citystar/rendus/*.webp", {
+/* Les copies « nom 2.webp » (anciennes versions lourdes des mêmes photos, laissées dans le dossier)
+   sont écartées : elles doublaient dix photos de la galerie, à 110–570 Ko pièce, sans version mobile. */
+const modules = import.meta.glob(["@/assets/citystar/rendus/*.webp", "!**/* [0-9].webp"], {
   eager: true,
   query: "?url",
   import: "default",
