@@ -117,11 +117,24 @@ export function signalerDebutGoogleAds() {
  */
 export const PROJET_CLARITY = "ze4a8lyxf2";
 
-export const AMORCE_CLARITY = PROJET_CLARITY
-  ? [
-      '(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};',
-      't=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;',
-      'y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);',
-      `})(window,document,"clarity","script",${JSON.stringify(PROJET_CLARITY)});`,
-    ].join("")
-  : "";
+/**
+ * Clarity est chargé après l'affichage (15/11/2026) : placé dans le <head>, son script s'insérait
+ * dans la page avant que React ne la reprenne et provoquait une erreur d'hydratation (n° 418).
+ */
+export function chargerClarity() {
+  if (!PROJET_CLARITY) return;
+  const fenetre = window as typeof window & { clarity?: unknown };
+  if (fenetre.clarity) return;
+  const lancer = () => {
+    const file: unknown[] = [];
+    const clarity = (...args: unknown[]) => void file.push(args);
+    (clarity as unknown as { q: unknown[] }).q = file;
+    fenetre.clarity = clarity;
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.clarity.ms/tag/${PROJET_CLARITY}`;
+    document.head.appendChild(script);
+  };
+  if (document.readyState === "complete") window.setTimeout(lancer, 0);
+  else window.addEventListener("load", lancer, { once: true });
+}

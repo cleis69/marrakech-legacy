@@ -1,4 +1,5 @@
 import { CalendrierSection } from "../CalendrierSection";
+import { LocationSection } from "../LocationSection";
 import {
   DossierAppel,
   DossierFormulaire,
@@ -22,7 +23,7 @@ import { VillasSection } from "../VillasSection";
  */
 export function HomePage() {
   const { t } = useDevise();
-  const { onCursorEnter, onCursorLeave, ouvrirVisite } = useSite();
+  const { onCursorEnter, onCursorLeave, ouvrirPlan, ouvrirVisite } = useSite();
   const [debut, fin] = t.hero.accroche;
   return (
     <>
@@ -35,6 +36,8 @@ export function HomePage() {
       <QuestionsSection />
       <TourSection onOpenTour={ouvrirVisite} />
       <DossierAppel />
+      {/* La carte du domaine, tout en bas (15/11/2026, demande de l'utilisateur). */}
+      <LocationSection onOpenPlan={ouvrirPlan} />
     </>
   );
 }

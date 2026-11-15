@@ -10,6 +10,7 @@ import { DeviseProvider } from "./currency";
 import { type Selection, prefersReducedMotion } from "./data";
 import { BulleWhatsApp } from "./dossier/sections";
 import { langueABasculer } from "./langueAppareil";
+import { chargerClarity } from "./mesure";
 import { memePage } from "./adresses";
 import { PlanModal } from "./PlanModal";
 import { retenirProvenance } from "./provenance";
@@ -69,6 +70,11 @@ export function SiteChrome({
   const { scrollYProgress } = useScroll();
 
   useEffect(retenirProvenance, []);
+
+  /* Enregistrements de visite (Clarity) : seulement sur le site en ligne, après l'affichage. */
+  useEffect(() => {
+    if (import.meta.env.PROD) chargerClarity();
+  }, []);
 
   /* Le visiteur arrive dans la langue de son téléphone, si le site la propose ; l'adresse
      (gclid, utm, ancre) est gardée telle quelle. */
