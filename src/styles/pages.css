@@ -104,3 +104,24 @@
 .merci .circle-choix a span { display: grid; gap: .35rem; }
 .merci .circle-choix a:hover, .merci .circle-choix a:focus-visible { padding-inline: 1rem; background: color-mix(in oklab, var(--cream) 45%, transparent); }
 .merci .circle-choix a:hover svg, .merci .circle-choix a:focus-visible svg { transform: translateX(.3rem); }
+
+
+/* Ouverture des pages sur le modèle de la page d'atterrissage (15/11/2026) : bouton brochure et
+   WhatsApp, plein écran sur mobile, sans animation d'apparition. */
+.ph-texte > * { animation: none; }
+.ph-appel { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; margin-top: .2rem; }
+.ph-bouton { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 3.4rem; padding: 0 1.9rem; border: 0; border-radius: 999px; background: var(--cream); color: var(--ink); font-size: 1rem; font-weight: 500; cursor: pointer; transition: background .3s; }
+.ph-bouton:hover, .ph-bouton:focus-visible { background: var(--sand); }
+.ph-bouton svg { width: 1rem; height: 1rem; }
+.ph-whatsapp { display: inline-flex; align-items: center; gap: .45rem; color: color-mix(in oklab, var(--cream) 88%, transparent); font-size: .92rem; text-decoration: none; }
+.ph-whatsapp svg { width: 1.05rem; height: 1.05rem; color: #25d366; }
+@media (max-width: 900px) {
+  .ph--appel .ph-cadre { min-height: calc(100svh - 16px); }
+  .ph--appel .ph-texte { justify-items: stretch; padding: 5.6rem 1.2rem 1.6rem; gap: 1rem; }
+  .ph--appel .ph-texte > .ph-chip { justify-self: start; }
+  .ph--appel h1 { font-size: 2.35rem; }
+  .ph--appel .ph-intro { font-size: .95rem; line-height: 1.5; }
+  .ph-appel { flex-direction: column; align-items: stretch; gap: .7rem; }
+  .ph-bouton { width: 100%; }
+  .ph-whatsapp { justify-content: center; }
+}

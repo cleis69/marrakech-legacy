@@ -5,7 +5,7 @@ import { contact } from "@/config/citystar";
 
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
-import { FormulaireDemande } from "./FormulaireDemande";
+import { FormulaireEtapes } from "./dossier/FormulaireEtapes";
 import { useModal } from "./useModal";
 
 /** `selection` : réponses d'un outil, affichées et jointes à la demande seulement si le visiteur l'envoie. */
@@ -41,7 +41,8 @@ export function ContactPanel({
           <em>{t.contact.titre[1]}</em>
         </h2>
         <p>{t.contact.texte}</p>
-        <FormulaireDemande selection={selection} />
+        {/* Le même formulaire en six étapes que la page d'atterrissage (15/11/2026). */}
+        <FormulaireEtapes id="panneau-demande" classe="" selection={selection ?? null} />
         <div className="direct-contact">
           <a href={`tel:${contact.telephone}`}>{contact.telephoneAffiche}</a>
           <a href={`mailto:${contact.email}`}>{contact.email}</a>

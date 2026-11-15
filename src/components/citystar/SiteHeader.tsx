@@ -1,16 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import {
-  ChevronDown,
-  CircleHelp,
-  DoorOpen,
-  FileText,
-  KeyRound,
-  LayoutPanelLeft,
-  PhoneCall,
-  Menu,
-  MessageCircle,
-  X,
-} from "lucide-react";
+import { ChevronDown, FileText, KeyRound, MessageCircle, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { type Langue, LANGUES, contact } from "@/config/citystar";
@@ -198,8 +187,8 @@ function MenuSheet({
             onContact();
           }}
         >
-          <PhoneCall aria-hidden="true" />
-          {t.header.demander}
+          <FileText aria-hidden="true" />
+          {t.villas.brochure}
         </button>
       </motion.div>
     </>
@@ -250,12 +239,6 @@ export function SiteHeader({
   /* Transparent seulement en haut de l'accueil, posé sur la vidéo ; partout ailleurs, un aplat d'encre. */
   const page = useRouterState({ select: (etat) => etat.location.pathname });
   const solide = scrolled || !/^\/(en\/?)?$/.test(page);
-  const tab = (sous: string, label: string, Icon: typeof DoorOpen) => (
-    <Lien className="tabbar-item" vers={chemin(langue, sous)}>
-      <Icon aria-hidden="true" />
-      <span>{label}</span>
-    </Lien>
-  );
 
   if (tunnel)
     return (
@@ -303,7 +286,7 @@ export function SiteHeader({
             {t.header.espace}
           </Lien>
           <button className="float-cta" onClick={onContact}>
-            {t.header.acces}
+            {t.villas.brochure}
           </button>
           <a
             className="float-concierge"
@@ -318,26 +301,8 @@ export function SiteHeader({
         </div>
       </header>
 
-      <nav className="tabbar" aria-label="Navigation">
-        {tab("villas", t.header.villas, DoorOpen)}
-        {tab("galerie", t.header.galerie, LayoutPanelLeft)}
-        <button className="tabbar-fab" onClick={onContact}>
-          <i aria-hidden="true">
-            <PhoneCall />
-          </i>
-          <span>{t.header.rappelCourt}</span>
-        </button>
-        {tab("faq", t.header.questions, CircleHelp)}
-        <button
-          className="tabbar-item"
-          onClick={onOpenMenu}
-          aria-expanded={menuOpen}
-          aria-haspopup="dialog"
-        >
-          <Menu aria-hidden="true" />
-          <span>{t.header.menu}</span>
-        </button>
-      </nav>
+      {/* Sur mobile, une seule action en bas de l'écran (15/11/2026) : les cinq onglets perdaient le visiteur. */}
+      <BarreTunnel onContact={onContact} libelle={t.villas.brochure} />
 
       <AnimatePresence>
         {menuOpen && (

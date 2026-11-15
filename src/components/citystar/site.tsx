@@ -8,7 +8,7 @@ import { ContactPanel } from "./ContactPanel";
 import { CLASSE_DEMANDE, ID_DEMANDE, SiteContext, type SiteState, useSite } from "./contexte";
 import { DeviseProvider } from "./currency";
 import { type Selection, prefersReducedMotion } from "./data";
-import { FloatingActions } from "./FloatingActions";
+import { BulleWhatsApp } from "./dossier/sections";
 import { langueABasculer } from "./langueAppareil";
 import { memePage } from "./adresses";
 import { PlanModal } from "./PlanModal";
@@ -91,7 +91,7 @@ export function SiteChrome({
     () => ({
       langue,
       tunnel,
-      selection: tunnel ? selection : null,
+      selection,
       onCursorEnter: (label: string) => (event: React.MouseEvent) => {
         cursorX.set(event.clientX);
         cursorY.set(event.clientY);
@@ -100,13 +100,14 @@ export function SiteChrome({
       onCursorLeave: () => setCursorLabel(""),
       ouvrirContact: () => {
         setSelection(null);
-        if (tunnel) allerAuFormulaire();
+        /* Une page qui porte le formulaire en étapes y ramène ; sinon, le panneau s'ouvre. */
+        if (tunnel || document.querySelector(`.${CLASSE_DEMANDE}`)) allerAuFormulaire();
         else setContactOpen(true);
       },
       /* Les outils ouvrent le formulaire avec leurs réponses ; rien n'est envoyé sans validation du visiteur. */
       ouvrirContactAvec: (reponses: Selection) => {
         setSelection(reponses);
-        if (tunnel) allerAuFormulaire();
+        if (tunnel || document.querySelector(`.${CLASSE_DEMANDE}`)) allerAuFormulaire();
         else setContactOpen(true);
       },
       ouvrirPlan: (src: string) => setPlanOpen(src),
@@ -148,7 +149,7 @@ export function SiteChrome({
             {children}
 
             <SiteFooter />
-            {!tunnel && <FloatingActions />}
+            <BulleWhatsApp />
 
             <AnimatePresence>
               {planOpen && <PlanModal src={planOpen} onClose={() => setPlanOpen(null)} />}

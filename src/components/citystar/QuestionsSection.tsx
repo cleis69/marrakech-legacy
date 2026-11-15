@@ -7,7 +7,7 @@ import { Reveal } from "./motion";
 import { useQuestions } from "./questions";
 
 /* Les cinq questions qui précèdent une réservation ; les autres restent sur la page Questions. */
-const CLES = ["securite", "acquisition", "financement", "livraison", "prix"];
+const CLES = ["securite", "acquisition", "financement", "livraison", "prix", "lieu"];
 /* Page d'atterrissage : une seule villa, donc pas la question des prix par type ; l'emplacement à la place. */
 const CLES_TUNNEL = ["securite", "acquisition", "financement", "livraison", "lieu"];
 

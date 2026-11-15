@@ -1,6 +1,5 @@
 import { CalendrierSection } from "../CalendrierSection";
 import {
-  BulleWhatsApp,
   DossierAppel,
   DossierFormulaire,
   DossierHero,
@@ -24,15 +23,16 @@ export function DossierPage() {
   return (
     <>
       <DossierHero />
-      <DossierFormulaire />
+      {/* Les photos d'abord, le formulaire ensuite (15/11/2026) : le visiteur voit la villa avant de
+          laisser son numéro ; le bouton de l'ouverture et la barre du bas mènent au formulaire. */}
       <LaVilla />
+      <DossierFormulaire />
       <Garanties />
       <CalendrierSection avecEspace={false} />
       <QuestionsSection />
       {/* La visite 360° en bas de page (15/11/2026, demande de l'utilisateur), avant le dernier appel. */}
       <TourSection onOpenTour={ouvrirVisite} />
       <DossierAppel />
-      <BulleWhatsApp />
     </>
   );
 }

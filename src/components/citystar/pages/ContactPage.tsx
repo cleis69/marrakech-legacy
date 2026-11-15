@@ -4,11 +4,11 @@ import { contact } from "@/config/citystar";
 
 import { useDevise } from "../currency";
 import { LocationSection } from "../LocationSection";
-import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { PillButton } from "../ui/PillButton";
 import contactBanniere from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
+import { DossierFormulaire } from "../dossier/sections";
 
 export function ContactPage() {
   const { t } = useDevise();
@@ -22,6 +22,8 @@ export function ContactPage() {
         titre={t.pages.contact.titreH1}
         intro={t.pages.contact.intro}
       />
+      {/* Le formulaire en étapes d'abord (15/11/2026), puis les coordonnées. */}
+      <DossierFormulaire />
       <section className="ct section-pad" aria-label={t.pages.contact.kicker}>
         <div className="ct-tiles">
           <a className="ct-tile" href={`tel:${contact.telephone}`}>
@@ -62,7 +64,6 @@ export function ContactPage() {
         </div>
       </section>
       <LocationSection onOpenPlan={ouvrirPlan} />
-      <Marquee />
     </>
   );
 }

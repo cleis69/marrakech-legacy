@@ -1,14 +1,12 @@
 import { CalendrierSection } from "../CalendrierSection";
 import { useDevise } from "../currency";
-import { FinalCta } from "../FinalCta";
 import { MarcheSection } from "../MarcheSection";
-import { ProcessusSection } from "../ProcessusSection";
-import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { Financement } from "../Financement";
 import { YieldSimulator } from "../YieldSimulator";
 import investirBanniere from "@/assets/citystar/rendus/ext-piscine-soir.webp";
+import { DossierAppel, DossierFormulaire } from "../dossier/sections";
 
 export function InvestirPage() {
   const { t } = useDevise();
@@ -33,13 +31,14 @@ export function InvestirPage() {
           ))}
         </ul>
       </section>
-      <MarcheSection />
-      <ProcessusSection />
-      <CalendrierSection />
+      {/* Même parcours que la page d'atterrissage (15/11/2026) : le formulaire en étapes après le texte,
+          puis les simulateurs, le marché, le calendrier et le dernier appel. */}
+      <DossierFormulaire />
       <YieldSimulator onContact={ouvrirContactAvec} />
       <Financement onContact={ouvrirContactAvec} />
-      <Marquee />
-      <FinalCta />
+      <MarcheSection />
+      <CalendrierSection />
+      <DossierAppel />
     </>
   );
 }

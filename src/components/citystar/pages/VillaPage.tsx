@@ -1,10 +1,9 @@
 import type { TypeVilla } from "@/config/citystar";
 
 import { useDevise } from "../currency";
-import { FinalCta } from "../FinalCta";
-import { Marquee } from "../Marquee";
 import { useSite } from "../site";
 import { VillaFiche } from "../VillaFiche";
+import { DossierAppel } from "../dossier/sections";
 
 export function VillaPage({ type }: { type: TypeVilla }) {
   const { t } = useDevise();
@@ -12,8 +11,7 @@ export function VillaPage({ type }: { type: TypeVilla }) {
   return (
     <>
       <VillaFiche type={type} onOpenPlan={ouvrirPlan} onContact={ouvrirContact} />
-      <Marquee />
-      <FinalCta />
+      <DossierAppel />
       <span className="sr-only">{t.villas.typeVilla(type)}</span>
     </>
   );

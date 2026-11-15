@@ -16,6 +16,7 @@ export function PromoteurPage() {
   return (
     <>
       <PageHeader
+        appel={false}
         image={banniere}
         kicker="Espace promoteur"
         titre={["Le chantier,", "villa par villa."]}
@@ -32,7 +33,8 @@ export function PromoteurPage() {
             t={{
               ...te.connexion,
               titre: "Connexion promoteur",
-              texte: "Saisissez votre adresse e-mail de promoteur. Vous recevrez un lien de connexion, sans mot de passe.",
+              texte:
+                "Saisissez votre adresse e-mail de promoteur. Vous recevrez un lien de connexion, sans mot de passe.",
             }}
             erreurLien={etat.erreurLien}
           />
@@ -52,9 +54,7 @@ export function PromoteurPage() {
         <section className="ec section-pad">
           <div className="ec-vide">
             <h2>Cet espace est réservé au promoteur.</h2>
-            <p>
-              Vous êtes connecté avec {etat.session.email}, qui n’a pas l’accès promoteur.
-            </p>
+            <p>Vous êtes connecté avec {etat.session.email}, qui n’a pas l’accès promoteur.</p>
             <button type="button" className="pill pill-secondary" onClick={sortir}>
               <span className="pill-label">Se déconnecter</span>
             </button>

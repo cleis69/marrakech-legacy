@@ -12,6 +12,7 @@ import {
 import photo from "@/assets/citystar/rendus-sm/ext-piscine-jour.webp";
 
 import { useDevise } from "../currency";
+import type { Selection } from "../data";
 import { allerAuRemerciement, envoyerDemande } from "../demande";
 import { QUESTIONS } from "../FormulaireDemande";
 import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "../indicatifs";
@@ -42,9 +43,19 @@ const propriete = (cle: "budget" | "horizon" | "projet") =>
  * Les réponses budget, horizon et projet vont dans leurs propriétés HubSpot ; la façon de
  * découvrir les villas et le financement partent dans le message, en français pour le consultant.
  */
-export function FormulaireEtapes({ id, classe }: { id: string; classe: string }) {
+export function FormulaireEtapes({
+  id,
+  classe,
+  selection: selectionDonnee,
+}: {
+  id: string;
+  classe: string;
+  /** Réponses d'un outil (panneau « Être rappelé ») ; sinon, celles de la page. */
+  selection?: Selection | null;
+}) {
   const { langue, devise, taux, t: site } = useDevise();
-  const { selection } = useSite();
+  const { selection: selectionPage } = useSite();
+  const selection = selectionDonnee !== undefined ? selectionDonnee : selectionPage;
   const t = textesDossier[langue].parcours;
   const fr = textesDossier.fr.parcours;
   const [etape, setEtape] = useState(0);

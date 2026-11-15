@@ -38,7 +38,13 @@ export function MerciPage() {
 
   return (
     <>
-      <PageHeader image={banniere} kicker={t.kicker} titre={t.titreH1} intro={t.intro} />
+      <PageHeader
+        appel={false}
+        image={banniere}
+        kicker={t.kicker}
+        titre={t.titreH1}
+        intro={t.intro}
+      />
       <section className="circle merci" aria-labelledby="merci-titre">
         <div className="circle-text">
           <h2 id="merci-titre">{t.sousTitre}</h2>

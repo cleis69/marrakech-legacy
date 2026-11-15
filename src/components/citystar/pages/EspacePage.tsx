@@ -24,7 +24,13 @@ export function EspacePage() {
 
   return (
     <>
-      <PageHeader image={espaceBanniere} kicker={p.kicker} titre={p.titreH1} intro={p.intro} />
+      <PageHeader
+        appel={false}
+        image={espaceBanniere}
+        kicker={p.kicker}
+        titre={p.titreH1}
+        intro={p.intro}
+      />
       {etat.phase === "chargement" && (
         <section className="ec section-pad" aria-busy="true">
           <p className="ec-attente">{te.chargement}</p>

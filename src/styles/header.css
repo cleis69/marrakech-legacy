@@ -57,10 +57,11 @@
 
 @media (max-width: 760px) {
   .float-header, .float-header.is-solid { top: 10px; left: 10px; right: 10px; transform: none; max-width: none; justify-content: space-between; }
-  .float-start { display: none; }
+  /* Mobile (15/11/2026) : CITYSTAR, Menu, langue ; WhatsApp passe dans la bulle, la demande dans la barre du bas. */
+  .float-start { display: flex; margin-left: auto; }
   .float-wordmark { padding-left: .8rem; font-size: 1.05rem; }
   .float-cta { display: none; }
-  .float-concierge { display: flex; }
+  .float-concierge { display: none; }
 
   .tabbar { position: fixed; z-index: 60; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom, 0px)); height: 64px; display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; border-radius: 22px; background: color-mix(in oklab, var(--ink) 86%, transparent); backdrop-filter: blur(14px); border: 1px solid color-mix(in oklab, var(--sand) 28%, transparent); color: var(--muted-dark); }
   .tabbar-item { position: relative; display: grid; justify-items: center; gap: .3rem; border: 0; background: none; color: inherit; font-size: .7rem; text-decoration: none; padding: .3rem 0; }

@@ -7,13 +7,23 @@ import banniere from "@/assets/citystar/rendus/entree-portail.webp";
  * Politique de confidentialité : vers elle pointent le pied de page et les formulaires de pub.
  * Les mentions légales passent leurs propres textes et reprennent la même mise en page.
  */
-export function ConfidentialitePage({ textes = confidentialite }: { textes?: typeof confidentialite }) {
+export function ConfidentialitePage({
+  textes = confidentialite,
+}: {
+  textes?: typeof confidentialite;
+}) {
   const { langue } = useDevise();
   const t: TexteConfidentialite = textes[langue];
 
   return (
     <>
-      <PageHeader image={banniere} kicker={t.kicker} titre={t.titreH1} intro={t.intro} />
+      <PageHeader
+        appel={false}
+        image={banniere}
+        kicker={t.kicker}
+        titre={t.titreH1}
+        intro={t.intro}
+      />
       <section className="prose section-pad conf" aria-label={t.kicker}>
         <dl className="faq-list">
           {t.sections.map((section) => (

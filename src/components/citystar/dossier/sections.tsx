@@ -7,13 +7,10 @@ import {
   Phone,
   Globe2,
   Landmark,
-  Pause,
-  Play,
   ShieldCheck,
   ZoomIn,
 } from "lucide-react";
-import { useReducedMotion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   AFFICHER_PLAN_MASSE,
@@ -29,9 +26,7 @@ import {
   programme,
   reservation,
   typeDepart,
-  villasChiffres,
 } from "@/config/citystar";
-import { Affiche, useFilm } from "../film";
 import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
@@ -61,8 +56,6 @@ import { signaler, signalerWhatsAppGoogleAds } from "../mesure";
 import { PillButton } from "../ui/PillButton";
 import { FormulaireEtapes } from "./FormulaireEtapes";
 import { textesDossier } from "./textes";
-
-const surfaceMax = Math.max(...Object.values(villasChiffres).map((v) => v.surfaceConstruiteM2));
 
 /**
  * Lien WhatsApp de la page d'atterrissage (15/11/2026, accord de l'utilisateur) : message prérempli.
@@ -305,16 +298,15 @@ export function DossierDemande({ rang, final = false }: { rang: number; final?: 
 /* Ouverture : la vidéo des rendus, la promesse datée, le formulaire   */
 /* ------------------------------------------------------------------ */
 
-export function DossierHero() {
+export function DossierHero({ titre }: { titre?: readonly [string, string] } = {}) {
   const { langue, devise, taux } = useDevise();
   const t = textesDossier[langue];
-  const reduce = useReducedMotion();
   /* Le prix d'entrée, promis par l'annonce (« dès 950 k€ »), visible dès l'arrivée, y compris sur mobile. */
   const depart = prixVilla(typeDepart, devise, taux);
   const prixDepart = `${depart.approximatif ? "≈ " : ""}${formatPrix(depart.montant, devise, langue)}`;
   const aPartirDe = prixPublics ? t.hero.prix(prixDepart) : null;
   const demander = useDemanderDossier();
-  const [ligne1, ligne2] = t.hero.titre(formatMois(calendrier.livraison, langue));
+  const [ligne1, ligne2] = titre ?? t.hero.titre(formatMois(calendrier.livraison, langue));
   const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
 
   return (

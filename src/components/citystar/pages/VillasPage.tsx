@@ -2,8 +2,6 @@ import { useState } from "react";
 
 import type { TypeVilla } from "@/config/citystar";
 
-import { FinalCta } from "../FinalCta";
-import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { useDevise } from "../currency";
@@ -12,6 +10,7 @@ import { VillaComparator } from "../VillaComparator";
 import { VillaSelector } from "../VillaSelector";
 // Pas la vue aérienne : elle illustre la villa C, juste en dessous.
 import villasBanniere from "@/assets/citystar/rendus/ext-piscine-jour.webp";
+import { DossierAppel } from "../dossier/sections";
 
 /**
  * Page de décision : le quiz recommande, le comparateur confirme. Les portes A/B/C
@@ -44,8 +43,7 @@ export function VillasPage() {
         onContact={ouvrirContactAvec}
         reference={reference}
       />
-      <Marquee />
-      <FinalCta />
+      <DossierAppel />
     </>
   );
 }

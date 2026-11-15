@@ -1,12 +1,11 @@
 import { ArchitectureSection } from "../ArchitectureSection";
 import { useDevise } from "../currency";
-import { FinalCta } from "../FinalCta";
 import { Galerie } from "../Galerie";
-import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useSite } from "../site";
 import { TourSection } from "../TourSection";
 import galerieBanniere from "@/assets/citystar/rendus/int-salon.webp";
+import { DossierAppel } from "../dossier/sections";
 
 export function GaleriePage() {
   const { t } = useDevise();
@@ -22,8 +21,7 @@ export function GaleriePage() {
       <Galerie />
       <ArchitectureSection />
       <TourSection onOpenTour={ouvrirVisite} />
-      <Marquee />
-      <FinalCta />
+      <DossierAppel />
     </>
   );
 }

@@ -2,12 +2,11 @@ import { ArrowRight, PhoneCall, Plus } from "lucide-react";
 
 import { useDevise } from "../currency";
 import { chemin, Lien } from "../liens";
-import { FinalCta } from "../FinalCta";
-import { Marquee } from "../Marquee";
 import { PageHeader } from "../PageHeader";
 import { useQuestions } from "../questions";
 import { useSite } from "../site";
 import faqBanniere from "@/assets/citystar/rendus/entree-crepuscule.webp";
+import { DossierAppel } from "../dossier/sections";
 
 export function FaqPage() {
   const { langue, t } = useDevise();
@@ -48,8 +47,7 @@ export function FaqPage() {
           ))}
         </div>
       </section>
-      <Marquee />
-      <FinalCta />
+      <DossierAppel />
     </>
   );
 }
