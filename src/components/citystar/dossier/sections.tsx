@@ -27,6 +27,7 @@ import {
   programme,
   reservation,
   typeDepart,
+  villasRestantes,
 } from "@/config/citystar";
 import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
@@ -40,8 +41,10 @@ import ouvertureMobileLg from "@/assets/citystar/rendus/ext-pergola-portrait.web
 import ouvertureMobileMd from "@/assets/citystar/ouverture/ext-pergola-portrait-1200.webp";
 import ouvertureSm from "@/assets/citystar/rendus-sm/ext-facade-crepuscule.webp";
 import ouvertureLg from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
-import salonSm from "@/assets/citystar/rendus-sm/int-salon.webp";
-import salonLg from "@/assets/citystar/rendus/int-salon.webp";
+/* « Le salon » : le grand séjour en double hauteur (16/11/2026). int-salon est le petit salon,
+   l'espace détente, et ne doit pas être présenté comme le salon. */
+import salonSm from "@/assets/citystar/rendus-sm/int-salon-double-hauteur.webp";
+import salonLg from "@/assets/citystar/rendus/int-salon-double-hauteur.webp";
 import piscineSm from "@/assets/citystar/rendus-sm/ext-piscine-jour.webp";
 import piscineLg from "@/assets/citystar/rendus/ext-piscine-jour.webp";
 import facadeSm from "@/assets/citystar/rendus-sm/ext-facade-entree.webp";
@@ -221,6 +224,37 @@ const acompte = reservation.paliers.find((palier) => palier.etape === "reservati
 export function useDemanderDossier() {
   const { ouvrirContact } = useSite();
   return ouvrirContact;
+}
+
+/**
+ * Bandeau défilant tout en haut de la page d'atterrissage (16/11/2026, demande de l'utilisateur) :
+ * le nombre de villas encore disponibles et l'offre de la liste. Un appui mène au formulaire. Le
+ * texte est répété pour défiler sans couture ; seule la première copie est lue par les lecteurs
+ * d'écran (étiquette du bouton). Sans animation si le visiteur la refuse.
+ */
+export function Bandeau() {
+  const { langue } = useDevise();
+  const demander = useDemanderDossier();
+  const morceaux = textesDossier[langue].parcours.bandeau(villasRestantes);
+  const copie = (n: number) => (
+    <span className="bd-copie" key={n}>
+      {[0, 1, 2].flatMap((tour) =>
+        morceaux.map((texte, i) => (
+          <span className="bd-morceau" key={`${tour}-${i}`}>
+            {texte}
+          </span>
+        )),
+      )}
+    </span>
+  );
+  return (
+    <button type="button" className="bandeau" onClick={demander} aria-label={morceaux.join(" — ")}>
+      <span className="bd-piste" aria-hidden="true">
+        {copie(0)}
+        {copie(1)}
+      </span>
+    </button>
+  );
 }
 
 function Titre({ lignes, id }: { lignes: readonly string[]; id: string }) {

@@ -133,6 +133,13 @@ export type EtapeChantier = "reservation" | "fondations" | "grosOeuvre" | "finit
 /** Mois d'une étape : mois de 1 à 12. */
 export type Mois = { annee: number; mois: number };
 
+/**
+ * Villas encore disponibles, affichées dans le bandeau de la page d'atterrissage. Donné par
+ * l'utilisateur le 16/11/2026 (« plus que 9 villas ») : à tenir à jour à chaque vente, le chiffre
+ * doit être vrai.
+ */
+export const villasRestantes = 9;
+
 export const calendrier = {
   // Livraison du domaine annoncée par le client le 04/10/2026.
   livraison: { annee: 2027, mois: 8, confirme: true },

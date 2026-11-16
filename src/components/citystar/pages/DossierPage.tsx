@@ -1,5 +1,6 @@
 import { CalendrierSection } from "../CalendrierSection";
 import {
+  Bandeau,
   DossierAppel,
   DossierFormulaire,
   DossierHero,
@@ -22,6 +23,8 @@ export function DossierPage() {
   const { ouvrirVisite } = useSite();
   return (
     <>
+      {/* Bandeau défilant tout en haut (16/11/2026) : villas restantes, liste des disponibilités. */}
+      <Bandeau />
       <DossierHero />
       {/* Les photos d'abord, le formulaire ensuite (15/11/2026) : le visiteur voit la villa avant de
           laisser son numéro ; le bouton de l'ouverture et la barre du bas mènent au formulaire. */}

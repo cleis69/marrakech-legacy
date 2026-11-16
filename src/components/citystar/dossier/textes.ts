@@ -107,6 +107,7 @@ const fr = {
   },
   parcours: {
     cta: "Recevoir la brochure",
+    bandeau: (n: number) => [`Plus que ${n} villas`, "Recevoir la liste des dernières disponibilités"],
     whatsapp: "ou écrire sur WhatsApp",
     messageWhatsapp: "Bonjour, je souhaite recevoir la brochure des villas CITYSTAR.",
     bulleWhatsapp: "Écrire sur WhatsApp",
@@ -282,6 +283,7 @@ const en: TextesDossier = {
   },
   parcours: {
     cta: "Get the brochure",
+    bandeau: (n: number) => [`Only ${n} villas left`, "Get the list of the last available villas"],
     whatsapp: "or message us on WhatsApp",
     messageWhatsapp: "Hello, I would like to receive the CITYSTAR villas brochure.",
     bulleWhatsapp: "Message us on WhatsApp",
@@ -454,6 +456,7 @@ const es: TextesDossier = {
   },
   parcours: {
     cta: "Recibir el folleto",
+    bandeau: (n: number) => [`Solo quedan ${n} villas`, "Recibir la lista de las últimas disponibles"],
     whatsapp: "o escribir por WhatsApp",
     messageWhatsapp: "Hola, me gustaría recibir el folleto de las villas CITYSTAR.",
     bulleWhatsapp: "Escribir por WhatsApp",
@@ -626,6 +629,7 @@ const it: TextesDossier = {
   },
   parcours: {
     cta: "Ricevi la brochure",
+    bandeau: (n: number) => [`Restano solo ${n} ville`, "Ricevi l’elenco delle ultime disponibilità"],
     whatsapp: "o scrivici su WhatsApp",
     messageWhatsapp: "Buongiorno, vorrei ricevere la brochure delle ville CITYSTAR.",
     bulleWhatsapp: "Scrivici su WhatsApp",
@@ -798,6 +802,7 @@ const nl: TextesDossier = {
   },
   parcours: {
     cta: "Brochure ontvangen",
+    bandeau: (n: number) => [`Nog maar ${n} villa’s`, "De lijst met de laatste beschikbare villa’s ontvangen"],
     whatsapp: "of stuur ons een WhatsApp",
     messageWhatsapp: "Hallo, ik ontvang graag de brochure van de CITYSTAR-villa’s.",
     bulleWhatsapp: "Stuur een WhatsApp",
@@ -971,6 +976,7 @@ const no: TextesDossier = {
   },
   parcours: {
     cta: "Få brosjyren",
+    bandeau: (n: number) => [`Bare ${n} villaer igjen`, "Få listen over de siste ledige villaene"],
     whatsapp: "eller skriv til oss på WhatsApp",
     messageWhatsapp: "Hei, jeg ønsker å motta brosjyren for CITYSTAR-villaene.",
     bulleWhatsapp: "Skriv på WhatsApp",
@@ -1148,6 +1154,7 @@ const ar: TextesDossier = {
   },
   parcours: {
     cta: "احصلوا على الكتيّب",
+    bandeau: (n: number) => [`لم يتبقَّ سوى ${n} فلل`, "احصلوا على قائمة آخر الفلل المتاحة"],
     whatsapp: "أو راسلونا عبر واتساب",
     messageWhatsapp: "مرحبًا، أودّ الحصول على كتيّب فلل CITYSTAR.",
     bulleWhatsapp: "راسلونا عبر واتساب",

@@ -400,3 +400,23 @@
 .fe-lien { padding: .3rem 0; border: 0; background: none; color: var(--muted-foreground); font-size: .88rem; text-decoration: underline; text-underline-offset: .2em; cursor: pointer; }
 .fe-lien:hover, .fe-lien:focus-visible { color: var(--ink); }
 a.fe-option { text-decoration: none; }
+
+/* ---------- Bandeau défilant de la page d'atterrissage (16/11/2026) ---------- */
+.bandeau { --bd-h: 34px; position: fixed; z-index: 62; top: 0; left: 0; right: 0; display: block; height: var(--bd-h); overflow: hidden; padding: 0; border: 0; background: var(--ink); color: var(--sand); font: 500 .7rem/var(--bd-h) "DM Sans", sans-serif; letter-spacing: .16em; text-transform: uppercase; text-align: start; cursor: pointer; }
+.bd-piste { display: flex; width: max-content; animation: bd-defile 38s linear infinite; }
+.bd-copie { display: flex; flex: none; }
+.bd-morceau { display: inline-flex; align-items: center; white-space: nowrap; }
+.bd-morceau::after { content: ""; width: 5px; height: 5px; margin: 0 1.4rem; background: var(--bronze); transform: rotate(45deg); }
+.bandeau:hover .bd-piste, .bandeau:focus-visible .bd-piste { animation-play-state: paused; }
+.bandeau:focus-visible { outline: 2px solid var(--sand); outline-offset: -2px; }
+@keyframes bd-defile { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .bd-piste { animation: none; } }
+/* Le bandeau occupe le haut : l'en-tête et l'ouverture descendent d'autant. */
+main.is-tunnel .float-header, main.is-tunnel .float-header.is-solid { top: calc(34px + 12px); }
+main.is-tunnel .dh { padding-top: calc(14px + 34px); }
+@media (max-width: 760px) { main.is-tunnel .float-header, main.is-tunnel .float-header.is-solid { top: calc(34px + 8px); } }
+/* Arabe : ni majuscules ni espacement des lettres, qui casseraient les liaisons. Le défilement
+   reste de droite à gauche à l'écran, comme pour les autres langues. */
+[dir="rtl"] .bandeau { letter-spacing: 0; text-transform: none; font-size: .78rem; }
+[dir="rtl"] .bd-piste { direction: ltr; }
+[dir="rtl"] .bd-morceau { direction: rtl; }
