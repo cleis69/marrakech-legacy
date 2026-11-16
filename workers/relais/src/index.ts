@@ -12,13 +12,13 @@
  *
  * - Chaque minute aussi : le score des leads modifiés récemment est recalculé (voir `score`), avec
  *   la tranche de budget tirée du budget déclaré dans sa devise. Quand le score change, le commercial
- *   reçoit une tâche HubSpot, et un e-mail pour un lead chaud.
+ *   reçoit une tâche HubSpot, et un e-mail pour un lead chaud ou tiède.
  *
  * Brevo ne relance pas la séquence d'un contact déjà dans la liste : renvoyer un lead est sans effet.
  * Sans les secrets BREVO_CLE et HUBSPOT_JETON, le relais transmet seulement les demandes à HubSpot.
  */
 
-import { alerteLeadChaud, libelle } from "./alerte";
+import { alerteLead, libelle } from "./alerte";
 
 interface Env {
   HUBSPOT_PORTAIL: string;
@@ -408,17 +408,16 @@ async function scores(env: Env) {
   }
 }
 
-/** Tâche d'appel dans HubSpot, à 1 h ou 24 h selon le score, et e-mail immédiat pour un lead chaud. */
+/** Tâche d'appel dans HubSpot, à 1 h ou 24 h selon le score, et e-mail immédiat pour un lead chaud ou tiède. */
 async function prevenir(env: Env, id: string, p: Proprietes, s: Score) {
   const heures = RAPPEL_HEURES[s];
   if (!heures) return;
   const nom = [p["firstname"], p["lastname"]].filter(Boolean).join(" ") || p["email"] || id;
   const fiche = `https://app-eu1.hubspot.com/contacts/${env.HUBSPOT_PORTAIL}/record/0-1/${id}`;
   const echeance = new Date(Date.now() + heures * 3_600_000);
-  const alerte = s === "chaud" ? alerteLeadChaud(p, fiche) : null;
+  const alerte = s === "chaud" || s === "tiede" ? alerteLead(p, fiche, s) : null;
   const sujet =
-    alerte?.sujet ??
-    `${s === "tiede" ? "🟠 Lead tiède" : "Lead à qualifier"} : rappeler ${nom} sous 24 h`;
+    alerte?.sujet ?? `Lead à qualifier : rappeler ${nom} sous 24 h`;
   const corps =
     alerte?.texte ??
     [

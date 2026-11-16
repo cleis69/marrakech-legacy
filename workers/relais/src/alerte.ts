@@ -1,8 +1,9 @@
 /**
- * E-mail « lead chaud » envoyé au commercial : de quoi appeler tout de suite, lisible sur téléphone.
+ * E-mail « lead chaud » ou « lead tiède » envoyé au commercial : de quoi appeler, lisible sur téléphone.
  * Boutons Appeler et WhatsApp, le projet en un coup d'œil, la fiche HubSpot. L'heure exacte de l'échéance
  * est dans la tâche HubSpot, affichée dans le fuseau du compte : les fuseaux des environnements ne
- * s'accordent pas sur celui de Casablanca (UTC+0 ou UTC+1), l'e-mail dit donc seulement « sous 1 h ».
+ * s'accordent pas sur celui de Casablanca (UTC+0 ou UTC+1), l'e-mail dit donc seulement « sous 1 h »
+ * ou « sous 24 h ».
  */
 
 type Proprietes = Record<string, string | null | undefined>;
@@ -77,7 +78,26 @@ export function libelle(p: Proprietes, cle: string) {
 const echapper = (t: string) =>
   t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
-export function alerteLeadChaud(p: Proprietes, fiche: string) {
+/** Ce qui change d'un score à l'autre : titre, délai d'appel et explication du score. */
+const NIVEAUX = {
+  chaud: {
+    titre: "Lead chaud",
+    emoji: "🔥",
+    delai: "1 h",
+    pourquoi: "Budget d'au moins 800 k€, achat dans les 6 mois, fonds propres ou mixte",
+  },
+  tiede: {
+    titre: "Lead tiède",
+    emoji: "🟠",
+    delai: "24 h",
+    pourquoi: "Bon budget ou achat proche, mais pas encore tous les critères d'un lead chaud",
+  },
+} as const;
+
+export type NiveauAlerte = keyof typeof NIVEAUX;
+
+export function alerteLead(p: Proprietes, fiche: string, niveau: NiveauAlerte) {
+  const { titre, emoji, delai, pourquoi } = NIVEAUX[niveau];
   const nom = [p["firstname"], p["lastname"]].filter(Boolean).join(" ") || p["email"] || "Lead sans nom";
   const telephone = p["phone"]?.trim() ?? "";
   const chiffres = telephone.replace(/\D/g, "");
@@ -99,7 +119,7 @@ export function alerteLeadChaud(p: Proprietes, fiche: string) {
   ).filter(([, valeur]) => valeur);
   const message = p["message"]?.trim();
 
-  const sujet = `🔥 Lead chaud : ${nom}, à appeler sous 1 h`;
+  const sujet = `${emoji} ${titre} : ${nom}, à appeler sous ${delai}`;
   const resume = [libelle(p, "citystar_budget"), libelle(p, "citystar_horizon"), libelle(p, "citystar_financement")]
     .filter(Boolean)
     .join(" · ");
@@ -126,19 +146,19 @@ export function alerteLeadChaud(p: Proprietes, fiche: string) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F6EFE3"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#FFFFFF;border-radius:14px;overflow:hidden">
 <tr><td style="background:#15110C;padding:22px 26px">
-<div style="color:#C3A586;font:600 11px/1 Arial,Helvetica,sans-serif;letter-spacing:.24em;text-transform:uppercase">CITYSTAR · Lead chaud</div>
+<div style="color:#C3A586;font:600 11px/1 Arial,Helvetica,sans-serif;letter-spacing:.24em;text-transform:uppercase">CITYSTAR · ${titre}</div>
 <div style="color:#FDF8F0;font:400 28px/1.2 Georgia,'Times New Roman',serif;margin-top:12px">${echapper(nom)}</div>
-<div style="color:#FDF8F0;font:15px/1.4 Arial,Helvetica,sans-serif;margin-top:8px;opacity:.85">À appeler <b>sous 1 h</b></div>
+<div style="color:#FDF8F0;font:15px/1.4 Arial,Helvetica,sans-serif;margin-top:8px;opacity:.85">À appeler <b>sous ${delai}</b></div>
 </td></tr>
 <tr><td style="padding:22px 26px 12px">${boutons}</td></tr>
 <tr><td style="padding:0 26px 8px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${tableau}</table></td></tr>
 ${message ? `<tr><td style="padding:8px 26px 4px"><div style="color:#8C6A48;font:600 12px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.06em">Son message</div><div style="margin-top:6px;padding:12px 14px;background:#F6EFE3;border-radius:8px;color:#15110C;font:15px/1.5 Arial,Helvetica,sans-serif;white-space:pre-line">${echapper(message)}</div></td></tr>` : ""}
-<tr><td style="padding:18px 26px 22px;color:#60564D;font:12px/1.5 Arial,Helvetica,sans-serif">Budget d'au moins 800 k€, achat dans les 6 mois, fonds propres ou mixte : score calculé par le relais du site. La tâche d'appel est aussi dans HubSpot.</td></tr>
+<tr><td style="padding:18px 26px 22px;color:#60564D;font:12px/1.5 Arial,Helvetica,sans-serif">${pourquoi} : score calculé par le relais du site. La tâche d'appel est aussi dans HubSpot.</td></tr>
 </table></td></tr></table></body></html>`;
 
   const texte = [
-    `LEAD CHAUD : ${nom}`,
-    "À appeler sous 1 h",
+    `${titre.toUpperCase()} : ${nom}`,
+    `À appeler sous ${delai}`,
     "",
     ...(telephone ? [`Téléphone : ${telephone} · WhatsApp : https://wa.me/${chiffres}`] : []),
     ...lignes.map(([cle, valeur]) => `${cle} : ${valeur}`),
