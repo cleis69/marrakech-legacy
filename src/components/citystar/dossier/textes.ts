@@ -127,7 +127,7 @@ const fr = {
     retour: "Retour",
     complement: {
       envoye: "Votre demande est bien envoyée.",
-      intro: "Quelques questions de plus, facultatives, pour mieux vous conseiller.",
+      intro: "Quelques questions de plus pour mieux vous conseiller.",
       passer: "Passer",
       terminer: "Terminer",
     },
@@ -292,7 +292,7 @@ const en: TextesDossier = {
     retour: "Back",
     complement: {
       envoye: "Your request has been sent.",
-      intro: "A few more optional questions, so we can advise you better.",
+      intro: "A few more questions, so we can advise you better.",
       passer: "Skip",
       terminer: "Finish",
     },
@@ -454,7 +454,7 @@ const es: TextesDossier = {
     retour: "Volver",
     complement: {
       envoye: "Su solicitud se ha enviado correctamente.",
-      intro: "Unas preguntas más, opcionales, para asesorarle mejor.",
+      intro: "Unas preguntas más para asesorarle mejor.",
       passer: "Omitir",
       terminer: "Terminar",
     },
@@ -616,7 +616,7 @@ const it: TextesDossier = {
     retour: "Indietro",
     complement: {
       envoye: "La sua richiesta è stata inviata.",
-      intro: "Qualche domanda in più, facoltativa, per consigliarla meglio.",
+      intro: "Qualche domanda in più per consigliarla meglio.",
       passer: "Salta",
       terminer: "Termina",
     },
@@ -778,7 +778,7 @@ const nl: TextesDossier = {
     retour: "Terug",
     complement: {
       envoye: "Uw aanvraag is verzonden.",
-      intro: "Nog een paar optionele vragen, zodat we u beter kunnen adviseren.",
+      intro: "Nog een paar vragen, zodat we u beter kunnen adviseren.",
       passer: "Overslaan",
       terminer: "Afronden",
     },
@@ -941,7 +941,7 @@ const no: TextesDossier = {
     retour: "Tilbake",
     complement: {
       envoye: "Forespørselen din er sendt.",
-      intro: "Noen flere valgfrie spørsmål, så vi kan gi deg bedre råd.",
+      intro: "Noen flere spørsmål, så vi kan gi deg bedre råd.",
       passer: "Hopp over",
       terminer: "Fullfør",
     },
@@ -1108,7 +1108,7 @@ const ar: TextesDossier = {
     retour: "رجوع",
     complement: {
       envoye: "تم إرسال طلبكم بنجاح.",
-      intro: "بضعة أسئلة إضافية، اختيارية، لنقدّم لكم نصيحة أفضل.",
+      intro: "بضعة أسئلة إضافية لنقدّم لكم نصيحة أفضل.",
       passer: "تخطّي",
       terminer: "إنهاء",
     },
