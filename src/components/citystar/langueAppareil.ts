@@ -9,6 +9,8 @@
 
 import { LANGUES, type Langue } from "@/config/citystar";
 
+import { arriveeParAnnonce } from "./provenance";
+
 const CLE = "citystar-langue-choisie";
 /** Choix fait dans le sélecteur, gardé d'une visite à l'autre : la langue du téléphone ne l'emporte plus. */
 const CLE_MANUELLE = "citystar-langue-manuelle";
@@ -84,6 +86,10 @@ const ROBOT = /bot|crawl|spider|slurp|google|lighthouse|headless|preview|faceboo
  * visiteur dans la langue de son téléphone). La première langue de l'appareil que le site propose,
  * arabe compris depuis le 15/11/2026 (un téléphone « arabe, français » va en arabe). Jamais pour les robots (référencement, vérification des annonces), jamais après un
  * choix dans le sélecteur, une seule fois par visite. Rend null si la page est déjà la bonne.
+ *
+ * Jamais non plus pour un visiteur venu d'une annonce (16/11/2026) : il a cherché et cliqué dans
+ * la langue de l'annonce, et trois visiteurs sur huit venus des annonces françaises se retrouvaient
+ * sur la page anglaise à cause de la langue de leur téléphone. Sa visite garde ensuite cette langue.
  */
 export function langueABasculer(langue: Langue): Langue | null {
   try {
@@ -91,9 +97,12 @@ export function langueABasculer(langue: Langue): Langue | null {
     if (localStorage.getItem(CLE_MANUELLE) === "1" || langueChoisie()) return null;
     if (sessionStorage.getItem(CLE_AUTO) === "1") return null;
     sessionStorage.setItem(CLE_AUTO, "1");
+    if (arriveeParAnnonce()) return null;
   } catch {
     return null;
   }
-  const cible = languesAppareil().map(versLangueSite).find((l): l is Langue => l !== null);
+  const cible = languesAppareil()
+    .map(versLangueSite)
+    .find((l): l is Langue => l !== null);
   return cible && cible !== langue ? cible : null;
 }

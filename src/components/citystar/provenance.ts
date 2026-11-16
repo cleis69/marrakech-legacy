@@ -5,6 +5,10 @@
 
 const CLE = "citystar-provenance";
 const UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_content"] as const;
+/** Identifiants que Google Ads ajoute à l'adresse d'arrivée. */
+const CLIC_GOOGLE = ["gclid", "gbraid", "wbraid"];
+/** Lien marqué payant par son `utm_medium` (cpc, paid_social, display…). */
+const PAYANT = /cpc|ppc|paid|ads?\b|display|retargeting/;
 
 export type Provenance = {
   utm: Partial<Record<(typeof UTM)[number], string>>;
@@ -24,7 +28,7 @@ export function retenirProvenance() {
         return valeur ? [[cle, valeur]] : [];
       }),
     );
-    const clicGoogle = ["gclid", "gbraid", "wbraid"].some((cle) => url.has(cle));
+    const clicGoogle = CLIC_GOOGLE.some((cle) => url.has(cle));
     const hote = document.referrer ? new URL(document.referrer).hostname : "";
     const referent = hote && hote !== window.location.hostname ? hote : undefined;
     if (Object.keys(utm).length || clicGoogle) {
@@ -35,6 +39,19 @@ export function retenirProvenance() {
   } catch {
     // Stockage bloqué (navigation privée stricte) : la demande partira sans provenance.
   }
+}
+
+/**
+ * Le visiteur arrive par un clic sur une annonce : identifiant ajouté par Google Ads, ou lien
+ * marqué payant. La langue de l'annonce a été choisie avec la campagne : la page reste dans
+ * cette langue (voir `langueABasculer`).
+ */
+export function arriveeParAnnonce(recherche = window.location.search) {
+  const url = new URLSearchParams(recherche);
+  return (
+    CLIC_GOOGLE.some((cle) => url.has(cle)) ||
+    PAYANT.test((url.get("utm_medium") ?? "").toLowerCase())
+  );
 }
 
 export function provenance(): Provenance {
@@ -49,9 +66,7 @@ export function provenance(): Provenance {
 export function canal({ utm, clicGoogle, referent = "" }: Provenance) {
   const source = (utm.utm_source ?? "").toLowerCase();
   const campagne = (utm.utm_campaign ?? "").toLowerCase();
-  const payant = /cpc|ppc|paid|ads?\b|display|retargeting/.test(
-    (utm.utm_medium ?? "").toLowerCase(),
-  );
+  const payant = PAYANT.test((utm.utm_medium ?? "").toLowerCase());
   if (clicGoogle || (source.includes("google") && payant)) return "google_ads";
   if (/facebook|\bfb\b|instagram|\big\b|meta/.test(source) && payant) return "meta_ads";
   if (source.includes("linkedin") && payant) return "linkedin_ads";
