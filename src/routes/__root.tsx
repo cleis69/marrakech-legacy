@@ -126,7 +126,8 @@ function RootShell({ children }: { children: ReactNode }) {
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
   const langue = langueDe(chemin);
 
-  /* Mesure (balise Google, puis Clarity) : après la reprise de la page par React, jamais avant. */
+  /* Mesure (balise Google, puis Clarity) : après la reprise de la page par React, quand le
+     navigateur est au repos (voir mesure.ts). */
   useEffect(() => {
     if (!import.meta.env.PROD) return;
     chargerBalise();

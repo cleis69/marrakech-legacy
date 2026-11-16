@@ -14,9 +14,10 @@ import banniere from "@/assets/citystar/rendus/ext-piscine-soir.webp";
 export function MerciPage() {
   const { langue } = useDevise();
   const t = merci[langue];
-  /* Hors /merci (français, compté par le conteneur de balises), la page compte elle-même la demande. */
+  /* La page compte elle-même la demande, dans toutes les langues : le conteneur de balises, qui
+     comptait /merci en français, n'est plus chargé depuis le 16/11/2026 (voir mesure.ts). */
   useEffect(() => {
-    if (langue !== "fr") signalerDemandeGoogleAds();
+    signalerDemandeGoogleAds();
   }, [langue]);
   const whatsapp = `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(t.whatsapp.message)}`;
 
