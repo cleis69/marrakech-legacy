@@ -19,7 +19,11 @@ import { TourModal } from "./TourModal";
 
 export { ID_DEMANDE, useSite };
 
-/** Ramène le visiteur au formulaire de la page, le curseur dans le premier champ. */
+/**
+ * Ramène le visiteur au formulaire de la page. Si le champ du numéro est à l'écran (le visiteur a
+ * déjà donné son budget), le curseur y va directement (16/11/2026) : c'est le seul champ
+ * obligatoire, alors que le nom, placé avant lui, est facultatif.
+ */
 function allerAuFormulaire() {
   /* La page en compte plusieurs : on va au plus proche de ce que le visiteur regarde. */
   const milieu = window.innerHeight / 2;
@@ -36,7 +40,11 @@ function allerAuFormulaire() {
     block: "center",
   });
   window.setTimeout(
-    () => formulaire.querySelector<HTMLInputElement>("input")?.focus({ preventScroll: true }),
+    () =>
+      (
+        formulaire.querySelector<HTMLInputElement>('input[name="telephone"]') ??
+        formulaire.querySelector<HTMLInputElement>("input")
+      )?.focus({ preventScroll: true }),
     prefersReducedMotion() ? 0 : 600,
   );
 }
