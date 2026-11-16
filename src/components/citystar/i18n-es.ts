@@ -538,7 +538,8 @@ export const es: Textes = {
         "Dormitorio revestido de madera oscura, cama grande y suelo de mármol claro",
       "int-chambre-jour": "Dormitorio luminoso, cama baja y ventanal abierto al jardín",
       "int-chambre-soir": "Dormitorio en tonos grises, cama, sillones y vestidor",
-      "int-salon": "Salón con sofá curvo bajo lámparas circulares, bonsái sobre la mesa baja",
+      "int-salon":
+        "Salita, el espacio de descanso: sofá curvo bajo lámparas circulares, dos butacas y un bonsái sobre la mesa baja",
       "int-cuisine":
         "Cocina de mármol veteado con isla central y taburetes, muebles de madera oscura y lacados en blanco",
       "int-salle-a-manger": "Comedor para diez, larga mesa de mármol, cortinas y vitrina",

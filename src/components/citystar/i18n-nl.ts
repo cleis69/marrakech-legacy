@@ -537,7 +537,8 @@ export const nl: Textes = {
         "Slaapkamer met donkere houten lambrisering, groot bed en lichte marmeren vloer",
       "int-chambre-jour": "Lichte slaapkamer, laag bed en een glazen wand naar de tuin",
       "int-chambre-soir": "Slaapkamer in grijstinten, bed, fauteuils en kleedkamer",
-      "int-salon": "Woonkamer met een gebogen bank onder ronde hanglampen, bonsai op de salontafel",
+      "int-salon":
+        "Kleine zitkamer, de relaxruimte: gebogen bank onder ronde hanglampen, twee fauteuils en een bonsai op de salontafel",
       "int-cuisine":
         "Keuken in geaderd marmer met kookeiland en barkrukken, donker hout en wit gelakte kasten",
       "int-salle-a-manger": "Eetkamer voor tien, lange marmeren tafel, gordijnen en vitrinekast",

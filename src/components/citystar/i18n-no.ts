@@ -517,7 +517,8 @@ export const no: Textes = {
       "int-chambre-bois": "Soverom med mørk trepanel, stor seng og lyst marmorgulv",
       "int-chambre-jour": "Lyst soverom, lav seng og glassvegg mot hagen",
       "int-chambre-soir": "Soverom i grå toner, seng, lenestoler og garderobe",
-      "int-salon": "Stue med buet sofa under runde taklamper, bonsai på salongbordet",
+      "int-salon":
+        "Liten stue, avslapningsrommet: buet sofa under runde taklamper, to lenestoler og bonsai på salongbordet",
       "int-cuisine":
         "Kjøkken i årete marmor med kjøkkenøy og barkrakker, mørkt tre og hvitlakkerte fronter",
       "int-salle-a-manger": "Spisestue for ti, langt marmorbord, gardiner og vitrineskap",

@@ -533,7 +533,8 @@ export const it: Textes = {
         "Camera rivestita in legno scuro, letto grande e pavimento in marmo chiaro",
       "int-chambre-jour": "Camera luminosa, letto basso e vetrata aperta sul giardino",
       "int-chambre-soir": "Camera nei toni del grigio, letto, poltrone e cabina armadio",
-      "int-salon": "Soggiorno con divano curvo sotto lampade circolari, bonsai sul tavolino",
+      "int-salon":
+        "Salottino, lo spazio relax: divano curvo sotto lampade circolari, due poltrone e un bonsai sul tavolino",
       "int-cuisine":
         "Cucina in marmo venato con isola centrale e sgabelli, mobili in legno scuro e laccati bianchi",
       "int-salle-a-manger": "Sala da pranzo per dieci, lungo tavolo in marmo, tende e vetrina",

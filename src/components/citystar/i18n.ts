@@ -555,7 +555,7 @@ const fr = {
       "int-chambre-jour": "Chambre lumineuse, lit bas et baie vitrée ouverte sur le jardin",
       "int-chambre-soir": "Chambre aux tons gris, lit, fauteuils et dressing",
       "int-salon":
-        "Salon au canapé courbe sous des suspensions circulaires, bonsaï sur la table basse",
+        "Petit salon, l’espace détente : canapé courbe sous des suspensions circulaires, deux fauteuils, bonsaï sur la table basse",
       "int-cuisine":
         "Cuisine en marbre veiné, îlot central et tabourets, meubles en bois sombre et façades laquées blanches",
       "int-salle-a-manger": "Salle à manger pour dix, longue table en marbre, rideaux et vitrine",
@@ -1454,7 +1454,7 @@ const en: Textes = {
       "int-chambre-jour": "Bright bedroom, low bed and a glass wall onto the garden",
       "int-chambre-soir": "Grey-toned bedroom, bed, armchairs and dressing room",
       "int-salon":
-        "Living room with a curved sofa under circular pendant lights, bonsai on the coffee table",
+        "Small lounge, the relaxation area: curved sofa under circular pendant lights, two armchairs, bonsai on the coffee table",
       "int-cuisine":
         "Veined-marble kitchen with a central island and stools, dark wood and white lacquered units",
       "int-salle-a-manger":

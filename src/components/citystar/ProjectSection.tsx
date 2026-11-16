@@ -1,6 +1,7 @@
 import entreeImage from "@/assets/citystar/rendus/entree-crepuscule.webp";
 import pergolaImage from "@/assets/citystar/rendus/ext-pergola-portrait.webp";
-import salonImage from "@/assets/citystar/rendus/int-salon.webp";
+/* Le grand salon en double hauteur ; int-salon est le petit salon (espace détente). */
+import salonImage from "@/assets/citystar/rendus/int-salon-double-hauteur.webp";
 
 import { useDevise } from "./currency";
 import { altRendu } from "./data";
@@ -13,7 +14,7 @@ export function ProjectSection() {
   const vues = [
     { src: entreeImage, nom: "entree-crepuscule", legende: t.projet.vues.entree },
     { src: pergolaImage, nom: "ext-pergola-portrait", legende: t.projet.vues.pergola },
-    { src: salonImage, nom: "int-salon", legende: t.projet.vues.salon },
+    { src: salonImage, nom: "int-salon-double-hauteur", legende: t.projet.vues.salon },
   ];
   return (
     <section id="project" className="pj" aria-labelledby="project-title">
