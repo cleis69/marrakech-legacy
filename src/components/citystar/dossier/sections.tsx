@@ -228,7 +228,8 @@ export function useDemanderDossier() {
 
 /**
  * Bandeau défilant tout en haut de la page d'atterrissage (16/11/2026, demande de l'utilisateur) :
- * le nombre de villas encore disponibles et l'offre de la liste. Un appui mène au formulaire. Le
+ * le nombre de villas encore disponibles, la villa témoin visitable fin janvier 2027 (date donnée par
+ * l'utilisateur le 03/11/2026) et l'offre de la liste. Un appui mène au formulaire. Le
  * texte est répété pour défiler sans couture ; seule la première copie est lue par les lecteurs
  * d'écran (étiquette du bouton). Sans animation si le visiteur la refuse.
  */
