@@ -7,8 +7,9 @@
  * conteneur Google Tag Manager GTM-P64LSTXF. Ce conteneur, auquel aucun compte connecté n'a accès,
  * chargeait aussi le pixel Meta (fbevents.js, 422 Ko de script) alors que les publicités Meta ne
  * sont pas lancées : sur téléphone, c'était la plus grosse charge au moment où le visiteur touche
- * la page (Clarity : INP 1,6 s, score de performance 63/100). Le jour où Meta enverra vers le site,
- * son pixel s'ajoutera ici, chargé de la même façon.
+ * la page (Clarity : INP 1,6 s, score de performance 63/100). Le pixel Meta est remis le même jour
+ * (publicités Meta prévues pour le 23/11/2026), directement dans le site et chargé au repos lui
+ * aussi : voir `chargerPixelMeta`.
  *
  * Le site n'a pas de bandeau de consentement : dans l'Espace économique européen, au
  * Royaume-Uni et en Suisse, le consentement est refusé d'office et Google ne dépose aucun
@@ -115,6 +116,90 @@ export function signalerWhatsAppGoogleAds() {
 export function signalerDebutGoogleAds() {
   const fenetre = window as typeof window & { gtag?: (...args: unknown[]) => void };
   fenetre.gtag?.("event", "conversion", { send_to: DEBUT_FORMULAIRE });
+}
+
+/**
+ * Pixel Meta du portefeuille CityStar (16/11/2026), avec les mêmes événements que le conteneur de
+ * balises qui le chargeait jusqu'ici : PageView à chaque page (y compris les changements de page
+ * sans rechargement), Lead sur les pages de remerciement et à l'envoi du formulaire en étapes,
+ * Contact au clic sur un lien WhatsApp, téléphone ou e-mail.
+ */
+const PIXEL_META = "2197784790850273";
+const PAGES_MERCI =
+  /^\/(merci|en\/thank-you|es\/gracias|it\/grazie|nl\/bedankt|no\/takk|ar\/thank-you)\/?$/;
+
+type Fbq = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue: unknown[];
+  push: unknown;
+  loaded: boolean;
+  version: string;
+};
+
+function fbq(...args: unknown[]) {
+  (window as typeof window & { fbq?: Fbq }).fbq?.(...args);
+}
+
+/** Demande envoyée : comptée par Meta comme un Lead. */
+export function signalerDemandeMeta() {
+  fbq("track", "Lead", { content_name: "Formulaire site CityStar" });
+}
+
+/**
+ * La file `fbq` est posée tout de suite (les événements sont gardés), le script de Meta
+ * (fbevents.js, plus de 400 Ko) n'est chargé qu'au repos, comme la balise Google.
+ */
+export function chargerPixelMeta() {
+  const fenetre = window as typeof window & { fbq?: Fbq; _fbq?: Fbq };
+  if (fenetre.fbq) return;
+  const file = function (...args: unknown[]) {
+    if (file.callMethod) file.callMethod(...args);
+    else file.queue.push(args);
+  } as Fbq;
+  file.push = file;
+  file.loaded = true;
+  file.version = "2.0";
+  file.queue = [];
+  fenetre.fbq = file;
+  fenetre._fbq = file;
+
+  fbq("init", PIXEL_META);
+  fbq("track", "PageView");
+  if (PAGES_MERCI.test(window.location.pathname)) signalerDemandeMeta();
+
+  /* Changement de page sans rechargement : une nouvelle page vue. */
+  let page = window.location.pathname;
+  const nouvellePage = () => {
+    if (window.location.pathname === page) return;
+    page = window.location.pathname;
+    fbq("track", "PageView");
+  };
+  const pushState = history.pushState.bind(history);
+  history.pushState = (...args: Parameters<History["pushState"]>) => {
+    pushState(...args);
+    window.setTimeout(nouvellePage, 0);
+  };
+  window.addEventListener("popstate", nouvellePage);
+
+  /* Clic sur un moyen de contact. */
+  document.addEventListener(
+    "click",
+    (event) => {
+      const lien = (event.target as Element | null)?.closest?.("a[href]");
+      const adresse = lien?.getAttribute("href") ?? "";
+      if (/wa\.me|whatsapp/i.test(adresse)) fbq("track", "Contact", { method: "whatsapp" });
+      else if (/^tel:/i.test(adresse)) fbq("track", "Contact", { method: "telephone" });
+      else if (/^mailto:/i.test(adresse)) fbq("track", "Contact", { method: "email" });
+    },
+    true,
+  );
+
+  auRepos(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://connect.facebook.net/en_US/fbevents.js";
+    document.head.appendChild(script);
+  }, 3000);
 }
 
 /**

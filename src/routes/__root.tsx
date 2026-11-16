@@ -17,7 +17,12 @@ import alexandriaArabe from "../assets/fonts/alexandria-arabic-300.woff2?url";
 import readexArabe from "../assets/fonts/readex-pro-arabic.woff2?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { langueDe } from "@/components/citystar/liens";
-import { AMORCE_BALISE, chargerBalise, chargerClarity } from "@/components/citystar/mesure";
+import {
+  AMORCE_BALISE,
+  chargerBalise,
+  chargerClarity,
+  chargerPixelMeta,
+} from "@/components/citystar/mesure";
 import { estRtl } from "@/config/citystar";
 
 function NotFoundComponent() {
@@ -126,11 +131,12 @@ function RootShell({ children }: { children: ReactNode }) {
   const chemin = useRouterState({ select: (etat) => etat.location.pathname });
   const langue = langueDe(chemin);
 
-  /* Mesure (balise Google, puis Clarity) : après la reprise de la page par React, quand le
+  /* Mesure (balise Google, pixel Meta, puis Clarity) : après la reprise de la page par React, quand le
      navigateur est au repos (voir mesure.ts). */
   useEffect(() => {
     if (!import.meta.env.PROD) return;
     chargerBalise();
+    chargerPixelMeta();
     chargerClarity();
   }, []);
 

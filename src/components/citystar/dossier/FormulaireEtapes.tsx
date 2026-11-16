@@ -22,6 +22,7 @@ import {
   signaler,
   signalerDebutGoogleAds,
   signalerDemandeGoogleAds,
+  signalerDemandeMeta,
   signalerWhatsAppGoogleAds,
 } from "../mesure";
 import { useSite } from "../site";
@@ -215,6 +216,7 @@ export function FormulaireEtapes({
     signaler("formulaire_envoye", { formulaire: id });
     /* La demande est comptée par Google Ads au moment où elle part, pas à l'arrivée sur une page. */
     signalerDemandeGoogleAds();
+    signalerDemandeMeta();
     aller(PREMIERE_QUESTION);
   }
 
