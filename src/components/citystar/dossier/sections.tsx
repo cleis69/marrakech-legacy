@@ -34,12 +34,11 @@ import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
-import ouvertureMobileSm from "@/assets/citystar/rendus-sm/ext-pergola-portrait.webp";
-import ouvertureMobileLg from "@/assets/citystar/rendus/ext-pergola-portrait.webp";
-/* Version 1200 px (16/11/2026) : les téléphones à écran haute densité prenaient la 1600 px (236 Ko)
-   pour l'image qui compte le plus dans le premier affichage ; celle-ci pèse 140 Ko. Hors du dossier
-   des rendus, pour ne pas entrer dans la galerie. */
-import ouvertureMobileMd from "@/assets/citystar/ouverture/ext-pergola-portrait-1200.webp";
+/* Ouverture sur mobile (16/11/2026, choix de l'utilisateur) : la villa de jour et sa piscine, entières
+   (cadrage presque carré depuis le rendu en pleine définition 10-piscine-jour), à la place de la
+   pergola en gros plan, qui ne montrait pas la villa. Hors du dossier des rendus, pour ne pas entrer dans la galerie. */
+import ouvertureMobileSm from "@/assets/citystar/ouverture/villa-jour-portrait-800.webp";
+import ouvertureMobileMd from "@/assets/citystar/ouverture/villa-jour-portrait-1200.webp";
 import ouvertureSm from "@/assets/citystar/rendus-sm/ext-facade-crepuscule.webp";
 import ouvertureLg from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
 /* « Le salon » : le grand séjour en double hauteur (16/11/2026). int-salon est le petit salon,
@@ -370,7 +369,7 @@ export function DossierHero({ titre }: { titre?: readonly [string, string] } = {
         <picture>
           <source
             media="(max-width: 900px)"
-            srcSet={`${ouvertureMobileSm} 800w, ${ouvertureMobileMd} 1200w, ${ouvertureMobileLg} 1600w`}
+            srcSet={`${ouvertureMobileSm} 800w, ${ouvertureMobileMd} 1200w`}
             sizes="100vw"
           />
           <img

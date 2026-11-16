@@ -420,3 +420,32 @@ main.is-tunnel .dh { padding-top: calc(14px + 34px); }
 [dir="rtl"] .bandeau { letter-spacing: 0; text-transform: none; font-size: .78rem; }
 [dir="rtl"] .bd-piste { direction: ltr; }
 [dir="rtl"] .bd-morceau { direction: rtl; }
+
+/* ---------- Ouverture sur mobile, recomposée (16/11/2026, demande de l'utilisateur) ----------
+   La photo (la villa de jour et sa piscine) occupe le haut, entière, puis se fond dans un fond
+   d'encre qui porte le texte : avant, le texte et le voile couvraient la moitié basse de la photo
+   et cachaient la piscine. Le texte tient sur une seule colonne alignée : l'étiquette sur une
+   ligne, le trait des chiffres et le bouton sur la même largeur. */
+@media (max-width: 900px) {
+  /* La photo remplit exactement l'espace au-dessus du texte, quelle que soit la taille de l'écran. */
+  .dh-cadre { flex-direction: column; align-items: stretch; justify-content: flex-start; }
+  .dh-cadre > picture { position: relative; display: block; flex: 1 1 auto; min-height: 0; }
+  .dh-affiche { inset: 0; height: 100%; object-position: 50% 65%; }
+  /* Le voile n'assombrit plus que le haut (lisibilité de l'en-tête) ; le texte porte son propre fondu,
+     qui ne mord que sur le bas de la photo. */
+  .dh-voile { background: linear-gradient(180deg, color-mix(in oklab, var(--ink) 40%, transparent) 0%, transparent 14%); }
+  .dh-contenu { flex: none; margin-top: -2.6rem; padding: 2.6rem 1.2rem 1.2rem; background: linear-gradient(180deg, transparent 0, var(--ink) 2.4rem); }
+  .dh-texte { width: 100%; justify-items: stretch; gap: .9rem; }
+  .dh-chip { justify-self: start; max-width: 100%; padding: .4rem .8rem; font-size: .7rem; white-space: nowrap; }
+  .dh h1 { font-size: 2.2rem; }
+  /* La phrase d'introduction laisse la place à la photo ; ses 2 000 m² sont dans les chiffres. */
+  .dh-intro { display: none; }
+  .dh-chiffres { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding-top: .85rem; }
+  .dh-chiffres > div { padding: 0 .7rem; }
+  .dh-appel { margin-top: .1rem; gap: .55rem; }
+  /* Le bandeau du haut prend 34 px : l'ouverture tient quand même dans l'écran. */
+  main.is-tunnel .dh-cadre { min-height: calc(100svh - 16px - 34px); }
+}
+@media (min-width: 901px) {
+  main.is-tunnel .dh-cadre { min-height: calc(100svh - 28px - 34px); }
+}
