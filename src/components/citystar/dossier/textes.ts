@@ -125,6 +125,12 @@ const fr = {
     kicker: "En une minute",
     titre: "Recevoir la brochure",
     retour: "Retour",
+    complement: {
+      envoye: "Votre demande est bien envoyée.",
+      intro: "Quelques questions de plus, facultatives, pour mieux vous conseiller.",
+      passer: "Passer",
+      terminer: "Terminer",
+    },
     decouvrir: {
       titre: "Comment souhaitez-vous découvrir les villas ?",
       choix: ["Recevoir la brochure et les prix", "Rendez-vous en visio", "Visite sur place, sur rendez-vous"],
@@ -284,6 +290,12 @@ const en: TextesDossier = {
     kicker: "In one minute",
     titre: "Get the brochure",
     retour: "Back",
+    complement: {
+      envoye: "Your request has been sent.",
+      intro: "A few more optional questions, so we can advise you better.",
+      passer: "Skip",
+      terminer: "Finish",
+    },
     decouvrir: {
       titre: "How would you like to discover the villas?",
       choix: ["Get the brochure and prices", "Video call", "On-site visit, by appointment"],
@@ -440,6 +452,12 @@ const es: TextesDossier = {
     kicker: "En un minuto",
     titre: "Recibir el folleto",
     retour: "Volver",
+    complement: {
+      envoye: "Su solicitud se ha enviado correctamente.",
+      intro: "Unas preguntas más, opcionales, para asesorarle mejor.",
+      passer: "Omitir",
+      terminer: "Terminar",
+    },
     decouvrir: {
       titre: "¿Cómo desea descubrir las villas?",
       choix: ["Recibir el folleto y los precios", "Cita por videollamada", "Visita en el lugar, con cita"],
@@ -596,6 +614,12 @@ const it: TextesDossier = {
     kicker: "In un minuto",
     titre: "Ricevi la brochure",
     retour: "Indietro",
+    complement: {
+      envoye: "La sua richiesta è stata inviata.",
+      intro: "Qualche domanda in più, facoltativa, per consigliarla meglio.",
+      passer: "Salta",
+      terminer: "Termina",
+    },
     decouvrir: {
       titre: "Come desidera scoprire le ville?",
       choix: ["Ricevere la brochure e i prezzi", "Appuntamento in videochiamata", "Visita sul posto, su appuntamento"],
@@ -752,6 +776,12 @@ const nl: TextesDossier = {
     kicker: "In één minuut",
     titre: "Brochure ontvangen",
     retour: "Terug",
+    complement: {
+      envoye: "Uw aanvraag is verzonden.",
+      intro: "Nog een paar optionele vragen, zodat we u beter kunnen adviseren.",
+      passer: "Overslaan",
+      terminer: "Afronden",
+    },
     decouvrir: {
       titre: "Hoe wilt u de villa’s ontdekken?",
       choix: ["Brochure en prijzen ontvangen", "Afspraak via videogesprek", "Bezoek ter plaatse, op afspraak"],
@@ -909,6 +939,12 @@ const no: TextesDossier = {
     kicker: "På ett minutt",
     titre: "Få brosjyren",
     retour: "Tilbake",
+    complement: {
+      envoye: "Forespørselen din er sendt.",
+      intro: "Noen flere valgfrie spørsmål, så vi kan gi deg bedre råd.",
+      passer: "Hopp over",
+      terminer: "Fullfør",
+    },
     decouvrir: {
       titre: "Hvordan vil du bli kjent med villaene?",
       choix: ["Få brosjyren og prisene", "Videomøte", "Besøk på stedet, etter avtale"],
@@ -1070,6 +1106,12 @@ const ar: TextesDossier = {
     kicker: "في دقيقة واحدة",
     titre: "احصلوا على الكتيّب",
     retour: "رجوع",
+    complement: {
+      envoye: "تم إرسال طلبكم بنجاح.",
+      intro: "بضعة أسئلة إضافية، اختيارية، لنقدّم لكم نصيحة أفضل.",
+      passer: "تخطّي",
+      terminer: "إنهاء",
+    },
     decouvrir: {
       titre: "كيف تودّون اكتشاف الفلل؟",
       choix: ["استلام الكتيّب والأسعار", "موعد عبر مكالمة فيديو", "زيارة في عين المكان، بموعد مسبق"],

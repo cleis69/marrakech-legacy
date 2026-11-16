@@ -16,6 +16,8 @@ export type Demande = {
   langue: Langue;
   /** Texte d'information affiché sous le bouton, gardé avec le contact. */
   consentement: string;
+  /** Envoi qui doit aboutir même si le visiteur quitte la page (compléments de réponses). */
+  persistant?: boolean;
 };
 
 /**
@@ -37,7 +39,10 @@ export async function envoyerDemande(d: Demande) {
       { name: "email", value: d.email.trim() },
       { name: "phone", value: d.telephone },
       /* Page arabe : HubSpot n'a pas de choix « arabe », le commercial le lit en tête du message. */
-      { name: "message", value: d.langue === "ar" ? `Page en arabe. ${d.message}`.trim() : d.message },
+      {
+        name: "message",
+        value: d.langue === "ar" ? `Page en arabe. ${d.message}`.trim() : d.message,
+      },
       { name: "hs_language", value: sequence },
       { name: "citystar_langue", value: sequence },
       { name: "citystar_langue_appareil", value: appareil.join(", ") },
@@ -54,6 +59,7 @@ export async function envoyerDemande(d: Demande) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: corps,
+      ...(d.persistant && { keepalive: true }),
     });
   try {
     const relayee = await envoi(hubspot.relais).catch(() => null);
