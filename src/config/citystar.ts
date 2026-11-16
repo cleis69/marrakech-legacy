@@ -34,14 +34,48 @@ export const programme = {
 } as const;
 
 // Surfaces plancher de la plaquette du promoteur, retenues par le client le 02/11/2026 (avant : A 585, B 536).
+// Salles de bains comptées sur les plans des villas le 16/11/2026 : une par suite (A et B 5, C 4),
+// sans le WC des invités ni celui de la chambre de service de la villa A.
 export const villasChiffres: Record<
   TypeVilla,
-  { surfaceConstruiteM2: number; terrainM2: number; suites: number; accessiblePmr: boolean }
+  {
+    surfaceConstruiteM2: number;
+    terrainM2: number;
+    suites: number;
+    sallesDeBains: number;
+    accessiblePmr: boolean;
+  }
 > = {
-  A: { surfaceConstruiteM2: 546, terrainM2: 2000, suites: 5, accessiblePmr: true },
-  B: { surfaceConstruiteM2: 565, terrainM2: 2000, suites: 5, accessiblePmr: false },
-  C: { surfaceConstruiteM2: 525, terrainM2: 2000, suites: 4, accessiblePmr: false },
+  A: {
+    surfaceConstruiteM2: 546,
+    terrainM2: 2000,
+    suites: 5,
+    sallesDeBains: 5,
+    accessiblePmr: true,
+  },
+  B: {
+    surfaceConstruiteM2: 565,
+    terrainM2: 2000,
+    suites: 5,
+    sallesDeBains: 5,
+    accessiblePmr: false,
+  },
+  C: {
+    surfaceConstruiteM2: 525,
+    terrainM2: 2000,
+    suites: 4,
+    sallesDeBains: 4,
+    accessiblePmr: false,
+  },
 };
+
+/** Plus petite et plus grande valeur d'une caractéristique sur les trois villas (fiche de la page d'atterrissage). */
+export function fourchetteVillas(
+  cle: "surfaceConstruiteM2" | "suites" | "sallesDeBains",
+): [number, number] {
+  const valeurs = Object.values(villasChiffres).map((v) => v[cle]);
+  return [Math.min(...valeurs), Math.max(...valeurs)];
+}
 
 /* ------------------------------------------------------------------ */
 /* Prix                                                                */

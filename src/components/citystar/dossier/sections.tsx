@@ -1,13 +1,20 @@
 import {
   ArrowRight,
   Banknote,
+  Bath,
+  BedDouble,
+  CalendarCheck,
   Check,
   FileText,
   MessageCircle,
   Phone,
   Globe2,
   Landmark,
+  Lock,
+  Ruler,
   ShieldCheck,
+  Trees,
+  Waves,
   ZoomIn,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -21,6 +28,7 @@ import {
   formatPart,
   formatPrix,
   formatSurface,
+  fourchetteVillas,
   gaucheADroite,
   prixPublics,
   prixVilla,
@@ -31,6 +39,8 @@ import {
   contactsRecus,
 } from "@/config/citystar";
 import masterplan from "@/assets/citystar/masterplan.webp";
+/* Aperçu flouté du plan de la villa C (celle du prix d'entrée) dans la fiche de la villa (16/11/2026). */
+import planApercu from "@/assets/citystar/plans/plan-c-rdc-sm.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
 import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
@@ -360,6 +370,11 @@ export function DossierHero({ titre }: { titre?: readonly [string, string] } = {
   const demander = useDemanderDossier();
   const [ligne1, ligne2] = titre ?? t.hero.titre(formatMois(calendrier.livraison, langue));
   const part = acompte?.confirme && acompte.part != null ? formatPart(acompte.part, langue) : null;
+  const [surfaceMin, surfaceMax] = fourchetteVillas("surfaceConstruiteM2");
+  const [suitesMin, suitesMax] = fourchetteVillas("suites");
+  /* Fourchettes courtes (« 525–565 m² », « 4–5 ») : trois colonnes tiennent sur un téléphone, en arabe aussi. */
+  const surfaces = gaucheADroite(`${surfaceMin}–${surfaceMax} m²`, langue);
+  const suites = gaucheADroite(`${suitesMin}–${suitesMax}`, langue);
 
   return (
     <section className={`dh ${CLASSE_SANS_BARRE}`} aria-labelledby="dh-titre">
@@ -410,13 +425,15 @@ export function DossierHero({ titre }: { titre?: readonly [string, string] } = {
                   <dd>{prixDepart}</dd>
                 </div>
               )}
+              {/* Ce que l'on achète, dès l'ouverture (16/11/2026) : la surface et les suites. Le terrain
+                  est dans la phrase au-dessus, la livraison dans le titre. */}
               <div>
-                <dt>{t.parcours.terrain}</dt>
-                <dd>{formatSurface(programme.terrainMaxM2, langue)}</dd>
+                <dt>{t.parcours.chiffres.surfaces}</dt>
+                <dd>{surfaces}</dd>
               </div>
               <div>
-                <dt>{t.parcours.chiffres.livraison}</dt>
-                <dd>{formatMois(calendrier.livraison, langue)}</dd>
+                <dt>{t.parcours.chiffres.suites}</dt>
+                <dd>{suites}</dd>
               </div>
             </dl>
             <div className="dh-appel">
@@ -433,6 +450,79 @@ export function DossierHero({ titre }: { titre?: readonly [string, string] } = {
                 {t.hero.conditions(part)}
               </p>
             )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* La villa en bref                                                    */
+/* ------------------------------------------------------------------ */
+
+const ICONES_FICHE = [Ruler, BedDouble, Bath, Waves, Trees, CalendarCheck];
+
+/**
+ * Fiche de la villa, juste sous l'ouverture (16/11/2026, demande de l'utilisateur) : ce que l'on
+ * achète en six points (surface, suites, salles de bains, piscine à débordement, terrain, livraison),
+ * puis un aperçu flouté du plan. Les chiffres sont donnés ; le plan complet, le prix de chaque villa
+ * et l'échéancier restent dans le dossier, et le bouton y mène.
+ */
+export function FicheVilla() {
+  const { langue } = useDevise();
+  const t = textesDossier[langue].parcours;
+  const f = t.fiche;
+  const demander = useDemanderDossier();
+  const plage = (
+    cle: Parameters<typeof fourchetteVillas>[0],
+    format: (n: number) => string = String,
+  ) => {
+    const [min, max] = fourchetteVillas(cle);
+    return min === max ? format(max) : t.surfaces(String(min), format(max));
+  };
+  const points = [
+    f.surface(plage("surfaceConstruiteM2", (m) => formatSurface(m, langue))),
+    f.suites(plage("suites")),
+    f.bains(plage("sallesDeBains")),
+    f.piscine,
+    f.terrain(formatSurface(programme.terrainMaxM2, langue)),
+    f.livraison(formatMois(calendrier.livraison, langue)),
+  ];
+
+  return (
+    <section className="fv" aria-labelledby="fv-titre">
+      <div className="fv-cadre">
+        <div className="fv-tete">
+          <p className="vp-kicker">{f.kicker}</p>
+          <Titre id="fv-titre" lignes={f.titre} />
+        </div>
+        <ul className="fv-points">
+          {points.map((point, i) => {
+            const Icone = ICONES_FICHE[i] ?? Check;
+            return (
+              <li key={point}>
+                <Icone aria-hidden="true" />
+                <span>{point}</span>
+              </li>
+            );
+          })}
+        </ul>
+        <div className="fv-plan">
+          <img
+            src={planApercu}
+            alt={f.planAlt}
+            loading="lazy"
+            decoding="async"
+            width="720"
+            height="950"
+          />
+          <div className="fv-voile">
+            <Lock aria-hidden="true" />
+            <p>{f.plan}</p>
+            <button type="button" className="fv-bouton" onClick={demander}>
+              {t.cta} <ArrowRight aria-hidden="true" />
+            </button>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { type Langue, LANGUES, contact } from "@/config/citystar";
 import { useRouterState } from "@tanstack/react-router";
 
 import { useDevise } from "./currency";
+import { textesDossier } from "./dossier/textes";
 import type { Selection } from "./data";
 import { retenirChoixLangue } from "./langueAppareil";
 import { chemin, cheminEspace, Lien, memePage } from "./liens";
@@ -241,6 +242,8 @@ export function SiteHeader({
   const page = useRouterState({ select: (etat) => etat.location.pathname });
   const solide = scrolled || !/^\/((en|ar)\/?)?$/.test(page);
 
+  /* Page d'atterrissage (16/11/2026) : le bouton dit ce que l'on reçoit, les plans et les prix. */
+  const demande = textesDossier[langue].parcours.cta;
   if (tunnel)
     return (
       <>
@@ -249,11 +252,11 @@ export function SiteHeader({
           <div className="float-actions">
             <LangSwitch />
             <button className="float-cta" onClick={onContact}>
-              {t.villas.brochure}
+              {demande}
             </button>
           </div>
         </header>
-        <BarreTunnel onContact={onContact} libelle={t.villas.brochure} />
+        <BarreTunnel onContact={onContact} libelle={demande} />
       </>
     );
 

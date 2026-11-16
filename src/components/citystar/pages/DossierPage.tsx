@@ -4,6 +4,7 @@ import {
   DossierAppel,
   DossierFormulaire,
   DossierHero,
+  FicheVilla,
   Garanties,
   LaVilla,
 } from "../dossier/sections";
@@ -26,6 +27,8 @@ export function DossierPage() {
       {/* Bandeau défilant tout en haut (16/11/2026) : villas restantes, liste des disponibilités. */}
       <Bandeau />
       <DossierHero />
+      {/* Ce que l'on achète (16/11/2026) : six points et un aperçu flouté du plan, avant les photos. */}
+      <FicheVilla />
       {/* Les photos d'abord, le formulaire ensuite (15/11/2026) : le visiteur voit la villa avant de
           laisser son numéro ; le bouton de l'ouverture et la barre du bas mènent au formulaire. */}
       <LaVilla />

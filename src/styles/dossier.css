@@ -449,3 +449,33 @@ main.is-tunnel .dh { padding-top: calc(14px + 34px); }
 @media (min-width: 901px) {
   main.is-tunnel .dh-cadre { min-height: calc(100svh - 28px - 34px); }
 }
+
+/* ------------------------------------------------------------------ */
+/* La villa en bref (16/11/2026) : six points et un aperçu flouté du plan, sous l'ouverture. */
+/* ------------------------------------------------------------------ */
+.fv { padding: 2.4rem 14px 1rem; background: var(--paper); }
+.fv-cadre { display: grid; gap: 1.4rem; max-width: 1180px; margin: 0 auto; }
+.fv-tete { display: grid; justify-items: center; gap: .6rem; text-align: center; }
+.fv-tete h2 { font: 400 clamp(2rem, 4vw, 3rem)/1.05 "Italiana", serif; color: var(--ink); }
+.fv-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.fv-points li { display: grid; align-content: start; gap: .55rem; padding: 1.1rem 1rem; border-radius: 18px; background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--border); font-size: .95rem; line-height: 1.35; }
+.fv-points svg { width: 1.35rem; height: 1.35rem; color: var(--bronze-text); stroke-width: 1.4; }
+.fv-plan { position: relative; overflow: hidden; border-radius: 22px; background: #fff; box-shadow: inset 0 0 0 1px var(--border); }
+.fv-plan img { display: block; width: 100%; height: 22rem; object-fit: cover; object-position: top; filter: blur(3.5px) saturate(.8); transform: scale(1.06); }
+.fv-voile { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: .9rem; padding: 1.4rem; text-align: center; background: radial-gradient(closest-side, color-mix(in oklab, var(--paper) 88%, transparent), color-mix(in oklab, var(--paper) 30%, transparent)); color: var(--ink); }
+.fv-voile svg { width: 1.6rem; height: 1.6rem; color: var(--bronze-text); }
+.fv-voile p { max-width: 30ch; font-size: 1rem; line-height: 1.45; }
+.fv-bouton { display: inline-flex; align-items: center; gap: .5rem; min-height: 48px; padding: .8rem 1.4rem; border: 0; border-radius: 999px; background: var(--ink); color: var(--cream); font: inherit; font-weight: 500; cursor: pointer; }
+.fv-bouton svg { width: 1.1rem; height: 1.1rem; color: currentColor; }
+[dir="rtl"] .fv-bouton svg { transform: scaleX(-1); }
+@media (min-width: 901px) {
+  .fv { padding: 4rem 14px 2rem; }
+  .fv-cadre { grid-template-columns: 1.1fr 1fr; align-items: center; column-gap: 2.4rem; }
+  .fv-tete { grid-column: 1 / -1; }
+  .fv-points { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .fv-points li { padding: 1.4rem 1.3rem; font-size: 1.02rem; }
+  .fv-plan img { height: 26rem; }
+}
+@media (max-width: 900px) {
+  .fv { padding: 1.8rem 8px .8rem; }
+}
