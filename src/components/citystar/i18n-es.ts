@@ -539,6 +539,18 @@ export const es: Textes = {
       "int-chambre-jour": "Dormitorio luminoso, cama baja y ventanal abierto al jardín",
       "int-chambre-soir": "Dormitorio en tonos grises, cama, sillones y vestidor",
       "int-salon": "Salón con sofá curvo bajo lámparas circulares, bonsái sobre la mesa baja",
+      "int-cuisine":
+        "Cocina de mármol veteado con isla central y taburetes, muebles de madera oscura y lacados en blanco",
+      "int-salle-a-manger": "Comedor para diez, larga mesa de mármol, cortinas y vitrina",
+      "int-salon-double-hauteur":
+        "Salón de doble altura, sofás curvos blancos, chimenea y pared de mármol verde",
+      "int-salon-ascenseur": "Salón con sofás curvos, escalera y ascensor acristalado al fondo",
+      "int-suite-salon": "Gran suite en tonos grises, cama, zona de estar y cuadro verde",
+      "int-suite-claire":
+        "Dormitorio luminoso, cama tapizada, armario acristalado y suelo de mármol",
+      "int-bain-marbre": "Baño de mármol veteado, ducha a ras de suelo y lavabo suspendido",
+      "int-bain-baignoire": "Baño de mármol gris, bañera exenta y grifería dorada",
+      "int-bain-vasques": "Doble lavabo de mármol bajo un gran espejo, mueble de madera",
     },
     visionneuse: "Galería en grande",
     agrandir: (alt) => `Ampliar: ${alt}`,

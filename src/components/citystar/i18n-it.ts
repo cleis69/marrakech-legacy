@@ -534,6 +534,17 @@ export const it: Textes = {
       "int-chambre-jour": "Camera luminosa, letto basso e vetrata aperta sul giardino",
       "int-chambre-soir": "Camera nei toni del grigio, letto, poltrone e cabina armadio",
       "int-salon": "Soggiorno con divano curvo sotto lampade circolari, bonsai sul tavolino",
+      "int-cuisine":
+        "Cucina in marmo venato con isola centrale e sgabelli, mobili in legno scuro e laccati bianchi",
+      "int-salle-a-manger": "Sala da pranzo per dieci, lungo tavolo in marmo, tende e vetrina",
+      "int-salon-double-hauteur":
+        "Soggiorno a doppia altezza, divani curvi bianchi, camino e parete in marmo verde",
+      "int-salon-ascenseur": "Soggiorno con divani curvi, scala e ascensore in vetro sul fondo",
+      "int-suite-salon": "Ampia suite nei toni del grigio, letto, angolo salotto e quadro verde",
+      "int-suite-claire": "Camera luminosa, letto imbottito, armadio in vetro e pavimento in marmo",
+      "int-bain-marbre": "Bagno in marmo venato, doccia a filo pavimento e lavabo sospeso",
+      "int-bain-baignoire": "Bagno in marmo grigio, vasca freestanding e rubinetteria dorata",
+      "int-bain-vasques": "Doppio lavabo in marmo sotto un grande specchio, mobile in legno",
     },
     visionneuse: "Galleria a tutto schermo",
     agrandir: (alt) => `Ingrandire: ${alt}`,

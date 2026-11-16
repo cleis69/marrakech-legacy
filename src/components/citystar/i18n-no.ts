@@ -518,6 +518,17 @@ export const no: Textes = {
       "int-chambre-jour": "Lyst soverom, lav seng og glassvegg mot hagen",
       "int-chambre-soir": "Soverom i grå toner, seng, lenestoler og garderobe",
       "int-salon": "Stue med buet sofa under runde taklamper, bonsai på salongbordet",
+      "int-cuisine":
+        "Kjøkken i årete marmor med kjøkkenøy og barkrakker, mørkt tre og hvitlakkerte fronter",
+      "int-salle-a-manger": "Spisestue for ti, langt marmorbord, gardiner og vitrineskap",
+      "int-salon-double-hauteur":
+        "Stue med dobbel takhøyde, buede hvite sofaer, peis og vegg i grønn marmor",
+      "int-salon-ascenseur": "Stue med buede sofaer, trapp og glassheis innerst",
+      "int-suite-salon": "Stor suite i grå toner, seng, sittegruppe og grønt maleri",
+      "int-suite-claire": "Lyst soverom, polstret seng, glassgarderobe og marmorgulv",
+      "int-bain-marbre": "Bad i årete marmor, dusj med flatt gulv og vegghengt servant",
+      "int-bain-baignoire": "Bad i grå marmor, frittstående badekar og gullfargede kraner",
+      "int-bain-vasques": "Dobbel marmorservant under et stort speil, innredning i tre",
     },
     visionneuse: "Galleri i stort format",
     agrandir: (alt) => `Forstørr: ${alt}`,

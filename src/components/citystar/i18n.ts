@@ -556,6 +556,17 @@ const fr = {
       "int-chambre-soir": "Chambre aux tons gris, lit, fauteuils et dressing",
       "int-salon":
         "Salon au canapé courbe sous des suspensions circulaires, bonsaï sur la table basse",
+      "int-cuisine":
+        "Cuisine en marbre veiné, îlot central et tabourets, meubles en bois sombre et façades laquées blanches",
+      "int-salle-a-manger": "Salle à manger pour dix, longue table en marbre, rideaux et vitrine",
+      "int-salon-double-hauteur":
+        "Salon en double hauteur, canapés courbes blancs, cheminée et mur en marbre vert",
+      "int-salon-ascenseur": "Salon aux canapés courbes, escalier et ascenseur vitré au fond",
+      "int-suite-salon": "Grande suite aux tons gris, lit, coin salon et tableau vert",
+      "int-suite-claire": "Chambre claire, lit capitonné, dressing vitré et sol en marbre",
+      "int-bain-marbre": "Salle de bains en marbre veiné, douche à l’italienne et vasque suspendue",
+      "int-bain-baignoire": "Salle de bains en marbre gris, baignoire îlot et robinetterie dorée",
+      "int-bain-vasques": "Double vasque en marbre sous un grand miroir, meuble en bois",
     } as Record<string, string>,
     visionneuse: "Galerie en grand format",
     agrandir: (alt: string) => `Agrandir\u00a0: ${alt}`,
@@ -1444,6 +1455,18 @@ const en: Textes = {
       "int-chambre-soir": "Grey-toned bedroom, bed, armchairs and dressing room",
       "int-salon":
         "Living room with a curved sofa under circular pendant lights, bonsai on the coffee table",
+      "int-cuisine":
+        "Veined-marble kitchen with a central island and stools, dark wood and white lacquered units",
+      "int-salle-a-manger":
+        "Dining room for ten, long marble table, curtains and a display cabinet",
+      "int-salon-double-hauteur":
+        "Double-height living room, curved white sofas, fireplace and green marble wall",
+      "int-salon-ascenseur": "Living room with curved sofas, staircase and glass lift at the back",
+      "int-suite-salon": "Large grey-toned suite with a bed, seating area and green painting",
+      "int-suite-claire": "Light bedroom, upholstered bed, glass-fronted wardrobe and marble floor",
+      "int-bain-marbre": "Veined-marble bathroom, walk-in shower and wall-hung basin",
+      "int-bain-baignoire": "Grey marble bathroom, freestanding bath and gold taps",
+      "int-bain-vasques": "Double marble basin under a large mirror, wooden vanity",
     },
     visionneuse: "Full-size gallery",
     agrandir: (alt) => `Enlarge: ${alt}`,

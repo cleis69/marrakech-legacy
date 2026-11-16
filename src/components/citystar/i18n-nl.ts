@@ -538,6 +538,18 @@ export const nl: Textes = {
       "int-chambre-jour": "Lichte slaapkamer, laag bed en een glazen wand naar de tuin",
       "int-chambre-soir": "Slaapkamer in grijstinten, bed, fauteuils en kleedkamer",
       "int-salon": "Woonkamer met een gebogen bank onder ronde hanglampen, bonsai op de salontafel",
+      "int-cuisine":
+        "Keuken in geaderd marmer met kookeiland en barkrukken, donker hout en wit gelakte kasten",
+      "int-salle-a-manger": "Eetkamer voor tien, lange marmeren tafel, gordijnen en vitrinekast",
+      "int-salon-double-hauteur":
+        "Woonkamer met dubbele hoogte, gebogen witte banken, haard en wand van groen marmer",
+      "int-salon-ascenseur": "Woonkamer met gebogen banken, trap en glazen lift achterin",
+      "int-suite-salon": "Ruime suite in grijstinten, bed, zithoek en groen schilderij",
+      "int-suite-claire":
+        "Lichte slaapkamer, gestoffeerd bed, glazen kledingkast en marmeren vloer",
+      "int-bain-marbre": "Badkamer in geaderd marmer, inloopdouche en zwevende wastafel",
+      "int-bain-baignoire": "Badkamer in grijs marmer, vrijstaand bad en gouden kranen",
+      "int-bain-vasques": "Dubbele marmeren wastafel onder een grote spiegel, houten badmeubel",
     },
     visionneuse: "Galerij op groot formaat",
     agrandir: (alt) => `Vergroten: ${alt}`,

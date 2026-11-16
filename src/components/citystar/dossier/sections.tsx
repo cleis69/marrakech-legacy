@@ -34,6 +34,10 @@ import photoB from "@/assets/citystar/rendus/ext-aerien-piscine.webp";
 import photoC from "@/assets/citystar/rendus/ext-facade-jardin.webp";
 import ouvertureMobileSm from "@/assets/citystar/rendus-sm/ext-pergola-portrait.webp";
 import ouvertureMobileLg from "@/assets/citystar/rendus/ext-pergola-portrait.webp";
+/* Version 1200 px (16/11/2026) : les téléphones à écran haute densité prenaient la 1600 px (236 Ko)
+   pour l'image qui compte le plus dans le premier affichage ; celle-ci pèse 140 Ko. Hors du dossier
+   des rendus, pour ne pas entrer dans la galerie. */
+import ouvertureMobileMd from "@/assets/citystar/ouverture/ext-pergola-portrait-1200.webp";
 import ouvertureSm from "@/assets/citystar/rendus-sm/ext-facade-crepuscule.webp";
 import ouvertureLg from "@/assets/citystar/rendus/ext-facade-crepuscule.webp";
 import salonSm from "@/assets/citystar/rendus-sm/int-salon.webp";
@@ -48,6 +52,12 @@ import terrasseSm from "@/assets/citystar/rendus-sm/ext-terrasse-jour.webp";
 import terrasseLg from "@/assets/citystar/rendus/ext-terrasse-jour.webp";
 import suiteSm from "@/assets/citystar/rendus-sm/int-chambre-bois.webp";
 import suiteLg from "@/assets/citystar/rendus/int-chambre-bois.webp";
+import cuisineSm from "@/assets/citystar/rendus-sm/int-cuisine.webp";
+import cuisineLg from "@/assets/citystar/rendus/int-cuisine.webp";
+import repasSm from "@/assets/citystar/rendus-sm/int-salle-a-manger.webp";
+import repasLg from "@/assets/citystar/rendus/int-salle-a-manger.webp";
+import bainSm from "@/assets/citystar/rendus-sm/int-bain-baignoire.webp";
+import bainLg from "@/assets/citystar/rendus/int-bain-baignoire.webp";
 
 import { useDevise } from "../currency";
 import { FormulaireDemande } from "../FormulaireDemande";
@@ -123,7 +133,13 @@ const PIECES = [
   { sm: chambreSm, lg: chambreLg },
   { sm: terrasseSm, lg: terrasseLg },
   { sm: suiteSm, lg: suiteLg },
+  /* Ajoutées le 16/11/2026, à la demande de l'utilisateur : la cuisine, la salle à manger, la salle de bains. */
+  { sm: cuisineSm, lg: cuisineLg },
+  { sm: repasSm, lg: repasLg },
+  { sm: bainSm, lg: bainLg },
 ];
+/** Ordre de la bande : la cuisine et la salle à manger, puis la nuit, la salle de bains, la terrasse. */
+const BANDE = [6, 7, 3, 5, 8, 4];
 
 export function LaVilla() {
   const { langue } = useDevise();
@@ -158,7 +174,7 @@ export function LaVilla() {
         <Titre id="vp-titre" lignes={t.titre} />
       </div>
       <div className="vp-grandes">{[0, 1, 2].map((i) => carte(i, true))}</div>
-      <div className="vp-bande">{[3, 4, 5].map((i) => carte(i, false))}</div>
+      <div className="vp-bande">{BANDE.map((i) => carte(i, false))}</div>
     </section>
   );
 }
@@ -318,7 +334,7 @@ export function DossierHero({ titre }: { titre?: readonly [string, string] } = {
         <picture>
           <source
             media="(max-width: 900px)"
-            srcSet={`${ouvertureMobileSm} 800w, ${ouvertureMobileLg} 1600w`}
+            srcSet={`${ouvertureMobileSm} 800w, ${ouvertureMobileMd} 1200w, ${ouvertureMobileLg} 1600w`}
             sizes="100vw"
           />
           <img
