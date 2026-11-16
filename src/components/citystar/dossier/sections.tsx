@@ -28,6 +28,7 @@ import {
   reservation,
   typeDepart,
   villasRestantes,
+  contactsRecus,
 } from "@/config/citystar";
 import masterplan from "@/assets/citystar/masterplan.webp";
 import photoA from "@/assets/citystar/rendus/ext-volume-lames.webp";
@@ -228,7 +229,7 @@ export function useDemanderDossier() {
 
 /**
  * Bandeau défilant tout en haut de la page d'atterrissage (16/11/2026, demande de l'utilisateur) :
- * le nombre de villas encore disponibles, la villa témoin visitable fin janvier 2027 (date donnée par
+ * le nombre de villas encore disponibles, les personnes qui ont déjà contacté CITYSTAR, la villa témoin visitable fin janvier 2027 (date donnée par
  * l'utilisateur le 03/11/2026) et l'offre de la liste. Un appui mène au formulaire. Le
  * texte est répété pour défiler sans couture ; seule la première copie est lue par les lecteurs
  * d'écran (étiquette du bouton). Sans animation si le visiteur la refuse.
@@ -236,7 +237,7 @@ export function useDemanderDossier() {
 export function Bandeau() {
   const { langue } = useDevise();
   const demander = useDemanderDossier();
-  const morceaux = textesDossier[langue].parcours.bandeau(villasRestantes);
+  const morceaux = textesDossier[langue].parcours.bandeau(villasRestantes, contactsRecus);
   const copie = (n: number) => (
     <span className="bd-copie" key={n}>
       {[0, 1, 2].flatMap((tour) =>

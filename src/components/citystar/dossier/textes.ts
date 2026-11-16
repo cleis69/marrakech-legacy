@@ -107,7 +107,7 @@ const fr = {
   },
   parcours: {
     cta: "Recevoir la brochure",
-    bandeau: (n: number) => [`Plus que ${n} villas`, "Villa témoin visitable fin janvier 2027", "Recevoir la liste des dernières disponibilités"],
+    bandeau: (n: number, contacts: number) => [`Plus que ${n} villas`, `${contacts} personnes nous ont déjà contactés`, "Villa témoin visitable fin janvier 2027", "Recevoir la liste des dernières disponibilités"],
     whatsapp: "ou écrire sur WhatsApp",
     messageWhatsapp: "Bonjour, je souhaite recevoir la brochure des villas CITYSTAR.",
     bulleWhatsapp: "Écrire sur WhatsApp",
@@ -283,7 +283,7 @@ const en: TextesDossier = {
   },
   parcours: {
     cta: "Get the brochure",
-    bandeau: (n: number) => [`Only ${n} villas left`, "Show villa open for viewings by end of January 2027", "Get the list of the last available villas"],
+    bandeau: (n: number, contacts: number) => [`Only ${n} villas left`, `${contacts} people have already contacted us`, "Show villa open for viewings by end of January 2027", "Get the list of the last available villas"],
     whatsapp: "or message us on WhatsApp",
     messageWhatsapp: "Hello, I would like to receive the CITYSTAR villas brochure.",
     bulleWhatsapp: "Message us on WhatsApp",
@@ -456,7 +456,7 @@ const es: TextesDossier = {
   },
   parcours: {
     cta: "Recibir el folleto",
-    bandeau: (n: number) => [`Solo quedan ${n} villas`, "Villa piloto visitable a finales de enero de 2027", "Recibir la lista de las últimas disponibles"],
+    bandeau: (n: number, contacts: number) => [`Solo quedan ${n} villas`, `${contacts} personas ya nos han contactado`, "Villa piloto visitable a finales de enero de 2027", "Recibir la lista de las últimas disponibles"],
     whatsapp: "o escribir por WhatsApp",
     messageWhatsapp: "Hola, me gustaría recibir el folleto de las villas CITYSTAR.",
     bulleWhatsapp: "Escribir por WhatsApp",
@@ -629,7 +629,7 @@ const it: TextesDossier = {
   },
   parcours: {
     cta: "Ricevi la brochure",
-    bandeau: (n: number) => [`Restano solo ${n} ville`, "Villa campione visitabile a fine gennaio 2027", "Ricevi l’elenco delle ultime disponibilità"],
+    bandeau: (n: number, contacts: number) => [`Restano solo ${n} ville`, `${contacts} persone ci hanno già contattato`, "Villa campione visitabile a fine gennaio 2027", "Ricevi l’elenco delle ultime disponibilità"],
     whatsapp: "o scrivici su WhatsApp",
     messageWhatsapp: "Buongiorno, vorrei ricevere la brochure delle ville CITYSTAR.",
     bulleWhatsapp: "Scrivici su WhatsApp",
@@ -802,7 +802,7 @@ const nl: TextesDossier = {
   },
   parcours: {
     cta: "Brochure ontvangen",
-    bandeau: (n: number) => [`Nog maar ${n} villa’s`, "Modelvilla te bezichtigen eind januari 2027", "De lijst met de laatste beschikbare villa’s ontvangen"],
+    bandeau: (n: number, contacts: number) => [`Nog maar ${n} villa’s`, `${contacts} mensen namen al contact met ons op`, "Modelvilla te bezichtigen eind januari 2027", "De lijst met de laatste beschikbare villa’s ontvangen"],
     whatsapp: "of stuur ons een WhatsApp",
     messageWhatsapp: "Hallo, ik ontvang graag de brochure van de CITYSTAR-villa’s.",
     bulleWhatsapp: "Stuur een WhatsApp",
@@ -976,7 +976,7 @@ const no: TextesDossier = {
   },
   parcours: {
     cta: "Få brosjyren",
-    bandeau: (n: number) => [`Bare ${n} villaer igjen`, "Visningsvillaen kan besøkes i slutten av januar 2027", "Få listen over de siste ledige villaene"],
+    bandeau: (n: number, contacts: number) => [`Bare ${n} villaer igjen`, `${contacts} personer har allerede kontaktet oss`, "Visningsvillaen kan besøkes i slutten av januar 2027", "Få listen over de siste ledige villaene"],
     whatsapp: "eller skriv til oss på WhatsApp",
     messageWhatsapp: "Hei, jeg ønsker å motta brosjyren for CITYSTAR-villaene.",
     bulleWhatsapp: "Skriv på WhatsApp",
@@ -1154,7 +1154,7 @@ const ar: TextesDossier = {
   },
   parcours: {
     cta: "احصلوا على الكتيّب",
-    bandeau: (n: number) => [`لم يتبقَّ سوى ${n} فلل`, "الفيلا النموذجية متاحة للزيارة في أواخر يناير 2027", "احصلوا على قائمة آخر الفلل المتاحة"],
+    bandeau: (n: number, contacts: number) => [`لم يتبقَّ سوى ${n} فلل`, `تواصل معنا ${contacts} شخصًا حتى الآن`, "الفيلا النموذجية متاحة للزيارة في أواخر يناير 2027", "احصلوا على قائمة آخر الفلل المتاحة"],
     whatsapp: "أو راسلونا عبر واتساب",
     messageWhatsapp: "مرحبًا، أودّ الحصول على كتيّب فلل CITYSTAR.",
     bulleWhatsapp: "راسلونا عبر واتساب",

@@ -140,6 +140,13 @@ export type Mois = { annee: number; mois: number };
  */
 export const villasRestantes = 9;
 
+/**
+ * Personnes qui ont déjà contacté CITYSTAR, par WhatsApp ou par téléphone : 197, chiffre donné par
+ * l'utilisateur le 16/11/2026 (source : ses conversations WhatsApp et ses appels, hors HubSpot).
+ * Affiché dans le bandeau ; à mettre à jour avec un chiffre vrai, jamais estimé.
+ */
+export const contactsRecus = 197;
+
 export const calendrier = {
   // Livraison du domaine annoncée par le client le 04/10/2026.
   livraison: { annee: 2027, mois: 8, confirme: true },
