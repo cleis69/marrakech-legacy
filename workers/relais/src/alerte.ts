@@ -84,7 +84,7 @@ const NIVEAUX = {
     titre: "Lead chaud",
     emoji: "🔥",
     delai: "1 h",
-    pourquoi: "Budget d'au moins 800 k€, achat dans les 6 mois, fonds propres ou mixte",
+    pourquoi: "Budget d'au moins 800 k€, achat dans les 6 mois, financement fonds propres, mixte ou non précisé",
   },
   tiede: {
     titre: "Lead tiède",

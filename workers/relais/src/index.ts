@@ -256,11 +256,14 @@ async function leadsPublicitaires(env: Env) {
 
 /**
  * Score du lead (`citystar_score`), d'après les règles du commercial :
- * - chaud : budget d'au moins 800 k€, achat dans les 6 mois, fonds propres ou mixte → appel sous 1 h ;
- * - tiède : bon budget mais délai long ou financement pas encore connu → appel sous 24 h et séquence ;
+ * - chaud : budget d'au moins 800 k€, achat dans les 6 mois, fonds propres, mixte ou financement
+ *   non renseigné → appel sous 1 h ;
+ * - tiède : bon budget mais délai long, ou financement « crédit » / « pas encore connu » → appel
+ *   sous 24 h et séquence ;
  * - froid : budget insuffisant ou « je me renseigne » → séquence seulement ;
  * - à qualifier : ni budget ni horizon (formulaire de pub, contact direct) → appel sous 24 h.
- * Le site ne demande pas le financement : le commercial le remplit dans HubSpot après l'appel.
+ * Sur le site, la question du financement est facultative : la laisser vide ne retire pas le
+ * classement chaud (17/11/2026, plus de 1,5 M€ dans les 3 mois classé tiède faute de réponse).
  */
 export type Score = "chaud" | "tiede" | "froid" | "a_qualifier";
 
@@ -268,7 +271,7 @@ type Proprietes = Record<string, string | null | undefined>;
 
 const BUDGET_SUFFISANT = ["800k_1m", "1_1_5m", "plus_1_5m"];
 const DELAI_COURT = ["3_mois", "3_6_mois"];
-const FINANCEMENT_OK = ["fonds_propres", "mixte"];
+const FINANCEMENT_OK = ["fonds_propres", "mixte", ""];
 
 export function score(p: Proprietes): Score {
   const budget = p["citystar_budget"] ?? "";
