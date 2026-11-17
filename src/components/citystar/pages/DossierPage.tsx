@@ -27,12 +27,13 @@ export function DossierPage() {
       {/* Bandeau défilant tout en haut (16/11/2026) : villas restantes, liste des disponibilités. */}
       <Bandeau />
       <DossierHero />
+      {/* Le formulaire juste après l'ouverture (17/11/2026, demande de l'utilisateur) : d'après Clarity,
+          seuls 4 visiteurs sur 10 descendaient jusqu'au formulaire quand il venait après « la villa en
+          bref » et les photos (à 41 % de la page sur mobile). Remplace l'ordre du 15/11 (photos d'abord). */}
+      <DossierFormulaire />
       {/* Ce que l'on achète (16/11/2026) : six points et un aperçu flouté du plan, avant les photos. */}
       <FicheVilla />
-      {/* Les photos d'abord, le formulaire ensuite (15/11/2026) : le visiteur voit la villa avant de
-          laisser son numéro ; le bouton de l'ouverture et la barre du bas mènent au formulaire. */}
       <LaVilla />
-      <DossierFormulaire />
       <Garanties />
       <CalendrierSection avecEspace={false} />
       <QuestionsSection />
