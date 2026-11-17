@@ -900,6 +900,7 @@ export const it: Textes = {
       "Grazie, la sua richiesta è stata inviata. Un consulente la richiamerà a breve.",
     erreur:
       "Non è stato possibile inviare la richiesta. Riprovi, oppure ci chiami al numero qui sotto.",
+    numeroIncomplet: "Questo numero sembra incompleto: controlli il numero di cifre.",
     fermer: "Chiudere",
   },
   modales: {

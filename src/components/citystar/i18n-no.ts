@@ -878,6 +878,7 @@ export const no: Textes = {
     merci:
       "Takk, forespørselen din er sendt. En konsulent ringer deg opp snart.",
     erreur: "Forespørselen kunne ikke sendes. Prøv igjen, eller ring oss på nummeret nedenfor.",
+    numeroIncomplet: "Dette nummeret ser ufullstendig ut: sjekk antall sifre.",
     fermer: "Lukk",
   },
   modales: {

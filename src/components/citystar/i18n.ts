@@ -925,6 +925,7 @@ const fr = {
     merci:
       "Merci, votre demande est bien envoyée. Un consultant vous rappelle rapidement.",
     erreur: "L’envoi n’a pas abouti. Réessayez, ou appelez-nous au numéro ci-dessous.",
+    numeroIncomplet: "Ce numéro semble incomplet : vérifiez le nombre de chiffres.",
     fermer: "Fermer",
   },
   modales: {
@@ -1802,6 +1803,7 @@ const en: Textes = {
     merci:
       "Thank you, your request has been sent. A consultant will call you back shortly.",
     erreur: "Your request could not be sent. Please try again, or call us on the number below.",
+    numeroIncomplet: "This number looks incomplete: please check the number of digits.",
     fermer: "Close",
   },
   modales: {

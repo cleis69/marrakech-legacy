@@ -4,7 +4,13 @@ import { type FormEvent, useEffect, useState } from "react";
 import { useDevise } from "./currency";
 import type { Selection } from "./data";
 import { allerAuRemerciement, envoyerDemande } from "./demande";
-import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "./indicatifs";
+import {
+  listeIndicatifs,
+  numeroComplet,
+  numeroInternational,
+  numeroPlausible,
+  paysProbable,
+} from "./indicatifs";
 import { signaler, signalerDebutGoogleAds } from "./mesure";
 
 type Etat = "repos" | "envoi" | "envoye" | "erreur";
@@ -65,6 +71,9 @@ export function FormulaireDemande({
      il était vide et obligatoire, et bloquait l'envoi tant qu'on ne l'avait pas cherché. */
   const [pays, setPays] = useState("");
   const [numero, setNumero] = useState("");
+  /* Numéro trop court ou trop long refusé à l'envoi : le message reste jusqu'à la correction. */
+  const [numeroSignale, setNumeroSignale] = useState(false);
+  const numeroFaux = numero.trim() !== "" && !numeroPlausible(pays, numero);
   const [moyen, setMoyen] = useState<Moyen>("whatsapp");
   const [commence, setCommence] = useState(false);
   useEffect(() => {
@@ -83,6 +92,12 @@ export function FormulaireDemande({
    */
   async function envoyer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (numeroFaux) {
+      setNumeroSignale(true);
+      signaler("formulaire_incomplet", { formulaire: prefixe, champ: "telephone_longueur" });
+      event.currentTarget.querySelector<HTMLInputElement>('input[name="telephone"]')?.focus();
+      return;
+    }
     const champs = new FormData(event.currentTarget);
     const texte = (nom: string) => String(champs.get(nom) ?? "").trim();
     const message = [
@@ -99,9 +114,7 @@ export function FormulaireDemande({
       telephone: numeroComplet(texte("indicatif"), texte("telephone")),
       message,
       villa: texte("citystar_villa"),
-      reponses: Object.fromEntries(
-        QUESTIONS.map(([, propriete]) => [propriete, texte(propriete)]),
-      ),
+      reponses: Object.fromEntries(QUESTIONS.map(([, propriete]) => [propriete, texte(propriete)])),
       langue,
       consentement: t.contact.consentement,
     });
@@ -194,8 +207,17 @@ export function FormulaireDemande({
                 value={numero}
                 onChange={(event) => setNumero(event.target.value)}
                 required
+                aria-invalid={numeroSignale && numeroFaux ? true : undefined}
+                aria-describedby={
+                  numeroSignale && numeroFaux ? `${prefixe}-numero-faux` : undefined
+                }
               />
             </div>
+            {numeroSignale && numeroFaux && (
+              <p id={`${prefixe}-numero-faux`} className="contact-erreur" role="alert">
+                {t.contact.numeroIncomplet}
+              </p>
+            )}
           </div>
           <label className="contact-large">
             {t.contact.nom}

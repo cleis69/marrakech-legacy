@@ -898,6 +898,7 @@ export const nl: Textes = {
       "Bedankt, uw aanvraag is verzonden. Een consultant belt u binnenkort terug.",
     erreur:
       "Uw aanvraag kon niet worden verzonden. Probeer het opnieuw of bel ons op het nummer hieronder.",
+    numeroIncomplet: "Dit nummer lijkt onvolledig: controleer het aantal cijfers.",
     fermer: "Sluiten",
   },
   modales: {

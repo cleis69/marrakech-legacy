@@ -905,6 +905,7 @@ export const es: Textes = {
       "Gracias, su solicitud se ha enviado. Un consultor le llamará en breve.",
     erreur:
       "No se ha podido enviar la solicitud. Inténtelo de nuevo o llámenos al número que figura abajo.",
+    numeroIncomplet: "Este número parece incompleto: compruebe el número de cifras.",
     fermer: "Cerrar",
   },
   modales: {

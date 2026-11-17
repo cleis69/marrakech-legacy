@@ -16,7 +16,13 @@ import { useDevise } from "../currency";
 import type { Selection } from "../data";
 import { type Demande, envoyerDemande } from "../demande";
 import { QUESTIONS } from "../FormulaireDemande";
-import { listeIndicatifs, numeroComplet, numeroInternational, paysProbable } from "../indicatifs";
+import {
+  listeIndicatifs,
+  numeroComplet,
+  numeroInternational,
+  numeroPlausible,
+  paysProbable,
+} from "../indicatifs";
 import { merci } from "../merci";
 import {
   signaler,
@@ -89,6 +95,9 @@ export function FormulaireEtapes({
   const [indicatifs, setIndicatifs] = useState<ReturnType<typeof listeIndicatifs> | null>(null);
   const [pays, setPays] = useState("");
   const [numero, setNumero] = useState("");
+  /* Numéro trop court ou trop long refusé à l'envoi : le message reste jusqu'à la correction. */
+  const [numeroSignale, setNumeroSignale] = useState(false);
+  const numeroFaux = numero.trim() !== "" && !numeroPlausible(pays, numero);
   /* Ce qui est déjà parti : les coordonnées, et les réponses facultatives déjà envoyées. */
   const coordonnees = useRef<Coordonnees | null>(null);
   const reponsesRef = useRef<Reponses>({});
@@ -196,6 +205,12 @@ export function FormulaireEtapes({
   /** Les coordonnées : la demande part ici, avec le budget. Pas de page de remerciement. */
   async function envoyer(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (numeroFaux) {
+      setNumeroSignale(true);
+      signaler("formulaire_incomplet", { formulaire: id, champ: "telephone_longueur" });
+      event.currentTarget.querySelector<HTMLInputElement>('input[name="telephone"]')?.focus();
+      return;
+    }
     const champs = new FormData(event.currentTarget);
     const texte = (nom: string) => String(champs.get(nom) ?? "").trim();
     const c: Coordonnees = {
@@ -348,8 +363,15 @@ export function FormulaireEtapes({
               value={numero}
               onChange={(event) => setNumero(event.target.value)}
               required
+              aria-invalid={numeroSignale && numeroFaux ? true : undefined}
+              aria-describedby={numeroSignale && numeroFaux ? `${id}-numero-faux` : undefined}
             />
           </div>
+          {numeroSignale && numeroFaux && (
+            <p id={`${id}-numero-faux`} className="fe-erreur" role="alert">
+              {site.contact.numeroIncomplet}
+            </p>
+          )}
         </div>
         <label>
           {t.contact.email}

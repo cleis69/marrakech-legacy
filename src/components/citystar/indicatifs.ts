@@ -377,3 +377,35 @@ export function numeroComplet(pays: string, saisi: string) {
   const indicatif = INDICATIFS[pays] ?? "";
   return `+${indicatif} ${pays === "IT" ? brut : brut.replace(/^0+/, "")}`;
 }
+
+/**
+ * Nombre de chiffres d'un numéro, sans l'indicatif ni le 0 national, pour les pays où il est
+ * fixe ou presque. Le 17/11/2026, une demande est arrivée avec « +212 61085758 » : un chiffre
+ * manquait et le contact était perdu.
+ */
+const CHIFFRES_NATIONAUX: Record<string, readonly [number, number]> = {
+  "212": [9, 9], // Maroc : 6 12 34 56 78
+  "33": [9, 9], // France
+  "34": [9, 9], // Espagne
+  "31": [9, 9], // Pays-Bas
+  "41": [9, 9], // Suisse
+  "32": [8, 9], // Belgique
+  "44": [9, 10], // Royaume-Uni
+  "47": [8, 8], // Norvège
+};
+
+/**
+ * Le numéro a une longueur possible : celle du pays quand on la connaît, sinon 8 à 15 chiffres
+ * indicatif compris (norme internationale). Ne vérifie pas que le numéro existe.
+ */
+export function numeroPlausible(pays: string, saisi: string) {
+  const chiffres = numeroComplet(pays, saisi).replace(/\D/g, "");
+  if (chiffres.length < 8 || chiffres.length > 15) return false;
+  const indicatif = Object.keys(CHIFFRES_NATIONAUX).find((code) => chiffres.startsWith(code));
+  const longueur = indicatif ? CHIFFRES_NATIONAUX[indicatif] : undefined;
+  if (!indicatif || !longueur) return true;
+  // « +33 06… » : le 0 national saisi après l'indicatif ne compte pas.
+  const national = chiffres.slice(indicatif.length).replace(/^0/, "");
+  const [min, max] = longueur;
+  return national.length >= min && national.length <= max;
+}
